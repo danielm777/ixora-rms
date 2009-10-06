@@ -48,7 +48,7 @@ public class SecurityHandlerDefault implements SecurityHandler {
 		super();
 		CertificateFactory cf = CertificateFactory.getInstance("X.509");
 		X509Certificate cert = (X509Certificate)cf.generateCertificate(
-			getClass().getResourceAsStream("JSpinFieldMono16.gif"));
+			getClass().getResourceAsStream("cert.cer"));
 		publicKey = cert.getPublicKey();
 	}
 
