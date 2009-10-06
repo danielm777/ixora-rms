@@ -1,0 +1,26 @@
+CC = gcc
+JAVAC = javac
+CFLAGS = -IC:/j2sdk1.4.2_02/include -IC:/j2sdk1.4.2_02/include/win32
+LIBS = 
+OBJ = ping.o
+JAVA = Ping.java
+
+all: main
+
+main: $(OBJ)
+	$(JAVAC) $(JAVA) 
+	$(CC) $(CFLAGS) $(LIBS) -Wl,--add-stdcall-alias -o ping $(OBJ)  -lwsock32
+	$(CC) $(CFLAGS) -shared -DLIB $(LIBS) -Wl,--add-stdcall-alias -o ./ping.dll $(OBJ) -lwsock32
+	strip ./ping.dll
+
+#lib: $(OBJ)
+#	$(CC) $(CFLAGS) -shared -DLIB $(LIBS) --add-stdcall-alias -o ./ping.dll $(OBJ) -lwsock32
+#	c:/_cygwin/bin/strip ./ping.dll
+
+main.o: ping.c Ping.h
+
+clean:
+	rm -f *.o
+	rm -f ping
+	rm -f libping.so
+	rm -f Ping.class

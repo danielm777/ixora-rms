@@ -1,0 +1,25 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: wmi - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "e:\Temp\RSP5C.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"Debug/wmi.pdb" /debug /machine:I386 /out:"..\..\RMSApp\bin\x86-win32\bin\wmi.dll" /implib:"Debug/wmi.lib" /pdbtype:sept /libpath:"E:\Program Files\Microsoft Visual Studio .NET\Vc7\PlatformSDK\lib" 
+.\Debug\wmi.obj
+]
+Creating command line "link.exe @e:\Temp\RSP5C.tmp"
+<h3>Output Window</h3>
+Linking...
+   Creating library Debug/wmi.lib and object Debug/wmi.exp
+
+
+
+<h3>Results</h3>
+wmi.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
