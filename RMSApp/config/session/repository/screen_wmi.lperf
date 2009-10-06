@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="screen_wmi">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.wmi</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.wmi.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                  </config>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.wmi</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.wmi.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                  </config>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/{Base Board}">
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[#time#]" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[#time#]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Caption]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Caption]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[ConfigOptions]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[ConfigOptions]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[CreationClassName]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[CreationClassName]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Depth]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Depth]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Description]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Description]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Height]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Height]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HostingBoard]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HostingBoard]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HotSwappable]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HotSwappable]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[InstallDate]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[InstallDate]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Manufacturer]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Manufacturer]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Model]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Model]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Name]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Name]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[OtherIdentifyingInfo]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[OtherIdentifyingInfo]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PartNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PartNumber]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PoweredOn]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PoweredOn]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Product]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Product]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Removable]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Removable]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Replaceable]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Replaceable]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequirementsDescription]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequirementsDescription]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequiresDaughterBoard]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequiresDaughterBoard]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SerialNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SerialNumber]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SKU]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SKU]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SlotLayout]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SlotLayout]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SpecialRequirements]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SpecialRequirements]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Status]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Status]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Tag]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Tag]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Version]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Version]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Weight]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Weight]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Width]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Width]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/{BIOS}">
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[#time#]" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[#time#]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BiosCharacteristics]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BiosCharacteristics]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BIOSVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BIOSVersion]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BuildNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BuildNumber]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Caption]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Caption]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CodeSet]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CodeSet]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CurrentLanguage]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CurrentLanguage]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Description]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Description]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[IdentificationCode]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[IdentificationCode]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallableLanguages]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallableLanguages]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallDate]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallDate]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[LanguageEdition]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[LanguageEdition]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ListOfLanguages]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ListOfLanguages]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Manufacturer]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Manufacturer]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Name]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Name]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[OtherTargetOS]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[OtherTargetOS]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[PrimaryBIOS]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[PrimaryBIOS]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ReleaseDate]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ReleaseDate]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SerialNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SerialNumber]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSBIOSVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSBIOSVersion]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMajorVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMajorVersion]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMinorVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMinorVersion]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSPresent]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSPresent]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementID]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementID]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementState]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementState]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Status]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Status]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[TargetOperatingSystem]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[TargetOperatingSystem]"/>
+          <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Version]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Version]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards/>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard" h="566.0" title="Dashboard 2" w="399.0" x="353.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.properties.PropertiesControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.properties.PropertiesCounterSetDataView">
+                  <name>BIOS</name>
+                  <description>BIOS</description>
+                  <query>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[#time#]" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[#time#]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BiosCharacteristics]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BiosCharacteristics]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BIOSVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BIOSVersion]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BuildNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[BuildNumber]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Caption]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Caption]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CodeSet]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CodeSet]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CurrentLanguage]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[CurrentLanguage]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Description]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Description]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[IdentificationCode]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[IdentificationCode]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallableLanguages]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallableLanguages]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallDate]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[InstallDate]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[LanguageEdition]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[LanguageEdition]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ListOfLanguages]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ListOfLanguages]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Manufacturer]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Manufacturer]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Name]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Name]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[OtherTargetOS]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[OtherTargetOS]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[PrimaryBIOS]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[PrimaryBIOS]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ReleaseDate]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[ReleaseDate]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SerialNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SerialNumber]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSBIOSVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSBIOSVersion]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMajorVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMajorVersion]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMinorVersion]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSMinorVersion]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSPresent]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SMBIOSPresent]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementID]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementID]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementState]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[SoftwareElementState]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Status]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Status]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[TargetOperatingSystem]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[TargetOperatingSystem]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Version]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05/[Version]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BIOS/Phoenix ROM BIOS PLUS Version 1.10 A05"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard" h="566.0" title="Dashboard 1" w="356.0" x="-2.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.properties.PropertiesControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.properties.PropertiesCounterSetDataView">
+                  <name>Base Board</name>
+                  <description>Base Board</description>
+                  <query>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[#time#]" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[#time#]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Caption]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Caption]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[ConfigOptions]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[ConfigOptions]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[CreationClassName]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[CreationClassName]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Depth]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Depth]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Description]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Description]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Height]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Height]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HostingBoard]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HostingBoard]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HotSwappable]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[HotSwappable]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[InstallDate]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[InstallDate]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Manufacturer]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Manufacturer]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Model]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Model]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Name]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Name]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[OtherIdentifyingInfo]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[OtherIdentifyingInfo]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PartNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PartNumber]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PoweredOn]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[PoweredOn]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Product]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Product]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Removable]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Removable]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Replaceable]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Replaceable]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequirementsDescription]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequirementsDescription]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequiresDaughterBoard]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[RequiresDaughterBoard]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SerialNumber]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SerialNumber]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SKU]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SKU]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SlotLayout]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SlotLayout]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SpecialRequirements]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[SpecialRequirements]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Status]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Status]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Tag]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Tag]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Version]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Version]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Weight]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Weight]"/>
+                    <resource id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Width]" iname="$counter" rid="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board/[Width]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.wmi/root/wmi_hw/hw_mb/Win32_BaseBoard/Base Board"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

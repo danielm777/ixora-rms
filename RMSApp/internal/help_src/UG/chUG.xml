@@ -1,0 +1,17 @@
+<chapter id="chUG">
+	<title>User guide</title>
+	&secConcepts;
+	&secUpdate;
+	&secPerfMon;
+	&secControls;
+	&secLogging;
+	&secCustomViews;
+	&secCustomData;
+	&secProvidersJava;
+	&secProvidersSQL;
+	&secFunctions;
+	&secReactions;
+	&secJobs;
+	&secHTMLGeneration;
+	&secFirewallIssues;
+</chapter>

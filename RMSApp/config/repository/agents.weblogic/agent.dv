@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <views>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Transaction resources</name>
+      <description>Transaction resources</description>
+      <query>
+        <resource id="tran_res" iname="$entity[3]/$entity[6]" name="Transaction resource" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)"/>
+        <resource id="total" iname="$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)/[TransactionTotalCount]"/>
+        <resource id="committed" iname="$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)/[TransactionCommittedTotalCount]"/>
+        <resource id="rolledback" iname="$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)/[TransactionRolledBackTotalCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="tran_res"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Server channels</name>
+      <description>This shows a sample table data view</description>
+      <query>
+        <resource id="channel" iname="$entity[3]/$entity[5]" name="Server channels" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)"/>
+        <resource id="connections" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[ConnectionsCount]"/>
+        <resource id="bytes_sent" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[BytesSentCount]"/>
+        <resource id="bytes_recv" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[BytesReceivedCount]"/>
+        <resource id="accept" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[AcceptCount]"/>
+        <resource id="msg_recv" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[MessagesReceivedCount]"/>
+        <resource id="url" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[PublicURL]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="channel"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Persistent stores</name>
+      <description>Persistent stores</description>
+      <query>
+        <resource id="stores" iname="$entity[3]/$entity[5]" name="Work managers" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)"/>
+        <resource id="delete_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[DeleteCount]"/>
+        <resource id="update_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[UpdateCount]"/>
+        <resource id="read_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ReadCount]"/>
+        <resource id="create_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[CreateCount]"/>
+        <resource id="object_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ObjectCount]"/>
+        <resource id="physical_write_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[PhysicalWriteCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="stores"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JDBC data sources</name>
+      <description>JDBC data sources</description>
+      <query>
+        <resource id="data_source" iname="$entity[4]/$entity[6]" name="JDBC Data source" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)"/>
+        <resource id="curr_capacity" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
+        <resource id="num_available" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[NumAvailable]"/>
+        <resource id="curr_waiting_for_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[WaitingForConnectionCurrentCount]"/>
+        <resource id="curr_active_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ActiveConnectionsCurrentCount]"/>
+        <resource id="prep_stmt_cache_miss" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[PrepStmtCacheMissCount]"/>
+        <resource id="leaked_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[LeakedConnectionCount]"/>
+        <resource id="conn_delay_time" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ConnectionDelayTime]"/>
+        <resource id="user" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="data_source"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlets</name>
+      <description>Servlets</description>
+      <query>
+        <resource id="servlets" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]" name="Servlets" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)"/>
+        <resource id="exec_time" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[ExecutionTimeAverage]"/>
+        <resource id="invocations" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[InvocationTotalCount]"/>
+        <resource id="reload" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[ReloadTotalCount]"/>
+        <resource id="url" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[URL]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="servlets"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Committed/Rolledback transactions per server</name>
+      <description>The number of committed and rolled back transactions per server</description>
+      <query>
+        <resource id="server" iname="$entity[3]" name="Server" rid="-/-/root/com.bea/ServerRuntimes/(.*)"/>
+        <resource id="committed" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[TransactionCommittedTotalCount]"/>
+        <resource id="rolled" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[TransactionRolledBackTotalCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="server"/>
+        <range id="committed"/>
+        <range id="rolled"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Active transactions for all servers</name>
+      <description>The number of active transactions for all servers</description>
+      <query>
+        <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[#time#]"/>
+        <resource id="active" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[ActiveTransactionsTotalCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="active"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Throughput for all servers</name>
+      <description>The mean number of requests completed per second for all servers</description>
+      <query>
+        <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[#time#]"/>
+        <resource id="t" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[Throughput]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="t"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Current connnections for all JMS servers</name>
+      <description>The current number of JMS connections for all servers</description>
+      <query>
+        <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/([^\\.]+\\.jms)/[#time#]"/>
+        <resource id="conns" iname="$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/([^\\.]+\\.jms)/[ConnectionsCurrentCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="conns"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Work managers</name>
+      <description>Work managers</description>
+      <query>
+        <resource id="work_managers" iname="$entity[3]/$entity[5]" name="Work managers" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)"/>
+        <resource id="pending_requests" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)/[PendingRequests]"/>
+        <resource id="completed_requests" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)/[CompletedRequests]"/>
+        <resource id="stuck_thread_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)/[StuckThreadCount]"/>
+        <reaction params="pending_requests" severity="HIGH">
+          <arm><![CDATA[return pending_requests >= 20;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The number of pending requests for work manager " + env.getEntityPath(pending_requests) + " was greater than 20 for more than one minute";]]></message>
+        </reaction>
+        <reaction params="stuck_thread_count" severity="HIGH">
+          <arm><![CDATA[return stuck_thread_count >= 1;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "One thread is stucked for work manager " + env.getEntityPath(stuck_thread_count);]]></message>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="work_managers"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Execute queues</name>
+      <description>Execute queues</description>
+      <query>
+        <resource id="exec_queue" iname="$entity[3]/$entity[5]" name="Execute queue" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)"/>
+        <resource id="pending_requests" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)/[PendingRequestCurrentCount]"/>
+        <resource id="threads_idle" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)/[ExecuteThreadCurrentIdleCount]"/>
+        <resource id="threads_total" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)/[ExecuteThreadTotalCount]"/>
+        <reaction params="pending_requests" severity="HIGH">
+          <arm><![CDATA[return pending_requests > 20;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The number of pending requests for execute queue " + env.getEntityPath(pending_requests) + " was higher than 20 for the last minute.";]]></message>
+        </reaction>
+        <function description="The number of active threads in the execute queue" id="threads_active" iname="$entity[3]/$entity[5]/ExecuteThreadActiveCount" name="ExecuteThreadActiveCount" op="script">
+          <param id="threads_total"/>
+          <param id="threads_idle"/>
+          <code>return threads_total - threads_idle;</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="exec_queue"/>
+      <column id="threads_active"/>
+      <column id="threads_total"/>
+      <column id="pending_requests"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Queue length for all servers</name>
+      <description>The number of pending requests in the priority queue for all servers</description>
+      <query>
+        <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[#time#]"/>
+        <resource id="ql" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[QueueLength]"/>
+        <reaction params="ql" severity="HIGH">
+          <arm><![CDATA[return ql > 20;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The queue length for " + env.getEntityPath(ql) + " was greater than 20 for more than one minute";]]></message>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="ql"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Pending user requests for all servers</name>
+      <description>A timeseries chart with the number of pending user requests for every server</description>
+      <query>
+        <resource id="id5" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[PendingUserRequestCount]"/>
+        <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[#time#]"/>
+        <reaction params="id5" severity="HIGH">
+          <arm><![CDATA[return id5 > 20;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The number of pending user requests for " + env.getEntityPath(id5) + " was greater than 20 for more than one minute";]]></message>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id5"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Persistent store operations</name>
+      <description>A stacked bar chart with the number of delete/read/update/create operations for all persistent stores in every server</description>
+      <query>
+        <resource id="id1" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[DeleteCount]"/>
+        <resource id="id2" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[UpdateCount]"/>
+        <resource id="id5" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[CreateCount]"/>
+        <resource id="id6" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ReadCount]"/>
+        <resource id="id0" iname="$entity[3]/$entity[5]" name="Server/PersistentStore" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="StackedBar2D">
+        <domain id="id0"/>
+        <range id="id1"/>
+        <range id="id2"/>
+        <range id="id5"/>
+        <range id="id6"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JMS destinations</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[MessagesCurrentCount]"/>
+        <resource id="id3" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[MessagesPendingCount]"/>
+        <resource id="id4" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[State]"/>
+        <resource id="id13" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[ConsumersCurrentCount]"/>
+        <resource id="id0" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]" name="Server/JMSService/JMSServer/Destination" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id13"/>
+      <column id="id4"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JMS connections</name>
+      <description>A table with all JMS connections for every server</description>
+      <query>
+        <resource id="id1" iname="$entity[3]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/[HostAddress]"/>
+        <resource id="id2" iname="$entity[3]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/[SessionsTotalCount]"/>
+        <resource id="id3" iname="$entity[3]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/[ClientID]"/>
+        <resource id="id4" iname="$entity[3]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/[SessionsHighCount]"/>
+        <resource id="id5" iname="$entity[3]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/[SessionsCurrentCount]"/>
+        <resource id="id0" iname="$entity[3]/$entity[4]/$entity[6]" name="Server/JMSService/Connection" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id4"/>
+      <column id="id5"/>
+      <column id="id1"/>
+      <column id="id3"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JMS sessions</name>
+      <description>A table with all JMS sessions for every server</description>
+      <query>
+        <resource id="id2" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)/[MessagesPendingCount]"/>
+        <resource id="id4" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)/[BytesSentCount]"/>
+        <resource id="id6" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)/[BytesReceivedCount]"/>
+        <resource id="id8" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)/[ConsumersCurrentCount]"/>
+        <resource id="id11" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)/[MessagesReceivedCount]"/>
+        <resource id="id12" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)/[BytesPendingCount]"/>
+        <resource id="id13" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)/[ProducersCurrentCount]"/>
+        <resource id="id0" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]" name="Server/JMSService/Connection/Session" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/Connections/(.*)/Sessions/(.*)"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id4"/>
+      <column id="id6"/>
+      <column id="id8"/>
+      <column id="id11"/>
+      <column id="id12"/>
+      <column id="id13"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Execute queues - thread utilization</name>
+      <description>Bar chart with the number of busy threads for all servers</description>
+      <query>
+        <resource id="total" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ExecuteThreadTotalCount]"/>
+        <resource id="idle" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ExecuteThreadCurrentIdleCount]"/>
+        <resource id="id0" iname="$host/$agent/$4/$2" name="Server/ExecuteQueue" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        <reaction params="idle" severity="HIGH">
+          <arm><![CDATA[return idle == 0 && !(env.getEntityPart(idle, 2).contains("Non-Blocking"));]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "All available threads have been active for the last minute for " + env.getEntityPart(idle, 2);]]></message>
+          <advise><![CDATA[return "If the CPU is not fully utilized consider increasing the number of threads in the execute queue.";]]></advise>
+        </reaction>
+        <function description="The number of threads which are active (Total - Idle)" id="fid1" iname="$4/$2/$counter" name="ActiveThreadsCount" op="script">
+          <param id="total"/>
+          <param id="idle"/>
+          <code>return total - idle;</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="StackedBar2D">
+        <domain id="id0"/>
+        <range id="fid1"/>
+        <range id="idle"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Execute queues - pending requests</name>
+      <description>Timeseries with the pending requests for all servers</description>
+      <query>
+        <resource id="id2" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PendingRequestCurrentCount]"/>
+        <resource id="time" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[#time#]"/>
+        <reaction params="id2" severity="HIGH">
+          <arm><![CDATA[return id2 > 20;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The number of pending requests for " + env.getEntityPart(id2, 2) + " was higher than 20 for more than one minute.";]]></message>
+          <advise><![CDATA[return "If the CPU is not fully utilized consider increasing the number of threads in the execute queue.";]]></advise>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id2"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>EJB pools</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[MissTotalCount]"/>
+        <resource id="id3" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[BeansInUseCount]"/>
+        <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterTotalCount]"/>
+        <resource id="id5" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[AccessTotalCount]"/>
+        <resource id="id6" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[IdleBeansCount]"/>
+        <resource id="id7" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[DestroyedTotalCount]"/>
+        <resource id="id8" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[PooledBeansCurrentCount]"/>
+        <resource id="id9" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[TimeoutTotalCount]"/>
+        <resource id="id10" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterCurrentCount]"/>
+        <resource id="id12" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[BeansInUseCurrentCount]"/>
+        <resource id="id0" iname="$2" name="Server/App/EJBComponent/EJBPool" rid="-/-/root/(.*)/((.*):Type=EJBPoolRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id4"/>
+      <column id="id5"/>
+      <column id="id6"/>
+      <column id="id7"/>
+      <column id="id8"/>
+      <column id="id9"/>
+      <column id="id10"/>
+      <column id="id12"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Locking</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[LockManagerAccessCount]"/>
+        <resource id="id3" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterTotalCount]"/>
+        <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[LockEntriesCurrentCount]"/>
+        <resource id="id5" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[TimeoutTotalCount]"/>
+        <resource id="id6" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterCurrentCount]"/>
+        <resource id="id0" iname="$2" name="Server/App/EJBComponent/EJBLocking" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id4"/>
+      <column id="id5"/>
+      <column id="id6"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>EJB transactions</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBTransactionRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionsTimedOutTotalCount]"/>
+        <resource id="id3" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBTransactionRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionsRolledBackTotalCount]"/>
+        <resource id="id5" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBTransactionRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionsCommittedTotalCount]"/>
+        <resource id="id0" iname="$2" name="Server/App/EJBComponent/EJBTransactionRuntime" rid="-/-/root/(.*)/((.*):Type=EJBTransactionRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id5"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlets 2</name>
+      <description>Servlets that are not part of an application</description>
+      <query>
+        <resource id="id2" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))/[ReloadTotalCount]"/>
+        <resource id="id3" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))/[ExecutionTimeLow]"/>
+        <resource id="id4" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))/[PoolMaxCapacity]"/>
+        <resource id="id7" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))/[ExecutionTimeHigh]"/>
+        <resource id="id10" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))/[ExecutionTimeTotal]"/>
+        <resource id="id12" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))/[ExecutionTimeAverage]"/>
+        <resource id="id13" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))/[InvocationTotalCount]"/>
+        <resource id="id0" iname="$entity[1]/$2" name="Server/Servlet" rid="-/-/root/([^,]+)/(([^,]+):Type=ServletRuntime,Name=([^,]+),Location=([^,]+),ServerRuntime=([^,]+))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id4"/>
+      <column id="id7"/>
+      <column id="id10"/>
+      <column id="id12"/>
+      <column id="id13"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlets</name>
+      <description>Servlets overview</description>
+      <query>
+        <resource id="id2" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))/[ReloadTotalCount]"/>
+        <resource id="id3" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))/[ExecutionTimeLow]"/>
+        <resource id="id4" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))/[PoolMaxCapacity]"/>
+        <resource id="id7" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))/[ExecutionTimeHigh]"/>
+        <resource id="id10" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))/[ExecutionTimeTotal]"/>
+        <resource id="id12" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))/[ExecutionTimeAverage]"/>
+        <resource id="id13" iname="$entity[1]/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))/[InvocationTotalCount]"/>
+        <resource id="id0" iname="$entity[1]/$2" name="Server/App/WebComponent/Servlet" rid="-/-/root/(.*)/((.*):Type=ServletRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebAppComponentRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id4"/>
+      <column id="id7"/>
+      <column id="id10"/>
+      <column id="id12"/>
+      <column id="id13"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>EJB cache</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBCacheRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[CacheHitCount]"/>
+        <resource id="id3" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBCacheRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[ActivationCount]"/>
+        <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBCacheRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[CachedBeansCurrentCount]"/>
+        <resource id="id6" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBCacheRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[PassivationCount]"/>
+        <resource id="id7" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBCacheRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[CacheAccessCount]"/>
+        <resource id="id8" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBCacheRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[CacheMissCount]"/>
+        <resource id="id0" iname="$2" name="Server/App/EJBComponent/EJBCache" rid="-/-/root/(.*)/((.*):Type=EJBCacheRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id4"/>
+      <column id="id6"/>
+      <column id="id7"/>
+      <column id="id8"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JDBC connection pools</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveConnectionsAverageCount]"/>
+        <resource id="id4" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[NumUnavailable]"/>
+        <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MaxCapacity]"/>
+        <resource id="id8" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[NumAvailable]"/>
+        <resource id="id9" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[WaitingForConnectionCurrentCount]"/>
+        <resource id="id12" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[CurrCapacity]"/>
+        <resource id="id13" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[FailuresToReconnectCount]"/>
+        <resource id="id15" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PreparedStatementCacheProfileCount]"/>
+        <resource id="id16" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveConnectionsCurrentCount]"/>
+        <resource id="id18" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PrepStmtCacheHitCount]"/>
+        <resource id="id19" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionLeakProfileCount]"/>
+        <resource id="id21" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[LeakedConnectionCount]"/>
+        <resource id="id22" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionDelayTime]"/>
+        <resource id="id25" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PrepStmtCacheMissCount]"/>
+        <resource id="id26" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionsTotalCount]"/>
+        <resource id="id27" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[StatementProfileCount]"/>
+        <resource id="id0" iname="$4/$2" name="Server/JDBCConnPool" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id1"/>
+      <column id="id4"/>
+      <column id="id7"/>
+      <column id="id8"/>
+      <column id="id9"/>
+      <column id="id12"/>
+      <column id="id13"/>
+      <column id="id15"/>
+      <column id="id16"/>
+      <column id="id18"/>
+      <column id="id19"/>
+      <column id="id21"/>
+      <column id="id22"/>
+      <column id="id25"/>
+      <column id="id26"/>
+      <column id="id27"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JMS connections</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSConnectionRuntime,Name=(.*),JMSRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[SessionsTotalCount]"/>
+        <resource id="id5" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSConnectionRuntime,Name=(.*),JMSRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[SessionsHighCount]"/>
+        <resource id="id6" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSConnectionRuntime,Name=(.*),JMSRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[SessionsCurrentCount]"/>
+        <resource id="id0" iname="$5/$3/$2" name="Server/JMSRuntime/Connection" rid="-/-/root/(.*)/((.*):Type=JMSConnectionRuntime,Name=(.*),JMSRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id5"/>
+      <column id="id6"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JMS services</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[JMSServersTotalCount]"/>
+        <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionsHighCount]"/>
+        <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionsCurrentCount]"/>
+        <resource id="id6" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[JMSServersCurrentCount]"/>
+        <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[JMSServersHighCount]"/>
+        <resource id="id8" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionsTotalCount]"/>
+        <resource id="id0" iname="$4/$2" name="Server/JMSService" rid="-/-/root/(.*)/((.*):Type=JMSRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id3"/>
+      <column id="id5"/>
+      <column id="id6"/>
+      <column id="id7"/>
+      <column id="id8"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JMS servers</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[BytesCurrentCount]"/>
+        <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MessagesPendingCount]"/>
+        <resource id="id4" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MessagesCurrentCount]"/>
+        <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[BytesReceivedCount]"/>
+        <resource id="id6" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[SessionPoolsCurrentCount]"/>
+        <resource id="id12" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[DestinationsCurrentCount]"/>
+        <resource id="id0" iname="$4/$2" name="Server/JMSServers" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id1"/>
+      <column id="id3"/>
+      <column id="id4"/>
+      <column id="id5"/>
+      <column id="id6"/>
+      <column id="id12"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JTA runtimes</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionTotalCount]"/>
+        <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionAbandonedTotalCount]"/>
+        <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionRolledBackTotalCount]"/>
+        <resource id="id9" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionCommittedTotalCount]"/>
+        <resource id="id11" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveTransactionsTotalCount]"/>
+        <resource id="id13" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[SecondsActiveTotalCount]"/>
+        <resource id="id0" iname="$4/$2" name="Server/JTARuntime" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id1"/>
+      <column id="id5"/>
+      <column id="id7"/>
+      <column id="id9"/>
+      <column id="id11"/>
+      <column id="id13"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>JVM heap memory</name>
+      <description/>
+      <query>
+        <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[HeapFreeCurrent]"/>
+        <resource id="id8" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[HeapSizeCurrent]"/>
+        <resource id="id0" iname="$4/$2" name="Server/JVMRuntime" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="id0"/>
+        <range id="id3"/>
+        <range id="id8"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Weblogic servers</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[SocketsOpenedTotalCount]"/>
+        <resource id="id20" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[OpenSocketsCurrentCount]"/>
+        <resource id="id10" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[RestartsTotalCount]"/>
+        <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[ListenAddress]"/>
+        <resource id="id8" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[State]"/>
+        <resource id="id13" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[ActivationTime]" type="date"/>
+        <resource id="id14" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[CurrentDirectory]"/>
+        <resource id="id24" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[WeblogicVersion]"/>
+        <resource id="id0" iname="$2" name="ServerInstance" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id1"/>
+      <column id="id4"/>
+      <column id="id8"/>
+      <column id="id10"/>
+      <column id="id13"/>
+      <column id="id14"/>
+      <column id="id20"/>
+      <column id="id24"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Security</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerSecurityRuntime,Name=(.*),Location=(.*))/[LoginAttemptsWhileLockedTotalCount]"/>
+        <resource id="id4" iname="$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerSecurityRuntime,Name=(.*),Location=(.*))/[LockedUsersCurrentCount]"/>
+        <resource id="id5" iname="$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerSecurityRuntime,Name=(.*),Location=(.*))/[InvalidLoginAttemptsTotalCount]"/>
+        <resource id="id6" iname="$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerSecurityRuntime,Name=(.*),Location=(.*))/[InvalidLoginUsersHighCount]"/>
+        <resource id="id7" iname="$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerSecurityRuntime,Name=(.*),Location=(.*))/[UserLockoutTotalCount]"/>
+        <resource id="id0" iname="$3/$2" name="Server/SecurityRuntime" rid="-/-/root/(.*)/((.*):Type=ServerSecurityRuntime,Name=(.*),Location=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id1"/>
+      <column id="id4"/>
+      <column id="id5"/>
+      <column id="id6"/>
+      <column id="id7"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlet sessions</name>
+      <description/>
+      <query>
+        <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServletSessionRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TimeLastAccessed]" type="date"/>
+        <resource id="id0" iname="$4/$2" name="Server/SessionID" rid="-/-/root/(.*)/((.*):Type=ServletSessionRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id3"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Transactional resources</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionRolledBackTotalCount]"/>
+        <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionTotalCount]"/>
+        <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionCommittedTotalCount]"/>
+        <resource id="id11" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ResourceName]"/>
+        <resource id="id0" iname="$4/$2" name="Server/Resource" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id1"/>
+      <column id="id5"/>
+      <column id="id7"/>
+      <column id="id11"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Web applications</name>
+      <description/>
+      <query>
+        <resource id="id2" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[Status]"/>
+        <resource id="id4" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[OpenSessionsHighCount]"/>
+        <resource id="id11" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[OpenSessionsCurrentCount]"/>
+        <resource id="id15" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[ContextRoot]"/>
+        <resource id="id18" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[SessionsOpenedTotalCount]"/>
+        <resource id="id0" iname="$5/$3/$2" name="Server/App/WebApp" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id2"/>
+      <column id="id4"/>
+      <column id="id11"/>
+      <column id="id15"/>
+      <column id="id18"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Web service runtimes</name>
+      <description/>
+      <query>
+        <resource id="id3" iname="$5/$3/$6/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))/[WSDLHitCount]"/>
+        <resource id="id6" iname="$5/$3/$6/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))/[MalformedRequestCount]"/>
+        <resource id="id9" iname="$5/$3/$6/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))/[HomePageHitCount]"/>
+        <resource id="id4" iname="$5/$3/$6/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))/[HomePageURL]"/>
+        <resource id="id5" iname="$5/$3/$6/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))/[WSDLUrl]"/>
+        <resource id="id8" iname="$5/$3/$6/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))/[ServiceName]"/>
+        <resource id="id2" iname="$5/$3/$6/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))/[LastResetTime]"/>
+        <resource id="id0" iname="$5/$3/$6/$2" name="Server/App/WSComp/WSRuntime" rid="-/-/root/(.*)/((.*):Type=WebServiceRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id3"/>
+      <column id="id6"/>
+      <column id="id9"/>
+      <column id="id2"/>
+      <column id="id4"/>
+      <column id="id5"/>
+      <column id="id8"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Web service operations</name>
+      <description/>
+      <query>
+        <resource id="id6" iname="$5/$3/$6/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceOperationRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceRuntime=(.*))/[DispatchTimeAverage]"/>
+        <resource id="id7" iname="$5/$3/$6/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceOperationRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceRuntime=(.*))/[ResponseErrorCount]"/>
+        <resource id="id8" iname="$5/$3/$6/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceOperationRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceRuntime=(.*))/[ExecutionTimeLow]"/>
+        <resource id="id11" iname="$5/$3/$6/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceOperationRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceRuntime=(.*))/[ExecutionTimeHigh]"/>
+        <resource id="id16" iname="$5/$3/$6/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceOperationRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceRuntime=(.*))/[ExecutionTimeAverage]"/>
+        <resource id="id18" iname="$5/$3/$6/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceOperationRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceRuntime=(.*))/[InvocationCount]"/>
+        <resource id="id0" iname="$5/$3/$6/$7/$2/" name="Server/App/WSCom/WSRuntime/WSOperation" rid="-/-/root/(.*)/((.*):Type=WebServiceOperationRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id6"/>
+      <column id="id7"/>
+      <column id="id8"/>
+      <column id="id11"/>
+      <column id="id16"/>
+      <column id="id18"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Web service handlers</name>
+      <description/>
+      <query>
+        <resource id="id3" iname="$5/$3/$6/$8/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceHandlerRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceOperationRuntime=(.*),WebServiceRuntime=(.*))/[ResponseSOAPFaultsCount]"/>
+        <resource id="id4" iname="$5/$3/$6/$8/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceHandlerRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceOperationRuntime=(.*),WebServiceRuntime=(.*))/[ResponseErrorsCount]"/>
+        <resource id="id5" iname="$5/$3/$6/$8/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceHandlerRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceOperationRuntime=(.*),WebServiceRuntime=(.*))/[RequestTerminationsCount]"/>
+        <resource id="id7" iname="$5/$3/$6/$8/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceHandlerRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceOperationRuntime=(.*),WebServiceRuntime=(.*))/[RequestErrorsCount]"/>
+        <resource id="id9" iname="$5/$3/$6/$8/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceHandlerRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceOperationRuntime=(.*),WebServiceRuntime=(.*))/[RequestSOAPFaultsCount]"/>
+        <resource id="id10" iname="$5/$3/$6/$8/$7/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebServiceHandlerRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceOperationRuntime=(.*),WebServiceRuntime=(.*))/[ResponseTerminationsCount]"/>
+        <resource id="id0" iname="$5/$3/$6/$8/$7/$2" name="Server/App/WSComp/WSRuntime/WSOp/WSServiceHandler" rid="-/-/root/(.*)/((.*):Type=WebServiceHandlerRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*),WebServiceComponentRuntime=(.*),WebServiceOperationRuntime=(.*),WebServiceRuntime=(.*))"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="id0"/>
+      <column id="id3"/>
+      <column id="id4"/>
+      <column id="id5"/>
+      <column id="id7"/>
+      <column id="id9"/>
+      <column id="id10"/>
+    </view>
+  </views>
+</rms>

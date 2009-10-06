@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+<version>1.0.0</version>
+<class>com.ixora.rms.agents.serviceavailability.ServiceAvailabilityAgent</class>
+<name>agents.serviceavailability</name>
+<description>serviceavailability.description</description>
+<category>network</category>
+<javaHelp>secServiceAvailability</javaHelp>
+<versionItems>
+    <versionItem>
+	<locations>
+	<location>0</location>
+	<location>1</location>
+	</locations>
+	<customconfigpanel>com.ixora.rms.agents.serviceavailability.ConfigurationPanel</customconfigpanel>
+	<uiJar>/jars/AgentServiceAvailability.jar</uiJar>
+    </versionItem>
+</versionItems>
+</agent>

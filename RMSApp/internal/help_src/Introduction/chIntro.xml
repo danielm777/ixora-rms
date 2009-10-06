@@ -1,0 +1,9 @@
+<chapter id="chAbout">
+	<title>Introduction</title>
+
+	&secAbout;
+	&secLicense;
+	&secGettingStarted;
+	&secFAQ;
+
+</chapter>

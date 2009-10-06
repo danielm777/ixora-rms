@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="screen_apache_ora9i">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.apache</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.apache.Configuration">
+                    <port type="1" value="80"/>
+                  </config>
+                  <version>Oracle Apache 1.3.x</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.apache</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.apache.Configuration">
+                    <port type="1" value="80"/>
+                  </config>
+                  <version>Oracle Apache 1.3.x</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.apache/root/status/{total_traffic}">
+          <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+          <resource id="localhost/agents.apache/root/status/[total_traffic]" iname="$counter" rid="localhost/agents.apache/root/status/[total_traffic]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.apache/root/status/{idle_servers}">
+          <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+          <resource id="localhost/agents.apache/root/status/[idle_servers]" iname="$counter" rid="localhost/agents.apache/root/status/[idle_servers]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.apache/root/servers/{Child Data By Server}">
+          <resource id="server" rid="-/-/root/servers/(.*)"/>
+          <resource id="accesses" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/servers/(.*)/[accesses_this_child]"/>
+          <resource id="megabytes" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/servers/(.*)/[megabytes_transferred_this_child]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.apache/root/requests/{Requests processing time}">
+          <resource id="request" iname="$entity[2]" name="Request" rid="-/-/root/requests/(.*)"/>
+          <resource id="time" name="Processing Time" rid="-/-/root/requests/(.*)/[mills_required_to_process_request]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.apache/root/servers/{Connection Data By Server}">
+          <resource id="server" iname="$entity[2]" name="Server" rid="-/-/root/servers/(.*)"/>
+          <resource id="accesses" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/servers/(.*)/[accesses_this_connection]"/>
+          <resource id="kilobytes" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/servers/(.*)/[kilobytes_transferred_this_connection]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.apache/root/status/{Server States}">
+          <resource id="time" rid="-/-/root/status/[#time#]"/>
+          <resource id="states" rid="-/-/root/status/[(servers.*)]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.apache/root/status/{requests_per_second}">
+          <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+          <resource id="localhost/agents.apache/root/status/[requests_per_second]" iname="$counter" rid="localhost/agents.apache/root/status/[requests_per_second]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.apache/root/status/{kilobytes_per_second}">
+          <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+          <resource id="localhost/agents.apache/root/status/[kilobytes_per_second]" iname="$counter" rid="localhost/agents.apache/root/status/[kilobytes_per_second]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.apache/root/status/{kilobytes_per_request}">
+          <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+          <resource id="localhost/agents.apache/root/status/[kilobytes_per_request]" iname="$counter" rid="localhost/agents.apache/root/status/[kilobytes_per_request]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.apache/#Overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="145.0" title="Dashboard 2" w="690.0" x="5.0" y="556.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.apache/root/requests/:Requests processing time:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="0"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 1" w="688.0" x="4.0" y="4.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.apache/root/status/:Server States:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.apache/root/servers/:Child Data By Server:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.apache/root/servers/:Connection Data By Server:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>requests_per_second</name>
+                  <description>requests_per_second</description>
+                  <query>
+                    <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+                    <resource id="localhost/agents.apache/root/status/[requests_per_second]" iname="$counter" rid="localhost/agents.apache/root/status/[requests_per_second]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.apache/root/status"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>total_traffic</name>
+                  <description>total_traffic</description>
+                  <query>
+                    <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+                    <resource id="localhost/agents.apache/root/status/[total_traffic]" iname="$counter" rid="localhost/agents.apache/root/status/[total_traffic]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.apache/root/status"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>kilobytes_per_request</name>
+                  <description>kilobytes_per_request</description>
+                  <query>
+                    <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+                    <resource id="localhost/agents.apache/root/status/[kilobytes_per_request]" iname="$counter" rid="localhost/agents.apache/root/status/[kilobytes_per_request]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.apache/root/status"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>kilobytes_per_second</name>
+                  <description>kilobytes_per_second</description>
+                  <query>
+                    <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+                    <resource id="localhost/agents.apache/root/status/[kilobytes_per_second]" iname="$counter" rid="localhost/agents.apache/root/status/[kilobytes_per_second]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.apache/root/status"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>idle_servers</name>
+                  <description>idle_servers</description>
+                  <query>
+                    <resource id="localhost/agents.apache/root/status/[#time#]" rid="localhost/agents.apache/root/status/[#time#]"/>
+                    <resource id="localhost/agents.apache/root/status/[idle_servers]" iname="$counter" rid="localhost/agents.apache/root/status/[idle_servers]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.apache/root/status"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

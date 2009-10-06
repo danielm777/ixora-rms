@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/dynsql_list">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>SQL Statements Table</name>
+          <description>SQL Statements</description>
+          <query>
+            <resource id="sqls" iname="$entity[2]" name="SQL Text" rid="-/-/(root/dynsql_list/.*)"/>
+            <resource id="execution" name="Executions" rid="-/-/(root/dynsql_list/.*)/[num_executions]"/>
+          </query>
+          <category id="sqls"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/tablespace_list">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>File Operations</name>
+          <description/>
+          <query>
+            <resource id="time" rid="-/-/(root/tablespace_list/.*)/[#time#]"/>
+            <resource id="reads" rid="-/-/(root/tablespace_list/.*)/[pool_data_l_reads]"/>
+          </query>
+          <renderer type="XYLineAndShape">
+            <domain id="time"/>
+            <range id="reads"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>asdfs</name>
+          <description/>
+          <query>
+            <resource id="time" rid="-/-/(root/tablespace_list/.*)/[#time#]"/>
+            <resource id="reads" rid="-/-/(root/tablespace_list/.*)/[pool_data_l_reads]"/>
+          </query>
+          <renderer type="XYLineAndShape">
+            <domain id="time"/>
+            <range id="reads"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/TOOLSDB /dynsql_list">
+      <views/>
+    </entity>
+    <entity id="root/db_lock_list">
+      <views/>
+    </entity>
+    <entity id="root/TOOLSDB /appl">
+      <views/>
+    </entity>
+  </entities>
+</rms>

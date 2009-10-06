@@ -1,0 +1,5 @@
+<chapter id="chTemplate">
+	<title>Template chapter</title>
+
+	<para>template text with sample reference: <xref linkend="chTemplate"/></para>
+</chapter>

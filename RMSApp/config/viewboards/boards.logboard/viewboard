@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewboard>
+<class>com.ixora.rms.ui.dataviewboard.logs.LogBoard</class>
+<name>logboard.boardname</name>
+<viewName>logboard.viewname</viewName>
+<counterFilterClass>com.ixora.rms.ui.dataviewboard.logs.LogBoardCounterFilter</counterFilterClass>
+<component>boards.logboard</component>
+<icon>logboard.gif</icon>
+<preference>10</preference>
+<samples>
+<sample>sample1.xml</sample>
+</samples>
+</viewboard>

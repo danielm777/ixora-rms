@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="sample_agent">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>Sample Agent</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <Telnet set="true,false" type="0" value="false"/>
+                    <Username type="0" value="-"/>
+                    <Password type="10" value="512F2D04B9577C49"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="]$"/>
+                  </config>
+                  <version>7.4</version>
+                  <providerInstances>
+                    <providerInstance>Copy of Processes</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>Sample Agent</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <Telnet set="true,false" type="0" value="false"/>
+                    <Username type="0" value="-"/>
+                    <Password type="10" value="512F2D04B9577C49"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="]$"/>
+                  </config>
+                  <version>7.4</version>
+                  <providerInstances>
+                    <providerInstance>Copy of Processes</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/Sample Agent/root/Processes/Entity1/{test}">
+          <resource id="localhost/Sample Agent/root/Processes/Entity1/[#time#]" rid="localhost/Sample Agent/root/Processes/Entity1/[#time#]"/>
+          <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter6]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter6]"/>
+          <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter4]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter4]"/>
+          <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter2]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter2]"/>
+          <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter5]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter5]"/>
+          <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter3]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter3]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards/>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 1" w="500.0" x="40.0" y="40.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterSetDataView">
+                  <name>test</name>
+                  <description>test</description>
+                  <query>
+                    <resource id="localhost/Sample Agent/root/Processes/Entity1/[#time#]" rid="localhost/Sample Agent/root/Processes/Entity1/[#time#]"/>
+                    <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter6]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter6]"/>
+                    <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter4]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter4]"/>
+                    <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter2]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter2]"/>
+                    <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter5]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter5]"/>
+                    <resource id="localhost/Sample Agent/root/Processes/Entity1/[Counter3]" iname="$counter" rid="localhost/Sample Agent/root/Processes/Entity1/[Counter3]"/>
+                  </query>
+                  <agentVersions/>
+                  <renderer type="XYLine">
+                    <domain id="localhost/Sample Agent/root/Processes/Entity1/[#time#]"/>
+                    <range id="localhost/Sample Agent/root/Processes/Entity1/[Counter6]"/>
+                    <range id="localhost/Sample Agent/root/Processes/Entity1/[Counter4]"/>
+                    <range id="localhost/Sample Agent/root/Processes/Entity1/[Counter2]"/>
+                    <range id="localhost/Sample Agent/root/Processes/Entity1/[Counter5]"/>
+                    <range id="localhost/Sample Agent/root/Processes/Entity1/[Counter3]"/>
+                  </renderer>
+                </view>
+                <context id="localhost/Sample Agent/root/Processes/Entity1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

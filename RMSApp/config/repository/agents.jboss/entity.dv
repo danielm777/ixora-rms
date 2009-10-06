@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/jboss.web">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>ThreadPools</name>
+          <description>ThreadPools</description>
+          <query>
+            <resource id="thread_pool" iname="$1" name="Thread pool" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))"/>
+            <resource id="current_busy" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[currentThreadsBusy]"/>
+            <resource id="current_count" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[currentThreadCount]"/>
+            <resource id="backlog" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[backlog]"/>
+            <resource id="min_spare" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[minSpareThreads]"/>
+            <resource id="max_spare" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[maxSpareThreads]"/>
+            <resource id="max" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[maxThreads]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="thread_pool"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Caches</name>
+          <description>Caches</description>
+          <query>
+            <resource id="cache" iname="$1/$2" name="Cache(host/path)" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))"/>
+            <resource id="access_count" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[accessCount]"/>
+            <resource id="cache_max_size" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[cacheMaxSize]"/>
+            <resource id="cache_size" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[cacheSize]"/>
+            <resource id="hits_count" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[hitsCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="cache"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>GlobalRequestProcessors</name>
+          <description>GlobalRequestProcessors</description>
+          <query>
+            <resource id="grp" iname="$1" name="GlobalRequestProcessor" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))"/>
+            <resource id="request_count" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[requestCount]"/>
+            <resource id="max_time" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[maxTime]"/>
+            <resource id="bytes_sent" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[bytesSent]"/>
+            <resource id="bytes_recv" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[bytesReceived]"/>
+            <resource id="proc_time" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[processingTime]"/>
+            <resource id="error_count" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[errorCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="grp"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>JspMonitors</name>
+          <description>JspMonitors</description>
+          <query>
+            <resource id="jspmons" iname="$3/$2/$4/$1" name="Server/App/Web module/JspMonitor" rid="-/-/root/jboss.web/(jboss.web:type=JspMonitor,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))"/>
+            <resource id="count" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=JspMonitor,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[jspCount]"/>
+            <resource id="reload_count" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=JspMonitor,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[jspReloadCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="jspmons"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Managers</name>
+          <description>Managers</description>
+          <query>
+            <resource id="managers" iname="$1/$2" name="Host/Path" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))"/>
+            <resource id="maxActiveSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))/[maxActiveSessions]"/>
+            <resource id="activeSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))/[activeSessions]"/>
+            <resource id="sessionCounter" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))/[sessionCounter]"/>
+            <resource id="maxActive" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))/[maxActive]"/>
+            <resource id="rejectedSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))/[rejectedSessions]"/>
+            <resource id="expiredSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))/[expiredSessions]"/>
+            <resource id="processingTime" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Manager,host=(.*),path=(.*))/[processingTime]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="managers"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>RequestProcessors</name>
+          <description>RequestProcessors</description>
+          <query>
+            <resource id="request_processor" iname="$2/$1" name="Request processor(worker/name)" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))"/>
+            <resource id="request_count" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[requestCount]"/>
+            <resource id="request_proc_time" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[requestProcessingTime]"/>
+            <resource id="proc_time" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[processingTime]"/>
+            <resource id="error_count" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[errorCount]"/>
+            <resource id="bytes_sent" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[bytesSent]"/>
+            <resource id="bytes_recv" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[bytesReceived]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="request_processor"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Servlets</name>
+          <description>Servlets</description>
+          <query>
+            <resource id="servlets" iname="$3/$2/$4/$1" name="Server/App/Web module/Servlet" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))"/>
+            <resource id="pt" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[processingTime]"/>
+            <resource id="max" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[maxTime]"/>
+            <resource id="min" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[minTime]"/>
+            <resource id="rc" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[requestCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="servlets"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>WebModules</name>
+          <description>WebModules</description>
+          <query>
+            <resource id="webmods" iname="$3/$2/$1" name="Server/App/Web module" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))"/>
+            <resource id="pt" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[processingTime]"/>
+            <resource id="tld_scan_time" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[tldScanTime]"/>
+            <resource id="state" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[state]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="webmods"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>ThreadPools busy threads chart</name>
+          <description>Timeseries chart showing the currently busy threads in all thread pools</description>
+          <query>
+            <resource id="thread_pool" iname="$1" name="Thread pool" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))"/>
+            <resource id="current_busy" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[currentThreadsBusy]"/>
+            <resource id="time" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="current_busy"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>ThreadPools</name>
+          <description>ThreadPools</description>
+          <query>
+            <resource id="thread_pool" iname="$1" name="Thread pool" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))"/>
+            <resource id="current_busy" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[currentThreadsBusy]"/>
+            <resource id="current_count" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[currentThreadCount]"/>
+            <resource id="backlog" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[backlog]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="thread_pool"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/jboss.management.local">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Active transactions</name>
+          <description>Active transactions</description>
+          <query>
+            <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[#time#]"/>
+            <resource id="active" iname="$2/$1" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[ActiveCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="active"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Committed/rolledback transactions</name>
+          <description>Committed/rolledback transactions</description>
+          <query>
+            <resource id="jta" iname="$2/$1" name="JTA Resources" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats"/>
+            <resource id="rb" iname="$2/$1" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[RolledbackCount]"/>
+            <resource id="com" iname="$2/$1" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[CommitedCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="Bar2D">
+            <domain id="jta"/>
+            <range id="com"/>
+            <range id="rb"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>JVMs memory</name>
+          <description>JVMs memory</description>
+          <query>
+            <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[#time#]"/>
+            <resource id="jvms" iname="$1/$2" name="JVM" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats"/>
+            <resource code="return heap_lb / 1048576f;" id="heap_lb" iname="$1/$2/$counter (in MB)" name="$counter (in MB)" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[HeapSize (lower bound)]"/>
+            <resource code="return heap_ub / 1048576f;" id="heap_ub" iname="$1/$2/$counter (in MB)" name="$counter (in MB)" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[HeapSize (upper bound)]"/>
+            <resource code="return heap_current / 1048576f;" id="heap_current" iname="$1/$2/$counter (in MB)" name="$counter (in MB)" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[HeapSize (current)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="heap_lb"/>
+            <range id="heap_ub"/>
+            <range id="heap_current"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Servlets service time</name>
+          <description>Servlets service time</description>
+          <query>
+            <resource id="servlets" iname="$3/$2/$4/$1" name="Server/App/Web module/Servlet" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/stats"/>
+            <resource id="mintime" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/stats/[ServiceTime (min time)]"/>
+            <resource id="avgtime" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/stats/[ServiceTime (avg time)]"/>
+            <resource id="maxtime" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/stats/[ServiceTime (max time)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="servlets"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>JCA connection pool utilization</name>
+          <description>JCA connection pool utilization</description>
+          <query>
+            <resource id="jca" iname="$2/$3/$1/$4" name="JCA Resource" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))"/>
+            <resource id="free" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[FreePoolSize (current)]"/>
+            <resource id="poolsize_ub" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[PoolSize (upper bound)]"/>
+            <resource id="poolsize" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[PoolSize (current)]"/>
+            <function id="used" iname="$2/$3/$1/$4/UsedConnections (current)" name="UsedConnections (current)" op="script">
+              <param id="free"/>
+              <param id="poolsize_ub"/>
+              <code>return poolsize_ub - free;</code>
+            </function>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="Bar2D">
+            <domain id="jca"/>
+            <range id="used"/>
+            <range id="poolsize_ub"/>
+            <range id="poolsize"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Threads waiting for JCA resources</name>
+          <description>Threads waiting for JCA resources</description>
+          <query>
+            <resource id="jca" iname="$2/$3/$1/$4" name="JCA Resource" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))"/>
+            <resource id="current" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[WaitingThreadCount (current)]"/>
+            <resource id="high" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[WaitingThreadCount (high water bound)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="Bar2D">
+            <domain id="jca"/>
+            <range id="current"/>
+            <range id="high"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Time waited on JCA connections</name>
+          <description>Time waited on JCA connections</description>
+          <query>
+            <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[#time#]"/>
+            <resource id="waittime" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[WaitTime (avg time)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="waittime"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Use time for JCA resources</name>
+          <description>Use time for JCA resources</description>
+          <query>
+            <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[#time#]"/>
+            <resource id="usetime" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/((.*))/[UseTime (avg time)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="usetime"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/jboss.mq.destination">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>MQ Queues</name>
+          <description>MQ queues</description>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Queue)/[InMemory]"/>
+            <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Queue)/[MaxDepth]"/>
+            <resource id="id6" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Queue)/[QueueDepth]"/>
+            <resource id="id8" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Queue)/[ReceiversCount]"/>
+            <resource id="id12" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Queue)/[State]"/>
+            <resource id="id0" iname="$1" name="QueueName" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Queue)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id1"/>
+          <column id="id3"/>
+          <column id="id6"/>
+          <column id="id8"/>
+          <column id="id12"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>MQ Topics</name>
+          <description>MQ topics</description>
+          <query>
+            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[InMemory]"/>
+            <resource id="id7" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[MaxDepth]"/>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[AllMessageCount]"/>
+            <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[AllSubscriptionsCount]"/>
+            <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[DurableMessageCount]"/>
+            <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[DurableSubscriptionsCount]"/>
+            <resource id="id10" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[NonDurableMessageCount]"/>
+            <resource id="id11" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[NonDurableSubscriptionsCount]"/>
+            <resource id="id14" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)/[State]"/>
+            <resource id="id0" iname="$1" name="jboss.mq.destination" rid="-/-/root/jboss.mq.destination/(jboss.mq.destination:name=([^,]+),service=Topic)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>4.*</agentVersion>
+            <agentVersion>4.2.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id5"/>
+          <column id="id7"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+          <column id="id4"/>
+          <column id="id10"/>
+          <column id="id11"/>
+          <column id="id14"/>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

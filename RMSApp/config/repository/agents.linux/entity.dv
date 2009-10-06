@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/Network protocols/Udp">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Udp traffic</name>
+          <description>Udp traffic</description>
+          <query>
+            <resource id="time" rid="-/-/root/Network protocols/Udp/[#time#]"/>
+            <resource id="packets_sent" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Udp/[packets sent]"/>
+            <resource id="packets_recv" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Udp/[packets received]"/>
+            <resource id="packets_recv_err" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Udp/[packet receive errors]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="packets_sent"/>
+            <range id="packets_recv"/>
+            <range id="packets_recv_err"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/CPU">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>CPU usage</name>
+          <description>CPU usage</description>
+          <query>
+            <resource id="time" rid="-/-/root/CPU/[#time#]"/>
+            <resource id="sys" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[System time]"/>
+            <resource id="usr" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[User time]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="usr"/>
+            <range id="sys"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Usage for each CPU</name>
+          <description>Usage for each CPU</description>
+          <query>
+            <resource id="time" rid="-/-/root/CPU/(.*)/[#time#]"/>
+            <resource id="idle" rid="-/-/root/CPU/(.*)/[Idle time]"/>
+            <function description="CPU time" id="usage" iname="CPU usage" name="CPU usage" op="script">
+              <param id="idle"/>
+              <code>return 100 - idle;</code>
+            </function>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="usage"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Network protocols/Ip">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Ip traffic</name>
+          <description>Ip traffic</description>
+          <query>
+            <resource id="time" rid="-/-/root/Network protocols/Ip/[#time#]"/>
+            <resource id="packets_received" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Ip/[total packets received]"/>
+            <resource id="requests_sent" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Ip/[requests sent out]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="packets_received"/>
+            <range id="requests_sent"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Swap">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Swap activity</name>
+          <description>Swap activity</description>
+          <query>
+            <resource id="time" iname="$counter" rid="-/-/root/Swap/[#time#]"/>
+            <resource id="in" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Swap/[Memory swapped in (kB/s)]"/>
+            <resource id="out" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Swap/[Memory swapped out (kB/s)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="in"/>
+            <range id="out"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Network Interfaces">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Network interfaces overview</name>
+          <description>Network interfaces overview (table)</description>
+          <query>
+            <resource id="interface" iname="$entity[2]" name="Network Interface" rid="-/-/root/Network Interfaces/(.*)"/>
+            <resource id="sent_ok" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interfaces/(.*)/[Sent ok]"/>
+            <resource id="sent_err" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interfaces/(.*)/[Sent error]"/>
+            <resource id="recv_ok" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interfaces/(.*)/[Received ok]"/>
+            <resource id="recv_err" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interfaces/(.*)/[Received error]"/>
+            <resource id="mtu" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interfaces/(.*)/[MTU]"/>
+            <resource id="flag" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interfaces/(.*)/[Flag]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="interface"/>
+          <column id="sent_ok"/>
+          <column id="recv_ok"/>
+          <column id="sent_err"/>
+          <column id="recv_err"/>
+          <column id="mtu"/>
+          <column id="flag"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Network protocols/Icmp">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>ICMP traffic</name>
+          <description>ICMP traffic</description>
+          <query>
+            <resource id="time" rid="-/-/root/Network protocols/Icmp/[#time#]"/>
+            <resource id="msg_sent" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Icmp/[ICMP messages sent]"/>
+            <resource id="msg_recv" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Icmp/[ICMP messages received]"/>
+            <resource id="msg_failed" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Icmp/[ICMP messages failed]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="msg_sent"/>
+            <range id="msg_recv"/>
+            <range id="msg_failed"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/IO">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>I/O activity</name>
+          <description>I/O activity</description>
+          <query>
+            <resource id="time" rid="-/-/root/IO/[#time#]"/>
+            <resource id="sent" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/IO/[Blocks sent per second]"/>
+            <resource id="recv" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/IO/[Blocks received per second]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="sent"/>
+            <range id="recv"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Network protocols/Tcp">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Tcp connections openings</name>
+          <description>Tcp active/passive connection openings</description>
+          <query>
+            <resource id="time" rid="-/-/root/Network protocols/Tcp/[#time#]"/>
+            <resource id="active_conn" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Tcp/[active connections openings]"/>
+            <resource id="passive_conn" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network protocols/Tcp/[passive connection openings]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="active_conn"/>
+            <range id="passive_conn"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Processes">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Processes overview</name>
+          <description>Processes overview(table)</description>
+          <query>
+            <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Processes/(.*)"/>
+            <resource id="cpu" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[CPU usage]"/>
+            <resource id="mem" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Memory usage]"/>
+            <resource id="rss" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Resident set size]"/>
+            <resource id="sz" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Size]"/>
+            <resource id="user" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[User]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="process" removeStale="true"/>
+          <column id="cpu"/>
+          <column id="mem"/>
+          <column id="rss"/>
+          <column id="sz"/>
+          <column id="user"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Disks">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Disk queue length</name>
+          <description>Average queue length of the requests issued to each device</description>
+          <query>
+            <resource id="time" rid="-/-/root/Disks/(.*)/[#time#]"/>
+            <resource id="ql" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Average queue length]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="ql"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Disk utilisation</name>
+          <description>The disk utilisation for all disks (timeseries)</description>
+          <query>
+            <resource id="time" rid="-/-/root/Disks/(.*)/[#time#]"/>
+            <resource id="util" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[%Util]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="util"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Disks overview</name>
+          <description>Disks overview (table)</description>
+          <query>
+            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/Disks/(.*)/"/>
+            <resource id="util" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[%Util]"/>
+            <resource id="queue" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Average queue length]"/>
+            <resource id="rrps" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Read requests per second]"/>
+            <resource id="wrps" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Write request per second]"/>
+            <resource id="kbwps" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes written per second]"/>
+            <resource id="kbrps" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes read per second]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="disk"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Per disk read/write requests per second</name>
+          <description>Per disk read/write requests per second (bar chart)</description>
+          <query>
+            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/Disks/(.*)/"/>
+            <resource id="wrps" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Write request per second]"/>
+            <resource id="rrps" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Read requests per second]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="disk"/>
+            <range id="rrps"/>
+            <range id="wrps"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/File system">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>File systems</name>
+          <description>File systems (bar chart)</description>
+          <query>
+            <resource id="fs" iname="$host/$entity[2]" name="File System" rid="-/-/root/File system/(.*)/"/>
+            <resource id="used" iname="$host/$entity[2]/$counter" name="Megabytes used" rid="-/-/root/File system/(.*)/[Blocks used]"/>
+            <resource id="available" iname="$host/$entity[2]/$counter" name="Megabytes available" rid="-/-/root/File system/(.*)/[Blocks available]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>RedHat AS 3</agentVersion>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="fs"/>
+            <range id="used"/>
+            <range id="available"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

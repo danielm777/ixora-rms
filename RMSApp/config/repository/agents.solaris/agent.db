@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>System overview</name>
+      <description>System overview</description>
+      <views>
+        <view id="-/-/root/Disks/:Disk utilisation:"/>
+        <view id="-/-/root/Disks/:Disks queue length:"/>
+        <view id="-/-/root/Network interfaces/:Network interfaces overview:"/>
+        <view id="-/-/root/CPU/:CPU usage:"/>
+        <view id="-/-/root/CPU/:Usage for each CPU:"/>
+        <view id="-/-/root/Processes/:Processes overview:"/>
+        <view id="-/-/root/Disks/:Per disk read/write requests:"/>
+        <view id="-/-/root/File system/:Filesystem bar chart:"/>
+      </views>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/System/[Run queue]"/>
+        <counter id="-/-/root/System/[Swapped out]"/>
+        <counter id="-/-/root/System/[Interrupts]"/>
+        <counter id="-/-/root/System/[Context switches]"/>
+        <counter id="-/-/root/System/[System calls]"/>
+        <counter id="-/-/root/Memory/[Free memory]"/>
+        <counter id="-/-/root/Memory/[Swap space]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Solaris 9</agentVersion>
+        <agentVersion>Solaris 10</agentVersion>
+        <agentVersion>Solaris 8</agentVersion>
+      </agentVersions>
+    </dashboard>
+  </dashboards>
+</rms>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/ev_sessions">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Sessions</name>
+          <description>Shows details for each session</description>
+          <query>
+            <resource id="session" iname="$entity[2]" name="Session" rid="-/-/root/ev_sessions/(.*)"/>
+            <resource id="app" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sessions/(.*)/[application_name]"/>
+            <resource id="nt_user" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sessions/(.*)/[nt_user_name]"/>
+            <resource id="sql_login" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sessions/(.*)/[sql_security_login_name]"/>
+            <resource id="proc_id" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sessions/(.*)/[client_process_id]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="session"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_sps">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Stored procedures</name>
+          <description>Shows details for each stored procedure</description>
+          <query>
+            <resource id="sp" iname="$entity[2]" name="Stored Procedures" rid="-/-/root/ev_sps/(.*)"/>
+            <resource id="app" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[application_name]"/>
+            <resource id="nt_user" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[nt_user_name]"/>
+            <resource id="sql_login" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[sql_security_login_name]"/>
+            <resource id="proc_id" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[client_process_id]"/>
+            <resource id="cpu" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[cpu]"/>
+            <resource id="reads" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[reads]"/>
+            <resource id="writes" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[writes]"/>
+            <resource id="duration" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_sps/(.*)/[duration]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="sp"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_locks">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Locks overview</name>
+          <description>Locks overview</description>
+          <query>
+            <resource id="locks" iname="$counter" rid="-/-/root/ev_locks/[(.*)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_transactions">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Transactions overview</name>
+          <description>Transactions overview</description>
+          <query>
+            <resource id="transactions" iname="$counter" rid="-/-/root/ev_transactions/[(.*)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_errors">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Errors</name>
+          <description>Errors</description>
+          <query>
+            <resource id="errors" iname="$counter" rid="-/-/root/ev_errors/[(.*)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_scans">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Scans overview</name>
+          <description>Scans overview</description>
+          <query>
+            <resource id="scans" iname="$counter" rid="-/-/root/ev_scans/[(.*)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_cursors">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Cursors overview</name>
+          <description>Cursors overview</description>
+          <query>
+            <resource id="cursors" iname="$counter" rid="-/-/root/ev_cursors/[(.*)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_database">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Database overview</name>
+          <description>Database overview</description>
+          <query>
+            <resource id="prop" iname="$counter" rid="-/-/root/ev_database/[(.*)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ev_tsql">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>TSQL statements</name>
+          <description>Shows details for each TSQL statement</description>
+          <query>
+            <resource id="sql" iname="$entity[2]" name="TSQL statements" rid="-/-/root/ev_tsql/(.*)"/>
+            <resource id="cpu" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[cpu]"/>
+            <resource id="reads" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[reads]"/>
+            <resource id="writes" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[writes]"/>
+            <resource id="duration" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[duration]"/>
+            <resource id="app" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[application_name]"/>
+            <resource id="nt_user" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[nt_user_name]"/>
+            <resource id="sql_login" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[sql_security_login_name]"/>
+            <resource id="proc_id" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/ev_tsql/(.*)/[client_process_id]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.0</agentVersion>
+            <agentVersion>2000</agentVersion>
+            <agentVersion>2005</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="sql"/>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

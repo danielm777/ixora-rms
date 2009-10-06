@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.aix">
+    <historyGroupItem date="1.151618363951E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+            <ExecutionMode type="0" value="Telnet"/>
+            <Username type="0" value="root"/>
+            <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+            <UsernamePrompt type="0" value="login:"/>
+            <PasswordPrompt type="0" value="Password:"/>
+            <ShellPrompt type="0" value="$"/>
+            <Port notrequired="true" type="0" value="23"/>
+          </config>
+          <version>5.3</version>
+          <providerInstances>
+            <providerInstance>Disk data</providerInstance>
+            <providerInstance>File system data</providerInstance>
+            <providerInstance>Network interface data</providerInstance>
+            <providerInstance>Per CPU data</providerInstance>
+            <providerInstance>Process data</providerInstance>
+            <providerInstance>System data</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.151452674091E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+            <ExecutionMode type="0" value="Telnet"/>
+            <Username type="0" value="root"/>
+            <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+            <UsernamePrompt type="0" value="login:"/>
+            <PasswordPrompt type="0" value="Password:"/>
+            <ShellPrompt type="0" value="$"/>
+            <Port notrequired="true" type="0" value="23"/>
+          </config>
+          <version>5.3</version>
+          <providerInstances>
+            <providerInstance>Disk data</providerInstance>
+            <providerInstance>File system data</providerInstance>
+            <providerInstance>Network interface data</providerInstance>
+            <providerInstance>Per CPU data</providerInstance>
+            <providerInstance>Process data</providerInstance>
+            <providerInstance>System data</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.141774829718E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+            <ExecutionMode type="0" value="Normal"/>
+            <Username type="0" value="-"/>
+            <Password type="10" value="512F2D04B9577C49"/>
+            <UsernamePrompt type="0" value="login:"/>
+            <PasswordPrompt type="0" value="Password:"/>
+            <ShellPrompt type="0" value="]$"/>
+            <Port notrequired="true" type="0" value="0"/>
+          </config>
+          <version>5.3</version>
+          <providerInstances>
+            <providerInstance>Disk data</providerInstance>
+            <providerInstance>File system data</providerInstance>
+            <providerInstance>Network interface data</providerInstance>
+            <providerInstance>Per CPU data</providerInstance>
+            <providerInstance>Process data</providerInstance>
+            <providerInstance>System data</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

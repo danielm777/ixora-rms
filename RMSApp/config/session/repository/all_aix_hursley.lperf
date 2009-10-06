@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="all_aix_hursley">
+    <hosts>
+      <host name="172.16.6.75">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>172.16.6.75</host>
+                <agentInstallationId>agents.aix</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.aix</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+      <host name="172.16.6.74">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>172.16.6.74</host>
+                <agentInstallationId>agents.aix</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.aix</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+      <host name="172.16.6.77">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>172.16.6.77</host>
+                <agentInstallationId>agents.aix</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.aix</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+      <host name="172.16.6.76">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>172.16.6.76</host>
+                <agentInstallationId>agents.aix</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.aix</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Telnet"/>
+                    <Username type="0" value="root"/>
+                    <Password type="10" value="D8964BBCA16F1E4161F78598898EA6DC"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="$"/>
+                    <Port notrequired="true" type="0" value="23"/>
+                  </config>
+                  <version>5.3</version>
+                  <providerInstances>
+                    <providerInstance>Disk data</providerInstance>
+                    <providerInstance>File system data</providerInstance>
+                    <providerInstance>Network interface data</providerInstance>
+                    <providerInstance>Per CPU data</providerInstance>
+                    <providerInstance>Process data</providerInstance>
+                    <providerInstance>System data</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.77/agents.aix/root/System/{Kernel threads in run queue}">
+          <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.77/agents.aix/root/System/[Kernel threads in run queue]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Kernel threads in run queue]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.75/agents.aix/root/CPU/{Overall CPU usage}">
+          <resource id="time" rid="-/-/root/CPU/[#time#]"/>
+          <resource id="sys" iname="$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[System time]"/>
+          <resource id="wait" iname="$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[Wait time]"/>
+          <resource id="user" iname="$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[User time]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.75/agents.aix/root/Disks/{Details per disk}">
+          <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/Disks/(.*)"/>
+          <resource id="busy" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Busy]"/>
+          <resource id="kbsec" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes per second]"/>
+          <resource id="transfsec" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Transfers per second]"/>
+          <resource id="kbread" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes read]"/>
+          <resource id="kbwritten" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes written]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.75/agents.aix/root/Processes/{Details per process}">
+          <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Processes/(.*)"/>
+          <resource id="user" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[User]"/>
+          <resource id="cpu" iname="$host/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processes/(.*)/[CPU]"/>
+          <resource code="return vsz/1024;" description="Virtual size(Mb)" id="vsz" iname="$host/$entity[2]/Virtual size(Mb)" name="Virtual size(Mb)" rid="-/-/root/Processes/(.*)/[Virtual size]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.75/agents.aix/root/System/{Threads waiting for I/O}">
+          <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.75/agents.aix/root/System/[Threads waiting for I/O]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Threads waiting for I/O]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.77/agents.aix/root/Paging/{Pages scanned}">
+          <resource id="172.16.6.77/agents.aix/root/Paging/[#time#]" rid="172.16.6.77/agents.aix/root/Paging/[#time#]"/>
+          <resource id="172.16.6.77/agents.aix/root/Paging/[Pages scanned]" iname="$counter" rid="172.16.6.77/agents.aix/root/Paging/[Pages scanned]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.77/agents.aix/root/File system/{Used space per filesystem(%)}">
+          <resource id="fs" rid="-/-/root/File system/(.*)"/>
+          <resource id="free" rid="-/-/root/File system/(.*)/[Free blocks]"/>
+          <resource id="total" rid="-/-/root/File system/(.*)/[Blocks]"/>
+          <reaction params="fs,free,total" severity="CRITICAL">
+            <arm><![CDATA[return 100*(total - free)/(float)total > 95;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "Used space on filesystem " 	+ env.getPath(fs) + " is greater than 95%";]]></message>
+          </reaction>
+          <function id="percentage_used" max="100.0" name="Percentage of used space" op="script">
+            <param id="free"/>
+            <param id="total"/>
+            <code>return 100*(total - free)/(float)total;</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.75/agents.aix/root/Network interfaces/{Network interfaces}">
+          <resource id="if" iname="$entity[2]" name="Network Interface" rid="-/-/root/Network interfaces/(.*)"/>
+          <resource id="packs_in" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Packets in]"/>
+          <resource id="packs_out" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Packets out]"/>
+          <resource id="err_in" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Errors in]"/>
+          <resource id="err_out" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Errors out]"/>
+          <resource id="colls" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Collisions]"/>
+          <resource id="mtu" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Mtu]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.75/agents.aix/root/File system/{Used space per filesystem(%)}">
+          <resource id="fs" rid="-/-/root/File system/(.*)"/>
+          <resource id="free" rid="-/-/root/File system/(.*)/[Free blocks]"/>
+          <resource id="total" rid="-/-/root/File system/(.*)/[Blocks]"/>
+          <reaction params="fs,free,total" severity="CRITICAL">
+            <arm><![CDATA[return 100*(total - free)/(float)total > 95;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "Used space on filesystem " 	+ env.getPath(fs) + " is greater than 95%";]]></message>
+          </reaction>
+          <function id="percentage_used" max="100.0" name="Percentage of used space" op="script">
+            <param id="free"/>
+            <param id="total"/>
+            <code>return 100*(total - free)/(float)total;</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.75/agents.aix/root/System/{Kernel thread context switches}">
+          <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.75/agents.aix/root/System/[Kernel thread context switches]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Kernel thread context switches]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.77/agents.aix/root/System/{Kernel threads in wait queue}">
+          <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.77/agents.aix/root/System/[Kernel threads in wait queue]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Kernel threads in wait queue]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.77/agents.aix/root/CPU/{Overall CPU usage}">
+          <resource id="time" rid="-/-/root/CPU/[#time#]"/>
+          <resource id="sys" iname="$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[System time]"/>
+          <resource id="wait" iname="$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[Wait time]"/>
+          <resource id="user" iname="$counter" max="100.0" name="$counter" rid="-/-/root/CPU/[User time]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.77/agents.aix/root/System/{Threads waiting for I/O}">
+          <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.77/agents.aix/root/System/[Threads waiting for I/O]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Threads waiting for I/O]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.77/agents.aix/root/Processes/{Details per process}">
+          <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Processes/(.*)"/>
+          <resource id="user" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[User]"/>
+          <resource id="cpu" iname="$host/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processes/(.*)/[CPU]"/>
+          <resource code="return vsz/1024;" description="Virtual size(Mb)" id="vsz" iname="$host/$entity[2]/Virtual size(Mb)" name="Virtual size(Mb)" rid="-/-/root/Processes/(.*)/[Virtual size]"/>
+        </query>
+      </query>
+      <query>
+        <query id="{AIX systems overview}">
+          <resource id="host" iname="$host($agent)" name="Host" rid="(.*)/(agents\.aix.*)"/>
+          <resource code="return 100-cpu;" description="CPU time" id="cpu" iname="$host/$agent/$entity[1]/CPU time" name="CPU time" rid="(.*)/(agents\.aix.*)/root/CPU/[Idle time]"/>
+          <resource id="run_queue" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/(agents\.aix.*)/root/System/[Kernel threads in run queue]"/>
+          <resource id="wait_queue" iname="$host//$agent/$entity[1]/$counter" name="$counter" rid="(.*)/(agents\.aix.*)/root/System/[Kernel threads in wait queue]"/>
+          <resource id="contextsw" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/(agents\.aix.*)/root/System/[Kernel thread context switches]"/>
+          <resource id="pages_in" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/(agents\.aix.*)/root/Paging/[Pages in]"/>
+          <resource id="pages_out" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/(agents\.aix.*)/root/Paging/[Pages out]"/>
+          <reaction params="cpu" severity="HIGH">
+            <arm><![CDATA[return 100-cpu > 90;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The CPU usage on host " + env.getHost(cpu) + " was higher than 90% for the last minute";]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.77/agents.aix/root/Network interfaces/{Network interfaces}">
+          <resource id="if" iname="$entity[2]" name="Network Interface" rid="-/-/root/Network interfaces/(.*)"/>
+          <resource id="packs_in" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Packets in]"/>
+          <resource id="packs_out" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Packets out]"/>
+          <resource id="err_in" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Errors in]"/>
+          <resource id="err_out" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Errors out]"/>
+          <resource id="colls" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Collisions]"/>
+          <resource id="mtu" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Network interfaces/(.*)/[Mtu]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.75/agents.aix/root/Paging/{Pages scanned}">
+          <resource id="172.16.6.75/agents.aix/root/Paging/[#time#]" rid="172.16.6.75/agents.aix/root/Paging/[#time#]"/>
+          <resource id="172.16.6.75/agents.aix/root/Paging/[Pages scanned]" iname="$counter" rid="172.16.6.75/agents.aix/root/Paging/[Pages scanned]"/>
+        </query>
+      </query>
+      <query>
+        <query id="172.16.6.77/agents.aix/root/Disks/{Details per disk}">
+          <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/Disks/(.*)"/>
+          <resource id="busy" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Busy]"/>
+          <resource id="kbsec" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes per second]"/>
+          <resource id="transfsec" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Transfers per second]"/>
+          <resource id="kbread" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes read]"/>
+          <resource id="kbwritten" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Disks/(.*)/[Kilobytes written]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.75/agents.aix/root/System/{Kernel threads in wait queue}">
+          <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.75/agents.aix/root/System/[Kernel threads in wait queue]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Kernel threads in wait queue]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.77/agents.aix/root/System/{Kernel thread context switches}">
+          <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.77/agents.aix/root/System/[Kernel thread context switches]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Kernel thread context switches]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="172.16.6.75/agents.aix/root/System/{Kernel threads in run queue}">
+          <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+          <resource id="172.16.6.75/agents.aix/root/System/[Kernel threads in run queue]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Kernel threads in run queue]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="172.16.6.75/agents.aix/#System Overview#"/>
+      <dashboard id="172.16.6.77/agents.aix/#System Overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 2" w="500.0" x="576.0" y="75.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="172.16.6.75/agents.aix/root/CPU/:Overall CPU usage:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="172.16.6.75/agents.aix/root/File system/:Used space per filesystem(%):"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Kernel thread context switches</name>
+                  <description>Kernel thread context switches</description>
+                  <query>
+                    <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.75/agents.aix/root/System/[Kernel thread context switches]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Kernel thread context switches]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.75/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Kernel threads in run queue</name>
+                  <description>Kernel threads in run queue</description>
+                  <query>
+                    <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.75/agents.aix/root/System/[Kernel threads in run queue]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Kernel threads in run queue]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.75/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Threads waiting for I/O</name>
+                  <description>Threads waiting for I/O</description>
+                  <query>
+                    <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.75/agents.aix/root/System/[Threads waiting for I/O]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Threads waiting for I/O]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.75/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Kernel threads in wait queue</name>
+                  <description>Kernel threads in wait queue</description>
+                  <query>
+                    <resource id="172.16.6.75/agents.aix/root/System/[#time#]" rid="172.16.6.75/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.75/agents.aix/root/System/[Kernel threads in wait queue]" iname="$counter" rid="172.16.6.75/agents.aix/root/System/[Kernel threads in wait queue]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.75/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Pages scanned</name>
+                  <description>Pages scanned</description>
+                  <query>
+                    <resource id="172.16.6.75/agents.aix/root/Paging/[#time#]" rid="172.16.6.75/agents.aix/root/Paging/[#time#]"/>
+                    <resource id="172.16.6.75/agents.aix/root/Paging/[Pages scanned]" iname="$counter" rid="172.16.6.75/agents.aix/root/Paging/[Pages scanned]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.75/agents.aix/root/Paging"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="172.16.6.77/agents.aix/root/CPU/:Overall CPU usage:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="172.16.6.77/agents.aix/root/File system/:Used space per filesystem(%):"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Kernel thread context switches</name>
+                  <description>Kernel thread context switches</description>
+                  <query>
+                    <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.77/agents.aix/root/System/[Kernel thread context switches]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Kernel thread context switches]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.77/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Kernel threads in run queue</name>
+                  <description>Kernel threads in run queue</description>
+                  <query>
+                    <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.77/agents.aix/root/System/[Kernel threads in run queue]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Kernel threads in run queue]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.77/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Threads waiting for I/O</name>
+                  <description>Threads waiting for I/O</description>
+                  <query>
+                    <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.77/agents.aix/root/System/[Threads waiting for I/O]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Threads waiting for I/O]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.77/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Kernel threads in wait queue</name>
+                  <description>Kernel threads in wait queue</description>
+                  <query>
+                    <resource id="172.16.6.77/agents.aix/root/System/[#time#]" rid="172.16.6.77/agents.aix/root/System/[#time#]"/>
+                    <resource id="172.16.6.77/agents.aix/root/System/[Kernel threads in wait queue]" iname="$counter" rid="172.16.6.77/agents.aix/root/System/[Kernel threads in wait queue]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.77/agents.aix/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Pages scanned</name>
+                  <description>Pages scanned</description>
+                  <query>
+                    <resource id="172.16.6.77/agents.aix/root/Paging/[#time#]" rid="172.16.6.77/agents.aix/root/Paging/[#time#]"/>
+                    <resource id="172.16.6.77/agents.aix/root/Paging/[Pages scanned]" iname="$counter" rid="172.16.6.77/agents.aix/root/Paging/[Pages scanned]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="172.16.6.77/agents.aix/root/Paging"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 4" w="600.0" x="22.0" y="152.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="172.16.6.77/agents.aix/root/Disks/:Details per disk:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="172.16.6.77/agents.aix/root/Processes/:Details per process:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="2"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 5" w="600.0" x="55.0" y="429.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="172.16.6.77/agents.aix/root/Network interfaces/:Network interfaces:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="930.0" title="Dashboard 1" w="1134.0" x="0.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id=":AIX systems overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="172.16.6.75/agents.aix/root/Disks/:Details per disk:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 3" w="600.0" x="71.0" y="233.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="172.16.6.75/agents.aix/root/Processes/:Details per process:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="2"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="172.16.6.75/agents.aix/root/Network interfaces/:Network interfaces:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

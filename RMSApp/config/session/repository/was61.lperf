@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="was61">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.websphere</agentInstallationId>
+                <config>
+                  <level>2</level>
+                  <sampling>-1</sampling>
+                  <recursiveMonitoringLevel>true</recursiveMonitoringLevel>
+                  <config class="com.ixora.rms.agents.websphere.v61.Configuration">
+                    <config.username notrequired="true" type="0" value="websphere"/>
+                    <config.password notrequired="true" type="10" value="172154688E31797CF67D4E8CD3A823B5"/>
+                    <config.port type="1" value="8881"/>
+                    <websphereagent.was_profile type="0" value="AppSrv01"/>
+                    <websphereagent.was_host notrequired="true" type="0" value=""/>
+                    <websphereagent.connector_type set="RMI,SOAP" type="0" value="SOAP"/>
+                    <websphereagent.was_home type="0" value="C:/Programs/IBM/WebSphere61/AppServer"/>
+                    <websphereagent.was_classpath type="0" value="/profiles/AppSrv01,/properties,/etc/(.*\.jar),/lib/(.*\.jar),/java/jre/lib/ext/(.*\.jar),/runtimes/(.*\.jar),/plugins/(.*\.jar)"/>
+                    <websphereagent.security_enabled type="3" value="true"/>
+                    <websphereagent.trust_store_password type="0" value="WebAS"/>
+                    <websphereagent.key_store_password type="0" value="WebAS"/>
+                    <websphereagent.trust_store type="0" value="/profiles/AppSrv01/etc/DummyClientTrustFile.jks"/>
+                    <websphereagent.key_store type="0" value="/profiles/AppSrv01/etc/DummyClientKeyFile.jks"/>
+                    <websphereagent.soap_props type="0" value="/profiles/AppSrv01/properties/soap.client.props"/>
+                    <websphereagent.sas_props type="0" value="/profiles/AppSrv01/properties/sas.client.props"/>
+                    <websphereagent.proxy_rmi_port type="1" value="9998"/>
+                  </config>
+                  <version>6.1.*</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.websphere</agentId>
+                <config>
+                  <level>2</level>
+                  <sampling>-1</sampling>
+                  <recursiveMonitoringLevel>true</recursiveMonitoringLevel>
+                  <config class="com.ixora.rms.agents.websphere.v61.Configuration">
+                    <config.username notrequired="true" type="0" value="websphere"/>
+                    <config.password notrequired="true" type="10" value="172154688E31797CF67D4E8CD3A823B5"/>
+                    <config.port type="1" value="8881"/>
+                    <websphereagent.was_profile type="0" value="AppSrv01"/>
+                    <websphereagent.was_host notrequired="true" type="0" value=""/>
+                    <websphereagent.connector_type set="RMI,SOAP" type="0" value="SOAP"/>
+                    <websphereagent.was_home type="0" value="C:/Programs/IBM/WebSphere61/AppServer"/>
+                    <websphereagent.was_classpath type="0" value="/profiles/AppSrv01,/properties,/etc/(.*\.jar),/lib/(.*\.jar),/java/jre/lib/ext/(.*\.jar),/runtimes/(.*\.jar),/plugins/(.*\.jar)"/>
+                    <websphereagent.security_enabled type="3" value="true"/>
+                    <websphereagent.trust_store_password type="0" value="WebAS"/>
+                    <websphereagent.key_store_password type="0" value="WebAS"/>
+                    <websphereagent.trust_store type="0" value="/profiles/AppSrv01/etc/DummyClientTrustFile.jks"/>
+                    <websphereagent.key_store type="0" value="/profiles/AppSrv01/etc/DummyClientKeyFile.jks"/>
+                    <websphereagent.soap_props type="0" value="/profiles/AppSrv01/properties/soap.client.props"/>
+                    <websphereagent.sas_props type="0" value="/profiles/AppSrv01/properties/sas.client.props"/>
+                    <websphereagent.proxy_rmi_port type="1" value="9998"/>
+                  </config>
+                  <version>6.1.*</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/agents.websphere/{JDBC SQL statement discards}">
+          <resource id="datasource" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="Datasource" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+          <resource id="discards" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[PrepStmtCacheDiscardCount]"/>
+          <reaction params="datasource,discards" severity="HIGH">
+            <arm><![CDATA[return discards > 30;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The prepared statement discards for " + datasource + " is greater than 30";]]></message>
+            <advise><![CDATA[return "Increase the size of the prepared statement cache until there are no discards.";]]></advise>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Stateless beans overview}">
+          <resource id="bean" iname="$entity[1]/$entity[2]/$entity[6]" name="Stateless beans" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)"/>
+          <resource id="active_method_count" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[ActiveMethodCount]"/>
+          <resource id="rt" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[MethodResponseTime]"/>
+          <resource id="livecount" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[LiveCount]"/>
+          <resource id="method_call_count" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[MethodCallCount]"/>
+          <resource id="drains" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[DrainsFromPoolCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server active transactions}">
+          <resource id="tran" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+          <resource id="global" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[ActiveCount]"/>
+          <resource id="local" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalActiveCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server bean response time}">
+          <resource id="bm" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/beanModule/"/>
+          <resource id="rt" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/[MethodResponseTime]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{ORB interceptors overview}">
+          <resource id="interceptors" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]" rid="-/-/root/(.*)/(.*)/orbPerfModule/orbPerfModule.interceptors/(.*)"/>
+          <resource id="proc_time" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/orbPerfModule/orbPerfModule.interceptors/(.*)/[ProcessingTime]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server active/live servlet sessions}">
+          <resource id="serv" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/servletSessionsModule/"/>
+          <resource id="as" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[ActiveCount]"/>
+          <resource id="ls" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[LiveCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{JDBC datasources overview}">
+          <resource id="datasource" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="Datasources" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+          <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[UseTime]"/>
+          <resource id="jdbcusetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[JDBCTime]"/>
+          <resource id="waittime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[WaitTime]"/>
+          <resource id="percentused" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[PercentUsed]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{JDBC connections closed}">
+          <resource id="datasource" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+          <resource id="discards" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[CloseCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server concurrent ORB requests}">
+          <resource id="orb" iname="$entity[1]/$entity[2]/$entity[3]" name="$entity[3]" rid="-/-/root/(.*)/(.*)/orbPerfModule/"/>
+          <resource id="cr" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/orbPerfModule/[ConcurrentRequestCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server servlet data}">
+          <resource id="web" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/webAppModule/"/>
+          <resource id="ls" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.numLoadedServlets]"/>
+          <resource id="err" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.servlets.numErrors]"/>
+          <resource id="cr" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.servlets.concurrentRequests]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Thread pools utilisation}">
+          <resource id="pool" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]" name="Thread pool" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/"/>
+          <resource id="active" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[ActiveCount]"/>
+          <resource id="size" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[PoolSize]"/>
+          <reaction params="pool,active,size" severity="HIGH">
+            <arm><![CDATA[return size > 0 && active == size;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "Thread pool " + pool + " has been maximized for the last minute.";]]></message>
+            <advise><![CDATA[return "If there are no other bottlenecks try and increase the size of the threadpool until the CPU usage is maximized.";]]></advise>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Servlet session discards}">
+          <resource id="sessmod" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/servletSessionsModule/"/>
+          <resource id="discards" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[CacheDiscardCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{JDBC connection pools utilisation}">
+          <resource id="pool" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+          <resource id="free" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[FreePoolSize]"/>
+          <resource id="size" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[PoolSize]"/>
+          <function id="active" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/Active Connections" name="Active Connections" op="script">
+            <param id="free"/>
+            <param id="size"/>
+            <code>return size-free;</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server committed/rolledback transactions}">
+          <resource id="tran" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+          <resource id="globalC" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[CommittedCount]"/>
+          <resource id="localC" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalCommittedCount]"/>
+          <resource id="globalRB" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[RolledbackCount]"/>
+          <resource id="localRB" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalRolledbackCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Servlets overview}">
+          <resource id="servlet" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]" name="Servlet" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/"/>
+          <resource id="rt" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.responseTime]"/>
+          <resource id="err" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.numErrors]"/>
+          <resource id="tr" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.totalRequests]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Message driven beans overview}">
+          <resource id="bean" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]" name="Message driven beans" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/"/>
+          <resource id="msgcount" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[MessageCount]"/>
+          <resource id="msgbcount" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[MessageBackoutCount]"/>
+          <resource id="sesswt" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[WaitTime]"/>
+          <resource id="cl" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[LiveCount]"/>
+          <resource id="rt" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[MethodResponseTime]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Response time at JDBC driver layer}">
+          <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+          <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[JDBCTime]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server transaction duration}">
+          <resource id="tran" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+          <resource id="global" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter(ms)" rid="-/-/root/(.*)/(.*)/transactionModule/[GlobalTranTime]"/>
+          <resource id="local" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter(ms)" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalTranTime]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Per server JVM memory}">
+          <resource id="jvm" iname="$entity[1]/$entity[2]/$entity[3]" name="JVM memory" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule"/>
+          <resource code="return (float)used/1024;" id="used" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="Used(MB)" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule/[UsedMemory]"/>
+          <resource code="return (float)free/1024;" id="free" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="Free(MB)" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule/[FreeMemory]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Use time for JDBC connections}">
+          <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+          <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[UseTime]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Threads destroyed}">
+          <resource id="pool" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/"/>
+          <resource id="destroys" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[DestroyCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.websphere/{Servlet sessions overview}">
+          <resource id="apps" iname="$entity[1]/$entity[2]/$entity[4]" name="Application" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/"/>
+          <resource id="sess" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[CreateCount]"/>
+          <resource id="inv" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[InvalidateCount]"/>
+          <resource code="return (float)lifetime/1000;" id="lifetime" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="SessionLifeTime(s)" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[LifeTime]"/>
+          <resource id="cachediscards" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[CacheDiscardCount]"/>
+          <resource id="noroom" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[NoRoomForNewSessionCount]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.websphere/#WebSphere overview#"/>
+      <dashboard id="localhost/agents.websphere/#WebSphere details#"/>
+      <dashboard id="localhost/agents.websphere/#WebSphere tuning#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>false</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="895.0" title="Dashboard 1" w="923.0" x="0.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Thread pools utilisation:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:JDBC connection pools utilisation:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server JVM memory:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server concurrent ORB requests:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server active transactions:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server committed/rolledback transactions:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server active/live servlet sessions:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server servlet data:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Use time for JDBC connections:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Response time at JDBC driver layer:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:JDBC SQL statement discards:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Threads destroyed:"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+      <screen>
+        <name>Dash2</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 3" w="600.0" x="46.0" y="236.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Servlet sessions overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Servlets overview:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 2" w="600.0" x="373.0" y="230.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:JDBC datasources overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Message driven beans overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 4" w="600.0" x="394.0" y="300.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Stateless beans overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 1" w="500.0" x="40.0" y="40.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:JDBC connections closed:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:ORB interceptors overview:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server bean response time:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Per server transaction duration:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.websphere/:Servlet session discards:"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+      <screen>
+        <name>Dash3</name>
+        <selected>false</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 1" w="600.0" x="40.0" y="39.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Servlet sessions overview:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="3"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Servlets overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 2" w="600.0" x="401.0" y="249.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Stateless beans overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.websphere/:Message driven beans overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

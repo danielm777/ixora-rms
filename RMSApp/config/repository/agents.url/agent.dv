@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <views>
+    <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+      <name>All data as properties</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$counter" name="$counter" rid="-/-/root/(.*)/[response_content]"/>
+        <resource id="id2" iname="$counter" name="$counter" rid="-/-/root/(.*)/[response_size]"/>
+        <resource id="id3" iname="$counter" name="$counter" rid="-/-/root/(.*)/[response_status_code]"/>
+        <resource id="id4" iname="$counter" name="$counter" rid="-/-/root/(.*)/[response_time]"/>
+        <reaction params="id4" severity="CRITICAL">
+          <arm><![CDATA[return id4 > 2000;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The response time for " + env.getEntityPart(id4, 1) + " was greater than 2 seconds for the last minute";]]></message>
+        </reaction>
+        <reaction params="id3" severity="CRITICAL">
+          <arm><![CDATA[return id3 == 500;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The response status for " + env.getEntityPart(id3, 1) + " was 500";]]></message>
+        </reaction>
+      </query>
+      <agentVersions/>
+      <author>system</author>
+    </view>
+  </views>
+</rms>

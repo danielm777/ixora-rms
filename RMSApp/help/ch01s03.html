@@ -1,0 +1,27 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Getting Started with IxoraRMS</title><link href="style.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.68.1" name="generator"><link rel="start" href="index.html" title="IxoraRMS Documentation"><link rel="up" href="ch01.html" title="Introduction"><link rel="prev" href="ch01s02.html" title="License and Copyrights"><link rel="next" href="ch02.html" title="User guide"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="secGettingStarted"></a>Getting Started with IxoraRMS</h2></div></div></div><p>This contains information about how to install and run IxoraRMS. Refer to <a href="ch02.html" title="User guide"><i>User guide</i></a> for a full
+	overview of its features. IxoraRMS 1.3 requires J2SE 6.0 or above.</p><a name="N83" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraInstalling"></a>Installing IxoraRMS</h3></div></div></div><p>To ensure maximum portability IxoraRMS is distributed as a series of compressed files
+		(zip or bz2) for supported platforms. The installation procedure consists in unzipping the
+		appropriate file in the desired output directory. To uncompress use:</p><div class="itemizedlist"><ul type="disc"><li>Windows: use any graphical zip utility (such as WinZip).</li><li>Linux: use the command:<pre class="programlisting">
+   tar -xzvf x86-linux-no-vm.tar.gz</pre></li><li>Solaris: use the command:<pre class="programlisting">
+   bzip2 -dc x86-solaris-no-vm.tar.bzip | tar -xvf -</pre>
+   			or the same command as for Linux, if the GNU freeware utilities are installed.</li></ul></div><p>The Console is the main application component	which displays data collected from
+		all monitored hosts in a graphical console. The Host Manager is the component responsible
+		for collecting data from agents deployed on remote hosts and forwarding it to the console.</p></div><a name="N9F" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraRunning"></a>Running IxoraRMS</h3></div></div></div><p>The installation file for each platform contains both the Console and HostManager.
+		To start them use:</p><div class="itemizedlist"><ul type="disc"><li>Console: run console.bat or console.sh</li><li>HostManager: run hmStart.bat or hmStart.sh and to stop it run
+			the corresponding hmStop script file; after the Host Manger had been started
+			at least once with hmStart and configured you can use the generated script file
+			hm.launch.bat or hm.lauch.sh file to start the Host Manager thereafter.</li></ul></div><p>When running Console for the first time you will need to enter the license key, either
+		purchased or received after downloading the evaluation version.</p><p>Note that IxoraRMS Console will try to communicate to all Host Managers through a
+		bidirectional TCP/IP channel to offer the best user experience but if such a channel
+		cannot be established (because of firewalls for instance), the console will use a polling mechanism
+		to retrieve data from the Host Managers using a one way channel.</p><p>Click the Load session button and select winsample.lperf if you are running on Windows.
+		This will open a sample monitoring session with system information pertinent
+		to the local machine using the Windows Agent.</p><p>You can also start a monitoring session in a non-interactive manner using
+
+		<pre class="programlisting">
+		batchStart.bat(sh) [sessionName] [logFile]
+		</pre>
+
+		where the two parameters are the monitoring session name
+		and the log file where monitoring data will be stored.
+		To stop a session started with batchStart you must run batchStop.bat(sh)</p></div></div></body></html>

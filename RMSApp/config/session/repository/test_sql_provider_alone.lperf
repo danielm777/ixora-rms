@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="test_sql_provider_alone">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>CustomSQLAgent</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>CustomSQLAgent</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.mysql</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.mysql.v50.Configuration">
+                    <config.username notrequired="true" type="0" value="root"/>
+                    <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <config.port type="1" value="3306"/>
+                    <config.jdbc_driver_jar type="0" value="/lib/mysql-connector-java-5.0.0-beta-bin.jar"/>
+                    <config.database type="0" value="ixorarms_tutorials"/>
+                    <config.jdbc_driver_class type="0" value="com.mysql.jdbc.Driver"/>
+                  </config>
+                  <version>5.*</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.mysql</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.mysql.v50.Configuration">
+                    <config.username notrequired="true" type="0" value="root"/>
+                    <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <config.port type="1" value="3306"/>
+                    <config.jdbc_driver_jar type="0" value="/lib/mysql-connector-java-5.0.0-beta-bin.jar"/>
+                    <config.database type="0" value="ixorarms_tutorials"/>
+                    <config.jdbc_driver_class type="0" value="com.mysql.jdbc.Driver"/>
+                  </config>
+                  <version>5.*</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>CustomSQLAgent</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>CustomSQLAgent:1</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>CustomSQLAgent</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>CustomSQLAgent:2</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/agents.mysql/root/Commands executed/DML/{DML operations}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_commit]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_rollback]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_select]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_insert]"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_delete]"/>
+          <resource id="id7" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_update]"/>
+          <resource id="time" rid="-/-/root/Commands executed/DML/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/CustomSQLAgent:2/root/TableStats/{yesfd}">
+          <resource id="localhost/CustomSQLAgent:2/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent:2/root/TableStats/[#time#]"/>
+          <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter4]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter4]"/>
+          <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter2]"/>
+          <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter1]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter1]"/>
+          <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter3]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter3]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/CustomSQLAgent:1/root/TableStats/{test3}">
+          <resource id="localhost/CustomSQLAgent:1/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent:1/root/TableStats/[#time#]"/>
+          <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter4]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter4]"/>
+          <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter2]"/>
+          <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter1]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter1]"/>
+          <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter3]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter3]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.mysql/root/Performance/Query cache/{Qcache_hits}">
+          <resource id="localhost/agents.mysql/root/Performance/Query cache/[#time#]" rid="localhost/agents.mysql/root/Performance/Query cache/[#time#]"/>
+          <resource id="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Commands executed/{Statement operations}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_execute]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_reset]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_prepare]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_close]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_send_long_data]"/>
+          <resource id="time" rid="-/-/root/Commands executed/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/CustomSQLAgent/root/TableStats/{test}">
+          <resource id="localhost/CustomSQLAgent/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent/root/TableStats/[#time#]"/>
+          <resource id="localhost/CustomSQLAgent/root/TableStats/[counter4]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter4]"/>
+          <resource id="localhost/CustomSQLAgent/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter2]"/>
+          <resource id="localhost/CustomSQLAgent/root/TableStats/[counter1]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter1]"/>
+          <resource id="localhost/CustomSQLAgent/root/TableStats/[counter3]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter3]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Networking/{Connections}">
+          <resource id="time" rid="-/-/root/Networking/[#time#]"/>
+          <resource id="conn" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Networking/[Connections]"/>
+          <resource id="max" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Networking/[Max_used_connections]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Networking/Traffic/{Traffic}">
+          <resource id="time" rid="-/-/root/Networking/Traffic/[#time#]"/>
+          <resource code="return recv/1048576f;" id="recv" iname="$host/$agent/$entity[1]/$entity[2]/Megabytes received" name="Megabytes received" rid="-/-/root/Networking/Traffic/[Bytes_received]"/>
+          <resource code="return sent/1048576f;" id="sent" iname="$host/$agent/$entity[1]/$entity[2]/Megabytes sent" name="Megabytes sent" rid="-/-/root/Networking/Traffic/[Bytes_sent]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.mysql/root/Performance/Locks/{Table_locks_waited}">
+          <resource id="localhost/agents.mysql/root/Performance/Locks/[#time#]" rid="localhost/agents.mysql/root/Performance/Locks/[#time#]"/>
+          <resource id="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Performance/Sort/{Sorts}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_rows]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_scan]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_range]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_merge_passes]"/>
+          <resource id="time" rid="-/-/root/Performance/Sort/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/General/Threads/{Threads}">
+          <resource id="time" rid="-/-/root/General/Threads/[#time#]"/>
+          <resource id="cached" iname="$host/$agent/$entity[2]/$counter" name="$counter" rid="-/-/root/General/Threads/[Threads_cached]"/>
+          <resource id="connected" iname="$host/$agent/$entity[2]/$counter" name="$counter" rid="-/-/root/General/Threads/[Threads_connected]"/>
+          <resource id="running" iname="$host/$agent/$entity[2]/$counter" name="$counter" rid="-/-/root/General/Threads/[Threads_running]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.mysql/root/Commands executed/{Com_execute_sql}">
+          <resource id="localhost/agents.mysql/root/Commands executed/[#time#]" rid="localhost/agents.mysql/root/Commands executed/[#time#]"/>
+          <resource id="localhost/agents.mysql/root/Commands executed/[Com_execute_sql]" iname="$counter" rid="localhost/agents.mysql/root/Commands executed/[Com_execute_sql]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Performance/Query cache/{Query cache memory blocks}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Query cache/[Qcache_total_blocks]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Query cache/[Qcache_free_blocks]"/>
+          <resource id="time" rid="-/-/root/Performance/Query cache/[#time#]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.mysql/#MySQL overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard" h="550.0" title="Dashboard 4" w="500.0" x="400.0" y="125.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.properties.PropertiesControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.properties.PropertiesCounterSetDataView">
+                  <name>yesfd</name>
+                  <description>yesfd</description>
+                  <query>
+                    <resource id="localhost/CustomSQLAgent:2/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent:2/root/TableStats/[#time#]"/>
+                    <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter4]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter4]"/>
+                    <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter2]"/>
+                    <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter1]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter1]"/>
+                    <resource id="localhost/CustomSQLAgent:2/root/TableStats/[counter3]" iname="$counter" rid="localhost/CustomSQLAgent:2/root/TableStats/[counter3]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/CustomSQLAgent:2/root/TableStats"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 2" w="896.0" x="56.0" y="260.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Networking/:Connections:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Networking/Traffic/:Traffic:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/General/Threads/:Threads:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Commands executed/:Statement operations:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Performance/Query cache/:Query cache memory blocks:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Performance/Sort/:Sorts:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Commands executed/DML/:DML operations:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Qcache_hits</name>
+                  <description>Qcache_hits</description>
+                  <query>
+                    <resource id="localhost/agents.mysql/root/Performance/Query cache/[#time#]" rid="localhost/agents.mysql/root/Performance/Query cache/[#time#]"/>
+                    <resource id="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.mysql/root/Performance/Query cache"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Table_locks_waited</name>
+                  <description>Table_locks_waited</description>
+                  <query>
+                    <resource id="localhost/agents.mysql/root/Performance/Locks/[#time#]" rid="localhost/agents.mysql/root/Performance/Locks/[#time#]"/>
+                    <resource id="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.mysql/root/Performance/Locks"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Com_execute_sql</name>
+                  <description>Com_execute_sql</description>
+                  <query>
+                    <resource id="localhost/agents.mysql/root/Commands executed/[#time#]" rid="localhost/agents.mysql/root/Commands executed/[#time#]"/>
+                    <resource id="localhost/agents.mysql/root/Commands executed/[Com_execute_sql]" iname="$counter" rid="localhost/agents.mysql/root/Commands executed/[Com_execute_sql]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.mysql/root/Commands executed"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard" h="550.0" title="Dashboard 3" w="500.0" x="399.0" y="167.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.properties.PropertiesControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.properties.PropertiesCounterSetDataView">
+                  <name>test3</name>
+                  <description>test3</description>
+                  <query>
+                    <resource id="localhost/CustomSQLAgent:1/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent:1/root/TableStats/[#time#]"/>
+                    <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter4]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter4]"/>
+                    <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter2]"/>
+                    <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter1]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter1]"/>
+                    <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter3]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter3]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/CustomSQLAgent:1/root/TableStats"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard" h="550.0" title="Dashboard 1" w="500.0" x="152.0" y="73.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.properties.PropertiesControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.properties.PropertiesCounterSetDataView">
+                  <name>test</name>
+                  <description>test</description>
+                  <query>
+                    <resource id="localhost/CustomSQLAgent/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent/root/TableStats/[#time#]"/>
+                    <resource id="localhost/CustomSQLAgent/root/TableStats/[counter4]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter4]"/>
+                    <resource id="localhost/CustomSQLAgent/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter2]"/>
+                    <resource id="localhost/CustomSQLAgent/root/TableStats/[counter1]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter1]"/>
+                    <resource id="localhost/CustomSQLAgent/root/TableStats/[counter3]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter3]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/CustomSQLAgent/root/TableStats"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

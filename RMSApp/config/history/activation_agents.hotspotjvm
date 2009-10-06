@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.hotspotjvm">
+    <historyGroupItem date="1.195238511312E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.hotspotjvm.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9998/jmxrmi"/>
+            <thread_cpu_time_enabled notrequired="true" type="3" value="true"/>
+          </config>
+          <version>Sun JVM 1.5</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.192132952484E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.hotspotjvm.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9999/jmxrmi"/>
+            <thread_cpu_time_enabled notrequired="true" type="3" value="true"/>
+          </config>
+          <version>Sun JVM 1.5</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.192131856718E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.hotspotjvm.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9998/jmxrmi"/>
+            <thread_cpu_time_enabled notrequired="true" type="3" value="true"/>
+          </config>
+          <version>Sun JVM 1.5</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

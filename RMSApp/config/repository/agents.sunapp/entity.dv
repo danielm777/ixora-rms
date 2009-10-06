@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/com.sun.appserv">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Caches</name>
+          <description>Caches</description>
+          <query>
+            <resource id="cache" iname="$1/$2" name="Cache(host/path)" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Cache,host=(.*),path=(.*))"/>
+            <resource id="access_count" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Cache,host=(.*),path=(.*))/[accessCount]"/>
+            <resource id="cache_max_size" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Cache,host=(.*),path=(.*))/[cacheMaxSize]"/>
+            <resource id="cache_size" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Cache,host=(.*),path=(.*))/[cacheSize]"/>
+            <resource id="hits_count" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Cache,host=(.*),path=(.*))/[hitsCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="cache"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>WebModules</name>
+          <description>WebModules</description>
+          <query>
+            <resource id="webmods" iname="$3/$2/$1" name="Server/App/Web module" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))"/>
+            <resource id="tld_scan_time" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[tldScanTime]"/>
+            <resource id="state" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[state]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="webmods"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>JspMonitors</name>
+          <description>JspMonitors</description>
+          <query>
+            <resource id="jspmons" iname="$3/$2/$4/$1" name="Server/App/Web module/JspMonitor" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=JspMonitor,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))"/>
+            <resource id="count" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=JspMonitor,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[jspCount]"/>
+            <resource id="reload_count" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=JspMonitor,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[jspReloadCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="jspmons"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Managers</name>
+          <description>Managers</description>
+          <query>
+            <resource id="managers" iname="$1/$2" name="Host/Path" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))"/>
+            <resource id="maxActiveSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))/[maxActiveSessions]"/>
+            <resource id="activeSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))/[activeSessions]"/>
+            <resource id="sessionCounter" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))/[sessionCounter]"/>
+            <resource id="maxActive" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))/[maxActive]"/>
+            <resource id="rejectedSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))/[rejectedSessions]"/>
+            <resource id="expiredSessions" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))/[expiredSessions]"/>
+            <resource id="processingTime" iname="$1/$2/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:type=Manager,host=(.*),path=(.*))/[processingTime]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="managers"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Servlets</name>
+          <description>Servlets</description>
+          <query>
+            <resource id="servlets" iname="$3/$2/$4/$1" name="Server/App/Web module/Servlet" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))"/>
+            <resource id="pt" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[processingTime]"/>
+            <resource id="max" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[maxTime]"/>
+            <resource id="min" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[minTime]"/>
+            <resource id="rc" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/com.sun.appserv/(com.sun.appserv:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[requestCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="servlets"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/amx">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Entity bean methods</name>
+          <description>Entity bean methods</description>
+          <query>
+            <resource id="method" iname="$5/$2/$3/$4/$1" name="Server/App/EJB Module/Bean/Method" rid="-/-/root/amx/(amx:j2eeType=X-BeanMethodMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-EntityBeanMonitor=(.*),X-ServerRootMonitor=(.*))/Stats"/>
+            <resource id="exectime" iname="$5/$2/$3/$4/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-BeanMethodMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-EntityBeanMonitor=(.*),X-ServerRootMonitor=(.*))/Stats/[ExecutionTime]"/>
+            <resource id="succ" iname="$5/$2/$3/$4/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-BeanMethodMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-EntityBeanMonitor=(.*),X-ServerRootMonitor=(.*))/Stats/[TotalNumSuccess]"/>
+            <resource id="err" iname="$5/$2/$3/$4/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-BeanMethodMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-EntityBeanMonitor=(.*),X-ServerRootMonitor=(.*))/Stats/[TotalNumErrors]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="method"/>
+          <column id="exectime"/>
+          <column id="succ"/>
+          <column id="err"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Servlets service time and error count</name>
+          <description>Servlets service time and error count</description>
+          <query>
+            <resource id="servlet" iname="$3/$2/$4/$1" name="Server/App/Web Module/Servlet" rid="-/-/root/amx/(amx:j2eeType=X-ServletMonitor,name=(.*),X-ApplicationMonitor=(.*),X-ServerRootMonitor=(.*),X-WebModuleVirtualServerMonitor=(.*))/Stats"/>
+            <resource id="avg" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-ServletMonitor,name=(.*),X-ApplicationMonitor=(.*),X-ServerRootMonitor=(.*),X-WebModuleVirtualServerMonitor=(.*))/Stats/[ServiceTime (avg time)]"/>
+            <resource id="min" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-ServletMonitor,name=(.*),X-ApplicationMonitor=(.*),X-ServerRootMonitor=(.*),X-WebModuleVirtualServerMonitor=(.*))/Stats/[ServiceTime (min time)]"/>
+            <resource id="max" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-ServletMonitor,name=(.*),X-ApplicationMonitor=(.*),X-ServerRootMonitor=(.*),X-WebModuleVirtualServerMonitor=(.*))/Stats/[ServiceTime (max time)]"/>
+            <resource id="err" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-ServletMonitor,name=(.*),X-ApplicationMonitor=(.*),X-ServerRootMonitor=(.*),X-WebModuleVirtualServerMonitor=(.*))/Stats/[ErrorCount]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="servlet"/>
+          <column id="avg"/>
+          <column id="min"/>
+          <column id="max"/>
+          <column id="err"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Stateless session bean methods</name>
+          <description>Stateless session bean methods</description>
+          <query>
+            <resource id="id0" iname="$4/$2/$3/$1" name="Server/App/EJB Module/Bean" rid="-/-/root/amx/(amx:j2eeType=X-StatelessSessionBeanMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-ServerRootMonitor=(.*))/Stats"/>
+            <resource id="id1" iname="$4/$2/$3/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-StatelessSessionBeanMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-ServerRootMonitor=(.*))/Stats/[CreateCount]"/>
+            <resource id="id2" iname="$4/$2/$3/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-StatelessSessionBeanMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-ServerRootMonitor=(.*))/Stats/[RemoveCount]"/>
+            <resource id="id3" iname="$4/$2/$3/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-StatelessSessionBeanMonitor,name=(.*),X-ApplicationMonitor=(.*),X-EJBModuleMonitor=(.*),X-ServerRootMonitor=(.*))/Stats/[MethodReadyCount (current)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Thread pools utilization</name>
+          <description>Thread pools utilization</description>
+          <query>
+            <resource id="pool" iname="$2/$1" name="Thread pool" rid="-/-/root/amx/(amx:j2eeType=X-ThreadPoolMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats"/>
+            <resource id="used" iname="$2/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-ThreadPoolMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[NumberOfBusyThreads]"/>
+            <resource id="av" iname="$2/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-ThreadPoolMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[NumberOfAvailableThreads]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="pool"/>
+            <range id="used"/>
+            <range id="av"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Rolledback and committed transactions</name>
+          <description>A bar chart with commited and rolledback transactions</description>
+          <query>
+            <resource id="id1" iname="$2/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-TransactionServiceMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[RolledbackCount]"/>
+            <resource id="id2" iname="$2/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-TransactionServiceMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[CommittedCount]"/>
+            <resource id="id0" iname="$2/$1" name="amx" rid="-/-/root/amx/(amx:j2eeType=X-TransactionServiceMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="id0"/>
+            <range id="id1"/>
+            <range id="id2"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Active transactions</name>
+          <description>Timeseries chart with active transactions</description>
+          <query>
+            <resource id="id3" iname="$2/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-TransactionServiceMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[ActiveCount]"/>
+            <resource id="time" rid="-/-/root/amx/(amx:j2eeType=X-TransactionServiceMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="id3"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>JVM heap size</name>
+          <description>JVM heap size in megabytes</description>
+          <query>
+            <resource id="id1" iname="$2/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-JVMMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[HeapSize (current)]"/>
+            <resource id="id5" iname="$2/$1/$counter" name="$counter" rid="-/-/root/amx/(amx:j2eeType=X-JVMMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats/[HeapSize (upper bound)]"/>
+            <resource id="id0" iname="$2/$1" name="amx" rid="-/-/root/amx/(amx:j2eeType=X-JVMMonitor,name=(.*),X-ServerRootMonitor=(.*))/Stats"/>
+            <function id="fid2" iname="$2/$1/Heap size(MB)" name="Heap size(MB)" op="script">
+              <param id="id1"/>
+              <code>return id1/1048576;</code>
+            </function>
+            <function id="fid1" iname="$2/$1/Available(MB)" name="Available(MB)" op="script">
+              <param id="id1"/>
+              <param id="id5"/>
+              <code>return (id5-id1)/1048576;</code>
+            </function>
+          </query>
+          <agentVersions>
+            <agentVersion>8.*</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar3D">
+            <domain id="id0"/>
+            <range id="fid1"/>
+            <range id="fid2"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

@@ -1,0 +1,76 @@
+<section id="secProvidersSQL">
+	<title>SQL Providers</title>
+
+   <indexterm><primary>SQL provider</primary><secondary>options</secondary></indexterm>
+	<para>The following are the options available when defining a SQL provider:</para>
+	   <itemizedlist>
+         <listitem>Classpath: Classpath pointing to the JDBC driver code.</listitem>
+         <listitem>Class loader id: The id of the class loader to use; this is an important
+		   parameter if your custom agent will have multiple SQL providers as sharing one class loader allows
+		   the SQL providers to share one database connection; the value is usually a string equal to the cutsom agent id to
+		   guarantee a unique name in the scope of this monitoring session.</listitem>
+         <listitem>JDBC driver class: The name of the JDBC driver class.</listitem>
+         <listitem>Username: Authenticate using this username.</listitem>
+         <listitem>Password: Authenticate using this password.</listitem>
+         <listitem>JDBC connection string: Connection string used to establish
+         the database connection.</listitem>
+         <listitem>SQL query: The SQL query to execute for data collection.</listitem>
+	   </itemizedlist>
+
+	   <para> The followings are JDBC connection strings for some common databases:</para>
+	   <itemizedlist>
+	   <listitem>The Oracle "thin" driver connection string looks like "jdbc:oracle:thin:@[hostname]:[port]:[oracle sid]"</listitem>
+	   <listitem>The DB2 "App" driver connection string looks like "jdbc:db2:[db_name]"</listitem>
+	   <listitem>The DB2 "Net" driver connection string looks like "jdbc:db2://[hostname]:[port]/[db_name]"</listitem>
+	   <listitem>The Pointbase driver connection string looks like "jdbc:pointbase:server://[hostname]:[port]/[db_name]"</listitem>
+	   <listitem>The MS/SQL driver connection string looks like "jdbc:microsoft:sqlserver://[hostname]:[port]/[db_name]"</listitem>
+	   <listitem>The Cloudscape driver connection string looks like "jdbc:cloudscape:[db_name];create=true;autocommit=false"</listitem>
+	   <listitem>The PostgreSQL driver connection string looks like "jdbc:postgresql://[hostname]:[port]/[db_name]"</listitem>
+	   <listitem>Sybase connection strings take the form "jdbc:sybase:Tds:[hostname]:[port]/[db_name]"</listitem>
+	   <listitem>The MySQL Connector/J driver connection string looks like "jdbc:mysql://[hostname]:[port]/[db_name]"</listitem>
+	   </itemizedlist>
+
+	  <para>In order to install an SQL agent you must follow these steps:</para>
+	   <itemizedlist>
+		   <listitem>To install the agent: Navigate to Tools - Agent Installer - Install - Custom
+	Agent Installation - Agent Template SQL which will install an agent which has
+	the follwing configuration data available:
+			   <itemizedlist>
+				   <listitem>Username: the username used to connect to the database</listitem>
+				   <listitem>Password: the password used to connect to the database</listitem>
+				   <listitem>Database: the name of the database to connect to</listitem>
+				   <listitem>Port: the port to connect to</listitem>
+				   <listitem>JDBCDriverClass: the class name for the JDBC driver</listitem>
+				   <listitem>Classpath: Comma separated list of paths to code supporting the JDBC driver</listitem>
+			   </itemizedlist>
+			</listitem>
+			<listitem>Add a SQL provider to your agent created above. Navigate to
+	Tools  - Provider Managers. In this dialog select your agent and press 'Add'.
+	A dialog will open where you define your provider. Select the provider with
+	the name 'SQL', you probably want to disable the 'Optional' checkbox so that your provider
+	is selected by default when you activate your custom agent. The following is an example of
+	configuration data for an SQL provider:
+			   <itemizedlist>
+				   <listitem>Classpath: the classpath to the JDBC driver jars e.g.
+		C:/MyDB/mydbdriver.jar or {home}/lib/mydbdriver.jar if you want to copy the
+		driver into IxoraRMS_install_folder/lib folder</listitem>
+				   <listitem>Classloader id: the id of the classloader to use for this provider; the value would be
+				   MyCustomAgent</listitem>
+				   <listitem>JDBC driver class name: com.mysql.jdbc.Driver</listitem>
+				   <listitem>Username: {agent.Username} to inherit the value in the agent's configuration</listitem>
+				   <listitem>Password: {agent.Password} to inherit the value in the agent's configuration</listitem>
+				   <listitem>JDBC connection string: jdbc:mysql://{host}:{agent.Port}/{agent.Database}</listitem>
+			   </itemizedlist>
+		</listitem>
+		<listitem>Now you need to add a parser that knows how to process the data returned by
+	the SQL provider.
+	Select the 'Parser' tab and press the 'New' button in order to
+	start defining your parsing rules.(the way you define this depends on what data your SQL returns)
+		</listitem>
+	</itemizedlist>
+<para>You should be able to activate and run your agent once you do the last step.</para>
+
+	<para></para>
+	<para></para>
+
+</section>

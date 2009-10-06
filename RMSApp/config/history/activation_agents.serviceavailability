@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.serviceavailability">
+    <historyGroupItem date="1.142722865796E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+            <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+            <port type="1" value="80"/>
+            <read_timeout type="1" value="4000"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

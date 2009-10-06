@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.oracle.OracleAgent</class>
+  <version>1.0.0</version>
+  <name>agents.oracle</name>
+  <description>oracle.description</description>
+  <custom>false</custom>
+  <category>databases</category>
+  <versions>
+    <version>10g</version>
+    <version>8</version>
+    <version>9i</version>
+  </versions>
+  <messageCatalog>agents.oracle</messageCatalog>
+  <javaHelp>secOracle</javaHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.oracle.ConfigurationPanel</customconfigpanel>
+      <uiJar>/jars/AgentOracle.jar</uiJar>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </versionItem>
+  </versionItems>
+</agent>

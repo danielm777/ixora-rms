@@ -1,0 +1,17 @@
+<section id="secFirewallIssues">
+	<title>Firewall Issues</title>
+    <indexterm><primary>firewall</primary><secondary>ports</secondary></indexterm>
+	<para>By default all &programName; services use dynamic port allocation. When the Console and 
+	the HostManagers are separated by a firewall, fixed, user defined ports must be used. The following
+	steps must be taken in order to force &programName; services to use certain port numbers:
+	
+	<itemizedlist>
+		<listitem>1 - Open file /config/services.properties with a text editor.</listitem>
+		<listitem>2 - Set the useDynamicPorts property to false.</listitem>
+		<listitem>3 - Assign a port number to every service.</listitem>
+		<listitem>4 - Save the file and restart &productName; Console.</listitem>
+		<listitem>5 - Copy the file to the same location on all hosts running HostManagers.</listitem>
+		<listitem>6 - Restart all HostManagers.</listitem>
+	</itemizedlist>	
+</para>
+</section>

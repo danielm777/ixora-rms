@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.logfile.LogFileAgent</class>
+  <version>1.0.0</version>
+  <name>agents.logfile</name>
+  <description>logfile.description</description>
+  <custom>false</custom>
+  <category>applications</category>
+  <messageCatalog>agents.logfile</messageCatalog>
+  <javaHelp>secLogFile</javaHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.logfile.ConfigurationPanel</customconfigpanel>
+      <uiJar>/jars/AgentLogFile.jar</uiJar>
+      <agentVersions/>
+    </versionItem>
+  </versionItems>
+</agent>

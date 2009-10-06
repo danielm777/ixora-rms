@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="screen_weblogic9">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.weblogic</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.weblogic.v9.Configuration">
+                    <config.username notrequired="true" type="0" value="weblogic"/>
+                    <config.password notrequired="true" type="10" value="EB9E591D8C303B6F61F78598898EA6DC"/>
+                    <root_folder notrequired="true" type="0" value="C:/bea/weblogic90"/>
+                    <classpath notrequired="true" type="0" value="/server/lib/wlclient.jar,/server/lib/weblogic.jar"/>
+                    <jmx_connection_string type="0" value="service:jmx:t3://localhost:7001/jndi/weblogic.management.mbeanservers.domainruntime"/>
+                  </config>
+                  <version>9.*</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.weblogic</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.weblogic.v9.Configuration">
+                    <config.username notrequired="true" type="0" value="weblogic"/>
+                    <config.password notrequired="true" type="10" value="EB9E591D8C303B6F61F78598898EA6DC"/>
+                    <root_folder notrequired="true" type="0" value="C:/bea/weblogic90"/>
+                    <classpath notrequired="true" type="0" value="/server/lib/wlclient.jar,/server/lib/weblogic.jar"/>
+                    <jmx_connection_string type="0" value="service:jmx:t3://localhost:7001/jndi/weblogic.management.mbeanservers.domainruntime"/>
+                  </config>
+                  <version>9.*</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/agents.weblogic/{Server channels}">
+          <resource id="channel" iname="$entity[3]/$entity[5]" name="Server channels" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)"/>
+          <resource id="connections" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[ConnectionsCount]"/>
+          <resource id="bytes_sent" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[BytesSentCount]"/>
+          <resource id="bytes_recv" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[BytesReceivedCount]"/>
+          <resource id="accept" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[AcceptCount]"/>
+          <resource id="msg_recv" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[MessagesReceivedCount]"/>
+          <resource id="url" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ServerChannelRuntimes/(.*)/[PublicURL]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Queue length for all servers}">
+          <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[#time#]"/>
+          <resource id="ql" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[QueueLength]"/>
+          <reaction params="ql" severity="HIGH">
+            <arm><![CDATA[return ql > 20;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The queue length for " + env.getEntityPath(ql) + " was greater than 20 for more than one minute";]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Execute queues}">
+          <resource id="exec_queue" iname="$entity[3]/$entity[5]" name="Execute queue" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)"/>
+          <resource id="pending_requests" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)/[PendingRequestCurrentCount]"/>
+          <resource id="threads_idle" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)/[ExecuteThreadCurrentIdleCount]"/>
+          <resource id="threads_total" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ExecuteQueueRuntimes/(.*)/[ExecuteThreadTotalCount]"/>
+          <reaction params="pending_requests" severity="HIGH">
+            <arm><![CDATA[return pending_requests > 20;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The number of pending requests for execute queue " + env.getEntityPath(pending_requests) + " was higher than 20 for the last minute.";]]></message>
+          </reaction>
+          <function description="The number of active threads in the execute queue" id="threads_active" iname="$entity[3]/$entity[5]/ExecuteThreadActiveCount" name="ExecuteThreadActiveCount" op="script">
+            <param id="threads_total"/>
+            <param id="threads_idle"/>
+            <code>return threads_total - threads_idle;</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{JMS destinations}">
+          <resource id="id2" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[MessagesCurrentCount]"/>
+          <resource id="id3" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[MessagesPendingCount]"/>
+          <resource id="id4" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[State]"/>
+          <resource id="id13" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)/[ConsumersCurrentCount]"/>
+          <resource id="id0" iname="$entity[3]/$entity[4]/$entity[6]/$entity[8]" name="Server/JMSService/JMSServer/Destination" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JMSServers/(.*)/Destinations/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Throughput for all servers}">
+          <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[#time#]"/>
+          <resource id="t" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[Throughput]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Work managers}">
+          <resource id="work_managers" iname="$entity[3]/$entity[5]" name="Work managers" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)"/>
+          <resource id="pending_requests" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)/[PendingRequests]"/>
+          <resource id="completed_requests" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)/[CompletedRequests]"/>
+          <resource id="stuck_thread_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/WorkManagerRuntimes/(.*)/[StuckThreadCount]"/>
+          <reaction params="pending_requests" severity="HIGH">
+            <arm><![CDATA[return pending_requests >= 20;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The number of pending requests for work manager " + env.getEntityPath(pending_requests) + " was greater than 20 for more than one minute";]]></message>
+          </reaction>
+          <reaction params="stuck_thread_count" severity="HIGH">
+            <arm><![CDATA[return stuck_thread_count >= 1;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "One thread is stucked for work manager " + env.getEntityPath(stuck_thread_count);]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Transaction resources}">
+          <resource id="tran_res" iname="$entity[3]/$entity[6]" name="Transaction resource" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)"/>
+          <resource id="total" iname="$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)/[TransactionTotalCount]"/>
+          <resource id="committed" iname="$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)/[TransactionCommittedTotalCount]"/>
+          <resource id="rolledback" iname="$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/TransactionResourceRuntimeMBeans/(.*)/[TransactionRolledBackTotalCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Committed/Rolledback transactions per server}">
+          <resource id="server" iname="$entity[3]" name="Server" rid="-/-/root/com.bea/ServerRuntimes/(.*)"/>
+          <resource id="committed" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[TransactionCommittedTotalCount]"/>
+          <resource id="rolled" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[TransactionRolledBackTotalCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Pending user requests for all servers}">
+          <resource id="id5" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[PendingUserRequestCount]"/>
+          <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ThreadPoolRuntime/[#time#]"/>
+          <reaction params="id5" severity="HIGH">
+            <arm><![CDATA[return id5 > 20;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The number of pending user requests for " + env.getEntityPath(id5) + " was greater than 20 for more than one minute";]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Active transactions for all servers}">
+          <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[#time#]"/>
+          <resource id="active" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/JTARuntime/[ActiveTransactionsTotalCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{JDBC data sources}">
+          <resource id="data_source" iname="$entity[4]/$entity[6]" name="JDBC Data source" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)"/>
+          <resource id="curr_capacity" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
+          <resource id="num_available" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[NumAvailable]"/>
+          <resource id="curr_waiting_for_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[WaitingForConnectionCurrentCount]"/>
+          <resource id="curr_active_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ActiveConnectionsCurrentCount]"/>
+          <resource id="prep_stmt_cache_miss" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[PrepStmtCacheMissCount]"/>
+          <resource id="leaked_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[LeakedConnectionCount]"/>
+          <resource id="conn_delay_time" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ConnectionDelayTime]"/>
+          <resource id="user" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Persistent stores}">
+          <resource id="stores" iname="$entity[3]/$entity[5]" name="Work managers" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)"/>
+          <resource id="delete_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[DeleteCount]"/>
+          <resource id="update_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[UpdateCount]"/>
+          <resource id="read_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ReadCount]"/>
+          <resource id="create_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[CreateCount]"/>
+          <resource id="object_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ObjectCount]"/>
+          <resource id="physical_write_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[PhysicalWriteCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Persistent store operations}">
+          <resource id="id1" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[DeleteCount]"/>
+          <resource id="id2" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[UpdateCount]"/>
+          <resource id="id5" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[CreateCount]"/>
+          <resource id="id6" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ReadCount]"/>
+          <resource id="id0" iname="$entity[3]/$entity[5]" name="Server/PersistentStore" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Servlets}">
+          <resource id="servlets" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]" name="Servlets" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)"/>
+          <resource id="exec_time" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[ExecutionTimeAverage]"/>
+          <resource id="invocations" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[InvocationTotalCount]"/>
+          <resource id="reload" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[ReloadTotalCount]"/>
+          <resource id="url" iname="$entity[3]/$entity[5]/$entity[7]/$entity[9]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/ApplicationRuntimes/(.*)/ComponentRuntimes/(.*)/Servlets/(.*)/[URL]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Current connnections for all JMS servers}">
+          <resource id="time" rid="-/-/root/com.bea/ServerRuntimes/(.*)/([^\\.]+\\.jms)/[#time#]"/>
+          <resource id="conns" iname="$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/([^\\.]+\\.jms)/[ConnectionsCurrentCount]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.weblogic/#Weblogic overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="275.0" title="Dashboard 4" w="514.0" x="503.0" y="550.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Servlets:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="275.0" title="Dashboard 2" w="503.0" x="0.0" y="551.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Work managers:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Persistent stores:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="6"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 1" w="519.0" x="500.0" y="-1.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Execute queues:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Server channels:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 3" w="500.0" x="0.0" y="1.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Persistent store operations:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Active transactions for all servers:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Queue length for all servers:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Pending user requests for all servers:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Throughput for all servers:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Current connnections for all JMS servers:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Committed/Rolledback transactions per server:"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

@@ -1,0 +1,52 @@
+<section id="secSunApp">
+	<title>Sun Application Server</title>
+
+	<para>This agent returns performance metrics for a Sun Application Server.</para>
+
+	<indexterm><primary>sunapp</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraSunAppLocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>The agent supports both local and remote modes.</para>
+	</sect2>
+
+	<indexterm><primary>jboss</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraSunAppVersions">
+		<title>Supported Versions</title>
+		<para>The agent supports Sun Application Server versions 8.x</para>
+	</sect2>
+
+	<indexterm><primary>sun application server</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraSunAppConfig">
+		<title>Configuration</title>
+		<para>The following configuration options are available:</para>
+		<itemizedlist>
+			<listitem>Username: user name to use when connecting to Sun Application Server</listitem>
+			<listitem>Password: password to use when connecting to Sun Application Server</listitem>
+			<listitem>Connection string: the JMX URL used to connect to Sun Application Server</listitem>
+			<listitem>Show only runtime data: if true only runtime mbeans are displayed</listitem>
+		</itemizedlist>
+		
+		<figure>
+			<title>Configuration sample (Sun Application Server 8.x)</title>
+			<graphic fileref="images/agent_sunapp8_config.png"/>
+		</figure>
+		
+	</sect2>
+
+	<indexterm><primary>sun application server</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraSunAppContents">
+		<title>Contents</title>
+		<para>All data available from Sun Application Server via JMX is accessible; 
+		the runtime data is not structured but a dashboard is provided that contains some of the most
+		useful data views.</para>
+	</sect2>
+	
+	<indexterm><primary>sun</primary><secondary>screenshots</secondary></indexterm>
+	<sect2 id="paraSunAppScreenshots">
+		<title>Screenshots</title>
+		<figure>
+			<title>Screenshot (Sun Application Server 8.x)</title>
+			<graphic fileref="images/agent_sunapp8_sshot.png"/>
+		</figure>
+	</sect2>	
+</section>
