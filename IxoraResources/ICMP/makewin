@@ -1,0 +1,17 @@
+CC = gcc
+JAVAC = javac
+CFLAGS = -IC:/j2sdk1.4.2_02/include -IC:/j2sdk1.4.2_02/include/win32
+LIBS = 
+OBJ = ping.o
+OUTDIR = ../../../../../../../bin
+JAVAH = javah
+
+all: main
+
+main: $(OBJ)
+	$(JAVAC) ICMP.java
+	$(JAVAH) -classpath ../../../../../../ com.ixora.rms.agents.C.icmp.ICMP
+	$(CC) $(CFLAGS) -shared -DLIB -D_WIN32 $(LIBS) -Wl,--add-stdcall-alias -o $(OUTDIR)/ping.dll $(OBJ) -lwsock32 -lstdc++
+	strip $(OUTDIR)/ping.dll
+
+main.o: ping.cpp Ping.h

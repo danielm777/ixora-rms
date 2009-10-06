@@ -1,0 +1,17 @@
+CC = gcc
+JAVAC = javac
+CFLAGS = -IE:/C/j2sdk1.4.2_02/include -IE:/C/j2sdk1.4.2_02/include/win32
+LIBS = 
+OBJ = 
+OUTDIR = ../../RMS/bin
+JAVAH = javah
+
+all: main
+
+main: $(OBJ)
+	rem $(JAVAH) -classpath ../../RMS/classes com.ixora.rms.agents.windows.WinPerf
+	$(CC) $(CFLAGS) -c -DLIB $(LIBS) -o winperf -lstdc++
+	$(CC) $(CFLAGS) -shared -DLIB -Wl,--add-stdcall-alias -o $(OUTDIR)/winperf.dll winperf.o
+	rem strip $(OUTDIR)/winperf.dll
+
+main.o: winperf.cpp com_redbox_rms_agents_windows_WinPerf.h
