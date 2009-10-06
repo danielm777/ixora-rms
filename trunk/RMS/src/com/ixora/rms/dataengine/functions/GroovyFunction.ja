@@ -1,0 +1,120 @@
+/*
+ * Created on 11-Nov-2004
+ */
+package com.ixora.rms.dataengine.hints.functions;
+
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
+
+import java.util.regex.Pattern;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
+import com.ixora.common.xml.XMLUtils;
+import com.ixora.common.xml.exception.XMLException;
+import com.ixora.common.xml.exception.XMLNodeMissing;
+import com.ixora.rms.data.CounterValue;
+import com.ixora.rms.data.CounterValueDouble;
+import com.ixora.rms.data.CounterValueString;
+import com.ixora.rms.dataengine.hints.Resource;
+
+/**
+ * GroovyFunction
+ */
+public class GroovyFunction extends Function
+{
+    private String		scriptCode = "";
+    private Binding 	groovyBinding = new Binding();
+    private GroovyShell groovyShell = new GroovyShell(groovyBinding);
+
+    /** Used to check if Resource ids make good variable names */
+    private static Pattern identifierPattern = Pattern.compile("[a-zA-Z]\\w*");
+    
+    /* There will be one variable for each resource of the function;
+     * called r0, r1 etc. If a resource has an ID defined and it is a valid 
+     * identifier then the id is used as the variable name.
+     */
+    private String getVarName(Resource r, int index)
+    {
+        String id = r.style.getID();
+        if (id == null || !identifierPattern.matcher(id).matches()) // is it a valid identifier?
+            id = "r" + index;
+
+        return id;
+    }
+
+    /**
+     * @see com.ixora.rms.dataengine.hints.functions.Function#execute(com.ixora.rms.data.CounterValue[])
+     */
+    public CounterValue execute(CounterValue[] args)
+    {
+        CounterValue	retCV = null;
+        
+        try {
+            
+            // Assume arguments passed match the parameters definition
+            for (int i = 0; i < args.length; i++)
+            {
+                CounterValue cv = args[i];
+                Resource	 r = (Resource)params.get(i);
+
+                // Set variable values inside the script
+                if (cv instanceof CounterValueDouble)
+                {
+                    groovyBinding.setVariable(getVarName(r, i), new Double(cv.getDouble()));
+                }
+                else if (cv instanceof CounterValueString)
+                {
+                    groovyBinding.setVariable(getVarName(r, i), cv.toString());
+                }
+            }
+            
+            // Perform the actual execution and get the result
+            Object value = groovyShell.evaluate(scriptCode);
+            if (value instanceof Double)
+                retCV = new CounterValueDouble(((Double)value).doubleValue());
+            else if (value instanceof String)
+                retCV = new CounterValueString((String)value);
+
+        } catch (Exception e) {
+            // TODO: script code has errors: stop processing and inform the user
+            e.printStackTrace();
+        }
+
+        return retCV;
+    }
+    
+	/**
+	 * @see com.ixora.common.xml.XMLExternalizable#toXML(org.w3c.dom.Node)
+	 */
+	public void toXML(Node parent) throws XMLException
+	{
+		Document doc = parent.getOwnerDocument();
+		
+		// Create the query tag
+		Element el = doc.createElement("function");
+		el.setAttribute("op", "groovy");
+		parent.appendChild(el);
+
+		// Save parameters
+		params.toXML(el);
+	}
+
+	/**
+	 * @see com.ixora.common.xml.XMLExternalizable#fromXML(org.w3c.dom.Node)
+	 */
+	public void fromXML(Node node) throws XMLException
+	{
+		params.fromXML(node);
+
+		// TODO: use a CDATA section, but how ?...
+		Node n = XMLUtils.findChild(node, "code");
+		if(n == null)
+			throw new XMLNodeMissing("code");
+
+		this.scriptCode = n.getFirstChild().getNodeValue();
+	}
+
+}

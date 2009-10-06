@@ -1,0 +1,66 @@
+#Sat Aug 07 16:21:49 BST 2004
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.PackageExplorer.ImportDeclarationFilter=true
+/instance/org.eclipse.help.ui/browser.maximized=false
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*=true
+/instance/org.eclipse.jdt.ui/tabWidthPropagated=true
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.classpathVariable.JRE_LIB=C\:/j2sdk1.4.2_02/jre/lib/rt.jar
+/instance/org.eclipse.jdt.ui/CustomFiltersActionGroup.org.eclipse.jdt.ui.PackageExplorer.TAG_DUMMY_TO_TEST_EXISTENCE=storedViewPreferences
+/instance/org.eclipse.jdt.ui/useQuickDiffPrefPage=true
+/instance/org.eclipse.jdt.ui/lastRecentlyUsedFilters=org.eclipse.jdt.ui.PackageExplorer.LibraryFilter,
+@org.eclipse.help.ui=3.0.0
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.importorder=java;javax;org;com;
+file_export_version=3.0
+/instance/org.eclipse.update.ui/ConfigurationView.showUnconf=true
+@org.eclipse.jdt.ui=3.0.0
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.text.templates_migrated=true
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.classpathVariable.JRE_SRC=C\:/j2sdk1.4.2_02/src.zip
+/instance/org.eclipse.ui.workbench/RUN_IN_BACKGROUND=true
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.codeComplete.visibilityCheck=enabled
+@org.eclipse.jdt.launching=3.0.0
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.text.code_templates_migrated=true
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.javadoclocations=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<javadoclocation>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/sunrsasign.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/charsets.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/ext/sunjce_provider.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/ext/ldapsec.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/ext/dnsns.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/charsets.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/jce.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/ext/ldapsec.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/sunrsasign.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/ext/sunjce_provider.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/jce.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/ext/localedata.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/rt.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/jsse.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/ext/localedata.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.1_02/jre/lib/jsse.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/ext/dnsns.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n<location_01 path\="C\:/j2sdk1.4.2_02/jre/lib/rt.jar" url\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n</javadoclocation>\r\n
+/instance/org.eclipse.ant.ui/useQuickDiffPrefPage=true
+/instance/org.eclipse.jdt.debug.ui/org.eclipse.debug.ui.VariableView.org.eclipse.jdt.debug.ui.show_null_entries=true
+/instance/org.eclipse.jdt.ui/Refactoring.savealleditors=true
+/instance/org.eclipse.jdt.ui/Refactoring.ErrorPage.severityThreshold=2
+/instance/org.eclipse.ui.ide/SAVE_ALL_BEFORE_BUILD=true
+/instance/org.eclipse.ui/showIntro=false
+@org.eclipse.debug.ui=3.0.0
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.internal.ui.PackageExplorer.EmptyInnerPackageFilter=true
+@org.eclipse.jdt.core=3.0.0
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.classpathContainer.RedboxResources|org.eclipse.jdt.launching.JRE_CONTAINER=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<classpath>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/rt.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/sunrsasign.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jsse.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jce.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/charsets.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/dnsns.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/ldapsec.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/localedata.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/sunjce_provider.jar"/>\r\n</classpath>\r\n
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.formatter.tabulation.char=space
+/instance/org.eclipse.help.ui/browser.y=0
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.PackageExplorer.LibraryFilter=true
+/instance/org.eclipse.help.ui/browser.x=0
+/instance/org.eclipse.help.ui/browser.w=1024
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.visibility.order=B,V,R,D,
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<templates><template id\="org.eclipse.jdt.ui.text.codetemplates.gettercomment" name\="gettercomment" description\="Comment for getter method" context\="gettercomment_context" enabled\="true" deleted\="false">/**\r\n * @return the ${bare_field_name}.\r\n */</template><template id\="org.eclipse.jdt.ui.text.codetemplates.settercomment" name\="settercomment" description\="Comment for setter method" context\="settercomment_context" enabled\="true" deleted\="false">/**\r\n * @param ${param} the ${bare_field_name} to set.\r\n */</template><template id\="org.eclipse.jdt.ui.text.codetemplates.constructorcomment" name\="constructorcomment" description\="Comment for created constructors" context\="constructorcomment_context" enabled\="true" deleted\="false">/**\r\n * Constructor.\r\n * ${tags}\r\n */</template><template id\="org.eclipse.jdt.ui.text.codetemplates.typecomment" name\="typecomment" description\="Comment for created types" context\="typecomment_context" enabled\="true" deleted\="false">/**\r\n * @author Daniel Moraru\r\n */</template><template id\="org.eclipse.jdt.ui.text.codetemplates.overridecomment" name\="overridecomment" description\="Comment for overriding methods" context\="overridecomment_context" enabled\="true" deleted\="false">/**\r\n * ${see_to_overridden}\r\n */</template><template id\="org.eclipse.jdt.ui.text.codetemplates.newtype" name\="newtype" description\="Newly created files" context\="newtype_context" enabled\="true" deleted\="false">/*\r\n * Created on ${date}\r\n */\r\n${package_declaration}\r\n\r\n${typecomment}\r\n${type_declaration}</template><template id\="org.eclipse.jdt.ui.text.codetemplates.methodbody" name\="methodbody" description\="Code in created method stubs" context\="methodbody_context" enabled\="true" deleted\="false">${body_statement}</template><template id\="org.eclipse.jdt.ui.text.codetemplates.constructorbody" name\="constructorbody" description\="Code in created constructor stubs" context\="constructorbody_context" enabled\="true" deleted\="false">${body_statement}</template></templates>
+@org.eclipse.ui.ide=3.0.0
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.builder.resourceCopyExclusionFilter=*.launch
+/instance/org.eclipse.jdt.ui/fontPropagated=true
+@org.eclipse.ui=3.0.0
+@org.eclipse.core.resources=3.0.0
+/instance/org.eclipse.core.resources/refresh.enabled=true
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.PackageExplorer_patternFilterId_*$*.class=true
+@org.eclipse.jdt.debug.ui=3.0.0
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.classpathContainer.RMS|org.eclipse.jdt.launching.JRE_CONTAINER=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<classpath>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/rt.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/sunrsasign.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jsse.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jce.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/charsets.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/dnsns.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/ldapsec.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/localedata.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/sunjce_provider.jar"/>\r\n</classpath>\r\n
+/instance/org.eclipse.jdt.launching/org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType1,0" defaultVMConnector\="">\r\n<vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n<vm id\="0" name\="j2sdk1.4.1_02" path\="C\:\\j2sdk1.4.2_02" javadocURL\="http\://java.sun.com/j2se/1.4.1/docs/api"/>\r\n</vmType>\r\n</vmSettings>\r\n
+\!/instance=
+@org.eclipse.update.ui=3.0.0
+/instance/org.eclipse.help.ui/browser.h=740
+@org.eclipse.ui.workbench=3.0.0
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.packages.linktoeditor=true
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<templates/>
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.formatterprofiles.version=6
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.classpathContainer.RMSRemote|org.eclipse.jdt.launching.JRE_CONTAINER=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<classpath>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/rt.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/sunrsasign.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jsse.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jce.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/charsets.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/dnsns.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/ldapsec.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/localedata.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/sunjce_provider.jar"/>\r\n</classpath>\r\n
+/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.PackageExplorer.PackageDeclarationFilter=true
+@org.eclipse.ant.ui=3.0.0
+/instance/org.eclipse.jdt.ui/content_assist_fill_method_arguments=true
+/instance/org.eclipse.jdt.ui/org.eclipse.jface.textfont=1|Courier New|10|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Courier New;
+/instance/org.eclipse.jdt.ui/outlinesortoption=T,SF,SI,SM,I,F,C,M,
+/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.classpathContainer.RMSCommon|org.eclipse.jdt.launching.JRE_CONTAINER=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<classpath>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/rt.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/sunrsasign.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jsse.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/jce.jar"/>\r\n<classpathentry sourcepath\="C\:/j2sdk1.4.2_02/src.zip" kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/charsets.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/dnsns.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/ldapsec.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/localedata.jar"/>\r\n<classpathentry kind\="lib" path\="C\:/j2sdk1.4.2_02/jre/lib/ext/sunjce_provider.jar"/>\r\n</classpath>\r\n
+/instance/org.eclipse.jdt.ui/useAnnotationsPrefPage=true
+/instance/org.eclipse.ui.ide/EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false
+/instance/org.eclipse.debug.ui/org.eclipse.debug.ui.console_scroll_lock=true
+/instance/org.eclipse.ant.ui/useAnnotationsPrefPage=true
