@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>WebSphere tuning</name>
+      <description>A fiew data views to use in the process of tuning websphere</description>
+      <views>
+        <view id=":JDBC SQL statement discards:"/>
+        <view id=":Servlet sessions discards:"/>
+        <view id=":Threads destroyed:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>WebSphere details</name>
+      <description>More detailed views to use beside the overview dashboard</description>
+      <views>
+        <view id=":Servlets overview:"/>
+        <view id=":Stateless beans overview:"/>
+        <view id=":Message driven beans overview:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>WebSphere overview</name>
+      <description>Data views that show some of the most important metrics, mostly accross all servers in the cell</description>
+      <views>
+        <view id=":Thread pools utilisation:"/>
+        <view id=":JDBC connection pools utilisation:"/>
+        <view id=":Per server JVM memory:"/>
+        <view id=":Per server concurrent ORB requests:"/>
+        <view id=":Per server active transactions:"/>
+        <view id=":Per server committed/rolledback transactions:"/>
+        <view id=":Per server active/live servlet sessions:"/>
+        <view id=":Per server servlet data:"/>
+        <view id=":Use time for JDBC connections:"/>
+        <view id=":Response time at JDBC driver layer:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>6.1.*</agentVersion>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>WebSphere details</name>
+      <description>More detailed views to use beside the overview dashboard</description>
+      <views>
+        <view id=":Servlet sessions overview:"/>
+        <view id=":Servlets overview:"/>
+        <view id=":Stateless beans overview:"/>
+        <view id=":Message driven beans overview:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>WebSphere tuning</name>
+      <description>A fiew data views to use in the process of tuning websphere</description>
+      <views>
+        <view id=":JDBC SQL statement discards:"/>
+        <view id=":Threads destroyed:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>6.1.*</agentVersion>
+        <agentVersion>6.0.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+  </dashboards>
+</rms>

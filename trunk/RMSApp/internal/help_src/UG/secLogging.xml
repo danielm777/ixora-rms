@@ -1,0 +1,76 @@
+<section id="secLogging">
+	<title>Log and Replay</title>
+
+	<indexterm><primary>logging</primary></indexterm>
+	<sect2 id="paraLogging">
+		<title>Logging</title>
+
+		<para>&programName; can record into an offline file all performance data
+		collected during a monitoring session. This data can later be replayed
+		in offline mode (without a connection to agents or Host Managers) for
+		further analysis.</para>
+
+		<para>Logging can be enabled at any point during a monitoring session by
+		clicking the 'Data Logging' button on the toolbar. Incoming data will start
+		being recorded in the selected log file. The current version of &programName; only
+		supports logging to a disk file.</para>
+
+	</sect2>
+
+	<indexterm><primary>log replay</primary></indexterm>
+	<sect2 id="paraReplaying">
+		<title>Replaying</title>
+
+		<para>To replay a logged session click the 'Load Log' toolbar button and
+		select the log file. A dialog will open as in the figure bellow that prompts you to adjust the
+		time interval to replay.</para>
+
+		<figure>
+			<title>Log Replay Configuration Dialog</title>
+			<graphic fileref="images/log_replay_config.png"/>
+		</figure>
+
+		<para>You can have even more control over the speed of the replay operation by
+		adjusting the aggregation interval.
+		The aggregation interval is specified in seconds; all samples collected during this
+		interval will be averaged into one value. Increasing this value can speed up considerably
+		the replay of large log files, although at the expense of some detail.</para>
+
+		<para>Please note that some information (for intstance log file records) will never be aggregated no matter
+		what the settings for the log replay.</para>
+
+		<para>After loading a log file, the Console's user interface will change slightly to
+		show the log playback controls.</para>
+
+		<figure>
+			<title>Log Replay Controls</title>
+			<graphic fileref="images/log_controls.png"/>
+		</figure>
+
+		<itemizedlist>
+			<listitem>1 - Starts/restarts the playing of the logged data</listitem>
+			<listitem>2 - Pauses the playing of the logged data</listitem>
+			<listitem>3 - Resets the playing of the logged data</listitem>
+			<listitem>4 - This control is enabled only when the data being replayed is not aggregated; it controls
+			the speed at which log records are replayed</listitem>
+		</itemizedlist>
+
+		<para>In log playback mode the session tree is still available but with the
+		following restrictions:
+		<itemizedlist>
+			<listitem>Hosts and agents cannot be edited.</listitem>
+			<listitem>Only counters and entities which were enabled during recording
+			are shown.</listitem>
+		</itemizedlist>
+		</para>
+
+		<para>It is important to note that replaying a log does not limit your ability
+		to plot different counters or to define custom views. All counters that were
+		enabled during recording are now available for plotting, regardless whether
+		they were plotted during the original monitoring session or not.</para>
+
+	</sect2>
+	<para></para>
+	<para></para>
+
+</section>

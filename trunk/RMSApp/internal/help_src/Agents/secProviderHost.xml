@@ -1,0 +1,52 @@
+<section id="secProviderHost">
+	<title>Provider Host</title>
+
+	<para>This agent does not perform any work by itself, but it serves as host for
+	custom monitoring data providers.</para>
+
+	<indexterm><primary>provider host</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraProviderHostLocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>The agent supports both local and remote modes.</para>
+	</sect2>
+
+	<indexterm><primary>provider host</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraProviderHostVersions">
+		<title>Supported Versions</title>
+		<para>It does not apply.</para>
+	</sect2>
+
+	<indexterm><primary>provider host</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraProviderHostConfig">
+		<title>Configuration</title>
+		<para>This agent is used as a base when you install a new custom agent. Depending on
+		the template selected, the following configurations are available:</para>
+
+		<itemizedlist>
+			<listitem>For the SQL template:
+			<itemizedlist>
+				<listitem>Username: used when logging in to the database system</listitem>
+				<listitem>Password: used when logging in to the database system</listitem>
+				<listitem>Database: name of the database to connect to</listitem>
+				<listitem>Port: if needed, the port number of the database server.</listitem>
+				<listitem>JDBCDriverClass: if needed, the name of the JDBC driver class.</listitem>
+				<listitem>Classpath: if needed, the classpath to the JDBC driver jar.</listitem>
+			</itemizedlist>
+			</listitem>
+
+			<listitem>For the Java template and for the Process template a set of generic parameters 
+			are provided. The meaning of each one can vary for different providers.</listitem>
+		</itemizedlist>
+
+		<para>Please see <xref linkend="secCustomData"/> for details on how to access these
+		parameters from the provider.</para>
+
+	</sect2>
+
+	<indexterm><primary>provider host</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraProviderHostContents">
+		<title>Contents</title>
+		<para>Will contain the set of entities and counters returned by providers.</para>
+	</sect2>
+
+</section>

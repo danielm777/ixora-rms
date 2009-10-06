@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>Oracle overview</name>
+      <description/>
+      <views>
+        <view id="-/-/root/ora_bp/:Details per bufferpool:"/>
+        <view id="-/-/root/dyn_sql/:Details per dynamic SQL:"/>
+        <view id="-/-/root/ora_events/:Event details:"/>
+        <view id="-/-/root/ora_sessions/:Session details:"/>
+        <view id="-/-/root/ora_ts/:Details per tablespace:"/>
+        <view id="-/-/root/ora_io/:User commits and rollbacks:"/>
+        <view id="-/-/root/ora_io/:Physical reads and writes:"/>
+        <view id="-/-/root/ora_ts/:Used and free space for all tablespaces:"/>
+        <view id="-/-/root/ora_events/:Average wait time for all events:"/>
+        <view id="-/-/root/ora_libcache/:Library cache gets hit ratios:"/>
+        <view id="-/-/root/ora_ddcache/:Data dictionary cache gets hit ratios:"/>
+        <view id="-/-/root/ora_da/:Data access statistics:"/>
+      </views>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/ora_io/[io_sorts_disks]"/>
+        <counter id="-/-/root/ora_io/[io_consistent_gets]"/>
+        <counter id="-/-/root/ora_io/[io_consistent_changes]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </dashboard>
+  </dashboards>
+</rms>

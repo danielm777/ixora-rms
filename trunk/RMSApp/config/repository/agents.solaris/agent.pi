@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <providerInstances>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Disk data</instanceName>
+      <description>Disk data provided by iostat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="iostat -d -x {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Disks/{0}" idx="0"/>
+            <column cid="Reads per second" eid="root/Disks/{0}" idx="1"/>
+            <column cid="Writes per second" eid="root/Disks/{0}" idx="2"/>
+            <column cid="Kilobytes read per second" eid="root/Disks/{0}" idx="3"/>
+            <column cid="Kilobytes written per second" eid="root/Disks/{0}" idx="4"/>
+            <column cid="Queue length" eid="root/Disks/{0}" idx="5"/>
+            <column cid="Active requests" eid="root/Disks/{0}" idx="6"/>
+            <column cid="Service time" eid="root/Disks/{0}" idx="7"/>
+            <column cid="%Wait" eid="root/Disks/{0}" idx="8"/>
+            <column cid="%Busy" eid="root/Disks/{0}" idx="9"/>
+          </columns>
+          <ignoreLines>extended\s*device\s*statistics|svc_t|iostat</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Disks/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="%Wait">
+            <alternatename/>
+            <description>Percent of time there are transactions waiting for service (queue nonempty)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Active requests">
+            <alternatename/>
+            <description>Average number of transactions actively being serviced (removed from the queue but not yet completed)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Queue length">
+            <alternatename/>
+            <description>Average number of transactions waiting for service</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kilobytes written per second">
+            <alternatename/>
+            <description>Kilobytes written per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Service time">
+            <alternatename/>
+            <description>Average service time, in milliseconds</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Writes per second">
+            <alternatename/>
+            <description>Writes per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kilobytes read per second">
+            <alternatename/>
+            <description>Kilobytes read per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="%Busy">
+            <alternatename/>
+            <description>Percent of time the disk is busy (transactions in progress)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Reads per second">
+            <alternatename/>
+            <description>Reads per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>Solaris 9</agentVersion>
+        <agentVersion>Solaris 10</agentVersion>
+        <agentVersion>Solaris 8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Process data</instanceName>
+      <description>Process data provided by ps</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="ps -eo fname,pid,pcpu,pmem,vsz,rss,class,pri,psr"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="true"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Processes/{0#1}" idx="0"/>
+            <column eid="root/Processes/{0#1}" idx="1"/>
+            <column cid="%CPU" eid="root/Processes/{0#1}" idx="2"/>
+            <column cid="%Memory" eid="root/Processes/{0#1}" idx="3"/>
+            <column cid="Virtual size" eid="root/Processes/{0#1}" idx="4"/>
+            <column cid="Resident set size" eid="root/Processes/{0#1}" idx="5"/>
+            <column cid="Class" eid="root/Processes/{0#1}" idx="6"/>
+            <column cid="Priority" eid="root/Processes/{0#1}" idx="7"/>
+            <column cid="Processor number" eid="root/Processes/{0#1}" idx="8"/>
+          </columns>
+          <ignoreLines>%CPU|&lt;defunct|fname</ignoreLines>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Processes/{0#1}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="%Memory">
+            <alternatename/>
+            <description>The ratio of the process's resident set size to the physical memory on the machine expressed as a percentage</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Processor number">
+            <alternatename/>
+            <description>The number of the processor to which the process is bound</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Class">
+            <alternatename/>
+            <description>The scheduling class of the process</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Resident set size">
+            <alternatename/>
+            <description>The size of the part of the address space that is held in memory in kilobytes</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Priority">
+            <alternatename/>
+            <description>The priority of the process. Higher numbers mean higher priority</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="%CPU">
+            <alternatename/>
+            <description>The ratio of CPU time used recently to CPU time available in the same period expressed as a percentage</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Virtual size">
+            <alternatename/>
+            <description>The total size of the process in virtual memory in kilobytes</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>Solaris 9</agentVersion>
+        <agentVersion>Solaris 10</agentVersion>
+        <agentVersion>Solaris 8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>System data</instanceName>
+      <description>General system data provided by vmstat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="vmstat {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column cid="Run queue" eid="root/System" idx="0"/>
+            <column cid="Blocked" eid="root/System" idx="1"/>
+            <column cid="Swapped out" eid="root/System" idx="2"/>
+            <column cid="Swap space" eid="root/Memory" idx="3"/>
+            <column cid="Free memory" eid="root/Memory" idx="4"/>
+            <column cid="Page reclaims" eid="root/Paging" idx="5"/>
+            <column cid="Minor faults" eid="root/Paging" idx="6"/>
+            <column cid="Page-ins" eid="root/Paging" idx="7"/>
+            <column cid="Page-outs" eid="root/Paging" idx="8"/>
+            <column cid="Page-frees" eid="root/Paging" idx="9"/>
+            <column cid="Short-term memory shortfall" eid="root/Paging" idx="10"/>
+            <column cid="Pages scanned" eid="root/Paging" idx="11"/>
+            <column idx="12"/>
+            <column idx="13"/>
+            <column idx="14"/>
+            <column idx="15"/>
+            <column cid="Interrupts" eid="root/System" idx="16"/>
+            <column cid="System calls" eid="root/System" idx="17"/>
+            <column cid="Context switches" eid="root/System" idx="18"/>
+            <column cid="User time" eid="root/CPU" idx="19"/>
+            <column cid="System time" eid="root/CPU" idx="20"/>
+            <column cid="Idle time" eid="root/CPU" idx="21"/>
+          </columns>
+          <ignoreLines>memory|swap|vmstat</ignoreLines>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/CPU">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Idle time">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="User time">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System time">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Paging">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Page reclaims">
+            <alternatename/>
+            <description>Page reclaims per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Minor faults">
+            <alternatename/>
+            <description>Minor faults per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages scanned">
+            <alternatename/>
+            <description>Pages scanned by clock algorithm per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Page-ins">
+            <alternatename/>
+            <description>Kilobytes paged in</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Page-frees">
+            <alternatename/>
+            <description>Kilobytes freed</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Page-outs">
+            <alternatename/>
+            <description>Kilobytes paged out</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Short-term memory shortfall">
+            <alternatename/>
+            <description>The anticipated short-term memory shortfall in kilobytes</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/System">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description>System calls per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Interrupts">
+            <alternatename/>
+            <description>Interrupts per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Swapped out">
+            <alternatename/>
+            <description>The number of kernel threads swapped</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Blocked">
+            <alternatename/>
+            <description>The number of kernel threads blocked for resources I/O, paging, and so forth</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Run queue">
+            <alternatename/>
+            <description>The number of kernel threads in run queue</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Context switches">
+            <alternatename/>
+            <description>CPU context switches per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Memory">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Free memory">
+            <alternatename/>
+            <description>The size of the free list in kilobytes</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Swap space">
+            <alternatename/>
+            <description>The amount of swap space currently available in kilobytes</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>Solaris 9</agentVersion>
+        <agentVersion>Solaris 10</agentVersion>
+        <agentVersion>Solaris 8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Per CPU data</instanceName>
+      <description>Per CPU data provided by mpstat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="mpstat {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/CPU/{0}" idx="0"/>
+            <column cid="Minor faults" eid="root/CPU/{0}" idx="1"/>
+            <column cid="Major faults" eid="root/CPU/{0}" idx="2"/>
+            <column cid="Inter-processor cross-calls" eid="root/CPU/{0}" idx="3"/>
+            <column cid="Interrupts" eid="root/CPU/{0}" idx="4"/>
+            <column cid="Interrupts as threads" eid="root/CPU/{0}" idx="5"/>
+            <column cid="Context switches" eid="root/CPU/{0}" idx="6"/>
+            <column cid="Involuntary context switches" eid="root/CPU/{0}" idx="7"/>
+            <column cid="Thread migrations" eid="root/CPU/{0}" idx="8"/>
+            <column cid="Spins on mutexes" eid="root/CPU/{0}" idx="9"/>
+            <column cid="Spins on readers/writer locks" eid="root/CPU/{0}" idx="10"/>
+            <column cid="System calls" eid="root/CPU/{0}" idx="11"/>
+            <column cid="User time" eid="root/CPU/{0}" idx="12"/>
+            <column cid="System time" eid="root/CPU/{0}" idx="13"/>
+            <column cid="Wait time" eid="root/CPU/{0}" idx="14"/>
+            <column cid="Idle time" eid="root/CPU/{0}" idx="15"/>
+          </columns>
+          <ignoreLines>CPU|change|mpstat</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/CPU/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Idle time">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Wait time">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Interrupts as threads">
+            <alternatename/>
+            <description>Interrupts as threads (not counting clock interrupt) per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Interrupts">
+            <alternatename/>
+            <description>Interrupts  per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Inter-processor cross-calls">
+            <alternatename/>
+            <description>Inter-processor cross-calls per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Spins on readers/writer locks">
+            <alternatename/>
+            <description>Spins on readers/writer locks (lock not acquired on first try) per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Context switches">
+            <alternatename/>
+            <description>Context switches per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Minor faults">
+            <alternatename/>
+            <description>Minor faults per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="User time">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System time">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Major faults">
+            <alternatename/>
+            <description>Major faults per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Thread migrations">
+            <alternatename/>
+            <description>Thread migrations (to another processor) per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Spins on mutexes">
+            <alternatename/>
+            <description>Spins on mutexes (lock not acquired on first try) per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Involuntary context switches">
+            <alternatename/>
+            <description>Involuntary context switches per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>Solaris 9</agentVersion>
+        <agentVersion>Solaris 10</agentVersion>
+        <agentVersion>Solaris 8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>File system data</instanceName>
+      <description>File system data provided by df</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="df -k"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="true"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/File system/{0(5)}" idx="0"/>
+            <column cid="Size" eid="root/File system/{0(5)}" idx="1"/>
+            <column cid="Used" eid="root/File system/{0(5)}" idx="2"/>
+            <column cid="Available" eid="root/File system/{0(5)}" idx="3"/>
+            <column cid="Capacity" eid="root/File system/{0(5)}" idx="4"/>
+            <column eid="root/File system/{0(5)}" idx="5"/>
+          </columns>
+          <ignoreLines>Filesystem|df -k|so\.</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/File system/{0(5)}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Available">
+            <alternatename/>
+            <description>The number of kilobytes available</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Capacity">
+            <alternatename/>
+            <description>Percentage of space available</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Size">
+            <alternatename/>
+            <description>The size in kilobytes</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Used">
+            <alternatename/>
+            <description>The number of kilobytes used</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>Solaris 9</agentVersion>
+        <agentVersion>Solaris 10</agentVersion>
+        <agentVersion>Solaris 8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Network interfaces</instanceName>
+      <description>Network interfaces data provided by netstat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="netstat -in"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="true"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Network interfaces/{0#3}" idx="0"/>
+            <column cid="Mtu" eid="root/Network interfaces/{0#3}" idx="1"/>
+            <column cid="Network" eid="root/Network interfaces/{0#3}" idx="2"/>
+            <column eid="root/Network interfaces/{0#3}" idx="3"/>
+            <column cid="Packets in" eid="root/Network interfaces/{0#3}" idx="4"/>
+            <column cid="Errors in" eid="root/Network interfaces/{0#3}" idx="5"/>
+            <column cid="Packets out" eid="root/Network interfaces/{0#3}" idx="6"/>
+            <column cid="Errors out" eid="root/Network interfaces/{0#3}" idx="7"/>
+            <column cid="Collisions" eid="root/Network interfaces/{0#3}" idx="8"/>
+            <column cid="Queue" eid="root/Network interfaces/{0#3}" idx="9"/>
+          </columns>
+          <ignoreLines>Ipkts|netstat</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Network interfaces/{0#3}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Collisions">
+            <alternatename/>
+            <description>Collisions</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Errors in">
+            <alternatename/>
+            <description>The number of input errors</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Errors out">
+            <alternatename/>
+            <description>The number of output errors</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Mtu">
+            <alternatename/>
+            <description>Maximum transmission unit</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Network">
+            <alternatename/>
+            <description>The network to which the interface is attached; for Point-to-Point interfaces, this counter is the name or address on the other side of the link</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Packets in">
+            <alternatename/>
+            <description>The number of input packets</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Packets out">
+            <alternatename/>
+            <description>The number of output packets</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Queue">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>Solaris 9</agentVersion>
+        <agentVersion>Solaris 10</agentVersion>
+        <agentVersion>Solaris 8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+  </providerInstances>
+</rms>

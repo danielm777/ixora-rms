@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
+  <version>1.0.0</version>
+  <name>agents.linux</name>
+  <description>linux.description</description>
+  <custom>false</custom>
+  <category>operatingSystems</category>
+  <versions>
+    <version>RedHat 9</version>
+    <version>RedHat AS 3</version>
+  </versions>
+  <messageCatalog>agents.linux</messageCatalog>
+  <javaHelp>secLinux</javaHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.providerhost.ProcessConfigurationPanel</customconfigpanel>
+      <agentVersions/>
+    </versionItem>
+  </versionItems>
+</agent>

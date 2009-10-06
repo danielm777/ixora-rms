@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/TableStats">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Sample Table</name>
+          <description/>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/TableStats/(.*)/[counter1]"/>
+            <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/TableStats/(.*)/[counter2]"/>
+            <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/TableStats/(.*)/[counter3]"/>
+            <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/TableStats/(.*)/[counter4]"/>
+            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="TableStats" rid="-/-/root/TableStats/(.*)"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <category id="id0"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+          <column id="id4"/>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

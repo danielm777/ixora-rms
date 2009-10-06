@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="test_sql_providers">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.mysql</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.mysql.v40.Configuration">
+                    <config.username notrequired="true" type="0" value="root"/>
+                    <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <config.port type="1" value="3306"/>
+                    <config.jdbc_driver_jar type="0" value="/lib/mysql-connector-java-5.0.0-beta-bin.jar"/>
+                    <config.database type="0" value="ixorarms_tutorials"/>
+                    <config.jdbc_driver_class type="0" value="com.mysql.jdbc.Driver"/>
+                  </config>
+                  <version>4.*</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.mysql</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.mysql.v40.Configuration">
+                    <config.username notrequired="true" type="0" value="root"/>
+                    <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <config.port type="1" value="3306"/>
+                    <config.jdbc_driver_jar type="0" value="/lib/mysql-connector-java-5.0.0-beta-bin.jar"/>
+                    <config.database type="0" value="ixorarms_tutorials"/>
+                    <config.jdbc_driver_class type="0" value="com.mysql.jdbc.Driver"/>
+                  </config>
+                  <version>4.*</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>CustomSQLAgent</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>CustomSQLAgent</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>CustomSQLAgent</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>CustomSQLAgent:1</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="root"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="ixorarms_tutorials"/>
+                    <Port notrequired="true" type="1" value="3306"/>
+                    <JDBCDriverClass notrequired="true" type="0" value=""/>
+                    <Classpath notrequired="true" type="0" value=""/>
+                  </config>
+                  <providerInstances>
+                    <providerInstance>Provider1</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.windows</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.windows.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                    <config.domain notrequired="true" type="0" value=""/>
+                  </config>
+                  <version>WinXP</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.windows</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.windows.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                    <config.domain notrequired="true" type="0" value=""/>
+                  </config>
+                  <version>WinXP</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/Memory/{Available MBytes}">
+          <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+          <resource id="localhost/agents.windows/root/Memory/[Available MBytes]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Available MBytes]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Commands executed/DML/{DML operations}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_commit]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_rollback]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_select]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_insert]"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_delete]"/>
+          <resource id="id7" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Commands executed/DML/[Com_update]"/>
+          <resource id="time" rid="-/-/root/Commands executed/DML/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/CustomSQLAgent:1/root/TableStats/{counter2}">
+          <resource id="localhost/CustomSQLAgent:1/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent:1/root/TableStats/[#time#]"/>
+          <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter2]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/CustomSQLAgent/root/TableStats/{counter2}">
+          <resource id="localhost/CustomSQLAgent/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent/root/TableStats/[#time#]"/>
+          <resource id="localhost/CustomSQLAgent/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter2]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Commands executed/{Statement operations}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_execute]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_reset]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_prepare]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_close]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Commands executed/[Com_stmt_send_long_data]"/>
+          <resource id="time" rid="-/-/root/Commands executed/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.mysql/root/Performance/Query cache/{Qcache_hits}">
+          <resource id="localhost/agents.mysql/root/Performance/Query cache/[#time#]" rid="localhost/agents.mysql/root/Performance/Query cache/[#time#]"/>
+          <resource id="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/Memory/{Page Faults/sec}">
+          <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+          <resource id="localhost/agents.windows/root/Memory/[Page Faults/sec]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Page Faults/sec]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Process/{CPU per process}">
+          <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Process/((?!Idle).*)"/>
+          <resource id="proctime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Processor Time]"/>
+          <resource id="usertime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% User Time]"/>
+          <resource id="privtime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Privileged Time]"/>
+          <reaction params="process,proctime,usertime,privtime" severity="HIGH">
+            <arm><![CDATA[return proctime > 90;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "Process " + env.getPath(process) + " is using " + proctime + " of the CPU on host " + env.getHost(process);]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Networking/{Connections}">
+          <resource id="time" rid="-/-/root/Networking/[#time#]"/>
+          <resource id="conn" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Networking/[Connections]"/>
+          <resource id="max" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Networking/[Max_used_connections]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Processor/{CPU usage}">
+          <resource id="time" rid="-/-/root/Processor/[#time#]"/>
+          <resource id="kerntime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Privileged Time]"/>
+          <resource id="inttime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Interrupt Time]"/>
+          <resource id="usertime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% User Time]"/>
+          <reaction params="usertime,kerntime" severity="HIGH">
+            <arm><![CDATA[return usertime + kerntime > 90;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The CPU usage on host " + env. getHost(usertime) + " has been greater than 90% for the last minute";]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Processor/{Usage per processor (timeseries)}">
+          <resource id="id8" iname="$host/$agent/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
+          <resource id="id0" iname="" rid="-/-/root/Processor/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/System/{File Operations}">
+          <resource id="time" rid="-/-/-/[#time#]"/>
+          <resource id="readop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Read Operations/sec]"/>
+          <resource id="writeop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Write Operations/sec]"/>
+          <resource id="ctlop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Control Operations/sec]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/PhysicalDisk/{% Disk Time}">
+          <resource id="localhost/agents.windows/root/PhysicalDisk/[#time#]" rid="localhost/agents.windows/root/PhysicalDisk/[#time#]"/>
+          <resource id="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]" iname="$counter" rid="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/PhysicalDisk/{Reads/Writes per second for all physical disks}">
+          <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+          <resource id="id12" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+          <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="PhysicalDisk" rid="-/-/root/PhysicalDisk/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Memory/{Page swapping rate}">
+          <resource id="time" rid="-/-/root/Memory/[#time#]"/>
+          <resource id="in" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Input/sec]"/>
+          <resource id="out" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Output/sec]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Networking/Traffic/{Traffic}">
+          <resource id="time" rid="-/-/root/Networking/Traffic/[#time#]"/>
+          <resource code="return recv/1048576f;" id="recv" iname="$host/$agent/$entity[1]/$entity[2]/Megabytes received" name="Megabytes received" rid="-/-/root/Networking/Traffic/[Bytes_received]"/>
+          <resource code="return sent/1048576f;" id="sent" iname="$host/$agent/$entity[1]/$entity[2]/Megabytes sent" name="Megabytes sent" rid="-/-/root/Networking/Traffic/[Bytes_sent]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Performance/Sort/{Sorts}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_rows]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_scan]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_range]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Sort/[Sort_merge_passes]"/>
+          <resource id="time" rid="-/-/root/Performance/Sort/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.mysql/root/Performance/Locks/{Table_locks_waited}">
+          <resource id="localhost/agents.mysql/root/Performance/Locks/[#time#]" rid="localhost/agents.mysql/root/Performance/Locks/[#time#]"/>
+          <resource id="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/General/Threads/{Threads}">
+          <resource id="time" rid="-/-/root/General/Threads/[#time#]"/>
+          <resource id="cached" iname="$host/$agent/$entity[2]/$counter" name="$counter" rid="-/-/root/General/Threads/[Threads_cached]"/>
+          <resource id="connected" iname="$host/$agent/$entity[2]/$counter" name="$counter" rid="-/-/root/General/Threads/[Threads_connected]"/>
+          <resource id="running" iname="$host/$agent/$entity[2]/$counter" name="$counter" rid="-/-/root/General/Threads/[Threads_running]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/TCP/{TCP connection events}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connections Established]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connections Active]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connection Failures]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connections Reset]"/>
+          <resource id="id0" iname="" rid="-/-/root/TCP/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Network Interface/{Megabytes received/sent per second for all interfaces}">
+          <resource code="return id7/1048576f;" id="id7" iname="$host/$agent/$entity[1]/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
+          <resource code="return id9/1048576f;" id="id9" iname="$host/$agent/$entity[1]/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
+          <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="Network Interface" rid="-/-/root/Network Interface/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/System/{Processor Queue Length}">
+          <resource id="localhost/agents.windows/root/System/[#time#]" rid="localhost/agents.windows/root/System/[#time#]"/>
+          <resource id="localhost/agents.windows/root/System/[Processor Queue Length]" iname="$counter" rid="localhost/agents.windows/root/System/[Processor Queue Length]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.mysql/root/Performance/Query cache/{Query cache memory blocks}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Query cache/[Qcache_total_blocks]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Performance/Query cache/[Qcache_free_blocks]"/>
+          <resource id="time" rid="-/-/root/Performance/Query cache/[#time#]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.mysql/#MySQL overview#"/>
+      <dashboard id="localhost/agents.windows/#System overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="354.0" title="Dashboard 3" w="600.0" x="17.0" y="538.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.windows/root/Process/:CPU per process:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 2" w="500.0" x="475.0" y="320.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Network Interface/:Megabytes received/sent per second for all interfaces:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/TCP/:TCP connection events:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>% Disk Time</name>
+                  <description>% Disk Time</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/PhysicalDisk/[#time#]" rid="localhost/agents.windows/root/PhysicalDisk/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]" iname="$counter" rid="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/PhysicalDisk"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Available MBytes</name>
+                  <description>Available MBytes</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/Memory/[Available MBytes]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Available MBytes]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/Memory"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Processor Queue Length</name>
+                  <description>Processor Queue Length</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/System/[#time#]" rid="localhost/agents.windows/root/System/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/System/[Processor Queue Length]" iname="$counter" rid="localhost/agents.windows/root/System/[Processor Queue Length]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Page Faults/sec</name>
+                  <description>Page Faults/sec</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/Memory/[Page Faults/sec]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Page Faults/sec]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/Memory"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="628.0" title="Dashboard 2" w="789.0" x="11.0" y="-3.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Networking/:Connections:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Networking/Traffic/:Traffic:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/General/Threads/:Threads:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Commands executed/:Statement operations:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Performance/Query cache/:Query cache memory blocks:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Performance/Sort/:Sorts:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.mysql/root/Commands executed/DML/:DML operations:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Qcache_hits</name>
+                  <description>Qcache_hits</description>
+                  <query>
+                    <resource id="localhost/agents.mysql/root/Performance/Query cache/[#time#]" rid="localhost/agents.mysql/root/Performance/Query cache/[#time#]"/>
+                    <resource id="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Query cache/[Qcache_hits]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.mysql/root/Performance/Query cache"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Table_locks_waited</name>
+                  <description>Table_locks_waited</description>
+                  <query>
+                    <resource id="localhost/agents.mysql/root/Performance/Locks/[#time#]" rid="localhost/agents.mysql/root/Performance/Locks/[#time#]"/>
+                    <resource id="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]" iname="$counter" rid="localhost/agents.mysql/root/Performance/Locks/[Table_locks_waited]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.mysql/root/Performance/Locks"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>counter2</name>
+                  <description>counter2</description>
+                  <query>
+                    <resource id="localhost/CustomSQLAgent/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent/root/TableStats/[#time#]"/>
+                    <resource id="localhost/CustomSQLAgent/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent/root/TableStats/[counter2]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/CustomSQLAgent/root/TableStats"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>counter2</name>
+                  <description>counter2</description>
+                  <query>
+                    <resource id="localhost/CustomSQLAgent:1/root/TableStats/[#time#]" rid="localhost/CustomSQLAgent:1/root/TableStats/[#time#]"/>
+                    <resource id="localhost/CustomSQLAgent:1/root/TableStats/[counter2]" iname="$counter" rid="localhost/CustomSQLAgent:1/root/TableStats/[counter2]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/CustomSQLAgent:1/root/TableStats"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Processor/:CPU usage:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Processor/:Usage per processor (timeseries):"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/PhysicalDisk/:Reads/Writes per second for all physical disks:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Memory/:Page swapping rate:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/System/:File Operations:"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

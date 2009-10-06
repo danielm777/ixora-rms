@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>Default</name>
+      <description/>
+      <views>
+        <view id="/:Log records:"/>
+        <view id="/:Log file size:"/>
+        <view id="/:Log file last changed time:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions/>
+    </dashboard>
+  </dashboards>
+</rms>

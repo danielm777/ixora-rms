@@ -1,0 +1,14 @@
+RMSLIB=config/messages/:jars/RMS.jar:jars/IxoraCommon.jar:jars/RMSCommon.jar:jars/RMSRemote.jar:jars/ganymed-ssh2.jar:lib/commons-httpclient.jar:lib/commons-codec.jar:lib/commons-codec.jar:lib/commons-logging-api.jar:jars/jfreechart.jar:jars/AgentProviderHost.jar:lib/commons-net.jar:lib/janino.jar:lib/jcommon.jar:lib/liquidlnf.jar:lib/log4j.jar:lib/looks.jar:lib/activation.jar:lib/mailapi.jar:lib/smtp.jar:lib/jh.jar:lib/jhall.jar:lib/xalan.jar:lib/xerces.jar:lib/xercesImpl.jar:lib/xml-apis.jar:lib/SNMP4J.jar:jars/mibble.jar:lib/grammatica-bin.jar:lib/ldap.jar:
+AGENTS=:
+
+CLASSPATH="$AGENTS:$RMSLIB"
+PATH=./jre/bin:$PATH
+export PATH
+
+MYPWD=`pwd`
+export MYPWD
+
+SYSOPTS="-Xmx256M -Dapplication.home=""$MYPWD"" -Djava.security.policy=java.policy -Djava.library.path=./bin -Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"
+export SYSOPTS
+
+java $SYSOPTS -cp $CLASSPATH com.ixora.rms.batch.BatchMain

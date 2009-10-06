@@ -1,0 +1,9 @@
+USER FEEDBACK
+http://www.ixoragroup.com/rms/app_feedback.php
+
+APP ERRORS
+http://www.ixoragroup.com/rms/app_errors.php
+
+CHECK UPDATES
+http://www.ixoragroup.com/rms/app_update_check.php
+

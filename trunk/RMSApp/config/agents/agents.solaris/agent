@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
+  <customconfigpanel>com.ixora.rms.agents.providerhost.ProcessConfigurationPanel</customconfigpanel>
+  <version>1.0.0</version>
+  <name>agents.solaris</name>
+  <description>solaris.description</description>
+  <category>operatingSystems</category>
+  <javaHelp>secSolaris</javaHelp>
+  <versions>
+    <version>Solaris 8</version>
+    <version>Solaris 9</version>
+    <version>Solaris 10</version>
+  </versions>  
+<versionItems>
+    <versionItem>
+	  <customconfigpanel>com.ixora.rms.agents.providerhost.ProcessConfigurationPanel</customconfigpanel>
+	  <locations>
+	    <location>0</location>
+	    <location>1</location>
+	  </locations>
+    </versionItem>
+</versionItems>
+</agent>

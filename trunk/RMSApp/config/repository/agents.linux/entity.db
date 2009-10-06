@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/Network protocols">
+      <dashboards>
+        <dashboard>
+          <name>Network protocols overview</name>
+          <description>Network protocols overview</description>
+          <views>
+            <view id="-/-/root/Network protocols/Tcp/:Tcp connections openings:"/>
+            <view id="-/-/root/Network protocols/Ip/:Ip traffic:"/>
+            <view id="-/-/root/Network protocols/Udp/:Udp traffic:"/>
+            <view id="-/-/root/Network protocols/Icmp/:ICMP traffic:"/>
+          </views>
+          <counters/>
+          <agentVersions>
+            <agentVersion>RedHat 9</agentVersion>
+          </agentVersions>
+        </dashboard>
+      </dashboards>
+    </entity>
+  </entities>
+</rms>

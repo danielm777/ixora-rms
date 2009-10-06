@@ -1,0 +1,6 @@
+<template>
+<templateId>process</templateId>
+<templateName>agentinstaller.template.process</templateName>
+<agentClass>com.ixora.rms.agents.providerhost.ProviderHostAgent</agentClass>
+<agentConfigurationPanelClass>com.ixora.rms.agents.providerhost.ProcessConfigurationPanel</agentConfigurationPanelClass>
+</template>

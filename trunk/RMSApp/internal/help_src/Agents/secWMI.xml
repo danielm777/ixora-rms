@@ -1,0 +1,51 @@
+<section id="secWMI">
+	<title>WMI</title>
+
+	<para>Allows access to the Windows Management Instrumentation data, exposed by Windows systems.</para>
+
+	<indexterm><primary>WMI</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraWMILocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>The agent supports both local and remote modes.</para>
+	</sect2>
+
+	<indexterm><primary>WMI</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraWMIVersions">
+		<title>Supported Versions</title>
+		<para>There is no need to specify a version for the WMI agent.</para>
+	</sect2>
+
+	<indexterm><primary>WMI</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraWMIConfig">
+		<title>Configuration</title>
+		<para>The following configuration options are available:</para>
+		<itemizedlist>
+			<listitem>User name: User name valid for the remote system, or blank if not required.</listitem>
+			<listitem>Password: Password valid for the remote system, or blank if not required.</listitem>
+		</itemizedlist>
+	</sect2>
+
+	<indexterm><primary>WMI</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraWMIContents">
+		<title>Contents</title>
+		<para>Windows Management Instrumentation data is grouped under four large categories:</para>
+		<itemizedlist>
+			<listitem>Hardware: contains information about the physical devices present in 
+			a computer</listitem>
+			<listitem>OS: holds information about operating system components such as drivers, users etc</listitem>
+			<listitem>Applications: contains data related to the installed applications</listitem>
+			<listitem>Performance: contains a hierarchy of performance counters exposed by Windows.
+			Do not use the WMI agent to access this data. Instead use the Windows agent which is optimized to 
+			retrieve these performance counters. </listitem>
+		</itemizedlist>
+	</sect2>
+
+	<indexterm><primary>wmi</primary><secondary>screenshots</secondary></indexterm>
+	<sect2 id="paraWMIScreenshots">
+		<title>Screenshots</title>
+		<figure>
+			<title>Screenshot</title>
+			<graphic fileref="images/agent_wmi_sshot.png"/>
+		</figure>
+	</sect2>
+</section>

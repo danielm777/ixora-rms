@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
+  <version>1.0.0</version>
+  <name>CustomSQLAgent</name>
+  <description/>
+  <custom>true</custom>
+  <category>miscellaneous</category>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.providerhost.SQLConfigurationPanel</customconfigpanel>
+      <agentVersions/>
+    </versionItem>
+  </versionItems>
+</agent>

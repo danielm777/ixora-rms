@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>ASP.NET</name>
+      <description>Overview of ASP.NET performance</description>
+      <views/>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/ASP.NET/[Application Restarts]"/>
+        <counter id="-/-/root/ASP.NET/[Requests Queued]"/>
+        <counter id="-/-/root/ASP.NET/[Worker Process Restarts]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Errors Total]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Requests/Sec]"/>
+        <counter id="-/-/root/Processor/[% Processor Time]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>Win2000</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>Web service</name>
+      <description>Cumulative details for site's web services</description>
+      <views/>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/Web Service/[Bytes Total/sec]"/>
+        <counter id="-/-/root/Web Service/[Current Connections]"/>
+        <counter id="-/-/root/Web Service/[Post Requests/sec]"/>
+        <counter id="-/-/root/Web Service/[Get Requests/sec]"/>
+        <counter id="-/-/root/Web Service/[Total Method Requests/sec]"/>
+        <counter id="-/-/root/Web Service/[Delete Requests/sec]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>WinXP</agentVersion>
+        <agentVersion>Win2000</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>Site performance</name>
+      <description>Shows the most common metrics for website</description>
+      <views/>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/ASP.NET Applications/[Requests/Sec]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Errors Total]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Sessions Active]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Cache Total Hit Ratio]"/>
+        <counter id="-/-/root/Processor/[% Processor Time]"/>
+        <counter id="-/-/root/PhysicalDisk/[% Disk Time]"/>
+        <counter id="-/-/root/Memory/[Committed Bytes]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>Win2000</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>ASP.NET per application details</name>
+      <description>Shows performance details per each ASP.NET application</description>
+      <views>
+        <view id="-/-/root/ASP.NET Applications/:Requests per application:"/>
+        <view id="-/-/root/ASP.NET Applications/:Sessions per application:"/>
+        <view id="-/-/root/ASP.NET Applications/:Transactions per application:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>WinXP</agentVersion>
+        <agentVersion>Win2000</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>ASP.NET site performance</name>
+      <description>Shows the most common metrics for the ASP.NET website</description>
+      <views/>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/ASP.NET Applications/[Requests/Sec]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Errors Total]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Sessions Active]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Cache Total Hit Ratio]"/>
+        <counter id="-/-/root/Processor/[% Processor Time]"/>
+        <counter id="-/-/root/PhysicalDisk/[% Disk Time]"/>
+        <counter id="-/-/root/Memory/[Committed Bytes]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>WinXP</agentVersion>
+        <agentVersion>Win2000</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>ASP.NET overview</name>
+      <description>Overview of ASP.NET performance</description>
+      <views/>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/ASP.NET/[Application Restarts]"/>
+        <counter id="-/-/root/ASP.NET/[Requests Queued]"/>
+        <counter id="-/-/root/ASP.NET/[Worker Process Restarts]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Errors Total]"/>
+        <counter id="-/-/root/ASP.NET Applications/[Requests/Sec]"/>
+        <counter id="-/-/root/Processor/[% Processor Time]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>WinXP</agentVersion>
+        <agentVersion>Win2000</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>System overview</name>
+      <description>An overview of the Windows system</description>
+      <views>
+        <view id="-/-/root/Processor/:CPU usage:"/>
+        <view id="-/-/root/Processor/:Usage per processor (timeseries):"/>
+        <view id="-/-/root/PhysicalDisk/:Reads/Writes per second for all physical disks:"/>
+        <view id="-/-/root/Memory/:Page swapping rate:"/>
+        <view id="-/-/root/System/:File Operations:"/>
+        <view id="-/-/root/Network Interface/:Megabytes received/sent per second for all interfaces:"/>
+        <view id="-/-/root/TCP/:TCP connection events:"/>
+      </views>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/PhysicalDisk/[% Disk Time]"/>
+        <counter id="-/-/root/Memory/[Available MBytes]"/>
+        <counter id="-/-/root/System/[Processor Queue Length]"/>
+        <counter id="-/-/root/Memory/[Page Faults/sec]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>WinXP</agentVersion>
+        <agentVersion>Win2000</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>Test</name>
+      <description>An overview of the Windows system</description>
+      <views>
+        <view id="-/-/root/Processor/:CPU usage:"/>
+        <view id="-/-/root/Processor/:Usage per processor (timeseries):"/>
+        <view id="-/-/root/PhysicalDisk/:Reads/Writes per second for all physical disks:"/>
+        <view id="-/-/root/Memory/:Page swapping rate:"/>
+        <view id="-/-/root/System/:File Operations:"/>
+        <view id="-/-/root/Network Interface/:Megabytes received/sent per second for all interfaces:"/>
+        <view id="-/-/root/TCP/:TCP connection events:"/>
+      </views>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/PhysicalDisk/[% Disk Time]"/>
+        <counter id="-/-/root/Memory/[Available MBytes]"/>
+        <counter id="-/-/root/System/[Processor Queue Length]"/>
+        <counter id="-/-/root/Memory/[Page Faults/sec]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>Win2003</agentVersion>
+        <agentVersion>WinXP</agentVersion>
+      </agentVersions>
+    </dashboard>
+  </dashboards>
+</rms>

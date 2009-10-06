@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provider>
+<class>com.ixora.rms.providers.impl.java.ProviderJava</class>
+<name>providers.java.name</name>
+<confPanelClass>com.ixora.rms.providers.impl.java.ConfigurationPanel</confPanelClass>
+<jars>
+<jar>/jars/Provider_java.jar</jar>
+</jars>
+<uiJar>/jars/Provider_java_ui.jar</uiJar>
+</provider>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="remote_prov">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>1</location>
+                <host>localhost</host>
+                <agentInstallationId>Sample Agent</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Normal"/>
+                    <Username type="0" value="-"/>
+                    <Password type="10" value="512F2D04B9577C49"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="]$"/>
+                    <Port notrequired="true" type="0" value="0"/>
+                  </config>
+                  <version>7.4</version>
+                  <providerInstances>
+                    <providerInstance>JavaProvider</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>Sample Agent</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+                    <ExecutionMode type="0" value="Normal"/>
+                    <Username type="0" value="-"/>
+                    <Password type="10" value="512F2D04B9577C49"/>
+                    <UsernamePrompt type="0" value="login:"/>
+                    <PasswordPrompt type="0" value="Password:"/>
+                    <ShellPrompt type="0" value="]$"/>
+                    <Port notrequired="true" type="0" value="0"/>
+                  </config>
+                  <version>7.4</version>
+                  <providerInstances>
+                    <providerInstance>JavaProvider</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.windows</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.windows.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                    <config.domain notrequired="true" type="0" value=""/>
+                  </config>
+                  <version>WinXP</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.windows</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.windows.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                    <config.domain notrequired="true" type="0" value=""/>
+                  </config>
+                  <version>WinXP</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/Sample Agent/root/Java2/{testm}">
+          <resource id="localhost/Sample Agent/root/Java2/[#time#]" rid="localhost/Sample Agent/root/Java2/[#time#]"/>
+          <resource id="localhost/Sample Agent/root/Java2/[counter4]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter4]"/>
+          <resource id="localhost/Sample Agent/root/Java2/[counter2]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter2]"/>
+          <resource id="localhost/Sample Agent/root/Java2/[counter5]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter5]"/>
+          <resource id="localhost/Sample Agent/root/Java2/[counter3]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter3]"/>
+          <resource id="localhost/Sample Agent/root/Java2/[counter1]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter1]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/Sample Agent/root/Java1/{counter3}">
+          <resource id="localhost/Sample Agent/root/Java1/[#time#]" rid="localhost/Sample Agent/root/Java1/[#time#]"/>
+          <resource id="localhost/Sample Agent/root/Java1/[counter3]" iname="$counter" rid="localhost/Sample Agent/root/Java1/[counter3]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/Sample Agent/root/CPU/{Test}">
+          <resource id="localhost/Sample Agent/root/CPU/[#time#]" rid="localhost/Sample Agent/root/CPU/[#time#]"/>
+          <resource id="localhost/Sample Agent/root/CPU/[counter1]" iname="$counter" rid="localhost/Sample Agent/root/CPU/[counter1]"/>
+          <resource id="localhost/Sample Agent/root/CPU/[counter2]" iname="$counter" rid="localhost/Sample Agent/root/CPU/[counter2]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/Sample Agent/root/Java3/{jkl}">
+          <resource id="localhost/Sample Agent/root/Java3/[#time#]" rid="localhost/Sample Agent/root/Java3/[#time#]"/>
+          <resource id="localhost/Sample Agent/root/Java3/[counter8]" iname="$counter" rid="localhost/Sample Agent/root/Java3/[counter8]"/>
+          <resource id="localhost/Sample Agent/root/Java3/[counter6]" iname="$counter" rid="localhost/Sample Agent/root/Java3/[counter6]"/>
+          <resource id="localhost/Sample Agent/root/Java3/[counter7]" iname="$counter" rid="localhost/Sample Agent/root/Java3/[counter7]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards/>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 1" w="500.0" x="108.0" y="38.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterSetDataView">
+                  <name>Test</name>
+                  <description>Test</description>
+                  <query>
+                    <resource id="localhost/Sample Agent/root/CPU/[#time#]" rid="localhost/Sample Agent/root/CPU/[#time#]"/>
+                    <resource id="localhost/Sample Agent/root/CPU/[counter1]" iname="$counter" rid="localhost/Sample Agent/root/CPU/[counter1]"/>
+                    <resource id="localhost/Sample Agent/root/CPU/[counter2]" iname="$counter" rid="localhost/Sample Agent/root/CPU/[counter2]"/>
+                  </query>
+                  <agentVersions/>
+                  <renderer type="XYLine">
+                    <domain id="localhost/Sample Agent/root/CPU/[#time#]"/>
+                    <range id="localhost/Sample Agent/root/CPU/[counter1]"/>
+                    <range id="localhost/Sample Agent/root/CPU/[counter2]"/>
+                  </renderer>
+                </view>
+                <context id="localhost/Sample Agent/root/CPU"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterSetDataView">
+                  <name>jkl</name>
+                  <description>jkl</description>
+                  <query>
+                    <resource id="localhost/Sample Agent/root/Java3/[#time#]" rid="localhost/Sample Agent/root/Java3/[#time#]"/>
+                    <resource id="localhost/Sample Agent/root/Java3/[counter8]" iname="$counter" rid="localhost/Sample Agent/root/Java3/[counter8]"/>
+                    <resource id="localhost/Sample Agent/root/Java3/[counter6]" iname="$counter" rid="localhost/Sample Agent/root/Java3/[counter6]"/>
+                    <resource id="localhost/Sample Agent/root/Java3/[counter7]" iname="$counter" rid="localhost/Sample Agent/root/Java3/[counter7]"/>
+                  </query>
+                  <agentVersions/>
+                  <renderer type="XYLine">
+                    <domain id="localhost/Sample Agent/root/Java3/[#time#]"/>
+                    <range id="localhost/Sample Agent/root/Java3/[counter8]"/>
+                    <range id="localhost/Sample Agent/root/Java3/[counter6]"/>
+                    <range id="localhost/Sample Agent/root/Java3/[counter7]"/>
+                  </renderer>
+                </view>
+                <context id="localhost/Sample Agent/root/Java3"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>counter3</name>
+                  <description>counter3</description>
+                  <query>
+                    <resource id="localhost/Sample Agent/root/Java1/[#time#]" rid="localhost/Sample Agent/root/Java1/[#time#]"/>
+                    <resource id="localhost/Sample Agent/root/Java1/[counter3]" iname="$counter" rid="localhost/Sample Agent/root/Java1/[counter3]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/Sample Agent/root/Java1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterSetDataView">
+                  <name>testm</name>
+                  <description>testm</description>
+                  <query>
+                    <resource id="localhost/Sample Agent/root/Java2/[#time#]" rid="localhost/Sample Agent/root/Java2/[#time#]"/>
+                    <resource id="localhost/Sample Agent/root/Java2/[counter4]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter4]"/>
+                    <resource id="localhost/Sample Agent/root/Java2/[counter2]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter2]"/>
+                    <resource id="localhost/Sample Agent/root/Java2/[counter5]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter5]"/>
+                    <resource id="localhost/Sample Agent/root/Java2/[counter3]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter3]"/>
+                    <resource id="localhost/Sample Agent/root/Java2/[counter1]" iname="$counter" rid="localhost/Sample Agent/root/Java2/[counter1]"/>
+                  </query>
+                  <agentVersions/>
+                  <renderer type="XYLine">
+                    <domain id="localhost/Sample Agent/root/Java2/[#time#]"/>
+                    <range id="localhost/Sample Agent/root/Java2/[counter4]"/>
+                    <range id="localhost/Sample Agent/root/Java2/[counter2]"/>
+                    <range id="localhost/Sample Agent/root/Java2/[counter5]"/>
+                    <range id="localhost/Sample Agent/root/Java2/[counter3]"/>
+                    <range id="localhost/Sample Agent/root/Java2/[counter1]"/>
+                  </renderer>
+                </view>
+                <context id="localhost/Sample Agent/root/Java2"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

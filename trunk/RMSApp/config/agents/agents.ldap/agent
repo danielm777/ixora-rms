@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.ldap.LDAPAgent</class>
+  <version>1.0.0</version>
+  <name>agents.ldap</name>
+  <description>ldap.description</description>
+  <category>network</category>
+  <javaHelp>secLDAP</javaHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <jars>
+        <jar>/lib/ldap.jar</jar>
+      </jars>
+      <customconfigpanel>com.ixora.rms.agents.ldap.ConfigurationPanel</customconfigpanel>
+      <uiJar>/jars/AgentLDAP.jar</uiJar>
+      <agentVersions/>
+    </versionItem>
+  </versionItems>
+</agent>

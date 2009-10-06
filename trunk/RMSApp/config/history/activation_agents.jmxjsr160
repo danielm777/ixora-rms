@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.jmxjsr160">
+    <historyGroupItem date="1.196807710718E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.jmxjsr160.Configuration">
+            <config.username notrequired="true" type="0" value="monitorRole"/>
+            <config.password notrequired="true" type="10" value="DD353DE8AE10D939"/>
+            <root_folder notrequired="true" type="0" value=""/>
+            <classpath notrequired="true" type="0" value=""/>
+            <extra_properties notrequired="true" type="0" value=""/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9998/jmxrmi"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.195238524921E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.jmxjsr160.Configuration">
+            <config.username notrequired="true" type="0" value="monitorRole"/>
+            <config.password notrequired="true" type="10" value="DD353DE8AE10D939"/>
+            <root_folder notrequired="true" type="0" value=""/>
+            <classpath notrequired="true" type="0" value=""/>
+            <extra_properties notrequired="true" type="0" value=""/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9998/jmxrmi"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.195238524328E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.jmxjsr160.Configuration">
+            <config.username notrequired="true" type="0" value="monitorRole"/>
+            <config.password notrequired="true" type="10" value="DD353DE8AE10D939"/>
+            <root_folder notrequired="true" type="0" value=""/>
+            <classpath notrequired="true" type="0" value=""/>
+            <extra_properties notrequired="true" type="0" value=""/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9998/jmxrmi"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

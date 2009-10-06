@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/GC">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>GC Chart</name>
+          <description>This is the chart that shows GC</description>
+          <query>
+            <resource id="time" rid="-/-/-/[#time#]"/>
+            <resource id="o" rid="-/-/-/[O]"/>
+            <resource id="ygct" rid="-/-/-/[YGCT]"/>
+            <resource id="fgc" rid="-/-/-/[FGC]"/>
+            <resource id="fgct" rid="-/-/-/[FGCT]"/>
+            <resource id="s0" rid="-/-/-/[S0]"/>
+            <resource id="ygc" rid="-/-/-/[YGC]"/>
+            <resource id="p" rid="-/-/-/[P]"/>
+          </query>
+          <agentVersions/>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="o"/>
+            <range id="ygct"/>
+            <range id="ygc"/>
+            <range id="fgct"/>
+            <range id="fgc"/>
+            <range id="s0"/>
+            <range id="p"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>GC Bar Chart</name>
+          <description>This is the chart that shows GC</description>
+          <query>
+            <resource id="domain" rid="-/-/root/GC"/>
+            <resource id="o" rid="-/-/-/[O]"/>
+            <resource id="ygct" rid="-/-/-/[YGCT]"/>
+            <resource id="fgc" rid="-/-/-/[FGC]"/>
+            <resource id="fgct" rid="-/-/-/[FGCT]"/>
+            <resource id="s0" rid="-/-/-/[S0]"/>
+            <resource id="ygc" rid="-/-/-/[YGC]"/>
+            <resource id="p" rid="-/-/-/[P]"/>
+          </query>
+          <agentVersions/>
+          <renderer type="StackedBar">
+            <domain id="domain"/>
+            <range id="o"/>
+            <range id="ygct"/>
+            <range id="ygc"/>
+            <range id="fgct"/>
+            <range id="fgc"/>
+            <range id="s0"/>
+            <range id="p"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Test">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>test</name>
+          <description>Showsh  interoperability details per application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Interop/(.*)"/>
+            <resource id="ccw" iname="$entity[2]/COM Wrappers" name="COM Wrappers" rid="-/-/root/.NET CLR Interop/(.*)/[# of CCWs]"/>
+            <resource id="stubs" iname="$entity[2]/Stubs" name="Stubs" rid="-/-/root/.NET CLR Interop/(.*)/[# of Stubs]"/>
+            <resource id="marshalling" iname="$entity[2]/Marshalling" name="Marshalling" rid="-/-/root/.NET CLR Interop/(.*)/[# of marshalling]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>7.4</agentVersion>
+          </agentVersions>
+          <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Processes">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Processes Table</name>
+          <description>This shows all processes as a table</description>
+          <query>
+            <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Processes/(.*)"/>
+            <resource id="user" iname="$entity[2]/$counter" name="User Time" rid="-/-/root/Processes/(.*)/[User time]"/>
+            <resource id="sys" iname="$entity[2]/$counter" name="System Time" rid="-/-/root/Processes/(.*)/[System time]"/>
+            <resource id="wait" iname="$entity[2]/$counter" name="Wait Time" rid="-/-/root/Processes/(.*)/[Wait]"/>
+            <function id="total time" name="Total CPU Time" op="script">
+              <param id="sys"/>
+              <param id="user"/>
+              <code>return sys + user;</code>
+            </function>
+          </query>
+          <agentVersions/>
+          <category id="process"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Processes Property</name>
+          <description>This shows all processes as a table</description>
+          <query>
+            <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Processes/(.*)"/>
+            <resource id="user" name="User Time" rid="-/-/root/Processes/(.*)/[User time]"/>
+            <resource id="sys" name="System Time" rid="-/-/root/Processes/(.*)/[System time]"/>
+            <resource id="wait" name="Wait Time" rid="-/-/root/Processes/(.*)/[Wait]"/>
+            <function id="total time" name="Total CPU Time" op="script">
+              <param id="sys"/>
+              <param id="user"/>
+              <code>return sys + user;</code>
+            </function>
+          </query>
+          <agentVersions/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Processes Table With String Counter</name>
+          <description>This shows all processes as a table and a string counter</description>
+          <query>
+            <resource id="process" name="Process" rid="-/-/(root/Processes/.*)"/>
+            <resource id="user" name="User Time" rid="-/-/(root/Processes/.*)/[User time]"/>
+            <resource id="sys" name="System Time" rid="-/-/(root/Processes/.*)/[System time]"/>
+            <resource id="wait" name="Wait Time" rid="-/-/(root/Processes/.*)/[Wait]"/>
+            <resource id="owner" name="Owner" rid="-/-/(root/Processes/.*)/[Owner]"/>
+            <function id="total time" name="Total CPU Time" op="script">
+              <param id="sys"/>
+              <param id="user"/>
+              <code>return sys + user;</code>
+            </function>
+          </query>
+          <agentVersions/>
+          <category id="process"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Processes Bar Chart</name>
+          <description>This is the chart that shows all processes</description>
+          <query>
+            <resource id="time" rid="-/-/root/Processes/(.*)/[#time#]"/>
+            <resource id="user" rid="-/-/root/Processes/(.*)/[User time]"/>
+            <resource id="sys" rid="-/-/root/Processes/(.*)/[System time]"/>
+            <resource id="wait" rid="-/-/root/Processes/(.*)/[Wait]"/>
+          </query>
+          <agentVersions/>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="user"/>
+            <range id="sys"/>
+            <range id="wait"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Processes/Entity2#0">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>User time Time Series</name>
+          <description>This is a sample chart data view</description>
+          <query>
+            <resource id="ut" rid="-/-/root/Processes/Entity2#0/[User time]"/>
+            <resource id="time" rid="-/-/root/Processes/Entity2#0/[#time#]"/>
+          </query>
+          <agentVersions/>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="ut"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

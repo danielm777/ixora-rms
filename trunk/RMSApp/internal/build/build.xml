@@ -1,0 +1,395 @@
+<project name="RMS" default="obfuscate">
+
+<!-- edit the following lines to your needs -->
+<property name="root"    value="C:/Dev/redbox"/>
+<property name="rootApp"    value="${root}/RMSApp"/>
+<property name="destDir"    value="${rootApp}/jars"/>
+<property name="yGuardDir"  value="${root}/IxoraResources/libtools"/>
+<property name="libdir"     value="${root}/IxoraResources/lib"/>
+<property name="libs"		value="${libdir}/grammatica-bin.jar;${libdir}/SNMP4J.jar;${libdir}/ldap.jar;${yGuardDir}/junit.jar;${libdir}/was511/pmi.jar;${libdir}/log4j.jar;${libdir}/jcommon.jar;${libdir}/janino.jar;${libdir}/jh.jar;${libdir}/jhall.jar;${destDir}/IxoraCommon.jar;${destDir}/RMSCommon.jar;${destDir}/RMS.jar;${destDir}/RMSRemote.jar;${destDir}/IxoraCommon.jar;${destDir}/mibble.jar;${destDir}/ganymed-ssh2.jar;"/>
+<mkdir dir="${destDir}"/>
+<mkdir dir="${destDir}/xraw"/>
+
+<!-- obfuscate -->
+<target depends="rawjar" name="obfuscate">
+<taskdef name="obfuscate" classname="com.yworks.yguard.ObfuscatorTask"
+        classpath="${yGuardDir}/yguard.jar;${libs}"/>
+	<obfuscate logfile="${destDir}/xobfuscate.log" replaceclassnamestrings="true">
+       <property name="error-checking" value="pedantic"/>
+	   <inoutpair in="${destDir}/xraw/ganymed-ssh2.jar" out="${destDir}/ganymed-ssh2.jar"/>
+       <inoutpair in="${destDir}/xraw/mibble.jar" out="${destDir}/mibble.jar"/>
+       <inoutpair in="${destDir}/xraw/jfreechart.jar" out="${destDir}/jfreechart.jar"/>
+       <inoutpair in="${destDir}/xraw/IxoraCommon.jar" out="${destDir}/IxoraCommon.jar"/>
+       <inoutpair in="${destDir}/xraw/Provider_sql_ui.jar" out="${destDir}/Provider_sql_ui.jar"/>
+       <inoutpair in="${destDir}/xraw/Provider_java_ui.jar" out="${destDir}/Provider_java_ui.jar"/>
+       <inoutpair in="${destDir}/xraw/Provider_sql.jar" out="${destDir}/Provider_sql.jar"/>
+       <inoutpair in="${destDir}/xraw/Provider_java.jar" out="${destDir}/Provider_java.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentApache.jar" out="${destDir}/AgentApache.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentDB2.jar" out="${destDir}/AgentDB2.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentHostAvailability.jar" out="${destDir}/AgentHostAvailability.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentHotSpotJVM.jar" out="${destDir}/AgentHotSpotJVM.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentHotSpotJVM_ui.jar" out="${destDir}/AgentHotSpotJVM_ui.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentOracle.jar" out="${destDir}/AgentOracle.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentProviderHost.jar" out="${destDir}/AgentProviderHost.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentServiceAvailability.jar" out="${destDir}/AgentServiceAvailability.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentSQL.jar" out="${destDir}/AgentSQL.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentWebsphere_ui.jar" out="${destDir}/AgentWebsphere_ui.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentWebsphere.jar" out="${destDir}/AgentWebsphere.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentWebsphereProxy.jar" out="${destDir}/AgentWebsphereProxy.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentWindows.jar" out="${destDir}/AgentWindows.jar"/>
+       <inoutpair in="${destDir}/xraw/AgentWeblogic.jar" out="${destDir}/AgentWeblogic.jar"/>
+	   <inoutpair in="${destDir}/xraw/AgentWeblogic_ui.jar" out="${destDir}/AgentWeblogic_ui.jar"/>
+       <inoutpair in="${destDir}/xraw/RMS.jar" out="${destDir}/RMS.jar"/>
+       <inoutpair in="${destDir}/xraw/RMSCommon.jar" out="${destDir}/RMSCommon.jar"/>
+		<inoutpair in="${destDir}/xraw/RMSJMX.jar" out="${destDir}/RMSJMX.jar"/>
+		<inoutpair in="${destDir}/xraw/AgentSunApp.jar" out="${destDir}/AgentSunApp.jar"/>
+		<inoutpair in="${destDir}/xraw/AgentSunApp_ui.jar" out="${destDir}/AgentSunApp_ui.jar"/>
+		<inoutpair in="${destDir}/xraw/AgentJBoss.jar" out="${destDir}/AgentJBoss.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentJBoss_ui.jar" out="${destDir}/AgentJBoss_ui.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentJMXJSR160.jar" out="${destDir}/AgentJMXJSR160.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentJMXJSR160_ui.jar" out="${destDir}/AgentJMXJSR160_ui.jar"/>
+		<inoutpair in="${destDir}/xraw/AgentWMI.jar" out="${destDir}/AgentWMI.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentLDAP.jar" out="${destDir}/AgentLDAP.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentSNMP.jar" out="${destDir}/AgentSNMP.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentFile.jar" out="${destDir}/AgentFile.jar"/>
+		<inoutpair in="${destDir}/xraw/AgentLogFile.jar" out="${destDir}/AgentLogFile.jar"/>
+		<inoutpair in="${destDir}/xraw/AgentURL.jar" out="${destDir}/AgentURL.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentMySQL.jar" out="${destDir}/AgentMySQL.jar"/>
+       	<inoutpair in="${destDir}/xraw/AgentMySQL_ui.jar" out="${destDir}/AgentMySQL_ui.jar"/>
+		<expose>
+			<!-- expose identity.xsl -->
+			<class name="com.ixora.common.xml.XMLExternalizable" />
+			<class methods="protected" fields="protected">
+				<!-- required by the Janino def of reactions -->
+				<patternset><include name="com.ixora.rms.dataengine.reactions.ReactionEnvironmentImpl"/></patternset>
+				<patternset><include name="com.ixora.rms.dataengine.reactions.ReactionEnvironment"/></patternset>
+
+				<!-- expose Controls for XML names -->
+				<patternset><include name="com.ixora.rms.ui.dataviewboard.**.*Descriptor"/></patternset>
+				<patternset><include name="com.ixora.rms.ui.dataviewboard.**.*DataView"/></patternset>
+				<patternset><include name="com.ixora.rms.ui.dataviewboard.**.*Board"/></patternset>
+				<patternset><include name="com.ixora.rms.ui.dataviewboard.**.*CounterFilter"/></patternset>
+				<patternset><include name="com.ixora.common.typedproperties.ui.ExtendedEditor*"/></patternset>
+				<patternset><include name="com.ixora.rms.repository.DataView"/></patternset>
+				<patternset><include name="com.ixora.rms.ui.dataviewboard.utils.FilterNumericValueDeltaHandler"/></patternset>
+
+				<!-- stuff saved by session -->
+				<patternset><include name="com.ixora.rms.dataengine.definitions.*"/></patternset>
+				<patternset><include name="com.ixora.rms.dataengine.external.*"/></patternset>
+
+				<!-- stuff saved by history -->
+				<patternset><include name="com.ixora.rms.agents.AgentActivationData"/></patternset>
+
+				<!-- expose HostManager for remote access -->
+				<patternset><include name="com.ixora.remote.HostManager*"/></patternset>
+				<patternset><include name="com.ixora.remote.RemoteManaged*"/></patternset>
+				<patternset><include name="com.ixora.common.update.multinode.*"/></patternset>
+				<patternset><include name="com.ixora.common.remote.PingableRemote"/></patternset>
+				<patternset><include name="com.ixora.rms.HostInformation"/></patternset>
+
+				<!-- Jobs -->
+				<patternset><include name="com.ixora.jobs.remote.JobManagerEventHandler_Stub"/></patternset>
+				<patternset><include name="com.ixora.jobs.remote.JobManagerListener"/></patternset>
+				<patternset><include name="com.ixora.jobs.remote.JobManagerImpl_Stub"/></patternset>
+				<patternset><include name="com.ixora.jobs.remote.JobManager"/></patternset>
+				<patternset><include name="com.ixora.jobs.JobLogEvent"/></patternset>
+				<patternset><include name="com.ixora.jobs.JobStateEvent"/></patternset>
+				<patternset><include name="com.ixora.jobs.JobDefinition"/></patternset>
+				<patternset><include name="com.ixora.jobs.impl.command.ExternalCommandJobData"/></patternset>
+
+				<!-- expose Agents -->
+				<patternset><include name="com.ixora.rms.remote.agents.RemoteAgentManager*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.**.*Configuration*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.**.*Agent"/></patternset>
+				<patternset><include name="com.ixora.rms.EntityDescriptorTree"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.AgentState"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.AgentId"/></patternset>
+				<patternset><include name="com.ixora.rms.EntityId"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.AgentDataBuffer"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.AgentPollBuffer"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.AgentConfiguration"/></patternset>
+				<patternset><include name="com.ixora.rms.EntityConfiguration"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.AgentActivationTuple"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.AgentConfigurationTuple"/></patternset>
+
+				<!-- all the remote stubs -->
+				<patternset><include name="**.*_Stub"/></patternset>
+
+				<!-- expose native methods -->
+				<patternset><include name="com.ixora.rms.data.CounterValue*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.windows.WinPerfRootEntity*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.windows.Native*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.**.*Exception*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.**.exception.*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.db2.DB2RootEntity*"/></patternset>
+				<patternset><include name="com.ixora.common.net.icmp.ICMP*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.wmi.WMIRootEntity*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.wmi.NativeWMIProperty*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.wmi.NativeWMIRelationship*"/></patternset>
+
+				<!-- expose Websphere PMI stub -->
+				<patternset><include name="com.ixora.rms.agents.websphere.*.proxy.PmiClientProxyImpl_Stub"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.websphere.*.proxy.PmiClientProxy"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.websphere.*.proxy.PmiClientProxyImpl"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.websphere.*.proxy.PerfDescriptor"/></patternset>
+
+				<!-- expose Providers for remote access -->
+				<patternset><include name="com.ixora.rms.remote.providers.RemoteProviderManager*"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.ProviderState"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.ProviderId"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.ProviderDataBuffer"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.ProviderPollBuffer"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.ProviderConfiguration"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.ProviderCustomConfiguration"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.impl.**.*Configuration*"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.impl.**.Provider*"/></patternset>
+				<patternset><include name="com.ixora.rms.repository.ProviderInstance"/></patternset>
+				<patternset><include name="com.ixora.rms.repository.AgentTemplate"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.providers.parsers.*.ui.*Panel"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.providers.parsers.*.*Parser"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.providers.parsers.*.*Definition"/></patternset>
+
+				<!-- expose filters -->
+				<patternset><include name="com.ixora.common.ui.filter.FilterDate"/></patternset>
+				<patternset><include name="com.ixora.common.ui.filter.FilterString"/></patternset>
+				<patternset><include name="com.ixora.common.ui.filter.FilterRegex"/></patternset>
+				<patternset><include name="com.ixora.common.ui.filter.FilterNumber"/></patternset>
+
+				<!-- LogFile monitor agent -->
+				<patternset><include name="com.ixora.rms.agents.logfile.definitions.StoredLogParserDef"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.logfile.LogParserDefinition"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.logfile.LogParserScript"/></patternset>
+
+				<!-- URL monitor agent -->
+				<patternset><include name="com.ixora.rms.agents.url.RequestParameters"/></patternset>
+
+				<!-- expose extension points -->
+				<patternset><include name="com.ixora.rms.providers.impl.java.JavaProviderImplementation"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.impl.java.JavaProviderImplementationContext"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.utils.sql.*"/></patternset>
+				<patternset><include name="com.ixora.rms.providers.utils.sql.exception.*"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.impl.logfile.LogRecord"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.impl.logfile.LogRecordBatch"/></patternset>
+				<patternset><include name="com.ixora.rms.agents.logfile.LogParserScriptContext"/></patternset>
+				<patternset><include name="com.ixora.rms.dataengine.reactions.ReactionEnvironment"/></patternset>
+
+				<!-- expose various other stuff -->
+				<patternset><include name="com.ixora.common.logging.adapters.**"/></patternset>
+				<patternset><include name="com.ixora.common.logging.**"/></patternset>
+				<patternset>
+					<include name="com.ixora.**.exception*.**"/>
+					<exclude name="com.ixora.common.security.**.exception*.**"/>
+				</patternset>
+			</class>
+			<!-- expose main entry points -->
+			<class name="com.ixora.rms.ui.starter.RMSStarter" methods="public" fields="none"/>
+			<class name="com.ixora.rms.remote.starter.HostManagerStarter" methods="public" fields="none"/>
+			<class name="com.ixora.rms.remote.starter.HostManagerStopper" methods="public" fields="none"/>
+			<class name="com.ixora.rms.batch.starter.BatchStopper" methods="public" fields="none"/>
+			<class name="com.ixora.rms.batch.starter.BatchStarter" methods="public" fields="none"/>
+			<class name="com.ixora.rms.ui.RMSFrame" methods="public" fields="none"/>
+			<class name="com.ixora.rms.remote.HostManagerMain" methods="public" fields="none"/>
+			<class name="com.ixora.rms.batch.BatchMain" methods="public" fields="none"/>
+
+			  <field name="serialVersionUID">
+			   <patternset>
+			    <include name="**.*"/>
+			   </patternset>
+			  </field>
+
+			<!-- don't obfuscate at all the following -->
+			<class methods="private" fields="private">
+				<patternset><include name="org.jfree.**/*"/></patternset>
+				<patternset><include name="thor.net.**/*"/></patternset>
+				<patternset><include name="ch.ethz.**/*"/></patternset>
+				<patternset><include name="com.ixora.rms.ui.dataviewboard.**.definitions.*"/></patternset>
+				<patternset><include name="**.percederberg.**"/></patternset>
+				<patternset>
+					<include name="**.snmp.MIBNode"/>
+					<include name="**.snmp.MIBTree"/>
+				</patternset>
+
+				<!-- comment the line below for obfuscation -->
+				<patternset><include name="**/*"/></patternset>
+			</class>
+		</expose>
+    </obfuscate>
+</target>
+
+<!-- create .jar -->
+<target name="rawjar">
+	<jar jarfile="${destDir}/xraw/ganymed-ssh2.jar" basedir="${root}/ganymed-ssh2/classes"/>
+	<jar jarfile="${destDir}/xraw/mibble.jar" basedir="${root}/mibble/classes"/>
+	<jar jarfile="${destDir}/xraw/jfreechart.jar" basedir="${root}/jfreechart/classes"/>
+	<jar jarfile="${destDir}/xraw/IxoraCommon.jar" basedir="${root}/IxoraCommon/classes"/>
+	<jar jarfile="${destDir}/xraw/RMSCommon.jar" basedir="${root}/RMS/classes"/>
+	<jar jarfile="${destDir}/xraw/RMS.jar" basedir="${rootApp}/classes"/>
+	<jar jarfile="${destDir}/xraw/RMSJMX.jar" basedir="${root}/RMSJMX/classes"/>
+
+	<!-- SQL Provider -->
+	<jar jarfile="${destDir}/xraw/Provider_sql_ui.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/sql/Configuration*.class"/>
+			<include name="**/sql/exception/*.class"/>
+			<include name="**/sql/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/Provider_sql.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/sql/**/*.class"/>
+			<exclude name="**/sql/Configuration*.class"/>
+			<exclude name="**/sql/exception/*.class"/>
+			<exclude name="**/sql/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- Java Provider -->
+	<jar jarfile="${destDir}/xraw/Provider_java_ui.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/java/Configuration*.class"/>
+			<include name="**/java/exception/*.class"/>
+			<include name="**/java/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/Provider_java.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/java/**/*.class"/>
+			<exclude name="**/java/Configuration*.class"/>
+			<exclude name="**/java/exception/*.class"/>
+			<exclude name="**/java/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentWebsphere -->
+	<jar jarfile="${destDir}/xraw/AgentWebsphere.jar">
+		<fileset dir="${root}/AgentWebsphere/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentWebsphere_ui.jar">
+		<fileset dir="${root}/AgentWebsphere/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentWebsphereProxy.jar" basedir="${root}/AgentWebsphereProxy/classes"/>
+
+	<!-- AgentWeblogic -->
+	<jar jarfile="${destDir}/xraw/AgentWeblogic.jar">
+		<fileset dir="${root}/AgentWeblogic/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentWeblogic_ui.jar">
+		<fileset dir="${root}/AgentWeblogic/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentSunApp -->
+	<jar jarfile="${destDir}/xraw/AgentSunApp.jar">
+		<fileset dir="${root}/AgentSunAppServer/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentSunApp_ui.jar">
+		<fileset dir="${root}/AgentSunAppServer/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentJMXJSR160 -->
+	<jar jarfile="${destDir}/xraw/AgentJMXJSR160.jar">
+		<fileset dir="${root}/AgentJMXJSR160/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentJMXJSR160_ui.jar">
+		<fileset dir="${root}/AgentJMXJSR160/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentJBoss -->
+	<jar jarfile="${destDir}/xraw/AgentJBoss.jar">
+		<fileset dir="${root}/AgentJBoss/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentJBoss_ui.jar">
+		<fileset dir="${root}/AgentJBoss/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentMySQL -->
+	<jar jarfile="${destDir}/xraw/AgentMySQL.jar">
+		<fileset dir="${root}/AgentMySQL/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentMySQL_ui.jar">
+		<fileset dir="${root}/AgentMySQL/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentHotSpotJVM -->
+	<jar jarfile="${destDir}/xraw/AgentHotSpotJVM.jar">
+		<fileset dir="${root}/AgentHotSpotJVM/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/xraw/AgentHotSpotJVM_ui.jar">
+		<fileset dir="${root}/AgentHotSpotJVM/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- All other agents -->
+	<jar jarfile="${destDir}/xraw/AgentApache.jar" basedir="${root}/AgentApache/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentDB2.jar" basedir="${root}/AgentDB2/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentHostAvailability.jar" basedir="${root}/AgentHostAvailability/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentOracle.jar" basedir="${root}/AgentOracle/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentProviderHost.jar" basedir="${root}/AgentProviderHost/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentServiceAvailability.jar" basedir="${root}/AgentServiceAvailability/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentSQL.jar" basedir="${root}/AgentSQL/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentWindows.jar" basedir="${root}/AgentWindows/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentWMI.jar" basedir="${root}/AgentWMI/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentSNMP.jar" basedir="${root}/AgentSNMP/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentLDAP.jar" basedir="${root}/AgentLDAP/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentFile.jar" basedir="${root}/AgentFile/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentLogFile.jar" basedir="${root}/AgentLogFile/classes"/>
+	<jar jarfile="${destDir}/xraw/AgentURL.jar" basedir="${root}/AgentURL/classes"/>
+</target>
+
+</project>
+
+<!-- end file build.xml -->

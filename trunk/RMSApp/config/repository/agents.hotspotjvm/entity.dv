@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/java.lang/Memory/NonHeapMemoryUsage">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Memory usage (non-heap)</name>
+          <description>Non-heap memory usage</description>
+          <query>
+            <resource id="time" rid="-/-/root/java.lang/Memory/NonHeapMemoryUsage/[#time#]"/>
+            <resource id="init" iname="$entity[3]/$counter" rid="-/-/root/java.lang/Memory/NonHeapMemoryUsage/[Memory.init]"/>
+            <resource id="used" iname="$entity[3]/$counter" rid="-/-/root/java.lang/Memory/NonHeapMemoryUsage/[Memory.used]"/>
+            <resource id="max" iname="$entity[3]/$counter" rid="-/-/root/java.lang/Memory/NonHeapMemoryUsage/[Memory.max]"/>
+            <function id="init_mb" iname="Initial(MB)" name="init_mb" op="script">
+              <param id="init"/>
+              <code>return (float)init / Math.pow(2,20);</code>
+            </function>
+            <function id="max_mb" iname="Maximum(MB)" name="max_mb" op="script">
+              <param id="max"/>
+              <code>return (float)max / Math.pow(2,20);</code>
+            </function>
+            <function id="used_mb" iname="Used(MB)" name="used_mb" op="script">
+              <param id="used"/>
+              <code>return (float)used / Math.pow(2,20);</code>
+            </function>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="init_mb"/>
+            <range id="used_mb"/>
+            <range id="max_mb"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/java.lang/GarbageCollector">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Collection time</name>
+          <description>Collection time for all garbage collectors(in seconds)</description>
+          <query>
+            <resource id="time" rid="-/-/root/java.lang/GarbageCollector/(.*)/[#time#]"/>
+            <resource code="return (float)colltime/1000;" id="colltime" iname="$entity[3]/$counter" rid="-/-/root/java.lang/GarbageCollector/(.*)/[GarbageCollector.CollectionTime]"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="colltime"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/java.lang/Threading">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Current threads</name>
+          <description>Current threads</description>
+          <query>
+            <resource id="time" rid="-/-/root/java.lang/Threading/[#time#]"/>
+            <resource id="peak" iname="$counter" rid="-/-/root/java.lang/Threading/[Threading.PeakThreadCount]"/>
+            <resource id="daemon" iname="$counter" rid="-/-/root/java.lang/Threading/[Threading.DaemonThreadCount]"/>
+            <resource id="total" iname="$counter" rid="-/-/root/java.lang/Threading/[Threading.ThreadCount]"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="total"/>
+            <range id="peak"/>
+            <range id="daemon"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/java.lang/Runtime">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>JVM Information</name>
+          <description>JVM runtime information</description>
+          <query>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.ClassPath]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.ClassPath]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.VmName]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.VmName]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.SpecName]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.SpecName]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.SpecVendor]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.SpecVendor]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.SpecVersion]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.SpecVersion]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.VmVersion]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.VmVersion]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.VmVendor]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.VmVendor]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.ManagementSpecVersion]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.ManagementSpecVersion]"/>
+            <resource id="-/-/root/java.lang/Runtime/[Runtime.Uptime]" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.Uptime]"/>
+            <resource code="return (new java.util.Date((long)Double.parseDouble(start_time))).toString();" id="start_time" iname="$counter" rid="-/-/root/java.lang/Runtime/[Runtime.StartTime]" type="string"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/java.lang/Memory/HeapMemoryUsage">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Memory usage (heap)</name>
+          <description>Heap memory usage</description>
+          <query>
+            <resource id="time" rid="-/-/root/java.lang/Memory/HeapMemoryUsage/[#time#]"/>
+            <resource id="init" iname="$counter" rid="-/-/root/java.lang/Memory/HeapMemoryUsage/[Memory.init]"/>
+            <resource id="used" iname="$counter" rid="-/-/root/java.lang/Memory/HeapMemoryUsage/[Memory.used]"/>
+            <resource id="max" iname="$counter" rid="-/-/root/java.lang/Memory/HeapMemoryUsage/[Memory.max]"/>
+            <function id="init_mb" iname="Initial(MB)" name="init_mb" op="script">
+              <param id="init"/>
+              <code>return (float)init / Math.pow(2,20);</code>
+            </function>
+            <function id="max_mb" iname="Maximum(MB)" name="max_mb" op="script">
+              <param id="max"/>
+              <code>return (float)max / Math.pow(2,20);</code>
+            </function>
+            <function id="used_mb" iname="Used(MB)" name="used_mb" op="script">
+              <param id="used"/>
+              <code>return (float)used / Math.pow(2,20);</code>
+            </function>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="init_mb"/>
+            <range id="used_mb"/>
+            <range id="max_mb"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/java.lang/Memory">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Memory usage by type</name>
+          <description>Memory usage by memory type (megabytes)</description>
+          <query>
+            <resource id="mem" iname="$entity[3]" rid="-/-/root/java.lang/Memory/(.*)"/>
+            <resource id="init" rid="-/-/root/java.lang/Memory/(.*)/[Memory.init]"/>
+            <resource id="used" rid="-/-/root/java.lang/Memory/(.*)/[Memory.used]"/>
+            <resource id="max" rid="-/-/root/java.lang/Memory/(.*)/[Memory.max]"/>
+            <function id="init_mb" name="Initial" op="script">
+              <param id="init"/>
+              <code>return (float)init / Math.pow(2,20);</code>
+            </function>
+            <function id="used_mb" name="Used" op="script">
+              <param id="used"/>
+              <code>return (float)used / Math.pow(2,20);</code>
+            </function>
+            <function id="max_mb" name="Maximum" op="script">
+              <param id="max"/>
+              <code>return (float)max / Math.pow(2,20);</code>
+            </function>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="Bar2D">
+            <domain id="mem"/>
+            <range id="init_mb"/>
+            <range id="used_mb"/>
+            <range id="max_mb"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/java.lang/MemoryPool">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Memory usage for all pools</name>
+          <description>Timeseries chart for used memory across all pools in megabytes</description>
+          <query>
+            <resource id="time" rid="-/-/root/java.lang/MemoryPool/(.*)/Usage/[#time#]"/>
+            <resource code="return (float)used / Math.pow(2,20);" id="used" iname="$entity[3]/$counter" name="Used(MB)" rid="-/-/root/java.lang/MemoryPool/(.*)/Usage/[Memory.used]"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="used"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Memory usage by pool</name>
+          <description>Memory usage by pool (megabytes)</description>
+          <query>
+            <resource id="pool" iname="$entity[3]/$entity[4]" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)"/>
+            <resource code="return (float)used / Math.pow(2,20);" id="used" iname="$entity[3]/$entity[4]/$counter" name="Used(MB)" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)/[Memory.used]"/>
+            <resource code="return (float)init / Math.pow(2,20);" id="init" iname="$entity[3]/$entity[4]/$counter" name="Initial(MB)" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)/[Memory.init]"/>
+            <resource code="return (float)max / Math.pow(2,20);" id="max" iname="$entity[3]/$entity[4]/$counter" name="Maximum(MB)" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)/[Memory.max]"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="Bar2D">
+            <domain id="pool"/>
+            <range id="used"/>
+            <range id="init"/>
+            <range id="max"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Memory usage</name>
+          <description>Memory usage (megabytes)</description>
+          <query>
+            <resource id="pool" iname="$entity[3]/$entity[4]" name="Usage" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)"/>
+            <resource code="return (float)used / Math.pow(2,20);" description="Memory used in megabytes" id="used" iname="$entity[3]/$entity[4]/Used(MB)" name="Used(MB)" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)/[Memory.used]"/>
+            <resource code="return (float)init / Math.pow(2,20);" description="Initial memory in megabytes" id="init" iname="$entity[3]/$entity[4]/Initial(MB)" name="Init(MB)" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)/[Memory.init]"/>
+            <resource code="return (float)max / Math.pow(2,20);" description="Maximum memory in megabytes" id="max" iname="$entity[3]/$entity[4]/Maximum(MB)" name="Max(MB)" rid="-/-/root/java.lang/MemoryPool/(.*)/(.*)/[Memory.max]"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <category id="pool"/>
+          <column id="used"/>
+          <column id="init"/>
+          <column id="max"/>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

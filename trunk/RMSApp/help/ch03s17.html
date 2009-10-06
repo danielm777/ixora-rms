@@ -1,0 +1,45 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>SQLServer</title><link href="style.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.68.1" name="generator"><link rel="start" href="index.html" title="IxoraRMS Documentation"><link rel="up" href="ch03.html" title="IxoraRMS Agents"><link rel="prev" href="ch03s16.html" title="Solaris"><link rel="next" href="ch03s18.html" title="SNMP"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="secSQLServer"></a>SQLServer</h2></div></div></div><p>This agent monitors instances of SQL Server and dynamically creates a number of
+	entities and counters holding details about server's operations. Note that these
+	statistics are only updated while the agent is running; SQL Server's activity will not
+	be traced when the agent is stopped.</p><p>Note that more performance counters can be retrieved through the Windows agent.
+	When using Windows agent on the host where SQL Server is installed, additional entities
+	will appear in the tree.</p><a name="NDF4" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraSQLServerLocalRemote"></a>Local/Remote Modes</h3></div></div></div><p>The agent supports both local and remote modes, provided that it
+		can open a database connection to the SQL Server from the machine it is
+		deployed on. By default the standard SQL Server ODBC driver is used through
+		the Java JDBC/ODBC bridge. If required it can be replaced with a different
+		driver.</p><p>For the purposes of license management it may be important to know that
+		the agent uses one database connection for as long as it's running, closing
+		it when it is stopped. When agent is stopping, a second connection is briefly
+		opened and closed.</p></div><a name="NE02" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraSQLServerVersions"></a>Supported Versions</h3></div></div></div><p>This agent supports Microsoft SQL Server 7.0, SQL Server 2000 and
+		SQL Server 2005.</p></div><a name="NE0E" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraSQLServerConfig"></a>Configuration</h3></div></div></div><p>Note that by default a SQL server instance is configured for Windows authentication,
+		which requires the remote user to a valid Windows user for the server machine. As this may
+		not always be the case, a better option would be to enable SQL Server authentication, which
+		will allow you to specify an user and password. To enable SQL Server Authentication select
+		the Security tab on the server properties in Enterprise Manager:</p><div class="figure"><a name="NE1A"></a><div><img src="images/sql_config.png" alt="Enabling SQL Server Authentication"></div><p class="title"><b>Figure&nbsp;22.&nbsp;Enabling SQL Server Authentication</b></p></div><p>The following configuration options are available:</p><div class="itemizedlist"><ul type="disc"><li>Username: user name to use when connecting to SQL Server.</li><li>Password: password to use when connecting to SQL Server.</li><li>Instance: either the server name, or the server and instance name to
+			connect to, in the form "serverName\instanceName".</li><li>JDBC string (optional): allows you to specify the raw JDBC
+			connection string, for example if you wish to use a different
+			driver to connect to SQL Server. The above username, password and instance will be
+			ignored when this is set.</li><li>JDBC class: when using a custom JDBC string, you can also
+			specify a different JDBC class (the default is Sun's JDBC/ODBC bridge).</li><li>Cursors: Set to enable cursor events (required by Cursors
+			entity). Disable to improve performance</li><li>Database: Set to enable database events (required by
+			Database entity). Disable to improve performance</li><li>Errors: Set to enable tracing error events (required by
+			Errors entity). Disable to improve performance</li><li>Locks: Set to enable tracing lock events (required by
+			Locks entity). Disable to improve performance</li><li>Scans: Set to enable tracing table scan events (required by
+			Scans entity). Disable to improve performance</li><li>Sessions: Set to receive existing session information
+			events (required by Sessions entity). Disable to improve performance</li><li>Stored Procedures: Set to enable tracing stored procedure
+			and remote calls events (required by Stored Procedures entity). Disable to
+			improve performance</li><li>Transactions: Set to enable tracing transaction events
+			(required by Transactions entity). Disable to improve performance</li><li>TSQL: Set to enable tracing Transact SQL execution events
+			(required by TSQL entity). Disable to improve performance</li></ul></div></div><a name="NE3F" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraSQLServerContents"></a>Contents</h3></div></div></div><p>Note that counters returned by this agent are dynamically calculated while
+		the agent is attached to SQL Server. They will not be updated for operations
+		which occur while the agent is not running.</p><div class="itemizedlist"><ul type="disc"><li>Cursors: traces cursor operations, such as the number of cursors
+			opened, closed or executed.</li><li>Database: contains counters for data file operations, such
+			as the number of file grows and shrinks.</li><li>Errors: holds statistics with the number of various error
+			and warning events.</li><li>Locks: contains counters with the number of locks operations,
+			such as number of locks acquired, released and deadlocks.</li><li>Scans: traces the number and duration of table scan operations.</li><li>Sessions: maintains a list of SQL Server client sessions. This
+			will also include information for sessions started before the agent was
+			activated.</li><li>Stored procedures: Traces details of stored procedure calls,
+			including the SQL text, duration and CPU usage.</li><li>Transactions: contains counters with details for SQL transactions,
+			such as the number of begin/commit/rollback operations, and total
+			transaction time.</li><li>TSQL: holds details for every SQL statement executed by
+			SQL Server, including the text, number of reads/writes and CPU usage.</li></ul></div></div></div></body></html>

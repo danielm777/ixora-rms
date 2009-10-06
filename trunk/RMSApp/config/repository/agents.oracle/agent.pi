@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <providerInstances>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Sessions</instanceName>
+      <description>Provides session information for the Oracle server</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574021F73656C656374200A0973696420735F7369642C0A09736164647220735F73616464722C0A09757365726E616D6520735F757365726E616D652C0A0973746174757320735F7374617475732C0A0973657276657220735F7365727665722C0A09736368656D616E616D6520735F736368656D616E616D652C0A096F737573657220735F6F73757365722C0A0970726F6365737320735F70726F636573732C0A096D616368696E6520735F6D616368696E652C0A097465726D696E616C20735F7465726D696E616C2C0A0970726F6772616D20735F70726F6772616D2C0A097479706520735F747970652C0A096D6F64756C6520735F6D6F64756C652C0A096D6F64756C655F6861736820735F6D6F64756C655F686173682C0A09616374696F6E20735F616374696F6E2C0A09616374696F6E5F6861736820735F616374696F6E5F686173682C0A096C6F676F6E5F74696D6520735F6C6F676F6E5F74696D652C0A096C6173745F63616C6C5F657420735F6C6173745F63616C6C5F65742C0A096661696C6F7665725F7479706520735F6661696C6F7665725F747970652C0A096661696C6F7665725F6D6574686F6420735F6661696C6F7665725F6D6574686F642C0A096661696C65645F6F76657220735F6661696C65645F6F7665722C0A0963757272656E745F71756575655F6475726174696F6E20735F63757272656E745F71756575655F6475726174696F6E0A66726F6D20762473657373696F6E200A"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/ora_sessions/{0}" idx="0"/>
+            <column cid="s_saddr" eid="root/ora_sessions/{0}" idx="1"/>
+            <column cid="s_username" eid="root/ora_sessions/{0}" idx="2"/>
+            <column cid="s_status" eid="root/ora_sessions/{0}" idx="3"/>
+            <column cid="s_server" eid="root/ora_sessions/{0}" idx="4"/>
+            <column cid="s_schemaname" eid="root/ora_sessions/{0}" idx="5"/>
+            <column cid="s_osuser" eid="root/ora_sessions/{0}" idx="6"/>
+            <column cid="s_process" eid="root/ora_sessions/{0}" idx="7"/>
+            <column cid="s_machine" eid="root/ora_sessions/{0}" idx="8"/>
+            <column cid="s_terminal" eid="root/ora_sessions/{0}" idx="9"/>
+            <column cid="s_program" eid="root/ora_sessions/{0}" idx="10"/>
+            <column cid="s_type" eid="root/ora_sessions/{0}" idx="11"/>
+            <column cid="s_module" eid="root/ora_sessions/{0}" idx="12"/>
+            <column cid="s_module_hash" eid="root/ora_sessions/{0}" idx="13"/>
+            <column cid="s_action" eid="root/ora_sessions/{0}" idx="14"/>
+            <column cid="s_action_hash" eid="root/ora_sessions/{0}" idx="15"/>
+            <column cid="s_logon_time" eid="root/ora_sessions/{0}" idx="16"/>
+            <column cid="s_last_call_et" eid="root/ora_sessions/{0}" idx="17"/>
+            <column cid="s_failover_type" eid="root/ora_sessions/{0}" idx="18"/>
+            <column cid="s_failover_method" eid="root/ora_sessions/{0}" idx="19"/>
+            <column cid="s_failed_over" eid="root/ora_sessions/{0}" idx="20"/>
+            <column cid="s_current_queue_duration" eid="root/ora_sessions/{0}" idx="21"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_sessions/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="s_action">
+            <alternatename/>
+            <description>s_action.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_action_hash">
+            <alternatename/>
+            <description>s_action_hash.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_current_queue_duration">
+            <alternatename/>
+            <description>s_current_queue_duration.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_failed_over">
+            <alternatename/>
+            <description>s_failed_over.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_failover_method">
+            <alternatename/>
+            <description>s_failover_method.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_failover_type">
+            <alternatename/>
+            <description>s_failover_type.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_last_call_et">
+            <alternatename/>
+            <description>s_last_call_et.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_logon_time">
+            <alternatename/>
+            <description>s_logon_time.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_machine">
+            <alternatename/>
+            <description>s_machine.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_module">
+            <alternatename/>
+            <description>s_module.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_module_hash">
+            <alternatename/>
+            <description>s_module_hash.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_osuser">
+            <alternatename/>
+            <description>s_osuser.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_process">
+            <alternatename/>
+            <description>s_process.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_program">
+            <alternatename/>
+            <description>s_program.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_saddr">
+            <alternatename/>
+            <description>s_saddr.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_schemaname">
+            <alternatename/>
+            <description>s_schemaname.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_server">
+            <alternatename/>
+            <description>s_server.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_status">
+            <alternatename/>
+            <description>s_status.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_terminal">
+            <alternatename/>
+            <description>s_terminal.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_type">
+            <alternatename/>
+            <description>s_type.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="s_username">
+            <alternatename/>
+            <description>s_username.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>8</agentVersion>
+        <agentVersion>9i</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Events</instanceName>
+      <description>Shows information about Oracle system events</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED00057402ED73656C656374206576656E742C0A20202020202020202020746F74616C5F77616974732C0A20202020202020202020746F74616C5F74696D656F7574732C0A2020202020202020202074696D655F7761697465642C0A20202020202020202020617665726167655F776169742C0A2020202020202020202074696D655F7761697465645F6D6963726F0A66726F6D20762473797374656D5F6576656E740A7768657265206576656E74206E6F7420696E20280A09276C6F636B20656C656D656E7420636C65616E7570272C0A0927706D6F6E2074696D6572272C0A0927736D6F6E2074696D6572272C0A092753514C2A4E6574206D6573736167652066726F6D20636C69656E74272C0A092753514C2A4E657420627265616B2F726573657420746F20636C69656E74272C0A092753514C2A4E6574206D65737361676520746F20636C69656E74272C0A092753514C2A4E6574206D6F726520646174612066726F6D20636C69656E74272C0A092753514C2A4E6574206D6F7265206461746120746F20636C69656E74272C0A09277264626D7320697063206D657373616765272C0A09277264626D7320697063207265706C79272C0A0927706172616C6C656C20717565727920646571756575652077616974272C0A0927706172616C6C656C2071756572792069646C652077616974202D20536C61766573272C0A09276469737061746368657220636C69656E74272C0A09274E756C6C206576656E74272C0A09277069706520676574272C0A0927504C2F53514C206C6F636B2074696D6572272C0A092777616B6575702074696D65206D616E61676572272C0A09277669727475616C206369726375697420737461747573272C0A0927736C6176652077616974272C0A0927574D4F4E20676F657320746F20736C656570272C0A0927646973706174636865722074696D6572270A0929200A09616E64206576656E74206E6F74206C696B6520274446532527200A09616E64206576656E74206E6F74206C696B6520274B58465825270A"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/ora_events/{0}" idx="0"/>
+            <column cid="ev_total_waits" eid="root/ora_events/{0}" idx="1"/>
+            <column cid="ev_total_timeouts" eid="root/ora_events/{0}" idx="2"/>
+            <column cid="ev_time_waited" eid="root/ora_events/{0}" idx="3"/>
+            <column cid="ev_average_wait" eid="root/ora_events/{0}" idx="4"/>
+            <column cid="ev_time_waited_micro" eid="root/ora_events/{0}" idx="5"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_events/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="ev_average_wait">
+            <alternatename/>
+            <description>ev_time_waited_micro.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ev_time_waited">
+            <alternatename/>
+            <description>ev_total_waits.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ev_time_waited_micro">
+            <alternatename/>
+            <description>ev_average_wait.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ev_total_timeouts">
+            <alternatename/>
+            <description>ev_time_waited.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ev_total_waits">
+            <alternatename/>
+            <description>ev_total_timeouts.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Data Dictionary Cache</instanceName>
+      <description>Provides dictionary data cache information</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574009E73656C656374200A09706172616D657465722C0A09636F756E742C0A0975736167652C0A09676574732C0A096765746D69737365732C0A09313030202D20286765746D69737365732F67657473202A203130302920686974726174696F0A66726F6D0A097624726F7763616368650A77686572650A0967657473202B206765746D6973736573203C3E20300A6F7264657220627920706172616D65746572"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/ora_ddcache/{0}" idx="0"/>
+            <column cid="ddcache_count" eid="root/ora_ddcache/{0}" idx="1"/>
+            <column cid="ddcache_usage" eid="root/ora_ddcache/{0}" idx="2"/>
+            <column cid="ddcache_gets" eid="root/ora_ddcache/{0}" idx="3"/>
+            <column cid="ddcache_getmisses" eid="root/ora_ddcache/{0}" idx="4"/>
+            <column cid="ddcache_gethr" eid="root/ora_ddcache/{0}" idx="5"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_ddcache/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="ddcache_count">
+            <alternatename/>
+            <description>ddcache_count.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ddcache_gethr">
+            <alternatename/>
+            <description>ddcache_gethr.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ddcache_getmisses">
+            <alternatename/>
+            <description>ddcache_getmisses.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ddcache_gets">
+            <alternatename/>
+            <description>ddcache_gets.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ddcache_usage">
+            <alternatename/>
+            <description>ddcache_usage.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Tablespaces</instanceName>
+      <description>Provides information about Oracle tablespaces</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED00057402E173656C656374200A097461626C6573706163655F6E616D652C0A096175746F657874656E642C0A09726F756E642828746F74616C5F73706163652F313032342F31303234292C322920617320746F74616C5F73706163652C0A09726F756E642828746F74616C5F667265655F73706163652F313032342F31303234292C322920617320746F74616C5F667265655F73706163652C0A09726F756E64282828746F74616C5F7370616365202D20746F74616C5F667265655F7370616365292F313032342F31303234292C322920617320757365645F73706163652C0A09726F756E642828313030202A2073756D5F667265655F626C6F636B732F73756D5F616C6C6F635F626C6F636B73292C3229206173207063745F667265650A66726F6D200A092873656C6563740A09097461626C6573706163655F6E616D652C0A09096D6178286175746F657874656E7369626C6529206175746F657874656E642C0A090973756D28626C6F636B73292073756D5F616C6C6F635F626C6F636B732C0A090973756D2862797465732920617320746F74616C5F73706163650A0966726F6D206462615F646174615F66696C65730A0967726F7570206279207461626C6573706163655F6E616D65292C0A092873656C6563740A0909622E7461626C6573706163655F6E616D652066735F74735F6E616D652C0A09096E766C2873756D286279746573292C302920617320746F74616C5F667265655F73706163652C0A090973756D28626C6F636B73292061732073756D5F667265655F626C6F636B730A0966726F6D206462615F667265655F737061636520612C206462615F7461626C6573706163657320620A09776865726520612E7461626C6573706163655F6E616D6520282B29203D20622E7461626C6573706163655F6E616D650A0967726F757020627920622E7461626C6573706163655F6E616D652C2073746174757329090A7768657265207461626C6573706163655F6E616D65203D2066735F74735F6E616D65"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/ora_ts/{0}" idx="0"/>
+            <column cid="ts_autoextend" eid="root/ora_ts/{0}" idx="1"/>
+            <column cid="ts_total_space" eid="root/ora_ts/{0}" idx="2"/>
+            <column cid="ts_total_free_space" eid="root/ora_ts/{0}" idx="3"/>
+            <column cid="ts_used_space" eid="root/ora_ts/{0}" idx="4"/>
+            <column cid="ts_pct_free" eid="root/ora_ts/{0}" idx="5"/>
+          </columns>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_ts/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="ts_autoextend">
+            <alternatename/>
+            <description>ts_autoextend.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="ts_pct_free">
+            <alternatename/>
+            <description>ts_pct_free.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ts_total_free_space">
+            <alternatename/>
+            <description>ts_total_free_space.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ts_total_space">
+            <alternatename/>
+            <description>ts_total_space.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ts_used_space">
+            <alternatename/>
+            <description>ts_used_space.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Bufferpools</instanceName>
+      <description>Provides bufferpool information</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574009373656C6563740A0969642C0A096E616D652C0A09626C6F636B5F73697A652C0A09726573697A655F73746174652C0A0963757272656E745F73697A652C0A09627566666572732C0A097461726765745F73697A652C0A097461726765745F627566666572732C0A09707265765F73697A652C0A09707265765F627566666572730A66726F6D2076246275666665725F706F6F6C"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/ora_bp/{1#0}" idx="0"/>
+            <column eid="root/ora_bp/{1#0}" idx="1"/>
+            <column cid="bp_block_size" eid="root/ora_bp/{1#0}" idx="2"/>
+            <column cid="bp_resize_state" eid="root/ora_bp/{1#0}" idx="3"/>
+            <column cid="bp_current_size" eid="root/ora_bp/{1#0}" idx="4"/>
+            <column cid="bp_buffers" eid="root/ora_bp/{1#0}" idx="5"/>
+            <column cid="bp_target_size" eid="root/ora_bp/{1#0}" idx="6"/>
+            <column cid="bp_target_buffers" eid="root/ora_bp/{1#0}" idx="7"/>
+            <column cid="bp_prev_size" eid="root/ora_bp/{1#0}" idx="8"/>
+            <column cid="bp_prev_buffers" eid="root/ora_bp/{1#0}" idx="9"/>
+          </columns>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_bp/{1#0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="bp_block_size">
+            <alternatename/>
+            <description>bp_block_size.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bp_buffers">
+            <alternatename/>
+            <description>bp_buffers.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bp_current_size">
+            <alternatename/>
+            <description>bp_current_size.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bp_prev_buffers">
+            <alternatename/>
+            <description>bp_prev_buffers.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bp_prev_size">
+            <alternatename/>
+            <description>bp_prev_size.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bp_resize_state">
+            <alternatename/>
+            <description>bp_resize_state.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="bp_target_buffers">
+            <alternatename/>
+            <description>bp_target_buffers.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bp_target_size">
+            <alternatename/>
+            <description>bp_target_size.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Library Cache</instanceName>
+      <description>Provides library cache data</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574009E73656C656374200A096E616D6573706163652C0A09676574732C0A09726F756E6428283130302A676574686974726174696F292C32292C0A0970696E732C090A09726F756E6428283130302A70696E686974726174696F292C32292C0A0972656C6F6164732C0A09696E76616C69646174696F6E730A66726F6D200A0976246C69627261727963616368650A6F72646572206279206E616D657370616365"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/ora_libcache/{0}" idx="0"/>
+            <column cid="libcache_gets" eid="root/ora_libcache/{0}" idx="1"/>
+            <column cid="libcache_gethr" eid="root/ora_libcache/{0}" idx="2"/>
+            <column cid="libcache_pins" eid="root/ora_libcache/{0}" idx="3"/>
+            <column cid="libcache_pinhr" eid="root/ora_libcache/{0}" idx="4"/>
+            <column cid="libcache_reloads" eid="root/ora_libcache/{0}" idx="5"/>
+            <column cid="libcache_inv" eid="root/ora_libcache/{0}" idx="6"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_libcache/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="libcache_gethr">
+            <alternatename/>
+            <description>libcache_gethr.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="libcache_gets">
+            <alternatename/>
+            <description>libcache_gets.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="libcache_inv">
+            <alternatename/>
+            <description>libcache_inv.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="libcache_pinhr">
+            <alternatename/>
+            <description>libcache_pinhr.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="libcache_pins">
+            <alternatename/>
+            <description>libcache_pins.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="libcache_reloads">
+            <alternatename/>
+            <description>libcache_reloads.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Dynamic SQL</instanceName>
+      <description>Shows details about dynamic SQL statements</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740CBF73656C656374202A2066726F6D280A0973656C656374200A0909616464726573732C0A090973716C5F746578742C0A09097368617261626C655F6D656D2C0A090970657273697374656E745F6D656D2C0A090972756E74696D655F6D656D2C0A0909736F7274732C0A090976657273696F6E5F636F756E742C0A09096C6F616465645F76657273696F6E732C0A09096F70656E5F76657273696F6E732C0A090975736572735F6F70656E696E672C0A0909657865637574696F6E732C0A090975736572735F657865637574696E672C0A09096C6F6164732C0A090966697273745F6C6F61645F74696D652C0A0909696E76616C69646174696F6E732C0A090970617273655F63616C6C732C0A09096469736B5F72656164732C0A09096275666665725F676574732C0A0909726F77735F70726F6365737365642C0A0909636F6D6D616E645F747970652C0A09096F7074696D697A65725F6D6F64652C0A090970617273696E675F757365725F69642C0A090970617273696E675F736368656D615F69642C0A09096B6570745F76657273696F6E732C0A0909686173685F76616C75652C0A09096D6F64756C652C0A09096D6F64756C655F686173682C0A0909616374696F6E2C0A0909616374696F6E5F686173682C0A090973657269616C697A61626C655F61626F7274732C0A0909726F756E642828726F77735F70726F6365737365642F657865637574696F6E73292C322920617320726F77735F70726F6365737365645F7065725F657865632C0A0909726F756E6428286469736B5F72656164732F657865637574696F6E73292C3229206173206469736B5F72656164735F7065725F657865632C0A0909726F756E6428286275666665725F676574732F657865637574696F6E73292C3229206173206275666665725F676574735F7065725F657865632C0A0909726F756E642828736F7274732F657865637574696F6E73292C322920617320736F7274735F7065725F657865630A0966726F6D2009762473716C61726561206F7264657220627920657865637574696F6E7320646573630A2920776865726520657865637574696F6E73203E203020616E6420524F574E554D203C3D2032300A756E696F6E0A73656C656374202A2066726F6D280A0973656C656374200A0909616464726573732C0A090973716C5F746578742C0A09097368617261626C655F6D656D2C0A090970657273697374656E745F6D656D2C0A090972756E74696D655F6D656D2C0A0909736F7274732C0A090976657273696F6E5F636F756E742C0A09096C6F616465645F76657273696F6E732C0A09096F70656E5F76657273696F6E732C0A090975736572735F6F70656E696E672C0A0909657865637574696F6E732C0A090975736572735F657865637574696E672C0A09096C6F6164732C0A090966697273745F6C6F61645F74696D652C0A0909696E76616C69646174696F6E732C0A090970617273655F63616C6C732C0A09096469736B5F72656164732C0A09096275666665725F676574732C0A0909726F77735F70726F6365737365642C0A0909636F6D6D616E645F747970652C0A09096F7074696D697A65725F6D6F64652C0A090970617273696E675F757365725F69642C0A090970617273696E675F736368656D615F69642C0A09096B6570745F76657273696F6E732C0A0909686173685F76616C75652C0A09096D6F64756C652C0A09096D6F64756C655F686173682C0A0909616374696F6E2C0A0909616374696F6E5F686173682C0A090973657269616C697A61626C655F61626F7274732C0A0909726F756E642828726F77735F70726F6365737365642F657865637574696F6E73292C322920617320726F77735F70726F6365737365645F7065725F657865632C0A0909726F756E6428286469736B5F72656164732F657865637574696F6E73292C3229206173206469736B5F72656164735F7065725F657865632C0A0909726F756E6428286275666665725F676574732F657865637574696F6E73292C3229206173206275666665725F676574735F7065725F657865632C0A0909726F756E642828736F7274732F657865637574696F6E73292C322920617320736F7274735F7065725F6578656309090A0966726F6D2009762473716C61726561206F7264657220627920736F72747320646573630A2920776865726520657865637574696F6E73203E203020616E6420524F574E554D203C3D2032300A756E696F6E0A73656C656374202A2066726F6D280A0973656C656374200A0909616464726573732C0A090973716C5F746578742C0A09097368617261626C655F6D656D2C0A090970657273697374656E745F6D656D2C0A090972756E74696D655F6D656D2C0A0909736F7274732C0A090976657273696F6E5F636F756E742C0A09096C6F616465645F76657273696F6E732C0A09096F70656E5F76657273696F6E732C0A090975736572735F6F70656E696E672C0A0909657865637574696F6E732C0A090975736572735F657865637574696E672C0A09096C6F6164732C0A090966697273745F6C6F61645F74696D652C0A0909696E76616C69646174696F6E732C0A090970617273655F63616C6C732C0A09096469736B5F72656164732C0A09096275666665725F676574732C0A0909726F77735F70726F6365737365642C0A0909636F6D6D616E645F747970652C0A09096F7074696D697A65725F6D6F64652C0A090970617273696E675F757365725F69642C0A090970617273696E675F736368656D615F69642C0A09096B6570745F76657273696F6E732C0A0909686173685F76616C75652C0A09096D6F64756C652C0A09096D6F64756C655F686173682C0A0909616374696F6E2C0A0909616374696F6E5F686173682C0A090973657269616C697A61626C655F61626F7274732C0A0909726F756E642828726F77735F70726F6365737365642F657865637574696F6E73292C322920617320726F77735F70726F6365737365645F7065725F657865632C0A0909726F756E6428286469736B5F72656164732F657865637574696F6E73292C3229206173206469736B5F72656164735F7065725F657865632C0A0909726F756E6428286275666665725F676574732F657865637574696F6E73292C3229206173206275666665725F676574735F7065725F657865632C0A0909726F756E642828736F7274732F657865637574696F6E73292C322920617320736F7274735F7065725F6578656309090A0966726F6D2009762473716C61726561206F72646572206279206275666665725F6765747320646573630A2920776865726520657865637574696F6E73203E203020616E6420524F574E554D203C3D2032300A756E696F6E0A73656C656374202A2066726F6D280A0973656C656374200A0909616464726573732C0A090973716C5F746578742C0A09097368617261626C655F6D656D2C0A090970657273697374656E745F6D656D2C0A090972756E74696D655F6D656D2C0A0909736F7274732C0A090976657273696F6E5F636F756E742C0A09096C6F616465645F76657273696F6E732C0A09096F70656E5F76657273696F6E732C0A090975736572735F6F70656E696E672C0A0909657865637574696F6E732C0A090975736572735F657865637574696E672C0A09096C6F6164732C0A090966697273745F6C6F61645F74696D652C0A0909696E76616C69646174696F6E732C0A090970617273655F63616C6C732C0A09096469736B5F72656164732C0A09096275666665725F676574732C0A0909726F77735F70726F6365737365642C0A0909636F6D6D616E645F747970652C0A09096F7074696D697A65725F6D6F64652C0A090970617273696E675F757365725F69642C0A090970617273696E675F736368656D615F69642C0A09096B6570745F76657273696F6E732C0A0909686173685F76616C75652C0A09096D6F64756C652C0A09096D6F64756C655F686173682C0A0909616374696F6E2C0A0909616374696F6E5F686173682C0A090973657269616C697A61626C655F61626F7274732C0A0909726F756E642828726F77735F70726F6365737365642F657865637574696F6E73292C322920617320726F77735F70726F6365737365645F7065725F657865632C0A0909726F756E6428286469736B5F72656164732F657865637574696F6E73292C3229206173206469736B5F72656164735F7065725F657865632C0A0909726F756E6428286275666665725F676574732F657865637574696F6E73292C3229206173206275666665725F676574735F7065725F657865632C0A0909726F756E642828736F7274732F657865637574696F6E73292C322920617320736F7274735F7065725F6578656309090A0966726F6D2009762473716C61726561206F7264657220627920726F77735F70726F63657373656420646573630A2920776865726520657865637574696F6E73203E203020616E6420524F574E554D203C3D203230"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column cid="sql_address" eid="root/dyn_sql/{1}" idx="0"/>
+            <column eid="root/dyn_sql/{1}" idx="1"/>
+            <column cid="sql_sharable_mem" eid="root/dyn_sql/{1}" idx="2"/>
+            <column cid="sql_persistent_mem" eid="root/dyn_sql/{1}" idx="3"/>
+            <column cid="sql_runtime_mem" eid="root/dyn_sql/{1}" idx="4"/>
+            <column cid="sql_sorts" eid="root/dyn_sql/{1}" idx="5"/>
+            <column cid="sql_version_count" eid="root/dyn_sql/{1}" idx="6"/>
+            <column cid="sql_loaded_versions" eid="root/dyn_sql/{1}" idx="7"/>
+            <column cid="sql_open_versions" eid="root/dyn_sql/{1}" idx="8"/>
+            <column cid="sql_users_opening" eid="root/dyn_sql/{1}" idx="9"/>
+            <column cid="sql_executions" eid="root/dyn_sql/{1}" idx="10"/>
+            <column cid="sql_users_executing" eid="root/dyn_sql/{1}" idx="11"/>
+            <column cid="sql_loads" eid="root/dyn_sql/{1}" idx="12"/>
+            <column cid="sql_first_load_time" eid="root/dyn_sql/{1}" idx="13"/>
+            <column cid="sql_invalidations" eid="root/dyn_sql/{1}" idx="14"/>
+            <column cid="sql_parse_calls" eid="root/dyn_sql/{1}" idx="15"/>
+            <column cid="sql_disk_reads" eid="root/dyn_sql/{1}" idx="16"/>
+            <column cid="sql_buffer_gets" eid="root/dyn_sql/{1}" idx="17"/>
+            <column cid="sql_rows_processed" eid="root/dyn_sql/{1}" idx="18"/>
+            <column cid="sql_command_type" eid="root/dyn_sql/{1}" idx="19"/>
+            <column cid="sql_optimizer_mode" eid="root/dyn_sql/{1}" idx="20"/>
+            <column cid="sql_parsing_user_id" eid="root/dyn_sql/{1}" idx="21"/>
+            <column cid="sql_parsing_schema_id" eid="root/dyn_sql/{1}" idx="22"/>
+            <column cid="sql_kept_versions" eid="root/dyn_sql/{1}" idx="23"/>
+            <column cid="sql_hash_value" eid="root/dyn_sql/{1}" idx="24"/>
+            <column cid="sql_module" eid="root/dyn_sql/{1}" idx="25"/>
+            <column cid="sql_module_hash" eid="root/dyn_sql/{1}" idx="26"/>
+            <column cid="sql_action" eid="root/dyn_sql/{1}" idx="27"/>
+            <column cid="sql_action_hash" eid="root/dyn_sql/{1}" idx="28"/>
+            <column cid="sql_serializable_aborts" eid="root/dyn_sql/{1}" idx="29"/>
+            <column cid="sql_rows_processed_per_exec" eid="root/dyn_sql/{1}" idx="30"/>
+            <column cid="sql_disk_reads_per_exec" eid="root/dyn_sql/{1}" idx="31"/>
+            <column cid="sql_buffer_gets_per_exec" eid="root/dyn_sql/{1}" idx="32"/>
+            <column cid="sql_sorts_per_exec" eid="root/dyn_sql/{1}" idx="33"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/dyn_sql/{1}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="sql_action">
+            <alternatename/>
+            <description>sql_action.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_action_hash">
+            <alternatename/>
+            <description>sql_action_hash.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_address">
+            <alternatename/>
+            <description>sql_address.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_buffer_gets">
+            <alternatename/>
+            <description>sql_buffer_gets.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_buffer_gets_per_exec">
+            <alternatename/>
+            <description>sql_buffer_gets_per_exec.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_command_type">
+            <alternatename/>
+            <description>sql_command_type.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_disk_reads">
+            <alternatename/>
+            <description>sql_disk_reads.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_disk_reads_per_exec">
+            <alternatename/>
+            <description>sql_disk_reads_per_exec.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_executions">
+            <alternatename/>
+            <description>sql_executions.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_first_load_time">
+            <alternatename/>
+            <description>sql_first_load_time.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_hash_value">
+            <alternatename/>
+            <description>sql_hash_value.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_invalidations">
+            <alternatename/>
+            <description>sql_invalidations.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_kept_versions">
+            <alternatename/>
+            <description>sql_kept_versions.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_loaded_versions">
+            <alternatename/>
+            <description>sql_loaded_versions.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_loads">
+            <alternatename/>
+            <description>sql_loads.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_module">
+            <alternatename/>
+            <description>sql_module.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_module_hash">
+            <alternatename/>
+            <description>sql_module_hash.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_open_versions">
+            <alternatename/>
+            <description>sql_open_versions.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_optimizer_mode">
+            <alternatename/>
+            <description>sql_optimizer_mode.desc</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_parse_calls">
+            <alternatename/>
+            <description>sql_parse_calls.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_parsing_schema_id">
+            <alternatename/>
+            <description>sql_parsing_schema_id.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_parsing_user_id">
+            <alternatename/>
+            <description>sql_parsing_user_id.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_persistent_mem">
+            <alternatename/>
+            <description>sql_persistent_mem.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_rows_processed">
+            <alternatename/>
+            <description>sql_rows_processed.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_rows_processed_per_exec">
+            <alternatename/>
+            <description>sql_rows_processed_per_exec.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_runtime_mem">
+            <alternatename/>
+            <description>sql_runtime_mem.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_serializable_aborts">
+            <alternatename/>
+            <description>sql_serializable_aborts.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_sharable_mem">
+            <alternatename/>
+            <description>sql_sharable_mem.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_sorts">
+            <alternatename/>
+            <description>sql_sorts.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_sorts_per_exec">
+            <alternatename/>
+            <description>sql_sorts_per_exec.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_users_executing">
+            <alternatename/>
+            <description>sql_users_executing.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_users_opening">
+            <alternatename/>
+            <description>sql_users_opening.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="sql_version_count">
+            <alternatename/>
+            <description>sql_version_count.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>8</agentVersion>
+        <agentVersion>9i</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Data Access Statistics</instanceName>
+      <description>Provides statistics about data access patterns</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574012973656C6563742076616C75652066726F6D0A2873656C656374206E616D652C2076616C75652066726F6D20762473797373746174207768657265206E616D6520696E20280A09277461626C65207363616E732028636163686520706172746974696F6E7329272C0A09277461626C65207363616E732028646972656374207265616429272C0A09277461626C65207363616E7320286C6F6E67207461626C657329272C0A09277461626C65207363616E732028726F7769642072616E67657329272C0A09277461626C65207363616E73202873686F7274207461626C657329272C0A09277461626C6520666574636820627920726F776964272C0A09277461626C6520666574636820636F6E74696E75656420726F77270A0929206F72646572206279206E616D6529"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column cid="da_tf_by_row_id" eid="root/ora_da" idx="0"/>
+            <column cid="da_tf_continued_row" eid="root/ora_da" idx="1"/>
+            <column cid="da_ts_cache_partitions" eid="root/ora_da" idx="2"/>
+            <column cid="da_ts_direct_read" eid="root/ora_da" idx="3"/>
+            <column cid="da_ts_long_tables" eid="root/ora_da" idx="4"/>
+            <column cid="da_ts_rowid_ranges" eid="root/ora_da" idx="5"/>
+            <column cid="da_ts_short_tables" eid="root/ora_da" idx="6"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>true</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_da">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="da_tf_by_row_id">
+            <alternatename/>
+            <description>da_tf_by_row_id.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="da_tf_continued_row">
+            <alternatename/>
+            <description>da_tf_continued_row.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="da_ts_cache_partitions">
+            <alternatename/>
+            <description>da_ts_cache_partitions.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="da_ts_direct_read">
+            <alternatename/>
+            <description>da_ts_direct_read.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="da_ts_long_tables">
+            <alternatename/>
+            <description>da_ts_long_tables.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="da_ts_rowid_ranges">
+            <alternatename/>
+            <description>da_ts_rowid_ranges.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="da_ts_short_tables">
+            <alternatename/>
+            <description>da_ts_short_tables.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Global IO</instanceName>
+      <description>An overview of the database IO activity</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{home}/{agent.config.classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="1"/>
+          <providers.sql.driver_class type="0" value="{agent.config.jdbcclass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.config.username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.config.password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:oracle:thin:@{host}:{agent.config.port}:{agent.config.sid}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574013973656C656374200A0976616C75650A66726F6D0A2873656C656374206E616D652C2076616C75652066726F6D0A097624737973737461740A7768657265206E616D6520696E20280A0927636F6E73697374656E74206368616E676573272C0A0927636F6E73697374656E742067657473272C0A0927646220626C6F636B206368616E676573272C0A0927646220626C6F636B2067657473272C0A0927706879736963616C207265616473272C0A0927706879736963616C20726561647320646972656374272C0A0927706879736963616C20777269746573272C0A0927706879736963616C2077726974657320646972656374272C0A0927736F72747320286469736B29272C0A09277573657220636F6D6D697473272C0A09277573657220726F6C6C6261636B7327290A6F72646572206279206E616D6529"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column cid="io_consistent_changes" eid="root/ora_io" idx="0"/>
+            <column cid="io_consistent_gets" eid="root/ora_io" idx="1"/>
+            <column cid="io_db_block_changes" eid="root/ora_io" idx="2"/>
+            <column cid="io_db_block_gets" eid="root/ora_io" idx="3"/>
+            <column cid="io_physical_reads" eid="root/ora_io" idx="4"/>
+            <column cid="io_physical_reads_direct" eid="root/ora_io" idx="5"/>
+            <column cid="io_physical_writes" eid="root/ora_io" idx="6"/>
+            <column cid="io_physical_writes_direct" eid="root/ora_io" idx="7"/>
+            <column cid="io_sorts_disks" eid="root/ora_io" idx="8"/>
+            <column cid="io_user_commits" eid="root/ora_io" idx="9"/>
+            <column cid="io_user_rollbacks" eid="root/ora_io" idx="10"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>true</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/ora_io">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="io_consistent_changes">
+            <alternatename/>
+            <description>io_consistent_changes.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_consistent_gets">
+            <alternatename/>
+            <description>io_consistent_gets.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_db_block_changes">
+            <alternatename/>
+            <description>io_db_block_changes.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_db_block_gets">
+            <alternatename/>
+            <description>io_db_block_gets.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_physical_reads">
+            <alternatename/>
+            <description>io_physical_reads.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_physical_reads_direct">
+            <alternatename/>
+            <description>io_physical_reads_direct.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_physical_writes">
+            <alternatename/>
+            <description>io_physical_writes.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_physical_writes_direct">
+            <alternatename/>
+            <description>io_physical_writes_direct.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_sorts_disks">
+            <alternatename/>
+            <description>io_sorts_disks.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_user_commits">
+            <alternatename/>
+            <description>io_user_commits.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="io_user_rollbacks">
+            <alternatename/>
+            <description>io_user_rollbacks.desc</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>10g</agentVersion>
+        <agentVersion>9i</agentVersion>
+        <agentVersion>8</agentVersion>
+      </agentVersions>
+    </providerInstance>
+  </providerInstances>
+</rms>

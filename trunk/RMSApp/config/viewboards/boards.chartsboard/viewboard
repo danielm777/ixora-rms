@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewboard>
+<class>com.ixora.rms.ui.dataviewboard.charts.ChartsBoard</class>
+<counterFilterClass>com.ixora.rms.ui.dataviewboard.charts.ChartsBoardCounterFilter</counterFilterClass>
+<name>chartsboard.boardname</name>
+<viewName>chartsboard.viewname</viewName>
+<component>boards.chartsboard</component>
+<icon>chartsboard.gif</icon>
+<preference>0</preference>
+<samples>
+<sample>sample1.xml</sample>
+</samples>
+</viewboard>

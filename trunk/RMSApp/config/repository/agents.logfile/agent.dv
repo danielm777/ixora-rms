@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <views>
+    <view class="com.ixora.rms.ui.dataviewboard.logs.LogCounterDataView">
+      <name>Log records</name>
+      <description>Log records</description>
+      <query>
+        <resource id="log_records" iname="$counter" rid="-/-/root/(.*)/[log_records]" type="object"/>
+        <reaction params="log_records" severity="HIGH">
+          <arm><![CDATA[String match="Exception";java.util.List records = ((com.ixora.rms.agents.impl.logfile.LogRecordBatch)log_records).getLogRecords();for(java.util.Iterator iter = records.iterator();iter.hasNext();){com.ixora.rms.agents.impl.logfile.LogRecord logRecord = (com.ixora.rms.agents.impl.logfile.LogRecord)iter.next();String message = logRecord.getMessage();if(message != null) {if(message.contains(match)){env.put("record", logRecord);return true;};}}return false;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() >= 0;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "Application exception found in the log file. Record: " + String.valueOf(env.get("record"));]]></message>
+        </reaction>
+      </query>
+      <agentVersions/>
+      <author>system</author>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Log file size</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[file_size]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions/>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id1"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+      <name>Log file last changed time</name>
+      <description/>
+      <query>
+        <resource id="id1" iname="$counter" name="$counter" rid="-/-/root/(.*)/[last_changed]"/>
+      </query>
+      <agentVersions/>
+      <author>system</author>
+    </view>
+  </views>
+</rms>

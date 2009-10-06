@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.sqlserver.SQLServerAgent</class>
+  <version>1.0.0</version>
+  <name>agents.sqlserver</name>
+  <description>sqlserver.description</description>
+  <category>databases</category>
+  <versions>
+    <version>7.0</version>
+    <version>2000</version>
+    <version>2005</version>
+  </versions>
+  <javaHelp>secSQLServer</javaHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.sqlserver.ConfigurationPanel</customconfigpanel>
+      <uiJar>/jars/AgentSQL.jar</uiJar>
+      <agentVersions/>
+    </versionItem>
+  </versionItems>
+</agent>

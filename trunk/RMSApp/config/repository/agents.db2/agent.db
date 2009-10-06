@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>DB2 overview</name>
+      <description>An overview of DB2 activity</description>
+      <views>
+        <view id=":SQL statements, per execution data:"/>
+        <view id=":Tables:"/>
+        <view id=":Bufferpools:"/>
+        <view id=":Applications:"/>
+        <view id=":Containers:"/>
+        <view id=":Agents:"/>
+        <view id="/:Bufferpool data I/O operations:"/>
+        <view id="/:Bufferpool index I/O operations:"/>
+        <view id="/:Bufferpool page cleaners:"/>
+        <view id="/:Log space:"/>
+        <view id="/:DB2 overview:"/>
+        <view id="/:Commit and rollback statements:"/>
+        <view id="/:Applications currently connected:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+      </agentVersions>
+    </dashboard>
+  </dashboards>
+</rms>
