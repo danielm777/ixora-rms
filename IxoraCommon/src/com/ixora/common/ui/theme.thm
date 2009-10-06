@@ -1,0 +1,14 @@
+color.primary1=51,102,51
+color.primary2=102,153,102
+color.primary3=153,204,153
+color.secondary1=102,102,102
+color.secondary2=153,153,153
+color.secondary3=204,204,204
+color.black=255,255,255
+color.white=0,0,0
+font.usertext=Dialog,plain,11
+font.menutext=Dialog,plain,11
+font.systemtext=Dialog,plain,11
+font.windowtitle=Dialog,plain,11
+font.controltext=Dialog,plain,11
+font.subtext=Dialog,plain,10

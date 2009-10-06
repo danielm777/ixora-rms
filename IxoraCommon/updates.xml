@@ -1,0 +1,46 @@
+<updates>
+	<module name="WinA">
+	<update id="1.2.0/WinA">
+		<forVersion>1.1.0</forVersion>
+		<newVersion>1.2.0</newVersion>
+		<name>name</name>
+		<description>description</description>
+		<components>
+			<component>
+				<content>wina.jar</content>
+				<installlocation>lib/wina.jar</installlocation>
+				<needapprestart>true</needapprestart>
+			</component>
+			<component>
+				<content>wina.properties</content>
+				<installlocation>config/messages</installlocation>
+				<needapprestart>true</needapprestart>
+			</component>
+			<component>
+				<content>cg.xml</content>
+				<installlocation>config/cgs</installlocation>
+				<needapprestart>true</needapprestart>
+			</component>
+			<component>
+				<content>sysh.xml</content>
+				<installlocation>config/views</installlocation>
+				<needapprestart>true</needapprestart>
+			</component>
+		</components>
+	</update>
+	<update id="1.3.0/WinA">
+		<forVersion>1.1.0</forVersion>
+		<forVersion>1.2.0</forVersion>
+		<newVersion>1.3.0</newVersion>
+		<name>name</name>
+		<description>description</description>
+		<components>
+			<component>
+				<content>wina.zip</content>
+				<isZip>true</isZip>
+				<needapprestart>true</needapprestart>
+			</component>
+		</components>
+	</update>
+	</module>
+</updates>
