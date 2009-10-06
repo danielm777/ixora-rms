@@ -1,0 +1,142 @@
+/*
+ * Created on 11-Nov-2004
+ */
+package com.ixora.rms.dataengine.hints.functions;
+
+import java.util.Iterator;
+import java.util.regex.Pattern;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
+import oscript.OscriptInterpreter;
+import oscript.data.BasicScope;
+import oscript.data.Scope;
+import oscript.exceptions.PackagedScriptObjectException;
+import oscript.parser.ParseException;
+
+import com.ixora.common.xml.XMLUtils;
+import com.ixora.common.xml.exception.XMLException;
+import com.ixora.common.xml.exception.XMLInvalidFieldValue;
+import com.ixora.common.xml.exception.XMLNodeMissing;
+import com.ixora.rms.data.CounterValue;
+import com.ixora.rms.data.CounterValueDouble;
+import com.ixora.rms.data.CounterValueString;
+import com.ixora.rms.dataengine.hints.Resource;
+
+/**
+ * ObjectScriptFunction
+ */
+public class ObjectScriptFunction extends Function
+{
+    private String	scriptCode = "";
+    private Scope 	scriptScope = new BasicScope( OscriptInterpreter.getGlobalScope() );
+
+    /** Used to check if Resource ids make good variable names */
+    private static Pattern identifierPattern = Pattern.compile("[a-zA-Z]\\w*");
+    
+    /* There will be one variable for each resource of the function;
+     * called r0, r1 etc. If a resource has an ID defined and it is a valid 
+     * identifier then the id is used as the variable name.
+     */
+    private String getVarName(Resource r, int index)
+    {
+        String id = r.style.getID();
+        if (id == null || !identifierPattern.matcher(id).matches()) // is it a valid identifier?
+            id = "r" + index;
+
+        return id;
+    }
+    
+    /**
+     * @see com.ixora.rms.dataengine.hints.functions.Function#execute(com.ixora.rms.data.CounterValue[])
+     */
+    public CounterValue execute(CounterValue[] args)
+    {
+        CounterValue	retCV = null;
+        
+        try {
+            
+            // Assume arguments passed match the parameters definition
+            for (int i = 0; i < args.length; i++)
+            {
+                CounterValue cv = args[i];
+                Resource	 r = (Resource)params.get(i);
+
+                // Set variable values inside the script
+                if (cv instanceof CounterValueDouble)
+                {
+                    OscriptInterpreter.eval( getVarName(r, i) + "=" + 
+                            cv.getDouble() + ";", scriptScope );
+                }
+                else if (cv instanceof CounterValueString)
+                {
+                    OscriptInterpreter.eval( getVarName(r, i) + "=\"" + 
+                            cv.toString() + "\";", scriptScope );
+                }
+            }
+            
+            // Perform the actual execution and get the result
+            double retVal = OscriptInterpreter.eval(scriptCode, scriptScope).castToInexactNumber();
+            retCV = new CounterValueDouble(retVal);
+
+        } catch (PackagedScriptObjectException e) {
+            // TODO: script code has errors: stop processing and inform the user
+            e.printStackTrace();
+        } catch (ParseException e) {
+            // TODO: script code has errors: stop processing and inform the user
+            e.printStackTrace();
+        }
+
+        return retCV;
+    }
+	/**
+	 * @see com.ixora.common.xml.XMLExternalizable#toXML(org.w3c.dom.Node)
+	 */
+	public void toXML(Node parent) throws XMLException
+	{
+		Document doc = parent.getOwnerDocument();
+		
+		// Create the query tag
+		Element el = doc.createElement("function");
+		el.setAttribute("op", "ObjectScript");
+		parent.appendChild(el);
+
+		// Save parameters
+		params.toXML(el);
+	}
+
+	/**
+	 * @see com.ixora.common.xml.XMLExternalizable#fromXML(org.w3c.dom.Node)
+	 */
+	public void fromXML(Node node) throws XMLException
+	{
+		params.fromXML(node);
+        OscriptInterpreter.useCompiler(true);
+        
+        // Declare variables in the script scope
+        int i = 0;
+        for (Iterator it = params.iterator(); it.hasNext();)
+        {
+            Resource r = (Resource) it.next();
+            try {
+                OscriptInterpreter.eval( "var " + getVarName(r, i) + ";", scriptScope );
+            } catch (ParseException e) {
+                // Will happen if the resource id is not a valid script identifier,
+                // so throw an "invalid value" exception
+                throw new XMLInvalidFieldValue(getVarName(r, i));
+            }
+
+            i++;
+        }
+
+		// TODO: use a CDATA section, but how ?...
+		Node n = XMLUtils.findChild(node, "code");
+		if(n == null)
+			throw new XMLNodeMissing("code");
+
+		this.scriptCode = n.getFirstChild().getNodeValue();
+	}
+
+}
