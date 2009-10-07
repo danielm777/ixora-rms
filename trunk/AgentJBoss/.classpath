@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IxoraCommon"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/wsdl4j.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/avalon-framework.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/axis-ws4ee.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/commons-discovery.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/concurrent.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/getopt.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jacorb.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jbossall-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-common-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jbosscx-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-deployment.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jbossha-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-iiop-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-j2ee.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-jaxrpc.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jbossjmx-ant.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-jsr77-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jbossmq-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-saaj.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jbosssx-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-system-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-transaction-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jboss-ws4ee-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jmx-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jmx-invoker-adaptor-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/jnp-client.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/juddisaaj.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/log4j.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/logkit.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/namespace.jar"/>
+	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/scout.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMS"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMSJMX"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
