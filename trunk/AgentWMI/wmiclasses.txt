@@ -1,0 +1,470 @@
+wmi_hw/hw_cooling/Win32_Fan 	Represents the properties of a fan device in the computer system.
+wmi_hw/hw_cooling/Win32_HeatPipe 	Represents the properties of a heat pipe cooling device.
+wmi_hw/hw_cooling/Win32_Refrigeration 	Represents the properties of a refrigeration device.
+wmi_hw/hw_cooling/Win32_TemperatureProbe 	Represents the properties of a temperature sensor (electronic thermometer).
+
+wmi_hw/hw_input/Win32_Keyboard 	Represents a keyboard installed on a Windows system.
+wmi_hw/hw_input/Win32_PointingDevice 	Represents an input device used to point to and select regions on the display of a Windows computer system.
+
+wmi_hw/hw_storage/Win32_AutochkSetting 	Represents the settings for the autocheck operation of a disk.
+wmi_hw/hw_storage/Win32_CDROMDrive 	Represents a CD-ROM drive on a Windows computer system.
+wmi_hw/hw_storage/Win32_DiskDrive 	Represents a physical disk drive as seen by a computer running the Windows operating system.
+wmi_hw/hw_storage/Win32_FloppyDrive 	Manages the capabilities of a floppy disk drive.
+wmi_hw/hw_storage/Win32_PhysicalMedia 	Represents any type of documentation or storage medium.
+wmi_hw/hw_storage/Win32_TapeDrive 	Represents a tape drive on a Windows computer.
+
+wmi_hw/hw_mb/Win32_1394Controller 	Represents the capabilities and management of a 1394 controller.
+wmi_hw/hw_mb/Win32_1394ControllerDevice 	Association class the high-speed serial bus (IEEE 1394 Firewire) Controller and the CIM_LogicalDevice instance connected to it.
+wmi_hw/hw_mb/Win32_AllocatedResource 	Association class a logical device to a system resource.
+wmi_hw/hw_mb/Win32_AssociatedProcessorMemory 	Association class a processor and its cache memory.
+wmi_hw/hw_mb/Win32_BaseBoard 	Represents a baseboard (also known as a motherboard or system board).
+wmi_hw/hw_mb/Win32_BIOS 	Represents the attributes of the computer system's basic hw_input/output services (BIOS) that are installed on the computer.
+wmi_hw/hw_mb/Win32_Bus 	Represents a physical bus as seen by a Windows operating system.
+wmi_hw/hw_mb/Win32_CacheMemory 	Represents cache memory (internal and external) on a computer system.
+wmi_hw/hw_mb/Win32_ControllerHasHub 	Represents the hubs downstream from the universal serial bus (USB) controller.
+wmi_hw/hw_mb/Win32_DeviceBus 	Association class a system bus and a logical device using the bus.
+wmi_hw/hw_mb/Win32_DeviceMemoryAddress 	Represents a device memory address on a Windows system.
+wmi_hw/hw_mb/Win32_DeviceSettings 	Association class a logical device and a setting that can be applied to it.
+wmi_hw/hw_mb/Win32_DMAChannel 	Represents a direct memory access (DMA) channel on a Windows computer system.
+wmi_hw/hw_mb/Win32_FloppyController 	Represents the capabilities and management capacity of a floppy disk drive controller.
+wmi_hw/hw_mb/Win32_IDEController 	Represents the capabilities of an Integrated Drive Electronics (IDE) controller device.
+wmi_hw/hw_mb/Win32_IDEControllerDevice 	Association class that Association class an IDE controller and the logical device.
+wmi_hw/hw_mb/Win32_InfraredDevice 	Represents the capabilities and management of an infrared device.
+wmi_hw/hw_mb/Win32_IRQResource 	Represents an interrupt request line (IRQ) number on a Windows computer system.
+wmi_hw/hw_mb/Win32_MemoryArray 	Represents the properties of the computer system memory array and mapped addresses.
+wmi_hw/hw_mb/Win32_MemoryArrayLocation 	Association class a logical memory array and the physical memory array upon which it exists.
+wmi_hw/hw_mb/Win32_MemoryDevice 	Represents the properties of a computer system's memory device along with it's associated mapped addresses.
+wmi_hw/hw_mb/Win32_MemoryDeviceArray 	Association class a memory device and the memory array in which it resides.
+wmi_hw/hw_mb/Win32_MemoryDeviceLocation 	Association class that Association class a memory device and the physical memory on which it exists.
+wmi_hw/hw_mb/Win32_MotherboardDevice 	Represents a device that contains the central components of the Windows computer system.
+wmi_hw/hw_mb/Win32_OnBoardDevice 	Represents common adapter devices built into the motherboard (system board).
+wmi_hw/hw_mb/Win32_ParallelPort 	Represents the properties of a parallel port on a Windows computer system.
+wmi_hw/hw_mb/Win32_PCMCIAController 	Manages the capabilities of a Personal Computer Memory Card Interface Adapter (PCMCIA) controller device.
+wmi_hw/hw_mb/Win32_PhysicalMemory 	Represents a physical memory device located on a computer as available to the operating system.
+wmi_hw/hw_mb/Win32_PhysicalMemoryArray 	Represents details about the computer system's physical memory.
+wmi_hw/hw_mb/Win32_PhysicalMemoryLocation 	Association class an array of physical memory and its physical memory.
+wmi_hw/hw_mb/Win32_PNPAllocatedResource 	Represents an association between logical devices and system resources.
+wmi_hw/hw_mb/Win32_PNPDevice 	Association class a device (known to Configuration Manager as a PNPEntity), and the function it performs.
+wmi_hw/hw_mb/Win32_PNPEntity 	Represents the properties of a Plug and Play device.
+wmi_hw/hw_mb/Win32_PortConnector 	Represents physical connection ports, such as DB-25 pin male, Centronics, and PS/2.
+wmi_hw/hw_mb/Win32_PortResource 	Represents an I/O port on a Windows computer system.
+wmi_hw/hw_mb/Win32_Processor 	Represents a device capable of interpreting a sequence of machine instructions on a Windows computer system.
+wmi_hw/hw_mb/Win32_SCSIController 	Represents a small computer system interface (SCSI) controller on a Windows system.
+wmi_hw/hw_mb/Win32_SCSIControllerDevice 	Association class a SCSI controller and the logical device (disk drive) connected to it.
+wmi_hw/hw_mb/Win32_SerialPort 	Represents a serial port on a Windows system.
+wmi_hw/hw_mb/Win32_SerialPortConfiguration 	Represents the settings for data transmission on a Windows serial port.
+wmi_hw/hw_mb/Win32_SerialPortSetting 	Association class a serial port and its configuration settings.
+wmi_hw/hw_mb/Win32_SMBIOSMemory 	Represents the capabilities and management of memory-related logical devices.
+wmi_hw/hw_mb/Win32_SoundDevice 	Represents the properties of a sound device on a Windows computer system.
+wmi_hw/hw_mb/Win32_SystemBIOS 	Association class a computer system (including data such as startup properties, time zones, boot configurations, or administrative passwords) and a system BIOS (services, languages, system management properties).
+wmi_hw/hw_mb/Win32_SystemDriverPNPEntity 	Association class a Plug and Play device on the Windows computer system and the driver that supports the Plug and Play device.
+wmi_hw/hw_mb/Win32_SystemEnclosure 	Represents the properties associated with a physical system enclosure.
+wmi_hw/hw_mb/Win32_SystemMemoryResource 	Represents a system memory resource on a Windows system.
+wmi_hw/hw_mb/Win32_SystemSlot 	Represents physical connection points including ports, motherboard slots and peripherals, and proprietary connections points.
+wmi_hw/hw_mb/Win32_USBController 	Manages the capabilities of a universal serial bus (USB) controller.
+wmi_hw/hw_mb/Win32_USBControllerDevice 	Association class a USB controller and the CIM_LogicalDevice instances connected to it.
+wmi_hw/hw_mb/Win32_USBHub 	Represents the management characteristics of a USB hub.
+
+wmi_hw/hw_net/Win32_NetworkAdapter 	Represents a network adapter on a Windows system.
+wmi_hw/hw_net/Win32_NetworkAdapterConfiguration 	Represents the attributes and behaviors of a network adapter. The class is not guaranteed to be supported after the ratification of the Distributed Management Task Force (DMTF) CIM network specification.
+wmi_hw/hw_net/Win32_NetworkAdapterSetting 	Association class a network adapter and its configuration settings.
+
+wmi_hw/hw_power/Win32_AssociatedBattery 	Association class a logical device and the battery it is using.
+wmi_hw/hw_power/Win32_Battery 	Represents a battery connected to the computer system.
+wmi_hw/hw_power/Win32_CurrentProbe 	Represents the properties of a current monitoring sensor (ammeter).
+wmi_hw/hw_power/Win32_PortableBattery 	Represents the properties of a portable battery, such as one used for a notebook computer.
+wmi_hw/hw_power/Win32_PowerManagementEvent 	Represents power management events resulting from power state changes.
+wmi_hw/hw_power/Win32_UninterruptiblePowerSupply 	Represents the capabilities and management capacity of an uninterruptible power supply (UPS).
+wmi_hw/hw_power/Win32_VoltageProbe 	Represents the properties of a voltage sensor (electronic voltmeter).
+
+wmi_hw/hw_print/Win32_DriverForDevice 	Association class a printer to a printer driver.
+wmi_hw/hw_print/Win32_Printer 	Represents a device connected to a Windows computer system that is capable of reproducing a visual image on a medium.
+wmi_hw/hw_print/Win32_PrinterConfiguration 	Defines the configuration for a printer device.
+wmi_hw/hw_print/Win32_PrinterController 	Association class a printer and the local device to which the printer is connected.
+wmi_hw/hw_print/Win32_PrinterDriver 	Represents the drivers for a Win32_Printer instance.
+wmi_hw/hw_print/Win32_PrinterDriverDll 	Association class a local printer and its driver file (not the driver itself).
+wmi_hw/hw_print/Win32_PrinterSetting 	Association class a printer and its configuration settings.
+wmi_hw/hw_print/Win32_PrintJob 	Represents a print job generated by a Windows application.
+wmi_hw/hw_print/Win32_TCPIPPrinterPort 	Represents a TCP/IP service access point.
+
+wmi_hw/hw_telephony/Win32_POTSModem 	Represents the services and characteristics of a Plain Old Telephone Service (POTS) modem on a Windows system.
+wmi_hw/hw_telephony/Win32_POTSModemToSerialPort 	Association class a modem and the serial port the modem uses.
+
+wmi_hw/hw_video/Win32_DesktopMonitor 	Represents the type of monitor or display device attached to the computer system.
+wmi_hw/hw_video/Win32_DisplayConfiguration 	Represents configuration information for the display device on a Windows system. This class is obsolete. In place of this class, use the properties in the Win32_VideoController, Win32_DesktopMonitor, and CIM_VideoControllerResolution classes.
+wmi_hw/hw_video/Win32_DisplayControllerConfiguration 	Represents the video adapter configuration information of a Windows system. This class is obsolete. In place of this class, use the properties in the Win32_VideoController, Win32_DesktopMonitor, and CIM_VideoControllerResolution classes.
+wmi_hw/hw_video/Win32_VideoConfiguration 	This class has been eliminated from Windows XP and later operating systems; attempts to use it generate a fatal error. In place of this class, use the properties contained in the Win32_VideoController, Win32_DesktopMonitor, and CIM_VideoControllerResolution classes.
+wmi_hw/hw_video/Win32_VideoController 	Represents the capabilities and management capacity of the video controller on a Windows computer system.
+wmi_hw/hw_video/Win32_VideoSettings 	Association class a video controller and video settings that can be applied to it.
+
+wmi_os/os_COM/Win32_ClassicCOMApplicationClasses 	Association class
+wmi_os/os_COM/Win32_ClassicCOMClass 	Instance class
+wmi_os/os_COM/Win32_ClassicCOMClassSettings 	Association class
+wmi_os/os_COM/Win32_ClientApplicationSetting 	Association class
+wmi_os/os_COM/Win32_COMApplication 	Instance class
+wmi_os/os_COM/Win32_COMApplicationClasses 	Association class
+wmi_os/os_COM/Win32_COMApplicationSettings 	Association class
+wmi_os/os_COM/Win32_COMClass 	Instance class
+wmi_os/os_COM/Win32_ComClassAutoEmulator 	Association class
+wmi_os/os_COM/Win32_ComClassEmulator 	Association class
+wmi_os/os_COM/Win32_ComponentCategory 	Instance class
+wmi_os/os_COM/Win32_COMSetting 	Instance class
+wmi_os/os_COM/Win32_DCOMApplication 	Instance class
+wmi_os/os_COM/Win32_DCOMApplicationAccessAllowedSetting 	Association class
+wmi_os/os_COM/Win32_DCOMApplicationLaunchAllowedSetting 	Association class
+wmi_os/os_COM/Win32_DCOMApplicationSetting 	Instance class
+wmi_os/os_COM/Win32_ImplementedCategory 	Association class
+
+wmi_os/os_desktop/Win32_Desktop 	Instance class
+wmi_os/os_desktop/Win32_Environment 	Instance class
+wmi_os/os_desktop/Win32_TimeZone 	Instance class
+wmi_os/os_desktop/Win32_UserDesktop 	Association class
+
+wmi_os/os_drivers/Win32_DriverVXD 	Instance class
+wmi_os/os_drivers/Win32_SystemDriver 	Instance class
+
+wmi_os/os_fs/Win32_CIMLogicalDeviceCIMDataFile 	Association class
+wmi_os/os_fs/Win32_Directory 	Instance class
+wmi_os/os_fs/Win32_DirectorySpecification 	Instance class
+wmi_os/os_fs/Win32_DiskDriveToDiskPartition 	Association class
+wmi_os/os_fs/Win32_DiskPartition 	Instance class
+wmi_os/os_fs/Win32_DiskQuota 	Association class
+wmi_os/os_fs/Win32_LogicalDisk 	Represents a data source that resolves to an actual local storage device on a Windows system.
+wmi_os/os_fs/Win32_LogicalDiskRootDirectory 	Association class
+wmi_os/os_fs/Win32_LogicalDiskToPartition 	Association class
+wmi_os/os_fs/Win32_MappedLogicalDisk 	Represents network storage devices that are mapped as logical disks on the computer system.
+wmi_os/os_fs/Win32_OperatingSystemAutochkSetting 	Association class
+wmi_os/os_fs/Win32_QuotaSetting 	Instance class
+wmi_os/os_fs/Win32_ShortcutFile 	Instance class
+wmi_os/os_fs/Win32_SubDirectory 	Association class
+wmi_os/os_fs/Win32_SystemPartitions 	Association class
+wmi_os/os_fs/Win32_Volume 	Instance class
+wmi_os/os_fs/Win32_VolumeQuota 	Association class
+wmi_os/os_fs/Win32_VolumeQuotaSetting 	Association class
+wmi_os/os_fs/Win32_VolumeUserQuota 	Association class
+
+wmi_os/os_jobs/Win32_CollectionStatistics 	Association class
+wmi_os/os_jobs/Win32_LUID 	Instance class
+wmi_os/os_jobs/Win32_LUIDandAttributes 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObject 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObjectActgInfo 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObjectLimit 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObjectLimitSetting 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObjectProcess 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObjectSecLimit 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObjectSecLimitSetting 	Instance class
+wmi_os/os_jobs/Win32_NamedJobObjectStatistics 	Instance class
+wmi_os/os_jobs/Win32_SIDandAttributes 	Instance class
+wmi_os/os_jobs/Win32_TokenGroups 	Event class
+wmi_os/os_jobs/Win32_TokenPrivileges 	Event class
+
+wmi_os/os_memory/Win32_LogicalMemoryConfiguration 	Instance class
+wmi_os/os_memory/Win32_PageFile 	Instance class
+wmi_os/os_memory/Win32_PageFileElementSetting 	Association class
+wmi_os/os_memory/Win32_PageFileSetting 	Instance class
+wmi_os/os_memory/Win32_PageFileUsage 	Instance class
+wmi_os/os_memory/Win32_SystemLogicalMemoryConfiguration 	Association class
+
+wmi_os/os_multimedia/Win32_CodecFile 	Instance class
+
+wmi_os/os_net/Win32_ActiveRoute 	Association class
+wmi_os/os_net/Win32_IP4PersistedRouteTable 	Instance class
+wmi_os/os_net/Win32_IP4RouteTable 	Instance class
+wmi_os/os_net/Win32_IP4RouteTableEvent 	Event class
+wmi_os/os_net/Win32_NetworkClient 	Instance class
+wmi_os/os_net/Win32_NetworkConnection 	Instance class
+wmi_os/os_net/Win32_NetworkProtocol 	Instance class
+wmi_os/os_net/Win32_NTDomain 	Instance class
+wmi_os/os_net/Win32_PingStatus 	Instance class
+wmi_os/os_net/Win32_ProtocolBinding 	Association class
+
+wmi_os/os_events/Win32_ComputerShutdownEvent 	Event class
+wmi_os/os_events/Win32_ComputerSystemEvent 	Event class
+wmi_os/os_events/Win32_DeviceChangeEvent 	Event class
+wmi_os/os_events/Win32_ModuleLoadTrace 	Event class
+wmi_os/os_events/Win32_ModuleTrace 	Event class
+wmi_os/os_events/Win32_ProcessStartTrace 	Event class
+wmi_os/os_events/Win32_ProcessStopTrace 	Event class
+wmi_os/os_events/Win32_ProcessTrace 	Event class
+wmi_os/os_events/Win32_SystemConfigurationChangeEvent 	Event class
+wmi_os/os_events/Win32_SystemTrace 	Event class
+wmi_os/os_events/Win32_ThreadStartTrace 	Event class
+wmi_os/os_events/Win32_ThreadStopTrace 	Event class
+wmi_os/os_events/Win32_ThreadTrace 	Event class
+wmi_os/os_events/Win32_VolumeChangeEvent 	Event class
+
+wmi_os/os_settings/Win32_BootConfiguration 	Instance class
+wmi_os/os_settings/Win32_ComputerSystem 	Instance class
+wmi_os/os_settings/Win32_ComputerSystemProcessor 	Association class
+wmi_os/os_settings/Win32_ComputerSystemProduct 	Instance class
+wmi_os/os_settings/Win32_DependentService 	Association class
+wmi_os/os_settings/Win32_LoadOrderGroup 	Instance class
+wmi_os/os_settings/Win32_LoadOrderGroupServiceDependencies 	Instance class
+wmi_os/os_settings/Win32_LoadOrderGroupServiceMembers 	Association class
+wmi_os/os_settings/Win32_OperatingSystem 	Instance class
+wmi_os/os_settings/Win32_OperatingSystemQFE 	Association class
+wmi_os/os_settings/Win32_OSRecoveryConfiguration 	Instance class
+wmi_os/os_settings/Win32_QuickFixEngineering 	Instance class
+wmi_os/os_settings/Win32_StartupCommand 	Instance class
+wmi_os/os_settings/Win32_SystemBootConfiguration 	Association class
+wmi_os/os_settings/Win32_SystemDesktop 	Association class
+wmi_os/os_settings/Win32_SystemDevices 	Association class
+wmi_os/os_settings/Win32_SystemLoadOrderGroups 	Association class
+wmi_os/os_settings/Win32_SystemNetworkConnections 	Association class
+wmi_os/os_settings/Win32_SystemOperatingSystem 	Association class
+wmi_os/os_settings/Win32_SystemProcesses 	Association class
+wmi_os/os_settings/Win32_SystemProgramGroups 	Association class
+wmi_os/os_settings/Win32_SystemResources 	Association class
+wmi_os/os_settings/Win32_SystemServices 	Association class
+wmi_os/os_settings/Win32_SystemSetting 	Association class
+wmi_os/os_settings/Win32_SystemSystemDriver 	Association class
+wmi_os/os_settings/Win32_SystemTimeZone 	Association class
+wmi_os/os_settings/Win32_SystemUsers 	Association class
+
+wmi_os/os_processes/Win32_Process 	Instance class
+wmi_os/os_processes/Win32_ProcessStartup 	Instance class
+wmi_os/os_processes/Win32_Thread 	Instance class
+
+wmi_os/os_registry/Win32_Registry 	Instance class
+
+wmi_os/os_scheduler/Win32_CurrentTime 	Instance class
+wmi_os/os_scheduler/Win32_ScheduledJob 	Instance class
+
+wmi_os/os_security/Win32_AccountSID 	Association class
+wmi_os/os_security/Win32_ACE 	Instance class
+wmi_os/os_security/Win32_LogicalFileAccess 	Association class
+wmi_os/os_security/Win32_LogicalFileAuditing 	Association class
+wmi_os/os_security/Win32_LogicalFileGroup 	Association class
+wmi_os/os_security/Win32_LogicalFileOwner 	Association class
+wmi_os/os_security/Win32_LogicalFileSecuritySetting 	Instance class
+wmi_os/os_security/Win32_LogicalShareAccess 	Association class
+wmi_os/os_security/Win32_LogicalShareAuditing 	Association class
+wmi_os/os_security/Win32_LogicalShareSecuritySetting 	Instance class
+wmi_os/os_security/Win32_PrivilegesStatus 	Instance class
+wmi_os/os_security/Win32_SecurityDescriptor 	Instance class
+wmi_os/os_security/Win32_SecuritySetting 	Instance class
+wmi_os/os_security/Win32_SecuritySettingAccess 	Instance class
+wmi_os/os_security/Win32_SecuritySettingAuditing 	Instance class
+wmi_os/os_security/Win32_SecuritySettingGroup 	Association class
+wmi_os/os_security/Win32_SecuritySettingOfLogicalFile 	Instance class
+wmi_os/os_security/Win32_SecuritySettingOfLogicalShare 	Instance class
+wmi_os/os_security/Win32_SecuritySettingOfObject 	Association class
+wmi_os/os_security/Win32_SecuritySettingOwner 	Association class
+wmi_os/os_security/Win32_SID 	Instance class
+wmi_os/os_security/Win32_Trustee 	Instance class
+
+wmi_os/os_services/Win32_BaseService 	Instance class
+wmi_os/os_services/Win32_Service 	Instance class
+
+wmi_os/os_shares/Win32_DFSNode 	Association class
+wmi_os/os_shares/Win32_DFSNodeTarget 	Association class
+wmi_os/os_shares/Win32_DFSTarget 	Association class
+wmi_os/os_shares/Win32_ServerConnection 	Instance class
+wmi_os/os_shares/Win32_ServerSession 	Instance class
+wmi_os/os_shares/Win32_ConnectionShare 	Association class
+wmi_os/os_shares/Win32_PrinterShare 	Association class
+wmi_os/os_shares/Win32_SessionConnection 	Association class
+wmi_os/os_shares/Win32_SessionProcess 	Association class
+wmi_os/os_shares/Win32_ShareToDirectory 	Association class
+wmi_os/os_shares/Win32_Share 	Instance class
+
+wmi_os/os_startmenu/Win32_LogicalProgramGroup 	Instance class
+wmi_os/os_startmenu/Win32_LogicalProgramGroupDirectory 	Association class
+wmi_os/os_startmenu/Win32_LogicalProgramGroupItem 	Instance class
+wmi_os/os_startmenu/Win32_LogicalProgramGroupItemDataFile 	Association class
+wmi_os/os_startmenu/Win32_ProgramGroup 	Instance class
+wmi_os/os_startmenu/Win32_ProgramGroupContents 	Association class
+wmi_os/os_startmenu/Win32_ProgramGroupOrItem 	Instance class
+
+wmi_os/os_storage/Win32_ShadowBy 	Association class
+wmi_os/os_storage/Win32_ShadowContext 	Association class
+wmi_os/os_storage/Win32_ShadowCopy 	Instance class
+wmi_os/os_storage/Win32_ShadowDiffVolumeSupport 	Association class
+wmi_os/os_storage/Win32_ShadowFor 	Association class
+wmi_os/os_storage/Win32_ShadowOn 	Association class
+wmi_os/os_storage/Win32_ShadowProvider 	Association class
+wmi_os/os_storage/Win32_ShadowStorage 	Association class
+wmi_os/os_storage/Win32_ShadowVolumeSupport 	Association class
+wmi_os/os_storage/Win32_Volume 	Instance class
+wmi_os/os_storage/Win32_VolumeUserQuota 	Association class
+
+wmi_os/os_users/Win32_Account 	Instance class
+wmi_os/os_users/Win32_Group 	Instance class
+wmi_os/os_users/Win32_GroupInDomain 	Association class
+wmi_os/os_users/Win32_GroupUser 	Association class
+wmi_os/os_users/Win32_LogonSession 	Instance class
+wmi_os/os_users/Win32_LogonSessionMappedDisk 	Instance class
+wmi_os/os_users/Win32_NetworkLoginProfile 	Instance class
+wmi_os/os_users/Win32_SystemAccount 	Instance class
+wmi_os/os_users/Win32_UserAccount 	Instance class
+wmi_os/os_users/Win32_UserInDomain 	Association class
+
+wmi_os/os_eventlog/Win32_NTEventlogFile 	Instance class
+wmi_os/os_eventlog/Win32_NTLogEvent 	Instance class
+wmi_os/os_eventlog/Win32_NTLogEventComputer 	Association class
+wmi_os/os_eventlog/Win32_NTLogEventLog 	Association class
+wmi_os/os_eventlog/Win32_NTLogEventUser 	Association class
+
+wmi_os/os_wpa/Win32_ComputerSystemWindowsProductActivationSetting 	Association class
+wmi_os/os_wpa/Win32_Proxy 	Instance class
+wmi_os/os_wpa/Win32_WindowsProductActivation 	Instance class
+
+wmi_app/Win32_ActionCheck 	Association class a Windows Installer action with any locational information it requires.
+wmi_app/Win32_ApplicationCommandLine 	Identifies a connection between an application and its command-line access point.
+wmi_app/Win32_ApplicationService 	Represents any installed or advertised components or applications available on the system.
+wmi_app/Win32_Binary 	Represents binary information (such as bitmaps, icons, executable files, and so on) that are used by an installation.
+wmi_app/Win32_BindImageAction 	Binds each executable file that needs to be bound to the DLLs imported by it.
+wmi_app/Win32_CheckCheck 	Association class an Installer action with any locational information it requires.
+wmi_app/Win32_ClassInfoAction 	Manages the registration of COM class information with the system.
+wmi_app/Win32_CommandLineAccess 	Represents the command line interface to a service or application.
+wmi_app/Win32_Condition 	Represents the criteria used to determine the selection state of any entry in the Win32_Featureclass.
+wmi_app/Win32_CreateFolderAction 	Creates an empty folder for components set to be installed locally.
+wmi_app/Win32_DuplicateFileAction 	Makes one or more copies of files installed by the InstallFiles executable action, either to a different directory than the original file, or to the same directory, but with a different name.
+wmi_app/Win32_EnvironmentSpecification 	Contains information about any environment variables that may need to be registered for their associated products installation.
+wmi_app/Win32_ExtensionInfoAction 	Manages the registration of extension related information with the system.
+wmi_app/Win32_FileSpecification 	Represents a source file with its various attributes, ordered by a unique, non-localized identifier.
+wmi_app/Win32_FontInfoAction 	Registers installed fonts with the system.
+wmi_app/Win32_IniFileSpecification 	Contains the .INI information that the application needs to set in an .INI file.
+wmi_app/Win32_InstalledSoftwareElement 	Identifies the computer system on which a particular software element is installed.
+wmi_app/Win32_LaunchCondition 	Contains a list of conditions, all of which must be satisfied for the action to succeed.
+wmi_app/Win32_ManagedSystemElementResource 	Association class an Installer feature with an action used to register and/or publish the feature.
+wmi_app/Win32_MIMEInfoAction 	Registers the MIME-related registry information with the system.
+wmi_app/Win32_MoveFileAction 	Locates files that already exist on the user's computer, and move or copy those files to a new location.
+wmi_app/Win32_MSIResource 	Abstract class that represents any resource used by the Installer during the course of an installation, patch or upgrade.
+wmi_app/Win32_ODBCAttribute 	Represent attributes that are set off an ODBC driver.
+wmi_app/Win32_ODBCDataSourceAttribute 	Association class an Installer check with any setting information it requires.
+wmi_app/Win32_ODBCDataSourceSpecification 	Specifies any data source (DSN) that needs to be registered as part of an installation.
+wmi_app/Win32_ODBCDriverAttribute 	Association class an Installer check with any setting information it requires.
+wmi_app/Win32_ODBCDriverSoftwareElement 	Allows you to determine the software element of which the ODBC driver is a part.
+wmi_app/Win32_ODBCDriverSpecification 	Represents any ODBC driver to be installed as part of a particular product.
+wmi_app/Win32_ODBCSourceAttribute 	Represents attributes set for an ODBC data source.
+wmi_app/Win32_ODBCTranslatorSpecification 	Represents any ODBC translator that is included as part of a product's installation.
+wmi_app/Win32_Patch 	Represents an individual patch that is to be applied to a particular file and whose source resides at a specified location.
+wmi_app/Win32_PatchFile 	Association class an Installer check with any setting information it requires.
+wmi_app/Win32_PatchPackage 	Describes an patch package that has been applied to this product.
+wmi_app/Win32_Product 	Represents a product as it is installed by Windows Installer.
+wmi_app/Win32_ProductCheck 	Association class instances of CIM_Check and Win32_Product.
+wmi_app/Win32_ProductResource 	Association class instances of Win32_Product and Win32_MSIResource.
+wmi_app/Win32_ProductSoftwareFeatures 	Identifies the software features for a particular product.
+wmi_app/Win32_ProgIDSpecification 	Represent any ProgID that needs to be registered during a given installation.
+wmi_app/Win32_Property 	Contains the property names and values for all defined properties in the installation.
+wmi_app/Win32_PublishComponentAction 	Manages the advertisement of the components that may be faulted in by other products with the system.
+wmi_app/Win32_RegistryAction 	Sets up registry information that the application desires in the system registry.
+wmi_app/Win32_RemoveFileAction 	Uninstalls files previously installed by the InstallFiles action.
+wmi_app/Win32_RemoveIniAction 	Deletes .INI file information that the application desires to delete.
+wmi_app/Win32_ReserveCost 	Reserves a specified amount of disk space in any directory, depending on the installation state of a component.
+wmi_app/Win32_SelfRegModuleAction 	Processes all the modules in the SelfReg module to register the modules, if installed.
+wmi_app/Win32_ServiceControl 	Represents instructions for controlling both installed and uninstalled services.
+wmi_app/Win32_ServiceSpecification 	Represents a service to be installed along with an associated package.
+wmi_app/Win32_ServiceSpecificationService 	Represents instances of Win32_ServiceSpecification and Win32_Service.
+wmi_app/Win32_SettingCheck 	Association class an Installer check with any setting information it requires.
+wmi_app/Win32_ShortcutAction 	Manages the creation of shortcuts.
+wmi_app/Win32_ShortcutSAP 	Allows you to identify a connection between an application access point and the corresponding shortcut.
+wmi_app/Win32_SoftwareElement 	Represents a software element, part of a software feature.
+wmi_app/Win32_SoftwareElementAction 	Association class an Installer software element with an action that access the element.
+wmi_app/Win32_SoftwareElementCheck 	Association class an Installer element with any condition or locational information that a feature may require.
+wmi_app/Win32_SoftwareElementCondition 	Represents conditional checks that must be evaluated to TRUE before their associated Win32_SoftwareElement instance can be installed.
+wmi_app/Win32_SoftwareElementResource 	Association class a software element with a resource used by that software element.
+wmi_app/Win32_SoftwareFeature 	Represents a distinct subset of a product, consisting of one or more software elements.
+wmi_app/Win32_SoftwareFeatureAction 	Association class an Installer feature with an action used to register and/or publish the feature.
+wmi_app/Win32_SoftwareFeatureCheck 	Association class an Installer feature with any condition or locational information that a feature may require.
+wmi_app/Win32_SoftwareFeatureParent 	Generic association that establishes dependency relationships between objects.
+wmi_app/Win32_SoftwareFeatureSoftwareElements 	Identifies the software elements that make up a particular software feature.
+wmi_app/Win32_TypeLibraryAction 	Registers type libraries with the system.
+
+
+
+wmi_perf/perf_fmt/Win32_PerfFormattedData 	Abstract base class for the formatted data classes.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_ASP_ActiveServerPages 	Represents performance counters for the Active Server Pages device on the computer system.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_ContentFilter_IndexingServiceFilter 	Represents performance information about an Indexing Service filter.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_ContentIndex_IndexingService 	Represents performance data about the state of the Indexing Service.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_InetInfo_InternetInformationServicesGlobal 	Represents counters that monitor Internet Information Services (the Web service and the FTP service) as a whole.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_ISAPISearch_HttpIndexingService 	Represents performance data from the HTTP Indexing Service.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_MSDTC_DistributedTransactionCoordinator 	Represents Microsoft Distributed Transaction Coordinator performance counters.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_NTFSDRV_SMTPNTFSStoreDriver 	Represents global counters for the Exchange NTFS Store driver.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfDisk_LogicalDisk 	Represents counters that monitor logical partitions of a hard or fixed disk drive.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfDisk_PhysicalDisk 	Represents counters that monitor hard or fixed disk drives on a computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfNet_Browser 	Represents counters that measure the rates of announcements, enumerations, and other browser transmissions.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfNet_Redirector 	Represents counters that monitor network connections originating at the local computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfNet_Server 	Represents counters that monitor communications using the WINS Server service.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfNet_ServerWorkQueues 	Represents counters that monitor the length of the queues and objects in the queues.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfOS_Cache 	Represents counters that monitor the file system cache, an area of physical memory that stores recently used data as long as possible to permit access to the data without having to read from the disk.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfOS_Memory 	Represents counters that describe the behavior of physical and virtual memory on the computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfOS_Objects 	Represents counts of the objects contained by the operating system such as events, mutexes, processes, sections, semaphores, and threads.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfOS_PagingFile 	Represents counters that monitor the paging file(s) on the computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfOS_Processor 	Represents counters that measure aspects of processor activity.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfOS_System 	Represents counters that apply to more than one instance of a component processors on the computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_FullImage_Costly 	Represents counters that monitor the virtual address usage of images executed by processes on the computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_Image_Costly 	Represents counters that monitor the virtual address usage of images executed by processes on the computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_JobObject 	Represents the accounting and processor usage data collected by each active named job object.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_JobObjectDetails 	Represents detailed performance information about the active processes that make up a job object.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_Process 	Represents counters that monitor running application program and system processes.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_ProcessAddressSpace_Costly 	Represent counters that monitor memory allocation and use for a selected process.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_Thread 	Represents counters that measure aspects of thread behavior.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PerfProc_ThreadDetails_Costly 	Represents counters that measure aspects of thread behavior that are difficult or time-consuming to collect.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PSched_PSchedFlow 	Represents flow statistics from the packet scheduler.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_PSched_PSchedPipe 	Represents pipe statistics from the packet scheduler.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_RemoteAccess_RASPort 	Represents counters that monitor individual Remote Access Service ports of the RAS device on the computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_RemoteAccess_RASTotal 	Represents counters that combine values for all ports of the Remote Access service (RAS) device on the computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_RSVP_ACSRSVPInterfaces 	Represents the number of local network interfaces visible to, and used by the RSVP service.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_RSVP_ACSRSVPService 	Represents RSVP or ACS service performance counters.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_SMTPSVC_SMTPServer 	Represents counters specific to the SMTP Server.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_Spooler_PrintQueue 	Represents performance statistics about a print queue.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_TapiSrv_Telephony 	Represents the telephony system.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_Tcpip_ICMP 	Represents consists of counters that measure the rates at which messages are sent and received by using ICMP protocols.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_Tcpip_IP 	Represents counters that measure the rates at which IP datagrams are sent and received by using IP protocols.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_Tcpip_NBTConnection 	Represents counters that measure the rates at which bytes are sent and received over the NBT connection between the local computer and a remote computer.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_Tcpip_NetworkInterface 	Represents counters that measure the rates at which bytes and packets are sent and received over a TCP/IP network connection.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_Tcpip_TCP 	Represents counters that measure the rates at which TCP segments are sent and received by using the TCP protocol.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_Tcpip_UDP 	Represents counters that measure the rates at which UDP datagrams are sent and received by using the UDP protocol.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_TermService_TerminalServices 	Represents terminal services summary information.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_TermService_TerminalServicesSession 	Represents terminal services per-session resource monitoring.
+wmi_perf/perf_fmt/Win32_PerfFormattedData_W3SVC_WebService 	Represents counters specific to the World Wide Web Publishing Service.
+
+wmi_perf/perf_raw/Win32_PerfRawData 	Abstract base class for all concrete raw performance counter classes.
+wmi_perf/perf_raw/Win32_PerfRawData_ASP_ActiveServerPages 	Represents the Active Server Pages device on the computer system.
+wmi_perf/perf_raw/Win32_PerfRawData_ContentFilter_IndexingServiceFilter 	Represents performance information about an Indexing Service filter.
+wmi_perf/perf_raw/Win32_PerfRawData_ContentIndex_IndexingService 	Represents performance data about the state of the Indexing Service.
+wmi_perf/perf_raw/Win32_PerfRawData_InetInfo_InternetInformationServicesGlobal 	Represents counters that monitor Internet Information Services (the Web service and the FTP service) as a whole.
+wmi_perf/perf_raw/Win32_PerfRawData_ISAPISearch_HttpIndexingService 	Represents performance data from the HTTP Indexing Service.
+wmi_perf/perf_raw/Win32_PerfRawData_MSDTC_DistributedTransactionCoordinator 	Represents Microsoft Distributed Transaction Coordinator performance counters.
+wmi_perf/perf_raw/Win32_PerfRawData_NTFSDRV_SMTPNTFSStoreDriver 	Represents global counters for the Exchange NTFS Store driver.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfDisk_LogicalDisk 	Represents counters that monitor logical partitions of a hard or fixed disk drive.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfDisk_PhysicalDisk 	Represents counters that monitor hard or fixed disk drives on a computer.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfNet_Browser 	Represents counters that measure the rates of announcements, enumerations, and other browser transmissions.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfNet_Redirector 	Represents counters that monitor network connections originating at the local computer.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfNet_Server 	Represents counters that monitor communications using the WINS Server service.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfNet_ServerWorkQueues 	Represents counters that monitor the length of the queues and objects in the queues.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfOS_Cache 	Represents counters that monitor the file system cache.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfOS_Memory 	Represents counters that describe the behavior of physical and virtual memory on the computer.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfOS_Objects 	Represents counts of the objects contained by the operating system such as events, mutexes, processes, sections, semaphores, and threads.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfOS_PagingFile 	Represents counters that monitor the paging file(s) on the computer.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfOS_Processor 	Represents counters that measure aspects of processor activity.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfOS_System 	Represents counters that apply to more than one instance of a component processors on the computer.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_FullImage_Costly 	Represents counters that monitor the virtual address usage of images executed by processes on the computer.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_Image_Costly 	Represents counters that monitor the virtual address usage of images executed by processes on the computer.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_JobObject 	Represents the accounting and processor usage data collected by each active, named Job object.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_JobObjectDetails 	Represents detailed performance information about the active processes that make up a Job object.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_Process 	Represents counters that monitor running application program and system processes.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_ProcessAddressSpace_Costly 	represent counters that monitor memory allocation and use for a selected process.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_Thread 	Represents counters that measure aspects of thread behavior.
+wmi_perf/perf_raw/Win32_PerfRawData_PerfProc_ThreadDetails_Costly 	Represents counters that measure aspects of thread behavior that are difficult or time-consuming to collect.
+wmi_perf/perf_raw/Win32_PerfRawData_PSched_PSchedFlow 	Represents flow statistics from the packet scheduler.
+wmi_perf/perf_raw/Win32_PerfRawData_PSched_PSchedPipe 	Represents pipe statistics from the packet scheduler.
+wmi_perf/perf_raw/Win32_PerfRawData_RemoteAccess_RASPort 	Represents counters that monitor individual Remote Access Service ports of the RAS device on the computer.
+wmi_perf/perf_raw/Win32_PerfRawData_RemoteAccess_RASTotal 	Represents counters that combine values for all ports of the Remote Access service (RAS) device on the computer.
+wmi_perf/perf_raw/Win32_PerfRawData_RSVP_ACSRSVPInterfaces 	Represents the number of local network interfaces visible to, and used by the RSVP service.
+wmi_perf/perf_raw/Win32_PerfRawData_RSVP_ACSRSVPService 	Represents RSVP or ACS service performance counters.
+wmi_perf/perf_raw/Win32_PerfRawData_SMTPSVC_SMTPServer 	Represents the counters specific to the SMTP server.
+wmi_perf/perf_raw/Win32_PerfRawData_Spooler_PrintQueue 	Represents performance statistics about a print queue.
+wmi_perf/perf_raw/Win32_PerfRawData_TapiSrv_Telephony 	Represents the telephony system.
+wmi_perf/perf_raw/Win32_PerfRawData_Tcpip_ICMP 	Represents counters that measure the rates at which messages are sent and received by using ICMP protocols.
+wmi_perf/perf_raw/Win32_PerfRawData_Tcpip_IP 	Represents counters that measure the rates at which IP datagrams are sent and received by using IP protocols.
+wmi_perf/perf_raw/Win32_PerfRawData_Tcpip_NBTConnection 	Represents counters that measure the rates at which bytes are sent and received over the NBT connection between the local computer and a remote computer.
+wmi_perf/perf_raw/Win32_PerfRawData_Tcpip_NetworkInterface 	Represents counters that measure the rates at which bytes and packets are sent and received over a TCP/IP network connection.
+wmi_perf/perf_raw/Win32_PerfRawData_Tcpip_TCP 	Represents counters that measure the rates at which TCP Segments are sent and received by using the TCP protocol.
+wmi_perf/perf_raw/Win32_PerfRawData_Tcpip_UDP 	Represents counters that measure the rates at which UDP datagrams are sent and received by using the UDP protocol.
+wmi_perf/perf_raw/Win32_PerfRawData_TermService_TerminalServices 	Represents terminal services summary information.
+wmi_perf/perf_raw/Win32_PerfRawData_TermService_TerminalServicesSession 	Represents terminal services per-session resource monitoring.
+wmi_perf/perf_raw/Win32_PerfRawData_W3SVC_WebService 	Represents counters specific to the World Wide Web Publishing Service.
+
