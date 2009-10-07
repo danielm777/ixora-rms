@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provider>
+<class>com.ixora.rms.providers.impl.sql.ProviderSql</class>
+<name>providers.sql.name</name>
+<confPanelClass>com.ixora.rms.providers.impl.sql.ConfigurationPanel</confPanelClass>
+<jars>
+<jar>/bin/jars/provider-sql.jar</jar>
+</jars>
+<uiJar>/bin/jars/provider-sql-ui.jar</uiJar>
+</provider>
