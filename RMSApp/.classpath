@@ -25,7 +25,6 @@
 	<classpathentry kind="src" path="/AgentServiceAvailability"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/jh.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/jhall.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jfreechart"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/activation.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentSunApp"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentWMI"/>
@@ -47,5 +46,7 @@
 	<classpathentry kind="lib" path="jars/AgentSunApp_ui.jar"/>
 	<classpathentry kind="lib" path="jars/AgentHotSpotJVM_ui.jar"/>
 	<classpathentry kind="lib" path="jars/AgentWebsphere_ui.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMSLibsPatch"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/jfreechart.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
