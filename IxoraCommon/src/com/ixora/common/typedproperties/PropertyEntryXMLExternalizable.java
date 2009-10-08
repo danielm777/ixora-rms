@@ -19,8 +19,9 @@ import com.ixora.common.xml.exception.XMLException;
 /**
  * PropertyEntry for XMLExternalizable objects.
  */
-public class PropertyEntryXMLExternalizable extends PropertyEntry {
-    /** Logger */
+public class PropertyEntryXMLExternalizable extends PropertyEntry<XMLExternalizable> {
+	private static final long serialVersionUID = 6981655747624406419L;
+	/** Logger */
     private static final AppLogger logger = AppLoggerFactory.getLogger(PropertyEntryXMLExternalizable.class);
 
     /**
@@ -48,7 +49,7 @@ public class PropertyEntryXMLExternalizable extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected XMLExternalizable makeObject(String value) throws InvalidPropertyValue {
         try {
         	if(Utils.isEmptyString(value)) {
         		return null;
@@ -65,15 +66,12 @@ public class PropertyEntryXMLExternalizable extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(XMLExternalizable obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof XMLExternalizable)) {
-            throw new PropertyTypeMismatch(property);
-        }
         try {
-        	StringBuffer buff = XMLUtils.toXMLBuffer(null, (XMLExternalizable)obj, "rms", true);
+        	StringBuffer buff = XMLUtils.toXMLBuffer(null, obj, "rms", true);
             return HexConverter.encode(buff.toString().getBytes(XMLUtils.ENCODING));
         } catch (IOException e) {
             logger.error(e);
@@ -81,12 +79,5 @@ public class PropertyEntryXMLExternalizable extends PropertyEntry {
             logger.error(e);
 		}
         return "";
-    }
-
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj == null || obj instanceof XMLExternalizable;
     }
 }

@@ -10,8 +10,9 @@ import com.ixora.common.typedproperties.exception.PropertyTypeMismatch;
 /**
  * PropertyEntryString.
  */
-public class PropertyEntryString extends PropertyEntry {
-    /**
+public class PropertyEntryString extends PropertyEntry<String> {
+	private static final long serialVersionUID = 4067303909953093390L;
+	/**
      * Constructor to support XML.
      */
     PropertyEntryString() {
@@ -32,14 +33,14 @@ public class PropertyEntryString extends PropertyEntry {
 	 * @param type
 	 * @param required
 	 */
-	protected PropertyEntryString(String prop, boolean v, Object[] set, int type, boolean required) {
+	protected PropertyEntryString(String prop, boolean v, String[] set, int type, boolean required) {
 	    super(prop, v, set, type, required, null);
 	}
 
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected String makeObject(String value) throws InvalidPropertyValue {
         if(value != null && value.length() == 0) {
             return null;
         }
@@ -48,25 +49,16 @@ public class PropertyEntryString extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(String obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof String)) {
-            throw new PropertyTypeMismatch(property);
-        }
-        return (String)obj;
-    }
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj == null || obj instanceof String;
+        return obj;
     }
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#setValue(java.lang.Object)
      */
-    public boolean setValue(Object obj) {
+    public boolean setValue(String obj) {
         // for strings an empty string is equivalent to
         // a null value
         if("".equals(obj)) {

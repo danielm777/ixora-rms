@@ -18,11 +18,12 @@ import com.ixora.common.xml.exception.XMLException;
 /**
  * @author Daniel Moraru
  */
-public abstract class PropertyEntryNumber extends PropertyEntry {
-    /** Max value */
-    protected Comparable max;
+public abstract class PropertyEntryNumber<T extends Comparable<T>> extends PropertyEntry<T> {
+	private static final long serialVersionUID = -4484396938757447806L;
+	/** Max value */
+    protected T max;
     /** Min value */
-    protected Comparable min;
+    protected T min;
     /** Format */
     protected NumberFormat format;
 
@@ -41,7 +42,7 @@ public abstract class PropertyEntryNumber extends PropertyEntry {
      * @param type
      * @param required
      */
-    protected PropertyEntryNumber(String prop, boolean v, Number[] set, int type,
+    protected PropertyEntryNumber(String prop, boolean v, T[] set, int type,
             boolean required) {
         super(prop, v, set, type, required);
     }
@@ -49,27 +50,27 @@ public abstract class PropertyEntryNumber extends PropertyEntry {
     /**
      * @return the max.
      */
-    public Comparable getMax() {
+    public T getMax() {
         return max;
     }
     /**
      * @return the min.
      */
-    public Comparable getMin() {
+    public T getMin() {
         return min;
     }
     /**
      * Sets the min.
      * @param c
      */
-    public void setMin(Comparable c) {
+    public void setMin(T c) {
         min = c;
     }
     /**
      * Sets the max.
      * @param c
      */
-    public void setMax(Comparable c) {
+    public void setMax(T c) {
         max = c;
     }
     /**
@@ -82,9 +83,9 @@ public abstract class PropertyEntryNumber extends PropertyEntry {
 	/**
 	 * @see com.ixora.common.typedproperties.PropertyEntry#validateValue(java.lang.Object)
 	 */
-    public void validateValue(Object value) {
+    public void validateValue(T value) {
 		super.validateValue(value);
-		checkRange((Comparable)value);
+		checkRange(value);
 	}
 
 	/**
@@ -92,7 +93,7 @@ public abstract class PropertyEntryNumber extends PropertyEntry {
      * @param c
      * @throws PropertyValueOutOfRange
      */
-    protected void checkRange(Comparable c) {
+    protected void checkRange(T c) {
     	if(max != null && max.compareTo(c) < 0) {
     		throw new PropertyValueOutOfRange(c.toString());
     	}
@@ -110,11 +111,11 @@ public abstract class PropertyEntryNumber extends PropertyEntry {
 	        // see if min and max exist
 			Attr a = XMLUtils.findAttribute(node, "min");
 			if(a != null) {
-				min = (Comparable)makeObject(a.getValue());
+				min = makeObject(a.getValue());
 			}
 			a = XMLUtils.findAttribute(node, "max");
 			if(a != null) {
-				max = (Comparable)makeObject(a.getValue());
+				max = makeObject(a.getValue());
 			}
 			// must validate here value and defaultValue for range
 			if(value != null) {

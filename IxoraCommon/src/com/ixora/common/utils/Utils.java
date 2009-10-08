@@ -162,12 +162,12 @@ public class Utils {
       * @throws java.io.IOException
       * @throws java.lang.ClassNotFoundException
      */
-    public static Object unpackObject(byte[] buff) throws IOException,
+    public static Serializable unpackObject(byte[] buff) throws IOException,
                                                           ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(
                                         new ByteArrayInputStream(buff));
 
-        return ois.readObject();
+        return (Serializable)ois.readObject();
     }
 
     /**

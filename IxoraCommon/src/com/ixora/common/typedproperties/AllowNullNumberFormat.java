@@ -11,6 +11,7 @@ import java.text.ParsePosition;
  * @author Daniel Moraru
  */
 public class AllowNullNumberFormat extends DecimalFormat {
+	private static final long serialVersionUID = -142893292128333213L;
 	public static Number NULL_FLOAT = new Float(Double.NaN);
 	public static Number NULL_INTEGER = new Integer(999999999);
 

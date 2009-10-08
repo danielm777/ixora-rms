@@ -17,8 +17,9 @@ import com.ixora.common.utils.Utils;
 /**
  * PropertyEntry for serializable objects.
  */
-public class PropertyEntrySerializable extends PropertyEntry {
-    /** Logger */
+public class PropertyEntrySerializable extends PropertyEntry<Serializable> {
+	private static final long serialVersionUID = -1663318102719584089L;
+	/** Logger */
     private static final AppLogger logger = AppLoggerFactory.getLogger(PropertyEntrySerializable.class);
 
     /**
@@ -46,7 +47,7 @@ public class PropertyEntrySerializable extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected Serializable makeObject(String value) throws InvalidPropertyValue {
         try {
         	if(Utils.isEmptyString(value)) {
         		return null;
@@ -62,27 +63,17 @@ public class PropertyEntrySerializable extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(Serializable obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof Serializable)) {
-            throw new PropertyTypeMismatch(property);
-        }
         byte[] pack;
         try {
-            pack = Utils.packObject((Serializable)obj);
+            pack = Utils.packObject(obj);
             return HexConverter.encode(pack);
         } catch (IOException e) {
             logger.error(e);
         }
         return "";
-    }
-
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj == null || obj instanceof Serializable;
     }
 }

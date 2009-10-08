@@ -17,8 +17,6 @@ import java.util.Observable;
 import java.util.Set;
 
 import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -39,6 +37,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class TypedProperties extends Observable implements Cloneable, XMLExternalizable {
+	private static final long serialVersionUID = 6064613357081863061L;
 	// value types
 	public static final int TYPE_STRING = 0;
 	public static final int TYPE_INTEGER = 1;
@@ -53,7 +52,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	public static final int TYPE_SECURE_STRING = 10;
 
 	/** Properties. It's a linked map to preserve the order of the props */
-	protected LinkedHashMap<String, PropertyEntry> props;
+	protected LinkedHashMap<String, PropertyEntry<?>> props;
 
 	/**
      * Creates a property entry.
@@ -64,7 +63,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
      * @param required
      * @return
      */
-    private static PropertyEntry createEntry(String key,
+    private static PropertyEntry<?> createEntry(String key,
             boolean visible, Object[] set, int type,
             boolean required,
             String extendedEditorClass) {
@@ -103,9 +102,9 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
      * @return
      * @throws XMLException
      */
-    private static PropertyEntry createEntry(int type,
+    private static PropertyEntry<?> createEntry(int type,
             Node node) throws XMLException {
-        PropertyEntry ret = null;
+        PropertyEntry<?> ret = null;
         switch(type) {
         	case TYPE_STRING:
         	    ret = new PropertyEntryString();
@@ -160,18 +159,15 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 */
 	public TypedProperties() {
 		super();
-		props = new LinkedHashMap<String, PropertyEntry>();
+		props = new LinkedHashMap<String, PropertyEntry<?>>();
 	}
 
 	/**
 	 * @see com.ixora.common.xml.XMLExternalizable#toXML(org.w3c.dom.Node)
 	 */
 	public void toXML(Node parent) throws XMLException {
-		Document doc = parent.getOwnerDocument();
-		Element el;
-		PropertyEntry value;
-		for(Iterator iter = props.values().iterator(); iter.hasNext();) {
-			value = (PropertyEntry)iter.next();
+		for(Iterator<PropertyEntry<?>> iter = props.values().iterator(); iter.hasNext();) {
+			PropertyEntry<?> value = iter.next();
 			value.toXML(parent);
 		}
 	}
@@ -186,7 +182,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 		}
 		Node n;
 		int length = nl.getLength();
-		List lst = new LinkedList();
+		List<Node> lst = new LinkedList<Node>();
 		for(int i = 0; i < length; i++) {
 			n = nl.item(i);
 			if(n.getNodeType() == Node.ELEMENT_NODE) {
@@ -198,13 +194,13 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 			return;
 		}
 		for(int i = 0; i < length; i++) {
-			n = (Node)lst.get(i);
+			n = lst.get(i);
 			Attr a = XMLUtils.findAttribute(n, "type");
 			if(a == null) {
 				throw new XMLAttributeMissing("type");
 			}
 			int type = Integer.parseInt(a.getValue());
-			PropertyEntry entry = createEntry(type, n);
+			PropertyEntry<?> entry = createEntry(type, n);
 			this.props.put(entry.getProperty(), entry);
 		}
 	}
@@ -221,7 +217,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	/**
 	 * @return a read only map containing all entries
 	 */
-	public Map<String, PropertyEntry> getEntries() {
+	public Map<String, PropertyEntry<?>> getEntries() {
 		return Collections.unmodifiableMap(props);
 	}
 
@@ -296,8 +292,9 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * of the type required by the given property
 	 * @throws PropertyNotFound
 	 */
-	public void setObject(String key, Object value) {
-		PropertyEntry pe = this.props.get(key);
+	@SuppressWarnings("unchecked")
+	public <T> void setObject(String key, T value) {
+		PropertyEntry<T> pe = (PropertyEntry<T>)this.props.get(key);
 		if(pe != null) {
 			if(pe.setValue(value)) {
 				setChanged();
@@ -315,8 +312,9 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @throws PropertyTypeMismatch
 	 * @throws PropertyNotFound
 	 */
-	public void setDefaultValue(String key, Object value) {
-		PropertyEntry pe = this.props.get(key);
+	@SuppressWarnings("unchecked")
+	public <T> void setDefaultValue(String key, T value) {
+		PropertyEntry<T> pe = (PropertyEntry<T>)this.props.get(key);
 		if(pe != null) {
 			pe.setDefaultValue(value);
 		} else {
@@ -328,7 +326,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @param key
 	 * @return the entry for the given key
 	 */
-	public PropertyEntry getEntry(String key) {
+	public PropertyEntry<?> getEntry(String key) {
 		return this.props.get(key);
 	}
 
@@ -337,9 +335,9 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @return the entry at the given position
 	 * @throws IllegalArgumentException if idx is not in the correct range
 	 */
-	public PropertyEntry getEntryAt(int idx) {
+	public PropertyEntry<?> getEntryAt(int idx) {
 		int i = 0;
-		for(Iterator<PropertyEntry> iter = props.values().iterator(); iter.hasNext(); ++i) {
+		for(Iterator<PropertyEntry<?>> iter = props.values().iterator(); iter.hasNext(); ++i) {
 			if(i == idx) {
 				return iter.next();
 			} else {
@@ -361,7 +359,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 */
 	public void setDefaults() {
 		for(String key : props.keySet()) {
-			PropertyEntry pe = props.get(key);
+			PropertyEntry<?> pe = props.get(key);
 			if(pe.restoreDefault()) {
 				setChanged();
 				notifyObservers(key);
@@ -418,7 +416,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
      */
     public String toString() {
         StringBuffer buff = new StringBuffer();
-        for(PropertyEntry entry : props.values()) {
+        for(PropertyEntry<?> entry : props.values()) {
             buff.append("[");
             buff.append(entry);
             buff.append("]");
@@ -432,7 +430,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @param visible
 	 * @return
 	 */
-	public PropertyEntry setProperty(
+	public PropertyEntry<?> setProperty(
 			String key, int type, boolean visible) {
 	    return setProperty(key, type, visible, true, null);
 	}
@@ -444,7 +442,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @param required
 	 * @return
 	 */
-	public PropertyEntry setProperty(
+	public PropertyEntry<?> setProperty(
 			String key, int type, boolean visible, boolean required) {
 	    return setProperty(key, type, visible, required, null);
 	}
@@ -456,7 +454,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @param set
 	 * @return
 	 */
-	public PropertyEntry setProperty(
+	public PropertyEntry<?> setProperty(
 			String key, int type, boolean visible, Serializable[] set) {
 	    return setProperty(key, type, visible, true, set);
 	}
@@ -477,13 +475,13 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @param set
 	 * @return
 	 */
-	public PropertyEntry setProperty(
+	public PropertyEntry<?> setProperty(
 			String key,
 			int type,
 			boolean visible,
 			boolean required,
 			Serializable[] set) {
-	    PropertyEntry ret = createEntry(key, visible, set, type, required, null);
+	    PropertyEntry<?> ret = createEntry(key, visible, set, type, required, null);
 		this.props.put(key, ret);
 		return ret;
 	}
@@ -499,14 +497,14 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @throws ClassNotFoundException
 	 * @throws SecurityException
 	 */
-	public PropertyEntry setProperty(
+	public PropertyEntry<?> setProperty(
 			String key,
 			int type,
 			boolean visible,
 			boolean required,
 			Serializable[] set,
 			String extendedEditorClass) {
-	    PropertyEntry ret = createEntry(
+	    PropertyEntry<?> ret = createEntry(
 	            key, visible, set, type, required,
 	            extendedEditorClass);
 		this.props.put(key, ret);
@@ -601,6 +599,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * Applies the new values found in the given property.
 	 * @param other
 	 */
+	@SuppressWarnings("unchecked")
 	public void apply(TypedProperties other) throws InvalidPropertyValue {
 		for(String key : props.keySet()) {
 			PropertyEntry peOther = other.getEntry(key);
@@ -622,7 +621,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @throws PropertyValueNotSet
 	 */
 	private Object getValueObject(String property) {
-		PropertyEntry pe = this.props.get(property);
+		PropertyEntry<?> pe = this.props.get(property);
 		if(pe == null) {
 			throw new PropertyNotFound(property);
 		}
@@ -636,7 +635,7 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * @throws PropertyValueNotSet
 	 */
 	private Object getValueNonNullObject(String property) {
-		PropertyEntry pe = this.props.get(property);
+		PropertyEntry<?> pe = this.props.get(property);
 		if(pe == null) {
 			throw new PropertyNotFound(property);
 		}

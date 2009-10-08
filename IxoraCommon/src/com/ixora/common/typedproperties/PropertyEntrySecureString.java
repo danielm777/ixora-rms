@@ -12,6 +12,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class PropertyEntrySecureString extends PropertyEntryString {
+	private static final long serialVersionUID = 1192417745079991814L;
 
 	/**
 	 *
@@ -21,7 +22,6 @@ public class PropertyEntrySecureString extends PropertyEntryString {
 		type = TypedProperties.TYPE_SECURE_STRING;
 	}
 
-
 	/**
 	 * @param prop
 	 * @param v
@@ -29,7 +29,7 @@ public class PropertyEntrySecureString extends PropertyEntryString {
 	 * @param type
 	 * @param required
 	 */
-	public PropertyEntrySecureString(String prop, boolean v, Object[] set, int type, boolean required) {
+	public PropertyEntrySecureString(String prop, boolean v, String[] set, int type, boolean required) {
 		this(prop, v, required);
 	}
 
@@ -44,7 +44,6 @@ public class PropertyEntrySecureString extends PropertyEntryString {
 		this(prop, v, required);
 	}
 
-
 	/**
 	 * @param prop
 	 * @param v
@@ -56,10 +55,10 @@ public class PropertyEntrySecureString extends PropertyEntryString {
 	}
 
 	/**
-	 * Overriden to perform decryption.
+	 * Overridden to perform decryption.
 	 * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
 	 */
-	protected Object makeObject(String value) throws InvalidPropertyValue {
+	protected String makeObject(String value) throws InvalidPropertyValue {
 		String cipherText = (String)super.makeObject(value);
 		if(Utils.isEmptyString(cipherText)) {
 			return cipherText;
@@ -71,7 +70,7 @@ public class PropertyEntrySecureString extends PropertyEntryString {
 	 * Overriden to perform encryption.
 	 * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
 	 */
-	protected String makeString(Object obj) throws PropertyTypeMismatch {
+	protected String makeString(String obj) throws PropertyTypeMismatch {
 		String clearText = super.makeString(obj);
 		return SecurityMgr.encrypt(clearText);
 	}
