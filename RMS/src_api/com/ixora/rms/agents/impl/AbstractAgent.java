@@ -318,12 +318,12 @@ public abstract class AbstractAgent implements Agent {
 		if(conf == null) {
 			return;
 		}
-		Collection<PropertyEntry> props = conf.getEntries().values();
+		Collection<PropertyEntry<?>> props = conf.getEntries().values();
 		if(Utils.isEmptyCollection(props)) {
 			return;
 		}
 		String host = fConfiguration == null ? newConf.getMonitoredHost() : fConfiguration.getMonitoredHost();
-		for(PropertyEntry pe : props) {
+		for(PropertyEntry<?> pe : props) {
 			if(pe.getType() == TypedProperties.TYPE_STRING) {
 				String val = (String)pe.getValue();
 				if(!Utils.isEmptyString(val)) {

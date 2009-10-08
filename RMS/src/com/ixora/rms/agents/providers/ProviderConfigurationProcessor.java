@@ -45,8 +45,8 @@ public final class ProviderConfigurationProcessor {
 			return;
 		}
 		// replace configuration tokens in the custom provider configuration
-		Map<String, PropertyEntry> props = pConf.getEntries();
-		for(PropertyEntry pe : props.values()) {
+		Map<String, PropertyEntry<?>> props = pConf.getEntries();
+		for(PropertyEntry<?> pe : props.values()) {
 			if(pe instanceof PropertyEntryString) {
 				String value = (String)pe.getValue();
 				if(value != null) {

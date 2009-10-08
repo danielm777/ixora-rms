@@ -15,10 +15,11 @@
 	<classpathentry kind="lib" path="/IxoraResources/lib/xalan.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/jh.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/jhall.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jfreechart"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/activation.jar"/>
 	<classpathentry kind="src" path="src_api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ganymed-ssh2"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-net.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/ganymed-ssh2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMSLibsPatch"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/jfreechart.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
