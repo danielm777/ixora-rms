@@ -1,8 +1,4 @@
-This folder contains a bunch of JREs for various platforms, a folder called output
-where the install packages are built, and a temporary folder IxoraRMS.
-
-Run package.bat to build zip files for all platforms. (Ignore for now the other 
-files (makeself, setup and sfx))
+Run package.bat to build zip files for all platforms.
 
 The result is generated under the 'output' folder ready for deployment: two files
 for each platform: with and without JRE.

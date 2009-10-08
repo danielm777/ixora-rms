@@ -29,23 +29,23 @@
 	<classpathentry kind="lib" path="/IxoraResources/lib/activation.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentSunApp"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentWMI"/>
-	<classpathentry kind="lib" path="jars/xraw/AgentJBoss_ui.jar"/>
-	<classpathentry kind="lib" path="jars/xraw/AgentJMXJSR160_ui.jar"/>
+	<classpathentry kind="lib" path="jars/AgentJBoss_ui.jar"/>
+	<classpathentry kind="lib" path="jars/AgentJMXJSR160_ui.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentLDAP"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentSNMP"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentFile"/>
-	<classpathentry kind="lib" path="jars/xraw/Provider_java_ui.jar"/>
-	<classpathentry kind="lib" path="jars/xraw/Provider_sql_ui.jar"/>
-	<classpathentry kind="lib" path="jars/xraw/AgentMySQL_ui.jar"/>
-	<classpathentry kind="lib" path="jars/xraw/AgentWeblogic_ui.jar"/>
+	<classpathentry kind="lib" path="jars/Provider_java_ui.jar"/>
+	<classpathentry kind="lib" path="jars/Provider_sql_ui.jar"/>
+	<classpathentry kind="lib" path="jars/AgentMySQL_ui.jar"/>
+	<classpathentry kind="lib" path="jars/AgentWeblogic_ui.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentLogFile"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-codec.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-httpclient.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging-api.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/AgentURL"/>
-	<classpathentry kind="lib" path="jars/xraw/AgentSunApp_ui.jar"/>
-	<classpathentry kind="lib" path="jars/xraw/AgentHotSpotJVM_ui.jar"/>
-	<classpathentry kind="lib" path="jars/xraw/AgentWebsphere_ui.jar"/>
+	<classpathentry kind="lib" path="jars/AgentSunApp_ui.jar"/>
+	<classpathentry kind="lib" path="jars/AgentHotSpotJVM_ui.jar"/>
+	<classpathentry kind="lib" path="jars/AgentWebsphere_ui.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
