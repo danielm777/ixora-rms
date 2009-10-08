@@ -3,8 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IxoraCommon"/>
-	<classpathentry sourcepath="/IxoraResources/libtools/snmp4j-1.5.zip" kind="lib" path="/IxoraResources/lib/SNMP4J.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/mibble"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/SNMP4J.jar" sourcepath="/IxoraResources/libtools/snmp4j-1.5.zip"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMS"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/mibble.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
