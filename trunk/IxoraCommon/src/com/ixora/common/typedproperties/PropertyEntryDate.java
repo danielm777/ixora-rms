@@ -13,8 +13,9 @@ import com.ixora.common.typedproperties.exception.PropertyValueNotDateTime;
 /**
  * PropertyEntryDate.
  */
-public final class PropertyEntryDate extends PropertyEntry {
-    /**
+public final class PropertyEntryDate extends PropertyEntry<Date> {
+	private static final long serialVersionUID = 1540392993343334545L;
+	/**
      * Constructor to support XML.
      */
     PropertyEntryDate() {
@@ -30,7 +31,7 @@ public final class PropertyEntryDate extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected Date makeObject(String value) throws InvalidPropertyValue {
 	    try {
             return new Date(Long.parseLong(value));
         } catch (NumberFormatException e1) {
@@ -40,19 +41,10 @@ public final class PropertyEntryDate extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(Date obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof Date)) {
-            throw new PropertyTypeMismatch(property);
-        }
-        return String.valueOf(((Date)obj).getTime());
-    }
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj == null || obj instanceof Date;
+        return String.valueOf(obj.getTime());
     }
 }

@@ -18,8 +18,9 @@ import com.ixora.common.xml.exception.XMLException;
 /**
  * PropertyEntryDate.
  */
-public final class PropertyEntryFile extends PropertyEntry {
-    /** Whether or not to allow folders */
+public final class PropertyEntryFile extends PropertyEntry<File> {
+	private static final long serialVersionUID = 8379095552458657016L;
+	/** Whether or not to allow folders */
     private boolean allowsFolders;
     /** Whether or not to allow files */
     private boolean allowsFiles;
@@ -42,27 +43,18 @@ public final class PropertyEntryFile extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected File makeObject(String value) throws InvalidPropertyValue {
         return new File(value);
     }
 
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(File obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof File)) {
-            throw new PropertyTypeMismatch(property);
-        }
-        return ((File)obj).getAbsolutePath();
-    }
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj == null || obj instanceof File;
+        return obj.getAbsolutePath();
     }
     /**
      * @return the allowsFolders.

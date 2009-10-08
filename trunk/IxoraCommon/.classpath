@@ -14,8 +14,9 @@
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-httpclient.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging-api.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ganymed-ssh2"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/commons-net.jar"/>
 	<classpathentry kind="var" path="JDK_HOME/jre/lib/jce.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMSLibsPatch"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/ganymed-ssh2.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

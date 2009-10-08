@@ -26,18 +26,19 @@ import com.ixora.common.xml.exception.XMLException;
  * An entry in the property map.
  * It describes the property.
  */
-public abstract class PropertyEntry
+public abstract class PropertyEntry<T>
 		implements Cloneable, Serializable, XMLExternalizable {
- 	/** Property name */
+	private static final long serialVersionUID = -3898200359990027502L;
+	/** Property name */
     protected String property;
     /** Value */
-    protected Object value;
+    protected T value;
 	/** Default value */
-    protected Object defaultValue;
+    protected T defaultValue;
 	/** Whether or not this property is visible to the user */
     protected boolean visible;
 	/** All possible values */
-    protected Object[] valueSet;
+    protected T[] valueSet;
 	/** Value type */
     protected int type;
 	/** Whether or not this property is required to have a value set */
@@ -64,7 +65,7 @@ public abstract class PropertyEntry
 	 * @param type
 	 * @param required
 	 */
-	protected PropertyEntry(String prop, boolean v, Object[] set, int type, boolean required) {
+	protected PropertyEntry(String prop, boolean v, T[] set, int type, boolean required) {
 	    this(prop, v, set, type, required, null);
 	}
 
@@ -78,7 +79,7 @@ public abstract class PropertyEntry
 	 * @param extendedEditorClass
 	 */
 	protected PropertyEntry(String prop, boolean v,
-	        Object[] set, int type, boolean required,
+	        T[] set, int type, boolean required,
 	        String extendedEditorClass) {
 		super();
 	    this.property = prop;
@@ -96,7 +97,7 @@ public abstract class PropertyEntry
 	 * @throws PropertyTypeMismatch
 	 * @throws PropertyValueNotSet
 	 */
-	public void validateValue(Object value) {
+	public void validateValue(T value) {
 	    // if value null and not required is ok
 	    if(value == null) {
 	    	if(!this.required) {
@@ -104,10 +105,6 @@ public abstract class PropertyEntry
 	    	} else {
 	    		throw new PropertyValueNotSet(property);
 	    	}
-	    }
-	    // check the type of the object
-	    if(!checkObjectType(value)) {
-	        throw new PropertyTypeMismatch(property);
 	    }
 	    // now check the value is in the set
 		if(valueSet != null) {
@@ -127,7 +124,7 @@ public abstract class PropertyEntry
      * @return the object represented by this property
      * or null if no value has been set
      */
-    public Object getValue() {
+    public T getValue() {
          return value;
     }
 
@@ -137,7 +134,7 @@ public abstract class PropertyEntry
      * @return
      * @throws InvalidPropertyValue
      */
-	protected abstract Object makeObject(String value) throws InvalidPropertyValue;
+	protected abstract T makeObject(String value) throws InvalidPropertyValue;
 
     /**
      * Subclasses should return a string representation of the given object.
@@ -145,22 +142,14 @@ public abstract class PropertyEntry
      * @return
      * @throws PropertyTypeMismatch
      */
-	protected abstract String makeString(Object obj) throws PropertyTypeMismatch;
-
-	/**
-	 * Subclasses must check here that the given object is of the
-	 * right type.
-	 * @param obj a not null object
-	 * @return
-	 */
-	protected abstract boolean checkObjectType(Object obj);
+	protected abstract String makeString(T obj) throws PropertyTypeMismatch;
 
 	/**
 	 * @see java.lang.Object#clone()
 	 */
 	public final Object clone() {
 		try {
-			return (PropertyEntry)super.clone();
+			return super.clone();
 		} catch(CloneNotSupportedException e) {
 			throw new InternalError();
 		}
@@ -169,6 +158,7 @@ public abstract class PropertyEntry
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
+	@SuppressWarnings("unchecked")
 	public final boolean equals(Object obj) {
 		if(obj == null) {
 			return false;
@@ -192,7 +182,7 @@ public abstract class PropertyEntry
     /**
      * @return the defaultValue.
      */
-    public Object getDefaultValue() {
+    public T getDefaultValue() {
         return defaultValue;
     }
     /**
@@ -217,7 +207,7 @@ public abstract class PropertyEntry
     /**
      * @return the valueSet.
      */
-    public Object[] getValueSet() {
+    public T[] getValueSet() {
         return valueSet;
     }
     /**
@@ -254,7 +244,7 @@ public abstract class PropertyEntry
      * @throws PropertyTypeMismatch
      * @return
      */
-    public boolean setValue(Object obj) {
+    public boolean setValue(T obj) {
         if(Utils.equals(obj, this.value)) {
             return false;
         }
@@ -267,7 +257,7 @@ public abstract class PropertyEntry
      * @param value the value to set.
      * @throws PropertyTypeMismatch
      */
-    public boolean setDefaultValue(Object value) {
+    public boolean setDefaultValue(T value) {
         if(Utils.equals(this.defaultValue, value)) {
             return false;
         }
@@ -372,7 +362,7 @@ public abstract class PropertyEntry
 	 * @param vals
 	 * @return
 	 */
-	private String valuesToString(Object[] vals) {
+	private String valuesToString(T[] vals) {
 		StringBuffer buff = new StringBuffer();
 		for(int i = 0; i < vals.length; i++) {
 			buff.append(makeString(vals[i]));
@@ -387,7 +377,8 @@ public abstract class PropertyEntry
 	 * @param vals
 	 * @return
 	 */
-	private Object[] parseSetValues(String vals) {
+	@SuppressWarnings("unchecked")
+	private T[] parseSetValues(String vals) {
 		StringTokenizer tok = new StringTokenizer(vals, ",");
 		Object[] ret = new Object[tok.countTokens()];
 		int i = 0;
@@ -395,7 +386,7 @@ public abstract class PropertyEntry
 			ret[i] = makeObject(tok.nextToken());
 			++i;
 		}
-		return ret;
+		return (T[])ret;
 	}
 
 	/**
@@ -415,7 +406,7 @@ public abstract class PropertyEntry
 	/**
 	 * @param set
 	 */
-	public void setValueSet(Object[] set) {
+	public void setValueSet(T[] set) {
 		this.valueSet = set;
 	}
 }

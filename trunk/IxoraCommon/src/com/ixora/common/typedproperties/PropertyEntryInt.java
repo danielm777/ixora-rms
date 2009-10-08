@@ -11,8 +11,9 @@ import com.ixora.common.typedproperties.exception.PropertyValueNotInteger;
 /**
  * PropertyEntryInt.
  */
-public final class PropertyEntryInt extends PropertyEntryNumber {
-    /**
+public final class PropertyEntryInt extends PropertyEntryNumber<Integer> {
+	private static final long serialVersionUID = 592892853952896663L;
+	/**
      * Constructor to support XML.
      */
     PropertyEntryInt() {
@@ -29,7 +30,7 @@ public final class PropertyEntryInt extends PropertyEntryNumber {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected Integer makeObject(String value) throws InvalidPropertyValue {
 		try {
 			Integer ret = Integer.valueOf(value);
 			validateValue(ret);
@@ -41,19 +42,10 @@ public final class PropertyEntryInt extends PropertyEntryNumber {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(Integer obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof Integer)) {
-            throw new PropertyTypeMismatch(property);
-        }
-        return String.valueOf(((Integer)obj).intValue());
-    }
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj instanceof Integer;
+        return String.valueOf(obj.intValue());
     }
 }

@@ -33,6 +33,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class ComponentConfiguration extends TypedProperties {
+	private static final long serialVersionUID = 7836771735023076337L;
 	/** Path to the conf file */
 	private String confFile;
 
@@ -58,13 +59,6 @@ public class ComponentConfiguration extends TypedProperties {
 	}
 
 	/**
-	 * Constructor.
-	 */
-	private ComponentConfiguration() {
-	    super();
-	}
-
-	/**
 	 * Saves the configuration.
 	 * @throws FailedToSaveConfiguration
 	 * @throws ReadOnlyConfiguration
@@ -76,28 +70,12 @@ public class ComponentConfiguration extends TypedProperties {
 		}
 
 		BufferedOutputStream os = null;
-		File tmp = null;
 		SafeOverwrite so = new SafeOverwrite(new File(this.confFile));
 		try {
 			// save properties to file
 			so.backup();
 			Document doc = XMLUtils.createEmptyDocument("config");
 			toXML(doc.getDocumentElement());
-
-			// test write
-//			File test = new File(this.confFile + ".tst");
-//			test.deleteOnExit();
-//			try {
-//				os = new BufferedOutputStream(new FileOutputStream(test));
-//				XMLUtils.write(doc, os);
-//			} finally {
-//				if(os != null) {
-//					try {
-//						os.close();
-//					} catch(Exception e) {}
-//				}
-//				test.delete();
-//			}
 
 			// write
 			os = new BufferedOutputStream(new FileOutputStream(this.confFile));
@@ -178,15 +156,15 @@ public class ComponentConfiguration extends TypedProperties {
 	 * property = part1, part2,.... to Collection(part1, part2,...).
 	 * The separator is <code>File.pathSeparatorChar</code>.
 	 * @param propKey String
-	 * @return ArrayList
+	 * @return List
 	 */
-	protected ArrayList<String> getMultipleStringProp(String propKey) {
+	protected List<String> getMultipleStringProp(String propKey) {
 		String lst = getString(propKey);
 		if(lst == null) {
 			return null;
 		}
 		StringTokenizer tok = new StringTokenizer(lst, File.pathSeparator);
-		ArrayList ret = new ArrayList<String>(tok.countTokens());
+		ArrayList<String> ret = new ArrayList<String>(tok.countTokens());
 		while(tok.hasMoreTokens()) {
 			ret.add(tok.nextToken());
 		}
@@ -197,27 +175,27 @@ public class ComponentConfiguration extends TypedProperties {
 	/**
 	 * Similar to <code>getMultipleStringProp(String)</code> with the
 	 * exception that the list will contain instances of the given class
-	 * who must provide a costructor taking as an argument a String.
+	 * who must provide a constructor taking as an argument a String.
 	 * @param propKey String
-	 * @return ArrayList
+	 * @return List
 	 * @throws NoSuchMethodException
 	 * @throws InvocationTargetException
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
-	protected ArrayList getMultipleStringProp(Class clazz, String propKey)
+	protected <T> List<T> getMultipleStringProp(Class<T> clazz, String propKey)
 			throws NoSuchMethodException, InstantiationException,
 			IllegalAccessException, InvocationTargetException {
 		String lst = getString(propKey);
 		if(lst == null) {
 			return null;
 		}
-		Constructor constr = clazz.getConstructor(
-		        new Class[]{String.class});
+		Constructor<T> constr = clazz.getConstructor(
+		        new Class<?>[]{String.class});
 		StringTokenizer tok = new StringTokenizer(lst, File.pathSeparator);
-		ArrayList ret = new ArrayList(tok.countTokens());
+		List<T> ret = new ArrayList<T>(tok.countTokens());
 		while(tok.hasMoreTokens()) {
-			ret.add(constr.newInstance((Object[])new String[]{tok.nextToken()}));
+			ret.add(constr.newInstance(new Object[]{tok.nextToken()}));
 		}
 		return ret;
 	}
@@ -228,7 +206,7 @@ public class ComponentConfiguration extends TypedProperties {
 	 * @param propKey Name of the property
 	 * @param vals List of entries to be appended to the property value
 	 */
-	protected void setMultipleStringProp(String propKey, List vals) {
+	protected void setMultipleStringProp(String propKey, List<?> vals) {
 		int size = vals.size();
 		StringBuffer str = new StringBuffer(size * 10);
 		for(int i = 0; i < size; ++i) {
@@ -258,7 +236,7 @@ public class ComponentConfiguration extends TypedProperties {
 	 * @throws InstantiationException
 	 * @throws NoSuchMethodException
 	 */
-	public List getList(Class clazz, String property) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public <T> List<T> getList(Class<T> clazz, String property) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		return getMultipleStringProp(clazz, property);
 	}
 
@@ -267,7 +245,7 @@ public class ComponentConfiguration extends TypedProperties {
 	 * @param property
 	 * @param col
 	 */
-	public void setList(String property, List col) {
+	public void setList(String property, List<?> col) {
 		setMultipleStringProp(property, col);
 	}
 
@@ -276,12 +254,12 @@ public class ComponentConfiguration extends TypedProperties {
 	 */
 	public Object clone() {
         ComponentConfiguration conf = (ComponentConfiguration)super.clone();
-        conf.props = new LinkedHashMap();
+        conf.props = new LinkedHashMap<String, PropertyEntry<?>>();
         conf.confFile = this.confFile;
-		for(Iterator itr = props.keySet().iterator(); itr.hasNext();) {
-			String key = (String)itr.next();
-			PropertyEntry pe = props.get(key);
-			conf.props.put(key, (PropertyEntry)pe.clone());
+		for(Iterator<String> itr = props.keySet().iterator(); itr.hasNext();) {
+			String key = itr.next();
+			PropertyEntry<?> pe = props.get(key);
+			conf.props.put(key, (PropertyEntry<?>)pe.clone());
 		}
 		return conf;
 	}

@@ -12,8 +12,9 @@ import com.ixora.common.typedproperties.exception.PropertyTypeMismatch;
 /**
  * PropertyEntryColor.
  */
-public final class PropertyEntryColor extends PropertyEntry {
-    /**
+public final class PropertyEntryColor extends PropertyEntry<Color> {
+	private static final long serialVersionUID = -4800218568848935255L;
+	/**
      * Constructor to support XML.
      */
     PropertyEntryColor() {
@@ -29,25 +30,16 @@ public final class PropertyEntryColor extends PropertyEntry {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected Color makeObject(String value) throws InvalidPropertyValue {
         return new Color(Integer.parseInt(value));
     }
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(Color obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof Color)) {
-            throw new PropertyTypeMismatch(property);
-        }
         return String.valueOf(((Color)obj).getRGB());
-    }
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj == null || obj instanceof Color;
     }
 }

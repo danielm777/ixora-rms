@@ -12,8 +12,9 @@ import com.ixora.common.typedproperties.exception.PropertyValueNotPercentage;
 /**
  * PropertyEntryFloat.
  */
-public final class PropertyEntryPercentage extends PropertyEntryNumber {
-    /**
+public final class PropertyEntryPercentage extends PropertyEntryNumber<Float> {
+	private static final long serialVersionUID = 2254570994004060270L;
+	/**
      * Constructor to support XML.
      */
     PropertyEntryPercentage() {
@@ -29,7 +30,7 @@ public final class PropertyEntryPercentage extends PropertyEntryNumber {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeObject(java.lang.String)
      */
-    protected Object makeObject(String value) throws InvalidPropertyValue {
+    protected Float makeObject(String value) throws InvalidPropertyValue {
 		try {
 		    Float obj = Float.valueOf(value);
 		    float fl = obj.floatValue();
@@ -45,20 +46,10 @@ public final class PropertyEntryPercentage extends PropertyEntryNumber {
     /**
      * @see com.ixora.common.typedproperties.PropertyEntry#makeString(java.lang.Object)
      */
-    protected String makeString(Object obj) throws PropertyTypeMismatch {
+    protected String makeString(Float obj) throws PropertyTypeMismatch {
         if(obj == null) {
             return "";
         }
-        if(!(obj instanceof Float)) {
-            throw new PropertyTypeMismatch(property);
-        }
-        return String.valueOf(((Float)obj).floatValue());
-    }
-
-    /**
-     * @see com.ixora.common.typedproperties.PropertyEntry#checkObjectType(java.lang.Object)
-     */
-    protected boolean checkObjectType(Object obj) {
-        return obj == null || obj instanceof Float;
+        return String.valueOf(obj.floatValue());
     }
 }
