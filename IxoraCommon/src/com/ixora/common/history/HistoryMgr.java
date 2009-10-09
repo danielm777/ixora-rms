@@ -1,7 +1,7 @@
 /**
  * 01-Feb-2006
  */
-package com.ixora.common.xml.history;
+package com.ixora.common.history;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

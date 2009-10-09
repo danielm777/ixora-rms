@@ -11,6 +11,7 @@ import com.ixora.common.ui.UIFactoryMgr;
  * @author Daniel Moraru
  */
 class CellComponentSecureString extends CellComponentObject {
+	private static final long serialVersionUID = 6869509599063478520L;
 
 	/**
 	 *

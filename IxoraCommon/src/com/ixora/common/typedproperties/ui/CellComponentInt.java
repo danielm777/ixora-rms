@@ -8,9 +8,10 @@ import javax.swing.text.NumberFormatter;
 /**
  * @author Daniel Moraru
  */
-final class CellComponentInt extends CellComponentNumber {
+final class CellComponentInt extends CellComponentNumber<Integer> {
+	private static final long serialVersionUID = -2164101641590586808L;
 
-    /**
+	/**
      * Constructor.
      */
     public CellComponentInt() {

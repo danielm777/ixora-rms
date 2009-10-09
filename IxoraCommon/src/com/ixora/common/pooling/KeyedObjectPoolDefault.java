@@ -14,7 +14,7 @@ public final class KeyedObjectPoolDefault implements KeyedObjectPool {
 	/**
 	 * Pools map.
 	 */
-	private Map pools;
+	private Map<Object, ObjectPool> pools;
 	/**
 	 * Object factory factory.
 	 */
@@ -39,14 +39,14 @@ public final class KeyedObjectPoolDefault implements KeyedObjectPool {
 		this.factory = factory;
 		this.inactivityController = inactivityController;
 		this.poolSizeController = sizeController;
-		this.pools = new HashMap();
+		this.pools = new HashMap<Object, ObjectPool>();
 	}
 
 	/**
 	 * @see com.ixora.common.pooling.KeyedObjectPool#getObject(java.lang.Object)
 	 */
 	public synchronized Object getObject(Object key) throws FailedToCreateObject {
-		ObjectPool pool = (ObjectPool)this.pools.get(key);
+		ObjectPool pool = this.pools.get(key);
 		if(pool == null) {
 			pool = new ObjectPoolDefault(this.factory.getFactory(key), this.inactivityController, this.poolSizeController);
 			this.pools.put(key, pool);

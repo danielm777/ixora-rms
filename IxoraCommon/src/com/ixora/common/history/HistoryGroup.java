@@ -1,7 +1,7 @@
 /**
  * 01-Feb-2006
  */
-package com.ixora.common.xml.history;
+package com.ixora.common.history;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,9 +16,10 @@ import com.ixora.common.xml.XMLTagList;
  * @author Daniel Moraru
  */
 public final class HistoryGroup extends XMLTag {
+	private static final long serialVersionUID = 1529819776972007175L;
 	private static final int HISTORY_SIZE = 3;
 	private XMLAttributeString fGroupId = new XMLAttributeString("id", true);
-	private XMLTagList fItems = new XMLSameTagList(HistoryGroupItem.class);
+	private XMLTagList<HistoryGroupItem> fItems = new XMLSameTagList<HistoryGroupItem>(HistoryGroupItem.class);
 
 	/**
 	 * Default constructor to support XML.

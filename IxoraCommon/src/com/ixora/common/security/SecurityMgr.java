@@ -6,7 +6,7 @@ package com.ixora.common.security;
 import java.security.cert.CertificateException;
 
 import com.ixora.common.exception.AppRuntimeException;
-import com.ixora.common.security.exception.SecException;
+import com.ixora.common.security.exception.SecurityException;
 
 /**
  * @author Daniel Moraru
@@ -31,7 +31,7 @@ public final class SecurityMgr {
 				handler = new SecurityHandlerDefault();
 			}
 		} catch(Exception e) {
-			throw new SecException(e);
+			throw new SecurityException(e);
 		}
 	}
 

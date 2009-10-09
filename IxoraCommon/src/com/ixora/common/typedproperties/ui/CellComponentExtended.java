@@ -15,9 +15,10 @@ import com.ixora.common.typedproperties.PropertyEntry;
  * Cell renderer used to render entries that require an extended editor.
  * @author Daniel Moraru
  */
-public class CellComponentExtended extends CellComponent {
+public class CellComponentExtended<T> extends CellComponent<T> {
+	private static final long serialVersionUID = -2339237286173102099L;
 	/** Underlying component */
-    protected CellComponent display;
+    protected CellComponent<T> display;
     /** Button that launches the external editor */
 	protected JButton button;
 	/** Component name */
@@ -28,7 +29,7 @@ public class CellComponentExtended extends CellComponent {
 	 * @param display the component that knows to display
 	 * value of a certain type
 	 */
-	protected CellComponentExtended(CellComponent display) {
+	protected CellComponentExtended(CellComponent<T> display) {
 	    super(new BorderLayout());
 		button = new JButton("...");
 		button.setPreferredSize(new Dimension(16, 16));
@@ -46,7 +47,7 @@ public class CellComponentExtended extends CellComponent {
 	 * @param buttonText
 	 */
 	protected CellComponentExtended(
-	        CellComponent display,
+	        CellComponent<T> display,
 	        String buttonText,
 	        ImageIcon buttonIcon) {
 	    super(new BorderLayout());
@@ -69,14 +70,14 @@ public class CellComponentExtended extends CellComponent {
 	/**
 	 * @return the component used to display the value
 	 */
-	CellComponent getDisplay() {
+	CellComponent<T> getDisplay() {
 	    return display;
 	}
 
     /**
      * @see com.ixora.common.typedproperties.ui.CellComponent#render(com.ixora.common.app.typedproperties.PropertyEntry, java.lang.Object)
      */
-    public void render(PropertyEntry e, Object value) {
+    public void render(PropertyEntry<T> e, T value) {
     	if(this.display instanceof CellComponentObject) {
     		((CellComponentObject)this.display).setComponentName(componentName);
     	}
@@ -84,7 +85,7 @@ public class CellComponentExtended extends CellComponent {
     }
 
 	/**
-	 * Sets the component.
+	 * Sets the component name.
 	 * @param component
 	 */
 	public void setComponentName(String component) {

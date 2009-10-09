@@ -7,7 +7,8 @@ package com.ixora.common.exception;
  * @author Daniel Moraru
  */
 public class AppRuntimeException extends RuntimeException {
-    /** Delegate */
+	private static final long serialVersionUID = 6726075757366445522L;
+	/** Delegate */
     protected AppException appException;
 
     /**

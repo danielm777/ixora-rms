@@ -79,7 +79,7 @@ public final class UpdateManagerMultiNodeDefault
 	 * @see com.ixora.common.update.UpdateManager#getRegisteredModules()
 	 */
 	public Module[] getRegisteredModules() {
-		Set ret = new HashSet();
+		Set<Module> ret = new HashSet<Module>();
 		for(int i = 0; i < registeredModules.length; i++) {
 			ret.add(registeredModules[i]);
 		}
@@ -97,13 +97,13 @@ public final class UpdateManagerMultiNodeDefault
 		// install local modules
 		super.installAllUpdates();
 		// install remote modules...
-		Collection nodes = this.monitor.getHosts();
+		Collection<String> nodes = this.monitor.getHosts();
 		Updateable updateable;
 		RMIPingable pingable;
 		String host;
 		String os;
-		for(Iterator iter = nodes.iterator(); iter.hasNext();) {
-			host = (String)iter.next();
+		for(Iterator<String> iter = nodes.iterator(); iter.hasNext();) {
+			host = iter.next();
 			pingable = (RMIPingable)this.monitor.getPingable(host);
 			if(pingable == null) {
 				listener.nodeUpdateStatus(host, false);
@@ -117,8 +117,9 @@ public final class UpdateManagerMultiNodeDefault
 				ModuleUpdateDescriptor mud;
 				for(int i = 0; i < this.registeredNodeModules.length; i++) {
 					mud = getLatestUpdate(this.registeredModules[i]);
+					@SuppressWarnings("unused")
 					UpdatePartDescriptor[] upd = mud.getComponents(os);
-
+					// TODO
 				}
 				updateable.update(null);
 				listener.nodeUpdateStatus(host, true);

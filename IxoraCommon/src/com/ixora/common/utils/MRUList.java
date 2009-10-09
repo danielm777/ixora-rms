@@ -11,8 +11,9 @@ import java.util.LinkedList;
  * A list of most recently used items.
  * @author Daniel Moraru
  */
-public final class MRUList extends LinkedList {
-    /** Maximum size */
+public final class MRUList<T> extends LinkedList<T> {
+	private static final long serialVersionUID = -2160820921769921961L;
+	/** Maximum size */
     private int maxsize;
 
     /**
@@ -29,7 +30,7 @@ public final class MRUList extends LinkedList {
      * @param maxsize
      * @param coll
      */
-    public MRUList(int maxsize, Collection coll) {
+    public MRUList(int maxsize, Collection<T> coll) {
         super();
         this.maxsize = maxsize;
         addAll(coll);
@@ -38,7 +39,7 @@ public final class MRUList extends LinkedList {
     /**
      * @see java.util.Collection#add(java.lang.Object)
      */
-    public boolean add(Object obj) {
+    public boolean add(T obj) {
 		if(contains(obj)) {
 			remove(obj);
 			add(0, obj);
@@ -55,9 +56,9 @@ public final class MRUList extends LinkedList {
     /**
      * @see java.util.Collection#addAll(java.util.Collection)
      */
-    public boolean addAll(Collection c) {
+	public boolean addAll(Collection<? extends T> c) {
         int i = 0;
-        for(Iterator iter = c.iterator();
+        for(Iterator<? extends T> iter = c.iterator();
         		iter.hasNext() && i < maxsize; ++i) {
             super.add(iter.next());
         }

@@ -8,6 +8,7 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public final class PropertyValueOutOfRange extends InvalidPropertyValue {
+	private static final long serialVersionUID = -8615827115681448082L;
 
 	/**
 	 * Constructor.

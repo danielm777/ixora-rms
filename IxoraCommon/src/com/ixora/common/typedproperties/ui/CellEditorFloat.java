@@ -7,7 +7,7 @@ package com.ixora.common.typedproperties.ui;
 /**
  * @author Daniel Moraru
  */
-final class CellEditorFloat extends CellEditorNumber {
+final class CellEditorFloat extends CellEditorNumber<Float> {
     /**
      * Constructor.
      */

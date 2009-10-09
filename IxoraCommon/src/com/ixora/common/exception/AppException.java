@@ -9,6 +9,7 @@ import com.ixora.common.MessageRepository;
  * @author: Daniel Moraru
  */
 public class AppException extends Exception {
+	private static final long serialVersionUID = 2409585820005581434L;
 	/**
 	 * If this flag it true then the exception represents a
 	 * critical/internal application error.

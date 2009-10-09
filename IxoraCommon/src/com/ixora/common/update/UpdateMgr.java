@@ -25,12 +25,12 @@ public final class UpdateMgr {
 	 * Key: module name
 	 * Value: Module
 	 */
-	private static Map registeredModules;
+	private static Map<String, Module> registeredModules;
 	/**
 	 * Key: module name
 	 * Value: Module
 	 */
-	private static Map registeredNodeModules;
+	private static Map<String, Module> registeredNodeModules;
 
 	/**
 	 * Registers the given module.
@@ -38,7 +38,7 @@ public final class UpdateMgr {
 	 */
 	public static synchronized void registerModule(Module module) {
 		if(registeredModules == null) {
-			registeredModules = new LinkedHashMap();
+			registeredModules = new LinkedHashMap<String, Module>();
 		}
 		registeredModules.put(module.getName(), module);
 	}
@@ -69,7 +69,7 @@ public final class UpdateMgr {
 	 */
 	public static synchronized void registerNodeModule(Module module) {
 		if(registeredNodeModules == null) {
-			registeredNodeModules = new LinkedHashMap();
+			registeredNodeModules = new LinkedHashMap<String, Module>();
 		}
 		registeredNodeModules.put(module.getName(), module);
 	}
@@ -79,7 +79,7 @@ public final class UpdateMgr {
 	 */
 	public static synchronized Module[] getRegisteredNodeModules() {
 		if(registeredNodeModules == null) {
-			registeredNodeModules = new LinkedHashMap();
+			registeredNodeModules = new LinkedHashMap<String, Module>();
 		}
 		return (Module[])registeredNodeModules.values().toArray(new Module[registeredNodeModules.size()]);
 	}
@@ -88,14 +88,14 @@ public final class UpdateMgr {
 	 * @return all registered modules, local and remote
 	 */
 	public static synchronized Module[] getAllRegisteredModules() {
-		HashSet ret = new HashSet();
+		HashSet<Module> ret = new HashSet<Module>();
 		if(registeredModules != null) {
-			for(Iterator iter = registeredModules.values().iterator(); iter.hasNext();) {
+			for(Iterator<Module> iter = registeredModules.values().iterator(); iter.hasNext();) {
 				ret.add(iter.next());
 			}
 		}
 		if(registeredNodeModules != null) {
-			for(Iterator iter = registeredNodeModules.values().iterator(); iter.hasNext();) {
+			for(Iterator<Module> iter = registeredNodeModules.values().iterator(); iter.hasNext();) {
 				ret.add(iter.next());
 			}
 		}

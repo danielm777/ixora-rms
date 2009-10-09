@@ -5,7 +5,6 @@ package com.ixora.common.typedproperties.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -38,6 +37,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class TypedPropertiesEditor extends JPanel {
+	private static final long serialVersionUID = 6880565470291443401L;
 	/** Listener */
 	protected Listener fListener;
 	/**
@@ -173,8 +173,6 @@ public class TypedPropertiesEditor extends JPanel {
 		}
 		this.fComponent = component;
 		this.fProperties = props;
-		Set keys = props.keys();
-		int size = keys.size();
 		TableModel model = this.fTableProps.getModel();
 		if(model != null) {
 			model.removeTableModelListener(fEventHandler);
@@ -210,12 +208,12 @@ public class TypedPropertiesEditor extends JPanel {
 	}
 
 	/**
-	 * @return the first property that is required ot have a value but it doesn't
+	 * @return the first property that is required to have a value but it doesn't
 	 */
-	public PropertyEntry hasMissingValues() {
+	public PropertyEntry<?> hasMissingValues() {
 	    PropertyTableModel model = (PropertyTableModel)fTableProps.getModel();
-	    PropertyEntry[] data = model.getEntries();
-	    PropertyEntry entry;
+	    PropertyEntry<?>[] data = model.getEntries();
+	    PropertyEntry<?> entry;
 	    for(int i = 0; i < data.length; i++) {
             entry = data[i];
             if(entry.isRequired() && entry.getValue() == null) {
@@ -239,7 +237,7 @@ public class TypedPropertiesEditor extends JPanel {
 
         this.fProperties.veto();
 		// check for required missing values
-		PropertyEntry pe = hasMissingValues();
+		PropertyEntry<?> pe = hasMissingValues();
 		if(pe != null) {
 		    throw new PropertyValueNotSet(
 		            getTranslatedMessage(pe.getProperty()));
@@ -295,7 +293,7 @@ public class TypedPropertiesEditor extends JPanel {
 			if(idx < 0) {
 				return;
 			}
-			PropertyEntry entry = ((PropertyTableModel)fTableProps.getModel())
+			PropertyEntry<?> entry = ((PropertyTableModel)fTableProps.getModel())
 				.getEntryAt(idx);
 			String desc = entry.getProperty() + ".desc";
 			String descTranslated = getTranslatedMessage(desc);
@@ -306,9 +304,9 @@ public class TypedPropertiesEditor extends JPanel {
 			}
 
 			if(entry instanceof PropertyEntryNumber) {
-			    PropertyEntryNumber pen = (PropertyEntryNumber)entry;
-			    Comparable min = pen.getMin();
-			    Comparable max = pen.getMax();
+			    PropertyEntryNumber<?> pen = (PropertyEntryNumber<?>)entry;
+			    Comparable<?> min = pen.getMin();
+			    Comparable<?> max = pen.getMax();
 			    if(min != null || max != null) {
 			        descTranslated += Utils.getNewLine();
 			        descTranslated += MessageRepository.get(

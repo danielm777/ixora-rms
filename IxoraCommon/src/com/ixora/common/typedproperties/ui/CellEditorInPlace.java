@@ -13,11 +13,11 @@ import javax.swing.border.Border;
 import javax.swing.event.CellEditorListener;
 
 /**
- * This is the cell editor used by propertied that do not
- * require an extended editor and therefor an inplace editor can be used.
+ * This is the cell editor used by properties that do not
+ * require an extended editor and therefore an in-place editor can be used.
  * @author Daniel Moraru
  */
-public abstract class CellEditorInPlace implements PropertyEntryCellEditor {
+public abstract class CellEditorInPlace<T> implements PropertyEntryCellEditor<T> {
     /** This border must be used by all display components in subclasses */
     protected static final Border BORDER = BorderFactory.createEmptyBorder(2, 2, 2, 2);
     /** Background color that must be used by all display components */

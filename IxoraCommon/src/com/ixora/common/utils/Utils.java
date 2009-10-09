@@ -644,7 +644,7 @@ public class Utils {
      * @param clazz Class to search for fields
      * @return Array of fields
      */
-    public static Field[] getAllFields(Class clazz) {
+    public static Field[] getAllFields(Class<?> clazz) {
         LinkedList<Field> fields = new LinkedList<Field>();
 
         while (clazz != null) {
@@ -692,7 +692,7 @@ public class Utils {
      * @param c
      * @return true if c is null or is empty
      */
-    public static boolean isEmptyCollection(Collection c) {
+    public static boolean isEmptyCollection(Collection<?> c) {
     	return (c == null || c.size() == 0) ? true : false;
     }
 
@@ -700,7 +700,7 @@ public class Utils {
      * @param m
      * @return true if m is null or is empty
      */
-    public static boolean isEmptyMap(Map m) {
+    public static boolean isEmptyMap(Map<?, ?> m) {
     	return (m == null || m.size() == 0) ? true : false;
     }
 
@@ -903,4 +903,15 @@ public class Utils {
 		return sret + sgreen + sblue;
 	}
 
+	/**
+	 * @param caller
+	 * @return A class loader suitable for loading classes from the <code>caller</code>.
+	 */
+	public static ClassLoader getClassLoader(Class<?> caller) {
+		ClassLoader ret = Thread.currentThread().getContextClassLoader();
+		if(ret == null) {
+			ret = caller.getClassLoader();
+		}
+		return ret;
+	}
 }

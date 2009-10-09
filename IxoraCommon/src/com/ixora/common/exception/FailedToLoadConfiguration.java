@@ -6,6 +6,7 @@ package com.ixora.common.exception;
  * @author Daniel Moraru
  */
 public final class FailedToLoadConfiguration extends AppException {
+	private static final long serialVersionUID = 16038281807506155L;
 
 	/**
 	 * Constructor for FailedToLoadConfiguration.

@@ -12,18 +12,21 @@ import com.ixora.common.xml.exception.XMLException;
 
 /**
  * XMLTagList
+ * @author Cristian Costache
+ * @author Daniel Moraru
  */
-public abstract class XMLTagList extends LinkedList implements XMLExternalizable {
+public abstract class XMLTagList<T extends XMLTag> extends LinkedList<T> implements XMLExternalizable {
+	private static final long serialVersionUID = 6287597392968099993L;
 
-    public XMLTagList() {
+	public XMLTagList() {
     }
 
     /**
      * @see XMLExternalizable#toXML(org.w3c.dom.Node)
      */
     public void toXML(Node parent) throws XMLException {
-        for (Iterator it = iterator(); it.hasNext();) {
-            XMLTag tag = (XMLTag) it.next();
+        for (Iterator<T> it = iterator(); it.hasNext();) {
+            XMLTag tag = it.next();
             tag.toXML(parent);
         }
     }

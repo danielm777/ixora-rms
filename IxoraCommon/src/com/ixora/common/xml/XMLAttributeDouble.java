@@ -7,8 +7,8 @@ package com.ixora.common.xml;
  * XMLAttributeDouble
  */
 public class XMLAttributeDouble extends XMLAttribute {
-
-    private Double		value;
+	private static final long serialVersionUID = -5217908745727327332L;
+	private Double		value;
 
     /**
      * Empty constructor

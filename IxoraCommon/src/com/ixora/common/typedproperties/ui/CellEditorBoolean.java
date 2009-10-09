@@ -11,7 +11,7 @@ import com.ixora.common.typedproperties.PropertyEntry;
 /**
  * @author Daniel Moraru
  */
-final class CellEditorBoolean extends CellEditorInPlace {
+final class CellEditorBoolean extends CellEditorInPlace<Boolean> {
 	/** Component */
 	private JCheckBox field;
 
@@ -29,7 +29,7 @@ final class CellEditorBoolean extends CellEditorInPlace {
     /**
      * @see com.ixora.common.typedproperties.ui.PropertyEntryCellEditor#setPropertyEntry(com.ixora.common.app.typedproperties.PropertyEntry)
      */
-    public void setPropertyEntry(PropertyEntry e) {
+    public void setPropertyEntry(PropertyEntry<Boolean> e) {
         Object obj = e.getValue();
         if(obj == null) {
             return;

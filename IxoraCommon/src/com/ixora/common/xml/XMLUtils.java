@@ -43,6 +43,7 @@ import org.xml.sax.SAXException;
 
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.exception.XMLException;
 import com.ixora.common.xml.exception.XMLNodeMissing;
 
@@ -310,7 +311,7 @@ public final class XMLUtils {
 	 * @throws XMLException
 	 */
 	public static StringBuffer toXMLBuffer(
-			Class defaultClass,
+			Class<? extends XMLExternalizable> defaultClass,
 			XMLExternalizable obj,
 			String rootTag,
 			boolean xmlHeader) throws XMLException {
@@ -348,7 +349,7 @@ public final class XMLUtils {
 	 * @throws XMLException
 	 */
 	public static XMLExternalizable fromXMLBuffer(
-			Class defaultClass,
+			Class<? extends XMLExternalizable> defaultClass,
 			StringBuffer buff, String parentNode) throws XMLException {
 		try {
 			ByteArrayInputStream is = new ByteArrayInputStream(
@@ -440,30 +441,29 @@ public final class XMLUtils {
 	 * @throws ClassNotFoundException
 	 */
 	public static XMLExternalizable[] readObjects(
-			Class defaultClass,
+			Class<? extends XMLExternalizable> defaultClass,
 			Node node,
 			String subnode) throws
 				XMLException,
 				InstantiationException,
 				IllegalAccessException,
 				ClassNotFoundException {
-		List elements = XMLUtils.findChildren(node, subnode);
+		List<Node> elements = XMLUtils.findChildren(node, subnode);
 		if(elements.size() == 0) {
 			return null;
 		}
 		List<XMLExternalizable> ret = new ArrayList<XMLExternalizable>(elements.size());
 		XMLExternalizable ext;
 		Node element;
-		for(Iterator iter = elements.iterator(); iter.hasNext();) {
-			element = (Node)iter.next();
+		for(Iterator<Node> iter = elements.iterator(); iter.hasNext();) {
+			element = iter.next();
 			// search for a class attribute
 			Attr a = XMLUtils.findAttribute(element, "class");
 			if(a == null) {
 				// use the default class
 				ext = (XMLExternalizable)defaultClass.newInstance();
 			} else {
-				Class c = Thread.currentThread()
-					.getContextClassLoader().loadClass(a.getValue());
+				Class<?> c = Utils.getClassLoader(XMLUtils.class).loadClass(a.getValue());
 				ext = (XMLExternalizable)c.newInstance();
 			}
 			ext.fromXML(element);
@@ -486,7 +486,7 @@ public final class XMLUtils {
 	 * @throws ClassNotFoundException
 	 */
 	public static XMLExternalizable readObject(
-			Class defaultClass,
+			Class<? extends XMLExternalizable> defaultClass,
 			Node node) throws
 				XMLException,
 				InstantiationException,
@@ -500,10 +500,9 @@ public final class XMLUtils {
 				throw new XMLException("Invalid XML definition: class information is missing");
 			}
 			// use the default class
-			ext = (XMLExternalizable)defaultClass.newInstance();
+			ext = defaultClass.newInstance();
 		} else {
-			Class c = Thread.currentThread()
-				.getContextClassLoader().loadClass(a.getValue());
+			Class<?> c = Utils.getClassLoader(XMLUtils.class).loadClass(a.getValue());
 			ext = (XMLExternalizable)c.newInstance();
 		}
 		ext.fromXML(node);
@@ -519,7 +518,7 @@ public final class XMLUtils {
 	 * @see readObjects(Class, Node, String)
 	 */
 	public static void writeObjects(
-			Class defaultClass, Node parent,
+			Class<? extends XMLExternalizable> defaultClass, Node parent,
 			XMLExternalizable[] objs) throws XMLException {
 		if(objs == null || objs.length == 0) {
 			return;
@@ -548,7 +547,7 @@ public final class XMLUtils {
 	 * @see readObject(Class, Node)
 	 */
 	public static void writeObject(
-			Class defaultClass, Node parent,
+			Class<? extends XMLExternalizable> defaultClass, Node parent,
 			XMLExternalizable obj) throws XMLException {
 		obj.toXML(parent);
 		if(!obj.getClass().equals(defaultClass)) {
@@ -634,7 +633,8 @@ public final class XMLUtils {
 	 * @param defaultClass
 	 * @throws XMLException
 	 */
-	public static void writeObjectsToFile(File file, XMLExternalizable[] objs, Class defaultClass) throws XMLException {
+	public static void writeObjectsToFile(File file, XMLExternalizable[] objs, 
+			Class<? extends XMLExternalizable> defaultClass) throws XMLException {
 		BufferedOutputStream os = null;
 		try {
 			os = new BufferedOutputStream(new FileOutputStream(file));
@@ -663,7 +663,8 @@ public final class XMLUtils {
 	 * @return
 	 * @throws XMLException
 	 */
-	public static XMLExternalizable[] readObjectsFromFile(File file, Class defaultClass, String node) throws XMLException {
+	public static XMLExternalizable[] readObjectsFromFile(File file, 
+			Class<? extends XMLExternalizable> defaultClass, String node) throws XMLException {
 		if(!file.exists()) {
 			return null;
 		}
@@ -705,7 +706,7 @@ public final class XMLUtils {
 	 * @throws XMLException
 	 */
 	public static XMLExternalizable fromXMLBuffer(
-			Class defaultClass,
+			Class<? extends XMLExternalizable> defaultClass,
 			StringBuffer buff) throws XMLException {
 		try {
 			ByteArrayInputStream is = new ByteArrayInputStream(

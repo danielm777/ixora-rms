@@ -15,7 +15,8 @@ import com.ixora.common.typedproperties.PropertyEntryNumber;
 /**
  * @author Daniel Moraru
  */
-public abstract class CellComponentNumber extends CellComponent {
+public abstract class CellComponentNumber<T extends Comparable<T>> extends CellComponent<T> {
+	private static final long serialVersionUID = -5496254212578042476L;
 	/** Compoenent */
 	protected JFormattedTextField field;
 
@@ -36,7 +37,8 @@ public abstract class CellComponentNumber extends CellComponent {
     /**
      * @see com.ixora.common.typedproperties.ui.CellComponent#render(com.ixora.common.app.typedproperties.PropertyEntry, java.lang.Object)
      */
-    public void render(PropertyEntry e, Object value) {
+    @SuppressWarnings("unchecked")
+	public void render(PropertyEntry<T> e, T value) {
         PropertyEntryNumber pen = (PropertyEntryNumber)e;
         NumberFormatter formatter = (NumberFormatter)field.getFormatter();
         formatter.setFormat(pen.getFormat());

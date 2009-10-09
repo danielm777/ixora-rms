@@ -23,7 +23,7 @@ import com.ixora.common.ui.UIExceptionMgr;
  * of any type.
  * @author Daniel Moraru
  */
-final class ExtendedEditorValueSet extends ExtendedEditorAbstract {
+final class ExtendedEditorValueSet<T> extends ExtendedEditorAbstract<T> {
     /** The max height of the popup menu */
     private static final int HEIGHT = 200;
     /** List that displays all values in set */
@@ -33,7 +33,7 @@ final class ExtendedEditorValueSet extends ExtendedEditorAbstract {
     /** Popup menu showing the list */
     private JPopupMenu popup;
     /** This will be the component owing the popup */
-    private CellComponent popupOwner;
+    private CellComponent<T> popupOwner;
     /** Event handler */
     private EventHandler eventHandler;
     /** True if editting has stopped */
@@ -94,7 +94,7 @@ final class ExtendedEditorValueSet extends ExtendedEditorAbstract {
     /**
      * @see com.ixora.common.ui.typedproperties.ExtendedEditor#launch(java.awt.Component, PropertyEntry pe)
      */
-    public void launch(Component owner, PropertyEntry pe) {
+    public void launch(Component owner, PropertyEntry<T> pe) {
         ((ValueSetListCellRenderer)list.getCellRenderer()).setPropertyEntry(pe);
 		list.setListData(pe.getValueSet());
 		list.setSelectedValue(pe.getValue(), true);
@@ -120,7 +120,7 @@ final class ExtendedEditorValueSet extends ExtendedEditorAbstract {
     /**
      * @param display
      */
-    void setCellComponent(CellComponentExtended display) {
+    void setCellComponent(CellComponentExtended<T> display) {
         this.popupOwner = display;
     }
 

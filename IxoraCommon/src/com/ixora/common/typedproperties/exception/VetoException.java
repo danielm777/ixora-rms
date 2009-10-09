@@ -9,8 +9,9 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public final class VetoException extends AppException {
+	private static final long serialVersionUID = 2061171642579583074L;
 
-    public VetoException(String msgKey, String[] msgTokens) {
+	public VetoException(String msgKey, String[] msgTokens) {
         super(msgKey, msgTokens);
     }
 

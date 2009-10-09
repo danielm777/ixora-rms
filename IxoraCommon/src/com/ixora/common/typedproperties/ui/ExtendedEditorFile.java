@@ -15,7 +15,7 @@ import com.ixora.common.typedproperties.PropertyEntryFile;
 /**
  * @author Daniel Moraru
  */
-public final class ExtendedEditorFile extends ExtendedEditorAbstract {
+public final class ExtendedEditorFile extends ExtendedEditorAbstract<File> {
     /**
      * Constructor.
      */
@@ -26,8 +26,8 @@ public final class ExtendedEditorFile extends ExtendedEditorAbstract {
     /**
      * @see com.ixora.common.typedproperties.ui.ExtendedEditor#launch(java.awt.Component, PropertyEntry)
      */
-    public void launch(Component owner, PropertyEntry pe) {
-        File f = (File)pe.getValue();
+    public void launch(Component owner, PropertyEntry<File> pe) {
+        File f = pe.getValue();
 		JFileChooser fileChooser = new JFileChooser(f);
 		PropertyEntryFile pef = (PropertyEntryFile)pe;
 		fileChooser.setFileSelectionMode(

@@ -17,8 +17,9 @@ import com.ixora.common.ui.UIFactoryMgr;
  * text returned by their <code>toString()</code> method.
  * @author Daniel Moraru
  */
-class CellComponentObject extends CellComponent {
-    protected JTextField field;
+class CellComponentObject extends CellComponent<Object> {
+	private static final long serialVersionUID = 8178281100177804000L;
+	protected JTextField field;
     /** Component name */
     protected String componentName;
 
@@ -45,7 +46,7 @@ class CellComponentObject extends CellComponent {
     /**
      * @see com.ixora.common.typedproperties.ui.CellComponent#render(com.ixora.common.app.typedproperties.PropertyEntry, java.lang.Object)
      */
-    public void render(PropertyEntry e, Object value) {
+    public void render(PropertyEntry<Object> e, Object value) {
         if(value == null) {
             field.setText("");
         } else {

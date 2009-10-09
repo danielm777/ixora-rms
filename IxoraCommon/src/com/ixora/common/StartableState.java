@@ -5,7 +5,8 @@ package com.ixora.common;
  * @author: Daniel Moraru
  */
 public final class StartableState extends Enum {
-    public static final StartableState NOT_STARTED = new StartableState(0,
+	private static final long serialVersionUID = 1194893463977887537L;
+	public static final StartableState NOT_STARTED = new StartableState(0,
                                                                         "not started");
     public static final StartableState STARTED = new StartableState(1,
                                                                     "started");

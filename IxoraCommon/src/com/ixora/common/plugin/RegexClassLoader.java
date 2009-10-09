@@ -175,7 +175,7 @@ public final class RegexClassLoader extends URLClassLoader {
 		if(!fParentLast) {
 			return super.loadClass(name, resolve);
 		}
-		Class c = findLoadedClass(name);
+		Class<?> c = findLoadedClass(name);
 		if (c == null) {
 		    try {
 		    	c = findClass(name);

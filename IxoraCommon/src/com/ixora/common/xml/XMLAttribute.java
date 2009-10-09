@@ -10,7 +10,7 @@ import java.io.Serializable;
  * XMLAttribute
  */
 public abstract class XMLAttribute implements Serializable {
-
+	private static final long serialVersionUID = -6660179320710708239L;
 	private String fName;
     private boolean isMandatory = false;
 

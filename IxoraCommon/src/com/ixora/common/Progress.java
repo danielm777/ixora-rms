@@ -29,14 +29,14 @@ public final class Progress implements ProgressProvider, Reusable, ProgressMonit
 	/** Step in percentages */
 	private float pct;
 	/** Listeners */
-	private List listeners;
+	private List<Listener> listeners;
 
 	/**
 	 * Constructor for ProgressModel.
 	 */
 	public Progress() {
 		super();
-		this.listeners = new LinkedList();
+		this.listeners = new LinkedList<Listener>();
 	}
 
 	/**
@@ -142,9 +142,9 @@ public final class Progress implements ProgressProvider, Reusable, ProgressMonit
 	 */
 	private void fireUpdate(float pct) {
 		synchronized(this.listeners) {
-			for(Iterator iter = this.listeners.iterator(); iter.hasNext();) {
+			for(Iterator<Listener> iter = this.listeners.iterator(); iter.hasNext();) {
 				try {
-				    ((Listener)iter.next()).progress(pct);
+				    iter.next().progress(pct);
                 } catch(Exception e) {
                     logger.error(e);
                 }
@@ -159,9 +159,9 @@ public final class Progress implements ProgressProvider, Reusable, ProgressMonit
      */
     private void fireNonFatalError(String error, Throwable t) {
         synchronized(this.listeners) {
-            for(Iterator iter = this.listeners.iterator(); iter.hasNext();) {
+            for(Iterator<Listener> iter = this.listeners.iterator(); iter.hasNext();) {
                 try {
-                    ((Listener)iter.next()).nonFatalError(error, t);
+                    iter.next().nonFatalError(error, t);
                 } catch(Exception e) {
                     logger.error(e);
                 }
@@ -175,9 +175,9 @@ public final class Progress implements ProgressProvider, Reusable, ProgressMonit
 	 */
 	private void fireTaskStarted(String task) {
 		synchronized(this.listeners) {
-			for(Iterator iter = this.listeners.iterator(); iter.hasNext();) {
+			for(Iterator<Listener> iter = this.listeners.iterator(); iter.hasNext();) {
 				try {
-				    ((Listener)iter.next()).taskStarted(task);
+				    iter.next().taskStarted(task);
                 } catch(Exception e) {
                     logger.error(e);
                 }
@@ -191,5 +191,4 @@ public final class Progress implements ProgressProvider, Reusable, ProgressMonit
 	private void calculateStepUnits() {
 		this.step = (int)((this.pct/100) * this.max);
 	}
-
 }

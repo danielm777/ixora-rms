@@ -23,7 +23,7 @@ public final class ParentLastClassLoader extends URLClassLoader {
 	 * @see java.lang.ClassLoader#loadClass(java.lang.String, boolean)
 	 */
 	protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-		Class c = findLoadedClass(name);
+		Class<?> c = findLoadedClass(name);
 		if (c == null) {
 		    try {
 		    	c = findClass(name);

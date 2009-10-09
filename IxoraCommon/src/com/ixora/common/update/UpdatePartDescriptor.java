@@ -17,6 +17,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public final class UpdatePartDescriptor implements XMLExternalizable, Serializable {
+	private static final long serialVersionUID = 2994349584521132296L;
 	/** Content location on the server, same as the local file name */
 	private String contentLocation;
 	/** Local install location */

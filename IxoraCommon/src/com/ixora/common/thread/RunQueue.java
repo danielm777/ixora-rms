@@ -12,7 +12,7 @@ public final class RunQueue implements Startable {
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(RunQueue.class);
 	/** PCQueue */
-	private BlockingQueue queue;
+	private BlockingQueue<Runnable> queue;
 	/** Queue consumer thread */
 	private Thread consumer;
 	/** Stop flag */
@@ -31,7 +31,7 @@ public final class RunQueue implements Startable {
 	 */
 	public RunQueue(boolean daemon) {
 		super();
-        this.queue = new BlockingQueue();
+        this.queue = new BlockingQueue<Runnable>();
         this.consumer = new Thread("RunQueue") {
         	public void run() {
        			RunQueue.this.processQueue();

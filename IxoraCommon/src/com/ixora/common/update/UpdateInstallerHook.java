@@ -125,7 +125,7 @@ public final class UpdateInstallerHook {
 			IllegalArgumentException,
 			IllegalAccessException,
 			InvocationTargetException {
-		Class app = Class.forName(appMainClass);
+		Class<?> app = Class.forName(appMainClass);
 		Method main = app.getMethod("main", new Class[]{String[].class});
 		main.invoke(null, new Object[]{appParams});
 	}

@@ -7,6 +7,7 @@ import com.ixora.common.Enum;
  * @author: Daniel Moraru
  */
 public final class ServiceState extends Enum {
+	private static final long serialVersionUID = -6937250873383296254L;
 	public static final ServiceState UNKNOWN = new ServiceState(0, "unknown");
     public static final ServiceState OFFLINE = new ServiceState(1, "offline");
     public static final ServiceState ONLINE = new ServiceState(2, "online");

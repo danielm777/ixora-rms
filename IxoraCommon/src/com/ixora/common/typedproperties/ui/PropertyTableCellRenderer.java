@@ -12,6 +12,7 @@ import com.ixora.common.typedproperties.PropertyEntry;
 
 /**
  * Table cell renderer.
+ * @author Daniel Moraru
  */
 public final class PropertyTableCellRenderer implements TableCellRenderer {
     /** Renderers */
@@ -39,6 +40,7 @@ public final class PropertyTableCellRenderer implements TableCellRenderer {
 	/**
 	 * @see javax.swing.table.TableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
 	 */
+	@SuppressWarnings("unchecked")
 	public Component getTableCellRendererComponent(JTable table,
 			Object value, boolean isSelected, boolean hasFocus, int row,
 			int column) {
@@ -46,15 +48,15 @@ public final class PropertyTableCellRenderer implements TableCellRenderer {
 			PropertyEntry pe = (PropertyEntry)value;
 		    Object set = pe.getValueSet();
 	        int type = pe.getType();
-	        CellComponent ret = null;
+	        CellComponent<?> ret = null;
 	        if(set == null) {
-	            ret = renderers.getRendererExtended(type);
+	            ret = (CellComponent<?>)renderers.getRendererExtended(type);
 	        } else {
-	            ret = renderers.getRendererValueSet(type);
+	            ret = (CellComponent<?>)renderers.getRendererValueSet(type);
 	        }
 	        if(ret != null) {
 	        	if(ret instanceof CellComponentExtended) {
-	        		((CellComponentExtended)ret).setComponentName(componentName);
+	        		((CellComponentExtended<?>)ret).setComponentName(componentName);
 	        	}
 	        	if(ret instanceof CellComponentObject) {
 	        		((CellComponentObject)ret).setComponentName(componentName);
@@ -73,7 +75,7 @@ public final class PropertyTableCellRenderer implements TableCellRenderer {
 	 * @param isSelected
 	 * @param hasFocus
 	 */
-	private void prepareRenderer(CellComponent cc, JTable table, boolean isSelected, boolean hasFocus) {
+	private void prepareRenderer(CellComponent<?> cc, JTable table, boolean isSelected, boolean hasFocus) {
 		if(isSelected) {
 			cc.setForeground(table.getSelectionForeground());
 			cc.setBackground(table.getSelectionBackground());

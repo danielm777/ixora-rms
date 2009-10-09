@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="var" path="JRE_LIB" sourcepath="JRE_SRC"/>
+	<classpathentry kind="var" path="JRE_LIB" sourcepath="/JDK_SRC"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/log4j.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/mailapi.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/smtp.jar"/>

@@ -16,7 +16,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
-import com.ixora.common.security.exception.SecException;
+import com.ixora.common.security.exception.SecurityException;
 import com.ixora.common.utils.HexConverter;
 
 /**
@@ -62,7 +62,7 @@ public class SecurityHandlerDefault implements SecurityHandler {
 			sig.update(content);
 			return sig.verify(sigbytes);
 		} catch(Exception e) {
-			throw new SecException(e);
+			throw new SecurityException(e);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class SecurityHandlerDefault implements SecurityHandler {
 	    	byte[] ciphertext = desCipher.doFinal(cleartext);
 	    	return HexConverter.encode(ciphertext);
 	    } catch(Exception e) {
-	    	throw new SecException(e);
+	    	throw new SecurityException(e);
 	    }
 	  }
 
@@ -92,7 +92,7 @@ public class SecurityHandlerDefault implements SecurityHandler {
 			SecretKey s = skf.generateSecret(pass);
 			return s;
 		} catch(Exception e) {
-			throw new SecException(e);
+			throw new SecurityException(e);
 	    }
 	}
 
@@ -108,7 +108,7 @@ public class SecurityHandlerDefault implements SecurityHandler {
 	      byte[] cleartext = desCipher.doFinal(ciphertext);
 	      return new String(cleartext);
 	    } catch(Exception e) {
-	    	throw new SecException(e);
+	    	throw new SecurityException(e);
 	    }
 	}
 }

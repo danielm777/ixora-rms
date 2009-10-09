@@ -13,7 +13,8 @@ import com.ixora.common.utils.Utils;
  */
 public final class ServerSocketFactory implements Serializable,
         RMIServerSocketFactory {
-    private InetAddress fAddress;
+	private static final long serialVersionUID = -6002450079719973429L;
+	private InetAddress fAddress;
 
     /**
      * @param ipaddress can be null and in this case the server

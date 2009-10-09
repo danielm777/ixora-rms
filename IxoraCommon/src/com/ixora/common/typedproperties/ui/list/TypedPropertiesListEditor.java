@@ -34,6 +34,7 @@ import com.ixora.common.ui.actions.ActionUp;
  * @author Daniel Moraru
  */
 public class TypedPropertiesListEditor extends JPanel {
+	private static final long serialVersionUID = 4782160643638335695L;
 	public static final int BUTTON_UP_DOWN 		= 1 << 1;
 	public static final int BUTTON_NEW_DELETE	= 1 << 2;
 	public static final int BUTTON_ALL 			= 1 << 3;
@@ -84,6 +85,7 @@ public class TypedPropertiesListEditor extends JPanel {
 	 * @param model
 	 * @param showButtons
 	 */
+	@SuppressWarnings("serial")
 	public TypedPropertiesListEditor(PropertyListTableModel model, int buttons) {
 		setLayout(new BorderLayout());
 		JScrollPane scrollPaneProps = UIFactoryMgr.createScrollPane();
@@ -201,7 +203,6 @@ public class TypedPropertiesListEditor extends JPanel {
 	protected void handleUp() {
 		try {
 			int row = fTable.getEditingRow();
-			int count = fTable.getRowCount();
 			int col = -1;
 			if(row >= 0 && row > 0) {
 				col = fTable.getEditingColumn();

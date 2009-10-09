@@ -9,6 +9,7 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public final class PropertyTypeMismatch extends AppRuntimeException {
+	private static final long serialVersionUID = 8300357277170117825L;
 
 	/**
 	 * Constructor.

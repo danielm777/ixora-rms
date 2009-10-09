@@ -12,15 +12,18 @@ import javax.swing.AbstractCellEditor;
 
 import com.ixora.common.typedproperties.PropertyEntry;
 import com.ixora.common.ui.UIExceptionMgr;
+import com.ixora.common.utils.Utils;
 
 /**
  * Property value editor that requires a more advanced
  * editor to be opened.
  * @author Daniel Moraru
  */
-public class PropertyEntryCellEditorExtended extends AbstractCellEditor
-	 implements PropertyEntryCellEditor {
-    /** Extended editors events */
+public class PropertyEntryCellEditorExtended<T> extends AbstractCellEditor
+	 implements PropertyEntryCellEditor<T> {
+	private static final long serialVersionUID = -721276040869441974L;
+
+	/** Extended editors events */
     public interface ExtendedEditorListener {
     	/**
     	 * Invoked just before launching the editor.
@@ -28,18 +31,18 @@ public class PropertyEntryCellEditorExtended extends AbstractCellEditor
     	 * @param pe
     	 * @throws Exception
     	 */
-    	void aboutToLaunch(ExtendedEditor editor, PropertyEntry pe) throws Exception;
+    	void aboutToLaunch(ExtendedEditor<?> editor, PropertyEntry<?> pe) throws Exception;
     }
 
     /**
      * This is the component used to display the value
      * while the extended editor is shown.
      */
-    protected CellComponentExtended display;
+    protected CellComponentExtended<T> display;
     /** Data returned by the extended editor */
     protected Object data;
-    /** The entry being editted */
-    protected PropertyEntry entry;
+    /** The entry being edited */
+    protected PropertyEntry<T> entry;
     /**
      * The owner component used to trace down the
      * window which will be the parent of the extended
@@ -47,7 +50,7 @@ public class PropertyEntryCellEditorExtended extends AbstractCellEditor
      */
     protected Component owner;
     /** Extended editor */
-    protected ExtendedEditor editor;
+    protected ExtendedEditor<T> editor;
     /** Component name */
     protected String componentName;
     /** Listener for extended editor events */
@@ -86,7 +89,7 @@ public class PropertyEntryCellEditorExtended extends AbstractCellEditor
      * @param display component that will display the value
      */
     protected PropertyEntryCellEditorExtended(Component owner,
-            CellComponentExtended display) {
+            CellComponentExtended<T> display) {
         super();
         this.owner = owner;
         this.display = display;
@@ -101,7 +104,7 @@ public class PropertyEntryCellEditorExtended extends AbstractCellEditor
      * Sets the current entry.
      * @param e
      */
-    public void setPropertyEntry(PropertyEntry e) {
+    public void setPropertyEntry(PropertyEntry<T> e) {
         entry = e;
         data = e.getValue();
         display.render(e);
@@ -175,8 +178,9 @@ public class PropertyEntryCellEditorExtended extends AbstractCellEditor
 	 * @return
 	 * @throws Exception
 	 */
-	protected ExtendedEditor createEditor() throws Exception {
-	    return (ExtendedEditor)Class.forName(
+	@SuppressWarnings("unchecked")
+	protected ExtendedEditor<T> createEditor() throws Exception {
+	    return (ExtendedEditor<T>)Utils.getClassLoader(getClass()).loadClass(
 	            entry.getExtendedEditorClass()).newInstance();
 	}
 

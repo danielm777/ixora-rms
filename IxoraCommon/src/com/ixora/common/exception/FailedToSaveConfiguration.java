@@ -7,6 +7,7 @@ package com.ixora.common.exception;
  * @author Daniel Moraru
  */
 public final class FailedToSaveConfiguration extends AppException {
+	private static final long serialVersionUID = -7833638774761212831L;
 
 	/**
 	 * Constructor for FailedToSaveConfiguration.

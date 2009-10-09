@@ -59,6 +59,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class UpdateDialog extends AppDialog {
+	private static final long serialVersionUID = 2484348260172208703L;
 	private JButton jButtonCheckUpdates;
 	private JButton jButtonGetAllUpdates;
 	private JButton jButtonGetSelectedUpdate;
@@ -124,6 +125,7 @@ public class UpdateDialog extends AppDialog {
 	/**
 	 * Renderer
 	 */
+	@SuppressWarnings("serial")
 	private final static class ModuleUpdateNodeRender extends DefaultTreeCellRenderer {
 		/**
 		 * @see javax.swing.JLabel#getIcon()
@@ -136,6 +138,7 @@ public class UpdateDialog extends AppDialog {
 	/**
 	 * Check updates action.
 	 */
+	@SuppressWarnings("serial")
 	private final class CheckUpdatesAction extends AbstractAction {
 		public CheckUpdatesAction(){
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -153,6 +156,7 @@ public class UpdateDialog extends AppDialog {
 	/**
 	 * Get updates action.
 	 */
+	@SuppressWarnings("serial")
 	private final class GetAllUpdatesAction extends AbstractAction {
 		public GetAllUpdatesAction(){
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -171,6 +175,7 @@ public class UpdateDialog extends AppDialog {
 	/**
 	 * Get selected update action.
 	 */
+	@SuppressWarnings("serial")
 	private final class GetSelectedUpdateAction extends AbstractAction {
 		public GetSelectedUpdateAction(){
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -236,6 +241,7 @@ public class UpdateDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		JButton close = UIFactoryMgr.createButton(new ActionClose() {
 			public void actionPerformed(ActionEvent e) {

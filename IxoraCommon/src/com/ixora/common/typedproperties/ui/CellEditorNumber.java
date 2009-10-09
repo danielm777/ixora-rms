@@ -18,16 +18,16 @@ import com.ixora.common.ui.UIFactoryMgr;
 /**
  * @author Daniel Moraru
  */
-public abstract class CellEditorNumber extends CellEditorInPlace {
+public abstract class CellEditorNumber<T extends Comparable<T>> extends CellEditorInPlace<T> {
 	/** Compoenent */
 	protected JFormattedTextField field;
-	protected PropertyEntryNumber property;
+	protected PropertyEntryNumber<T> property;
 
     /**
      * Constructor.
      * @param comp
      */
-    protected CellEditorNumber(CellComponentNumber comp) {
+    protected CellEditorNumber(CellComponentNumber<T> comp) {
         super();
         final NumberFormatter formatter = comp.getFormatter();
         formatter.setCommitsOnValidEdit(true);
@@ -40,6 +40,7 @@ public abstract class CellEditorNumber extends CellEditorInPlace {
 			public void insertUpdate(DocumentEvent e) {
 				checkIfValid(e);
 			}
+			@SuppressWarnings("unchecked")
 			private void checkIfValid(DocumentEvent e) {
 				boolean invalid = false;
 				try {
@@ -51,7 +52,7 @@ public abstract class CellEditorNumber extends CellEditorInPlace {
 						Object obj = formatter
 							.stringToValue(e.getDocument()
 								.getText(0, len));
-						property.validateValue(obj);
+						property.validateValue((T)obj);
 					}
 				} catch(Exception ex) {
 					invalid = true;
@@ -75,8 +76,8 @@ public abstract class CellEditorNumber extends CellEditorInPlace {
     /**
      * @see com.ixora.common.typedproperties.ui.PropertyEntryCellEditor#setPropertyEntry(com.ixora.common.app.typedproperties.PropertyEntry)
      */
-    public void setPropertyEntry(PropertyEntry e) {
-        property = (PropertyEntryNumber)e;
+    public void setPropertyEntry(PropertyEntry<T> e) {
+        property = (PropertyEntryNumber<T>)e;
 		NumberFormatter formatter = (NumberFormatter)field.getFormatter();
         formatter.setMinimum(property.getMin());
         formatter.setMaximum(property.getMax());

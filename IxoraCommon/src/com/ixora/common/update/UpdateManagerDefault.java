@@ -48,9 +48,9 @@ public class UpdateManagerDefault implements UpdateManager {
 	protected volatile boolean cancelUpdate;
 	/**
 	 * Key: module name
-	 * Value: Map(Key: moduleName, Value: ModuleUpdateDescriptor)
+	 * Value: Map(Key: updateId, Value: ModuleUpdateDescriptor)
 	 */
-	protected Map moduleUpdatesCache;
+	protected Map<String, Map<UpdateId, ModuleUpdateDescriptor>> moduleUpdatesCache;
 	/** Registered modules */
 	protected Module[] registeredModules;
 
@@ -106,7 +106,7 @@ public class UpdateManagerDefault implements UpdateManager {
 		if(moduleUpdatesCache == null) {
 			loadUpdateDescriptors();
 		}
-		Map m = (Map)moduleUpdatesCache.get(module.getName());
+		Map<UpdateId, ModuleUpdateDescriptor> m = moduleUpdatesCache.get(module.getName());
 		if(m == null || m.size() == 0) {
 			return null;
 		}
@@ -189,8 +189,8 @@ public class UpdateManagerDefault implements UpdateManager {
 		this.updates = XMLUtils.read(
 				new BufferedInputStream((InputStream)conn.getContent()));
 		conn.disconnect();
-		moduleUpdatesCache = new HashMap();
-		List lst = XMLUtils.findChildren(this.updates.getFirstChild(), "module");
+		moduleUpdatesCache = new HashMap<String, Map<UpdateId, ModuleUpdateDescriptor>>();
+		List<Node> lst = XMLUtils.findChildren(this.updates.getFirstChild(), "module");
 		if(lst.size() == 0) {
 			return;
 		}
@@ -208,12 +208,12 @@ public class UpdateManagerDefault implements UpdateManager {
 		Node n;
 		String moduleName;
 		Module module;
-		for(Iterator iter = lst.iterator(); iter.hasNext();) {
-			n = (Node)iter.next();
+		for(Iterator<Node> iter = lst.iterator(); iter.hasNext();) {
+			n = iter.next();
 			moduleName = XMLUtils.findAttribute(n, "name").getValue();
-			List lst1 = XMLUtils.findChildren(n, "update");
-			for(Iterator iter1 = lst1.iterator(); iter1.hasNext();) {
-				n = (Node)iter1.next();
+			List<Node> lst1 = XMLUtils.findChildren(n, "update");
+			for(Iterator<Node> iter1 = lst1.iterator(); iter1.hasNext();) {
+				n = iter1.next();
 				ModuleUpdateDescriptor mud = new ModuleUpdateDescriptor(moduleName);
 				mud.fromXML(n);
 				// update the description and name with the
@@ -225,9 +225,9 @@ public class UpdateManagerDefault implements UpdateManager {
 				module = getRegisteredModule(moduleName);
 				if(module != null && mud.isForModule(module)) {
 					// add it to the available updates
-					Map m = (Map)moduleUpdatesCache.get(moduleName);
+					Map<UpdateId, ModuleUpdateDescriptor> m = moduleUpdatesCache.get(moduleName);
 					if(m == null) {
-						m = new HashMap();
+						m = new HashMap<UpdateId, ModuleUpdateDescriptor>();
 						moduleUpdatesCache.put(moduleName, m);
 					}
 					m.put(mud.getUpdateId(), mud);
@@ -241,7 +241,7 @@ public class UpdateManagerDefault implements UpdateManager {
 	 * @param uid
 	 */
 	private void loadUpdate(Module module, UpdateId uid) throws IOException {
-		Map m = (Map)this.moduleUpdatesCache.get(module.getName());
+		Map<UpdateId, ModuleUpdateDescriptor> m = this.moduleUpdatesCache.get(module.getName());
 		if(m == null) {
 			return;
 		}

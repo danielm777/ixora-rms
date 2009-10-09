@@ -7,7 +7,7 @@ package com.ixora.common.typedproperties.ui;
 /**
  * @author Daniel Moraru
  */
-final class CellEditorPercentage extends CellEditorNumber {
+final class CellEditorPercentage extends CellEditorNumber<Float> {
     /**
      * Constructor.
      * @param comp

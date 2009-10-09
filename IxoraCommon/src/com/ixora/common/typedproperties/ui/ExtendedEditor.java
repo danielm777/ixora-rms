@@ -12,7 +12,7 @@ import com.ixora.common.typedproperties.PropertyEntry;
  * require an extended editor, like Color and Date properties.
  * @author Daniel Moraru
  */
-public interface ExtendedEditor {
+public interface ExtendedEditor<T> {
     /**
      * Editor listener.
      */
@@ -22,7 +22,7 @@ public interface ExtendedEditor {
          */
         void editingStopped(Object val);
         /**
-         * Invoked when the editing was canceled.
+         * Invoked when the editing was cancelled.
          */
         void editingCanceled();
     }
@@ -37,7 +37,7 @@ public interface ExtendedEditor {
      * @param pe
      * @return the edited value
      */
-    void launch(Component owner, PropertyEntry pe);
+    void launch(Component owner, PropertyEntry<T> pe);
     /**
      * Hides the editor.
      */
