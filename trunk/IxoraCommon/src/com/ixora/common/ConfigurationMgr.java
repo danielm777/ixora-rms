@@ -201,7 +201,7 @@ public final class ConfigurationMgr {
 	 * @param property
 	 * @return
 	 */
-	public static List getList(String component, String property) {
+	public static List<String> getList(String component, String property) {
 		return get(component).getList(property);
 	}
 
@@ -216,8 +216,8 @@ public final class ConfigurationMgr {
 	 * @throws InstantiationException
 	 * @throws NoSuchMethodException
 	 */
-	public static List getList(String component,
-	        Class clazz, String property) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public static <T> List<T> getList(String component,
+	        Class<T> clazz, String property) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		return get(component).getList(clazz, property);
 	}
 
@@ -227,7 +227,7 @@ public final class ConfigurationMgr {
 	 * @param o
 	 * @throws InvalidPropertyValue
 	 */
-	public static void setList(String component, String property, List value) {
+	public static void setList(String component, String property, List<?> value) {
 		get(component).setList(property, value);
 	}
 
@@ -311,8 +311,8 @@ public final class ConfigurationMgr {
 	 */
 	public synchronized static void saveAll() throws FailedToSaveConfiguration {
 		try {
-			for(Iterator iter = configurations.values().iterator(); iter.hasNext();) {
-				((ComponentConfiguration)iter.next()).save();
+			for(Iterator<ComponentConfiguration> iter = configurations.values().iterator(); iter.hasNext();) {
+				iter.next().save();
 			}
 		} catch (ReadOnlyConfiguration e) {
 			logger.error(e);

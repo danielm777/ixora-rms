@@ -3,6 +3,10 @@
  */
 package com.ixora.common.typedproperties.ui;
 
+import java.awt.Color;
+import java.io.File;
+import java.util.Date;
+
 import com.ixora.common.typedproperties.TypedProperties;
 
 /**
@@ -14,27 +18,27 @@ import com.ixora.common.typedproperties.TypedProperties;
 public final class CellRenderers {
     private CellComponentColor colorCellRenderer;
     private CellComponentDate dateCellRenderer;
-    private CellComponentExtended colorCellRendererExtended;
-    private CellComponentExtended dateCellRendererExtended;
+    private CellComponentExtended<Color> colorCellRendererExtended;
+    private CellComponentExtended<Date> dateCellRendererExtended;
 	private CellComponentInt intCellRenderer;
 	private CellComponentObject objectCellRenderer;
 	private CellComponentSecureString secureStringCellRenderer;
-	private CellComponentExtended objectCellRendererExtended;
+	private CellComponentExtended<Object> objectCellRendererExtended;
 	private CellComponentFloat floatCellRenderer;
 	private CellComponentPercentage percentCellRenderer;
 	private CellComponentBoolean booleanCellRenderer;
 	private CellComponentFile fileCellRenderer;
-	private CellComponentExtended fileCellRendererExtended;
+	private CellComponentExtended<File> fileCellRendererExtended;
 
 // the renderers to use for value sets
-    private CellComponentValueSet colorCellRendererSet;
-    private CellComponentValueSet dateCellRendererSet;
-	private CellComponentValueSet intCellRendererSet;
-	private CellComponentValueSet objectCellRendererSet;
-	private CellComponentValueSet floatCellRendererSet;
-	private CellComponentValueSet percentCellRendererSet;
-	private CellComponentValueSet booleanCellRendererSet;
-	private CellComponentValueSet fileCellRendererSet;
+    private CellComponentValueSet<Color> colorCellRendererSet;
+    private CellComponentValueSet<Date> dateCellRendererSet;
+	private CellComponentValueSet<Integer> intCellRendererSet;
+	private CellComponentValueSet<Object> objectCellRendererSet;
+	private CellComponentValueSet<Float> floatCellRendererSet;
+	private CellComponentValueSet<Float> percentCellRendererSet;
+	private CellComponentValueSet<Boolean> booleanCellRendererSet;
+	private CellComponentValueSet<File> fileCellRendererSet;
 
     /**
      * Constructor
@@ -47,7 +51,7 @@ public final class CellRenderers {
      * @param type
      * @return
      */
-    public CellComponent getRenderer(int type) {
+    public CellComponent<?> getRenderer(int type) {
 		switch(type) {
 	    	case TypedProperties.TYPE_INTEGER:
 			    return getIntCellRenderer();
@@ -73,7 +77,7 @@ public final class CellRenderers {
      * @param type
      * @return
      */
-    public CellComponent getRendererExtended(int type) {
+    public CellComponent<?> getRendererExtended(int type) {
 		switch(type) {
 			case TypedProperties.TYPE_COLOR:
 			    return getColorCellRendererExtended();
@@ -91,7 +95,7 @@ public final class CellRenderers {
      * @param type
      * @return
      */
-    public CellComponentValueSet getRendererValueSet(int type) {
+    public CellComponentValueSet<?> getRendererValueSet(int type) {
 		switch(type) {
 	    	case TypedProperties.TYPE_INTEGER:
 			    return getIntCellRendererSet();
@@ -132,27 +136,27 @@ public final class CellRenderers {
     /**
      * @return the booleanCellRendererSet.
      */
-    private CellComponentValueSet getBooleanCellRendererSet() {
+    private CellComponentValueSet<Boolean> getBooleanCellRendererSet() {
         if(booleanCellRendererSet == null) {
-            booleanCellRendererSet = new CellComponentValueSet(new CellComponentBoolean());
+            booleanCellRendererSet = new CellComponentValueSet<Boolean>(new CellComponentBoolean());
         }
         return booleanCellRendererSet;
     }
     /**
      * @return the colorCellRendererExtended.
      */
-    private CellComponentExtended getColorCellRendererExtended() {
+    private CellComponentExtended<Color> getColorCellRendererExtended() {
         if(colorCellRendererExtended == null) {
-            colorCellRendererExtended = new CellComponentExtended(new CellComponentColor());
+            colorCellRendererExtended = new CellComponentExtended<Color>(new CellComponentColor());
         }
         return colorCellRendererExtended;
     }
 	/**
 	 * @return the colorCellRendererSet.
 	 */
-	private CellComponentValueSet getColorCellRendererSet() {
+	private CellComponentValueSet<Color> getColorCellRendererSet() {
 	    if(colorCellRendererSet == null) {
-	        colorCellRendererSet = new CellComponentValueSet(new CellComponentColor());
+	        colorCellRendererSet = new CellComponentValueSet<Color>(new CellComponentColor());
 	    }
 	    return colorCellRendererSet;
 	}
@@ -168,18 +172,18 @@ public final class CellRenderers {
     /**
      * @return the dateCellRendererExtended.
      */
-    private CellComponentExtended getDateCellRendererExtended() {
+    private CellComponentExtended<Date> getDateCellRendererExtended() {
         if(dateCellRendererExtended == null) {
-            dateCellRendererExtended = new CellComponentExtended(new CellComponentDate());
+            dateCellRendererExtended = new CellComponentExtended<Date>(new CellComponentDate());
         }
         return dateCellRendererExtended;
     }
     /**
      * @return the dateCellRendererSet.
      */
-    private CellComponentValueSet getDateCellRendererSet() {
+    private CellComponentValueSet<Date> getDateCellRendererSet() {
         if(dateCellRendererSet == null) {
-            dateCellRendererSet = new CellComponentValueSet(new CellComponentDate());;
+            dateCellRendererSet = new CellComponentValueSet<Date>(new CellComponentDate());;
         }
         return dateCellRendererSet;
     }
@@ -195,18 +199,18 @@ public final class CellRenderers {
     /**
      * @return the fileCellRendererExtended.
      */
-    private CellComponentExtended getFileCellRendererExtended() {
+    private CellComponentExtended<File> getFileCellRendererExtended() {
         if(fileCellRendererExtended == null) {
-            fileCellRendererExtended = new CellComponentExtended(new CellComponentFile());
+            fileCellRendererExtended = new CellComponentExtended<File>(new CellComponentFile());
         }
         return fileCellRendererExtended;
     }
     /**
      * @return the fileCellRendererSet.
      */
-    private CellComponentValueSet getFileCellRendererSet() {
+    private CellComponentValueSet<File> getFileCellRendererSet() {
         if(fileCellRendererSet == null) {
-            fileCellRendererSet = new CellComponentValueSet(new CellComponentFile());
+            fileCellRendererSet = new CellComponentValueSet<File>(new CellComponentFile());
         }
         return fileCellRendererSet;
     }
@@ -222,9 +226,9 @@ public final class CellRenderers {
     /**
      * @return the floatCellRendererSet.
      */
-    private CellComponentValueSet getFloatCellRendererSet() {
+    private CellComponentValueSet<Float> getFloatCellRendererSet() {
         if(floatCellRendererSet == null) {
-            floatCellRendererSet = new CellComponentValueSet(new CellComponentFloat());
+            floatCellRendererSet = new CellComponentValueSet<Float>(new CellComponentFloat());
         }
         return floatCellRendererSet;
     }
@@ -240,9 +244,9 @@ public final class CellRenderers {
     /**
      * @return the intCellRendererSet.
      */
-    private CellComponentValueSet getIntCellRendererSet() {
+    private CellComponentValueSet<Integer> getIntCellRendererSet() {
         if(intCellRendererSet == null) {
-            intCellRendererSet = new CellComponentValueSet(new CellComponentInt());
+            intCellRendererSet = new CellComponentValueSet<Integer>(new CellComponentInt());
         }
         return intCellRendererSet;
     }
@@ -258,18 +262,18 @@ public final class CellRenderers {
     /**
      * @return the objectCellRendererExtended.
      */
-    private CellComponentExtended getObjectCellRendererExtended() {
+    private CellComponentExtended<Object> getObjectCellRendererExtended() {
         if(objectCellRendererExtended == null) {
-            objectCellRendererExtended = new CellComponentExtended(new CellComponentObject());
+            objectCellRendererExtended = new CellComponentExtended<Object>(new CellComponentObject());
         }
         return objectCellRendererExtended;
     }
     /**
      * @return the objectCellRendererSet.
      */
-    private CellComponentValueSet getObjectCellRendererSet() {
+    private CellComponentValueSet<Object> getObjectCellRendererSet() {
         if(objectCellRendererSet == null) {
-    		objectCellRendererSet = new CellComponentValueSet(new CellComponentObject());
+    		objectCellRendererSet = new CellComponentValueSet<Object>(new CellComponentObject());
         }
         return objectCellRendererSet;
     }
@@ -295,9 +299,9 @@ public final class CellRenderers {
     /**
      * @return the percentCellRendererSet.
      */
-    private CellComponentValueSet getPercentCellRendererSet() {
+    private CellComponentValueSet<Float> getPercentCellRendererSet() {
         if(percentCellRendererSet == null) {
-            percentCellRendererSet = new CellComponentValueSet(new CellComponentPercentage());
+            percentCellRendererSet = new CellComponentValueSet<Float>(new CellComponentPercentage());
         }
         return percentCellRendererSet;
     }

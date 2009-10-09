@@ -8,9 +8,10 @@ import javax.swing.text.NumberFormatter;
 /**
  * @author Daniel Moraru
  */
-final class CellComponentPercentage extends CellComponentNumber {
+final class CellComponentPercentage extends CellComponentNumber<Float> {
+	private static final long serialVersionUID = -3951507640125969906L;
 
-    /**
+	/**
      * Constructor.
      */
     public CellComponentPercentage() {

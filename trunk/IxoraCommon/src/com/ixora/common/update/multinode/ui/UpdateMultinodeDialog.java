@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import javax.swing.AbstractAction;
@@ -49,6 +50,7 @@ import com.ixora.common.update.ui.UpdateDialog;
  * @author Daniel Moraru
  */
 public final class UpdateMultinodeDialog extends UpdateDialog {
+	private static final long serialVersionUID = 3217073474875148244L;
 	/** Cache here to avoid casting all the time */
 	private UpdateManagerMultiNode updateManagerMulti;
 	/** Nodes panel */
@@ -71,6 +73,7 @@ public final class UpdateMultinodeDialog extends UpdateDialog {
 	/**
 	 * Add node action.
 	 */
+	@SuppressWarnings("serial")
 	private final class ActionAddNode extends AbstractAction {
 		public ActionAddNode() {
 			UIUtils.setUsabilityDtls(
@@ -93,6 +96,7 @@ public final class UpdateMultinodeDialog extends UpdateDialog {
 	/**
 	 * Remove node action.
 	 */
+	@SuppressWarnings("serial")
 	private final class ActionRemoveNode extends AbstractAction {
 		public ActionRemoveNode() {
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -154,6 +158,7 @@ public final class UpdateMultinodeDialog extends UpdateDialog {
 	/**
 	 * Cell renderer for the list of nodes.
 	 */
+	@SuppressWarnings("serial")
 	private static final class NodeListCellRenderer extends DefaultListCellRenderer {
 		private final static ImageIcon iconOffline = UIConfiguration.getIcon("node_offline.gif");
 		private final static ImageIcon iconOnline = UIConfiguration.getIcon("node_online.gif");
@@ -298,6 +303,7 @@ public final class UpdateMultinodeDialog extends UpdateDialog {
 	 * @param node
 	 * @param ok
 	 */
+	@SuppressWarnings("unchecked")
 	private void handleNodeUpdateStatus(String node, boolean ok) {
 		try {
 			NodeData nd;
@@ -335,7 +341,7 @@ public final class UpdateMultinodeDialog extends UpdateDialog {
 				return;
 			}
 			StringTokenizer tok = new StringTokenizer(tmp);
-			HashSet nodes = new HashSet(tok.countTokens());
+			Set<String> nodes = new HashSet<String>(tok.countTokens());
 			while(tok.hasMoreTokens()) {
 				nodes.add(tok.nextToken());
 			}
@@ -394,6 +400,7 @@ public final class UpdateMultinodeDialog extends UpdateDialog {
 	 * @param node
 	 * @param state
 	 */
+	@SuppressWarnings("unchecked")
 	private void handleNodeStateChanged(String node, ServiceState state) {
 		try {
 			NodeData nd;

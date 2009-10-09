@@ -5,7 +5,6 @@ package com.ixora.common.collections;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -26,11 +25,9 @@ public final class CaseInsensitiveLinkedMap<V> implements Map<String, V>, Serial
     /**
      * @see java.util.Map#putAll(java.util.Map)
      */
-    public void putAll(Map arg0) {
-        Map.Entry e;
-        for(Iterator iter = arg0.entrySet().iterator(); iter.hasNext();) {
-            e = (Map.Entry)iter.next();
-            put(e.getKey().toString().toLowerCase(), (V)e.getValue());
+    public void putAll(Map<? extends String, ? extends V> arg0) {
+        for(Map.Entry<? extends String, ? extends V> e : arg0.entrySet()) {
+            put(e.getKey().toString().toLowerCase(), e.getValue());
         }
     }
     /**

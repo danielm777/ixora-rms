@@ -7,6 +7,7 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public final class FailedToCreateObject extends AppException {
+	private static final long serialVersionUID = -4640849746825868976L;
 
 	/**
 	 * Constructor for FailedToCreateObject.

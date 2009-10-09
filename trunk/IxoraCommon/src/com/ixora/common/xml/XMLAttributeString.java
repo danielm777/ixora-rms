@@ -7,8 +7,8 @@ package com.ixora.common.xml;
  * XMLAttributeString
  */
 public class XMLAttributeString extends XMLAttribute {
-
-    private String		value;
+	private static final long serialVersionUID = -3671165021030898992L;
+	private String		value;
 
     /**
      * Empty constructor

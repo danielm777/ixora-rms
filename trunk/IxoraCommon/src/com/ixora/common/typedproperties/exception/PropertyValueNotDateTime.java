@@ -8,6 +8,7 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public final class PropertyValueNotDateTime extends InvalidPropertyValue {
+	private static final long serialVersionUID = 8031843459336730444L;
 
 	/**
 	 * Constructor.

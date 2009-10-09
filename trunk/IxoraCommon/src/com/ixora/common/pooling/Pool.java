@@ -24,11 +24,11 @@ final class Pool implements InactivityController.Listener {
 	/**
 	 * Available objects.
 	 */
-	private List available;
+	private List<Object> available;
 	/**
 	 * Objects in use.
 	 */
-	private List inuse;
+	private List<Object> inuse;
 	/**
 	 * Listener.
 	 */
@@ -52,8 +52,8 @@ final class Pool implements InactivityController.Listener {
 			InactivityController inactivityController,
 			PoolSizeController poolSizeController) {
 		super();
-		this.available = new LinkedList();
-		this.inuse = new LinkedList();
+		this.available = new LinkedList<Object>();
+		this.inuse = new LinkedList<Object>();
 		this.listener = listener;
 		if(inactivityController != null) {
 			inactivityController.setPool(this);
@@ -125,8 +125,8 @@ final class Pool implements InactivityController.Listener {
 	/**
 	 * @return An iterator over the available objects.
 	 */
-	public synchronized Iterator getAvailableObjects() {
-		List ret = new ArrayList(this.available);
+	public synchronized Iterator<Object> getAvailableObjects() {
+		List<Object> ret = new ArrayList<Object>(this.available);
 		return ret.iterator();
 	}
 

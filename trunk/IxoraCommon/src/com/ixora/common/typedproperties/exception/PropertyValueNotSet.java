@@ -11,8 +11,9 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public final class PropertyValueNotSet extends AppRuntimeException {
+	private static final long serialVersionUID = -7071289883757011537L;
 
-    /**
+	/**
      * Constructor.
      */
     public PropertyValueNotSet(String property) {

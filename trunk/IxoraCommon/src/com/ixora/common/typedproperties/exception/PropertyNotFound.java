@@ -10,8 +10,9 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public final class PropertyNotFound extends AppRuntimeException {
+	private static final long serialVersionUID = -5322805302580621600L;
 
-    /**
+	/**
      * Constructor.
      */
     public PropertyNotFound(String property) {

@@ -26,6 +26,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * be handled by the subclass as this type of fields are ignored by XMLTag.
  */
 public class XMLTag implements XMLExternalizable {
+	private static final long serialVersionUID = 5546219649423427878L;
 
 	/** Text contents of this node */
 	protected String fText = "";
@@ -149,7 +150,6 @@ public class XMLTag implements XMLExternalizable {
 	                String attrVal = null;
                 	if (fieldValue instanceof XMLText) {
                 		// pseudo-attribute, actually a text node
-    	                XMLText t = (XMLText)fieldValue;
     	                Node child = XMLUtils.findChild(node, attrName);
     	                if (child != null) {
     	                	attrVal = XMLUtils.getText(child);
@@ -158,7 +158,6 @@ public class XMLTag implements XMLExternalizable {
     	                }
                     } else if (fieldValue instanceof XMLCData) {
                     		// pseudo-attribute, actually a CDATA node
-        	                XMLCData t = (XMLCData)fieldValue;
         	                Node child = XMLUtils.findChild(node, attrName);
         	                if (child != null) {
         	                	attrVal = XMLUtils.getText(child);

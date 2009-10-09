@@ -15,8 +15,9 @@ import com.ixora.common.typedproperties.PropertyEntry;
 /**
  * Color cell.
  */
-final class CellComponentDate extends CellComponent {
-    /** Display control */
+final class CellComponentDate extends CellComponent<Date> {
+	private static final long serialVersionUID = -9042462762389594738L;
+	/** Display control */
     private JTextField field;
     /** Date formatter used to display the date */
     private DateFormat formatter;
@@ -38,7 +39,7 @@ final class CellComponentDate extends CellComponent {
     /**
      * @see com.ixora.common.typedproperties.ui.CellComponent#render(com.ixora.common.app.typedproperties.PropertyEntry, java.lang.Object)
      */
-    public void render(PropertyEntry e, Object value) {
+    public void render(PropertyEntry<Date> e, Date value) {
     	Date d = (Date)value;
    	    field.setText(d == null ? "" : formatter.format(d));
     }

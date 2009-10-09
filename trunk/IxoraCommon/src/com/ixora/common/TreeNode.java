@@ -12,8 +12,9 @@ import java.util.Map;
 /**
  * @author Daniel Moraru
  */
-public abstract class TreeNode<K, T extends TreeNode>
+public abstract class TreeNode<K, T extends TreeNode<K, T>>
 	implements Serializable {
+	private static final long serialVersionUID = -518100393784822190L;
 	/** Children */
 	protected Map<K, T> fChildren;
 
@@ -38,6 +39,7 @@ public abstract class TreeNode<K, T extends TreeNode>
 	/**
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public Iterator<T> children() {
 		if(fChildren == null) {
 			return Collections.EMPTY_LIST.iterator();
@@ -62,7 +64,7 @@ public abstract class TreeNode<K, T extends TreeNode>
 		if(fChildren == null) {
 			fChildren = new HashMap<K, T>();
 		}
-		fChildren.put((K)n.getKey(), n);
+		fChildren.put(n.getKey(), n);
 	}
 
 

@@ -9,6 +9,7 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public class XMLException extends AppException {
+	private static final long serialVersionUID = -4699558744891616945L;
 	/**
 	 * @param e
 	 */

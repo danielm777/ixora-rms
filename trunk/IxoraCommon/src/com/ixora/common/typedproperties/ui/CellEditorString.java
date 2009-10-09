@@ -12,7 +12,7 @@ import com.ixora.common.ui.UIFactoryMgr;
 /**
  * @author Daniel Moraru
  */
-final class CellEditorString extends CellEditorInPlace {
+final class CellEditorString extends CellEditorInPlace<String> {
 	/** Compoenent */
 	private JTextField field;
 
@@ -29,7 +29,7 @@ final class CellEditorString extends CellEditorInPlace {
     /**
      * @see com.ixora.common.typedproperties.ui.PropertyEntryCellEditor#setPropertyEntry(com.ixora.common.app.typedproperties.PropertyEntry)
      */
-    public void setPropertyEntry(PropertyEntry e) {
+    public void setPropertyEntry(PropertyEntry<String> e) {
         field.setText((String)e.getValue());
     }
 

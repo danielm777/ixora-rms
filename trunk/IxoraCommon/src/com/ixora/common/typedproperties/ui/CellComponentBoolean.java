@@ -12,8 +12,9 @@ import com.ixora.common.typedproperties.PropertyEntry;
 /**
  * @author Daniel Moraru
  */
-final class CellComponentBoolean extends CellComponent {
-    private JCheckBox field;
+final class CellComponentBoolean extends CellComponent<Boolean> {
+	private static final long serialVersionUID = 2880501358035085910L;
+	private JCheckBox field;
 
     /**
      * Constructor.
@@ -30,7 +31,7 @@ final class CellComponentBoolean extends CellComponent {
     /**
      * @see com.ixora.common.typedproperties.ui.CellComponent#render(com.ixora.common.app.typedproperties.PropertyEntry, java.lang.Object)
      */
-    public void render(PropertyEntry e, Object value) {
-        field.setSelected(value == null ? false : ((Boolean)value).booleanValue());
+    public void render(PropertyEntry<Boolean> e, Boolean value) {
+        field.setSelected(value == null ? false : value.booleanValue());
     }
 }

@@ -9,6 +9,8 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public final class InvalidLicense extends LicenseException {
+	private static final long serialVersionUID = -283533448705140098L;
+
 	/**
 	 * Constructor.
 	 */

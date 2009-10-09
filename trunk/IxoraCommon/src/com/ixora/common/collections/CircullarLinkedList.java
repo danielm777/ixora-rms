@@ -29,7 +29,7 @@ public class CircullarLinkedList<T> extends LinkedList<T> {
 	/**
 	 * @param c
 	 */
-	public CircullarLinkedList(Collection c, int size) {
+	public CircullarLinkedList(Collection<T> c, int size) {
 		this(size);
 		addAll(c);
 	}

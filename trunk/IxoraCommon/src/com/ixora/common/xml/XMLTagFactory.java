@@ -9,9 +9,12 @@ import org.w3c.dom.Node;
 
 /**
  * XMLTagFactory
+ * @author Cristian Costache
+ * @author Daniel Moraru
  */
-public abstract class XMLTagFactory implements Serializable {
+public abstract class XMLTagFactory<T extends XMLTag> implements Serializable {
+	private static final long serialVersionUID = 8972236842297479906L;
 
-    /** Override to create different XMLTags based on contents of a Node */
-    public abstract XMLTag createFromXML(Node n);
+	/** Override to create different XMLTags based on contents of a Node */
+    public abstract T createFromXML(Node n);
 }

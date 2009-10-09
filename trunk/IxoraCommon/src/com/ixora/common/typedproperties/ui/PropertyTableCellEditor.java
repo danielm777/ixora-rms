@@ -21,7 +21,7 @@ public final class PropertyTableCellEditor implements TableCellEditor {
 	/** All editors */
     private CellEditors editors;
     /** Current editor */
-	private PropertyEntryCellEditor editor;
+	private PropertyEntryCellEditor<?> editor;
     /** Component name */
     private String componentName;
     /** Listeners */
@@ -39,13 +39,13 @@ public final class PropertyTableCellEditor implements TableCellEditor {
 		 * @throws Exception
 		 * @see com.ixora.common.typedproperties.ui.PropertyEntryCellEditorExtended.ExtendedEditorListener#aboutToLaunch(com.ixora.common.typedproperties.ui.ExtendedEditor, com.ixora.common.typedproperties.PropertyEntry)
 		 */
-		public void aboutToLaunch(ExtendedEditor editor, PropertyEntry pe) throws Exception {
+		public void aboutToLaunch(ExtendedEditor<?> editor, PropertyEntry<?> pe) throws Exception {
 			fireAboutToLaunch(editor, pe);
 		}
     }
 
 	/**
-	 * @param owner owner of all extended edtiors
+	 * @param owner owner of all extended editors
 	 * @param renderer
 	 */
 	public PropertyTableCellEditor(
@@ -67,18 +67,19 @@ public final class PropertyTableCellEditor implements TableCellEditor {
 	/**
 	 * @see javax.swing.table.TableCellEditor#getTableCellEditorComponent(javax.swing.JTable, java.lang.Object, boolean, int, int)
 	 */
+	@SuppressWarnings("unchecked")
 	public Component getTableCellEditorComponent(
 			JTable table, Object value,
 			boolean isSelected, int row, int column) {
 	   if(value instanceof PropertyEntry) {
 			PropertyEntry pe = (PropertyEntry)value;
 		    int type = pe.getType();
-		    PropertyEntryCellEditor e = null;
+		    PropertyEntryCellEditor<?> e = null;
 		    // set uses a specialized editor
 			if(pe.getValueSet() != null) {
-			    e = editors.getEditorValueSet(type);
+			    e = (PropertyEntryCellEditor<?>)editors.getEditorValueSet(type);
 			} else {
-			    e = editors.getEditor(type);
+			    e = (PropertyEntryCellEditor<?>)editors.getEditor(type);
 			}
 			if(e != null) {
 				if(e instanceof PropertyEntryCellEditorExtended) {
@@ -169,7 +170,7 @@ public final class PropertyTableCellEditor implements TableCellEditor {
 	 * @param pe
 	 * @throws Exception
 	 */
-	private void fireAboutToLaunch(ExtendedEditor editor, PropertyEntry pe) throws Exception {
+	private void fireAboutToLaunch(ExtendedEditor<?> editor, PropertyEntry<?> pe) throws Exception {
 		for(ExtendedEditorListener list : listeners) {
 			list.aboutToLaunch(editor, pe);
 		}

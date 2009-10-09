@@ -1,4 +1,4 @@
-package com.ixora.common.xml.history;
+package com.ixora.common.history;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,6 +14,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class HistoryGroupItem extends XMLTag implements Comparable<HistoryGroupItem> {
+	private static final long serialVersionUID = 2119555494260356086L;
 	private XMLAttributeDouble fDate = new XMLAttributeDouble("date", true);
 	private XMLExternalizable fItem;
 

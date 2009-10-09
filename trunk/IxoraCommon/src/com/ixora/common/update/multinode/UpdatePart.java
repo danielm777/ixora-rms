@@ -11,6 +11,7 @@ import com.ixora.common.update.UpdatePartDescriptor;
  * @author Daniel Moraru
  */
 public final class UpdatePart implements Serializable {
+	private static final long serialVersionUID = 4955052162814057945L;
 	/** Descriptor */
 	private UpdatePartDescriptor descriptor;
 	/** Data */

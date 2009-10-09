@@ -1,13 +1,19 @@
 package com.ixora.common;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.io.Serializable;
 
+import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.utils.Utils;
 
 /**
+ * This class represents the version of a component.
  * @author Daniel Moraru
  */
-public final class ComponentVersion implements Comparable, Serializable {
+public final class ComponentVersion implements Comparable<ComponentVersion>, Serializable {
+	private static final long serialVersionUID = -2491450467031445456L;
 	private int major;
 	private int minor;
 	private int build;
@@ -31,10 +37,31 @@ public final class ComponentVersion implements Comparable, Serializable {
 	}
 
 	/**
+	 * Reads and parses the first line in reader.
+	 * @param is
+	 */
+	public ComponentVersion(Reader is) {
+		super();
+		BufferedReader br = new BufferedReader(is);
+		try {
+			init(br.readLine());
+		} catch(IOException e) {
+			throw new AppRuntimeException(e);
+		}
+	}
+	
+	/**
 	 * @param version String of the form <i>major.minor.build extra</i>.
 	 */
 	public ComponentVersion(String version) {
 		super();
+		init(version);
+	}
+
+	/**
+	 * @param version
+	 */
+	private void init(String version) {
 		if(version == null) {
 			throw new IllegalArgumentException("null version string");
 		}
@@ -104,11 +131,7 @@ public final class ComponentVersion implements Comparable, Serializable {
 	/**
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(Object o) {
-		if(!(o instanceof ComponentVersion)){
-			return -1;
-		}
-		ComponentVersion other = (ComponentVersion)o;
+	public int compareTo(ComponentVersion other) {
 		if(this.major > other.major) {
 			return 1;
 		} else if(this.major < other.major) {

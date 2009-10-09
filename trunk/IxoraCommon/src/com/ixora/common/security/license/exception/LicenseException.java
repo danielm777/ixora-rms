@@ -10,8 +10,9 @@ import com.ixora.common.exception.AppRuntimeException;
  * LicenseException
  */
 public class LicenseException extends AppRuntimeException {
+	private static final long serialVersionUID = -8218767349722668624L;
 
-    public LicenseException() {
+	public LicenseException() {
         super();
     }
 

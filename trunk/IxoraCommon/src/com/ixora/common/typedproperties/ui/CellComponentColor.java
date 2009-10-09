@@ -13,8 +13,9 @@ import com.ixora.common.typedproperties.PropertyEntry;
 /**
  * Color cell.
  */
-final class CellComponentColor extends CellComponent {
-    /** Display control */
+final class CellComponentColor extends CellComponent<Color> {
+	private static final long serialVersionUID = -7659760601642873085L;
+	/** Display control */
     private JTextField field;
 
 	/**
@@ -33,8 +34,7 @@ final class CellComponentColor extends CellComponent {
 	/**
      * @see com.ixora.common.typedproperties.ui.CellComponent#render(com.ixora.common.app.typedproperties.PropertyEntry, java.lang.Object)
      */
-    public void render(PropertyEntry e, Object value) {
-        Color c = (Color)value;
+    public void render(PropertyEntry<Color> e, Color c) {
         field.setBackground(c == null ? Color.WHITE : c);
         validate();
         repaint();

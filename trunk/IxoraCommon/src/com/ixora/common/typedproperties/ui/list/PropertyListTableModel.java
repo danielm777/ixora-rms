@@ -20,6 +20,8 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class PropertyListTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = 7082625322945566623L;
+
 	/**
 	 * Listener.
 	 */
@@ -87,11 +89,11 @@ public class PropertyListTableModel extends AbstractTableModel {
 		this.fListeners = new LinkedList<Listener>();
 		this.fFireTableEvents = fireTableEvents;
 		this.fComponent = component;
-		Map entries = prototype.getEntries();
+		Map<String, PropertyEntry<?>> entries = prototype.getEntries();
 		fColumnNames = new String[entries.size()];
 		int i = 0;
-		for(Iterator iter = entries.keySet().iterator(); iter.hasNext(); ++i) {
-			fColumnNames[i] = Utils.getTranslatedMessage(component, (String)iter.next());
+		for(Iterator<String> iter = entries.keySet().iterator(); iter.hasNext(); ++i) {
+			fColumnNames[i] = Utils.getTranslatedMessage(component, iter.next());
 		}
 		if(properties == null) {
 			this.fProperties = new LinkedList<TypedProperties>();
@@ -122,7 +124,7 @@ public class PropertyListTableModel extends AbstractTableModel {
 			aValue = null;
 		}
 	    TypedProperties props = this.fProperties.get(rowIndex);
-	    PropertyEntry entry = props.getEntryAt(columnIndex);
+	    PropertyEntry<?> entry = props.getEntryAt(columnIndex);
 	    props.setObject(entry.getProperty(), aValue);
 		fireTableCellUpdated(rowIndex, columnIndex);
 	}

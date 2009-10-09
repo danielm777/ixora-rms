@@ -7,5 +7,6 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public final class ServiceUnreachable extends AppException {
+	private static final long serialVersionUID = 8624973876686304882L;
 
 }

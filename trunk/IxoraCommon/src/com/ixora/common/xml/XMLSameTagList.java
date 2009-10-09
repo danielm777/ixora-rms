@@ -12,14 +12,15 @@ import com.ixora.common.xml.exception.XMLException;
 
 /**
  * XMLSameTagList
+ * @author Cristian Costache
+ * @author Daniel Moraru
  */
-public class XMLSameTagList extends XMLTagList {
-    /** An XMLTag class */
-    private Class tagClass;
+public class XMLSameTagList<T extends XMLTag> extends XMLTagList<T> {
+	private static final long serialVersionUID = -3970763468824453759L;
+	/** An XMLTag class */
+    private Class<T> tagClass;
 
-    public XMLSameTagList(Class c) {
-        if (!XMLTag.class.isAssignableFrom(c))
-            throw new IllegalArgumentException("Subclass of XMLTag required");
+    public XMLSameTagList(Class<T> c) {
         tagClass = c;
     }
 
@@ -36,13 +37,12 @@ public class XMLSameTagList extends XMLTagList {
             XMLTag tagDummy = (XMLTag)tagClass.newInstance();
 
             // Look for children
-	        List nodes = XMLUtils.findChildren(node, tagDummy.getTagName());
-			for (Iterator it = nodes.iterator(); it.hasNext();) {
-			    Node n = (Node) it.next();
+	        List<Node> nodes = XMLUtils.findChildren(node, tagDummy.getTagName());
+			for (Iterator<Node> it = nodes.iterator(); it.hasNext();) {
+			    Node n = it.next();
 
-                XMLTag tag = (XMLTag)tagClass.newInstance();
+                T tag = tagClass.newInstance();
 	            tag.fromXML(n);
-
 			    this.add(tag);
 			}
         } catch (IllegalAccessException e) {

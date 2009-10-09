@@ -14,8 +14,9 @@ import javax.swing.border.Border;
 import com.ixora.common.typedproperties.PropertyEntry;
 
 
-public abstract class CellComponent extends JPanel implements PropertyEntryCellRenderer {
-    /** This border must be used by all display components in subclasses */
+public abstract class CellComponent<T> extends JPanel implements PropertyEntryCellRenderer<T> {
+	private static final long serialVersionUID = 8266669643523802263L;
+	/** This border must be used by all display components in subclasses */
     protected static final Border BORDER = BorderFactory.createEmptyBorder(1, 1, 1, 1);
     /** Background color that must be used by all display components */
     protected static final Color BACKGROUND = Color.WHITE;
@@ -34,7 +35,7 @@ public abstract class CellComponent extends JPanel implements PropertyEntryCellR
     /**
      * @see com.ixora.common.typedproperties.ui.PropertyEntryCellRenderer#render(com.ixora.common.app.typedproperties.PropertyEntry)
      */
-    public void render(PropertyEntry e) {
+    public void render(PropertyEntry<T> e) {
         render(e, e.getValue());
     }
 

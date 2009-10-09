@@ -9,8 +9,8 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public class InvalidPropertyValue extends AppRuntimeException {
-
-    /**
+	private static final long serialVersionUID = 5431115613244013806L;
+	/**
      * Constructor.
      * @param prop
      * @param val

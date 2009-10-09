@@ -37,6 +37,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 final class ShowLicenseDialog extends AppDialog {
+	private static final long serialVersionUID = 3678441293198654535L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(
 				ShowLicenseDialog.class);
@@ -47,6 +48,7 @@ final class ShowLicenseDialog extends AppDialog {
     /** License text */
 	private String fLicenseKey;
 
+	@SuppressWarnings("serial")
 	private final class ActionUpdateLicense extends AbstractAction {
 		ActionUpdateLicense() {
 			super();
@@ -212,6 +214,7 @@ final class ShowLicenseDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		JButton close = UIFactoryMgr.createButton(new ActionClose() {
 			public void actionPerformed(ActionEvent e) {

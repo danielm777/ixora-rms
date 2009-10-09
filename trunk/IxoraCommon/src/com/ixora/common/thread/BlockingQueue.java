@@ -7,11 +7,11 @@ import java.util.List;
  * Producer consumer queue.
  * @author Daniel Moraru
  */
-public final class BlockingQueue {
+public final class BlockingQueue<T> {
 	/**
 	 * Queue entries.
 	 */
-	private List entries;
+	private List<T> entries;
 	/**
 	 * The maximum size of the queue. If this value is
 	 * reached the thread trying to place an object on the
@@ -40,7 +40,7 @@ public final class BlockingQueue {
 	 */
 	public BlockingQueue(int maxSize) {
 		super();
-		this.entries = new LinkedList();
+		this.entries = new LinkedList<T>();
 		this.maxSize = maxSize;
 	}
 
@@ -49,7 +49,7 @@ public final class BlockingQueue {
 	 * @param r
 	 * @throws InterruptedException only for queues with a max size
 	 */
-	public void put(Object r) throws InterruptedException {
+	public void put(T r) throws InterruptedException {
 		synchronized (this) {
 		    if(this.maxSize > 0) {
 		        while(this.entries.size() >= this.maxSize) {
@@ -66,7 +66,7 @@ public final class BlockingQueue {
 	 * @throws InterruptedException If the current thread waiting
 	 * for a queue entry has been interrupted.
 	 */
-	public Object get() throws InterruptedException {
+	public T get() throws InterruptedException {
 		synchronized (this) {
 			while(this.entries.size() == 0) {
 				wait();

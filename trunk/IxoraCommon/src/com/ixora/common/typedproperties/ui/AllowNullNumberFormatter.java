@@ -14,6 +14,7 @@ import com.ixora.common.typedproperties.AllowNullNumberFormat;
  * @author Daniel Moraru
  */
 public class AllowNullNumberFormatter extends NumberFormatter {
+	private static final long serialVersionUID = -8518804248817558020L;
 
 	/**
 	 *

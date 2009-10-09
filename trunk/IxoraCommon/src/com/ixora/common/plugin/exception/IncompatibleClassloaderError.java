@@ -9,6 +9,7 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public class IncompatibleClassloaderError extends AppException {
+	private static final long serialVersionUID = -7514821482044702471L;
 
 	/**
 	 *

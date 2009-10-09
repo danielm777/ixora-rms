@@ -21,11 +21,11 @@ public class ICMP {
 	}
 
 	private int counter;
-	private HashSet received;
+	private HashSet<Integer> received;
 
 	public ICMP() {
 		counter = 0;
-		received = new HashSet();
+		received = new HashSet<Integer>();
 	}
 
 	/**

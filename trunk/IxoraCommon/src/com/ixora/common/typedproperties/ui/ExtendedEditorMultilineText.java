@@ -29,8 +29,9 @@ import com.ixora.common.ui.actions.ActionOk;
 /**
  * @author Daniel Moraru
  */
-public final class ExtendedEditorMultilineText extends ExtendedEditorAbstract {
+public final class ExtendedEditorMultilineText extends ExtendedEditorAbstract<String> {
     /** Editor dialog */
+	@SuppressWarnings("serial")
 	private static final class EditorDialog extends AppDialog {
 		private JPanel fPanel;
 		private JTextArea fTextArea;
@@ -128,8 +129,8 @@ public final class ExtendedEditorMultilineText extends ExtendedEditorAbstract {
     /**
      * @see com.ixora.common.typedproperties.ui.ExtendedEditor#launch(java.awt.Component, com.ixora.common.app.typedproperties.PropertyEntry)
      */
-    public void launch(Component owner, PropertyEntry pe) {
-        String s = (String)pe.getValue();
+    public void launch(Component owner, PropertyEntry<String> pe) {
+        String s = pe.getValue();
         EditorDialog dlg = EditorDialog.showDialog(
                 SwingUtilities.getWindowAncestor(owner), s);
         String ret = dlg.getText();

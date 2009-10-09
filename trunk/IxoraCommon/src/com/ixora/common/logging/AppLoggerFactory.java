@@ -59,7 +59,7 @@ public final class AppLoggerFactory {
 	/**
 	 * @return A logger for the specified class.
 	 */
-	public static AppLogger getLogger(Class clazz) {
+	public static AppLogger getLogger(Class<?> clazz) {
 		return provider.getLogger(clazz.getName());
 	}
 

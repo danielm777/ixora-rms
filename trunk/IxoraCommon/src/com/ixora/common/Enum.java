@@ -8,9 +8,10 @@ import java.io.Serializable;
 /**
  * @author Daniel Moraru
  */
-public abstract class Enum implements Serializable, Comparable {
+public abstract class Enum implements Serializable, Comparable<Enum> {
+	private static final long serialVersionUID = -2638079366132347180L;
 	/**
-	 * Key is a localization independent way of describibg
+	 * Key is a localization independent way of describing
 	 * this element.
 	 */
 	protected int key;
@@ -51,8 +52,7 @@ public abstract class Enum implements Serializable, Comparable {
 	 * Default comparation based on the value of the key
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(Object o) {
-		Enum that = (Enum)o;
+	public int compareTo(Enum that) {
 		if(key == that.key) {
 			return 0;
 		}

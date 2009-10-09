@@ -13,9 +13,10 @@ import com.ixora.common.typedproperties.PropertyEntry;
  * Cell editor for properties that have a fixed set of possible values.
  * @author Daniel Moraru
  */
-final class CellEditorValueSet extends PropertyEntryCellEditorExtended {
-    /** Editor that allows the selection from the value set */
-    private ExtendedEditorValueSet editor;
+final class CellEditorValueSet<T> extends PropertyEntryCellEditorExtended<T> {
+	private static final long serialVersionUID = 2593712236612413380L;
+	/** Editor that allows the selection from the value set */
+    private ExtendedEditorValueSet<T> editor;
 
     /**
      * Event handler.
@@ -34,9 +35,9 @@ final class CellEditorValueSet extends PropertyEntryCellEditorExtended {
      * @param owner
      * @param r
      */
-    public CellEditorValueSet(Component owner, CellComponentValueSet vs) {
+    public CellEditorValueSet(Component owner, CellComponentValueSet<T> vs) {
         super(owner, vs);
-        editor = new ExtendedEditorValueSet();
+        editor = new ExtendedEditorValueSet<T>();
         vs.getDisplay().addMouseListener(new EventHandler());
     }
 
@@ -51,7 +52,7 @@ final class CellEditorValueSet extends PropertyEntryCellEditorExtended {
     /**
      * @see com.ixora.common.typedproperties.ui.PropertyEntryCellEditor#setPropertyEntry(com.ixora.common.app.typedproperties.PropertyEntry)
      */
-    public void setPropertyEntry(PropertyEntry e) {
+    public void setPropertyEntry(PropertyEntry<T> e) {
         super.setPropertyEntry(e);
         editor.setCellComponent(display);
     }
@@ -59,7 +60,7 @@ final class CellEditorValueSet extends PropertyEntryCellEditorExtended {
     /**
      * @see com.ixora.common.typedproperties.ui.PropertyEntryCellEditorExtended#createEditor()
      */
-    protected ExtendedEditor createEditor() throws Exception {
+    protected ExtendedEditor<T> createEditor() throws Exception {
         return editor;
     }
 }

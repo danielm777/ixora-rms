@@ -18,7 +18,7 @@ import com.ixora.common.typedproperties.PropertyEntry;
  */
 final class ValueSetListCellRenderer implements ListCellRenderer {
     /** Current entry for which possibe values are displayed */
-    private PropertyEntry currentEntry;
+    private PropertyEntry<?> currentEntry;
     /** Renderers */
     private CellRenderers renderers;
     /** Component name */
@@ -44,14 +44,15 @@ final class ValueSetListCellRenderer implements ListCellRenderer {
     /**
      * @param pe
      */
-    public void setPropertyEntry(PropertyEntry pe) {
+    public void setPropertyEntry(PropertyEntry<?> pe) {
         this.currentEntry = pe;
     }
 
     /**
      * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)
      */
-    public Component getListCellRendererComponent(JList list, Object value,
+    @SuppressWarnings("unchecked")
+	public Component getListCellRendererComponent(JList list, Object value,
             int index, boolean isSelected, boolean cellHasFocus) {
         int type = currentEntry.getType();
         CellComponent ret = renderers.getRenderer(type);
@@ -59,11 +60,11 @@ final class ValueSetListCellRenderer implements ListCellRenderer {
         	((CellComponentObject)ret).setComponentName(this.componentName);
         }
         if(ret instanceof CellComponentExtended) {
-        	((CellComponentExtended)ret).setComponentName(this.componentName);
+        	((CellComponentExtended<?>)ret).setComponentName(this.componentName);
         }
         if(ret != null) {
         	if(isSelected) {
-        	    // as the list immitates a popup menu
+        	    // as the list imitates a popup menu
         	    // any selected item must be shown as having the focus
         	    cellHasFocus = true;
         	    ret.setBackground(list.getSelectionBackground());

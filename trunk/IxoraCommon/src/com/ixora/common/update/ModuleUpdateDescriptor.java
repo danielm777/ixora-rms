@@ -18,14 +18,15 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * Created on Feb 12, 2004
  */
 /**
- * @author DMoraru
+ * @author Daniel Moraru
  */
-public final class ModuleUpdateDescriptor implements Comparable,
+public final class ModuleUpdateDescriptor implements Comparable<ModuleUpdateDescriptor>,
 		XMLExternalizable {
+	private static final long serialVersionUID = 1041151205600523081L;
 	private String moduleName;
 	private UpdateId updateId;
 	private String updateDescription;
-	private List forModuleVersions;
+	private List<ComponentVersion> forModuleVersions;
 	private Module newModule;
 	private UpdatePartDescriptor[] components;
 	private boolean installed;
@@ -49,7 +50,7 @@ public final class ModuleUpdateDescriptor implements Comparable,
 		if(components == null || components.length == 0) {
 			return null;
 		}
-		List ret = new LinkedList();
+		List<UpdatePartDescriptor> ret = new LinkedList<UpdatePartDescriptor>();
 		UpdatePartDescriptor part;
 		for(int i = 0; i < components.length; i++) {
 			part = components[i];
@@ -85,11 +86,7 @@ public final class ModuleUpdateDescriptor implements Comparable,
 	/**
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(Object o) {
-		if(!(o instanceof ModuleUpdateDescriptor)) {
-			return -1;
-		}
-		ModuleUpdateDescriptor md = (ModuleUpdateDescriptor)o;
+	public int compareTo(ModuleUpdateDescriptor md) {
 		return newModule.getVersion().compareTo(md.newModule.getVersion());
 	}
 
@@ -123,15 +120,15 @@ public final class ModuleUpdateDescriptor implements Comparable,
 			throw new XMLNodeMissing("id");
 		}
 		updateId = new UpdateId(a.getValue());
-		List lst = XMLUtils.findChildren(node, "forVersion");
+		List<Node> lst = XMLUtils.findChildren(node, "forVersion");
 		if(lst.size() == 0) {
 			throw new XMLNodeMissing("forVersion");
 		}
 		Node n;
-		this.forModuleVersions = new ArrayList(lst.size());
+		this.forModuleVersions = new ArrayList<ComponentVersion>(lst.size());
 		ComponentVersion cv;
-		for(Iterator iter = lst.iterator(); iter.hasNext();) {
-			n = (Node)iter.next();
+		for(Iterator<Node> iter = lst.iterator(); iter.hasNext();) {
+			n = iter.next();
 			cv = new ComponentVersion(n.getFirstChild().getNodeValue());
 			this.forModuleVersions.add(cv);
 		}
@@ -157,8 +154,8 @@ public final class ModuleUpdateDescriptor implements Comparable,
 		}
 		this.components = new UpdatePartDescriptor[lst.size()];
 		int i = 0;
-		for (Iterator iter = lst.iterator(); iter.hasNext(); ++i) {
-			n = (Node)iter.next();
+		for(Iterator<Node> iter = lst.iterator(); iter.hasNext(); ++i) {
+			n = iter.next();
 			UpdatePartDescriptor ucd = new UpdatePartDescriptor();
 			ucd.fromXML(n);
 			this.components[i] = ucd;

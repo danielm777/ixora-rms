@@ -7,6 +7,7 @@ package com.ixora.common.exception;
  * @author Daniel Moraru
  */
 public final class ReadOnlyConfiguration extends AppException {
+	private static final long serialVersionUID = 3994745709705763062L;
 
 	/**
 	 * Constructor for ReadOnlyConfiguration.

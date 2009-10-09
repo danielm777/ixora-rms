@@ -21,7 +21,7 @@ final class TimedInactivityController extends AbstractInactivityController {
 	 */
 	private long timeOut;
 	/** Entries */
-	private Map entries;
+	private Map<ObjectPoolEntry, ObjectPoolEntry> entries;
 	/** Timer to clean the pool */
 	private Timer timer;
 
@@ -111,7 +111,7 @@ final class TimedInactivityController extends AbstractInactivityController {
 	public TimedInactivityController(long timeout, int cleanupInterval) {
 		super();
 		this.timeOut = timeout;
-		this.entries = new HashMap();
+		this.entries = new HashMap<ObjectPoolEntry, ObjectPoolEntry>();
 		this.timer = new Timer(true);
 		this.timer.schedule(new TimerTask(){
 				public void run() {
@@ -162,11 +162,11 @@ final class TimedInactivityController extends AbstractInactivityController {
 	private void maintainPool() {
 		if(this.timeOut > 0) {
 			long currTime = System.currentTimeMillis();
-			List ejected = new LinkedList();
+			List<ObjectPoolEntry> ejected = new LinkedList<ObjectPoolEntry>();
 			synchronized (this.entries) {
-				Iterator itr = this.entries.keySet().iterator();
+				Iterator<ObjectPoolEntry> itr = this.entries.keySet().iterator();
 				while(itr.hasNext()) {
-					ObjectPoolEntry entry = (ObjectPoolEntry)itr.next();
+					ObjectPoolEntry entry = itr.next();
 					if(currTime - entry.getTimeStamp() > this.timeOut) {
 						if(this.pool != null) {
 							ejected.add(entry);
@@ -175,8 +175,8 @@ final class TimedInactivityController extends AbstractInactivityController {
 				}
 			}
 
-			for(Iterator iter = ejected.iterator(); iter.hasNext();) {
-				ObjectPoolEntry entry = (ObjectPoolEntry)iter.next();
+			for(Iterator<ObjectPoolEntry> iter = ejected.iterator(); iter.hasNext();) {
+				ObjectPoolEntry entry = iter.next();
 				this.pool.objectExpired(entry.getObject());
 
 				// the object should have been removed by now from entries

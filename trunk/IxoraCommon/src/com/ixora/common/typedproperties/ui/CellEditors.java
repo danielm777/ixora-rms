@@ -3,7 +3,10 @@
  */
 package com.ixora.common.typedproperties.ui;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,10 +21,10 @@ import com.ixora.common.typedproperties.TypedProperties;
 //TODO: This is the place to try and automate
 //the finding and creation of editors for various types
 public final class CellEditors {
-    private PropertyEntryCellEditorExtended colorCellEditor;
-    private PropertyEntryCellEditorExtended dateCellEditor;
-    private PropertyEntryCellEditorExtended fileCellEditor;
-    private PropertyEntryCellEditorExtended objectCellEditor;
+    private PropertyEntryCellEditorExtended<Color> colorCellEditor;
+    private PropertyEntryCellEditorExtended<Date> dateCellEditor;
+    private PropertyEntryCellEditorExtended<File> fileCellEditor;
+    private PropertyEntryCellEditorExtended<Object> objectCellEditor;
 	private CellEditorInt intCellEditor;
 	private CellEditorString stringCellEditor;
 	private CellEditorSecureString secureStringCellEditor;
@@ -30,21 +33,21 @@ public final class CellEditors {
 	private CellEditorBoolean booleanCellEditor;
 
 // the editors to use for value sets
-    private CellEditorValueSet colorCellEditorSet;
-    private CellEditorValueSet dateCellEditorSet;
-	private CellEditorValueSet intCellEditorSet;
-	private CellEditorValueSet objectCellEditorSet;
-	private CellEditorValueSet floatCellEditorSet;
-	private CellEditorValueSet percentCellEditorSet;
-	private CellEditorValueSet booleanCellEditorSet;
-	private CellEditorValueSet fileCellEditorSet;
+    private CellEditorValueSet<Color> colorCellEditorSet;
+    private CellEditorValueSet<Date> dateCellEditorSet;
+	private CellEditorValueSet<Integer> intCellEditorSet;
+	private CellEditorValueSet<Object> objectCellEditorSet;
+	private CellEditorValueSet<Float> floatCellEditorSet;
+	private CellEditorValueSet<Float> percentCellEditorSet;
+	private CellEditorValueSet<Boolean> booleanCellEditorSet;
+	private CellEditorValueSet<File> fileCellEditorSet;
 
 	/** Reference to the owner of the extended editors */
 	private Component owner;
 	/** Renderer store */
 	private CellRenderers renderers;
 	/** Listeners */
-	private List listeners;
+	private List<CellEditorListener> listeners;
 
     /**
      * Constructor.
@@ -55,14 +58,14 @@ public final class CellEditors {
         super();
         this.owner = owner;
 	    this.renderers = renderers;
-	    this.listeners = new LinkedList();
+	    this.listeners = new LinkedList<CellEditorListener>();
     }
 
     /**
      * @param type
      * @return
      */
-    public PropertyEntryCellEditor getEditor(int type) {
+    public PropertyEntryCellEditor<?> getEditor(int type) {
 		switch(type) {
 	    	case TypedProperties.TYPE_INTEGER:
 			    return getIntCellEditor();
@@ -90,7 +93,7 @@ public final class CellEditors {
      * @param type
      * @return
      */
-    public CellEditorValueSet getEditorValueSet(int type) {
+    public CellEditorValueSet<?> getEditorValueSet(int type) {
 		switch(type) {
 	    	case TypedProperties.TYPE_INTEGER:
 			    return getIntCellEditorSet();
@@ -247,10 +250,11 @@ public final class CellEditors {
     /**
      * @return the booleanCellEditorSet.
      */
-    private CellEditorValueSet getBooleanCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<Boolean> getBooleanCellEditorSet() {
         if(booleanCellEditorSet == null) {
-    		booleanCellEditorSet = new CellEditorValueSet(owner,
-    		        renderers.getRendererValueSet(TypedProperties.TYPE_BOOLEAN));
+    		booleanCellEditorSet = new CellEditorValueSet<Boolean>(owner,
+    		        (CellComponentValueSet<Boolean>)renderers.getRendererValueSet(TypedProperties.TYPE_BOOLEAN));
     		prepareCellEditor(booleanCellEditorSet);
         }
         return booleanCellEditorSet;
@@ -258,10 +262,11 @@ public final class CellEditors {
     /**
      * @return the colorCellEditor.
      */
-    private PropertyEntryCellEditorExtended getColorCellEditor() {
+    @SuppressWarnings("unchecked")
+	private PropertyEntryCellEditorExtended<Color> getColorCellEditor() {
         if(colorCellEditor == null) {
-            colorCellEditor = new PropertyEntryCellEditorExtended(owner,
-		        (CellComponentExtended)renderers.getRendererExtended(TypedProperties.TYPE_COLOR));
+            colorCellEditor = new PropertyEntryCellEditorExtended<Color>(owner,
+		        (CellComponentExtended<Color>)renderers.getRendererExtended(TypedProperties.TYPE_COLOR));
             prepareCellEditor(colorCellEditor);
         }
         return colorCellEditor;
@@ -269,10 +274,11 @@ public final class CellEditors {
 	/**
 	 * @return the colorCellEditorSet.
 	 */
-    private CellEditorValueSet getColorCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<Color> getColorCellEditorSet() {
 	    if(colorCellEditorSet == null) {
-			colorCellEditorSet = new CellEditorValueSet(owner,
-			        renderers.getRendererValueSet(TypedProperties.TYPE_COLOR));
+			colorCellEditorSet = new CellEditorValueSet<Color>(owner,
+			        (CellComponentValueSet<Color>)renderers.getRendererValueSet(TypedProperties.TYPE_COLOR));
 			prepareCellEditor(colorCellEditorSet);
 	    }
 	    return colorCellEditorSet;
@@ -280,10 +286,11 @@ public final class CellEditors {
     /**
      * @return the dateCellEditor.
      */
-    private PropertyEntryCellEditorExtended getDateCellEditor() {
+    @SuppressWarnings("unchecked")
+	private PropertyEntryCellEditorExtended<Date> getDateCellEditor() {
         if(dateCellEditor == null) {
-            dateCellEditor = new PropertyEntryCellEditorExtended(owner,
-		        (CellComponentExtended)renderers.getRendererExtended(TypedProperties.TYPE_DATE));
+            dateCellEditor = new PropertyEntryCellEditorExtended<Date>(owner,
+		        (CellComponentExtended<Date>)renderers.getRendererExtended(TypedProperties.TYPE_DATE));
             prepareCellEditor(dateCellEditor);
         }
         return dateCellEditor;
@@ -291,10 +298,11 @@ public final class CellEditors {
     /**
      * @return the dateCellEditorSet.
      */
-    private CellEditorValueSet getDateCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<Date> getDateCellEditorSet() {
         if(dateCellEditorSet == null) {
-    		dateCellEditorSet = new CellEditorValueSet(owner,
-    		        renderers.getRendererValueSet(TypedProperties.TYPE_DATE));
+    		dateCellEditorSet = new CellEditorValueSet<Date>(owner,
+    		        (CellComponentValueSet<Date>)renderers.getRendererValueSet(TypedProperties.TYPE_DATE));
     		prepareCellEditor(dateCellEditorSet);
         }
         return dateCellEditorSet;
@@ -302,10 +310,11 @@ public final class CellEditors {
     /**
      * @return the fileCellEditor.
      */
-    private PropertyEntryCellEditorExtended getFileCellEditor() {
+    @SuppressWarnings("unchecked")
+	private PropertyEntryCellEditorExtended<File> getFileCellEditor() {
         if(fileCellEditor == null) {
     		fileCellEditor = new PropertyEntryCellEditorExtended(owner,
-    		        (CellComponentExtended)renderers.getRendererExtended(TypedProperties.TYPE_FILE));
+    		        (CellComponentExtended<File>)renderers.getRendererExtended(TypedProperties.TYPE_FILE));
     		prepareCellEditor(fileCellEditor);
         }
         return fileCellEditor;
@@ -313,10 +322,11 @@ public final class CellEditors {
     /**
      * @return the fileCellEditorSet.
      */
-    private CellEditorValueSet getFileCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<File> getFileCellEditorSet() {
         if(fileCellEditorSet == null) {
-    		fileCellEditorSet = new CellEditorValueSet(owner,
-    		        renderers.getRendererValueSet(TypedProperties.TYPE_FILE));
+    		fileCellEditorSet = new CellEditorValueSet<File>(owner,
+    		        (CellComponentValueSet<File>)renderers.getRendererValueSet(TypedProperties.TYPE_FILE));
     		prepareCellEditor(fileCellEditorSet);
         }
         return fileCellEditorSet;
@@ -335,10 +345,11 @@ public final class CellEditors {
     /**
      * @return the floatCellEditorSet.
      */
-    private CellEditorValueSet getFloatCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<Float> getFloatCellEditorSet() {
         if(floatCellEditorSet == null) {
-    		floatCellEditorSet = new CellEditorValueSet(owner,
-    		        renderers.getRendererValueSet(TypedProperties.TYPE_FLOAT));
+    		floatCellEditorSet = new CellEditorValueSet<Float>(owner,
+    		        (CellComponentValueSet<Float>)renderers.getRendererValueSet(TypedProperties.TYPE_FLOAT));
     		prepareCellEditor(floatCellEditorSet);
         }
         return floatCellEditorSet;
@@ -357,10 +368,11 @@ public final class CellEditors {
     /**
      * @return the intCellEditorSet.
      */
-    private CellEditorValueSet getIntCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<Integer> getIntCellEditorSet() {
         if(intCellEditorSet == null) {
-    		intCellEditorSet = new CellEditorValueSet(owner,
-    		        renderers.getRendererValueSet(TypedProperties.TYPE_INTEGER));
+    		intCellEditorSet = new CellEditorValueSet<Integer>(owner,
+    		        (CellComponentValueSet<Integer>)renderers.getRendererValueSet(TypedProperties.TYPE_INTEGER));
     		prepareCellEditor(intCellEditorSet);
         }
         return intCellEditorSet;
@@ -368,10 +380,11 @@ public final class CellEditors {
     /**
      * @return the objectCellEditor.
      */
-    private PropertyEntryCellEditorExtended getObjectCellEditor() {
+    @SuppressWarnings("unchecked")
+	private PropertyEntryCellEditorExtended<Object> getObjectCellEditor() {
         if(objectCellEditor == null) {
-    		objectCellEditor = new PropertyEntryCellEditorExtended(owner,
-    		        (CellComponentExtended)renderers.getRendererExtended(TypedProperties.TYPE_SERIALIZABLE));
+    		objectCellEditor = new PropertyEntryCellEditorExtended<Object>(owner,
+    		        (CellComponentExtended<Object>)renderers.getRendererExtended(TypedProperties.TYPE_SERIALIZABLE));
     		prepareCellEditor(objectCellEditor);
         }
         return objectCellEditor;
@@ -379,10 +392,11 @@ public final class CellEditors {
     /**
      * @return the objectCellEditorSet.
      */
-    private CellEditorValueSet getObjectCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<Object> getObjectCellEditorSet() {
         if(objectCellEditorSet == null) {
-    		objectCellEditorSet = new CellEditorValueSet(owner,
-    		        renderers.getRendererValueSet(TypedProperties.TYPE_STRING));
+    		objectCellEditorSet = new CellEditorValueSet<Object>(owner,
+    		        (CellComponentValueSet<Object>)renderers.getRendererValueSet(TypedProperties.TYPE_STRING));
     		prepareCellEditor(objectCellEditorSet);
         }
         return objectCellEditorSet;
@@ -401,10 +415,11 @@ public final class CellEditors {
     /**
      * @return the percentCellEditorSet.
      */
-    private CellEditorValueSet getPercentCellEditorSet() {
+    @SuppressWarnings("unchecked")
+	private CellEditorValueSet<Float> getPercentCellEditorSet() {
         if(percentCellEditorSet == null) {
-    		percentCellEditorSet = new CellEditorValueSet(owner,
-    		        renderers.getRendererValueSet(TypedProperties.TYPE_PERCENTAGE));
+    		percentCellEditorSet = new CellEditorValueSet<Float>(owner,
+    		        (CellComponentValueSet<Float>)renderers.getRendererValueSet(TypedProperties.TYPE_PERCENTAGE));
     		prepareCellEditor(percentCellEditorSet);
         }
         return percentCellEditorSet;
@@ -434,8 +449,8 @@ public final class CellEditors {
      * Prepares a newly created editor.
      * @param e
      */
-    private void prepareCellEditor(PropertyEntryCellEditor e) {
-        for(Iterator iter = listeners.iterator(); iter.hasNext();) {
+    private void prepareCellEditor(PropertyEntryCellEditor<?> e) {
+        for(Iterator<?> iter = listeners.iterator(); iter.hasNext();) {
             e.addCellEditorListener((CellEditorListener)iter.next());
         }
     }

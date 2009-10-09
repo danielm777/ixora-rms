@@ -92,8 +92,8 @@ public final class ClassLoadingHelper {
 	 * @throws MalformedURLException
 	 * @throws URISyntaxException
 	 */
-	public Class getClass(String identifier, String classToLoad, String[] jars, PluginDescriptor pluginData) throws AppException, ClassNotFoundException, MalformedURLException, URISyntaxException {
-	    Class clazz = null;
+	public Class<?> getClass(String identifier, String classToLoad, String[] jars, PluginDescriptor pluginData) throws AppException, ClassNotFoundException, MalformedURLException, URISyntaxException {
+	    Class<?> clazz = null;
 	    String classpath = null;
 	    if(pluginData != null) {
 	        classpath = pluginData.getClasspath();

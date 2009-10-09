@@ -7,7 +7,8 @@ package com.ixora.common.xml;
  * XMLAttributeBoolean
  */
 public class XMLAttributeBoolean extends XMLAttribute {
-    private Boolean	value;
+	private static final long serialVersionUID = 9084448034889888064L;
+	private Boolean	value;
 
     /**
      * Empty constructor

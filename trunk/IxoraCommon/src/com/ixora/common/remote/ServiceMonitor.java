@@ -75,9 +75,8 @@ public final class ServiceMonitor {
         this.mapHostHandlers = new HashMap<String, HostHandler>();
 
 		if(hosts != null) {
-			String host;
-			for(Iterator iter = hosts.iterator(); iter.hasNext();) {
-				host = (String) iter.next();
+			for(Iterator<String> iter = hosts.iterator(); iter.hasNext();) {
+				String host = iter.next();
 	            if(this.mapHostHandlers.get(host) == null) {
 	                HostHandler hh = new HostHandler(host, false);
 	                this.mapHostHandlers.put(host, hh);
@@ -140,9 +139,8 @@ public final class ServiceMonitor {
 	 */
 	public void addHosts(Collection<String> hosts, boolean waitForState) {
 		synchronized(this) {
-			String host;
-			for(Iterator iter = hosts.iterator(); iter.hasNext(); ) {
-				host = (String)iter.next();
+			for(Iterator<String> iter = hosts.iterator(); iter.hasNext(); ) {
+				String host = iter.next();
 				_addHost(host, waitForState);
 			}
 		}
@@ -176,10 +174,10 @@ public final class ServiceMonitor {
 	 */
 	public void updateHosts(Collection<String> hosts) {
 		synchronized(this) {
-	        Iterator itr = this.mapHostHandlers.keySet().iterator();
+	        Iterator<String> itr = this.mapHostHandlers.keySet().iterator();
 	        String host;
 	        while(itr.hasNext()) {
-	            host = (String)itr.next();
+	            host = itr.next();
 	            if(!hosts.contains(host)) {
 	                itr.remove();
 	            }
@@ -187,7 +185,7 @@ public final class ServiceMonitor {
 
 	        itr = hosts.iterator();
 	        while(itr.hasNext()) {
-	            host = (String)itr.next();
+	            host = itr.next();
 	            if(this.mapHostHandlers.get(host) == null) {
 	                HostHandler hh = new HostHandler(host, false);
 	                this.mapHostHandlers.put(host, hh);
@@ -220,9 +218,9 @@ public final class ServiceMonitor {
 	/**
 	 * @return all the registered hosts
 	 */
-	public Collection getHosts() {
+	public Collection<String> getHosts() {
 		synchronized(this) {
-			return new ArrayList(this.mapHostHandlers.keySet());
+			return new ArrayList<String>(this.mapHostHandlers.keySet());
 		}
 	}
 
@@ -258,11 +256,10 @@ public final class ServiceMonitor {
     					ServiceState oldstate,
     					ServiceState newstate) {
         synchronized(this.listeners) {
-            Iterator itr = this.listeners.iterator();
-
+            Iterator<Listener> itr = this.listeners.iterator();
             while(itr.hasNext()) {
                 try {
-                    ((Listener)itr.next()).serviceStateChanged(
+                    itr.next().serviceStateChanged(
                     		host, factory.getServiceID(), oldstate, newstate);
                 } catch(Exception e) {
                     logger.error(e);
@@ -277,10 +274,10 @@ public final class ServiceMonitor {
     public ServiceInfo[] getServicesStates() {
         synchronized (this) {
             ServiceInfo[] ret = new ServiceInfo[this.mapHostHandlers.size()];
-            Iterator itr = this.mapHostHandlers.values().iterator();
+            Iterator<HostHandler> itr = this.mapHostHandlers.values().iterator();
             int i = 0;
             while(itr.hasNext()) {
-                HostHandler hh = (HostHandler)itr.next();
+                HostHandler hh = itr.next();
                 ret[i++] = new ServiceInfo(hh.getHost(), hh.getState());
             }
             return ret;

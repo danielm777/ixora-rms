@@ -15,7 +15,7 @@ public class KeyedPoolableObjectPoolDefault
 	/**
 	 * Pools map.
 	 */
-	private Map pools;
+	private Map<Object, PoolableObjectPool> pools;
 	/**
 	 * Object factory providing objects to the pool.
 	 */
@@ -43,14 +43,14 @@ public class KeyedPoolableObjectPoolDefault
 		this.factory = factory;
 		this.inactivityController = inactivityController;
 		this.poolSizeController = poolSizeController;
-		this.pools = new HashMap();
+		this.pools = new HashMap<Object, PoolableObjectPool>();
 	}
 
 	/**
 	 * @see com.ixora.common.pooling.KeyedPoolableObjectPool#getObject(java.lang.Object)
 	 */
 	public synchronized PoolableObject getObject(Object key) throws FailedToCreateObject {
-		PoolableObjectPool pool = (PoolableObjectPool)this.pools.get(key);
+		PoolableObjectPool pool = this.pools.get(key);
 		if(pool == null) {
 			pool = new PoolableObjectPoolDefault(this.factory.getFactory(key), this.inactivityController, this.poolSizeController);
 			this.pools.put(key, pool);

@@ -21,7 +21,8 @@ import com.ixora.common.typedproperties.TypedProperties;
  * Table model for properties.
  */
 final class PropertyTableModel extends AbstractTableModel {
-    private PropertyEntry[] fData;
+	private static final long serialVersionUID = -1575923147864410343L;
+	private PropertyEntry<?>[] fData;
 	private TypedPropertiesEditor fEditor;
 	private boolean fEditable;
 
@@ -32,19 +33,19 @@ final class PropertyTableModel extends AbstractTableModel {
 	public PropertyTableModel(
 	        TypedPropertiesEditor editor, TypedProperties props) {
 	    this.fEditor = editor;
-	    Set keys = props.keys();
-	    List lst = new LinkedList();
+	    Set<String> keys = props.keys();
+	    List<PropertyEntry<?>> lst = new LinkedList<PropertyEntry<?>>();
 	    String key;
-	    PropertyEntry entry;
+	    PropertyEntry<?> entry;
 	    int i = 0;
-	    for(Iterator iter = keys.iterator(); iter.hasNext(); ++i) {
-            key = (String)iter.next();
+	    for(Iterator<String> iter = keys.iterator(); iter.hasNext(); ++i) {
+            key = iter.next();
             entry = props.getEntry(key);
             if(entry.isVisible()) {
                 lst.add(entry);
             }
         }
-	    this.fData = (PropertyEntry[])lst.toArray(
+	    this.fData = lst.toArray(
 	            new PropertyEntry[lst.size()]);
 	}
 
@@ -66,12 +67,12 @@ final class PropertyTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.TableModel#getValueAt(int, int)
 	 */
 	public Object getValueAt(int rowIndex, int columnIndex) {
-	    PropertyEntry pe = fData[rowIndex];
+	    PropertyEntry<?> pe = fData[rowIndex];
 		if(columnIndex == 0) {
 			// property name
 			return fEditor.getTranslatedMessage(pe.getProperty());
 		} else {
-		    // return the entry and let the renderes provide
+		    // return the entry and let the renderers provide
 		    // the displayed text
 			return pe;
 		}
@@ -96,7 +97,7 @@ final class PropertyTableModel extends AbstractTableModel {
 			return false;
 		}
 		if(columnIndex == 1) {
-		    PropertyEntry entry =
+		    PropertyEntry<?> entry =
 		        this.fData[rowIndex];
 			return !entry.isReadOnly();
 		}
@@ -111,7 +112,7 @@ final class PropertyTableModel extends AbstractTableModel {
 			aValue = null;
 		}
 		if(columnIndex == 1) {
-		    PropertyEntry entry =
+		    PropertyEntry<?> entry =
 		        this.fData[rowIndex];
 		    fEditor.getProperties().setObject(entry.getProperty(), aValue);
 			fireTableCellUpdated(rowIndex, columnIndex);
@@ -130,14 +131,14 @@ final class PropertyTableModel extends AbstractTableModel {
 	 * @param row
 	 * @return
 	 */
-	public PropertyEntry getEntryAt(int row) {
+	public PropertyEntry<?> getEntryAt(int row) {
 	    return fData[row];
 	}
 
 	/**
 	 * @return
 	 */
-	public PropertyEntry[] getEntries() {
+	public PropertyEntry<?>[] getEntries() {
 	    return this.fData;
 	}
 }

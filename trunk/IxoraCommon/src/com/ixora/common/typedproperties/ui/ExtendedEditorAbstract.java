@@ -8,8 +8,8 @@ package com.ixora.common.typedproperties.ui;
 /**
  * @author Daniel Moraru
  */
-public abstract class ExtendedEditorAbstract
-			implements ExtendedEditor {
+public abstract class ExtendedEditorAbstract<T>
+			implements ExtendedEditor<T> {
     /** Listener */
     private Listener listener;
 

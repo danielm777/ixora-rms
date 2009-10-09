@@ -11,10 +11,12 @@ import javax.swing.JTextField;
 import com.ixora.common.typedproperties.PropertyEntry;
 
 /**
- * Color cell.
+ * File cell.
+ * @author Daniel Moraru
  */
-final class CellComponentFile extends CellComponent {
-    /** Display control */
+final class CellComponentFile extends CellComponent<File> {
+	private static final long serialVersionUID = 2997089022127819575L;
+	/** Display control */
     private JTextField field;
 
 	/**
@@ -33,7 +35,7 @@ final class CellComponentFile extends CellComponent {
 	/**
      * @see com.ixora.common.typedproperties.ui.CellComponent#render(com.ixora.common.app.typedproperties.PropertyEntry, java.lang.Object)
      */
-    public void render(PropertyEntry e, Object value) {
+    public void render(PropertyEntry<File> e, File value) {
         File f = (File)value;
         field.setText(f == null ? "" : f.getAbsolutePath());
     }

@@ -18,13 +18,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.ixora.common.history.HistoryGroupItem;
+import com.ixora.common.history.HistoryMgr;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLExternalizable;
-import com.ixora.common.xml.history.HistoryGroupItem;
-import com.ixora.common.xml.history.HistoryMgr;
 
 /**
  * @author Daniel Moraru

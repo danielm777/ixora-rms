@@ -14,7 +14,7 @@ import com.ixora.common.typedproperties.PropertyEntry;
 /**
  * @author Daniel Moraru
  */
-public final class ExtendedEditorDate extends ExtendedEditorAbstract {
+public final class ExtendedEditorDate extends ExtendedEditorAbstract<Date> {
     /**
      * Constructor.
      */
@@ -25,8 +25,8 @@ public final class ExtendedEditorDate extends ExtendedEditorAbstract {
     /**
      * @see com.ixora.common.typedproperties.ui.ExtendedEditor#launch(java.awt.Component, com.ixora.common.app.typedproperties.PropertyEntry)
      */
-    public void launch(Component owner, PropertyEntry pe) {
-        Date d = (Date)pe.getValue();
+    public void launch(Component owner, PropertyEntry<Date> pe) {
+        Date d = pe.getValue();
         JCalendarDialog calendarDialog = JCalendarDialog.showDialog(
                 SwingUtilities.getWindowAncestor(owner), true, d);
         Date ret = calendarDialog.getDate();

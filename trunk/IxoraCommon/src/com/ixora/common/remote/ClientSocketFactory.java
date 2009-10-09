@@ -11,7 +11,8 @@ import java.rmi.server.RMIClientSocketFactory;
  */
 public final class ClientSocketFactory implements Serializable,
         RMIClientSocketFactory {
-    private InetAddress fAddress;
+	private static final long serialVersionUID = 6338478596482677418L;
+	private InetAddress fAddress;
 
     /**
      * @param ipaddress

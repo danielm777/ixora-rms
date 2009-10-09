@@ -10,12 +10,15 @@ import com.ixora.common.xml.exception.XMLException;
 
 /**
  * XMLMultiTagList
+ * @author Cristian Costache
+ * @author Daniel Moraru 
  */
-public class XMLMultiTagList extends XMLTagList {
-    /** Instance of a class who can create different tags */
-    private XMLTagFactory tagFactory;
+public class XMLMultiTagList<T extends XMLTag> extends XMLTagList<T> {
+	private static final long serialVersionUID = -7059834929082578332L;
+	/** Instance of a class who can create different tags */
+    private XMLTagFactory<T> tagFactory;
 
-    public XMLMultiTagList(XMLTagFactory tagFactory) {
+    public XMLMultiTagList(XMLTagFactory<T> tagFactory) {
         this.tagFactory = tagFactory;
     }
 
@@ -31,7 +34,7 @@ public class XMLMultiTagList extends XMLTagList {
 		for(int i = 0; i < len; i++)
 		{
 		    Node child = nl.item(i);
-		    XMLTag tag = tagFactory.createFromXML(child);
+		    T tag = tagFactory.createFromXML(child);
 
 		    // Only add it if the factory recognized this tag
 		    if (tag != null) {

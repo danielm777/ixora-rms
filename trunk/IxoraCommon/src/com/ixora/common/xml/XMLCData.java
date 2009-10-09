@@ -10,8 +10,9 @@ package com.ixora.common.xml;
  * value), but translates to a child tag with text content.
  */
 public class XMLCData extends XMLAttributeString {
+	private static final long serialVersionUID = -2328750562256423984L;
 
-    /**
+	/**
      * Empty constructor
      */
     public XMLCData(String name) {
