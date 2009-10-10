@@ -24,6 +24,7 @@ import com.ixora.rms.agents.impl.Entity;
  * @author Daniel Moraru
  */
 public class JMXEntityDomain extends JMXEntity {
+	private static final long serialVersionUID = 6415060391786014642L;
 	/**
 	 * Logger. This must be used for debugging only. For any other reasons the errors
 	 * must be propagated using the context.
@@ -81,7 +82,7 @@ public class JMXEntityDomain extends JMXEntity {
 	public void updateChildrenEntities(boolean recursive) throws Throwable {
 		try {
 			// get all names in this domain according to filter
-			Set names = getJMXContext().getJMXConnection().queryNames(new ObjectName(getName()
+			Set<ObjectName> names = getJMXContext().getJMXConnection().queryNames(new ObjectName(getName()
 					+ ":"
 					+ getJMXContext().getKeyFilter(getName())), null);
 

@@ -20,6 +20,7 @@ import com.ixora.rms.agents.impl.RootEntity;
  * @author Daniel Moraru
  */
 public class JMXEntityRoot extends RootEntity {
+	private static final long serialVersionUID = -2018813139889907164L;
 
 	/**
 	 * Constructor.

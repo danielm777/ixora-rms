@@ -10,6 +10,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class JMXCommunicationError extends RMSException {
+	private static final long serialVersionUID = 7301704755972196761L;
 
 	/**
 	 * @param cause

@@ -36,6 +36,7 @@ import com.ixora.rms.data.CounterValueString;
  * @author Daniel Moraru
  */
 public class JMXEntity extends Entity {
+	private static final long serialVersionUID = 2053296470688671832L;
 	/** Bean attributes that are counters for this entity */
 	protected String[] fAttributes;
 	/** Object name */
@@ -99,7 +100,6 @@ public class JMXEntity extends Entity {
 					CounterType ctype = convertType(type);
 					if(ctype != null) {
 						boolean discrete = isBoolean(type);
-						String counterDesc = ai.getDescription();
 						String[] nameAndDesc = getJMXContext().getCounterNameAndDescription(oname, ai);
 						addCounter(new JMXCounter(ai.getName(), nameAndDesc[0], nameAndDesc[1], ctype, discrete));
 						attrNames.add(ai.getName());
@@ -132,7 +132,6 @@ public class JMXEntity extends Entity {
 				// keep track of entities that need to be removed
 				resetTouchedByUpdateForChildren();
 				if(!Utils.isEmptyArray(attrInfos)) {
-					List<String> attrNames = new LinkedList<String>();
 					for(MBeanAttributeInfo ai : attrInfos) {
 						if(!getJMXContext().acceptCounter(fObjectName, ai)) {
 							continue;
@@ -159,7 +158,7 @@ public class JMXEntity extends Entity {
 									((JMXEntity)child).update(null);
 								}
 								// complex type
-								EntityId newEntityId = processComplexAttribute(ai, true);
+								processComplexAttribute(ai, true);
 							}
 						}
 					}

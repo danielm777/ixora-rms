@@ -19,6 +19,7 @@ import com.ixora.rms.agents.impl.Counter;
  * @author Daniel Moraru
  */
 public class JMXEntityCompositeData extends JMXEntity {
+	private static final long serialVersionUID = 1867706330174974877L;
 	private String fAttributeName;
 
 	/**
@@ -38,11 +39,11 @@ public class JMXEntityCompositeData extends JMXEntity {
 				.getAttribute(oname, attrName);
 		if(compData != null) {
 			CompositeType compType = compData.getCompositeType();
-			Set items =compType.keySet();
+			Set<String> items =compType.keySet();
 			if(!Utils.isEmptyCollection(items)) {
 				for(Object item : items) {
 					String sitem = (String)item;
-					OpenType otype = compType.getType(sitem);
+					OpenType<?> otype = compType.getType(sitem);
 					if(!getJMXContext().acceptCounter(oname, attrName, sitem, otype)) {
 						continue;
 					}

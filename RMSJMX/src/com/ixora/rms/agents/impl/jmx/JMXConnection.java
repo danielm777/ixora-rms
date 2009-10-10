@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.management.AttributeList;
 import javax.management.MBeanInfo;
+import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.QueryExp;
 
@@ -19,7 +20,7 @@ public interface JMXConnection {
 	String[] getDomains() throws Exception;
 	AttributeList getAttributes(ObjectName name, String[] attributes) throws Exception;
 	Object getAttribute(ObjectName name, String attribute) throws Exception;
-	Set queryNames(ObjectName name, QueryExp query) throws Exception;
-	Set queryMBeans(ObjectName name, QueryExp query) throws Exception;
+	Set<ObjectName> queryNames(ObjectName name, QueryExp query) throws Exception;
+	Set<ObjectInstance> queryMBeans(ObjectName name, QueryExp query) throws Exception;
 	MBeanInfo getMBeanInfo(ObjectName objectName) throws Exception;
 }

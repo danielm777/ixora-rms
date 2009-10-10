@@ -62,7 +62,7 @@ public interface JMXAgentExecutionContext extends AgentExecutionContext {
 	 * @param otype the type of <code>sitem</code>
 	 * @return
 	 */
-	boolean acceptCounter(ObjectName oname, String attrName, String sitem, OpenType otype);
+	boolean acceptCounter(ObjectName oname, String attrName, String sitem, OpenType<?> otype);
 
 	/**
 	 * Invoked for counters of entities derived from the object name <code>oname</code>.

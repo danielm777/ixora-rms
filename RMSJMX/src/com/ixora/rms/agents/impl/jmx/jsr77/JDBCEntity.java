@@ -20,6 +20,11 @@ public class JDBCEntity extends JMXJSR77EntityStats {
 //	private Entity fConnectionPools;
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6913469776002358207L;
+
+	/**
 	 * @param parent
 	 * @param c
 	 * @param stats

@@ -10,6 +10,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class JMXSecurityError extends RMSException {
+	private static final long serialVersionUID = 8316903357348735250L;
 
 	/**
 	 * @param cause

@@ -30,8 +30,7 @@ public class MBeanServerProxy implements InvocationHandler {
 	 * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
 	 */
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Class serverClass = fServer.getClass();
-        Method ms[] = serverClass.getMethods();
+        Class<?> serverClass = fServer.getClass();
         Method m = serverClass.getMethod(method.getName(), (Class[])method.getParameterTypes());
         return m.invoke(fServer, args);
 	}
