@@ -50,7 +50,7 @@ public class CircullarLinkedListTest extends TestCase {
 		printList(lst);
 	}
 
-	private void printList(Collection coll) {
+	private void printList(Collection<?> coll) {
 		System.out.println("------------");
 		for(Object obj : coll) {
 			System.out.println(obj.toString() + ":");

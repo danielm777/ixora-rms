@@ -7,8 +7,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.ixora.common.xml.history.HistoryGroupItem;
-import com.ixora.common.xml.history.HistoryMgr;
+import com.ixora.common.history.HistoryGroupItem;
+import com.ixora.common.history.HistoryMgr;
 import com.ixora.rms.CustomConfiguration;
 
 /**
@@ -16,6 +16,7 @@ import com.ixora.rms.CustomConfiguration;
  */
 public class HistoryMgrTest extends TestCase {
 
+	@SuppressWarnings("serial")
 	public static class Props extends CustomConfiguration {
 		public Props() {
 			super();
