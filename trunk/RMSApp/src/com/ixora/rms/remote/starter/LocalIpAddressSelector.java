@@ -80,7 +80,7 @@ class LocalIpAddressSelector {
             } else {
             	idx = ipAddressIdxParam;
             }
-            idx = --idx;
+            --idx;
             if(idx == ips.size()) {
             	// run on all
             	return null;
