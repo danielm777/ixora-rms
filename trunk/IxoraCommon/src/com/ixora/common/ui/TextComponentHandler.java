@@ -44,6 +44,7 @@ public class TextComponentHandler extends PopupListener implements DocumentListe
 	private JMenuItem fMenuItemUndo;
 	private JMenuItem fMenuItemRedo;
 
+	@SuppressWarnings("serial")
 	private final class ActionCut extends AbstractAction {
 		public ActionCut() {
 			super();
@@ -58,6 +59,7 @@ public class TextComponentHandler extends PopupListener implements DocumentListe
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionCopy extends AbstractAction {
 		public ActionCopy() {
 			super();
@@ -72,6 +74,7 @@ public class TextComponentHandler extends PopupListener implements DocumentListe
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionPaste extends AbstractAction {
 		public ActionPaste() {
 			super();
@@ -86,6 +89,7 @@ public class TextComponentHandler extends PopupListener implements DocumentListe
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionUndo extends AbstractAction {
 		public ActionUndo() {
 			super();
@@ -101,6 +105,7 @@ public class TextComponentHandler extends PopupListener implements DocumentListe
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionRedo extends AbstractAction {
 		public ActionRedo() {
 			super();

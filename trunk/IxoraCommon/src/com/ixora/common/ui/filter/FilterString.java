@@ -17,6 +17,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class FilterString implements Filter {
+	private static final long serialVersionUID = -4696832842161756797L;
 	protected String fFilter;
 	protected boolean fNegative;
 

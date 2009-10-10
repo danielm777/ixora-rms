@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  * @author Daniel Moraru
  */
 public class FilterRegex extends FilterString {
+	private static final long serialVersionUID = -7663614836114336787L;
 	private Pattern fFilterPattern;
 
 	/**

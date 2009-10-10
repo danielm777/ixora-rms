@@ -12,6 +12,8 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public class FailedToSaveDocument extends AppException {
+	private static final long serialVersionUID = 7225973442663141634L;
+
 	/**
 	 * Constructor.
 	 * @param message message key

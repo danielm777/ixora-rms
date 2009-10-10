@@ -24,6 +24,7 @@ import com.ixora.common.ui.forms.FormPanel;
  * @author Daniel Moraru
  */
 public class FilterEditorDialogString extends FilterEditorDialog {
+	private static final long serialVersionUID = -7175356885004951622L;
 	private JCheckBox fCheckIsRegex;
 	private JCheckBox fCheckIsNegative;
 	private JTextField fTextFieldFilter;

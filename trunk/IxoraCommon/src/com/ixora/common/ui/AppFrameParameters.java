@@ -9,6 +9,7 @@ import com.ixora.common.typedproperties.TypedProperties;
  * @author Daniel Moraru
  */
 public final class AppFrameParameters extends TypedProperties {
+	private static final long serialVersionUID = 4853998646095350915L;
 	public static final String LOOK_AND_FEEL_CLASS = "look_and_feel_class";
     public static final String NON_FATAL_ERRORS_BUFFER_SIZE = "non_fatal_errors_buffer_size";
     public static final String FEEDBACK_URL = "feedback_url";

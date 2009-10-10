@@ -55,6 +55,7 @@ public class PopupMenuBuilder {
 	 * Sets the list.
 	 * @param mru
 	 */
+	@SuppressWarnings("serial")
 	public void setList(Object[] lst) {
 		if(lst == null) {
 			throw new IllegalArgumentException("null list");

@@ -25,6 +25,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class AppStatusBar extends StatusBar {
+	private static final long serialVersionUID = 8443992887942027172L;
 	public static final int COMPONENT_ERROR = 0;
 	public static final int COMPONENT_STATE = 1;
 	public static final int COMPONENT_PROGRESS = 2;

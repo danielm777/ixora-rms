@@ -26,12 +26,14 @@ import com.ixora.common.ui.UIUtils;
  * @author Daniel Moraru
  */
 public class FormFieldDateSelector extends JPanel {
+	private static final long serialVersionUID = 5599285081114185971L;
 	private JLabel fLabel;
 	private JButton fButtonSelectDate;
 	private Window fWindow;
 	private Date fResult;
 	private Date fInitialDate;
 
+	@SuppressWarnings("serial")
 	private class ActionSelectDate extends AbstractAction {
 		/**
 		 * Constructor.

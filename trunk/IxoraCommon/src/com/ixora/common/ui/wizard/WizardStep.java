@@ -9,6 +9,7 @@ import javax.swing.JPanel;
  * @author Daniel Moraru
  */
 public abstract class WizardStep extends JPanel {
+	private static final long serialVersionUID = -134958335400985060L;
 	protected String fName;
 	protected String fDescription;
 

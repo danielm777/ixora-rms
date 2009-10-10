@@ -32,6 +32,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class FeedbackDialog extends AppDialog {
+	private static final long serialVersionUID = 8166255439999644526L;
 	// TODO localize
 	private static final String LABEL_EMAIL = "Email";
 	private static final String LABEL_FEEDBACK = "Comments";
@@ -95,6 +96,7 @@ public class FeedbackDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 				UIFactoryMgr.createButton(new ActionOk(){

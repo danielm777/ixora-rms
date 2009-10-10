@@ -32,6 +32,7 @@ import com.ixora.common.ui.actions.ActionOk;
  * @author Daniel Moraru
  */
 public class FilterDefinitionDialog extends AppDialog {
+	private static final long serialVersionUID = -6406789882332322348L;
 	/** Table with the columns names */
 	private JTable fColumnsTable;
 	/** Scroll pane for the columns table */
@@ -74,6 +75,8 @@ public class FilterDefinitionDialog extends AppDialog {
 	 * Table model holding filter iformation for columns.
 	 */
 	private static class TableModel extends AbstractTableModel {
+		private static final long serialVersionUID = 2101854828062722203L;
+
 		interface Callback {
 			/**
 			 * Invoked when a filter is about to be enabled.
@@ -220,6 +223,7 @@ public class FilterDefinitionDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 			new JButton(new ActionOk() {
@@ -266,7 +270,7 @@ public class FilterDefinitionDialog extends AppDialog {
 			if(clazz == null) {
 				return null;
 			}
-			Constructor cons = clazz.getConstructor(new Class[]{Dialog.class});
+			Constructor<?> cons = clazz.getConstructor(new Class[]{Dialog.class});
 			FilterEditorDialog fdlg = (FilterEditorDialog)cons.newInstance(
 				new Object[]{this});
 			UIUtils.centerDialogAndShow(this, fdlg);

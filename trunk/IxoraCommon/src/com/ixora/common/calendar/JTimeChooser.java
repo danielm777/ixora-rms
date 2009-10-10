@@ -17,7 +17,8 @@ import com.toedter.components.JSpinField;
  * @author Daniel Moraru
  */
 public class JTimeChooser extends JPanel {
-    private Calendar calendar;
+	private static final long serialVersionUID = -5899813729727791793L;
+	private Calendar calendar;
     private JSpinField hour;
     private JSpinField min;
     private JSpinField sec;

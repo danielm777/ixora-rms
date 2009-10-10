@@ -15,6 +15,7 @@ import com.ixora.common.ui.UIUtils;
 /**
  * @author Daniel Moraru
  */
+@SuppressWarnings("serial")
 public abstract class ActionDeselectAll extends AbstractAction {
 	/**
 	 * Constructor.

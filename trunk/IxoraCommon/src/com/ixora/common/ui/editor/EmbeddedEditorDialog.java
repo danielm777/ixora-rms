@@ -25,6 +25,8 @@ import com.ixora.common.ui.exception.FailedToSaveDocument;
  * EmbeddedEditorDialog.
  */
 public class EmbeddedEditorDialog extends AppDialog {
+	private static final long serialVersionUID = -612579006862547609L;
+
 	/**
 	 * The call back implementing the actual operations.
 	 */
@@ -242,6 +244,7 @@ public class EmbeddedEditorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 			UIFactoryMgr.createButton(new ActionCancel() {

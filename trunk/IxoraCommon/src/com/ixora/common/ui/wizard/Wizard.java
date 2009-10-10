@@ -31,6 +31,8 @@ import com.ixora.common.ui.actions.ActionPrevious;
  * @author Daniel Moraru
  */
 public class Wizard extends AppDialog {
+	private static final long serialVersionUID = 8241818598851573281L;
+
 	public interface Listener {
 		void finished(Object value);
 		void cancelled();
@@ -55,6 +57,7 @@ public class Wizard extends AppDialog {
 	 * @param listener
 	 * @param name
 	 */
+	@SuppressWarnings("serial")
 	private void init(Listener listener, String name) {
 		setTitle(name);
 		this.fListener = listener;
@@ -115,6 +118,7 @@ public class Wizard extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 			UIFactoryMgr.createButton(fActionFinish),

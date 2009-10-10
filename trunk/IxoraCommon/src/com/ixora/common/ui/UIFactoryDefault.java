@@ -215,7 +215,7 @@ public class UIFactoryDefault implements UIFactory {
 	public JSplitPane createSplitPane(String name) {
 		JSplitPane ret = createSplitPane();
 		ret.setName(name);
-		SplitPaneDividerPositionTracker tracker = new SplitPaneDividerPositionTracker(ret);
+		new SplitPaneDividerPositionTracker(ret);
 		return ret;
 	}
 	/**

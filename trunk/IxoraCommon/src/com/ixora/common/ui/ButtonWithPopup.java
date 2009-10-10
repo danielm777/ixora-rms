@@ -29,6 +29,7 @@ import javax.swing.event.PopupMenuListener;
  */
 public class ButtonWithPopup
 		extends JPanel implements PopupMenuListener, ToolBarComponent {
+	private static final long serialVersionUID = 7157072865630462655L;
 	/** Main button */
 	protected JButton button1;
 	/** Secondary, popup activator button */

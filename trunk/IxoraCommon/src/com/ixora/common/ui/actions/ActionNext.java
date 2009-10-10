@@ -12,6 +12,7 @@ import com.ixora.common.ui.UIUtils;
 /**
  * @author Daniel Moraru
  */
+@SuppressWarnings("serial")
 public abstract class ActionNext extends AbstractAction {
 	/**
 	 * Constructor.

@@ -19,6 +19,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class FilterDate implements Filter {
+	private static final long serialVersionUID = -7260870781919463503L;
 	private long fDateMin;
 	private long fDateMax;
 

@@ -25,6 +25,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class FilterEditorDialogNumber extends FilterEditorDialog {
+	private static final long serialVersionUID = -9138562430352958457L;
 	private JTextField fMin;
 	private JTextField fMax;
 	private FormPanel fFormPanel;

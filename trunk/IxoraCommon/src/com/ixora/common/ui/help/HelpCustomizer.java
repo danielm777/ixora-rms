@@ -78,7 +78,6 @@ public class HelpCustomizer extends WindowAdapter {
 		if(fDone) {
 			return;
 		}
-		Frame helpFrame;
 		Frame[] frames = JFrame.getFrames();
 		for (int i = 0; i < frames.length; i++) {
 			Frame f = frames[i];
@@ -96,7 +95,6 @@ public class HelpCustomizer extends WindowAdapter {
 			// now we are in JavaHelp frame
 			fCallback.changeFrame(jf);
 			JHelp jh = (JHelp)c;
-			helpFrame = f;
 			for(int j = jh.getComponentCount() - 1; j >= 0; --j) {
 				c = jh.getComponent(j);
 				if(c == null) {

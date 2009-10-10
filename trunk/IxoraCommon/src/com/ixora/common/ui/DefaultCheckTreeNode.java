@@ -13,6 +13,7 @@ import javax.swing.tree.TreeNode;
  * @author Daniel Moraru
  */
 public class DefaultCheckTreeNode extends DefaultMutableTreeNode {
+	private static final long serialVersionUID = 2927122881866699932L;
 	/** Checked flag */
 	protected boolean checked;
 	/** Enabled flag */
@@ -35,9 +36,10 @@ public class DefaultCheckTreeNode extends DefaultMutableTreeNode {
 	 * Set whether the check node is checked or not. When a node
 	 * is checked, the parent all subnodes are considered checked
 	 */
+	@SuppressWarnings("unchecked")
 	public void setChecked(boolean checked) {
 		this.checked = checked;
-		Enumeration children = children();
+		Enumeration<DefaultCheckTreeNode> children = children();
 		while(children.hasMoreElements()) {
 			DefaultCheckTreeNode node = (DefaultCheckTreeNode)children.nextElement();
 			node.setChecked(this.checked);

@@ -23,6 +23,7 @@ import com.ixora.common.ui.forms.FormPanel;
  * @author Daniel Moraru
  */
 public class FilterEditorDialogDate extends FilterEditorDialog {
+	private static final long serialVersionUID = -4136496563506453525L;
 	private FormFieldDateSelector fDateSelMin;
 	private FormFieldDateSelector fDateSelMax;
 	private FormPanel fFormPanel;

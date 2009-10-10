@@ -18,6 +18,7 @@ import com.ixora.common.utils.Utils;
  * @author: Daniel Moraru
  */
 public final class UIConfiguration extends ComponentConfiguration {
+	private static final long serialVersionUID = 956947740166419981L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(UIConfiguration.class);
     /** Single instance */

@@ -29,7 +29,8 @@ import com.ixora.common.ui.actions.ActionCancel;
  * @author: Daniel Moraru
  */
 final class UIWorkerJobCancelDialog extends AppDialog {
-    private javax.swing.JPanel contentPane;
+	private static final long serialVersionUID = 3901302859299978621L;
+	private javax.swing.JPanel contentPane;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JLabel stepLabel;
     private javax.swing.JLabel nonFatalErrorLabel;
@@ -275,6 +276,7 @@ final class UIWorkerJobCancelDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{new JButton(new ActionCancel() {
 			public void actionPerformed(ActionEvent e) {

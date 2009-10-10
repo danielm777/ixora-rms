@@ -15,6 +15,8 @@ import javax.swing.border.BevelBorder;
  * @author Daniel Moraru (initial internet source)
  */
 public final class ThinBevelBorder extends BevelBorder {
+	private static final long serialVersionUID = -5282506167985766686L;
+
 	/**
 	 * Constructor.
 	 * @param bevelType
