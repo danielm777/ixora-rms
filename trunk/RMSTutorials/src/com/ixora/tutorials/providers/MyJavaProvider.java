@@ -20,11 +20,6 @@ import com.ixora.rms.providers.utils.sql.ConnectionCache;
  * @author Daniel Moraru
  */
 public class MyJavaProvider implements JavaProviderImplementation {
-	/**
-	 * Execution context; use it to report non-fatal errors to the
-	 * console.
-	 */
-	private JavaProviderImplementationContext fContext;
 	/** The JDBC driver. It is required by the connection cache. */
 	private Driver fDriver;
 	/** The JDBC connection string. */
