@@ -41,8 +41,6 @@ import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.exception.FailedToSaveConfiguration;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
-import com.ixora.common.security.license.LicenseMgr;
-import com.ixora.common.security.license.ui.DefaultLicenseProvider;
 import com.ixora.common.ui.AppFrame;
 import com.ixora.common.ui.AppFrameParameters;
 import com.ixora.common.ui.AppSplashScreen;
@@ -80,7 +78,6 @@ import com.ixora.rms.services.HostMonitorService;
 import com.ixora.rms.services.ParserRepositoryService;
 import com.ixora.rms.services.ProviderInstanceRepositoryService;
 import com.ixora.rms.services.ProviderRepositoryService;
-import com.ixora.rms.starter.RMSAppStarter;
 import com.ixora.rms.ui.dataviewboard.DataViewBoardComponent;
 import com.ixora.rms.ui.dataviewboard.charts.ChartsBoardComponent;
 import com.ixora.rms.ui.dataviewboard.logs.LogBoardComponent;
@@ -107,6 +104,8 @@ import com.ixora.rms.ui.views.session.LiveSessionView;
  */
 public final class RMSFrame extends AppFrame implements RMSViewContainer,
 		Observer {
+	private static final long serialVersionUID = 1003438076078341112L;
+
 	/** Logger */
 	private static final AppLogger logger;
 
@@ -195,6 +194,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * @author Daniel Moraru
 	 */
 	private final class ButtonWithPopupLoadScheme extends ButtonWithPopup {
+		private static final long serialVersionUID = 2189194284441170068L;
+
 		/**
 		 * @param action
 		 */
@@ -215,6 +216,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * Browse for scheme action.
 	 */
 	private final class ActionBrowseForScheme extends ActionBrowse {
+		private static final long serialVersionUID = 134277026382119657L;
+
 		/**
 		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 		 */
@@ -227,6 +230,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * Load session action.
 	 */
 	private final class ActionLoadSession extends AbstractAction {
+		private static final long serialVersionUID = -7403780729121138143L;
+
 		public ActionLoadSession() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository
@@ -249,6 +254,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * Launch job manager.
 	 */
 	private final class ActionLaunchJobManager extends AbstractAction {
+		private static final long serialVersionUID = -105604256507786636L;
+
 		public ActionLaunchJobManager() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository
@@ -271,6 +278,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * Launch provider manager.
 	 */
 	private final class ActionLaunchProviderManager extends AbstractAction {
+		private static final long serialVersionUID = -6176502201979895189L;
+
 		public ActionLaunchProviderManager() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository
@@ -293,6 +302,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * Launch agent installer.
 	 */
 	private final class ActionLaunchAgentInstaller extends AbstractAction {
+		private static final long serialVersionUID = -338803021812165727L;
+
 		public ActionLaunchAgentInstaller() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository
@@ -315,6 +326,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * New session action.
 	 */
 	private final class ActionNewSession extends AbstractAction {
+		private static final long serialVersionUID = 4457689758483343545L;
+
 		public ActionNewSession() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository
@@ -337,6 +350,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * Load log action.
 	 */
 	private final class ActionLoadLog extends AbstractAction {
+		private static final long serialVersionUID = -3938046841428045838L;
+
 		public ActionLoadLog() {
 			super();
 			UIUtils.setUsabilityDtls(
