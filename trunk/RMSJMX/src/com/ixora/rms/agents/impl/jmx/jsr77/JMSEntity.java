@@ -15,6 +15,7 @@ import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
  * @author Daniel Moraru
  */
 public class JMSEntity extends JMXJSR77EntityStats {
+	private static final long serialVersionUID = 5055883947862938405L;
 
 	/**
 	 * @param parent

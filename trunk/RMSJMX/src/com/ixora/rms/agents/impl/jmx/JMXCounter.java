@@ -10,6 +10,7 @@ import com.ixora.rms.agents.impl.Counter;
  * @author Daniel Moraru
  */
 public class JMXCounter extends Counter {
+	private static final long serialVersionUID = -5409476386671898010L;
 	protected String fJMXName;
 
 	/**

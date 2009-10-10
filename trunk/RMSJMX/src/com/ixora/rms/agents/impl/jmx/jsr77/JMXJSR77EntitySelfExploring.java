@@ -23,6 +23,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntitySelfExploring;
  * @author Daniel Moraru
  */
 public class JMXJSR77EntitySelfExploring extends JMXEntitySelfExploring {
+	private static final long serialVersionUID = -5983661560651213350L;
 
 	/**
 	 * @param parent
@@ -111,7 +112,6 @@ public class JMXJSR77EntitySelfExploring extends JMXEntitySelfExploring {
 	 * @throws Throwable
 	 */
 	private void insertEntityIntoHierarchy(JMXJSR77EntitySelfExploring entity) throws Throwable {
-		String name = entity.getName();
 		ObjectName on = entity.getObjectName();
 		if(on == null) {
 			// placeholder

@@ -21,6 +21,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntityDomain;
  * @author Daniel Moraru
  */
 public class JMXJSR77EntityDomain extends JMXEntityDomain {
+	private static final long serialVersionUID = 9066831009196750013L;
 
 	/**
 	 * @param parent

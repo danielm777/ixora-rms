@@ -28,6 +28,7 @@ import com.ixora.rms.data.CounterValueDouble;
  * @author Daniel Moraru
  */
 public class JMXJSR77EntityStats extends JMXEntity {
+	private static final long serialVersionUID = -4631082898766607295L;
 	protected static final String LOWER_BOUND = " (lower bound)";
 	protected static final String UPPER_BOUND = " (upper bound)";
 	protected static final String HIGH_WATER_MARK = " (high water bound)";

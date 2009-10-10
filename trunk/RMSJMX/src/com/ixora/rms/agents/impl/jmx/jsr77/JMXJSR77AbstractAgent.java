@@ -50,7 +50,7 @@ public abstract class JMXJSR77AbstractAgent extends JMXAbstractAgent {
 		// allow implementations to complete env map
 		completeEnvironmentMap();
 
-        InitialContext context = new InitialContext(new Hashtable(fEnvMap));
+        InitialContext context = new InitialContext(new Hashtable<String, Object>(fEnvMap));
         Object objref = context.lookup(conf.getString(Configuration.JNDI_NAME));
         ManagementHome home = (ManagementHome)PortableRemoteObject.narrow(
         		objref, javax.management.j2ee.ManagementHome.class);

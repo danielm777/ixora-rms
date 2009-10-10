@@ -28,6 +28,7 @@ import com.ixora.rms.agents.impl.Entity;
  * @author Daniel Moraru
  */
 public class JMXEntitySelfExploring extends JMXEntity {
+	private static final long serialVersionUID = 4827580022162413818L;
 	/** Attributes of complex types that might be children of this entity */
 	private List<MBeanAttributeInfo> fComplexAttributes;
 
@@ -148,9 +149,9 @@ public class JMXEntitySelfExploring extends JMXEntity {
 				for(MBeanAttributeInfo child : fComplexAttributes) {
 					Object obj = getJMXContext().getJMXConnection().getAttribute(fObjectName, child.getName());
 					if(obj instanceof ObjectName[]) {
-						EntityId eid = addOrUpdateChildEntity(child, (ObjectName[])obj);
+						addOrUpdateChildEntity(child, (ObjectName[])obj);
 					} else if(obj instanceof ObjectName){
-						EntityId eid = addOrUpdateChildEntity((ObjectName)obj);
+						addOrUpdateChildEntity((ObjectName)obj);
 					} else if(obj instanceof String[]){
 						// some beans have their object names as strings...
 						String[] sns = (String[])obj;
@@ -160,7 +161,7 @@ public class JMXEntitySelfExploring extends JMXEntity {
 							for(int i = 0; i < sns.length; i++) {
 								ons[i] = new ObjectName(sns[i]);
 							}
-							EntityId eid = addOrUpdateChildEntity(child, ons);
+							addOrUpdateChildEntity(child, ons);
 						} catch(Exception e) {
 							; // ignore, probably not an object name
 						}
@@ -204,7 +205,6 @@ public class JMXEntitySelfExploring extends JMXEntity {
 				MBeanInfo binfo = getJMXContext().getJMXConnection().getMBeanInfo(fObjectName);
 				MBeanAttributeInfo[] attrInfos = binfo.getAttributes();
 				if(!Utils.isEmptyArray(attrInfos)) {
-					List<String> attrNames = new LinkedList<String>();
 					for(MBeanAttributeInfo ai : attrInfos) {
 						String type = ai.getType();
 						CounterType ctype = convertType(type);
@@ -256,7 +256,7 @@ public class JMXEntitySelfExploring extends JMXEntity {
 		resetTouchedByUpdateForChildren();
 		// create children from the given object names
 		for(ObjectName on : children) {
-			EntityId entId = addOrUpdateChildEntity(on);
+			addOrUpdateChildEntity(on);
 		}
 		// now remove all existing entities which are not part of
 		// the new set
@@ -265,8 +265,8 @@ public class JMXEntitySelfExploring extends JMXEntity {
 
 	/**
 	 * Adds a new entity to the hierarchy. The default implementation adds a new child entity
-	 * for this entity if neccessary. If subclasses need to create more complex hierarchies they
-	 * can override this medhod.
+	 * for this entity if necessary. If subclasses need to create more complex hierarchies they
+	 * can override this method.
 	 * @param ai
 	 * @param child
 	 * @return the id of the entity derived from the given parameters

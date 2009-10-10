@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.management.AttributeList;
 import javax.management.MBeanInfo;
 import javax.management.MBeanServerConnection;
+import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.QueryExp;
 
@@ -57,14 +58,14 @@ public class JMXConnectionMBeanServerConnection implements JMXConnection {
 	/**
 	 * @see com.ixora.rms.agents.impl.jmx.JMXConnection#queryNames(javax.management.ObjectName, javax.management.QueryExp)
 	 */
-	public Set queryNames(ObjectName name, QueryExp query) throws Exception {
+	public Set<ObjectName> queryNames(ObjectName name, QueryExp query) throws Exception {
 		return fServer.queryNames(name, query);
 	}
 
 	/**
 	 * @see com.ixora.rms.agents.impl.jmx.JMXConnection#queryMBeans(javax.management.ObjectName, javax.management.QueryExp)
 	 */
-	public Set queryMBeans(ObjectName name, QueryExp query) throws Exception {
+	public Set<ObjectInstance> queryMBeans(ObjectName name, QueryExp query) throws Exception {
 		return fServer.queryMBeans(name, query);
 	}
 

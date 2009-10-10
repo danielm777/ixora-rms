@@ -21,15 +21,17 @@ import com.ixora.rms.agents.impl.Counter;
  * @author Daniel Moraru
  */
 public class JMXEntityTabularData extends JMXEntity {
+	private static final long serialVersionUID = 6488719974776307095L;
 	private String fAttributeName;
 
+	@SuppressWarnings("unused")
 	private class ChildEntity {
 		ChildEntity(ObjectName oname, String attrName, CompositeType rowType) {
-			Set items = rowType.keySet();
+			Set<String> items = rowType.keySet();
 			if(!Utils.isEmptyCollection(items)) {
 				for(Object item : items) {
 					String sitem = (String)item;
-					OpenType otype = rowType.getType(sitem);
+					OpenType<?> otype = rowType.getType(sitem);
 					if(!getJMXContext().acceptCounter(oname, attrName, sitem, otype)) {
 						continue;
 					}
@@ -61,6 +63,7 @@ public class JMXEntityTabularData extends JMXEntity {
 		TabularData tabData = (TabularData)getJMXContext().getJMXConnection()
 				.getAttribute(oname, attrName);
 		if(tabData != null) {
+			@SuppressWarnings("unused")
 			TabularType tabType = tabData.getTabularType();
 		}
 	}

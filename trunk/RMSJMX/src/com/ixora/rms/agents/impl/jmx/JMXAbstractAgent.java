@@ -77,7 +77,7 @@ public abstract class JMXAbstractAgent extends AbstractAgent {
 		/**
 		 * @see com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext#acceptCounter(javax.management.ObjectName, java.lang.String, java.lang.String, javax.management.openmbean.OpenType)
 		 */
-		public boolean acceptCounter(ObjectName oname, String attrName, String sitem, OpenType otype) {
+		public boolean acceptCounter(ObjectName oname, String attrName, String sitem, OpenType<?> otype) {
 			return JMXAbstractAgent.this.acceptCounter(oname, attrName, sitem, otype);
 		}
 		/**
@@ -159,7 +159,7 @@ public abstract class JMXAbstractAgent extends AbstractAgent {
 	 * @param otype
 	 * @return
 	 */
-	protected boolean acceptCounter(ObjectName oname, String attrName, String sitem, OpenType otype) {
+	protected boolean acceptCounter(ObjectName oname, String attrName, String sitem, OpenType<?> otype) {
 		return true;
 	}
 

@@ -20,6 +20,7 @@ import com.ixora.rms.agents.impl.jmx.jsr77.JMXJSR77EntityStats;
  * @author Daniel Moraru
  */
 public class JMXJSR77Entity extends JMXJSR77EntityStats {
+	private static final long serialVersionUID = -6209707597367915181L;
 	/** Attribute name */
 	private String fAttributeName;
 
