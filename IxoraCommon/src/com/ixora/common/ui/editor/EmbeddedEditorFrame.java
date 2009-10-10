@@ -18,6 +18,8 @@ import com.ixora.common.ui.exception.FailedToSaveDocument;
  * EmbeddedEditorDialog.
  */
 public class EmbeddedEditorFrame extends JFrame {
+	private static final long serialVersionUID = 5640889903083753767L;
+
 	/**
 	 * The call back implementing the actual operations.
 	 */

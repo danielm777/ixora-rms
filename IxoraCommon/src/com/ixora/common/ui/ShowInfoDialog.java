@@ -18,7 +18,8 @@ import com.ixora.common.ui.actions.ActionClose;
  * @author Daniel Moraru
  */
 final class ShowInfoDialog extends AppDialog {
-    private javax.swing.JScrollPane scrollPaneInfo;
+	private static final long serialVersionUID = -8813960504090719740L;
+	private javax.swing.JScrollPane scrollPaneInfo;
     private javax.swing.JTextArea textInfo;
     private static final Dimension size = new Dimension(400, 250);
 
@@ -122,6 +123,7 @@ final class ShowInfoDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		JButton close = UIFactoryMgr.createButton(new ActionClose() {
 			public void actionPerformed(ActionEvent e) {

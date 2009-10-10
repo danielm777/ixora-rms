@@ -39,6 +39,7 @@ import com.ixora.common.ui.exception.FailedToSaveDocument;
  * @author Cristian Costache
  */
 public class EmbeddedEditorPanel extends JPanel {
+	private static final long serialVersionUID = 937720243009276959L;
 	public static final int SAVE = 0;
 	public static final int SAVE_AS = 1;
 	public static final int CUT = 2;
@@ -57,7 +58,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		 */
 		void documentChanged();
 		/**
-		 * Invoked after the document has been succesfully saved.
+		 * Invoked after the document has been successfully saved.
 		 */
 		void documentSaved();
 	}
@@ -69,7 +70,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		/**
 		 * Saves the document.
 		 * @param doc
-		 * @return true if the document was successfuly saved
+		 * @return true if the document was successfully saved
 		 * @throws FailedToSaveDocument
 		 */
 		boolean save(StyledDocument doc) throws FailedToSaveDocument;
@@ -134,6 +135,7 @@ public class EmbeddedEditorPanel extends JPanel {
 
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionSave extends AbstractAction {
 		public ActionSave() {
 			super();
@@ -148,6 +150,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionSaveAs extends AbstractAction {
 		public ActionSaveAs() {
 			super();
@@ -162,6 +165,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionCut extends AbstractAction {
 		public ActionCut() {
 			super();
@@ -176,6 +180,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionCopy extends AbstractAction {
 		public ActionCopy() {
 			super();
@@ -190,6 +195,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionPaste extends AbstractAction {
 		public ActionPaste() {
 			super();
@@ -204,6 +210,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionUndo extends AbstractAction {
 		public ActionUndo() {
 			super();
@@ -219,6 +226,7 @@ public class EmbeddedEditorPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private final class ActionRedo extends AbstractAction {
 		public ActionRedo() {
 			super();

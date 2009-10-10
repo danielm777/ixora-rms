@@ -37,6 +37,7 @@ import com.ixora.common.ui.forms.FormPanel;
 public final class UIUtils {
 
 	private static final class StringInputDialog extends AppDialog {
+		private static final long serialVersionUID = 5524553496235266580L;
 		private JTextField fField;
 		private FormPanel fForm;
 		private String fResult;
@@ -75,6 +76,7 @@ public final class UIUtils {
 		/**
 		 * @see com.ixora.common.ui.AppDialog#getButtons()
 		 */
+		@SuppressWarnings("serial")
 		protected JButton[] getButtons() {
 			return new JButton[]{
 					UIFactoryMgr.createButton(new ActionOk() {

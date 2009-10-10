@@ -10,6 +10,7 @@ import com.ixora.common.messages.Msg;
  * @author Daniel Moraru
  */
 public final class InvalidFormData extends AppException {
+	private static final long serialVersionUID = -7230211005975366205L;
 
 	/**
 	 * Constructor.

@@ -27,6 +27,7 @@ public class MRUPopupMenuBuilder extends PopupMenuBuilder {
 	 * Sets the MRU list.
 	 * @param mru
 	 */
+	@SuppressWarnings("serial")
 	public void setList(Object[] mru) {
 		if(mru == null) {
 			throw new IllegalArgumentException("null mru list");

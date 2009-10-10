@@ -16,6 +16,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class FilterNumber implements Filter {
+	private static final long serialVersionUID = 464995051966379284L;
 	private Number fMin;
 	private Number fMax;
 

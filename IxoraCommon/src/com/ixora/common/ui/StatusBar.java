@@ -17,6 +17,7 @@ import javax.swing.border.BevelBorder;
  * @author Daniel Moraru (internet initial source)
  */
 public abstract class StatusBar extends JPanel {
+	private static final long serialVersionUID = 3335949148732524119L;
 	/** Left panel */
 	private Box	leftPanel;
 	/** Right panel */

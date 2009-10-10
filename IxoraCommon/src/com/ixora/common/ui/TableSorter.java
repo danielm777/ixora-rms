@@ -76,6 +76,7 @@ import javax.swing.table.TableModel;
  * @version 2.0 02/27/04
  */
 
+@SuppressWarnings("serial")
 public class TableSorter extends AbstractTableModel {
     protected TableModel tableModel;
 
@@ -85,12 +86,14 @@ public class TableSorter extends AbstractTableModel {
 
     private static Directive EMPTY_DIRECTIVE = new Directive(-1, NOT_SORTED);
 
-    public static final Comparator COMPARABLE_COMAPRATOR = new Comparator() {
+	@SuppressWarnings("unchecked")
+	public static final Comparator COMPARABLE_COMAPRATOR = new Comparator() {
         public int compare(Object o1, Object o2) {
             return ((Comparable) o1).compareTo(o2);
         }
     };
-    public static final Comparator LEXICAL_COMPARATOR = new Comparator() {
+    @SuppressWarnings("unchecked")
+	public static final Comparator LEXICAL_COMPARATOR = new Comparator() {
         public int compare(Object o1, Object o2) {
             return o1.toString().compareTo(o2.toString());
         }
@@ -102,8 +105,10 @@ public class TableSorter extends AbstractTableModel {
     private JTableHeader tableHeader;
     private MouseListener mouseListener;
     private TableModelListener tableModelListener;
-    private Map columnComparators = new HashMap();
-    private List sortingColumns = new ArrayList();
+    @SuppressWarnings("unchecked")
+	private Map columnComparators = new HashMap();
+    @SuppressWarnings("unchecked")
+	private List sortingColumns = new ArrayList();
 
     public TableSorter() {
         this.mouseListener = new MouseHandler();
@@ -190,7 +195,8 @@ public class TableSorter extends AbstractTableModel {
         }
     }
 
-    public void setSortingStatus(int column, int status) {
+    @SuppressWarnings("unchecked")
+	public void setSortingStatus(int column, int status) {
         Directive directive = getDirective(column);
         if (directive != EMPTY_DIRECTIVE) {
             sortingColumns.remove(directive);
@@ -214,7 +220,8 @@ public class TableSorter extends AbstractTableModel {
         sortingStatusChanged();
     }
 
-    public void setColumnComparator(Class type, Comparator comparator) {
+    @SuppressWarnings("unchecked")
+	public void setColumnComparator(Class type, Comparator comparator) {
         if (comparator == null) {
             columnComparators.remove(type);
         } else {
@@ -222,7 +229,8 @@ public class TableSorter extends AbstractTableModel {
         }
     }
 
-    protected Comparator getComparator(int column) {
+    @SuppressWarnings("unchecked")
+	protected Comparator getComparator(int column) {
         Class columnType = tableModel.getColumnClass(column);
         Comparator comparator = (Comparator) columnComparators.get(columnType);
         if (comparator != null) {
@@ -278,7 +286,8 @@ public class TableSorter extends AbstractTableModel {
         return tableModel.getColumnName(column);
     }
 
-    public Class getColumnClass(int column) {
+    @SuppressWarnings("unchecked")
+	public Class getColumnClass(int column) {
         return tableModel.getColumnClass(column);
     }
 
@@ -296,7 +305,8 @@ public class TableSorter extends AbstractTableModel {
 
     // Helper classes
 
-    private class Row implements Comparable {
+    @SuppressWarnings("unchecked")
+	private class Row implements Comparable {
         private int modelIndex;
 
         public Row(int index) {

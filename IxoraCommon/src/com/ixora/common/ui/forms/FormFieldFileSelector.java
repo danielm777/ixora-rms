@@ -26,6 +26,8 @@ import com.ixora.common.ui.actions.ActionBrowse;
  * @author Daniel Moraru
  */
 public class FormFieldFileSelector extends JPanel {
+	private static final long serialVersionUID = 428910235448494741L;
+
 	public interface JFileChooserConfigurer {
 		void configure(JFileChooser fc);
 	}
@@ -67,6 +69,7 @@ public class FormFieldFileSelector extends JPanel {
 	 * @param initialFile
 	 * @param conf
 	 */
+	@SuppressWarnings("serial")
 	private void init(
 			Window win,
 			File initialFile,

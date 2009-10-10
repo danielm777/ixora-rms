@@ -29,6 +29,7 @@ import javax.swing.WindowConstants;
  * @author: Daniel Moraru
  */
 public abstract class AppDialog extends JDialog {
+	private static final long serialVersionUID = -8926279294456324876L;
 	protected static final int VERTICAL = 0;
 	protected static final int HORIZONTAL = 1;
     private JPanel contentPane;

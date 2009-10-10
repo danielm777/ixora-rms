@@ -14,7 +14,8 @@ import javax.swing.JFrame;
  * @author Daniel Moraru
  */
 public class JCalendar extends com.toedter.calendar.JCalendar {
-    /** Time of day chooser */
+	private static final long serialVersionUID = -1064018079458706345L;
+	/** Time of day chooser */
     private JTimeChooser timeChooser;
 
     /**

@@ -47,22 +47,29 @@ import com.ixora.common.update.UpdateComponent;
  * @author Daniel Moraru
  */
 public final class ConfigurationEditorDialog extends AppDialog {
+	private static final long serialVersionUID = 4000054144103055050L;
 	private JTree components;
 	private TypedPropertiesEditor editor;
 	private EventHandler eventHandler = new EventHandler();
 	private boolean error;
 
 	private Action actionApply = new ActionApply() {
+		private static final long serialVersionUID = 1864685578167497544L;
+
 		public void actionPerformed(ActionEvent e) {
 			handleApply();
 		}
 	};
 	private Action actionOk = new ActionOk() {
+		private static final long serialVersionUID = 70886798405805782L;
+
 		public void actionPerformed(ActionEvent e) {
 			handleOk();
 		}
 	};
 	private Action actionCancel = new ActionCancel() {
+		private static final long serialVersionUID = -5466806320544832869L;
+
 		public void actionPerformed(ActionEvent e) {
 			handleCancel();
 		}
@@ -70,6 +77,7 @@ public final class ConfigurationEditorDialog extends AppDialog {
 	private Action actionRestoreDefaults = new ActionRestoreDefaults();
 
 	private final class ActionRestoreDefaults extends AbstractAction {
+		private static final long serialVersionUID = -2487519905129945403L;
 		ActionRestoreDefaults() {
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.COMMON_UI_ACTIONS_RESTOREDEFAULTS), this);
 			ImageIcon icon = UIConfiguration.getIcon("defaults.gif");
@@ -130,6 +138,7 @@ public final class ConfigurationEditorDialog extends AppDialog {
 	 * Component node.
 	 */
 	private final static class ComponentNode extends DefaultMutableTreeNode {
+		private static final long serialVersionUID = 5897754139795561004L;
 		ComponentNode(ComponentData cd, Observer obs) {
 			super(cd, true);
 			// build children
@@ -148,6 +157,8 @@ public final class ConfigurationEditorDialog extends AppDialog {
 	 * Renderer
 	 */
 	private final static class ComponentNodeRender extends DefaultTreeCellRenderer {
+		private static final long serialVersionUID = -6574745261413731222L;
+
 		/**
 		 * @see javax.swing.JLabel#getIcon()
 		 */
@@ -199,6 +210,7 @@ public final class ConfigurationEditorDialog extends AppDialog {
 	/**
 	 * @return the left component
 	 */
+	@SuppressWarnings("unchecked")
 	private Component buildLeftPanel() {
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("root");
 		DefaultTreeModel model = new DefaultTreeModel(root);
@@ -210,18 +222,18 @@ public final class ConfigurationEditorDialog extends AppDialog {
 		components.setRootVisible(false);
 		components.setCellRenderer(new ComponentNodeRender());
 		components.setShowsRootHandles(true);
-		Collection coll = ConfigurationMgr.getComponentsWithEditableConfigurations();
-		for(Iterator iter = coll.iterator(); iter.hasNext();) {
-			String comp = (String)iter.next();
+		Collection<String> coll = ConfigurationMgr.getComponentsWithEditableConfigurations();
+		for(Iterator<String> iter = coll.iterator(); iter.hasNext();) {
+			String comp = iter.next();
 			ComponentData cd = new ComponentData(comp, MessageRepository.get(comp, comp), this.eventHandler);
 			root.add(new ComponentNode(cd, this.eventHandler));
 		}
 		model.nodeChanged(root);
 		// expand all nodes
-		Enumeration e = root.breadthFirstEnumeration();
+		Enumeration<DefaultMutableTreeNode> e = root.breadthFirstEnumeration();
 		DefaultMutableTreeNode n;
 		while(e.hasMoreElements()) {
-			n = (DefaultMutableTreeNode)e.nextElement();
+			n = e.nextElement();
 			components.expandPath(new TreePath(n.getPath()));
 		};
 		JScrollPane scroll = new JScrollPane(components);
@@ -335,11 +347,12 @@ public final class ConfigurationEditorDialog extends AppDialog {
 	/**
 	 * Applies the in-edit configurations.
 	 */
+	@SuppressWarnings("unchecked")
 	private void applyInEditConfigurations() throws InvalidPropertyValue {
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)
 		components.getModel().getRoot();
 		// reset in edit configuration
-		Enumeration e = root.breadthFirstEnumeration();
+		Enumeration<ComponentNode> e = root.breadthFirstEnumeration();
 		// get rid of root
 		e.nextElement();
 		ComponentData cd;
@@ -354,16 +367,17 @@ public final class ConfigurationEditorDialog extends AppDialog {
 	/**
 	 * Restore the defaults for the in-edit configurations.
 	 */
+	@SuppressWarnings("unchecked")
 	private void restoreDefaultsForInEditConfigurations() {
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)
 		components.getModel().getRoot();
 		// reset in edit configuration
-		Enumeration e = root.breadthFirstEnumeration();
+		Enumeration<ComponentNode> e = root.breadthFirstEnumeration();
 		// get rid of root
 		e.nextElement();
 		ComponentData cd;
 		while(e.hasMoreElements()) {
-			cd = ((ComponentNode)e.nextElement()).getCompoentData();
+			cd = e.nextElement().getCompoentData();
 			if(cd.inEdit != null) {
 				cd.inEdit.setDefaults();
 			}

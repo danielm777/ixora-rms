@@ -21,6 +21,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class FormPanel extends JPanel {
+	private static final long serialVersionUID = -9080587756801504503L;
 	// the orientation of name/value pairs
 	public static final int HORIZONTAL = 0;
 	public static final int VERTICAL1 = 1;

@@ -51,6 +51,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public abstract class AppFrame extends JFrame implements AppViewContainer {
+	private static final long serialVersionUID = -586264475410585633L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(AppFrame.class);
 	// Components

@@ -18,6 +18,7 @@ import com.ixora.common.ui.UIExceptionMgr;
  * @author Daniel Moraru
  */
 public class FilteredTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = -1565018245766181628L;
 
 	/**
 	 * Filter event.
@@ -63,7 +64,7 @@ public class FilteredTableModel extends AbstractTableModel {
 	private AbstractTableModel fModel;
 	private Map<Integer, Integer> fIndexMap;
 	private RowFilter fRowFilter;
-	private Class[] fFilterUIClasses;
+	private Class<?>[] fFilterUIClasses;
 	private List<Listener> fListeners;
 
 	/**
@@ -73,7 +74,7 @@ public class FilteredTableModel extends AbstractTableModel {
 	 * every column in the <code>model</code>; the null entries will mark
 	 * the corresponding column unfilterable.
 	 */
-	public FilteredTableModel(AbstractTableModel model, Class[] filterUIClasses) {
+	public FilteredTableModel(AbstractTableModel model, Class<?>[] filterUIClasses) {
 		super();
 		this.fListeners = new LinkedList<Listener>();
 		this.fModel = model;
@@ -241,7 +242,7 @@ public class FilteredTableModel extends AbstractTableModel {
 	 * @param classes the length of this array must be the same as the number of columns
 	 * in the adapted table
 	 */
-	public void setFilterUIClasses(Class[] classes) {
+	public void setFilterUIClasses(Class<?>[] classes) {
 		if(classes != null) {
 			if(classes.length != fModel.getColumnCount()) {
 				throw new IllegalArgumentException("The numbed of filter UI classes is " +
@@ -320,7 +321,7 @@ public class FilteredTableModel extends AbstractTableModel {
      * @param col
      * @return
      */
-    public Class getFilterUIClassForColumn(int col) {
+    public Class<?> getFilterUIClassForColumn(int col) {
     	return fFilterUIClasses[col];
     }
 

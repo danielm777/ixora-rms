@@ -34,6 +34,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 final class ShowAboutDialog extends AppDialog {
+	private static final long serialVersionUID = 6771473584688621946L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(
 				ShowAboutDialog.class);
@@ -181,6 +182,7 @@ final class ShowAboutDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		JButton close = UIFactoryMgr.createButton(new ActionClose() {
 			public void actionPerformed(ActionEvent e) {

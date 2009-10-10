@@ -30,6 +30,8 @@ import com.ixora.common.xml.XMLExternalizable;
  * @author Daniel Moraru
  */
 public class HistoryPanel extends JPanel {
+	private static final long serialVersionUID = -6023072654684822172L;
+
 	/**
 	 * Listener.
 	 */
@@ -41,6 +43,7 @@ public class HistoryPanel extends JPanel {
 		void selected(XMLExternalizable obj);
 	}
 
+	@SuppressWarnings("serial")
 	private class ActionNext extends AbstractAction {
 		ActionNext() {
 			super();
@@ -57,6 +60,7 @@ public class HistoryPanel extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private class ActionPrev extends AbstractAction {
 		ActionPrev() {
 			super();

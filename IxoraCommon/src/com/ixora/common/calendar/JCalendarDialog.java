@@ -23,7 +23,8 @@ import com.ixora.common.ui.actions.ActionOk;
  * @author Daniel Moraru
  */
 public class JCalendarDialog extends AppDialog {
-    private JCalendar calendar;
+	private static final long serialVersionUID = 753102498051198398L;
+	private JCalendar calendar;
     private boolean canceled;
 
     /**
@@ -56,7 +57,8 @@ public class JCalendarDialog extends AppDialog {
     /**
      * @see com.ixora.common.ui.AppDialog#getButtons()
      */
-    protected JButton[] getButtons() {
+    @SuppressWarnings("serial")
+	protected JButton[] getButtons() {
         return new JButton[] {
                 new JButton(new ActionOk() {
                     public void actionPerformed(ActionEvent e) {

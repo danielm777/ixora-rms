@@ -14,6 +14,7 @@ import com.ixora.common.ui.UIUtils;
 /**
  * @author Daniel Moraru
  */
+@SuppressWarnings("serial")
 public abstract class ActionEdit extends AbstractAction {
 	/**
 	 * Constructor.

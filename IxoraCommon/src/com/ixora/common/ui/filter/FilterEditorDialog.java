@@ -17,6 +17,7 @@ import com.ixora.common.ui.actions.ActionOk;
  * @author Daniel Moraru
  */
 public abstract class FilterEditorDialog extends AppDialog {
+	private static final long serialVersionUID = 8076496850285971626L;
 
 	/**
 	 * Constructor.
@@ -44,6 +45,7 @@ public abstract class FilterEditorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 			new JButton(new ActionOk() {

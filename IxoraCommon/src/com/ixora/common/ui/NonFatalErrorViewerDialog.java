@@ -24,7 +24,8 @@ import javax.swing.text.html.StyleSheet;
 import com.ixora.common.ui.actions.ActionClose;
 
 public final class NonFatalErrorViewerDialog extends AppDialog {
-    private JPanel fPanel;
+	private static final long serialVersionUID = 3740939825330332494L;
+	private JPanel fPanel;
     private JTextPane fTextPane;
     /**
      * Constructor.
@@ -83,7 +84,8 @@ public final class NonFatalErrorViewerDialog extends AppDialog {
     /**
      * @see com.ixora.common.ui.AppDialog#getButtons()
      */
-    protected JButton[] getButtons() {
+    @SuppressWarnings("serial")
+	protected JButton[] getButtons() {
         return new JButton[] {
             UIFactoryMgr.createButton(new ActionClose() {
                 public void actionPerformed(ActionEvent e) {

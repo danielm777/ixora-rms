@@ -43,6 +43,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 final class ShowExceptionDialog extends AppDialog {
+	private static final long serialVersionUID = 7271366186473496191L;
 	/** Logger used to log exceptions with internal app error flag set */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(
 				ShowExceptionDialog.class);
@@ -257,6 +258,7 @@ final class ShowExceptionDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		JButton close = UIFactoryMgr.createButton(new ActionClose() {
 			public void actionPerformed(ActionEvent e) {

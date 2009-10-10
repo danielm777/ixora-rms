@@ -25,6 +25,7 @@ import javax.swing.JWindow;
  * @author Daniel Moraru - initial internet source
  */
 public final class AppSplashScreen extends Frame {
+  private static final long serialVersionUID = -927585921379362665L;
   private final String fImageId;
   private MediaTracker fMediaTracker;
   private Image fImage;
@@ -53,7 +54,7 @@ public final class AppSplashScreen extends Frame {
     } catch(InterruptedException e){
     	e.printStackTrace();
     }
-    SplashWindow splashWindow = new SplashWindow(this, fImage);
+    new SplashWindow(this, fImage);
   }
 
   /**
@@ -77,7 +78,8 @@ public final class AppSplashScreen extends Frame {
 	/**
 	*/
 	private class SplashWindow extends JWindow {
-		    private Image fImage;
+		    private static final long serialVersionUID = -3152704968677454464L;
+			private Image fImage;
 		    private BufferedImage fBackgroundImage;
 			private static final int SHADOW_WIDTH = 10;
 

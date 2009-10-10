@@ -21,6 +21,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public class RowFilter implements Filter {
+	private static final long serialVersionUID = -4212574883093757545L;
 	/** The xml node name for this class */
 	public static final String XML_NODE = "rowFilter";
 	/** Filters keyed by column index */
@@ -48,7 +49,6 @@ public class RowFilter implements Filter {
 	 */
 	public boolean accept(Object obj) {
 		Object[] objs = (Object[])obj;
-		boolean passed = true;
 		int i = 0;
 		for(Filter filter : fFilters.values()) {
 			if(!filter.accept(objs[i])) {
