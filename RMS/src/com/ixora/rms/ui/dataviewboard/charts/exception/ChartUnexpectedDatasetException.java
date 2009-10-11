@@ -10,7 +10,9 @@ import com.ixora.rms.ui.dataviewboard.charts.messages.Msg;
  * ChartUnexpectedDatasetException
  */
 public class ChartUnexpectedDatasetException extends ChartException {
-// invalid dataset {ds}, {expected_ds} expected
+	private static final long serialVersionUID = -115953596536563777L;
+
+	// invalid dataset {ds}, {expected_ds} expected
 	/**
 	 * Constructor.
 	 */

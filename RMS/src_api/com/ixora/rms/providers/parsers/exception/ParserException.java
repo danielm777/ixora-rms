@@ -11,6 +11,7 @@ import com.ixora.rms.providers.parsers.messages.Msg;
  * @author Daniel Moraru
  */
 public class ParserException extends RMSException {
+	private static final long serialVersionUID = 5888789654058680164L;
 	/**
 	 * The string representation of the data that caused the parsing to fail;
 	 * it could be null.

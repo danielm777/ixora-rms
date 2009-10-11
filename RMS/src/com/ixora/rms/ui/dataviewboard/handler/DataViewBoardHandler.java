@@ -393,11 +393,11 @@ public final class DataViewBoardHandler extends Observable
 	 * @throws IllegalArgumentException
 	 */
 	private DataViewBoard getBoardForPlot(String boardClass) throws SecurityException, NoSuchMethodException, ClassNotFoundException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		Collection boards = getCurrentScreen().getBoards();
+		Collection<DataViewBoard> boards = getCurrentScreen().getBoards();
 		DataViewBoard theOne = null;
 		DataViewBoard board;
-		for(Iterator iter = boards.iterator(); iter.hasNext();) {
-			board = (DataViewBoard)iter.next();
+		for(Iterator<DataViewBoard> iter = boards.iterator(); iter.hasNext();) {
+			board = iter.next();
 			if(board.getClass().getName().equals(boardClass)
                     && !board.reachedMaximumControls()) {
 				theOne = board;
@@ -436,7 +436,7 @@ public final class DataViewBoardHandler extends Observable
      * @return
      */
     public Collection<DataViewScreenDescriptor> getScreenDescriptors() {
-    	List<DataViewScreenDescriptor> ret = new ArrayList(fScreens.size());
+    	List<DataViewScreenDescriptor> ret = new ArrayList<DataViewScreenDescriptor>(fScreens.size());
     	for(Map.Entry<String, DataViewScreen> entry : fScreens.entrySet()) {
     		DataViewScreenDescriptor desc = new DataViewScreenDescriptor(
     				entry.getKey(),
@@ -639,7 +639,7 @@ public final class DataViewBoardHandler extends Observable
 	 * @throws InvocationTargetException
 	 */
 	private DataViewBoard createBoard(String boardClass, DataViewScreen screen) throws SecurityException, NoSuchMethodException, ClassNotFoundException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
-	    Constructor cons = Class.forName(boardClass).getConstructor(
+	    Constructor<?> cons = Utils.getClassLoader(getClass()).loadClass(boardClass).getConstructor(
 	            new Class[] {QueryRealizer.class, DataEngineService.class, ReactionLogService.class, SessionArtefactInfoLocator.class});
 	    DataViewBoard board = (DataViewBoard)cons.newInstance(
 	            new Object[] {fQueryRealizer, fDataEngine, fReactionLog, fPlottedInfoLocator});
@@ -789,7 +789,7 @@ public final class DataViewBoardHandler extends Observable
 	 * @throws FailedToPlotView
 	 */
 	private void plotDataView(DataViewId view) throws FailedToPlotView {
-		ResourceId context = view.getContext();
+//		ResourceId context = view.getContext();
 		SessionDataViewInfo viewInfo = fPlottedInfoLocator.getDataViewInfo(view);
 		if(viewInfo == null) {
 			// this would happen if the view has been removed from repository

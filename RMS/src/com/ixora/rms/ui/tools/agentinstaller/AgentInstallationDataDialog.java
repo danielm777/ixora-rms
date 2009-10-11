@@ -53,6 +53,7 @@ import com.ixora.rms.ui.tools.agentinstaller.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentInstallationDataDialog extends AppDialog {
+	private static final long serialVersionUID = -5421573883756354569L;
 	private static final String LABEL_AGENT_NAME = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_NAME);
 	private static final String LABEL_AGENT_DESCRIPTION = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_DESCRIPTION);
 	private static final String LABEL_AGENT_CLASS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_CLASS);
@@ -130,6 +131,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
+	@SuppressWarnings("serial")
 	public AgentInstallationDataDialog(RMSViewContainer vc, AgentInstallationData aid,
 			boolean editMode, boolean readOnly) throws IOException, ClassNotFoundException {
 		super(vc.getAppFrame(), VERTICAL);
@@ -139,6 +141,8 @@ public final class AgentInstallationDataDialog extends AppDialog {
 		fReadOnly = readOnly;
 		fPanel = new JPanel(new BorderLayout());
 		fForm = new FormPanel(FormPanel.VERTICAL1, SwingConstants.TOP) {
+			private static final long serialVersionUID = 4198380579494172527L;
+
 			public void setEnabled(boolean e) {
 				super.setEnabled(e);
 				fEditorTargetVersions.setEnabled(e);
@@ -299,6 +303,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 				new JButton(

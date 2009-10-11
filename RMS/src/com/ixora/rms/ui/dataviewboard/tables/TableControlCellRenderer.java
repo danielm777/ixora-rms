@@ -15,6 +15,7 @@ import com.ixora.common.ui.UIConfiguration;
  * @author Daniel Moraru
  */
 public class TableControlCellRenderer extends DefaultTableCellRenderer {
+	private static final long serialVersionUID = 1739263152235866682L;
 	/**
 	 * Formatter.
 	 */

@@ -9,6 +9,8 @@ import com.ixora.rms.ui.dataviewboard.charts.messages.Msg;
  * ChartNoRendererException
  */
 public class ChartNoRendererException extends ChartException {
+	private static final long serialVersionUID = -1243998668425785511L;
+
 	/**
 	 * Constructor.
 	 */

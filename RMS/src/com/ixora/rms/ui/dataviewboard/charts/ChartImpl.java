@@ -139,7 +139,7 @@ public class ChartImpl {
 			XYPlot			xyPlot = null;
 
 			// Create the first renderer
-			Iterator 	it = renderers.iterator();
+			Iterator<RendererImpl> 	it = renderers.iterator();
 			RendererImpl r = (RendererImpl) it.next();
 			tmpPlot = r.createPlot(null);
 			datasets.add(r.getDataset());

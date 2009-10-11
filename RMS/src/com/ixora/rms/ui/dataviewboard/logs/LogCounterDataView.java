@@ -12,6 +12,8 @@ import com.ixora.rms.ui.dataviewboard.logs.definitions.LogDef;
  * @author Daniel Moraru
  */
 public class LogCounterDataView extends LogDef {
+	private static final long serialVersionUID = -2017942041427519580L;
+
 	/**
 	 * Default constructor to support XML.
 	 */

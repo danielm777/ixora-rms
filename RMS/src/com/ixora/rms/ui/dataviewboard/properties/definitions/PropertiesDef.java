@@ -13,6 +13,7 @@ import com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard;
  * @author Daniel Moraru
  */
 public class PropertiesDef extends DataView {
+	private static final long serialVersionUID = -8824098215162085752L;
 
 	/**
 	 * Constructor.

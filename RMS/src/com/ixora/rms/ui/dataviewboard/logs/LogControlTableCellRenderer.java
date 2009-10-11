@@ -15,6 +15,7 @@ import com.ixora.common.ui.UIConfiguration;
  * @author Daniel Moraru
  */
 public class LogControlTableCellRenderer extends DefaultTableCellRenderer {
+	private static final long serialVersionUID = -8236529338836064868L;
 	/**
 	 * Formatter.
 	 */

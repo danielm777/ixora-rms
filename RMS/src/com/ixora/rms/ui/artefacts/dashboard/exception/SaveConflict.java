@@ -10,7 +10,9 @@ import com.ixora.rms.ui.artefacts.dashboard.messages.Msg;
  * @author Daniel Moraru
  */
 public final class SaveConflict extends RMSException {
-    /**
+	private static final long serialVersionUID = 739784191741712167L;
+
+	/**
      * Constructor.
      */
     public SaveConflict(String dashboard) {

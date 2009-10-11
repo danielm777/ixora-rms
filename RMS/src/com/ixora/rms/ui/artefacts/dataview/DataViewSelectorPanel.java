@@ -66,7 +66,8 @@ import com.ixora.rms.ui.artefacts.dataview.wizard.WizardStep4;
  * A panel that allows to edit and plot from a data view.
  * @author Daniel Moraru
  */
-public final class DataViewSelectorPanel extends ArtefactSelectorPanel {
+public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewInfo> {
+	private static final long serialVersionUID = 1414108777191255948L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DataViewSelectorPanel.class);
 //	private static final Icon reactionIcon = UIConfiguration.getIcon("reaction_armed.gif");
@@ -100,6 +101,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel {
 	 * Add data view using wizard.
 	 */
 	private final class ActionAddUsingWizard extends AbstractAction {
+		private static final long serialVersionUID = 1155229676364906177L;
 		public ActionAddUsingWizard() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -590,10 +592,10 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel {
      */
     private void applyChangesLocally() {
 		// get all data views to realize
-	    Collection dvs = getDataViewTableModel().getDataViewsToRealize();
+	    Collection<DataViewInfo> dvs = getDataViewTableModel().getDataViewsToRealize();
 	    if(dvs != null) {
-			for(Iterator iter = dvs.iterator(); iter.hasNext();) {
-				final DataViewInfo dv = (DataViewInfo)iter.next();
+			for(Iterator<DataViewInfo> iter = dvs.iterator(); iter.hasNext();) {
+				final DataViewInfo dv = iter.next();
 				final QueryDef query = dv.getDataView().getQueryDef();
 				// Note: this method is reading from the session model
 				// and as a result it can only be used safely from
@@ -627,8 +629,8 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel {
 		// get all views to unrealize
 	    dvs = getDataViewTableModel().getDataViewsToUnRealize();
 	    if(dvs != null) {
-			for(Iterator iter = dvs.iterator(); iter.hasNext();) {
-				final DataViewInfo dv = (DataViewInfo)iter.next();
+			for(Iterator<DataViewInfo> iter = dvs.iterator(); iter.hasNext();) {
+				final DataViewInfo dv = iter.next();
 				final QueryDef query = dv.getDataView().getQueryDef();
 				// Note: this method is reading from the session model
 				// and as a result it can only be used safely from
@@ -699,6 +701,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel {
 				final DataView samplef = (sampleData == null ? null : sampleData.getDataView());
 				addUsingXMLMenu.add(new JMenuItem(new AbstractAction(
 						MessageRepository.get(board.getBoardComponenName(), board.getViewName()) + "...") {
+					private static final long serialVersionUID = -6304644066992997069L;
 					public void actionPerformed(ActionEvent e) {
 						fViewContainer.runJobSynch(
 								new UIWorkerJobDefault(fViewContainer.getAppFrame(),
@@ -730,6 +733,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel {
 			mi.setToolTipText(null);
 			addMenu.add(mi);
 			mi = UIFactoryMgr.createMenuItem(new ActionFromXML(fViewContainer){
+				private static final long serialVersionUID = -7525644609373971388L;
 				protected void handleXML(String data) throws Exception {
 					addDataViewFromXML(data);
 				}

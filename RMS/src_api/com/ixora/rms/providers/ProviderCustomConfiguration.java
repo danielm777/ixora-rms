@@ -10,5 +10,6 @@ import com.ixora.rms.CustomConfiguration;
  * @author Daniel Moraru
  */
 public abstract class ProviderCustomConfiguration extends CustomConfiguration {
+	private static final long serialVersionUID = 693819446980508802L;
 
 }

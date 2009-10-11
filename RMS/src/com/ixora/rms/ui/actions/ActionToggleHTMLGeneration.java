@@ -21,6 +21,7 @@ import com.ixora.rms.ui.messages.Msg;
  * Toggles the HTML generation.
  */
 public final class ActionToggleHTMLGeneration extends AbstractAction {
+	private static final long serialVersionUID = -4958470534630304479L;
 	private HTMLGenerator fHTMLGenerator;
 
 	/**

@@ -9,6 +9,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class NoResourcesDefined extends RMSException {
+	private static final long serialVersionUID = 2518024201819215587L;
 
 	/**
 	 *

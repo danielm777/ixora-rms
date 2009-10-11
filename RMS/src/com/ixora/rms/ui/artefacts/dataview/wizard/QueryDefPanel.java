@@ -30,6 +30,7 @@ import com.ixora.rms.ui.reactions.ReactionEditorDialog;
  * @author Daniel Moraru
  */
 public abstract class QueryDefPanel extends JPanel {
+	private static final long serialVersionUID = 5979247065392005610L;
 	protected static final String LABEL_FUNCTIONS = "Functions";
 	protected static final String LABEL_REACTIONS = "Reactions";
 
@@ -68,7 +69,7 @@ public abstract class QueryDefPanel extends JPanel {
 		/**
 		 * @see com.ixora.common.typedproperties.ui.PropertyEntryCellEditorExtended.ExtendedEditorListener#aboutToLaunch(com.ixora.common.typedproperties.ui.ExtendedEditor, com.ixora.common.typedproperties.PropertyEntry)
 		 */
-		public void aboutToLaunch(ExtendedEditor editor, PropertyEntry pe) throws Exception {
+		public void aboutToLaunch(ExtendedEditor<?> editor, PropertyEntry<?> pe) throws Exception {
 			handleAboutToLaunchExtendedEditor(editor, pe);
 		}
 	}
@@ -229,15 +230,17 @@ public abstract class QueryDefPanel extends JPanel {
 	 * @param pe
 	 * @throws RMSException
 	 */
-	protected void handleAboutToLaunchExtendedEditor(ExtendedEditor editor, PropertyEntry pe) throws RMSException {
+	protected void handleAboutToLaunchExtendedEditor(ExtendedEditor<?> editor, PropertyEntry<?> pe) throws RMSException {
 		String[] params = getPotentialParameters();
 		if(editor instanceof ReactionExtendedEditor) {
 			if(params == null) {
+				// TODO localize
 				throw new RMSException("There are no parameters available to define a reaction.\nSelect first counters for this data view.");
 			}
 			((ReactionExtendedEditor)editor).prepare(params);
 		} else if(editor instanceof FunctionExtendedEditor) {
 			if(params == null) {
+				// TODO localize
 				throw new RMSException("There are no parameters available to define a function.\nSelect first counters for this data view.");
 			}
 			((FunctionExtendedEditor)editor).prepare(params);
@@ -252,6 +255,7 @@ public abstract class QueryDefPanel extends JPanel {
 	protected void handleAboutToAddReaction(final TypedProperties prop) throws RMSException, VetoException {
 		String[] params = getPotentialParameters();
 		if(Utils.isEmptyArray(params)) {
+			// TODO localize
 			throw new RMSException("Before adding reactions, counters must be added for this data view.");
 		}
 		ReactionEditorDialog dlg = new ReactionEditorDialog(fParent,

@@ -24,6 +24,7 @@ import com.ixora.common.ui.UIUtils;
  * @author Daniel Moraru
  */
 public class ButtonCellEditor extends AbstractCellEditor implements TableCellEditor {
+	private static final long serialVersionUID = 377063249714650114L;
 	private JButton fButton;
 	private Frame fFrame;
 	private TableBasedControlFormatter fFormatter;

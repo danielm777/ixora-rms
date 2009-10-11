@@ -19,6 +19,7 @@ import com.ixora.rms.agents.impl.RootEntity;
  * SQLBasedEntity
  */
 public class SQLBasedEntity extends RootEntity {
+	private static final long serialVersionUID = -9071259766670714662L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(SQLBasedEntity.class);
 	/** List of database connections */
@@ -89,8 +90,8 @@ public class SQLBasedEntity extends RootEntity {
 
         boolean bConnected = true;
         try {
-            for (Iterator it = connections.iterator(); it.hasNext();) {
-                Connection c = (Connection) it.next();
+            for (Iterator<Connection> it = connections.iterator(); it.hasNext();) {
+                Connection c = it.next();
                 if (c.isClosed()) {
                     bConnected = false;
                     break;
@@ -106,8 +107,8 @@ public class SQLBasedEntity extends RootEntity {
      * Closes and discards all database connections
      */
     protected void disconnect() throws Throwable {
-        for (Iterator it = connections.iterator(); it.hasNext();) {
-            Connection c = (Connection) it.next();
+        for (Iterator<Connection> it = connections.iterator(); it.hasNext();) {
+            Connection c = it.next();
             if (!c.isClosed())
                 c.close();
         }

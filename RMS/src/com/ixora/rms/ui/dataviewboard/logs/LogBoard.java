@@ -26,6 +26,7 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
  * @author Daniel Moraru
  */
 public class LogBoard extends DataViewBoard {
+	private static final long serialVersionUID = 7046027774547384719L;
 
 	/**
 	 * @param qr

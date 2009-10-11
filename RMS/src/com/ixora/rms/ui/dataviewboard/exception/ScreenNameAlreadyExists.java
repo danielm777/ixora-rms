@@ -10,6 +10,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ScreenNameAlreadyExists extends RMSException {
+	private static final long serialVersionUID = 523493500714687892L;
 
 	/**
 	 * Constructor.

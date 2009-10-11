@@ -11,6 +11,7 @@ import com.ixora.common.TreeNode;
  * @author Daniel Moraru
  */
 public final class EntityDescriptorTree extends TreeNode<EntityId, EntityDescriptorTree> {
+	private static final long serialVersionUID = -3120663172335078270L;
 	/** Descriptor */
 	private EntityDescriptor fDescriptor;
 

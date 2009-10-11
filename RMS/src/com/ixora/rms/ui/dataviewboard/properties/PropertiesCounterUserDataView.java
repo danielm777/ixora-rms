@@ -15,6 +15,8 @@ import com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef;
  * @author Daniel Moraru
  */
 public class PropertiesCounterUserDataView extends PropertiesDef {
+	private static final long serialVersionUID = 1972482687680034538L;
+
 	/**
 	 * Default constructor to support XML.
 	 */

@@ -23,7 +23,8 @@ import com.ixora.common.ui.actions.ActionClose;
  * @author Daniel Moraru
  */
 public final class LargeValueViewerDialog extends AppDialog {
-    private JPanel fPanel;
+	private static final long serialVersionUID = -8617944646403111386L;
+	private JPanel fPanel;
     private JTextPane fTextPane;
 
     /**
@@ -60,7 +61,8 @@ public final class LargeValueViewerDialog extends AppDialog {
     /**
      * @see com.ixora.common.ui.AppDialog#getButtons()
      */
-    protected JButton[] getButtons() {
+    @SuppressWarnings("serial")
+	protected JButton[] getButtons() {
         return new JButton[] {
             UIFactoryMgr.createButton(new ActionClose() {
                 public void actionPerformed(ActionEvent e) {

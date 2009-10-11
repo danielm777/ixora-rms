@@ -12,6 +12,7 @@ import com.ixora.common.Enum;
  * @author Daniel Moraru
  */
 public class ProcessExecutionMode extends Enum {
+	private static final long serialVersionUID = -43109080409785670L;
 	// TODO localize
 	public static final ProcessExecutionMode NORMAL = new ProcessExecutionMode(0, "Normal", "Normal");
 	public static final ProcessExecutionMode TELNET = new ProcessExecutionMode(1, "Telnet", "Telnet");

@@ -21,9 +21,10 @@ import com.ixora.rms.ui.dataviewboard.charts.ChartStyle;
  * Loads and saves contents into XML.
  */
 public class RendererDef extends XMLTag {
-    protected XMLAttribute	type = new XMLAttributeString("type", true);
-    protected DomainDef 	domain = new DomainDef();
-    protected XMLTagList	ranges = new XMLSameTagList(RangeDef.class);
+	private static final long serialVersionUID = 5384864115364004798L;
+	protected XMLAttribute type = new XMLAttributeString("type", true);
+    protected DomainDef domain = new DomainDef();
+    protected XMLTagList<RangeDef> ranges = new XMLSameTagList<RangeDef>(RangeDef.class);
 
     /**
      * Constructs an empty object, ready to be loaded from XML
@@ -95,7 +96,7 @@ public class RendererDef extends XMLTag {
      */
     public List<String> getRangesIDList() {
     	List<String> listIDs = new LinkedList<String>();
-    	for (Iterator it = ranges.iterator(); it.hasNext();) {
+    	for(Iterator<RangeDef> it = ranges.iterator(); it.hasNext();) {
 			RangeDef rd = (RangeDef) it.next();
     		listIDs.add(rd.getId());
     	}

@@ -7,6 +7,7 @@ package com.ixora.rms.data;
  * @author Daniel Moraru
  */
 public class CounterValueObject implements CounterValue {
+	private static final long serialVersionUID = 7393913526544206336L;
 	/** Value object */
 	private ValueObject value;
 

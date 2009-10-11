@@ -11,6 +11,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class FailedToCreateConnection extends RMSException {
+	private static final long serialVersionUID = -2100343484941873300L;
 
 	/**
 	 *

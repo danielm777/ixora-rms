@@ -16,6 +16,7 @@ import com.ixora.rms.ui.dataviewboard.legend.LegendEntry;
  * @author Daniel Moraru
  */
 public class ChartLegendEntry extends LegendEntry {
+	private static final long serialVersionUID = -6343366130006305537L;
 	/** Bullet */
 	protected LegendBullet bullet;
 

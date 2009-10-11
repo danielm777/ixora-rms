@@ -12,7 +12,8 @@ import com.ixora.common.xml.XMLTag;
  * Base class for both DomainDef and RangeDef.
  */
 public abstract class AxisDef extends XMLTag {
-    protected XMLAttribute	id = new XMLAttributeString("id", true);
+	private static final long serialVersionUID = 8381888624713067L;
+	protected XMLAttribute	id = new XMLAttributeString("id", true);
 
     /**
      * Constructs an empty object, ready to be loaded from XML

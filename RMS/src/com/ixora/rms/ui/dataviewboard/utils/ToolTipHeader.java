@@ -15,7 +15,8 @@ import com.ixora.common.ui.UIUtils;
  * @author Daniel Moraru
  */
 public final class ToolTipHeader extends JTableHeader {
-    private TableBasedControlTableModel fModel;
+	private static final long serialVersionUID = 3155797510470863127L;
+	private TableBasedControlTableModel fModel;
     /** Cached value of the max length of a line in the tooltip */
     private int maxLineLengthForToolTips;
 

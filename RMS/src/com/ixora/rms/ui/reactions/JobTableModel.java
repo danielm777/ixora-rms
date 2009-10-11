@@ -9,7 +9,11 @@ import com.ixora.rms.reactions.ReactionDeliveryInfoJob;
 import com.ixora.rms.reactions.ReactionDeliveryType;
 import com.ixora.rms.reactions.ReactionLogRecord;
 
+/**
+ * @author Daniel Moraru
+ */
 final class JobTableModel extends ReactionTableModel {
+	private static final long serialVersionUID = 708297191045760454L;
 
 	public JobTableModel(List<ReactionLogRecord> lst) {
 		super(lst);

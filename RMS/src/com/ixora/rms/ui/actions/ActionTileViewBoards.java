@@ -18,7 +18,8 @@ import com.ixora.rms.ui.messages.Msg;
  * Tiles the view boards.
  */
 public final class ActionTileViewBoards extends AbstractAction {
-    /** DataViewBoardHandler */
+	private static final long serialVersionUID = -3344971819658060600L;
+	/** DataViewBoardHandler */
 	private DataViewBoardHandler dataViewBoardHandler;
 
 	/**

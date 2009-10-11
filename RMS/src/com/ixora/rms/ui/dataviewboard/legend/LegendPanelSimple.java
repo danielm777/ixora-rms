@@ -21,6 +21,7 @@ import com.ixora.common.ui.UIFactoryMgr;
  * @author Daniel Moraru
  */
 public class LegendPanelSimple extends LegendPanel {
+	private static final long serialVersionUID = -8734005760191421929L;
 	/** Timestamp label */
 	private JLabel jLabelTimestamp;
 	/** List of components to remove when rebuilding the entries */

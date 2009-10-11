@@ -14,6 +14,7 @@ import com.ixora.common.ui.filter.FilterEditorDialogNumber;
  */
 public class FilterNumericValueDeltaHandlerEditorDialog extends
 		FilterEditorDialogNumber {
+	private static final long serialVersionUID = 1995549812397606069L;
 
 	/**
 	 * @param parent

@@ -55,13 +55,16 @@ import com.ixora.rms.ui.actions.ActionViewXML;
  * A panel that allows to manage a set of artefacts.
  * @author Daniel Moraru
  */
-public abstract class ArtefactSelectorPanel extends JPanel {
-    /** Logger */
+public abstract class ArtefactSelectorPanel<T extends ArtefactInfo> extends JPanel {
+	private static final long serialVersionUID = -7313639653232410884L;
+
+	/** Logger */
     private static final AppLogger logger = AppLoggerFactory.getLogger(ArtefactSelectorPanel.class);
 	/**
 	 * Apply changes action.
 	 */
 	protected final class ActionApplyChanges extends ActionApply {
+		private static final long serialVersionUID = 341302431514865457L;
 		public ActionApplyChanges() {
 			super();
 			this.enabled = false;
@@ -80,6 +83,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 	 * Edit artefact action.
 	 */
 	protected final class ActionEditArtefact extends AbstractAction {
+		private static final long serialVersionUID = -9061148508393214487L;
 		public ActionEditArtefact(String message) {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(message), this);
@@ -96,6 +100,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 	 * Edit artefact action.
 	 */
 	protected final class ActionAddArtefact extends AbstractAction {
+		private static final long serialVersionUID = -3800683582099331490L;
 		public ActionAddArtefact(String message) {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -113,6 +118,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 	 * Edit artefact action.
 	 */
 	protected final class ActionRemoveArtefact extends AbstractAction {
+		private static final long serialVersionUID = 7783191370924346739L;
 		public ActionRemoveArtefact(String message) {
 			super();
 			UIUtils.setUsabilityDtls(
@@ -130,6 +136,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 	 * Plot action.
 	 */
 	protected final class ActionPlotArtefact extends AbstractAction {
+		private static final long serialVersionUID = 1108394577813040676L;
 		public ActionPlotArtefact(String message) {
 			super();
 			UIUtils.setUsabilityDtls(
@@ -327,7 +334,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 	/** Event handler */
 	private EventHandler fEventHandler;
 	/** Artefact table model */
-	protected SelectableArtefactTableModel fTableModelArtefacts;
+	protected SelectableArtefactTableModel<T> fTableModelArtefacts;
 
     /**
 	 * Constructor used by a log replay session.
@@ -342,7 +349,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 	protected ArtefactSelectorPanel(
 			RMSViewContainer viewContainer,
 			SessionModel sessionData,
-			SelectableArtefactTableModel tableModel,
+			SelectableArtefactTableModel<T> tableModel,
 			String actionAddArtefact,
 			String actionRemoveArtefact,
 			String actionEditArtefact,
@@ -368,7 +375,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 			RMSViewContainer viewContainer,
 			SessionModel sessionData,
 			QueryRealizer queryRealizer,
-			SelectableArtefactTableModel tableModel,
+			SelectableArtefactTableModel<T> tableModel,
 			String actionAddArtefact,
 			String actionRemoveArtefact,
 			String actionEditArtefact,
@@ -396,7 +403,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 	 */
 	protected void setArtefacts(
 			ResourceId context,
-			Collection<? extends ArtefactInfo> artefacts) {
+			Collection<T> artefacts) {
 		this.fSettingUp = true;
 		this.fContext = context;
 		try {
@@ -779,7 +786,7 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 			RMSViewContainer viewContainer,
 			SessionModel sessionData,
 			QueryRealizer queryRealizer,
-			SelectableArtefactTableModel tableModel,
+			SelectableArtefactTableModel<T> tableModel,
 			String actionAddArtefact,
 			String actionRemoveArtefact,
 			String actionEditArtefact,
@@ -802,12 +809,16 @@ public abstract class ArtefactSelectorPanel extends JPanel {
 		this.fActionPlot =  new ActionPlotArtefact(actionPlotArtefact);
 		this.fActionApply = new ActionApplyChanges();
    		this.fActionViewXML = new ActionViewXML(viewContainer) {
+			private static final long serialVersionUID = 5007748037706445191L;
+
 			protected String getXML() throws Exception {
 				return getXMLDefinitionForSelectedArtefact();
 			}
    		};
 
 		this.fActionCancel = new ActionCancel() {
+			private static final long serialVersionUID = 8025417229493631676L;
+
 				public void actionPerformed(ActionEvent e) {
 					handleCancel();
 				}

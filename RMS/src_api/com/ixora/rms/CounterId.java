@@ -10,6 +10,7 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public final class CounterId implements Serializable, Cloneable, Comparable<CounterId> {
+	private static final long serialVersionUID = -8482734090199587506L;
 	/** Counter identifier */
 	private String id;
 

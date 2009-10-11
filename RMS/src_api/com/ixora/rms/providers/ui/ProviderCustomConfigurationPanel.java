@@ -11,6 +11,7 @@ import com.ixora.rms.providers.ProviderCustomConfiguration;
  * @author Daniel Moraru
  */
 public abstract class ProviderCustomConfigurationPanel extends TypedPropertiesEditor {
+	private static final long serialVersionUID = -5988923366928380813L;
 
 	/**
 	 * Listener.

@@ -12,6 +12,8 @@ import com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef;
  * @author Daniel Moraru
  */
 public class ChartCounterDataView extends ChartDef {
+	private static final long serialVersionUID = 6703190585338783469L;
+
 	/**
 	 * Default constructor to support XML.
 	 */

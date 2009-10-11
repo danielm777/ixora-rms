@@ -73,5 +73,5 @@ public interface EntityDescriptor extends MonitoringDescriptor {
      * @param monitoredCountersIds
      * @throws XMLException
      */
-    void toXML(Node parent, Set monitoredCountersIds) throws XMLException;
+    void toXML(Node parent, Set<CounterId> monitoredCountersIds) throws XMLException;
 }

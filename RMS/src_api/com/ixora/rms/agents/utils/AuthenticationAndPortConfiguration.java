@@ -8,6 +8,7 @@ package com.ixora.rms.agents.utils;
  */
 public class AuthenticationAndPortConfiguration
 	extends AuthenticationConfiguration {
+	private static final long serialVersionUID = 310988688733341809L;
 	/** Server port number key */
 	public static final String PORT = Msg.AGENT_CONFIGURATION_PORT;
 

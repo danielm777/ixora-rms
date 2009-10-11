@@ -9,8 +9,9 @@ package com.ixora.rms.ui.dataviewboard.charts.definitions;
  * no implementation). Loads and saves contents in XML.
  */
 public class DomainDef extends AxisDef {
+	private static final long serialVersionUID = -8481104423128245850L;
 
-    /**
+	/**
      * Constructs an empty object, ready to be loaded from XML.
      * This tag is always mandatory.
      */

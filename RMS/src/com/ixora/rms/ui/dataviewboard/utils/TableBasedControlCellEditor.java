@@ -18,6 +18,7 @@ import com.ixora.common.ui.UIFactoryMgr;
  * @author Daniel Moraru
  */
 public class TableBasedControlCellEditor extends DefaultCellEditor {
+	private static final long serialVersionUID = -4770373074290476930L;
 	private TableBasedControlFormatter fFormatter;
 
 	/**

@@ -26,6 +26,7 @@ import com.ixora.rms.dataengine.external.QuerySeries;
  */
 public class RMSXYSeriesCollection extends XYSeriesCollection
 	implements RMSDataset, TableXYDataset {
+	private static final long serialVersionUID = 371166712196765559L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(RMSXYSeriesCollection.class);
 	/** ResourceId to plot on domain axis */
@@ -52,6 +53,7 @@ public class RMSXYSeriesCollection extends XYSeriesCollection
 	/**
 	 * @see com.ixora.rms.ui.dataviewboard.charts.RMSDataset#inspectData(com.ixora.rms.dataengine.external.QueryData)
 	 */
+	@SuppressWarnings("unchecked")
 	public boolean inspectData(QueryData data) {
 	    try {
 			boolean addedSeries = false;
@@ -173,7 +175,8 @@ public class RMSXYSeriesCollection extends XYSeriesCollection
      * Sets the maximum item count for all series.
      * @param max
      */
-    public void setMaximumItemCount(int max) {
+    @SuppressWarnings("unchecked")
+	public void setMaximumItemCount(int max) {
 		for(Iterator its = getSeries().iterator(); its.hasNext();) {
 			XYSeries xySeries = (XYSeries)its.next();
 			xySeries.setMaximumItemCount(max);

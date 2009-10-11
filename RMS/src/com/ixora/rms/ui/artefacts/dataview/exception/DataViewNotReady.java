@@ -12,7 +12,9 @@ import com.ixora.rms.ui.artefacts.dataview.messages.Msg;
  * @author Daniel Moraru
  */
 public final class DataViewNotReady extends RMSException {
-    /**
+	private static final long serialVersionUID = 7557481709659455333L;
+
+	/**
      * Constructor.
      * @param view
      */

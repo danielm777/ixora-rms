@@ -18,7 +18,8 @@ import com.ixora.rms.providers.parsers.messages.Msg;
  * @author Daniel Moraru
  */
 public abstract class ParsingRulesPanel extends JPanel {
-    protected static final String LABEl_ACCUMULATE_VOLATILE_ENTITIES = MessageRepository.get(
+	private static final long serialVersionUID = 4805252399857574978L;
+	protected static final String LABEl_ACCUMULATE_VOLATILE_ENTITIES = MessageRepository.get(
             ProvidersComponent.NAME, Msg.TEXT_ACCUMULATE_VOLATILE_ENTITIES);
     protected static final String LABEl_ACCUMULATE_VOLATILE_ENTITIES_TOOLTIP = MessageRepository.get(
             ProvidersComponent.NAME, Msg.TOOLTIP_ACCUMULATE_VOLATILE_ENTITIES);

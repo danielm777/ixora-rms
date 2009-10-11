@@ -21,6 +21,7 @@ import com.ixora.rms.ui.dataviewboard.DataViewBoardDescriptor;
  * @author Daniel Moraru
  */
 public final class DataViewScreenDescriptor implements XMLExternalizable {
+	private static final long serialVersionUID = -7474464649791056932L;
 	private String screenName;
 	private boolean selected;
 	private Collection<DataViewBoardDescriptor> boardDescriptors;

@@ -22,6 +22,7 @@ import com.ixora.rms.ui.dataviewboard.charts.ChartStyle;
  * @author Daniel Moraru
  */
 public class WizardStep2 extends WizardStep {
+	private static final long serialVersionUID = 6222032099496935239L;
 
 	public static class Data {
 		enum ControlType {TABLE, CHART_BAR, CHART_TIMESERIES, PROPERTIES}

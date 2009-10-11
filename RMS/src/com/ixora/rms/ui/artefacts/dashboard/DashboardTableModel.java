@@ -15,7 +15,8 @@ import com.ixora.rms.ui.artefacts.SelectableArtefactTableModel;
  * @author Daniel Moraru
  */
 public final class DashboardTableModel
-	extends SelectableArtefactTableModel {
+	extends SelectableArtefactTableModel<DashboardInfo> {
+	private static final long serialVersionUID = -2387693008333001717L;
 
 	/**
 	 * Constructor.
@@ -31,9 +32,8 @@ public final class DashboardTableModel
 	/**
 	 * @return the dashboards that must be realized
 	 * (enabled but not committed)
-	 * List of QueryGroupInfo
 	 */
-	public List getDashboardsToRealize() {
+	public List<DashboardInfo> getDashboardsToRealize() {
 		return getArtefactsToRealize();
 	}
 
@@ -42,7 +42,7 @@ public final class DashboardTableModel
 	 * (disabled but not committed)
 	 * List of QueryGroupInfo
 	 */
-	public List getDashboardsToUnRealize() {
+	public List<DashboardInfo> getDashboardsToUnRealize() {
 		return getArtefactsToUnRealize();
 	}
 

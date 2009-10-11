@@ -54,7 +54,8 @@ import com.ixora.rms.ui.reactions.ReactionEditorDialog;
  * @author Daniel Moraru
  */
 final class DataViewContentEditor extends EmbeddedEditorFrame {
-    private JPopupMenu fPopupMenu;
+	private static final long serialVersionUID = -2743880711950799804L;
+	private JPopupMenu fPopupMenu;
 	private JMenuItem fMenuItemInsertResourceId;
 	private JMenuItem fMenuItemInsertReaction;
 	private SessionTreeExplorer fTreeExplorer;
@@ -70,6 +71,7 @@ final class DataViewContentEditor extends EmbeddedEditorFrame {
 	 * Insert resource id.
 	 */
 	private final class ActionInsertResourceId extends AbstractAction {
+		private static final long serialVersionUID = 2887239551346823605L;
 		public ActionInsertResourceId() {
 			super();
 			ImageIcon icon = UIConfiguration.getIcon("insert_resource_id.gif");
@@ -90,6 +92,7 @@ final class DataViewContentEditor extends EmbeddedEditorFrame {
 	 * Edit provider action.
 	 */
 	private final class ActionInsertReaction extends AbstractAction {
+		private static final long serialVersionUID = 5909729235884866800L;
 		public ActionInsertReaction() {
 			super();
 			ImageIcon icon = UIConfiguration.getIcon("reactions.gif");

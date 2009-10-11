@@ -11,6 +11,7 @@ import com.ixora.rms.HostDataBufferImpl;
  * @author Daniel Moraru
  */
 public class ProviderDataBufferImpl extends HostDataBufferImpl implements ProviderDataBuffer {
+	private static final long serialVersionUID = -596782216138286228L;
 	/** The id of the provider that generated this buffer */
 	private ProviderId provider;
 	/** Raw data */

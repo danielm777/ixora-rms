@@ -9,6 +9,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class InvalidParsingRules extends RMSException {
+	private static final long serialVersionUID = 3106876469319951444L;
+
 	/**
 	 * Constructor.
      * @param component

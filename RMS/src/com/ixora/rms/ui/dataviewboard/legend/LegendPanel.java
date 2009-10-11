@@ -16,6 +16,7 @@ import com.ixora.rms.ui.exporter.HTMLProvider;
  * @author Daniel Moraru
  */
 public abstract class LegendPanel extends JPanel implements HTMLProvider {
+	private static final long serialVersionUID = 6618120863907605083L;
 	/** Legend */
 	protected Legend legend;
 	/** Legend entries */

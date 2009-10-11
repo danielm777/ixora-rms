@@ -16,7 +16,9 @@ import com.ixora.common.ui.UIUtils;
  * RMSXYToolTipGenerator
  */
 public final class RMSTimeseriesToolTipGenerator extends StandardXYToolTipGenerator {
-    /**
+	private static final long serialVersionUID = 4268487106372923338L;
+
+	/**
      * Constructor.
      */
     public RMSTimeseriesToolTipGenerator() {

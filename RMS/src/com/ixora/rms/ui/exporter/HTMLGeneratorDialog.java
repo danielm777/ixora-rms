@@ -33,6 +33,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class HTMLGeneratorDialog extends AppDialog {
+	private static final long serialVersionUID = -9043953254506520612L;
 	private HTMLGeneratorSettings fResult;
 	private FormPanel fForm;
 	private JSpinner fSpinner;
@@ -144,6 +145,7 @@ public class HTMLGeneratorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 			UIFactoryMgr.createButton(new ActionOk(){

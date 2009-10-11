@@ -11,6 +11,7 @@ import com.ixora.rms.MonitoringConfiguration;
  * @author Daniel Moraru
  */
 public class ProviderConfiguration extends MonitoringConfiguration {
+	private static final long serialVersionUID = -2473817228403781367L;
 	/** The host where the provider is deployed */
 	private String host;
 

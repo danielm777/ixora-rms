@@ -20,11 +20,12 @@ import com.ixora.rms.ui.preferences.PreferencesConfigurationConstants;
  */
 public class LegendDialog extends JDialog
 	implements PreferencesConfigurationConstants {
+	private static final long serialVersionUID = 3213865412437253294L;
 	/** Reference to the visible dialog */
 	private static LegendDialog legendDlg;
 	/** Legend panel */
 	private LegendPanelDetailed legendPanel;
-	/** The scoll pane holding the legend panel */
+	/** The scroll pane holding the legend panel */
 	private JScrollPane scroll;
 
 	/**

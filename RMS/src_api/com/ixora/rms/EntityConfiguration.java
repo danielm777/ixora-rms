@@ -26,7 +26,9 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public final class EntityConfiguration extends MonitoringConfiguration {
-// bit set indexes with change information
+	private static final long serialVersionUID = 2251309416061708345L;
+
+	// bit set indexes with change information
 	public static final int BIT_COUNTERS = 8;
 
 	/** Monitored counters (collection of CounterId) */
@@ -80,11 +82,11 @@ public final class EntityConfiguration extends MonitoringConfiguration {
 		super.fromXML(node);
 		Node n = XMLUtils.findChild(node, "counters");
 		if(n != null) {
-			List l = XMLUtils.findChildren(n, "counter");
+			List<Node> l = XMLUtils.findChildren(n, "counter");
 			if(!Utils.isEmptyCollection(l)) {
 				fCounters = new HashSet<CounterId>(l.size());
-				for(Iterator iter = l.iterator(); iter.hasNext();) {
-					n = (Node)iter.next();
+				for(Iterator<Node> iter = l.iterator(); iter.hasNext();) {
+					n = iter.next();
 					fCounters.add(new CounterId(XMLUtils.getText(n)));
 				}
 			}
@@ -103,8 +105,8 @@ public final class EntityConfiguration extends MonitoringConfiguration {
 		Element el2;
 		CounterId counterId;
 		if(fCounters != null) {
-			for(Iterator iter = fCounters.iterator(); iter.hasNext();) {
-				counterId = (CounterId)iter.next();
+			for(Iterator<CounterId> iter = fCounters.iterator(); iter.hasNext();) {
+				counterId = iter.next();
 				el2 = doc.createElement("counter");
 				el2.appendChild(doc.createTextNode(counterId.toString()));
 				el.appendChild(el2);
@@ -119,7 +121,7 @@ public final class EntityConfiguration extends MonitoringConfiguration {
 		if(counters == null) {
 			this.fCounters = null;
 		} else {
-			this.fCounters = new HashSet(counters);
+			this.fCounters = new HashSet<CounterId>(counters);
 		}
 	}
 

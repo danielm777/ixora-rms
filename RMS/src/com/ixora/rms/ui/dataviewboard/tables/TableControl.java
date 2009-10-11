@@ -60,6 +60,7 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel;
  */
 public class TableControl extends TableBasedControl
 			implements Observer {
+	private static final long serialVersionUID = -5027333743665840103L;
 	/** View as bar chart popup menu item */
 	private JMenuItem fMenuItemViewAsBarChart;
 	/** View as chart popup menu item */
@@ -103,6 +104,7 @@ public class TableControl extends TableBasedControl
      * ActionViewAsBarChart.
      */
     private final class ActionViewAsBarChart extends AbstractAction {
+		private static final long serialVersionUID = -9147510808476364458L;
 		/**
 		 * Constructor.
 		 */
@@ -130,6 +132,7 @@ public class TableControl extends TableBasedControl
      * ActionViewAsTimeSeriesChart.
      */
     private final class ActionViewAsTimeSeriesChart extends AbstractAction {
+		private static final long serialVersionUID = -7177429897356388696L;
 		/**
 		 * Constructor.
 		 */
@@ -157,6 +160,7 @@ public class TableControl extends TableBasedControl
      * ActionViewSelectedAsBarChart.
      */
     private final class ActionViewSelectedAsBarChart extends AbstractAction {
+		private static final long serialVersionUID = 1427008410168731738L;
 		/**
 		 * Constructor.
 		 */
@@ -184,6 +188,7 @@ public class TableControl extends TableBasedControl
      * ActionViewSelectedAsTimeSeriesChart.
      */
     private final class ActionViewSelectedAsTimeSeriesChart extends AbstractAction {
+		private static final long serialVersionUID = -201368578011698882L;
 		/**
 		 * Constructor.
 		 */
@@ -211,6 +216,7 @@ public class TableControl extends TableBasedControl
      * ActionClearSelection.
      */
     private final class ActionClearSelection extends AbstractAction {
+		private static final long serialVersionUID = 869608915630576364L;
 		/**
 		 * Constructor.
 		 */
@@ -238,7 +244,8 @@ public class TableControl extends TableBasedControl
      * ActionRemoteStaleEntries.
      */
     private final class ActionRemoveStaleEntries extends AbstractAction {
-        /**
+		private static final long serialVersionUID = 4360584711195793301L;
+		/**
          * Constructor.
          */
         public ActionRemoveStaleEntries() {

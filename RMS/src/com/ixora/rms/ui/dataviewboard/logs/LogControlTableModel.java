@@ -10,6 +10,7 @@ import com.ixora.common.MessageRepository;
 import com.ixora.common.collections.CircullarLinkedList;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.common.ui.filter.FilterEditorDialog;
 import com.ixora.common.ui.filter.FilterEditorDialogDate;
 import com.ixora.common.ui.filter.FilterEditorDialogNumber;
 import com.ixora.common.ui.filter.FilterEditorDialogString;
@@ -30,7 +31,9 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel;
 /**
  * @author Daniel Moraru
  */
+@SuppressWarnings("unchecked")
 public class LogControlTableModel extends TableBasedControlTableModel {
+	private static final long serialVersionUID = -4986603295816610542L;
 	private static final AppLogger logger = AppLoggerFactory.getLogger(LogControlTableModel.class);
 	private static final String[] columnNames = new String[]{
 		MessageRepository.get(LogBoardComponent.NAME, Msg.LOGBOARD_COLUMN_TIMESTAMP),
@@ -56,7 +59,7 @@ public class LogControlTableModel extends TableBasedControlTableModel {
 		MessageRepository.get(LogBoardComponent.NAME, Msg.LOGBOARD_COLUMN_MESSAGE + ".desc"),
 		""
 	};
-	private static final Class[] filterUIClasses = new Class[]{
+	private static final Class<? extends FilterEditorDialog>[] filterUIClasses = new Class[]{
 		FilterEditorDialogDate.class, // timestamp
 		FilterEditorDialogNumber.class, // seq no
 		FilterEditorDialogString.class, // severity
@@ -229,7 +232,7 @@ public class LogControlTableModel extends TableBasedControlTableModel {
 	/**
 	 * @see com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel#getFilterUIClasses()
 	 */
-	public Class[] getFilterUIClasses() {
+	public Class<? extends FilterEditorDialog>[] getFilterUIClasses() {
 		return filterUIClasses;
 	}
 }

@@ -16,6 +16,7 @@ import com.ixora.common.ui.UIFactoryMgr;
  * @author Daniel Moraru
  */
 public class ButtonCellRenderer extends DefaultTableCellRenderer {
+	private static final long serialVersionUID = 5129402519537261343L;
 	protected JButton fButton;
 
 	/**

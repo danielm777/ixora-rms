@@ -12,6 +12,7 @@ import com.ixora.rms.providers.ProviderCustomConfiguration;
  * @author Daniel Moraru
  */
 public class Configuration extends ProviderCustomConfiguration {
+	private static final long serialVersionUID = 9203389310218399894L;
 	public static final int PORT_TELNET = 23;
 	public static final int PORT_SSH2 = 22;
 

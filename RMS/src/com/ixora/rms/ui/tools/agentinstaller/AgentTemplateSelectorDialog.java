@@ -28,6 +28,7 @@ import com.ixora.rms.ui.tools.agentinstaller.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentTemplateSelectorDialog extends AppDialog {
+	private static final long serialVersionUID = -5717210352574625221L;
 	private JPanel fPanel;
 	private JComboBox jComboBoxTemplates;
     private AgentTemplate fSelectedTemplate;
@@ -109,6 +110,7 @@ public final class AgentTemplateSelectorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 			new JButton(new ActionOk() {

@@ -18,7 +18,8 @@ import com.ixora.rms.ui.messages.Msg;
  * Sets the name of the selected view board.
  */
 public final class ActionSetViewBoardName extends AbstractAction {
-    /** DataViewBoardHandler */
+	private static final long serialVersionUID = -7280824377791380882L;
+	/** DataViewBoardHandler */
 	private DataViewBoardHandler dataViewBoardHandler;
 
 	/**

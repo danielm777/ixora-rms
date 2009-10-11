@@ -63,6 +63,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public abstract class TableBasedControl extends DataViewControl {
+	private static final long serialVersionUID = -4271115091003631834L;
 	/** Table */
 	protected JTable fTable;
     /** Table sorter */
@@ -100,10 +101,11 @@ public abstract class TableBasedControl extends DataViewControl {
      * Custom table sorter that always uses a comparable comparator.
      */
     private static final class CustomTableSorter extends TableSorter {
+		private static final long serialVersionUID = 328162392954620394L;
 		public CustomTableSorter(TableModel tableModel) {
 			super(tableModel);
 		}
-    	protected Comparator getComparator(int column) {
+    	protected Comparator<?> getComparator(int column) {
 			return COMPARABLE_COMAPRATOR;
 		}
     }
@@ -112,6 +114,7 @@ public abstract class TableBasedControl extends DataViewControl {
      * ActionSetFilter.
      */
     private final class ActionToggleFilter extends AbstractAction {
+		private static final long serialVersionUID = 6166777712710317883L;
 		/**
 		 * Constructor.
 		 */
@@ -139,6 +142,7 @@ public abstract class TableBasedControl extends DataViewControl {
      * ActionPrint.
      */
     private final class ActionPrint extends AbstractAction {
+    	private static final long serialVersionUID = -5762484356092134122L;
 		/**
 		 * Constructor.
 		 */

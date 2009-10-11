@@ -9,6 +9,7 @@ import com.ixora.common.ui.filter.FilterNumber;
  * @author Daniel Moraru
  */
 public class FilterNumericValueDeltaHandler extends FilterNumber {
+	private static final long serialVersionUID = 5966899031598921619L;
 
 	/**
 	 *

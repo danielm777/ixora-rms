@@ -182,8 +182,8 @@ public class RendererImpl {
 			Plot plotDefault,
 			AbstractCategoryItemRenderer newRenderer,
 			RMSDataset newDataset,
-			Class newDomainAxisClass,
-			Class newRangeAxisClass)
+			Class<?> newDomainAxisClass,
+			Class<?> newRangeAxisClass)
 		throws ChartException, QueryException
 	{
 		if (!(newDataset instanceof CategoryDataset))
@@ -236,8 +236,8 @@ public class RendererImpl {
 			Plot plotDefault,
 			AbstractXYItemRenderer newRenderer,
 			RMSDataset newDataset,
-			Class newDomainAxisClass,
-			Class newRangeAxisClass)
+			Class<?> newDomainAxisClass,
+			Class<?> newRangeAxisClass)
 		throws ChartException, QueryException
 	{
 		if (!(newDataset instanceof XYDataset))

@@ -10,6 +10,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class FailedToPlotView extends RMSException {
+	private static final long serialVersionUID = -7035034839581418788L;
+
 	/**
 	 * @param e
 	 */

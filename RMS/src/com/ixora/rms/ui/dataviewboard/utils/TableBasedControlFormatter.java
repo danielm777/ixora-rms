@@ -35,7 +35,7 @@ public abstract class TableBasedControlFormatter extends AbstractValueFormatter 
 	protected List<DateFormat> fColumnDateFormats;
     /** List of column formats; one for each column; some are null */
     protected List<NumberFormat> fColumnNumberFormats;
-    /** The only instance of formmatting data */
+    /** The only instance of formatting data */
 	protected FormattingData fFormattingData;
 
 	/**
@@ -98,7 +98,6 @@ public abstract class TableBasedControlFormatter extends AbstractValueFormatter 
 	 */
     public void setDefaultNumberFormat(String dnf) {
     	NumberFormat newf = new DecimalFormat(dnf);
-    	int idx = 0;
     	for(int i = 0; i < fColumnNumberFormats.size(); i++) {
     		Format f = fColumnNumberFormats.get(i);
     		// change only the columns who have the default formatter

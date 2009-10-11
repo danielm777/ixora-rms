@@ -18,6 +18,8 @@ import com.ixora.rms.ui.dataviewboard.charts.definitions.RendererDef;
  * @author Daniel Moraru
  */
 public class ChartCounterSetDataView extends ChartDef {
+	private static final long serialVersionUID = 6848551625408739176L;
+
 	/**
 	 * Default constructor to support XML.
 	 */

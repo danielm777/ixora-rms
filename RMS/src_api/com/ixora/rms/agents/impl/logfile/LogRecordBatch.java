@@ -20,6 +20,7 @@ import com.ixora.rms.data.ValueObject;
  * @author Daniel Moraru
  */
 public class LogRecordBatch implements ValueObject {
+	private static final long serialVersionUID = -8194457418276606804L;
 	public static final String XML_RECORD_BATCH = "rb";
 	private List<LogRecord> fRecords;
 

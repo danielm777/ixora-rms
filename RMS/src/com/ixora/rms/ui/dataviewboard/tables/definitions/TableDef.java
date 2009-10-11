@@ -9,7 +9,6 @@ import java.util.Set;
 
 import org.w3c.dom.Node;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLAttribute;
 import com.ixora.common.xml.XMLAttributeBoolean;
@@ -17,8 +16,8 @@ import com.ixora.common.xml.XMLAttributeString;
 import com.ixora.common.xml.XMLSameTagList;
 import com.ixora.common.xml.XMLTag;
 import com.ixora.common.xml.exception.XMLException;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.dataengine.Cube;
-import com.ixora.rms.dataengine.QueryResult;
 import com.ixora.rms.dataengine.definitions.QueryDef;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.repository.DataView;
@@ -30,16 +29,18 @@ import com.ixora.rms.ui.dataviewboard.tables.TablesBoard;
  * @author Cristian Costache
  */
 public final class TableDef extends DataView {
-    /** The resource which plays the role of the category */
+	private static final long serialVersionUID = -7421956014909788874L;
+	/** The resource which plays the role of the category */
 	private CategoryTag	category = new CategoryTag();
     /** Columns */
-	private XMLSameTagList columns = new XMLSameTagList(ColumnTag.class);
+	private XMLSameTagList<ColumnTag> columns = new XMLSameTagList<ColumnTag>(ColumnTag.class);
 
     /**
 	 * CategoryTag
 	 * Internal class holding the definition for a table category
 	 */
 	private static class CategoryTag extends XMLTag {
+		private static final long serialVersionUID = -3651439309255850501L;
 		private XMLAttributeString id = new XMLAttributeString("id", true);
 		/**
 		 * Flag that specifies whether or not to remove
@@ -111,7 +112,8 @@ public final class TableDef extends DataView {
     // an ugly hack here, the class must be public in order to work with
     // XMLSameTagList class
     public static class ColumnTag extends XMLTag {
-        private XMLAttribute id = new XMLAttributeString("id", true);
+		private static final long serialVersionUID = -2865179674549086234L;
+		private XMLAttribute id = new XMLAttributeString("id", true);
         /**
          * Default constructor, this tag is not mandatory
          */
@@ -241,12 +243,12 @@ public final class TableDef extends DataView {
 	    Cube realizedCube = new Cube(getQueryDef(), context);
 
 	    // Make sure that category id is valid (exists in the query)
-	    QueryResult qrCategory = realizedCube.getQueryResult(getCategory());
+	   	realizedCube.getQueryResult(getCategory());
 
         if(!Utils.isEmptyCollection(columns)) {
     	    // make sure the columns ids are valid (exists in the query)
             for(String column : getColumns()) {
-                QueryResult qr = realizedCube.getQueryResult(column);
+                realizedCube.getQueryResult(column);
             }
         }
     }

@@ -22,6 +22,7 @@ import com.ixora.rms.ui.exporter.HTMLProvider;
  * @author Daniel Moraru
  */
 public class LegendEntry extends JPanel implements HTMLProvider {
+	private static final long serialVersionUID = 9113650693735622102L;
 	/** Padding */
 	protected static final int PADDING = UIConfiguration.getPanelPadding();
 	/** Number formatter */

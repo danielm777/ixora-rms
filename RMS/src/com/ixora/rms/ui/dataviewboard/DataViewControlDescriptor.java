@@ -22,6 +22,7 @@ import com.ixora.rms.repository.DataViewId;
  * @author Daniel Moraru
  */
 public abstract class DataViewControlDescriptor implements XMLExternalizable {
+	private static final long serialVersionUID = -3811123784712234444L;
 	/** Not null if the control displays a data view from repository */
 	protected DataViewId dataViewId;
 	/** Not null if the control displays a on-the-fly defined view */

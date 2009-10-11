@@ -31,6 +31,7 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
  */
 public final class TablesBoard extends DataViewBoard
 		implements Observer {
+	private static final long serialVersionUID = -6681388128760797114L;
 	/** Columns */
 	private int colsMax;
 	/** Rows */

@@ -5,6 +5,7 @@ package com.ixora.rms.data;
  * @author Daniel Moraru
  */
 public class CounterValueDouble implements CounterValue {
+	private static final long serialVersionUID = -2982131773122112896L;
 	/** Value */
 	private double value;
 

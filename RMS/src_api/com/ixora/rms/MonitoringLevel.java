@@ -9,7 +9,8 @@ import com.ixora.rms.messages.Msg;
  * @author: Daniel Moraru
  */
 public final class MonitoringLevel extends Enum {
-    public static final MonitoringLevel NONE =
+	private static final long serialVersionUID = 7513914386073152674L;
+	public static final MonitoringLevel NONE =
     	new MonitoringLevel(-1, MessageRepository.get(Msg.RMS_ENUM_MONITORINGLEVEL_NONE));
 	public static final MonitoringLevel LOW =
     	new MonitoringLevel(0, MessageRepository.get(Msg.RMS_ENUM_MONITORINGLEVEL_LOW));

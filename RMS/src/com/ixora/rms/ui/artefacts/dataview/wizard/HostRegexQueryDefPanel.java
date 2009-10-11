@@ -36,6 +36,7 @@ import com.ixora.rms.ui.artefacts.dataview.wizard.messages.Msg;
  * @author Daniel Moraru
  */
 public class HostRegexQueryDefPanel extends QueryDefPanel {
+	private static final long serialVersionUID = -4744865334053253620L;
 	private static final String LABEL_HOSTS = "Host Regular Expression";
 	private static final String LABEL_COUNTERS = "Counters";
 	private FormPanel fForm;
@@ -106,6 +107,8 @@ public class HostRegexQueryDefPanel extends QueryDefPanel {
 
 		fEditorResource = new TypedPropertiesListEditor(
 				new PropertyListTableModel(fPrototypeResource, null, null) {
+					private static final long serialVersionUID = -6662805284845104252L;
+
 					public boolean isCellEditable(int rowIndex, int columnIndex) {
 							// counter column not editable
 							if(columnIndex == 0) {
@@ -264,7 +267,6 @@ public class HostRegexQueryDefPanel extends QueryDefPanel {
 				if(Utils.isEmptyString(txt)) {
 					throw new RMSException("Invalid regular expression");
 				}
-				ResourceId rid = new ResourceId("(" + txt + ")");
 				fForm.getLabelWithName(LABEL_HOSTS).setText(LABEL_HOSTS);
 			} catch(Exception e) {
 				txt = UIUtils.getMultilineHtmlText(LABEL_HOSTS

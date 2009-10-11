@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
  * @author Daniel Moraru
  */
 public class EntityDescriptorImplMutable extends EntityDescriptorImpl {
+	private static final long serialVersionUID = 8009156143208635525L;
 
 	/**
 	 * Constructor.

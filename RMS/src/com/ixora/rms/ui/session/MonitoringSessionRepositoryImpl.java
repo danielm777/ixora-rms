@@ -201,13 +201,13 @@ public final class MonitoringSessionRepositoryImpl
 	 * @see com.ixora.rms.ui.session.MonitoringSessionRepository#getMostRecentlyUsed()
 	 */
 	public String[] getMostRecentlyUsed() {
-		List ret = ConfigurationMgr.getList(
+		List<String> ret = ConfigurationMgr.getList(
 		      MonitoringSessionRepositoryComponent.NAME,
 		      MonitoringSessionRepositoryConfigurationConstants.MOST_RECENTLY_USED);
 		if(ret == null) {
 			return null;
 		}
-		return (String[])ret.toArray(new String[ret.size()]);
+		return ret.toArray(new String[ret.size()]);
 	}
 
 	/**
@@ -319,12 +319,12 @@ public final class MonitoringSessionRepositoryImpl
 	private void setLastUsedSession(String absolutePath) {
 	    ComponentConfiguration conf = ConfigurationMgr.get(
 	            MonitoringSessionRepositoryComponent.NAME);
-		List lst = conf.getList(
+		List<String> lst = conf.getList(
 		        MonitoringSessionRepositoryConfigurationConstants.MOST_RECENTLY_USED);
 		if(lst == null) {
-			lst = new LinkedList();
+			lst = new LinkedList<String>();
 		}
-		List mru = new MRUList(
+		List<String> mru = new MRUList<String>(
 		        conf.getInt(MonitoringSessionRepositoryConfigurationConstants.MOST_RECENTLY_USED_SIZE),
 		        lst);
 		mru.add(absolutePath);

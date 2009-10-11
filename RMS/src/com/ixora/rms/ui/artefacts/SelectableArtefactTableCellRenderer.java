@@ -16,6 +16,7 @@ import com.ixora.rms.client.model.ArtefactInfo;
  * @author Daniel Moraru
  */
 public final class SelectableArtefactTableCellRenderer extends DefaultTableCellRenderer {
+	private static final long serialVersionUID = 5840025311083053782L;
 	/** Original font */
 	private Font originalFont;
 

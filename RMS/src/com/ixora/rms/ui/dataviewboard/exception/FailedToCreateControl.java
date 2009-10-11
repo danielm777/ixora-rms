@@ -10,7 +10,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class FailedToCreateControl extends RMSException {
-    /**
+	private static final long serialVersionUID = -2362282605223930737L;
+	/**
      * Constructor.
      * @param e
      */

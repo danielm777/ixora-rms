@@ -23,7 +23,8 @@ import com.ixora.rms.ui.artefacts.SelectableArtefactTableModel;
  * @author Daniel Moraru
  */
 public final class DataViewTableModel
-	extends SelectableArtefactTableModel {
+	extends SelectableArtefactTableModel<DataViewInfo> {
+	private static final long serialVersionUID = 7278855922270165234L;
 	private static final int EXTRA_COLUMNS_COUNT = 2;
 	private static Icon iconWithReactions = UIConfiguration.getIcon("dec_reactions.gif");
 
@@ -54,7 +55,7 @@ public final class DataViewTableModel
 	 * @return the queries that must be realized (enabled but not committed)<br>
 	 * List of DataViewInfo
 	 */
-	public List getDataViewsToRealize() {
+	public List<DataViewInfo> getDataViewsToRealize() {
 		return getArtefactsToRealize();
 	}
 
@@ -62,7 +63,7 @@ public final class DataViewTableModel
 	 * @return the views that must be unrealized(disabled but not committed)<br>
 	 * List of DataViewInfo
 	 */
-	public List getDataViewsToUnRealize() {
+	public List<DataViewInfo> getDataViewsToUnRealize() {
 		return getArtefactsToUnRealize();
 	}
 
@@ -70,7 +71,7 @@ public final class DataViewTableModel
     /**
      * @see com.ixora.rms.ui.artefacts.SelectableArtefactTableModel#getColumnClass(int)
      */
-    public Class getColumnClass(int columnIndex) {
+    public Class<?> getColumnClass(int columnIndex) {
     	switch(columnIndex) {
     	case 0:
     	case 1:

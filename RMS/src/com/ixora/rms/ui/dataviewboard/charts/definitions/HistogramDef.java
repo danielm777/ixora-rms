@@ -12,7 +12,8 @@ import com.ixora.common.xml.XMLTag;
  * @author Daniel Moraru
  */
 public class HistogramDef extends XMLTag {
-    protected XMLAttributeDouble low = new XMLAttributeDouble("low", true);
+	private static final long serialVersionUID = 1017031594634370884L;
+	protected XMLAttributeDouble low = new XMLAttributeDouble("low", true);
     protected XMLAttributeDouble high = new XMLAttributeDouble("high", true);
     protected XMLAttributeInt buckets = new XMLAttributeInt("buckets", true);
 

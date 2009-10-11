@@ -11,6 +11,7 @@ import com.ixora.rms.ui.dataviewboard.charts.ChartsBoardComponent;
  * @author Daniel Moraru
  */
 public abstract class ChartException extends RMSException {
+	private static final long serialVersionUID = -6135848372991583278L;
 
 	/**
 	 * @param s

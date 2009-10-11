@@ -41,10 +41,10 @@ public class RMSKeyedMap2D implements KeyedValues2D {
     }
 
     private HashMap<MapKey, Number>			mapValues = new HashMap<MapKey, Number>();
-    private HashMap<Comparable, Integer>	mapRowKeys = new HashMap<Comparable, Integer>();
-    private HashMap<Comparable, Integer>	mapColKeys = new HashMap<Comparable, Integer>();
+    private HashMap<Comparable<?>, Integer>	mapRowKeys = new HashMap<Comparable<?>, Integer>();
+    private HashMap<Comparable<?>, Integer>	mapColKeys = new HashMap<Comparable<?>, Integer>();
 
-    public void setValue(Number value, Comparable rowKey, Comparable colKey) {
+    public void setValue(Number value, Comparable<?> rowKey, Comparable<?> colKey) {
         int nRow = getRowIndex(rowKey);
         if (nRow == -1) {
             nRow = mapRowKeys.size();
@@ -62,11 +62,11 @@ public class RMSKeyedMap2D implements KeyedValues2D {
     /**
      * @see org.jfree.data.KeyedValues2D#getRowKey(int)
      */
-    public Comparable getRowKey(int row) {
-        for (Iterator it = mapRowKeys.entrySet().iterator(); it.hasNext();) {
-            Map.Entry me = (Map.Entry) it.next();
-            if (((Integer)me.getValue()).intValue() == row)
-                return (Comparable)me.getKey();
+    public Comparable<?> getRowKey(int row) {
+        for (Iterator<Map.Entry<Comparable<?>, Integer>> it = mapRowKeys.entrySet().iterator(); it.hasNext();) {
+        	Map.Entry<Comparable<?>, Integer> me = it.next();
+            if (me.getValue().intValue() == row)
+                return me.getKey();
         }
         return null;
     }
@@ -74,7 +74,8 @@ public class RMSKeyedMap2D implements KeyedValues2D {
     /**
      * @see org.jfree.data.KeyedValues2D#getRowIndex(java.lang.Comparable)
      */
-    public int getRowIndex(Comparable key) {
+    @SuppressWarnings("unchecked")
+	public int getRowIndex(Comparable key) {
         Integer intVal = mapRowKeys.get(key);
         if (intVal != null)
             return intVal.intValue();
@@ -84,18 +85,18 @@ public class RMSKeyedMap2D implements KeyedValues2D {
     /**
      * @see org.jfree.data.KeyedValues2D#getRowKeys()
      */
-    public List getRowKeys() {
-        return new LinkedList<Comparable>(mapRowKeys.keySet());
+	public List<Comparable<?>> getRowKeys() {
+        return new LinkedList<Comparable<?>>(mapRowKeys.keySet());
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getColumnKey(int)
      */
-    public Comparable getColumnKey(int column) {
-        for (Iterator it = mapColKeys.entrySet().iterator(); it.hasNext();) {
-            Map.Entry me = (Map.Entry) it.next();
-            if (((Integer)me.getValue()).intValue() == column)
-                return (Comparable)me.getKey();
+    public Comparable<?> getColumnKey(int column) {
+        for (Iterator<Map.Entry<Comparable<?>, Integer>> it = mapColKeys.entrySet().iterator(); it.hasNext();) {
+        	Map.Entry<Comparable<?>, Integer> me = it.next();
+            if (me.getValue().intValue() == column)
+                return me.getKey();
         }
         return null;
     }
@@ -103,7 +104,8 @@ public class RMSKeyedMap2D implements KeyedValues2D {
     /**
      * @see org.jfree.data.KeyedValues2D#getColumnIndex(java.lang.Comparable)
      */
-    public int getColumnIndex(Comparable key) {
+    @SuppressWarnings("unchecked")
+	public int getColumnIndex(Comparable key) {
         Integer intVal = mapColKeys.get(key);
         if (intVal != null)
             return intVal.intValue();
@@ -113,14 +115,15 @@ public class RMSKeyedMap2D implements KeyedValues2D {
     /**
      * @see org.jfree.data.KeyedValues2D#getColumnKeys()
      */
-    public List getColumnKeys() {
-        return new LinkedList<Comparable>(mapColKeys.keySet());
+    public List<Comparable<?>> getColumnKeys() {
+        return new LinkedList<Comparable<?>>(mapColKeys.keySet());
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getValue(java.lang.Comparable, java.lang.Comparable)
      */
-    public Number getValue(Comparable rowKey, Comparable columnKey) {
+    @SuppressWarnings("unchecked")
+	public Number getValue(Comparable rowKey, Comparable columnKey) {
         int nRow = getRowIndex(rowKey);
         int nCol = getColumnIndex(columnKey);
         return getValue(nRow, nCol);

@@ -13,6 +13,7 @@ import com.ixora.common.xml.XMLTag;
  * @author Daniel Moraru
  */
 public class HTMLGeneratorSettings extends XMLTag {
+	private static final long serialVersionUID = 6382492993005769254L;
 	private XMLAttributeInt fRefreshInterval = new XMLAttributeInt("refresh", true);
 	private XMLAttributeString fSiteRoot = new XMLAttributeString("site", true);
 

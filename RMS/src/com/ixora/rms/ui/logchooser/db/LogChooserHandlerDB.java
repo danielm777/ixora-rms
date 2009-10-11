@@ -13,6 +13,7 @@ import com.ixora.rms.ui.logchooser.LogChooserHandler;
 /**
  * @author Daniel Moraru
  */
+@SuppressWarnings("unused")
 public final class LogChooserHandlerDB implements LogChooserHandler {
 	/** Icon for the scheme files */
 	private ImageIcon icon;

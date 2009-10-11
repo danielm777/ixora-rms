@@ -10,6 +10,7 @@ import com.ixora.rms.ui.dataviewboard.DataViewControlDescriptor;
  * @author Daniel Moraru
  */
 public final class ChartControlDescriptor extends DataViewControlDescriptor {
+	private static final long serialVersionUID = 437146703234314060L;
 
 	/**
 	 * Constructor to support XML.

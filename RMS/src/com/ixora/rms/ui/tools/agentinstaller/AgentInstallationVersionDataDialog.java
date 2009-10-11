@@ -48,6 +48,7 @@ import com.ixora.rms.ui.tools.agentinstaller.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentInstallationVersionDataDialog extends AppDialog {
+	private static final long serialVersionUID = -135375609851806753L;
 	private static final String LABEL_AGENT_LOCATIONS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_LOCATIONS);
 	private static final String LABEL_AGENT_LEVELS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_LEVELS);
 	private static final String LABEL_AGENT_JARS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_JARS);
@@ -78,6 +79,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	 * Model for locations table.
 	 */
 	private static class LocationsTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = -3062129406030042215L;
 		private AgentLocation[] fLocations = new AgentLocation[] {AgentLocation.LOCAL, AgentLocation.REMOTE};
 		private Boolean[] fEnabled = new Boolean[] {Boolean.FALSE, Boolean.FALSE};
 
@@ -133,6 +135,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	 * Model for levels table.
 	 */
 	private static class LevelsTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = -5484520287978467346L;
 		private MonitoringLevel[] fLevels = new MonitoringLevel[] {
 				MonitoringLevel.LOW, MonitoringLevel.MEDIUM, MonitoringLevel.HIGH, MonitoringLevel.MAXIMUM};
 		private Boolean[] fDefault = new Boolean[] {Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE};
@@ -235,6 +238,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	 * @param readOnly
 	 * @param versionData
 	 */
+	@SuppressWarnings("serial")
 	public AgentInstallationVersionDataDialog(
 			RMSViewContainer vc,
 			String[] suoVersions,
@@ -375,7 +379,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
         // jars
         String[] jars = vad.getJars();
         if(!Utils.isEmptyArray(jars)) {
-            List lstJars = new ArrayList<TypedProperties>(jars.length);
+            List<TypedProperties> lstJars = new ArrayList<TypedProperties>(jars.length);
             for(String j : jars) {
                 TypedProperties tp = createFromJar(j);
                 lstJars.add(tp);
@@ -385,7 +389,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
         // native libraries
         String[] natlibs = vad.getNativeLibraries();
         if(!Utils.isEmptyArray(natlibs)) {
-            List lstNatLibs = new ArrayList<TypedProperties>(natlibs.length);
+            List<TypedProperties> lstNatLibs = new ArrayList<TypedProperties>(natlibs.length);
             for(String nl : natlibs) {
                 TypedProperties tp = createFromNatlib(nl);
                 lstNatLibs.add(tp);
@@ -404,6 +408,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 				new JButton(

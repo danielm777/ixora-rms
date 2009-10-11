@@ -21,6 +21,7 @@ import com.ixora.rms.dataengine.external.QuerySeries;
  */
 public class RMSDefaultCategoryDataset extends AbstractDataset
 	implements RMSDataset, CategoryDataset {
+	private static final long serialVersionUID = -2668504022249635905L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(RMSDefaultCategoryDataset.class);
 	/** ResourceId to plot on domain axis */
@@ -39,6 +40,7 @@ public class RMSDefaultCategoryDataset extends AbstractDataset
 
 	public boolean inspectData(QueryData data) {
 	    try {
+			@SuppressWarnings("unused")
 			boolean addedValues = false;
 			boolean addedSeries = false;
 			// Each series will have a category (X axis) and one or more
@@ -92,49 +94,52 @@ public class RMSDefaultCategoryDataset extends AbstractDataset
     /**
      * @see org.jfree.data.KeyedValues2D#getRowKey(int)
      */
-    public Comparable getRowKey(int row) {
+    public Comparable<?> getRowKey(int row) {
         return map2DValues.getRowKey(row);
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getRowIndex(java.lang.Comparable)
      */
-    public int getRowIndex(Comparable key) {
+    @SuppressWarnings("unchecked")
+	public int getRowIndex(Comparable key) {
         return map2DValues.getRowIndex(key);
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getRowKeys()
      */
-    public java.util.List getRowKeys() {
+	public List<Comparable<?>> getRowKeys() {
         return map2DValues.getRowKeys();
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getColumnKey(int)
      */
-    public Comparable getColumnKey(int column) {
+    public Comparable<?> getColumnKey(int column) {
         return map2DValues.getColumnKey(column);
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getColumnIndex(java.lang.Comparable)
      */
-    public int getColumnIndex(Comparable key) {
+    @SuppressWarnings("unchecked")
+	public int getColumnIndex(Comparable key) {
         return map2DValues.getColumnIndex(key);
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getColumnKeys()
      */
-    public java.util.List getColumnKeys() {
+    public List<Comparable<?>> getColumnKeys() {
         return map2DValues.getColumnKeys();
     }
 
     /**
      * @see org.jfree.data.KeyedValues2D#getValue(java.lang.Comparable, java.lang.Comparable)
      */
-    public Number getValue(Comparable rowKey, Comparable columnKey) {
+    @SuppressWarnings("unchecked")
+	public Number getValue(Comparable rowKey, Comparable columnKey) {
         return map2DValues.getValue(rowKey, columnKey);
     }
 

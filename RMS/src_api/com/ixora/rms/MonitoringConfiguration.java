@@ -20,7 +20,8 @@ import com.ixora.common.xml.exception.XMLException;
  */
 public abstract class MonitoringConfiguration
 	implements Serializable, XMLExternalizable, Cloneable {
-// bits for changes	to the runtime settings
+	private static final long serialVersionUID = 3175708342695870857L;
+	// bits for changes	to the runtime settings
 	public static final int BIT_MONITORING_LEVEL = 0;
 	public static final int BIT_SAMPLING_INTERVAL = 1;
 	public static final int BIT_ENABLE_ALL_COUNTERS = 2;
