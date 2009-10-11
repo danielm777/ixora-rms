@@ -32,17 +32,17 @@ public abstract class AppDialog extends JDialog {
 	private static final long serialVersionUID = -8926279294456324876L;
 	protected static final int VERTICAL = 0;
 	protected static final int HORIZONTAL = 1;
-    private JPanel contentPane;
-    private JPanel jPanelSouth;
-	private JPanel jPanelCenter;
+    private JPanel fContentPane;
+    private JPanel fPanelSouth;
+	private JPanel fPanelCenter;
 	/** Display panels */
-	private Component[] displayPanels;
+	private Component[] fDisplayPanels;
 	/** Panel orientation */
-	private int orientation;
+	private int fOrientation;
 	/** Padding used to space panels */
-	protected int padding;
+	protected int fPadding;
 	/** Whether or not to process buttons */
-	protected boolean processButtons;
+	protected boolean fProcessButtons;
 
     /**
      * AppDialog constructor comment.
@@ -100,8 +100,8 @@ public abstract class AppDialog extends JDialog {
 	 * their initialization is complete.
 	 */
 	protected final void buildContentPane() {
-       	this.displayPanels = getDisplayPanels();
-    	if(this.displayPanels == null || this.displayPanels.length == 0) {
+       	this.fDisplayPanels = getDisplayPanels();
+    	if(this.fDisplayPanels == null || this.fDisplayPanels.length == 0) {
     		throw new IllegalArgumentException("no panels to display");
     	}
 		setContentPane(getJDialogContentPane());
@@ -119,7 +119,7 @@ public abstract class AppDialog extends JDialog {
 	 * Refreshes the display.
 	 */
 	protected void repaintDisplay() {
-		for(Component panel : displayPanels) {
+		for(Component panel : fDisplayPanels) {
 			if(panel instanceof JComponent) {
 				JComponent jpanel = (JComponent)panel;
 				jpanel.revalidate();
@@ -164,22 +164,22 @@ public abstract class AppDialog extends JDialog {
      * @return java.awt.Container
      */
     private JPanel getJPanelCenter() {
-        if(jPanelCenter == null) {
-            jPanelCenter = new JPanel();
-			jPanelCenter.setLayout(new BoxLayout(jPanelCenter, this.orientation == VERTICAL ? BoxLayout.Y_AXIS : BoxLayout.X_AXIS));
-			for(int i = 0; i < this.displayPanels.length; ++i) {
-                jPanelCenter
-                    .add(this.displayPanels[i]);
-                if(padding > 0) {
-	                if(i != this.displayPanels.length - 1) {
-		                jPanelCenter.add((orientation == HORIZONTAL ?
-							Box.createHorizontalStrut(padding)
-							: Box.createVerticalStrut(padding)));
+        if(fPanelCenter == null) {
+            fPanelCenter = new JPanel();
+			fPanelCenter.setLayout(new BoxLayout(fPanelCenter, this.fOrientation == VERTICAL ? BoxLayout.Y_AXIS : BoxLayout.X_AXIS));
+			for(int i = 0; i < this.fDisplayPanels.length; ++i) {
+                fPanelCenter
+                    .add(this.fDisplayPanels[i]);
+                if(fPadding > 0) {
+	                if(i != this.fDisplayPanels.length - 1) {
+		                fPanelCenter.add((fOrientation == HORIZONTAL ?
+							Box.createHorizontalStrut(fPadding)
+							: Box.createVerticalStrut(fPadding)));
 	                }
                 }
              }
         }
-        return jPanelCenter;
+        return fPanelCenter;
     }
 
     /**
@@ -187,20 +187,20 @@ public abstract class AppDialog extends JDialog {
      * @return javax.swing.JPanel
      */
     protected javax.swing.JPanel getJDialogContentPane() {
-        if(contentPane == null) {
-            contentPane = new javax.swing.JPanel();
-            contentPane.setOpaque(true);
-           	contentPane.setBorder(
-            			BorderFactory.createEmptyBorder(padding, padding, padding, padding));
-            contentPane.setLayout(new BorderLayout());
-            contentPane
+        if(fContentPane == null) {
+            fContentPane = new javax.swing.JPanel();
+            fContentPane.setOpaque(true);
+           	fContentPane.setBorder(
+            			BorderFactory.createEmptyBorder(fPadding, fPadding, fPadding, fPadding));
+            fContentPane.setLayout(new BorderLayout());
+            fContentPane
                 .add(getJPanelCenter(), BorderLayout.CENTER);
             if(getButtons() != null) {
-            	contentPane
+            	fContentPane
 	            	.add(getJPanelSouth(), BorderLayout.SOUTH);
             }
         }
-        return contentPane;
+        return fContentPane;
     }
 
 
@@ -209,7 +209,7 @@ public abstract class AppDialog extends JDialog {
      * @return javax.swing.JPanel
      */
     private javax.swing.JPanel getJPanelSouth() {
-        if(jPanelSouth == null) {
+        if(fPanelSouth == null) {
 	        JButton[] buttons = getButtons();
 	        // TODO temporary fix for JDK6.0 as FlowLayout makes the
 	        // buttons too small for their text
@@ -219,13 +219,13 @@ public abstract class AppDialog extends JDialog {
 					jPanelSouth.add(buttons[i]);
 				}
 	        } else {
-*/		        jPanelSouth = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+*/		        fPanelSouth = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		        for (int i = 0; i < buttons.length; i++) {
-					jPanelSouth.add(buttons[i]);
+					fPanelSouth.add(buttons[i]);
 				}
 //	        }
 
-	        if(processButtons) {
+	        if(fProcessButtons) {
 		        JButton first = buttons[0];
 		        JButton last = buttons[buttons.length - 1];
 		        // disable mnemonics for the default and the escape button
@@ -246,7 +246,7 @@ public abstract class AppDialog extends JDialog {
 		    	}
 	        }
         }
-        return jPanelSouth;
+        return fPanelSouth;
     }
 
 	/**
@@ -255,9 +255,9 @@ public abstract class AppDialog extends JDialog {
 	 * @param processButtons
 	 */
 	private void initialize(int orientation, boolean processButtons) {
-		this.orientation = orientation;
-		this.processButtons = processButtons;
-		this.padding = UIConfiguration.getPanelPadding();
+		this.fOrientation = orientation;
+		this.fProcessButtons = processButtons;
+		this.fPadding = UIConfiguration.getPanelPadding();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 }

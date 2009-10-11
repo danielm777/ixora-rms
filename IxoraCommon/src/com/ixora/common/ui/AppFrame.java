@@ -78,11 +78,13 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	protected AppView fCurrentView;
 	/** Status bar */
 	protected AppStatusBar fStatusBar;
+	/** Event hub */
+	protected AppEventHub fEventHub;
     /** Log with non fatal errors */
 	protected NonFatalErrorBuffer fNonFatalErrorBuffer;
 	/** Feedback url */
 	protected URL fFeedbackURL;
-	/** The text pane that shows the hyperlink to open the error log */
+	/** The text pane that shows the hyper-link to open the error log */
 	protected JEditorPane fTextPaneErrorLog;
 	/** Private event handler */
 	private EventHandler fEventHandler;
@@ -446,6 +448,13 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	}
 
 	/**
+	 * @see com.ixora.common.ui.AppViewContainer#getEventHub()
+	 */
+	public AppEventHub getEventHub() {
+		return this.fEventHub;
+	}
+
+	/**
 	 * @see com.ixora.common.ui.AppViewContainer#runJob(com.ixora.common.ui.jobs.UIWorkerJob, boolean)
 	 */
 	public void runJob(UIWorkerJob job, boolean synch) {
@@ -560,6 +569,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 */
 	protected void initialize(AppFrameParameters params) throws Throwable {
 		this.fEventHandler = new EventHandler();
+		this.fEventHub = new AppEventHubImpl();
 		// first thing to do
 		UIExceptionMgr.installExceptionHandler(this.fEventHandler);
 		// Note: The following lines setting the theme must be before any
