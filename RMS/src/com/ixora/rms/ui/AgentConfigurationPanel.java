@@ -41,6 +41,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentConfigurationPanel extends JPanel {
+	private static final long serialVersionUID = -222424167654962572L;
 	/** Custom panel. It might be null */
 	private AgentCustomConfigurationPanel fAgentCustomConfigPanel;
 	/** Current custom agent configuration, being edited */
@@ -75,6 +76,7 @@ public final class AgentConfigurationPanel extends JPanel {
 	 * Select providers action.
 	 */
 	private final class ActionSelectProviders extends AbstractAction {
+		private static final long serialVersionUID = 7212909191853061072L;
 		public ActionSelectProviders() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_AGENT_CONFIGURATION_SELECT_PROVIDERS), this);

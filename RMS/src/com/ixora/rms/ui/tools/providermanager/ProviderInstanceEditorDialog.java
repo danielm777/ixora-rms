@@ -63,6 +63,7 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ProviderInstanceEditorDialog extends AppDialog {
+	private static final long serialVersionUID = 5498284720878727015L;
 	private RMSViewContainer fViewContainer;
 	private ProviderInstanceRepositoryService fProviderInstanceRepository;
 	private ParserRepositoryService fParsingRepository;
@@ -276,6 +277,7 @@ public final class ProviderInstanceEditorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 				UIFactoryMgr.createButton(new ActionOk() {

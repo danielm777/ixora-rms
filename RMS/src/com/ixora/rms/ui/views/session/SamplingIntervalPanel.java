@@ -44,6 +44,7 @@ import com.ixora.rms.ui.messages.Msg;
  */
 public final class SamplingIntervalPanel
 		extends JPanel implements ToolBarComponent, Observer {
+	private static final long serialVersionUID = -5646442581148459548L;
 	private RMSViewContainer fViewContainer;
 	private JSpinner fSamplingSpinner;
 	private JButton fApplyButton;
@@ -53,6 +54,7 @@ public final class SamplingIntervalPanel
 	 * Apply change action.
 	 */
 	private final class ActionChangeSamplingInterval extends AbstractAction {
+		private static final long serialVersionUID = 4327146059918300091L;
 		public ActionChangeSamplingInterval() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_CHANGE_SAMPLING_INTERVAL), this);

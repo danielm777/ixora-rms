@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import com.ixora.remote.HostManager;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.RMIServices;
 import com.ixora.common.logging.AppLogger;
@@ -19,6 +18,7 @@ import com.ixora.common.remote.RMIPingableFactory;
 import com.ixora.common.remote.ServiceInfo;
 import com.ixora.common.remote.ServiceMonitor;
 import com.ixora.common.remote.ServiceState;
+import com.ixora.remote.HostManager;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.services.HostMonitorService;
 
@@ -35,7 +35,7 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	/** Monitor based on ICMP ping */
 	private ServiceMonitor monitorPING;
 	/** HostMonitor listeners */
-	private List listeners;
+	private List<Listener> listeners;
 	/** Event handler */
 	private EventHandler eventHandler;
 	/** Factory for the remote HostManager object */
@@ -64,7 +64,7 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	public HostMonitor() throws Throwable {
 		super();
 		this.eventHandler = new EventHandler();
-		this.listeners = new LinkedList();
+		this.listeners = new LinkedList<Listener>();
 		int pingDelay = ConfigurationMgr.getInt(
 			RMSComponent.NAME,
 			RMSConfigurationConstants.HOSTS_PING_DELAY);
@@ -156,18 +156,16 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	 * @return the states of the monitored hosts
 	 */
 	public HostState[] getHostsStates() {
-		Collection hosts = this.monitorPING.getHosts();
-		String host;
-		HostState hs;
-		List ret = new LinkedList();
-		for(Iterator iter = hosts.iterator(); iter.hasNext();) {
-			host = (String)iter.next();
-			hs = getHostState(host);
+		Collection<String> hosts = this.monitorPING.getHosts();
+		List<HostState> ret = new LinkedList<HostState>();
+		for(Iterator<String> iter = hosts.iterator(); iter.hasNext();) {
+			String host = iter.next();
+			HostState hs = getHostState(host);
 			if(hs != null) {
 				ret.add(hs);
 			}
 		}
-		return (HostState[])ret.toArray(new HostState[ret.size()]);
+		return ret.toArray(new HostState[ret.size()]);
 	}
 
 	/**
@@ -189,18 +187,16 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	 * @return the info on all the monitored hosts
 	 */
 	public HostInformation[] getHostsInfo() throws RMSException, RemoteException {
-		Collection hosts = this.monitorHM.getHosts();
-		String host;
-		HostInformation hi;
-		List ret = new LinkedList();
-		for(Iterator iter = hosts.iterator(); iter.hasNext();) {
-			host = (String)iter.next();
-			hi = getHostInfo(host);
+		Collection<String> hosts = this.monitorHM.getHosts();
+		List<HostInformation> ret = new LinkedList<HostInformation>();
+		for(Iterator<String> iter = hosts.iterator(); iter.hasNext();) {
+			String host = iter.next();
+			HostInformation  hi = getHostInfo(host);
 			if(hi != null) {
 				ret.add(hi);
 			}
 		}
-		return (HostInformation[])ret.toArray(new HostInformation[ret.size()]);
+		return ret.toArray(new HostInformation[ret.size()]);
 	}
 
 	/**
@@ -208,7 +204,7 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	 * @param hosts
 	 * @param waitForState
 	 */
-	public void addHosts(Collection hosts, boolean waitForState) {
+	public void addHosts(Collection<String> hosts, boolean waitForState) {
 		this.monitorHM.addHosts(hosts, waitForState);
 		this.monitorPING.addHosts(hosts, waitForState);
 	}
@@ -218,9 +214,8 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	 * @param hosts
 	 */
 	public void removeHosts(Collection<String> hosts) {
-		String host;
-		for(Iterator iter = hosts.iterator(); iter.hasNext();) {
-			host = (String)iter.next();
+		for(Iterator<String> iter = hosts.iterator(); iter.hasNext();) {
+			String host = iter.next();
 			fireAboutToRemoveHost(host);
 			this.monitorHM.removeHost(host);
 			this.monitorPING.removeHost(host);
@@ -322,9 +317,9 @@ public final class HostMonitor implements HostMonitorService, Observer {
 			ServiceState oldState,
 			ServiceState newState) {
 		synchronized (this.listeners) {
-			for(Iterator iter = listeners.iterator(); iter.hasNext();) {
+			for(Iterator<Listener> iter = listeners.iterator(); iter.hasNext();) {
                 try {
-                    ((Listener)iter.next()).hostStateChanged(host, serviceID, newState);
+                    iter.next().hostStateChanged(host, serviceID, newState);
                 } catch(Exception e) {
                     logger.error(e);
                 }
@@ -340,9 +335,9 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	private void fireUpdateHostInfo(String host, HostInformation info) {
 		completeHostInfoDtls(info, host);
 		synchronized (this.listeners) {
-			for(Iterator iter = listeners.iterator(); iter.hasNext();) {
+			for(Iterator<Listener> iter = listeners.iterator(); iter.hasNext();) {
                 try {
-                    ((Listener)iter.next()).updateHostInfo(host, info);
+                    iter.next().updateHostInfo(host, info);
                 } catch(Exception e) {
                     logger.error(e);
                 }
@@ -356,9 +351,9 @@ public final class HostMonitor implements HostMonitorService, Observer {
 	 */
 	private void fireAboutToRemoveHost(String host) {
 		synchronized (this.listeners) {
-			for(Iterator iter = listeners.iterator(); iter.hasNext();) {
+			for(Iterator<Listener> iter = listeners.iterator(); iter.hasNext();) {
                 try {
-                    ((Listener)iter.next()).aboutToRemoveHost(host);
+                    iter.next().aboutToRemoveHost(host);
                 } catch(Exception e) {
                     logger.error(e);
                 }

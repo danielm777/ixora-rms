@@ -11,7 +11,9 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ParsingRulesMissing extends RMSException {
-    /**
+	private static final long serialVersionUID = -8627023567578612353L;
+
+	/**
      * Constructor.
      */
     public ParsingRulesMissing() {

@@ -22,6 +22,7 @@ import com.ixora.common.ui.editor.SyntaxHighlightXML;
  * @author Daniel Moraru
  */
 public final class XMLInputDialog extends EmbeddedEditorDialog {
+	private static final long serialVersionUID = -3561149137141708930L;
 
 	/**
 	 * Callback.
@@ -92,10 +93,12 @@ public final class XMLInputDialog extends EmbeddedEditorDialog {
 		if(fCallback != null) {
 			return new JButton[]{
 					UIFactoryMgr.createButton(new ActionOk() {
+						private static final long serialVersionUID = 3195502252212062821L;
 						public void actionPerformed(ActionEvent e) {
 							handleOk();
 						}}),
 					UIFactoryMgr.createButton(new ActionCancel() {
+						private static final long serialVersionUID = 3570714766042342019L;
 						public void actionPerformed(ActionEvent e) {
 							dispose();
 						}
@@ -103,6 +106,7 @@ public final class XMLInputDialog extends EmbeddedEditorDialog {
 		} else {
 			return new JButton[]{
 					UIFactoryMgr.createButton(new ActionClose() {
+						private static final long serialVersionUID = -8319708561874938618L;
 						public void actionPerformed(ActionEvent e) {
 							dispose();
 						}

@@ -14,20 +14,13 @@ import com.ixora.rms.agents.AgentId;
 /**
  * Identifies one or a set of monitoring entities (counter,
  * entity, agent...) by specifying the host, agent, entity and counter id
- * or a regular expression for each of the above.
+ * or a regular expression for each of the above.<br>
+ * Note: this class should remain immutable.
  * @author Cristian Costache
  * @author Daniel Moraru
  */
-/*
- * Note: this class should remain immutable
- * Modification history
- * --------------------------------------------------
- * 07 July 2004 - DM fixed equals() and hashcode()
- * 11 July 2004 - DM added isComplete() and complete() methods
- * 16 July 2004 - DM added appliesTo() and regexp support
- * 11 Aug 2004 - DM added parse()
- */
 public final class ResourceId implements Serializable {
+	private static final long serialVersionUID = -8999365215433812931L;
 	/** The host part of the resource */
 	public static final int HOST = 0;
 	/** The agent part of the resource */

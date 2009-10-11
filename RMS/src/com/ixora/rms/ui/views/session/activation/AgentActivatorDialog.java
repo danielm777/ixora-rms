@@ -54,6 +54,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentActivatorDialog extends AppDialog {
+	private static final long serialVersionUID = -3801029147723468873L;
+
 	/**
 	 * Event handler.
 	 */
@@ -82,6 +84,7 @@ public final class AgentActivatorDialog extends AppDialog {
 	 * Activate agent action.
 	 */
 	private final class ActionActivateAgent extends AbstractAction {
+		private static final long serialVersionUID = -6453924095831356911L;
 		public ActionActivateAgent() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_ACTIVATEAGENT), this);
@@ -107,7 +110,7 @@ public final class AgentActivatorDialog extends AppDialog {
 	/** View container */
 	private RMSViewContainer fViewContainer;
 	/** Hosts */
-	private Collection fHosts;
+	private Collection<String> fHosts;
 	/** Action activate agent */
 	private Action fActionActivateAgent;
 	/** Agent activation config panel */
@@ -134,7 +137,7 @@ public final class AgentActivatorDialog extends AppDialog {
 	 * @throws RMSException
 	 */
 	public AgentActivatorDialog(
-				Collection hosts,
+				Collection<String> hosts,
 				RMSViewContainer vc,
 				ComponentConfiguration rmsConf,
 				MonitoringSessionService rmsMs,
@@ -160,6 +163,7 @@ public final class AgentActivatorDialog extends AppDialog {
 			UIFactoryMgr.createButton(this.fActionActivateAgent),
 			UIFactoryMgr.createButton(fActionAgentHelp),
 			UIFactoryMgr.createButton(new ActionClose() {
+				private static final long serialVersionUID = 5453407027549250265L;
 				public void actionPerformed(ActionEvent arg0) {
 					dispose();
 				}})
@@ -174,7 +178,7 @@ public final class AgentActivatorDialog extends AppDialog {
 	 * @param listener
 	 */
 	private void initialize(
-			Collection hosts,
+			Collection<String> hosts,
 			RMSViewContainer vc,
 			MonitoringSessionService rmsMs,
 			AgentRepositoryService rmsAr,
@@ -202,6 +206,7 @@ public final class AgentActivatorDialog extends AppDialog {
 		this.fSessionModel = sm;
 		this.fActionActivateAgent = new ActionActivateAgent();
 		this.fActionAgentHelp = new ActionHelp() {
+			private static final long serialVersionUID = 3730205822736732650L;
 			public void actionPerformed(ActionEvent e) {
 				handleHelpOnAgent();
 			}};
@@ -218,7 +223,7 @@ public final class AgentActivatorDialog extends AppDialog {
 
 		// set up title
 		StringBuffer buff = new StringBuffer();
-		for(Iterator iter = hosts.iterator(); iter.hasNext();) {
+		for(Iterator<String> iter = hosts.iterator(); iter.hasNext();) {
 			buff.append(iter.next());
 			if(iter.hasNext()) {
                 buff.append(", ");
@@ -261,9 +266,8 @@ public final class AgentActivatorDialog extends AppDialog {
 			final AgentInstallationData idtls = dtls.getAgentInstallationDtls();
 			// save configuration details, this will update AgentDeploymentDtls;
 			final AgentActivationData ddtls = (AgentActivationData)this.fPanelAgentActivationConfig.applyChanges().clone();
-			// cache the last acitvation data
+			// cache the last activation data
 			agentNode.setLastAgentActivationData(ddtls);
-			final String agentClass = idtls.getAgentImplClass();
 			final String agentInstallationId = idtls.getAgentInstallationId();
 
 			// check agent against license
@@ -286,12 +290,8 @@ public final class AgentActivatorDialog extends AppDialog {
 									fHosts.size()) {
 					public void work() throws Exception {
 						String host;
-						for(Iterator iter = fHosts.iterator(); !fCanceled && iter.hasNext();) {
-                            // license check
-//                            if(maxAgents > 0 && maxAgents <= sessionModel.getTotalNumberOfAgents()) {
-//                                throw new LicenseLimitReachedAgents();
-//                            }
-                            host = (String)iter.next();
+						for(Iterator<String> iter = fHosts.iterator(); !fCanceled && iter.hasNext();) {
+                            host = iter.next();
 							setProgressStep(host);
 							activateOneAgent(host, agentInstallationId, idtls, ddtls);							setProgressLevel(1);
 						}
@@ -314,8 +314,8 @@ public final class AgentActivatorDialog extends AppDialog {
 										new String[]{translatedAgentName})) {
 					public void work() throws Exception {
 						String host;
-						for(Iterator iter = fHosts.iterator(); iter.hasNext();) {
-							host = (String)iter.next();
+						for(Iterator<String> iter = fHosts.iterator(); iter.hasNext();) {
+							host = iter.next();
 							activateOneAgent(host, agentInstallationId, idtls, ddtls);
 						}
 						// save agent activation data to history

@@ -20,6 +20,7 @@ import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.forms.FormPanel;
+import com.ixora.common.utils.Utils;
 import com.ixora.rms.exception.NoParsersInstalledForProvider;
 import com.ixora.rms.exception.ParserIsMissing;
 import com.ixora.rms.exception.RMSException;
@@ -37,6 +38,7 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ParserPanel extends JPanel {
+	private static final long serialVersionUID = -8672492369026206525L;
 	private static final String LABEl_NAME = MessageRepository.get(ProviderManagerComponent.NAME, Msg.TEXT_PARSER_NAME);
 	private FormPanel fForm;
 	private JPanel fRulesPanel;
@@ -244,7 +246,7 @@ public final class ParserPanel extends JPanel {
 	 */
 	private void setRulesPanelFor(String name, ParsingRulesDefinition rules) throws RMSException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		String confPanelClass = getParserRulesPanelClass(name);
-		Class c = Class.forName(confPanelClass);
+		Class<?> c = Utils.getClassLoader(getClass()).loadClass(confPanelClass);
 		ParsingRulesPanel rp = (ParsingRulesPanel)c.newInstance();
 		if(rules == null) {
 			rules = rp.createRules();

@@ -12,6 +12,8 @@ import com.ixora.rms.repository.AgentInstallationData;
  * @author Daniel Moraru
  */
 public final class AgentActivationNode extends DefaultMutableTreeNode {
+	private static final long serialVersionUID = 7724218446802877450L;
+
 	/**
 	 * @param aid
 	 */

@@ -24,6 +24,7 @@ import com.ixora.rms.ui.RMSViewContainer;
  * @author Daniel Moraru
  */
 public class AgentActivationDataPanelWithHistory extends JPanel {
+	private static final long serialVersionUID = 8512928845397393705L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(AgentActivationDataPanelWithHistory.class);
 	private HistoryPanel fHistoryPanel;

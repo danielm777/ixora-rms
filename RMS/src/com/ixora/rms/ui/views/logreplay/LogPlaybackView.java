@@ -21,10 +21,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import com.ixora.rms.HostId;
-import com.ixora.rms.HostInformation;
-import com.ixora.rms.RMS;
-import com.ixora.rms.ResourceId;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
@@ -35,6 +31,9 @@ import com.ixora.common.ui.jobs.UIWorkerJobDefaultCancelable;
 import com.ixora.common.ui.popup.PopupListener;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.EntityDescriptor;
+import com.ixora.rms.HostId;
+import com.ixora.rms.RMS;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.AgentDescriptor;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.client.AgentInstanceData;
@@ -260,6 +259,7 @@ public final class LogPlaybackView extends SessionView {
 	 * Play log.
 	 */
 	private final class ActionPlayLog extends AbstractAction {
+		private static final long serialVersionUID = -4371549752739304250L;
 		public ActionPlayLog() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -281,6 +281,7 @@ public final class LogPlaybackView extends SessionView {
 	 * Pause log.
 	 */
 	private final class ActionPauseLog extends AbstractAction {
+		private static final long serialVersionUID = 5746018901819513216L;
 		public ActionPauseLog() {
 			super();
 			enabled = false;
@@ -303,6 +304,7 @@ public final class LogPlaybackView extends SessionView {
 	 * Pause log.
 	 */
 	private final class ActionRewindLog extends AbstractAction {
+		private static final long serialVersionUID = 1258866305025332239L;
 		public ActionRewindLog() {
 			super();
 			enabled = false;
@@ -746,7 +748,6 @@ public final class LogPlaybackView extends SessionView {
 			if(o instanceof HostNode) {
 				HostNode hn = (HostNode)o;
 				ResourceId context = hn.getResourceId();
-				HostInformation dtls = hn.getHostInfo().getInfo();
 				hostOperationsPanel.getPanelViews().setDataViews(
 						context,
 						hn.getHostInfo().getDataViewInfo());

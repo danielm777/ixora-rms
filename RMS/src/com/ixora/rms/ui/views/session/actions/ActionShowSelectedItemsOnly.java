@@ -21,10 +21,11 @@ import com.ixora.rms.ui.messages.Msg;
  * Toggles identifiers instead of translated names.
  */
 public final class ActionShowSelectedItemsOnly extends AbstractAction {
+	private static final long serialVersionUID = -9219187811938512421L;
     /** Session model */
 //    private SessionModel model;
 
-    /**
+	/**
 	 * Constructor.
 	 * @param model
 	 */

@@ -37,6 +37,7 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class DataDescriptorsPanel extends JPanel {
+	private static final long serialVersionUID = 8211250301201831221L;
 	private TypedPropertiesListEditor fEditorEntities;
 	private TypedPropertiesListEditor fEditorCounters;
 	private TypedProperties fPrototypeEntity;
@@ -46,6 +47,7 @@ public final class DataDescriptorsPanel extends JPanel {
 	 * Model for the object editor.
 	 */
 	private final class CustomPropertiesListTableModelEntities extends PropertyListTableModel {
+		private static final long serialVersionUID = -4680651054257173809L;
 		public CustomPropertiesListTableModelEntities(TypedProperties arg0, String arg1, List<TypedProperties> arg2) {
 			super(arg0, arg1, arg2, true);
 		}
@@ -61,6 +63,7 @@ public final class DataDescriptorsPanel extends JPanel {
 	 * Model for the object editor.
 	 */
 	private final class CustomPropertiesListTableModelCounters extends PropertyListTableModel {
+		private static final long serialVersionUID = -313607840898234122L;
 		public CustomPropertiesListTableModelCounters(TypedProperties arg0, String arg1, List<TypedProperties> arg2) {
 			super(arg0, arg1, arg2, true);
 		}

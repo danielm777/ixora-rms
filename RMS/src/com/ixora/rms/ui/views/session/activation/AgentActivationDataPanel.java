@@ -40,9 +40,11 @@ import com.ixora.rms.ui.messages.Msg;
 
 /**
  * Panel that edits agent activation data.
+ * @author Daniel Moraru
  */
 public class AgentActivationDataPanel extends JPanel {
-    private static final String LABEL_SELECT_LOCATION = MessageRepository.get(Msg.TEXT_SELECT_LOCATION);
+	private static final long serialVersionUID = -8636582750801633007L;
+	private static final String LABEL_SELECT_LOCATION = MessageRepository.get(Msg.TEXT_SELECT_LOCATION);
     private static final String LABEL_SELECT_SYSTEM_VERSION = MessageRepository.get(Msg.TEXT_SELECT_SYSTEM_VERSION);
     /** RMS configuration service */
     private ComponentConfiguration fRMSConfig;
@@ -50,7 +52,7 @@ public class AgentActivationDataPanel extends JPanel {
     private AgentConfigurationPanel fPanelAgentConfig;
     /** Possible deployment locations */
     private JComboBox fComboBoxLocation;
-    /** Systen under observation version */
+    /** System under observation version */
     private JComboBox fComboBoxSUOVersion;
     /** In edit agent activation data */
     private AgentActivationData fInEditData;

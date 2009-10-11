@@ -8,6 +8,7 @@ package com.ixora.rms;
  * @author Daniel Moraru
  */
 public abstract class HostDataBufferImpl implements HostDataBuffer {
+	private static final long serialVersionUID = 139270369202338255L;
 	/** The host from where the data originated */
 	protected HostId host;
 	/** Time difference between the remote and local host */

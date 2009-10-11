@@ -10,6 +10,7 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public final class OperatingSystemInfo implements Serializable {
+	private static final long serialVersionUID = 7863828462515394874L;
 	/** Name */
 	private String name;
 	/** Architecture */

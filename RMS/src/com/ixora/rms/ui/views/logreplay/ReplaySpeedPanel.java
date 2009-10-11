@@ -30,6 +30,7 @@ import com.ixora.rms.ui.messages.Msg;
  */
 public final class ReplaySpeedPanel
 		extends JPanel implements Observer {
+	private static final long serialVersionUID = -5472696884322136514L;
 	private static final int MAX = 1000;
 	private static final int MIN = 200;
 	private JSlider speedSlider;
