@@ -14,8 +14,9 @@ import com.ixora.common.ui.UIUtils;
  * CategoryToolTipGenerator
  */
 public final class RMSCategoryToolTipGenerator extends StandardCategoryToolTipGenerator {
+	private static final long serialVersionUID = -8132713650839746090L;
 
-    /**
+	/**
      * Constructor.
      */
     public RMSCategoryToolTipGenerator() {

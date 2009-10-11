@@ -19,6 +19,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public abstract class AgentCustomConfigurationPanel extends JPanel {
+	private static final long serialVersionUID = -8099234876159272115L;
 	/** Agent message catalog */
 	protected String fAgentMessageCatalog;
 	/** Context */
@@ -93,8 +94,8 @@ public abstract class AgentCustomConfigurationPanel extends JPanel {
 			String agentMsgCatalog,
 			AgentCustomConfigurationPanelContext ctxt)
 				throws ClassNotFoundException, SecurityException, NoSuchMethodException, RMSException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		Class clazz = Class.forName(configCustomPanelClass);
-		Constructor cons = clazz.getConstructor(new Class[] {String.class, AgentCustomConfigurationPanelContext.class});
+		Class<?> clazz = Class.forName(configCustomPanelClass);
+		Constructor<?> cons = clazz.getConstructor(new Class[] {String.class, AgentCustomConfigurationPanelContext.class});
 		if(cons == null) {
 			RMSException e = new RMSException("Invalid configuration panel class");
 			e.setIsInternalAppError();

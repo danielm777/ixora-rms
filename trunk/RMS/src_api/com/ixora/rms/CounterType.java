@@ -9,7 +9,8 @@ import com.ixora.rms.messages.Msg;
  * @author: Daniel Moraru
  */
 public final class CounterType extends Enum {
-    public static final CounterType DOUBLE =
+	private static final long serialVersionUID = 6360637426751524766L;
+	public static final CounterType DOUBLE =
     	new CounterType(0, MessageRepository.get(Msg.RMS_ENUM_COUNTERTYPE_DOUBLE));
 	public static final CounterType LONG =
     	new CounterType(1, MessageRepository.get(Msg.RMS_ENUM_COUNTERTYPE_LONG));

@@ -17,6 +17,7 @@ import com.ixora.rms.reactions.ReactionLogRecord;
  * @author Daniel Moraru
  */
 abstract class ReactionTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = -7306297573138744829L;
 	private static final int MAX_RECORDS = 1000;
 	protected List<String> fColumns;
 	protected List<ReactionLogRecord> fData;

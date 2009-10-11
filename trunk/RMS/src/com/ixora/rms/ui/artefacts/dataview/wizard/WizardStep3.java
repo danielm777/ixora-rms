@@ -24,6 +24,7 @@ import com.ixora.rms.ui.AgentVersionsSelectorPanel;
  * @author Daniel Moraru
  */
 public class WizardStep3 extends WizardStep {
+	private static final long serialVersionUID = 2943071087048877086L;
 
 	public static class Data {
 		WizardStep2.Data fStep2;

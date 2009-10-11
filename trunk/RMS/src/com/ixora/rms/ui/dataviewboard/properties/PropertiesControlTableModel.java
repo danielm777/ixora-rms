@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.ixora.rms.ResourceId;
+import com.ixora.common.ui.filter.FilterEditorDialog;
 import com.ixora.common.ui.filter.FilterEditorDialogString;
 import com.ixora.rms.CounterDescriptor;
 import com.ixora.rms.CounterType;
@@ -26,6 +27,7 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel;
  * @author Daniel Moraru
  */
 public class PropertiesControlTableModel extends TableBasedControlTableModel implements NumericValueDeltaHandlerContext {
+	private static final long serialVersionUID = -831996656401944158L;
 	private static final String[] columnNames = new String[]{
 		"Property", // TODO localize
 		"Value",
@@ -36,7 +38,8 @@ public class PropertiesControlTableModel extends TableBasedControlTableModel imp
 		"Value",
 		""
 	};
-	private static final Class[] columnFilterUIClasses = new Class[]{
+	@SuppressWarnings("unchecked")
+	private static final Class<? extends FilterEditorDialog>[] columnFilterUIClasses = new Class[]{
 		FilterEditorDialogString.class,
 		FilterEditorDialogString.class,
 		null // no filtering on this column
@@ -77,10 +80,10 @@ public class PropertiesControlTableModel extends TableBasedControlTableModel imp
 	 */
 	public boolean inspectData(QueryData data) {
 		boolean added = false;
-		for(Iterator itS = data.iterator(); itS.hasNext();) {
-			QuerySeries series = (QuerySeries)itS.next();
-			for(Iterator iter = series.iterator(); iter.hasNext();) {
-				QueryResultData qrd = (QueryResultData)iter.next();
+		for(Iterator<QuerySeries> itS = data.iterator(); itS.hasNext();) {
+			QuerySeries series = itS.next();
+			for(Iterator<QueryResultData> iter = series.iterator(); iter.hasNext();) {
+				QueryResultData qrd = iter.next();
 				ResourceId id = qrd.getMatchedResourceId();
 				if(id.getRepresentation() == ResourceId.COUNTER
 						&& id.getCounterId().equals(CounterDescriptor.TIMESTAMP_ID)) {
@@ -134,7 +137,7 @@ public class PropertiesControlTableModel extends TableBasedControlTableModel imp
 	/**
 	 * @see com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel#getFilterUIClasses()
 	 */
-	public Class[] getFilterUIClasses() {
+	public Class<? extends FilterEditorDialog>[] getFilterUIClasses() {
 		return columnFilterUIClasses;
 	}
 

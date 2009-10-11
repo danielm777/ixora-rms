@@ -22,6 +22,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public final class LogRecord implements XMLExternalizable {
+	private static final long serialVersionUID = 6577826842167422770L;
 	public static final String XML_RECORD = "r";
 	private static final String XML_TIMESTAMP = "t";
 	private static final String XML_SEQUENCE_NUMBER = "sn";

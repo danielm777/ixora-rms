@@ -11,6 +11,8 @@ import com.ixora.rms.ui.tools.agentinstaller.messages.Msg;
  * @author Daniel Moraru
  */
 public class VersionDataMissing extends RMSException {
+	private static final long serialVersionUID = -3738795772705872922L;
+
 	public VersionDataMissing() {
 		super(AgentInstallerComponent.NAME, Msg.ERROR_VERSION_DATA_MISSING, true);
 	}

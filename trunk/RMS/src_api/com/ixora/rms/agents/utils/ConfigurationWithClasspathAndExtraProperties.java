@@ -15,6 +15,7 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public class ConfigurationWithClasspathAndExtraProperties extends ConfigurationWithClasspath {
+	private static final long serialVersionUID = 8691580845542621184L;
 	public static final String EXTRA_PROPERTIES = Msg.EXTRA_PROPERTIES;
 
 	/**

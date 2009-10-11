@@ -30,6 +30,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class DataViewScreen extends JDesktopPane implements HTMLProvider {
+	private static final long serialVersionUID = 6205757471079968839L;
 	/** Offset of the newly added frames relative to the last added frame */
 	private static final int OFFSET = 40;
 	private EventHandler fEventHandler;
@@ -176,10 +177,10 @@ public final class DataViewScreen extends JDesktopPane implements HTMLProvider {
      * @return descriptors for all the boards
      */
     public Collection<DataViewBoardDescriptor> getBoardDescriptors() {
-        Collection boards = getBoards();
+        Collection<DataViewBoard> boards = getBoards();
         List<DataViewBoardDescriptor> ret = new ArrayList<DataViewBoardDescriptor>(boards.size());
-        for(Iterator iter = boards.iterator(); iter.hasNext();) {
-            ret.add(((DataViewBoard)iter.next()).getDescriptor());
+        for(Iterator<DataViewBoard> iter = boards.iterator(); iter.hasNext();) {
+            ret.add((iter.next()).getDescriptor());
         }
         return ret;
     }

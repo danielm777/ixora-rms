@@ -17,6 +17,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public abstract class CustomConfiguration extends TypedProperties implements PluginDescriptor, XMLExternalizable {
+	private static final long serialVersionUID = 3812990970019757323L;
 
 	/**
 	 * @see com.ixora.common.plugin.PluginDescriptor#getClasspath()

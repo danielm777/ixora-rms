@@ -21,7 +21,8 @@ import com.ixora.rms.ui.messages.Msg;
  * Creates a new view board.
  */
 public final class ActionNewViewBoard extends AbstractAction {
-    /** DataViewBoardHandler */
+	private static final long serialVersionUID = 4619041310316545227L;
+	/** DataViewBoardHandler */
 	private DataViewBoardHandler dataViewBoardHandler;
 
 	/**

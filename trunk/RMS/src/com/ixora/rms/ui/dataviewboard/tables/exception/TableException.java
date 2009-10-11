@@ -11,6 +11,7 @@ import com.ixora.rms.ui.dataviewboard.tables.TablesBoardComponent;
  * @author Daniel Moraru
  */
 public abstract class TableException extends RMSException {
+	private static final long serialVersionUID = 3008231265182478771L;
 
 	/**
 	 * @param s

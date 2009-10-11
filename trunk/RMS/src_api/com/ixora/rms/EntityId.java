@@ -13,6 +13,7 @@ import com.ixora.common.xml.XMLUtils;
  * @author Daniel Moraru
  */
 public final class EntityId implements Serializable, Cloneable, Comparable<EntityId> {
+	private static final long serialVersionUID = 7737676482201067202L;
 	/** Path element delimiter */
 	public static final char DELIMITER = '/';
 	private static final String DELIMITER_STRING = "/";

@@ -28,6 +28,7 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
  * @author Daniel Moraru
  */
 public class PropertiesBoard extends DataViewBoard implements Observer {
+	private static final long serialVersionUID = -4248155672223762036L;
 	/** Columns */
 	private int cols;
 	/** Rows */

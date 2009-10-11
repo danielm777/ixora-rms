@@ -10,6 +10,7 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor;
  * @author Daniel Moraru
  */
 public class LogControlDescriptor extends TableBasedControlDescriptor {
+	private static final long serialVersionUID = 2912272594569140361L;
 	/**
 	 * XML constructor.
 	 */

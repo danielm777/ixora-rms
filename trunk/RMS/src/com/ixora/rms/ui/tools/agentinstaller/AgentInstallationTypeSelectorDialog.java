@@ -27,6 +27,7 @@ import com.ixora.rms.ui.tools.agentinstaller.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentInstallationTypeSelectorDialog extends AppDialog {
+	private static final long serialVersionUID = -8552115423151476492L;
 	public static final int CUSTOM_AGENT = 1;
 	public static final int PACKAGED_AGENT = 2;
 	public static final int OTHER_PRODUCT_INSTANCE_AGENT = 3;
@@ -115,6 +116,7 @@ public final class AgentInstallationTypeSelectorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 			new JButton(new ActionOk() {

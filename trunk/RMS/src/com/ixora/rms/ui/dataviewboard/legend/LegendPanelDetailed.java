@@ -22,6 +22,7 @@ import com.ixora.common.ui.UIFactoryMgr;
  * @author Daniel Moraru
  */
 public class LegendPanelDetailed extends LegendPanel {
+	private static final long serialVersionUID = -6735868351281565820L;
 	/** Label with name and decsription */
 	private JEditorPane jHtml;
 	/** Panel holding legend entries */

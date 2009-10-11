@@ -48,6 +48,7 @@ import com.ixora.rms.ui.reactions.ReactionLogViewer;
  * @author Daniel Moraru
  */
 final class ReactionsAlertPanel extends JPanel {
+	private static final long serialVersionUID = -3236101799644218511L;
 	private static final AppLogger logger = AppLoggerFactory.getLogger(ReactionsAlertPanel.class);
 	private static final Icon reactionIcon = UIConfiguration.getIcon("reaction_armed.gif");
 	private static final int ARMED = 0;
@@ -75,6 +76,8 @@ final class ReactionsAlertPanel extends JPanel {
 	}
 
 	private final class ActionClosePanel extends AbstractAction {
+		private static final long serialVersionUID = -4494359109096599118L;
+
 		public ActionClosePanel() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_CLOSE_REACTION_PANEL), this);

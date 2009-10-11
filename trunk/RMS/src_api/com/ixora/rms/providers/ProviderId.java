@@ -9,7 +9,8 @@ import com.ixora.rms.HostId;
  * @author Daniel Moraru
  */
 public final class ProviderId implements Serializable {
-    private static final String DELIMITER = "/";
+	private static final long serialVersionUID = -6047329640499464029L;
+	private static final String DELIMITER = "/";
 	/** Id */
 	private String id;
 

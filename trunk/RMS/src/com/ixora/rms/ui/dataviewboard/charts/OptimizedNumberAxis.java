@@ -17,8 +17,10 @@ import org.jfree.ui.RectangleEdge;
  * Holds caches for various data, to avoid to much recalculation
  */
 public class OptimizedNumberAxis extends NumberAxis {
-    /** Cache for tickmarks */
-    private List	listCachedTicks;
+	private static final long serialVersionUID = 711522303697802120L;
+	/** Cache for tickmarks */
+    @SuppressWarnings("unchecked")
+	private List	listCachedTicks;
     /** Cache for valueToJava2D*/
     private Rectangle2D lastArea;
     private double lastAxisMin;
@@ -68,7 +70,8 @@ public class OptimizedNumberAxis extends NumberAxis {
      * Caches last maximum tick label width, until configure is called
      * @see org.jfree.chart.axis.ValueAxis#findMaximumTickLabelWidth(java.util.List, java.awt.Graphics2D, java.awt.geom.Rectangle2D, boolean)
      */
-    protected double findMaximumTickLabelWidth(List ticks,
+    @SuppressWarnings("unchecked")
+	protected double findMaximumTickLabelWidth(List ticks,
             Graphics2D g2,
             Rectangle2D drawArea,
             boolean vertical) {
@@ -83,7 +86,8 @@ public class OptimizedNumberAxis extends NumberAxis {
      * Caches last maximum tick label height, until configure is called
      * @see org.jfree.chart.axis.ValueAxis#findMaximumTickLabelHeight(java.util.List, java.awt.Graphics2D, java.awt.geom.Rectangle2D, boolean)
      */
-    protected double findMaximumTickLabelHeight(List ticks,
+    @SuppressWarnings("unchecked")
+	protected double findMaximumTickLabelHeight(List ticks,
             Graphics2D g2,
             Rectangle2D drawArea,
             boolean vertical) {
@@ -110,7 +114,8 @@ public class OptimizedNumberAxis extends NumberAxis {
      * for every draw cycle.
      * @see org.jfree.chart.axis.Axis#refreshTicks(java.awt.Graphics2D, org.jfree.chart.axis.AxisState, java.awt.geom.Rectangle2D, java.awt.geom.Rectangle2D, org.jfree.ui.RectangleEdge)
      */
-    public List refreshTicks(Graphics2D g2,
+    @SuppressWarnings("unchecked")
+	public List refreshTicks(Graphics2D g2,
             AxisState state,
             Rectangle2D plotArea,
             Rectangle2D dataArea,

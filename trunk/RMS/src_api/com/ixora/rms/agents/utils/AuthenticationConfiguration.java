@@ -11,6 +11,7 @@ import com.ixora.rms.agents.AgentCustomConfiguration;
  * @author Daniel Moraru
  */
 public class AuthenticationConfiguration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = 486639280801650198L;
 	// value keys
 	public static final String USERNAME = Msg.AGENT_CONFIGURATION_USERNAME;
 	public static final String PASSWORD = Msg.AGENT_CONFIGURATION_PASSWORD;

@@ -6,11 +6,14 @@ package com.ixora.rms.ui.reactions;
 import java.util.Date;
 import java.util.List;
 
-import com.ixora.rms.reactions.ReactionDeliveryInfo;
 import com.ixora.rms.reactions.ReactionDeliveryType;
 import com.ixora.rms.reactions.ReactionLogRecord;
 
+/**
+ * @author Daniel Moraru
+ */
 final class AdviceTableModel extends ReactionTableModel {
+	private static final long serialVersionUID = 6100240703778811212L;
 
 	public AdviceTableModel(List<ReactionLogRecord> lst) {
 		super(lst);
@@ -23,7 +26,6 @@ final class AdviceTableModel extends ReactionTableModel {
 	 */
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		ReactionLogRecord rec = fData.get(rowIndex);
-		ReactionDeliveryInfo del = rec.getReactionDeliveryInfo();
 		switch(columnIndex) {
 		case 0: // Date
 			return new Date(rec.getReactionEvent().getTimestamp());

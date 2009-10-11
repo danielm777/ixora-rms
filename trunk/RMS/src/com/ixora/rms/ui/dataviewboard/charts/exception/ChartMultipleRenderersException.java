@@ -10,6 +10,8 @@ import com.ixora.rms.ui.dataviewboard.charts.messages.Msg;
  * ChartMultipleRenderersException
  */
 public class ChartMultipleRenderersException extends ChartException {
+	private static final long serialVersionUID = -2557533180463782392L;
+
 	/**
 	 * Constructor.
 	 */

@@ -35,6 +35,7 @@ import com.ixora.rms.ui.messages.Msg;
  */
 public final class DataViewScreenPanel
 		extends JPanel implements ToolBarComponent, Observer {
+	private static final long serialVersionUID = 7266361362211389837L;
 	private JComboBox fComboBoxPanes;
 	private JButton fButtonAddScreen;
 	private JButton fButtonRemoveScreen;
@@ -49,6 +50,7 @@ public final class DataViewScreenPanel
 	 * Add screen action.
 	 */
 	private final class ActionAddScreen extends AbstractAction {
+		private static final long serialVersionUID = -1436089220951695986L;
 		public ActionAddScreen() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_ADD_DATA_VIEW_SCREEN), this);
@@ -69,6 +71,7 @@ public final class DataViewScreenPanel
 	 * Remove folder action.
 	 */
 	private final class ActionRemoveScreen extends AbstractAction {
+		private static final long serialVersionUID = -6953498378491916281L;
 		public ActionRemoveScreen() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_REMOVE_DATA_VIEW_SCREEN), this);
@@ -89,6 +92,7 @@ public final class DataViewScreenPanel
 	 * Rename folder action.
 	 */
 	private final class ActionRenameScreen extends AbstractAction {
+		private static final long serialVersionUID = 7914547788613352622L;
 		public ActionRenameScreen() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_RENAME_DATA_VIEW_SCREEN), this);

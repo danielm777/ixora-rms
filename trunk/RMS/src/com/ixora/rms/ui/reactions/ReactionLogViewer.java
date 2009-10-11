@@ -25,6 +25,7 @@ import com.ixora.rms.services.ReactionLogService;
  * @author Daniel Moraru
  */
 public class ReactionLogViewer extends JFrame {
+	private static final long serialVersionUID = -8083762315797920259L;
 	private static final ImageIcon iconJob = UIConfiguration.getIcon("reaction_job.gif");
 	private static final ImageIcon iconEmail = UIConfiguration.getIcon("reaction_email.gif");
 	private static final ImageIcon iconAdvice = UIConfiguration.getIcon("reaction_advice.gif");

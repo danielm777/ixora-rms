@@ -62,8 +62,9 @@ import com.ixora.rms.ui.messages.Msg;
  */
 public abstract class DataViewControl extends JPanel
 	implements QueryListener, HTMLProvider {
+	private static final long serialVersionUID = -3114652834320555577L;
 
-    /** Listener */
+	/** Listener */
 	public interface Listener {
 		/**
 		 * Invoked when the control gains focus.
@@ -266,6 +267,8 @@ public abstract class DataViewControl extends JPanel
 		                Msg.ACTIONS_REMOVE_DATAVIEW_CONTROL));
 		fMenuItemViewAsXML = UIFactoryMgr.createMenuItem(
 				new ActionViewXML(fControlContext.getViewContainer()) {
+					private static final long serialVersionUID = 391758259112654610L;
+
 					protected String getXML() throws Exception {
 						return getXMLDefinitionForDataView();
 					}

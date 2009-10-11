@@ -16,7 +16,10 @@ import com.ixora.common.ui.UIUtils;
  * RMSXYToolTipGenerator
  */
 public final class RMSXYToolTipGenerator extends StandardXYToolTipGenerator {
-    /**
+	private static final long serialVersionUID = 7564261268369537895L;
+
+
+	/**
      * Constructor.
      */
     public RMSXYToolTipGenerator() {

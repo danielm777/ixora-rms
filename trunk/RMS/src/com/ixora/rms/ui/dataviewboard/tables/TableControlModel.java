@@ -16,6 +16,7 @@ import java.util.Set;
 
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.common.ui.filter.FilterEditorDialog;
 import com.ixora.common.ui.filter.FilterEditorDialogDate;
 import com.ixora.common.ui.filter.FilterEditorDialogString;
 import com.ixora.common.utils.Utils;
@@ -42,6 +43,7 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel;
  * @author Daniel Moraru
  */
 public class TableControlModel extends TableBasedControlTableModel implements NumericValueDeltaHandlerContext {
+	private static final long serialVersionUID = 4370327129669757741L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(RMSDefaultCategoryDataset.class);
     /** Table definition */
@@ -58,7 +60,7 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
     /** Column ids */
     private List<String> fColumnIds;
     /** List of filter UI classes, one for every column */
-    private Class[] fColumnFilterUIClasses;
+    private Class<? extends FilterEditorDialog>[] fColumnFilterUIClasses;
     /**
      * If true, categories that haven't been updated during the last
      * call to <code>inspectData(QueryData)</code> will be removed.
@@ -296,7 +298,8 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
      * @param data
      * @return true if the category set has been changed
      */
-     public boolean inspectData(QueryData data) {
+     @SuppressWarnings("unchecked")
+	public boolean inspectData(QueryData data) {
         try {
         	// if columns are not yet translated, try again...
         	if(!fColumnsAreTranslated) {
@@ -313,8 +316,8 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
 
 	    	// flag set to true when a new category will be added
 	    	boolean newCategoryAdded = false;
-			for(Iterator itS = data.iterator(); itS.hasNext();) {
-				QuerySeries series = (QuerySeries)itS.next();
+			for(Iterator<QuerySeries> itS = data.iterator(); itS.hasNext();) {
+				QuerySeries series = itS.next();
 				QueryResultData qrdCtg = series.getData(fDefinition.getCategory());
 				String category = qrdCtg.getQueryResult().getStyle().getIName();
 				String categoryValue = qrdCtg.getValue().toString();
@@ -333,8 +336,8 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
 					fColumnFilterUIClasses = new Class[fColumnIds.size()];
 				}
 				// update data set
-				for(Iterator itD = series.iterator(); itD.hasNext();) {
-					QueryResultData qrd = (QueryResultData) itD.next();
+				for(Iterator<QueryResultData> itD = series.iterator(); itD.hasNext();) {
+					QueryResultData qrd = itD.next();
 					String id = qrd.getQueryResult().getStyle().getID();
 					if(id.equals(fDefinition.getCategory())) {
 						categoryData.setValueForColumn(id, category);
@@ -438,7 +441,7 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
         for(CategoryData row : fModelData.values()) {
             if(i == rowIndex) {
                 int j = 0;
-                for(Iterator iterator = row.values(); iterator.hasNext(); ++j) {
+                for(Iterator<Object> iterator = row.values(); iterator.hasNext(); ++j) {
                     Object tmp = iterator.next();
                     // because of this bit here (instead of comparing strings compare numbers)
                     // we must make sure the category data keeps it's data sorted in the same order as columnNames
@@ -507,7 +510,7 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
 	/**
 	 * @see com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel#getFilterUIClasses()
 	 */
-	public Class[] getFilterUIClasses() {
+	public Class<? extends FilterEditorDialog>[] getFilterUIClasses() {
 		return fColumnFilterUIClasses;
 	}
 

@@ -19,6 +19,7 @@ import com.ixora.rms.ui.dataviewboard.DataViewControlDescriptor;
  * @author Daniel Moraru
  */
 public class TableBasedControlDescriptor extends DataViewControlDescriptor {
+	private static final long serialVersionUID = 943065871398968902L;
 	protected int fSortedColumnIdx;
 	protected boolean fSortDirectionDesc;
 	protected RowFilter fRowFilter;

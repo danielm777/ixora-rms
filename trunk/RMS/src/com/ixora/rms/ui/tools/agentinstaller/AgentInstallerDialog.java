@@ -56,6 +56,7 @@ import com.ixora.rms.ui.tools.agentinstaller.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentInstallerDialog extends AppDialog {
+	private static final long serialVersionUID = -2869173095388027690L;
 	private JList fAgentsList;
 	private JPanel fAgentsPanel;
 	private AgentRepositoryService fAgentRepository;
@@ -80,6 +81,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	/**
 	 * View agent action.
 	 */
+	@SuppressWarnings("serial")
 	private final class ActionViewAgent extends AbstractAction {
 		public ActionViewAgent() {
 			super();
@@ -97,6 +99,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	/**
 	 * Edit agent action.
 	 */
+	@SuppressWarnings("serial")
 	private final class ActionEditAgent extends AbstractAction {
 		public ActionEditAgent() {
 			super();
@@ -114,6 +117,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	/**
 	 * Install agent action.
 	 */
+	@SuppressWarnings("serial")
 	private final class ActionInstallAgent extends AbstractAction {
 		public ActionInstallAgent() {
 			super();
@@ -131,6 +135,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	/**
 	 * Install agent action.
 	 */
+	@SuppressWarnings("serial")
 	private final class ActionExportAgent extends AbstractAction {
 		public ActionExportAgent() {
 			super();
@@ -148,6 +153,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	/**
 	 * Uninstall agent action.
 	 */
+	@SuppressWarnings("serial")
 	private final class ActionUninstallAgent extends AbstractAction {
 		public ActionUninstallAgent() {
 			super();
@@ -261,6 +267,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 			UIFactoryMgr.createButton(fActionInstall),

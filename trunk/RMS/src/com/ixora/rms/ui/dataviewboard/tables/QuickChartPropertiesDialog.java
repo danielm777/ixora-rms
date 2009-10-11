@@ -34,6 +34,7 @@ import com.ixora.rms.ui.dataviewboard.tables.messages.Msg;
  * @author Daniel Moraru
  */
 public final class QuickChartPropertiesDialog extends AppDialog {
+	private static final long serialVersionUID = 4139452213115226713L;
 	private FormPanel formPanel;
 	private JComboBox jComboBoxStyles;
 	private ItemsTableModel itemsTableModel;
@@ -45,6 +46,8 @@ public final class QuickChartPropertiesDialog extends AppDialog {
 	 * ItemsTableModel.
 	 */
 	private static final class ItemsTableModel extends DefaultTableModel {
+		private static final long serialVersionUID = 3079012836531600412L;
+
 		/**
 		 * Constructor.
 		 * @param data
@@ -59,7 +62,7 @@ public final class QuickChartPropertiesDialog extends AppDialog {
 		/**
 		 * @see javax.swing.table.TableModel#getColumnClass(int)
 		 */
-		public Class getColumnClass(int columnIndex) {
+		public Class<?> getColumnClass(int columnIndex) {
 			return columnIndex == 0 ? Boolean.class : String.class;
 		}
 		/**
@@ -72,6 +75,7 @@ public final class QuickChartPropertiesDialog extends AppDialog {
 		/**
 		 * @return
 		 */
+		@SuppressWarnings("unchecked")
 		public String[] getSelectedItems() {
 			List ret = new LinkedList();
 			Vector v;
@@ -87,6 +91,7 @@ public final class QuickChartPropertiesDialog extends AppDialog {
 		/**
 		 * @param select
 		 */
+		@SuppressWarnings("unchecked")
 		public void setSelectedAll(boolean select) {
 			for(Iterator iter = this.dataVector.iterator(); iter.hasNext();) {
 				Vector v = (Vector)iter.next();
@@ -170,6 +175,7 @@ public final class QuickChartPropertiesDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 			new JButton(new ActionApply() {

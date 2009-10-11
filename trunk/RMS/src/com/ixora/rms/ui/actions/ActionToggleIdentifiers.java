@@ -18,7 +18,8 @@ import com.ixora.rms.ui.messages.Msg;
  * Toggles identifiers instead of translated names.
  */
 public final class ActionToggleIdentifiers extends AbstractAction {
-    /** Session model */
+	private static final long serialVersionUID = -8375710128564576029L;
+	/** Session model */
     private SessionModel model;
 
     /**

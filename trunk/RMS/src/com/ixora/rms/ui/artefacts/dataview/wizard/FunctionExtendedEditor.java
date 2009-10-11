@@ -21,12 +21,13 @@ import com.ixora.rms.dataengine.definitions.FunctionDef;
 /**
  * @author Daniel Moraru
  */
-public final class FunctionExtendedEditor extends ExtendedEditorAbstract {
+public final class FunctionExtendedEditor extends ExtendedEditorAbstract<FunctionExtendedEditor.FunctionDefWrapper> {
 	private FunctionDef fResult;
 	private String[] fParams;
 
 	/** Wrapper of a function def to give it a meaningful string representation */
 	public static class FunctionDefWrapper implements Serializable {
+		private static final long serialVersionUID = 4338315489241847856L;
 		private FunctionDef fDef;
 
 		public FunctionDefWrapper(FunctionDef def) {
@@ -50,13 +51,13 @@ public final class FunctionExtendedEditor extends ExtendedEditorAbstract {
 	/**
 	 * @see com.ixora.common.typedproperties.ui.ExtendedEditor#launch(java.awt.Component, com.ixora.common.typedproperties.PropertyEntry)
 	 */
-	public void launch(Component owner, PropertyEntry pe) {
-		Object obj = pe.getValue();
+	public void launch(Component owner, PropertyEntry<FunctionDefWrapper> pe) {
+		FunctionDefWrapper obj = pe.getValue();
 		FunctionDef def = null;
 		FunctionEditorDialog dlg = null;
 		Window parentWindow = SwingUtilities.getWindowAncestor(owner);
 		if(obj != null) {
-			def = ((FunctionDefWrapper)obj).fDef;
+			def = obj.fDef;
 			if(parentWindow instanceof Frame) {
 				dlg = new FunctionEditorDialog((Frame)parentWindow, def);
 			} else if(parentWindow instanceof Dialog) {

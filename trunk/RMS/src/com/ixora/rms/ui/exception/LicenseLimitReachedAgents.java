@@ -10,6 +10,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class LicenseLimitReachedAgents extends LicenseException {
+	private static final long serialVersionUID = 1109042289206484838L;
+
 	/**
 	 * Constructor.
 	 */

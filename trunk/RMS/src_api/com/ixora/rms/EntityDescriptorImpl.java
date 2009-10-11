@@ -29,6 +29,7 @@ import com.ixora.common.xml.exception.XMLTextNodeMissing;
  * @author Cristian Costache
  */
 public class EntityDescriptorImpl extends MonitoringDescriptorImpl implements EntityDescriptor {
+	private static final long serialVersionUID = -2106844972115083079L;
 	/** Entity id */
 	protected EntityId fEntityId;
 	/** Whether or not it has children */
@@ -420,11 +421,11 @@ public class EntityDescriptorImpl extends MonitoringDescriptorImpl implements En
         }
         fSupportsIndependentSamplingInterval =
             Boolean.valueOf(indsamplings).booleanValue();
-        List cds = XMLUtils.findChildren(node, "counterdescriptor");
+        List<Node> cds = XMLUtils.findChildren(node, "counterdescriptor");
         Node cdn;
         CounterDescriptorImpl cd;
-        for(Iterator iter = cds.iterator(); iter.hasNext();) {
-            cdn = (Node)iter.next();
+        for(Iterator<Node> iter = cds.iterator(); iter.hasNext();) {
+            cdn = iter.next();
             cd = new CounterDescriptorImpl();
             cd.fromXML(cdn);
             fCounterDescriptors.put(cd.getId(), cd);
@@ -452,8 +453,8 @@ public class EntityDescriptorImpl extends MonitoringDescriptorImpl implements En
         parent.appendChild(indsamplinge);
         indsamplinge.appendChild(doc.createTextNode(String.valueOf(
                 fSupportsIndependentSamplingInterval)));
-        for(Iterator iter = fCounterDescriptors.values().iterator(); iter.hasNext();) {
-        	CounterDescriptor cd = (CounterDescriptor)iter.next();
+        for(Iterator<CounterDescriptorImpl> iter = fCounterDescriptors.values().iterator(); iter.hasNext();) {
+        	CounterDescriptor cd = iter.next();
             Element cde = doc.createElement("counterdescriptor");
             cd.toXML(cde);
             parent.appendChild(cde);
@@ -467,7 +468,7 @@ public class EntityDescriptorImpl extends MonitoringDescriptorImpl implements En
      * @throws XMLException
      * @see com.ixora.rms.EntityDescriptor#toXML(org.w3c.dom.Node, java.util.Set)
      */
-    public void toXML(Node parent, Set monitoredCountersIds) throws XMLException {
+    public void toXML(Node parent, Set<CounterId> monitoredCountersIds) throws XMLException {
         super.toXML(parent);
         Document doc = parent.getOwnerDocument();
         Attr ida = doc.createAttribute("id");
@@ -482,8 +483,8 @@ public class EntityDescriptorImpl extends MonitoringDescriptorImpl implements En
                 fSupportsIndependentSamplingInterval)));
         CounterDescriptor cd;
         Element cde;
-        for(Iterator iter = fCounterDescriptors.values().iterator(); iter.hasNext();) {
-            cd = (CounterDescriptor)iter.next();
+        for(Iterator<CounterDescriptorImpl> iter = fCounterDescriptors.values().iterator(); iter.hasNext();) {
+            cd = iter.next();
             if(monitoredCountersIds.contains(cd.getId())) {
 	            cde = doc.createElement("counterdescriptor");
 	            cd.toXML(cde);

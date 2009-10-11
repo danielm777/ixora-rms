@@ -34,6 +34,7 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel;
  * @author Daniel Moraru
  */
 public class LogControl extends TableBasedControl implements Observer {
+	private static final long serialVersionUID = -5883738187209821989L;
 	/** Table model */
 	private LogControlTableModel fTableModel;
 	/** Editor for the third column */
@@ -144,7 +145,9 @@ public class LogControl extends TableBasedControl implements Observer {
     				getOwnCellRenderer().getFormatter(),
     				fControlContext.getViewContainer().getAppFrame(),
     				fTableModelSorter) {
-    					/**
+						private static final long serialVersionUID = 6227888713316461137L;
+
+						/**
     					 * @see com.ixora.rms.ui.dataviewboard.utils.ButtonCellEditor#mapColumnForValue(int)
     					 */
 						protected int mapColumnForValue(int column) {

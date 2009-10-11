@@ -19,6 +19,7 @@ import com.ixora.rms.ui.messages.Msg;
  * Reusable action that allows data input via XML definitions.
  */
 public abstract class ActionFromXML extends AbstractAction {
+	private static final long serialVersionUID = -2844750841860738444L;
 	protected RMSViewContainer fContainer;
 
 	/**

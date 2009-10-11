@@ -14,7 +14,8 @@ import com.ixora.rms.agents.AgentExecutionContext;
  * @author Daniel Moraru
  */
 public class RootEntity extends Entity {
-    public static final EntityId ROOT_ID = new EntityId("root");
+	private static final long serialVersionUID = 2766268461297250224L;
+	public static final EntityId ROOT_ID = new EntityId("root");
 
     /**
 	 * @param id

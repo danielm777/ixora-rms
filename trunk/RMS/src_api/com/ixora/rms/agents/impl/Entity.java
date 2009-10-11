@@ -38,6 +38,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public abstract class Entity extends EntityDescriptorImpl {
+	private static final long serialVersionUID = 343839279957915379L;
 	/**
 	 * Logger. This must be used for debugging only. For any other reasons the errors
 	 * must be propagated using the context.
@@ -81,13 +82,13 @@ public abstract class Entity extends EntityDescriptorImpl {
     	    super();
     	    ArrayList<Entity> v = new ArrayList<Entity>(1);
     	    v.add(rootNode);
-    	    stack = new Stack();
+    	    stack = new Stack<Enumeration<Entity>>();
     	    stack.push(Collections.enumeration(v));
     	}
 
     	public boolean hasMoreElements() {
     	    return (!stack.empty() &&
-    		    ((Enumeration)stack.peek()).hasMoreElements());
+    		    stack.peek().hasMoreElements());
     	}
 
     	public Entity nextElement() {
@@ -263,8 +264,8 @@ public abstract class Entity extends EntityDescriptorImpl {
 				// the sample length is the minimum non-zero sample size for all enabled counters
 				int activeCounters = 0;
 				int samplesLength = 0;
-				for(Iterator it = fCounters.values().iterator(); it.hasNext();) {
-					Counter c = (Counter) it.next();
+				for(Iterator<Counter> it = fCounters.values().iterator(); it.hasNext();) {
+					Counter c = it.next();
 					if(c.isEnabled()) {
 						int size = c.getSamples().size();
 						// ignore counters which are enabled but have no samples
@@ -300,9 +301,9 @@ public abstract class Entity extends EntityDescriptorImpl {
 					if(fSendRecordDefinition) {
 						fields = new LinkedList<CounterId>();
 					}
-					for(Iterator itC = fCounters.values().iterator(); itC.hasNext();) {
+					for(Iterator<Counter> itC = fCounters.values().iterator(); itC.hasNext();) {
 						// add data from the enabled ones
-						Counter c = (Counter)itC.next();
+						Counter c = itC.next();
 						if (c.isEnabled()) {
 							boolean counterOk = true;
 							// add counter samples
@@ -357,8 +358,8 @@ public abstract class Entity extends EntityDescriptorImpl {
 				// NOTE: this is the only safe place to reset the counters
 				// because entities are not enforced to load the value
 				// of their counters in retrieveCounters()
-				for(Iterator itC = fCounters.values().iterator(); itC.hasNext();) {
-					((Counter)itC.next()).reset();
+				for(Iterator<Counter> itC = fCounters.values().iterator(); itC.hasNext();) {
+					itC.next().reset();
 				}
 			}
 		}
@@ -403,8 +404,8 @@ public abstract class Entity extends EntityDescriptorImpl {
 	 * Resets this entity's settings.
 	 */
 	protected void reset() {
-		for(Iterator it = fCounters.values().iterator(); it.hasNext();) {
-			Counter cnt = (Counter)it.next();
+		for(Iterator<Counter> it = fCounters.values().iterator(); it.hasNext();) {
+			Counter cnt = it.next();
 			cnt.setEnabled(false);
 			cnt.reset();
 		}
@@ -581,8 +582,8 @@ public abstract class Entity extends EntityDescriptorImpl {
         }
 
 		// disable all counters first
-		for(Iterator i = fCounters.values().iterator(); i.hasNext();) {
-			Counter c = (Counter)i.next();
+		for(Iterator<Counter> i = fCounters.values().iterator(); i.hasNext();) {
+			Counter c = i.next();
 			c.setEnabled(false);
 		}
 		if(Utils.isEmptyCollection(ec)) {
@@ -788,8 +789,8 @@ public abstract class Entity extends EntityDescriptorImpl {
 	 */
 	public EntityDescriptorTree extractDescriptorTree(boolean recursive) throws Throwable {
 		EntityDescriptorTree ret = new EntityDescriptorTree(extractDescriptor());
-		for(Iterator iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
-			Entity child = (Entity)iter.next();
+		for(Iterator<Entity> iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
+			Entity child = iter.next();
 			if(!recursive) {
 				ret.addChild(new EntityDescriptorTree(child.extractDescriptor()));
 			} else {

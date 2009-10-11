@@ -80,12 +80,14 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
  */
 public final class ChartControl extends DataViewControl
 	implements Observer {
+	private static final long serialVersionUID = -2337319043884376057L;
 	private JFreeChart fChart;
 	private ChartPanel fChartPanel;
 	private List<RMSDataset> fDatasets;
 	private ComponentConfiguration fConfig;
 	private Legend fOldLegend;
 	private TextTitle fTitle;
+	@SuppressWarnings("unchecked")
 	private List fSubtitles;
     private TitledBorder fTitledBorder;
 
@@ -282,6 +284,7 @@ public final class ChartControl extends DataViewControl
 	}
 
 	/** Shows/hides titles and subtitles according to config */
+	@SuppressWarnings("unchecked")
 	private void showTitles() {
 		// title
 		if (fConfig.getBoolean(ChartsBoardConfigurationConstants.CHARTSBOARD_SHOWTITLE)) {
@@ -424,6 +427,7 @@ public final class ChartControl extends DataViewControl
 	/**
 	 * Fills the internal legend with details about this control.
 	 */
+	@SuppressWarnings("unchecked")
 	private void updateLegend()
 	{
 	    Plot p = fChart.getPlot();
@@ -458,8 +462,8 @@ public final class ChartControl extends DataViewControl
 	 * @see com.ixora.rms.ui.dataviewboard.DataViewControl#handleDataAvailable(com.ixora.rms.dataengine.DataQueryExecutor.Data)
 	 */
 	protected void handleDataAvailable(QueryData data) {
-		for(Iterator it = fDatasets.iterator(); it.hasNext();) {
-			RMSDataset d = (RMSDataset) it.next();
+		for(Iterator<RMSDataset> it = fDatasets.iterator(); it.hasNext();) {
+			RMSDataset d = it.next();
 			// inspectData returns true if a new series has been added
 			if(d.inspectData(data)) {
 				updateLegend();
@@ -491,7 +495,7 @@ public final class ChartControl extends DataViewControl
 			CategoryPlot	catPlot = (CategoryPlot)plot;
 			catPlot.getDomainAxis().setTickLabelsVisible(false);
 	    } else if (plot instanceof CategoryPlot) {
-			XYPlot	xyPlot = (XYPlot)plot;
+	    	//XYPlot xyPlot = (XYPlot)plot;
 	    }
 
 		if (detailLevel.equals(CHART_DETAILLEVEL_LOWEST))
@@ -579,8 +583,8 @@ public final class ChartControl extends DataViewControl
 	 * @see com.ixora.rms.ui.dataviewboard.DataViewControl#reset()
 	 */
 	protected void reset() {
-		for(Iterator it = fDatasets.iterator(); it.hasNext();) {
-			RMSDataset d = (RMSDataset) it.next();
+		for(Iterator<RMSDataset> it = fDatasets.iterator(); it.hasNext();) {
+			RMSDataset d = it.next();
 			d.reset();
 		}
 	}
@@ -589,6 +593,7 @@ public final class ChartControl extends DataViewControl
 	 * @throws IOException
 	 * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
 	 */
+	@SuppressWarnings("unchecked")
 	public void toHTML(StringBuilder buff, File root) throws IOException {
 		super.toHTML(buff, root);
 		String imgName = String.valueOf(Utils.getRandomInt(1000, 900000)) + ".png";
@@ -602,7 +607,6 @@ public final class ChartControl extends DataViewControl
 		Plot plot = this.fChart.getPlot();
 		if(plot instanceof CategoryPlot) {
 			CategoryPlot catPlot = (CategoryPlot)plot;
-			CategoryDataset cat = catPlot.getDataset();
 			List lst = catPlot.getCategories();
 			buff.append("<b>Categories</b><br>");
 			if(!Utils.isEmptyCollection(lst)) {

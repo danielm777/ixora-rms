@@ -12,21 +12,20 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.typedproperties.PropertyEntry;
 import com.ixora.common.typedproperties.ui.ExtendedEditorAbstract;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.utils.Utils;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.model.SessionModel;
-import com.ixora.rms.dataengine.definitions.FunctionDef;
 import com.ixora.rms.ui.ResourceSelectorDialog;
 import com.ixora.rms.ui.SessionTreeExplorer;
 
 /**
  * @author Daniel Moraru
  */
-public final class ResourceIdExtendedEditor extends ExtendedEditorAbstract {
+public final class ResourceIdExtendedEditor extends ExtendedEditorAbstract<ResourceId> {
 	private ResourceId fResult;
 	private SessionModel fModels;
 	private SessionTreeExplorer fExplorer;
@@ -42,9 +41,7 @@ public final class ResourceIdExtendedEditor extends ExtendedEditorAbstract {
 	/**
 	 * @see com.ixora.common.typedproperties.ui.ExtendedEditor#launch(java.awt.Component, com.ixora.common.typedproperties.PropertyEntry)
 	 */
-	public void launch(Component owner, PropertyEntry pe) {
-		Object obj = pe.getValue();
-		FunctionDef def = null;
+	public void launch(Component owner, PropertyEntry<ResourceId> pe) {
 		ResourceSelectorDialog dlg = null;
 		Window parentWindow = SwingUtilities.getWindowAncestor(owner);
 		if(parentWindow instanceof Frame) {

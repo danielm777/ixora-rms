@@ -26,6 +26,7 @@ import com.ixora.rms.MonitoringLevel;
  * @author Daniel Moraru
  */
 public class AgentConfiguration extends MonitoringConfiguration {
+	private static final long serialVersionUID = 5725031688141115105L;
 	/** The monitored system version */
 	private String systemVersion;
 	/** Host to monitor */

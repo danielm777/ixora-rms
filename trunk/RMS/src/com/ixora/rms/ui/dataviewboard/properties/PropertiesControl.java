@@ -34,6 +34,7 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlTableModel;
  * @author Daniel Moraru
  */
 public class PropertiesControl extends TableBasedControl implements Observer {
+	private static final long serialVersionUID = 8441663666892016536L;
 	/** Table model */
 	private PropertiesControlTableModel fTableModel;
 	/** Editor for the third column */
@@ -127,7 +128,9 @@ public class PropertiesControl extends TableBasedControl implements Observer {
     				getOwnCellRenderer().getFormatter(),
     				fControlContext.getViewContainer().getAppFrame(),
     				fTableModelSorter) {
-    					/**
+						private static final long serialVersionUID = 3090567778532118207L;
+
+						/**
     					 * @see com.ixora.rms.ui.dataviewboard.utils.ButtonCellEditor#mapColumnForValue(int)
     					 */
 						protected int mapColumnForValue(int column) {

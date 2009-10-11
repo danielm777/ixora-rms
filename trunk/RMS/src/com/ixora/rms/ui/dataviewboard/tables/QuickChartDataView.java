@@ -15,6 +15,8 @@ import com.ixora.rms.ui.dataviewboard.charts.definitions.RendererDef;
  * @author Daniel Moraru
  */
 public final class QuickChartDataView extends ChartDef {
+	private static final long serialVersionUID = 6802975848614450997L;
+
 	/**
 	 * Default constructor to support XML.
 	 */

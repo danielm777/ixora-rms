@@ -10,6 +10,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class LicenseNotAvailableForAgent extends LicenseException {
+	private static final long serialVersionUID = -3291326358685106529L;
+
 	/**
 	 * Constructor.
 	 */

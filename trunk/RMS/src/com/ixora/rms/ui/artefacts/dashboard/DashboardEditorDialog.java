@@ -84,8 +84,10 @@ import com.ixora.rms.ui.artefacts.dashboard.messages.Msg;
 /**
  * @author Daniel Moraru
  */
+@SuppressWarnings("serial")
 final class DashboardEditorDialog extends AppDialog {
-    /** Logger */
+	private static final long serialVersionUID = 7553335832657917792L;
+	/** Logger */
     private static final AppLogger logger = AppLoggerFactory.getLogger(DashboardEditorDialog.class);
 
     /**
@@ -392,8 +394,6 @@ final class DashboardEditorDialog extends AppDialog {
             }
             if(e.getSource() == jListDashboardItems) {
                 if (e.getClickCount() == 2) {
-                    int index = jListDashboardItems.locationToIndex(
-                            e.getPoint());
                     handleRemoveItemFromDashboard();
                 }
             }

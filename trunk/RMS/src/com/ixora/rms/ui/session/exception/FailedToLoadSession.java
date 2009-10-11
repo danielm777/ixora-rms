@@ -12,6 +12,7 @@ import com.ixora.rms.ui.session.messages.Msg;
  * @author Daniel Moraru
  */
 public final class FailedToLoadSession extends RMSException {
+	private static final long serialVersionUID = -7885774394954208847L;
 
 	/**
 	 * @param scheme the name of the scheme

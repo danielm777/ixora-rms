@@ -35,6 +35,7 @@ import com.ixora.rms.ui.exporter.HTMLProvider;
  * @author Daniel Moraru
  */
 public abstract class DataViewBoard extends JInternalFrame implements HTMLProvider {
+	private static final long serialVersionUID = -9120328043793730316L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DataViewBoard.class);
 
@@ -282,8 +283,8 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	 */
 	public DataViewBoardDescriptor getDescriptor() {
 	    List<DataViewControlDescriptor> descriptors = new LinkedList<DataViewControlDescriptor>();
-	    for(Iterator iter = fControls.iterator(); iter.hasNext();) {
-	    	DataViewControl dvc = (DataViewControl)iter.next();
+	    for(Iterator<DataViewControl> iter = fControls.iterator(); iter.hasNext();) {
+	    	DataViewControl dvc = iter.next();
             descriptors.add(dvc.getDescriptor());
         }
 	    return new DataViewBoardDescriptor(descriptors,
@@ -310,9 +311,9 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	        title = "";
 	    }
 	    setTitle(title);
-	    List descriptors = desc.getControlDescriptors();
-	    for(Iterator iter = descriptors.iterator(); iter.hasNext();) {
-	    	DataViewControlDescriptor cd = (DataViewControlDescriptor)iter.next();
+	    List<DataViewControlDescriptor> descriptors = desc.getControlDescriptors();
+	    for(Iterator<DataViewControlDescriptor> iter = descriptors.iterator(); iter.hasNext();) {
+	    	DataViewControlDescriptor cd = iter.next();
             if(cd.getDataViewId() != null){
                 // data view
                 DataViewId dvid = cd.getDataViewId();
@@ -383,13 +384,14 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	 * Overriden to unregister all controls before disposing.
 	 * @see javax.swing.JInternalFrame#dispose()
 	 */
+	@SuppressWarnings("unchecked")
 	public void dispose() {
 		// unregister controls first
 		DataViewControl dvc;
 		// need to operate on a clone of the exisiting list
 		// to be able to reuse removeControl(dvc)
-		for(Iterator iter = ((List)fControls.clone()).iterator(); iter.hasNext();) {
-			dvc = (DataViewControl)iter.next();
+		for(Iterator<DataViewControl> iter = ((List<DataViewControl>)fControls.clone()).iterator(); iter.hasNext();) {
+			dvc = iter.next();
 			removeControl(dvc);
 		}
 		super.dispose();

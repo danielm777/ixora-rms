@@ -17,6 +17,7 @@ import com.ixora.rms.data.CounterValue;
  * @author Daniel Moraru
  */
 public class Counter extends CounterDescriptorImpl implements Reusable {
+	private static final long serialVersionUID = 6734986811601224925L;
 	/** Counter samples */
 	// samples of CounterValues
 	protected List<CounterValue> fSamples;

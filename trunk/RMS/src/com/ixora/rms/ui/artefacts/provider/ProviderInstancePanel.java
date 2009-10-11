@@ -41,6 +41,7 @@ import com.ixora.rms.ui.artefacts.provider.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ProviderInstancePanel extends JPanel {
+	private static final long serialVersionUID = 4569368307487735263L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(ProviderInstancePanel.class);
 	/** View container */
@@ -71,6 +72,7 @@ public final class ProviderInstancePanel extends JPanel {
 	 * Displays the error for an agent in ERROR state.
 	 */
 	private final class ActionViewProviderError extends AbstractAction {
+		private static final long serialVersionUID = 4820643815408508075L;
 		public ActionViewProviderError() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_VIEW_PROVIDER_ERROR), this);

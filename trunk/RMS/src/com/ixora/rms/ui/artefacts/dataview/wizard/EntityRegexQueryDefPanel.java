@@ -40,6 +40,7 @@ import com.ixora.rms.ui.artefacts.dataview.wizard.messages.Msg;
  * @author Daniel Moraru
  */
 public class EntityRegexQueryDefPanel extends QueryDefPanel {
+	private static final long serialVersionUID = 8903076817076745050L;
 	private static final String LABEL_ENTITY_PATH = "Entity Regular Expression";
 	private static final String LABEL_COUNTERS = "Counters";
 
@@ -101,6 +102,8 @@ public class EntityRegexQueryDefPanel extends QueryDefPanel {
 
 		fEditorResource = new TypedPropertiesListEditor(
 				new PropertyListTableModel(fPrototypeResource, null, null) {
+					private static final long serialVersionUID = 5056420433387839427L;
+
 					public boolean isCellEditable(int rowIndex, int columnIndex) {
 						// counter column not editable
 						if(columnIndex == 1) {

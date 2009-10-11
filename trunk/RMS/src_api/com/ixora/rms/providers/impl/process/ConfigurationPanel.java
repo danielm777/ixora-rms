@@ -12,6 +12,7 @@ import com.ixora.rms.providers.ui.ProviderCustomConfigurationPanel;
  */
 public class ConfigurationPanel extends
 		ProviderCustomConfigurationPanel {
+	private static final long serialVersionUID = 311648020144794001L;
 
 	/**
 	 * Constructor.

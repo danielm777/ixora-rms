@@ -11,6 +11,7 @@ import com.ixora.rms.reactions.ReactionLogRecord;
  * @author Daniel Moraru
  */
 public final class JobPanel extends ReactionPanel {
+	private static final long serialVersionUID = -6790424212968549657L;
 
 	/**
 	 *

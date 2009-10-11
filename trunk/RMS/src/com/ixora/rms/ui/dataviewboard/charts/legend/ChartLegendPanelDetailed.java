@@ -15,6 +15,7 @@ import com.ixora.rms.ui.dataviewboard.legend.LegendPanelDetailed;
  * @author Daniel Moraru
  */
 public final class ChartLegendPanelDetailed extends LegendPanelDetailed {
+	private static final long serialVersionUID = -3371538579554441993L;
 
 	/**
 	 * Constructor.

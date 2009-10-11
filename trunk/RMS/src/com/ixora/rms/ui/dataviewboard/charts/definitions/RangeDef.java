@@ -9,8 +9,9 @@ package com.ixora.rms.ui.dataviewboard.charts.definitions;
  * no implementation). Loads and saves contents in XML.
  */
 public class RangeDef extends AxisDef {
+	private static final long serialVersionUID = 4364956836162875803L;
 
-    /**
+	/**
      * Constructs an empty object, ready to be loaded from XML
      */
     public RangeDef() {

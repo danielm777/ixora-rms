@@ -14,6 +14,7 @@ import javax.swing.JComponent;
  * @author Daniel Moraru
  */
 final class LegendBullet extends JComponent {;
+	private static final long serialVersionUID = -8510650750484316460L;
 	/** Bullet color */
 	private Paint paint;
 

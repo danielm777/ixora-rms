@@ -18,6 +18,8 @@ import com.ixora.rms.providers.ProviderState;
  * @author Daniel Moraru
  */
 public class ProviderInstanceTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = -3892678242612823857L;
+
 	/** Data */
 	private List<ProviderInstanceInfo> providers;
 

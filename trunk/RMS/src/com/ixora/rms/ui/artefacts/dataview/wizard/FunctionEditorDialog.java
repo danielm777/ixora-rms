@@ -39,6 +39,7 @@ import com.ixora.rms.dataengine.definitions.ScriptFunctionDef;
  * @author Daniel Moraru
  */
 public final class FunctionEditorDialog extends AppDialog {
+	private static final long serialVersionUID = 8789470292496961586L;
 	// TODO localize
 	private static final String LABEL_PARAMETERS = "Parameters";
 	private static final String LABEL_CODE = "Code";
@@ -155,6 +156,7 @@ public final class FunctionEditorDialog extends AppDialog {
 		return new JButton[] {
 				new JButton(
 					new ActionOk() {
+						private static final long serialVersionUID = -4121022625083847865L;
 						public void actionPerformed(ActionEvent e) {
 							handleOk();
 							dispose();
@@ -163,6 +165,7 @@ public final class FunctionEditorDialog extends AppDialog {
 				),
 				new JButton(
 					new ActionClose() {
+						private static final long serialVersionUID = -5199386173263093800L;
 						public void actionPerformed(ActionEvent e) {
 							dispose();
 						}

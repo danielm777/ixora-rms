@@ -13,7 +13,8 @@ import com.ixora.rms.ui.dataviewboard.charts.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ChartStyle extends Enum {
-    public static final ChartStyle STACKED_BAR_2D = new ChartStyle(0, "StackedBar2D", MessageRepository.get(ChartsBoardComponent.NAME, Msg.CHART_STYLE_STACKED_BAR_2D));
+	private static final long serialVersionUID = 7035252788868463233L;
+	public static final ChartStyle STACKED_BAR_2D = new ChartStyle(0, "StackedBar2D", MessageRepository.get(ChartsBoardComponent.NAME, Msg.CHART_STYLE_STACKED_BAR_2D));
     public static final ChartStyle BAR_2D = new ChartStyle(1, "Bar2D", MessageRepository.get(ChartsBoardComponent.NAME, Msg.CHART_STYLE_BAR_2D));
     public static final ChartStyle XY_LINE = new ChartStyle(2, "XYLine", MessageRepository.get(ChartsBoardComponent.NAME, Msg.CHART_STYLE_XY_LINE));
     public static final ChartStyle BAR_3D = new ChartStyle(3, "Bar3D", MessageRepository.get(ChartsBoardComponent.NAME, Msg.CHART_STYLE_BAR_3D));

@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
  * @author Daniel Moraru
  */
 public class CounterValueString implements CounterValue {
+	private static final long serialVersionUID = -8143861720926476528L;
 	private String value;
 
 	/**

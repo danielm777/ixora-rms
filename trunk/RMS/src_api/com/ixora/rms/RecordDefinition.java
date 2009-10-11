@@ -12,6 +12,7 @@ import com.ixora.common.logging.AppLoggerFactory;
  * @author Daniel Moraru
  */
 public final class RecordDefinition implements Serializable {
+	private static final long serialVersionUID = 1441931236999395287L;
 	/** Logger */
 	private static final AppLogger sLogger = AppLoggerFactory.getLogger(RecordDefinition.class);
 	/** Counter ids */

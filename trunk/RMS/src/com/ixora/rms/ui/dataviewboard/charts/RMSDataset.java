@@ -10,7 +10,6 @@ import com.ixora.rms.dataengine.external.QueryData;
 /**
  * RMSDataset
  */
-
 public interface RMSDataset extends Serializable {
 	/**
 	 * @param data

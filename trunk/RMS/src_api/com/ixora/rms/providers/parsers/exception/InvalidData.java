@@ -9,6 +9,8 @@ import com.ixora.rms.providers.parsers.messages.Msg;
  * @author Daniel Moraru
  */
 public final class InvalidData extends ParserException {
+	private static final long serialVersionUID = 398566810534477945L;
+
 	/**
 	 * Constructor.
 	 * @param msg

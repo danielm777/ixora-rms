@@ -30,11 +30,13 @@ import com.ixora.rms.repository.AgentInstallationData;
  * @author Daniel Moraru
  */
 public class AgentSelectorDialog extends AppDialog {
+	private static final long serialVersionUID = 3041115636751371232L;
 	private JPanel fContainer;
 	private AgentsTableModel fModel;
 	private AgentInstallationData fResult;
 
 	private static class AgentsTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = 1380544533494482032L;
 		private static class Entry implements Comparable<Entry> {
 			AgentInstallationData fAgent;
 			Boolean fSelected;
@@ -144,6 +146,7 @@ public class AgentSelectorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 				new JButton(new ActionOk() {

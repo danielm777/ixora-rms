@@ -29,6 +29,7 @@ import com.ixora.rms.reactions.ReactionLogRecord;
  * @author Daniel Moraru
  */
 public abstract class ReactionPanel extends JPanel {
+	private static final long serialVersionUID = -6885681321129813438L;
 	protected JTable fTable;
 	protected TableSorter fTableModelSorter;
 	protected ReactionTableModel fTableModel;

@@ -11,6 +11,8 @@ import com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor;
  * @author Daniel Moraru
  */
 public final class PropertiesControlDescriptor extends TableBasedControlDescriptor {
+	private static final long serialVersionUID = -6929700130720202750L;
+
 	/**
 	 * XML constructor.
 	 */

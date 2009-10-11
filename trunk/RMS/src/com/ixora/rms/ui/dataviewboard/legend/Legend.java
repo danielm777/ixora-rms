@@ -73,8 +73,8 @@ public class Legend {
 			this.itemsInfo[i].setValue(values[i]);
 		}
 		this.timestamp = time;
-		for(Iterator iter = listeners.iterator(); iter.hasNext(); ) {
-			((Listener)iter.next()).valuesChanged(values, time);
+		for(Iterator<Listener> iter = listeners.iterator(); iter.hasNext(); ) {
+			iter.next().valuesChanged(values, time);
 		}
 	}
 

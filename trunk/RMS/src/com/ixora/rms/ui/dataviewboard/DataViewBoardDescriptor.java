@@ -5,7 +5,6 @@ package com.ixora.rms.ui.dataviewboard;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,13 +21,14 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class DataViewBoardDescriptor implements XMLExternalizable {
+	private static final long serialVersionUID = -1174847429246846842L;
 	/** List of DataControlDescriptor for all controls that are plotted on the board */
-    private List descriptors;
+    private List<DataViewControlDescriptor> descriptors;
     /** Board class name */
     private String boardClass;
     /** Location of the frame */
     private Point location;
-    /** Dimension of the framee */
+    /** Dimension of the frame */
     private Dimension dimension;
     /** Title */
     private String title;
@@ -48,7 +48,7 @@ public class DataViewBoardDescriptor implements XMLExternalizable {
      * @param size
      * @param title
      */
-    public DataViewBoardDescriptor(List descriptors, String boardClass,
+    public DataViewBoardDescriptor(List<DataViewControlDescriptor> descriptors, String boardClass,
             Point location, Dimension size, String title) {
         super();
         this.descriptors = descriptors;
@@ -108,13 +108,15 @@ public class DataViewBoardDescriptor implements XMLExternalizable {
                 this.dimension = new Dimension(w, h);
             }
         }
-        this.descriptors = new LinkedList();
+        this.descriptors = new LinkedList<DataViewControlDescriptor>();
         n = XMLUtils.findChild(node, "controls");
         if(n != null) {
         	try {
 				XMLExternalizable[] objs = XMLUtils.readObjects(null, n, "control");
 				if(objs != null) {
-					this.descriptors = Arrays.asList(objs);
+					for(int i = 0; i < objs.length; i++) {
+						this.descriptors.add((DataViewControlDescriptor)objs[i]);
+					}
 				}
 			} catch(Exception e) {
 				throw new XMLException(e);
@@ -130,7 +132,7 @@ public class DataViewBoardDescriptor implements XMLExternalizable {
     /**
      * @return the list of DataViewControlDescriptor
      */
-    public List getControlDescriptors() {
+    public List<DataViewControlDescriptor> getControlDescriptors() {
         return descriptors;
     }
     /**

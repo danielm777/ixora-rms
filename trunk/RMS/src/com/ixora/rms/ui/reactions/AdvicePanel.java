@@ -12,6 +12,7 @@ import com.ixora.rms.reactions.ReactionLogRecord;
  * @author Daniel Moraru
  */
 public final class AdvicePanel extends ReactionPanel {
+	private static final long serialVersionUID = -8018595273465640091L;
 
 	/**
 	 *

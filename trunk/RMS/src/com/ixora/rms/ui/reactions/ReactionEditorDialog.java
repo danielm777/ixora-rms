@@ -37,6 +37,7 @@ import com.ixora.rms.dataengine.definitions.ReactionDef;
  * @author Daniel Moraru
  */
 public final class ReactionEditorDialog extends AppDialog {
+	private static final long serialVersionUID = 4260572472145620540L;
 
 	public interface Callback {
 		/**
@@ -223,6 +224,8 @@ public final class ReactionEditorDialog extends AppDialog {
 		return new JButton[] {
 				new JButton(
 					new ActionOk() {
+						private static final long serialVersionUID = -6644252511188972366L;
+
 						public void actionPerformed(ActionEvent e) {
 							handleOk();
 							dispose();
@@ -231,6 +234,8 @@ public final class ReactionEditorDialog extends AppDialog {
 				),
 				new JButton(
 					new ActionClose() {
+						private static final long serialVersionUID = 4706946831012140553L;
+
 						public void actionPerformed(ActionEvent e) {
 							dispose();
 						}

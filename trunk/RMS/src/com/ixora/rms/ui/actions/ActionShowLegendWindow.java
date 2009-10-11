@@ -22,6 +22,7 @@ import com.ixora.rms.ui.messages.Msg;
  * Shows the legend window.
  */
 public final class ActionShowLegendWindow extends AbstractAction {
+	private static final long serialVersionUID = 2010948856907948925L;
 	/** View container */
 	private RMSViewContainer viewContainer;
 
@@ -44,7 +45,7 @@ public final class ActionShowLegendWindow extends AbstractAction {
 	 */
 	public void actionPerformed(ActionEvent ev) {
 		try {
-			LegendDialog ld = LegendDialog.showLegendDialog(viewContainer.getAppFrame());
+			LegendDialog.showLegendDialog(viewContainer.getAppFrame());
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}

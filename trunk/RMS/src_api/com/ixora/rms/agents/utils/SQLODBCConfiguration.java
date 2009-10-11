@@ -10,7 +10,8 @@ import com.ixora.common.utils.Utils;
  * SQLAuthenticationConfiguration
  */
 public abstract class SQLODBCConfiguration extends AuthenticationConfiguration {
-    public static final String	JDBCSTRING = Msg.AGENT_CONFIGURATION_JDBCSTRING;
+	private static final long serialVersionUID = -1231615393420045523L;
+	public static final String	JDBCSTRING = Msg.AGENT_CONFIGURATION_JDBCSTRING;
     public static final String	JDBCCLASS = Msg.AGENT_CONFIGURATION_JDBCCLASS;
     public static final String  ODBCDRIVER = Msg.AGENT_CONFIGURATION_ODBCDRIVER;
 
@@ -47,7 +48,6 @@ public abstract class SQLODBCConfiguration extends AuthenticationConfiguration {
 	    // Allow user to specify a different driver class
 	    String driverClass = getString(JDBCCLASS);
 	    Class.forName(driverClass);
-	    //DriverManager.setLogStream(System.out); // TODO: debug only?
 
 	    // Allow user to specify the whole jdbc string
 	    String conn = getString(JDBCSTRING);

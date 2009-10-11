@@ -31,6 +31,7 @@ import com.ixora.rms.ui.artefacts.dataview.wizard.messages.Msg;
  * @author Daniel Moraru
  */
 public class DistinctQueryDefPanel extends QueryDefPanel {
+	private static final long serialVersionUID = -3923851412641381434L;
 	private static final String LABEL_COUNTERS = "Counters";
 	private FormPanel fForm;
 	private TypedPropertiesListEditor fEditorResource;
@@ -80,6 +81,8 @@ public class DistinctQueryDefPanel extends QueryDefPanel {
 
 		fEditorResource = new TypedPropertiesListEditor(
 				new PropertyListTableModel(fPrototypeResource, null, null) {
+					private static final long serialVersionUID = -6978540683892572161L;
+
 					public boolean isCellEditable(int rowIndex, int columnIndex) {
 						// counter column not editable
 						if(columnIndex == 0) {

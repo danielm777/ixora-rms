@@ -30,6 +30,7 @@ import com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef;
  * @author Daniel Moraru
  */
 public class WizardStep4 extends WizardStep {
+	private static final long serialVersionUID = -3128515942959621294L;
 	private EntityRegexQueryDefPanel fEntityRegexPanel;
 	private DistinctQueryDefPanel fDistinctPanel;
 	private HostRegexQueryDefPanel fHostRegexPanel;
@@ -394,6 +395,7 @@ public class WizardStep4 extends WizardStep {
 	 */
 	private List<String> getRangesIdsForRegex(QueryDef qdef) throws NoResourcesDefined {
 		List<String> rangeIDs = new LinkedList<String>();
+		@SuppressWarnings("unused")
 		String domainID = null;
 		// resources
 		List<ResourceDef> rdefs = qdef.getResources();

@@ -16,8 +16,10 @@ import org.jfree.ui.RectangleEdge;
  * Holds caches for various data, to avoid to much recalculation
  */
 public class OptimizedCategoryAxis extends CategoryAxis {
-    /** Cache for tickmarks */
-    private List listCachedTicks;
+	private static final long serialVersionUID = -2678703990411745070L;
+	/** Cache for tickmarks */
+    @SuppressWarnings("unchecked")
+	private List listCachedTicks;
 
     /**
      * Clears all caches, usually called when data was added to chart
@@ -32,7 +34,8 @@ public class OptimizedCategoryAxis extends CategoryAxis {
      * for every draw cycle.
      * @see org.jfree.chart.axis.Axis#refreshTicks(java.awt.Graphics2D, org.jfree.chart.axis.AxisState, java.awt.geom.Rectangle2D, java.awt.geom.Rectangle2D, org.jfree.ui.RectangleEdge)
      */
-    public List refreshTicks(Graphics2D g2,
+    @SuppressWarnings("unchecked")
+	public List refreshTicks(Graphics2D g2,
             AxisState state,
             Rectangle2D plotArea,
             Rectangle2D dataArea,

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class DeltaHistoryColorHandler {
     /** List of colors for delta history scale */
-    private List deltaHistoryColors;
+    private List<Color> deltaHistoryColors;
     /** The depth of the delta history */
     private int deltaHistoryDepth;
     /** Up color */

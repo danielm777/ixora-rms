@@ -18,6 +18,7 @@ import com.ixora.common.ui.wizard.WizardStep;
  * @author Daniel Moraru
  */
 public class WizardStep1 extends WizardStep {
+	private static final long serialVersionUID = -1329603196168654863L;
 	private ResourceId fContext;
 
 	public static class Data {

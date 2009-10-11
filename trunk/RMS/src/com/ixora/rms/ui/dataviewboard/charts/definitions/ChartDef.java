@@ -6,13 +6,10 @@ package com.ixora.rms.ui.dataviewboard.charts.definitions;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.jfree.chart.plot.Plot;
-
-import com.ixora.rms.ResourceId;
 import com.ixora.common.xml.XMLSameTagList;
 import com.ixora.common.xml.XMLTagList;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.dataengine.Cube;
-import com.ixora.rms.dataengine.QueryResult;
 import com.ixora.rms.dataengine.definitions.QueryDef;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.repository.DataView;
@@ -28,7 +25,8 @@ import com.ixora.rms.ui.dataviewboard.charts.exception.ChartNoRendererException;
  * Loads and saves contents into XML.
  */
 public class ChartDef extends DataView {
-    protected XMLTagList renderers = new XMLSameTagList(RendererDef.class);
+	private static final long serialVersionUID = 7027947123382558490L;
+	protected XMLTagList<RendererDef> renderers = new XMLSameTagList<RendererDef>(RendererDef.class);
 
     /**
      * Constructs an empty object, ready to be loaded from XML
@@ -97,15 +95,15 @@ public class ChartDef extends DataView {
 
 	    // Make sure domain and ranges for all renderers have valid IDs
 	    for (RendererDef renderer : getRenderers()) {
-	        QueryResult qr = realizedCube.getQueryResult(renderer.getDomain().getId());
+	        realizedCube.getQueryResult(renderer.getDomain().getId());
 	        for (String rangeID : renderer.getRangesIDList()) {
-	            qr = realizedCube.getQueryResult(rangeID);
+	            realizedCube.getQueryResult(rangeID);
 	        }
 	    }
 
         // Make sure the definition can produce a Plot object
 	    ChartImpl chartImpl = new ChartImpl(this, realizedCube, 50);
 		List<RMSDataset> datasets = new LinkedList<RMSDataset>();
-		Plot plot = chartImpl.createPlot(datasets);
+		chartImpl.createPlot(datasets);
     }
 }

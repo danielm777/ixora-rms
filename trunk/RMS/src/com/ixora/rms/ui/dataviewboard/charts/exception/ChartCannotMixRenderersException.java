@@ -11,6 +11,8 @@ import com.ixora.rms.ui.dataviewboard.charts.messages.Msg;
  * be of the same class (Category or XY), mixing is not allowed
  */
 public class ChartCannotMixRenderersException extends ChartException {
+	private static final long serialVersionUID = 2615702126694899404L;
+
 	/**
 	 * Constructor.
 	 */

@@ -36,6 +36,7 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
  */
 public final class ChartsBoard extends DataViewBoard
 				implements Observer {
+	private static final long serialVersionUID = -5029806407664207122L;
 	/** Logger */
 	private AppLogger logger = AppLoggerFactory.getLogger(ChartsBoard.class);
 	/** Columns */

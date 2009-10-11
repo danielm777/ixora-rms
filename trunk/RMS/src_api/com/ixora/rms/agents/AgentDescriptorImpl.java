@@ -17,7 +17,8 @@ import com.ixora.rms.agents.AgentId;
  * AgentDescriptorImpl
  */
 public class AgentDescriptorImpl implements AgentDescriptor {
-    private AgentConfiguration fAgentConfig;
+	private static final long serialVersionUID = -8992882807821367968L;
+	private AgentConfiguration fAgentConfig;
     private AgentId fAgentId;
     private boolean fSafeForRefresh;
 

@@ -14,7 +14,8 @@ import com.ixora.rms.EntityDataBuffer;
  * @author Daniel Moraru
  */
 public final class AgentDataBufferImpl extends HostDataBufferImpl implements AgentDataBuffer {
-    /**
+	private static final long serialVersionUID = -7078129258085394088L;
+	/**
      * The agent descriptor which is not null only for the first sample after a change
      * in the descriptor of the agent.
      */

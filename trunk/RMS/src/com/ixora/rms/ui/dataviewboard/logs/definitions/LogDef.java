@@ -11,6 +11,7 @@ import com.ixora.rms.ui.dataviewboard.logs.LogBoard;
  * @author Daniel Moraru
  */
 public class LogDef extends DataView {
+	private static final long serialVersionUID = -3791549460151080294L;
 
 	/**
 	 *

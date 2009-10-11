@@ -47,7 +47,9 @@ import com.ixora.rms.ui.artefacts.dashboard.messages.Msg;
  * A panel that allows to edit and plot from a set of query groups.
  * @author Daniel Moraru
  */
-public final class DashboardSelectorPanel extends ArtefactSelectorPanel {
+public final class DashboardSelectorPanel extends ArtefactSelectorPanel<DashboardInfo> {
+	private static final long serialVersionUID = 1751373651781903520L;
+
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DashboardSelectorPanel.class);
 
@@ -169,7 +171,7 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel {
      * @param db
      */
     public void setDashboards(
-            ResourceId context, Collection db) {
+            ResourceId context, Collection<DashboardInfo> db) {
         this.setArtefacts(context, db);
     }
 
@@ -653,7 +655,6 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel {
 						});
 					}
 				}
-				String dashboardName = dinfo.getDashboard().getName();
 			}
         }
 

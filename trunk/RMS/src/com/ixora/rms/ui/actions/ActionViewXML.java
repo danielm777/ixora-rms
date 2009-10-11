@@ -19,6 +19,7 @@ import com.ixora.rms.ui.messages.Msg;
  * Reusable action that allows data to be viewed as XML.
  */
 public abstract class ActionViewXML extends AbstractAction {
+	private static final long serialVersionUID = -6151965450430577133L;
 	protected RMSViewContainer fContainer;
 
 	/**

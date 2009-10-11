@@ -9,10 +9,15 @@ import com.ixora.rms.reactions.ReactionDeliveryInfoEmail;
 import com.ixora.rms.reactions.ReactionDeliveryType;
 import com.ixora.rms.reactions.ReactionLogRecord;
 
+/**
+ * @author Daniel Moraru
+ */
 final class EmailTableModel extends ReactionTableModel {
+	private static final long serialVersionUID = 7180989779601156062L;
 
 	public EmailTableModel(List<ReactionLogRecord> lst) {
 		super(lst);
+		// TODO localize
 		fColumns.add("To");
 		fColumns.add("Server");
 	}

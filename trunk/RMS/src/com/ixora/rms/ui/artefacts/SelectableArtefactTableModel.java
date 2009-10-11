@@ -23,10 +23,11 @@ import com.ixora.rms.ui.RMSViewContainer;
  * The model for the queries table.
  * @author Daniel Moraru
  */
-public abstract class SelectableArtefactTableModel
+public abstract class SelectableArtefactTableModel<T extends ArtefactInfo>
 	extends AbstractTableModel {
+	private static final long serialVersionUID = 7632004347915596419L;
 	/** List of ArtefactInfo */
-	protected List fArtefactData;
+	protected List<T> fArtefactData;
 	/** Context */
 	protected ResourceId fContext;
 	/** Session model */
@@ -51,7 +52,7 @@ public abstract class SelectableArtefactTableModel
 		if(sm == null) {
 			throw new IllegalArgumentException("null session model");
 		}
-		this.fArtefactData = new LinkedList();
+		this.fArtefactData = new LinkedList<T>();
 		this.fSessionModel = sm;
 		this.fViewContainer = vc;
 		this.fLogReplayMode = logReplayMode;
@@ -99,7 +100,7 @@ public abstract class SelectableArtefactTableModel
 	/**
 	 * @see javax.swing.table.TableModel#getColumnClass(int)
 	 */
-	public Class getColumnClass(int columnIndex) {
+	public Class<?> getColumnClass(int columnIndex) {
 		switch(columnIndex) {
 			case 0: // enabled column
 				return Boolean.class;
@@ -130,7 +131,7 @@ public abstract class SelectableArtefactTableModel
 	 */
 	public void setArtefacts(
 			ResourceId context,
-			Collection<? extends ArtefactInfo> artefacts) {
+			Collection<T> artefacts) {
 		this.fContext = context;
 		this.fArtefactData.clear();
 		if(artefacts != null) {
@@ -183,11 +184,10 @@ public abstract class SelectableArtefactTableModel
 	 * (enabled but not committed)<br>
 	 * List of ArtefactInfo
 	 */
-	protected List getArtefactsToRealize() {
-		List ret = new LinkedList();
-		ArtefactInfo ai;
-		for(Iterator iter = this.fArtefactData.iterator(); iter.hasNext();) {
-			ai = (ArtefactInfo)iter.next();
+	protected List<T> getArtefactsToRealize() {
+		List<T> ret = new LinkedList<T>();
+		for(Iterator<T> iter = this.fArtefactData.iterator(); iter.hasNext();) {
+			T ai = iter.next();
 			if(ai.getFlag(ArtefactInfo.ENABLED) && !ai.isCommitted()) {
 				ret.add(ai);
 			}
@@ -200,11 +200,10 @@ public abstract class SelectableArtefactTableModel
 	 * (disabled but not committed)<br>
 	 * List of ArtefactInfo
 	 */
-	protected List getArtefactsToUnRealize() {
-		List ret = new LinkedList();
-		ArtefactInfo ai;
-		for(Iterator iter = this.fArtefactData.iterator(); iter.hasNext();) {
-			ai = (ArtefactInfo)iter.next();
+	protected List<T> getArtefactsToUnRealize() {
+		List<T> ret = new LinkedList<T>();
+		for(Iterator<T> iter = this.fArtefactData.iterator(); iter.hasNext();) {
+			T ai = iter.next();
 			if(!ai.getFlag(ArtefactInfo.ENABLED) && !ai.isCommitted()) {
 				ret.add(ai);
 			}

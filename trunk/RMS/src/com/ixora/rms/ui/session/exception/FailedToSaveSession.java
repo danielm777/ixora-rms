@@ -12,6 +12,7 @@ import com.ixora.rms.ui.session.messages.Msg;
  * @author Daniel Moraru
  */
 public final class FailedToSaveSession extends RMSException {
+	private static final long serialVersionUID = 6258598479834165447L;
 
 	/**
 	 * @param e

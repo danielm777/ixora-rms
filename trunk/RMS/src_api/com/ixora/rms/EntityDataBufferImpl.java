@@ -12,6 +12,7 @@ import com.ixora.rms.data.CounterValue;
  * @author Daniel Moraru
  */
 public final class EntityDataBufferImpl implements EntityDataBuffer {
+	private static final long serialVersionUID = -2936743379570251366L;
 	/** Logger */
 	private static final AppLogger sLogger = AppLoggerFactory.getLogger(EntityDataBufferImpl.class);
 	/**

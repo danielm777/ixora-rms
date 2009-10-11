@@ -16,7 +16,8 @@ import com.ixora.common.ui.UIUtils;
  * @author Daniel Moraru
  */
 final class ReactionTableCellRenderer extends DefaultTableCellRenderer {
-    /** Original background color */
+	private static final long serialVersionUID = -7862118223467456068L;
+	/** Original background color */
     private Color fOriginalBackColor;
     /** Color to use for row stripping */
     private Color fStripeColor;

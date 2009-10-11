@@ -39,7 +39,7 @@ public final class LogChooserImpl
      */
     public LogRepositoryInfo getLogInfoForRead() {
         // try first to use the last used repository
-        List logs = null;
+        List<LogRepositoryInfo> logs = null;
         try {
 			logs = ConfigurationMgr.getList(
 		        LogChooserComponent.NAME,
@@ -51,7 +51,7 @@ public final class LogChooserImpl
         String type = null;
         LogRepositoryInfo last = null;
 		if(logs != null && logs.size() > 0) {
-		    last = (LogRepositoryInfo)logs.get(0);
+		    last = logs.get(0);
 		    type = last.getRepositoryType();
 		} else {
 		   // if not use the type that's marked as the default
@@ -80,10 +80,10 @@ public final class LogChooserImpl
 		        logger.error("Configuration missing for component " + LogChooserComponent.NAME);
 		        return;
 		    }
-			List lst = conf.getList(
+			List<LogRepositoryInfo>lst = conf.getList(
 			        LogRepositoryInfo.class,
 			        LogChooserConfigurationConstants.MOST_RECENTLY_USED);
-			List mru = new MRUList(
+			List<LogRepositoryInfo> mru = new MRUList<LogRepositoryInfo>(
 			        conf.getInt(LogChooserConfigurationConstants.MOST_RECENTLY_USED_SIZE),
 			        lst);
 			mru.add(ret);
@@ -101,7 +101,7 @@ public final class LogChooserImpl
      */
     public LogRepositoryInfo getLogInfoForWrite() {
         // try first to use the last used repository type
-        List logs = null;
+        List<LogRepositoryInfo> logs = null;
         try {
 			logs = ConfigurationMgr.getList(
 		        LogChooserComponent.NAME,

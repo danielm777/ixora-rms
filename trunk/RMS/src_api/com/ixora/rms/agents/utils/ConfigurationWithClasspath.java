@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
  * @author Daniel Moraru
  */
 public class ConfigurationWithClasspath extends AuthenticationConfiguration {
+	private static final long serialVersionUID = 1366253808394881425L;
 	public static final String ROOT_FOLDER = Msg.ROOT_FOLDER;
 	public static final String CLASSPATH = Msg.CLASSPATH;
 

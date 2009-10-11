@@ -22,7 +22,7 @@ import com.ixora.rms.ui.reactions.ReactionEditorDialog;
 /**
  * @author Daniel Moraru
  */
-public final class ReactionExtendedEditor extends ExtendedEditorAbstract {
+public final class ReactionExtendedEditor extends ExtendedEditorAbstract<ReactionExtendedEditor.ReactionDefWrapper> {
 	private ReactionDef fResult;
 	private EventHandler fEventHandler;
 	private String[] fParams;
@@ -39,6 +39,7 @@ public final class ReactionExtendedEditor extends ExtendedEditorAbstract {
 
 	/** Wrapper of a reaction def to give it a meaningful string representation */
 	public static class ReactionDefWrapper implements Serializable {
+		private static final long serialVersionUID = -6237884770292082176L;
 		private ReactionDef fDef;
 
 		public ReactionDefWrapper(ReactionDef def) {
@@ -63,13 +64,13 @@ public final class ReactionExtendedEditor extends ExtendedEditorAbstract {
 	/**
 	 * @see com.ixora.common.typedproperties.ui.ExtendedEditor#launch(java.awt.Component, com.ixora.common.typedproperties.PropertyEntry)
 	 */
-	public void launch(Component owner, PropertyEntry pe) {
-		Object obj = pe.getValue();
+	public void launch(Component owner, PropertyEntry<ReactionDefWrapper> pe) {
+		ReactionDefWrapper obj = pe.getValue();
 		ReactionDef def = null;
 		ReactionEditorDialog dlg = null;
 		Window parentWindow = SwingUtilities.getWindowAncestor(owner);
 		if(obj != null) {
-			def = ((ReactionDefWrapper)obj).fDef;
+			def = obj.fDef;
 			if(parentWindow instanceof Frame) {
 				dlg = new ReactionEditorDialog(
 						(Frame)parentWindow,

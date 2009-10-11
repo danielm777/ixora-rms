@@ -22,6 +22,7 @@ import com.ixora.common.xml.exception.XMLTextNodeMissing;
  */
 public class CounterDescriptorImpl
 	extends MonitoringDescriptorImpl implements CounterDescriptor {
+	private static final long serialVersionUID = -8849618717358474308L;
 	/** Counter id */
 	protected CounterId fCounterId;
 	/** True if counter has discreet (non-continuous) values */

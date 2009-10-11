@@ -22,6 +22,7 @@ import com.ixora.common.xml.exception.XMLTextNodeMissing;
  */
 public abstract class MonitoringDescriptorImpl
 	implements Serializable, Cloneable, MonitoringDescriptor  {
+	private static final long serialVersionUID = -8345434807739801779L;
 	/** Monitoring entity name key */
 	protected String fName;
 	/** Monitoring entity description key */
