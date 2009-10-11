@@ -9,7 +9,8 @@ import com.ixora.rms.repository.messages.Msg;
  * @author: Daniel Moraru
  */
 public final class AgentCategory extends Enum {
-    public static final AgentCategory MISCELLANEOUS =
+	private static final long serialVersionUID = -7301560753349821330L;
+	public static final AgentCategory MISCELLANEOUS =
     	new AgentCategory(0, MessageRepository.get(RepositoryComponent.NAME, Msg.AGENT_CATEGORY_MISCELLANEOUS), Msg.AGENT_CATEGORY_MISCELLANEOUS);
     public static final AgentCategory DATABASES =
     	new AgentCategory(1, MessageRepository.get(RepositoryComponent.NAME, Msg.AGENT_CATEGORY_DATABASES), Msg.AGENT_CATEGORY_DATABASES);

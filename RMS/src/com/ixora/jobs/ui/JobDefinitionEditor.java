@@ -43,6 +43,8 @@ import com.ixora.common.ui.actions.ActionOk;
  */
 // NOTE this class is not yet plugin oriented; it's still working with hardcoded job types
 public class JobDefinitionEditor extends AppDialog {
+	private static final long serialVersionUID = 7488406551250776696L;
+
 	public interface Callback {
 		/**
 		 * @param def
@@ -77,6 +79,7 @@ public class JobDefinitionEditor extends AppDialog {
 	/** Whether or not the editor is in the view mode */
 	private boolean fViewMode;
 
+	@SuppressWarnings("serial")
 	private final class ActionShowJobLibrary extends AbstractAction {
 	    public ActionShowJobLibrary() {
 			super();
@@ -255,7 +258,8 @@ public class JobDefinitionEditor extends AppDialog {
     /**
      * @see com.ixora.common.ui.AppDialog#getButtons()
      */
-    protected JButton[] getButtons() {
+    @SuppressWarnings("serial")
+	protected JButton[] getButtons() {
     	JButton ok = new JButton(new ActionOk() {
                     public void actionPerformed(ActionEvent e) {
                         handleOk();

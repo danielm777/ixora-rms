@@ -17,7 +17,8 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public class ExternalCommandJobData implements JobData {
-    /** Command job */
+	private static final long serialVersionUID = -6353610166170466025L;
+	/** Command job */
     private String command;
 
     /**

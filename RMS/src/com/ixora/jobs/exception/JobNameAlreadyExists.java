@@ -11,7 +11,9 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class JobNameAlreadyExists extends RMSException {
-    /**
+	private static final long serialVersionUID = -3197214689872369166L;
+
+	/**
      * Constructor.
      * @param name
      */

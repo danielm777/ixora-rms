@@ -8,8 +8,11 @@ import com.ixora.rms.messages.Msg;
 
 /**
  * NonExistentResourceIdInReactionDef
+ * @author Daniel Moraru
  */
 public final class NonExistentResourceIdInReactionDef extends QueryException {
+	private static final long serialVersionUID = -5914527371707112601L;
+
 	/**
 	 * Constructor.
 	 */

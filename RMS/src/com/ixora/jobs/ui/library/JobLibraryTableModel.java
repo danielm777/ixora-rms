@@ -18,6 +18,8 @@ import com.ixora.common.MessageRepository;
  * @author Daniel Moraru
  */
 public class JobLibraryTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = -6088172562724008270L;
+
 	/** Column1 */
 	private final String[] fColumns = {
 		MessageRepository.get(JobsComponent.NAME, Msg.MODELS_TABLES_JOBLIBRARY_COL1),

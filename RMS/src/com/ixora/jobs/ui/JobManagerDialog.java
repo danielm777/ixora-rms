@@ -31,7 +31,8 @@ import com.ixora.rms.ui.RMSViewContainer;
  * @author Daniel Moraru
  */
 public final class JobManagerDialog extends AppDialog implements JobManagerViewer {
-    /** JobEngineService */
+	private static final long serialVersionUID = 5869508569804391585L;
+	/** JobEngineService */
     private JobEngineService rmsJobEngineService;
     /** JobLibraryService */
     private JobLibraryService rmsJobLibraryService;
@@ -142,7 +143,8 @@ public final class JobManagerDialog extends AppDialog implements JobManagerViewe
     /**
      * @see com.ixora.common.ui.AppDialog#getButtons()
      */
-    protected JButton[] getButtons() {
+    @SuppressWarnings("serial")
+	protected JButton[] getButtons() {
         return new JButton[]{
            new JButton(actionShowJobLibrary),
            new JButton(actionScheduleJob),

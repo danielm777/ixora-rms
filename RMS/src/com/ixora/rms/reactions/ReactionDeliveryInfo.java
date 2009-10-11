@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public abstract class ReactionDeliveryInfo implements Serializable {
+	private static final long serialVersionUID = 5730673938904107041L;
 	protected String fMessage;
 	protected Throwable fError;
 

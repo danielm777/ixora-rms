@@ -19,6 +19,7 @@ import com.ixora.rms.EntityId;
  * @author Daniel Moraru
  */
 public final class ColumnDefinition implements XMLExternalizable {
+	private static final long serialVersionUID = -3988776310970443512L;
 	private int columnIndex;
 	private EntityId entityId;
 	private CounterId counterId;

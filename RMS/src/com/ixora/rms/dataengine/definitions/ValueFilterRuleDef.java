@@ -12,8 +12,9 @@ import com.ixora.common.xml.XMLTag;
  * Loads and saves contents into XML.
  */
 public class ValueFilterRuleDef extends XMLTag {
+	private static final long serialVersionUID = 5540860705346167788L;
 
-    /**
+	/**
      * Constructs an empty object, ready to be loaded from XML
      */
     public ValueFilterRuleDef() {

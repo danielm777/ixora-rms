@@ -10,7 +10,9 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentNotActivated extends InvalidAgentState {
-    /**
+	private static final long serialVersionUID = -2386084217427990225L;
+
+	/**
      * Constructor.
      */
     public AgentNotActivated() {

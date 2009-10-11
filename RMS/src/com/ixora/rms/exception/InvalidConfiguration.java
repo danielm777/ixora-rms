@@ -11,6 +11,7 @@ import com.ixora.common.typedproperties.exception.VetoException;
  * @author Daniel Moraru
  */
 public final class InvalidConfiguration extends RMSException {
+	private static final long serialVersionUID = 2771381001118917243L;
 
 	/**
 	 * Constructor.

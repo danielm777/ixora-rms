@@ -17,6 +17,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public final class ProviderInstallationData implements InstallationArtefact {
+	private static final long serialVersionUID = 240716236410314207L;
 	/** Provider class */
 	private String clazz;
 	/** Provider name */
@@ -108,14 +109,14 @@ public final class ProviderInstallationData implements InstallationArtefact {
 		// optional
 		n = XMLUtils.findChild(node, "jars");
 		if(n != null) {
-			List m = XMLUtils.findChildren(n, "jar");
+			List<Node> m = XMLUtils.findChildren(n, "jar");
 			if(m.size() == 0) {
 				throw new XMLNodeMissing("jar");
 			}
 			List<String> jlist = new LinkedList<String>();
 			String j;
-			for(Iterator iter = m.iterator(); iter.hasNext();) {
-				 n = (Node)iter.next();
+			for(Iterator<Node> iter = m.iterator(); iter.hasNext();) {
+				 n = iter.next();
 				 j = XMLUtils.getText(n);
 				 if(j != null && j.length() > 0) {
 				 	jlist.add(j);

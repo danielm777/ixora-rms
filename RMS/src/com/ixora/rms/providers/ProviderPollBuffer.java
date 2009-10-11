@@ -10,7 +10,10 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public class ProviderPollBuffer implements Serializable {
+	private static final long serialVersionUID = -9082868169260501996L;
+
 	public final static class StateChange implements Serializable {
+		private static final long serialVersionUID = 1417328064495084970L;
 		public ProviderId fProviderId;
 		public ProviderState fProviderState;
 		public Throwable fError;

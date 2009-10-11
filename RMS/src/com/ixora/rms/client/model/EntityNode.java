@@ -25,6 +25,7 @@ import com.ixora.rms.EntityId;
  */
 public final class EntityNode extends DefaultCheckTreeNode
 		implements ResourceNodeWithEntities {
+	private static final long serialVersionUID = 3947441358009431146L;
 	/** Agent node, the ancestor of this node */
 	private AgentNode agentNode;
 
@@ -78,7 +79,8 @@ public final class EntityNode extends DefaultCheckTreeNode
     /**
      * @see com.ixora.rms.client.model.ResourceNode#findPathsMatching(com.ixora.rms.ResourceId, java.util.List, boolean)
      */
-    public void findPathsMatching(ResourceId ridex, List<ResourcePath> result, boolean aggressive) {
+    @SuppressWarnings("unchecked")
+	public void findPathsMatching(ResourceId ridex, List<ResourcePath> result, boolean aggressive) {
     	if(!ridex.isValid()) {
             return;
         }
@@ -100,10 +102,10 @@ public final class EntityNode extends DefaultCheckTreeNode
             // first see if a counter must be searched
             if(ridex.getRepresentation() == ResourceId.COUNTER
                     && ridLen == ridexLen - 1) {
-	            Collection cinfos = getEntityInfo().getCounterInfo();
+	            Collection<CounterInfo> cinfos = getEntityInfo().getCounterInfo();
 	            CounterInfo ci;
-	            for(Iterator iter = cinfos.iterator(); iter.hasNext();) {
-	                ci = (CounterInfo)iter.next();
+	            for(Iterator<CounterInfo> iter = cinfos.iterator(); iter.hasNext();) {
+	                ci = iter.next();
 	                if(ridex.matchesCounterId(ci.getId())) {
 	                    result.add(getResourcePath(ci));
 	                }
@@ -113,10 +115,10 @@ public final class EntityNode extends DefaultCheckTreeNode
                 if(aggressive) {
                     retrieveChildren(this);
                 }
-                Enumeration e = children();
+                Enumeration<TreeNode> e = children();
                 ResourceNode rn;
                 while(e.hasMoreElements()) {
-                	TreeNode tn = (TreeNode)e.nextElement();
+                	TreeNode tn = e.nextElement();
                 	if(tn instanceof ResourceNode) {
 	                    rn = (ResourceNode)tn;
 	                    rn.findPathsMatching(ridex, result, aggressive);
@@ -159,10 +161,11 @@ public final class EntityNode extends DefaultCheckTreeNode
     /**
      * @see com.ixora.rms.client.model.SessionModelTreeNode#hasEnabledDescendants()
      */
-    public boolean hasEnabledDescendants() {
-		Enumeration e = breadthFirstEnumeration();
+    @SuppressWarnings("unchecked")
+	public boolean hasEnabledDescendants() {
+		Enumeration<TreeNode> e = breadthFirstEnumeration();
 		while(e.hasMoreElements()) {
-			TreeNode tn = (TreeNode)e.nextElement();
+			TreeNode tn = e.nextElement();
 			if(tn instanceof EntityNode) {
 				EntityNode node = (EntityNode)tn;
 				if(node.getEntityInfoImpl().isEnabled()) {
@@ -192,11 +195,12 @@ public final class EntityNode extends DefaultCheckTreeNode
 	/**
 	 * @return an iterator over all the enabled descendant entities
 	 */
+	@SuppressWarnings("unchecked")
 	Iterator<EntityNode> enabledDescendants() {
 		List<EntityNode> ret = new LinkedList<EntityNode>();
-		Enumeration e = breadthFirstEnumeration();
+		Enumeration<TreeNode> e = breadthFirstEnumeration();
 		while(e.hasMoreElements()) {
-			TreeNode tn = (TreeNode)e.nextElement();
+			TreeNode tn = e.nextElement();
 			if(tn instanceof EntityNode) {
 				EntityNode node = (EntityNode)tn;
 				if(node.getEntityInfoImpl().isEnabled()) {
@@ -213,10 +217,11 @@ public final class EntityNode extends DefaultCheckTreeNode
 	/**
 	 * @see com.ixora.rms.client.model.ResourceNodeWithEntities#findChild(com.ixora.rms.EntityId)
 	 */
+	@SuppressWarnings("unchecked")
 	public EntityNode findChild(EntityId id) {
-		Enumeration e = children();
+		Enumeration<TreeNode> e = children();
 		while(e.hasMoreElements()) {
-			TreeNode tn = (TreeNode)e.nextElement();
+			TreeNode tn = e.nextElement();
 			if(tn instanceof EntityNode) {
 				EntityNode node = (EntityNode)tn;
 				if(node.getEntityInfoImpl().getId().equals(id)) {
@@ -260,9 +265,9 @@ public final class EntityNode extends DefaultCheckTreeNode
 	List<CounterInfo> findCounters(String regex) {
 		List<CounterInfo> ret = new LinkedList<CounterInfo>();
 		Pattern p = Pattern.compile(regex);
-		Collection counters = getEntityInfoImpl().getCounterInfo();
-		for(Iterator iter = counters.iterator(); iter.hasNext();) {
-			CounterInfo ci = (CounterInfo)iter.next();
+		Collection<CounterInfo> counters = getEntityInfoImpl().getCounterInfo();
+		for(Iterator<CounterInfo> iter = counters.iterator(); iter.hasNext();) {
+			CounterInfo ci = iter.next();
 			Matcher m = p.matcher(ci.getId().toString());
 			if(m.matches()) {
 				ret.add(ci);
@@ -274,6 +279,7 @@ public final class EntityNode extends DefaultCheckTreeNode
 	/**
 	 * @see com.ixora.rms.client.model.ResourceNodeWithEntities#findDescendant(com.ixora.rms.EntityId, boolean)
 	 */
+	@SuppressWarnings("unchecked")
 	public EntityNode findDescendant(EntityId id, boolean aggressive) {
 	    // take the shortest path
 	    // if this is it return this
@@ -290,10 +296,10 @@ public final class EntityNode extends DefaultCheckTreeNode
 		if(aggressive) {
 			retrieveChildren(this);
 		}
-	    Enumeration e = children();
+	    Enumeration<TreeNode> e = children();
 		EntityNode node, ret;
 		while(e.hasMoreElements()) {
-			TreeNode tn = (TreeNode)e.nextElement();
+			TreeNode tn = e.nextElement();
 			if(tn instanceof EntityNode) {
 				node = (EntityNode)tn;
 				ret = node.findDescendant(id, aggressive);
@@ -341,11 +347,12 @@ public final class EntityNode extends DefaultCheckTreeNode
     /**
      * @return
      */
-    private int getChildEntityCount() {
+    @SuppressWarnings("unchecked")
+	private int getChildEntityCount() {
     	int ret = 0;
-    	Enumeration enumer = children();
+    	Enumeration<TreeNode> enumer = children();
     	while(enumer.hasMoreElements()) {
-			TreeNode tn = (TreeNode)enumer.nextElement();
+			TreeNode tn = enumer.nextElement();
 			if(tn instanceof EntityNode) {
 				ret++;
 			}

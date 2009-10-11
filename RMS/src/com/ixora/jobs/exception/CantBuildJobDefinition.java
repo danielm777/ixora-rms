@@ -9,7 +9,9 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public final class CantBuildJobDefinition extends AppException {
-    /**
+	private static final long serialVersionUID = -8827639120049116380L;
+
+	/**
      * Constructor.
      * @param cause
      */

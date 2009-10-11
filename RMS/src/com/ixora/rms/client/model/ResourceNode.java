@@ -21,7 +21,7 @@ public interface ResourceNode extends SessionModelTreeNode {
      * @param aggresive if true it loads missing children using the monitoring
      * session
      */
-    void findPathsMatching(ResourceId ridex, List <ResourcePath> result, boolean aggressive);
+    void findPathsMatching(ResourceId ridex, List<ResourcePath> result, boolean aggressive);
     /**
      * @return the resource path that corresponds to this node.
      */

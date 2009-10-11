@@ -9,7 +9,8 @@ import com.ixora.common.MessageRepository;
  * @author: Daniel Moraru
  */
 public final class JobState extends Enum {
-    public static final JobState SCHEDULED =
+	private static final long serialVersionUID = 4657850754926034919L;
+	public static final JobState SCHEDULED =
     	new JobState(0, MessageRepository.get(
     	        JobsComponent.NAME, Msg.JOBS_ENUM_JOBSTATE_SCHEDULED));
     public static final JobState STARTED =

@@ -16,8 +16,8 @@ import com.ixora.jobs.library.JobLibraryDefinition;
  * @author Daniel Moraru
  */
 public abstract class JobDefinitionPanel extends JPanel {
-
-    /**
+	private static final long serialVersionUID = 2072117191112845965L;
+	/**
      * Constructor.
      * @param layout
      */

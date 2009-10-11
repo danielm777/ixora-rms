@@ -15,17 +15,16 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.typedproperties.TypedProperties;
 import com.ixora.common.typedproperties.ui.list.PropertyListTableModel;
 import com.ixora.common.typedproperties.ui.list.TypedPropertiesListEditor;
-import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterId;
 import com.ixora.rms.EntityId;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.providers.parsers.property.PropertyRulesDefinition;
 import com.ixora.rms.agents.providers.parsers.property.messages.Msg;
 import com.ixora.rms.providers.ProvidersComponent;
@@ -37,7 +36,8 @@ import com.ixora.rms.providers.parsers.ui.ParsingRulesPanel;
  * @author Daniel Moraru
  */
 public final class PropertyRulesPanel extends ParsingRulesPanel {
-//	private static final String LABEl_ENTITY_INDENTATION = MessageRepository.get(
+	private static final long serialVersionUID = -2990205469056388909L;
+	//	private static final String LABEl_ENTITY_INDENTATION = MessageRepository.get(
 //				ProvidersComponent.NAME, Msg.TEXT_PARSERS_PROPERTY_ENTITY_INDENTATION);
     private static final String LABEl_PROPERTY_VALUE_REGEX = MessageRepository.get(
             ProvidersComponent.NAME, Msg.TEXT_PARSERS_PROPERTY_PROPERTY_VALUE_REGEX);
@@ -85,7 +85,6 @@ public final class PropertyRulesPanel extends ParsingRulesPanel {
 	public PropertyRulesPanel() {
 		super(new BorderLayout());
 		fPrototype = createFromResourceId(null);
-		int gap = UIConfiguration.getPanelPadding();
 
 		fTextFieldEntityIndentation = UIFactoryMgr.createTextField();
 		Dimension d = fTextFieldEntityIndentation.getPreferredSize();

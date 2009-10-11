@@ -15,7 +15,8 @@ import com.ixora.jobs.ui.JobDefinitionPanelDefault;
  */
 public final class ExternalCommandJobDefinitionPanel extends
         JobDefinitionPanelDefault {
-    /** Property key for external command */
+	private static final long serialVersionUID = 6162993553496652028L;
+	/** Property key for external command */
     private static final String EXTERNAL_COMMAND = Msg.TEXT_JOB_EXTERNAL_COMMAND;
 
     /**

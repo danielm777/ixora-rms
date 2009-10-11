@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public final class ReactionId implements Serializable {
+	private static final long serialVersionUID = 517194203072758503L;
 	private int fId;
 
 	/**

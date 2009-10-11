@@ -10,7 +10,8 @@ import com.ixora.common.xml.XMLText;
  * AgentTemplate
  */
 public class AgentTemplate extends XMLTag implements InstallationArtefact {
-    protected XMLText templateId = new XMLText("templateId");
+	private static final long serialVersionUID = -580612798471758259L;
+	protected XMLText templateId = new XMLText("templateId");
     protected XMLText templateName = new XMLText("templateName");
     protected XMLText agentClass = new XMLText("agentClass");
     protected XMLText agentConfigurationPanelClass = new XMLText("agentConfigurationPanelClass");

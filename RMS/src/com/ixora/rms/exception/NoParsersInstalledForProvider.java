@@ -9,7 +9,9 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class NoParsersInstalledForProvider extends RMSException {
-    /**
+	private static final long serialVersionUID = 6851687076950124993L;
+
+	/**
      * Constructor.
      * @param provider
      */

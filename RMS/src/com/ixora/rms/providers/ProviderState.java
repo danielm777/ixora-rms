@@ -9,7 +9,8 @@ import com.ixora.rms.providers.messages.Msg;
  * @author: Daniel Moraru
  */
 public final class ProviderState extends Enum {
-    public static final ProviderState READY =
+	private static final long serialVersionUID = -4689777391417416643L;
+	public static final ProviderState READY =
     	new ProviderState(0, MessageRepository.get(ProvidersComponent.NAME, Msg.RMS_ENUM_PROVIDERSTATE_READY));
     public static final ProviderState STARTED =
     	new ProviderState(1, MessageRepository.get(ProvidersComponent.NAME, Msg.RMS_ENUM_PROVIDERSTATE_STARTED));

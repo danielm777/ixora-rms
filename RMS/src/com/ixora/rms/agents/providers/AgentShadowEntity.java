@@ -24,6 +24,7 @@ import com.ixora.rms.providers.ProviderId;
  * @author Daniel Moraru
  */
 public final class AgentShadowEntity extends Entity {
+	private static final long serialVersionUID = -8835967062824866316L;
 	/** The id of the provider that generates this entity */
 	private ProviderId fProviderId;
 	/**
@@ -108,7 +109,7 @@ public final class AgentShadowEntity extends Entity {
 		if(fProviderId.equals(pid)) {
 			super.configure(conf);
 		}
-		for(Iterator iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
+		for(Iterator<Entity> iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
 			AgentShadowEntity ase = (AgentShadowEntity)iter.next();
 			ase.configureEntitiesForProvider(pid, conf);
 		}

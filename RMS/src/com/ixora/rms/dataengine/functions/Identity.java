@@ -17,6 +17,7 @@ import com.ixora.rms.dataengine.definitions.FunctionDef;
  * @author Daniel Moraru
  */
 public class Identity extends Function {
+	private static final long serialVersionUID = -5547345773850323180L;
 	private CounterType fReturnType;
 
 	/**

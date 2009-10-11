@@ -19,7 +19,8 @@ import com.ixora.rms.ResourceId;
  */
 public final class SessionNode extends DefaultMutableTreeNode
 		implements SessionModelTreeNode {
-    /** Reference to the model */
+	private static final long serialVersionUID = -6380971496607355069L;
+	/** Reference to the model */
 	private SessionModel model;
 
 	/**
@@ -40,7 +41,8 @@ public final class SessionNode extends DefaultMutableTreeNode
 	 * Use this to enumerate hosts rather then <code>children()</code>
 	 * @return an enumeration with all hosts for this scheme
 	 */
-	public Enumeration hosts() {
+	@SuppressWarnings("unchecked")
+	public Enumeration<HostNode> hosts() {
 		return children();
 	}
 
@@ -56,10 +58,11 @@ public final class SessionNode extends DefaultMutableTreeNode
 	/**
 	 * @return the host node data for the given host or null if not found
 	 */
+	@SuppressWarnings("unchecked")
 	HostNode findHostNode(String host) {
-		Enumeration e = children();
+		Enumeration<HostNode> e = children();
 		while(e.hasMoreElements()) {
-			HostNode element = (HostNode)e.nextElement();
+			HostNode element = e.nextElement();
 			if(element.getHostInfo().getName().equals(host)) {
 				return element;
 			}
@@ -70,13 +73,14 @@ public final class SessionNode extends DefaultMutableTreeNode
 	/**
 	 * @return the host nodes matching the given regex
 	 */
+	@SuppressWarnings("unchecked")
 	List<ResourceNode> findHostNodes(String regex) {
 		List<ResourceNode> ret = new LinkedList<ResourceNode>();
 		Pattern p = Pattern.compile(regex);
 		Matcher m;
-		Enumeration e = children();
+		Enumeration<HostNode> e = children();
 		while(e.hasMoreElements()) {
-			HostNode element = (HostNode)e.nextElement();
+			HostNode element = e.nextElement();
 			m = p.matcher(element.getHostInfo().getName());
 			if(m.matches()) {
 				ret.add(element);
@@ -120,11 +124,12 @@ public final class SessionNode extends DefaultMutableTreeNode
      * @return a list of ResourceNodes that match the given
      * regex resource id.
      */
-    public List<ResourcePath> getPathsMatching(ResourceId ridex, boolean aggressive) {
-        List ret = new LinkedList();
-		Enumeration e = children();
+    @SuppressWarnings("unchecked")
+	public List<ResourcePath> getPathsMatching(ResourceId ridex, boolean aggressive) {
+        List<ResourcePath> ret = new LinkedList<ResourcePath>();
+		Enumeration<HostNode> e = children();
 		while(e.hasMoreElements()) {
-			HostNode hostNode = (HostNode)e.nextElement();
+			HostNode hostNode = e.nextElement();
 			hostNode.findPathsMatching(ridex, ret, aggressive);
 		}
 		return ret;
@@ -147,11 +152,12 @@ public final class SessionNode extends DefaultMutableTreeNode
     /**
      * @see com.ixora.rms.client.model.SessionModelTreeNode#hasEnabledDescendants()
      */
-    public boolean hasEnabledDescendants() {
-        Enumeration e = children();
+    @SuppressWarnings("unchecked")
+	public boolean hasEnabledDescendants() {
+        Enumeration<SessionModelTreeNode> e = children();
         SessionModelTreeNode sn;
         while(e.hasMoreElements()) {
-            sn = (SessionModelTreeNode)e.nextElement();
+            sn = e.nextElement();
             if(sn.hasEnabledDescendants()) {
                 return true;
             }

@@ -12,7 +12,8 @@ import com.ixora.common.xml.XMLText;
  * @author Daniel Moraru
  */
 public class TelnetCommandJobData extends XMLTag implements JobData {
-    private XMLText command = new XMLText("command", true);
+	private static final long serialVersionUID = 3779008024030837290L;
+	private XMLText command = new XMLText("command", true);
     private XMLText username = new XMLText("username", true);
     private XMLText password = new XMLText("password", true);
     private XMLText usernamePrompt = new XMLText("usernamePrompt", true);

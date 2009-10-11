@@ -34,6 +34,7 @@ import com.ixora.rms.services.ProviderRepositoryService;
  */
 public final class RemoteProviderManagerImpl
 		extends UnicastRemoteObject implements RemoteProviderManager, Unreferenced {
+	private static final long serialVersionUID = -3806485367360707316L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(RemoteProviderManagerImpl.class);
 	/** Agent manager */

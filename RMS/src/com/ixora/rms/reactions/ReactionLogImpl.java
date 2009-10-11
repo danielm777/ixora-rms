@@ -87,10 +87,11 @@ public final class ReactionLogImpl implements ReactionLog {
 	 * @throws RMSException
 	 * @see com.ixora.rms.services.ReactionLogService#getRecords()
 	 */
+	@SuppressWarnings("unchecked")
 	public List<ReactionLogRecord> getRecords() throws RMSException {
 		try {
 			synchronized(this) {
-				return (List<ReactionLogRecord>)Utils.deepClone(new ArrayList(fRecords.values()));
+				return (List<ReactionLogRecord>)Utils.deepClone(new ArrayList<ReactionLogRecord>(fRecords.values()));
 			}
 		} catch(Exception e) {
 			throw new RMSException(e);

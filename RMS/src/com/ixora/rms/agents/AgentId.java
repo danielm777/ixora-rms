@@ -8,17 +8,8 @@ import java.io.Serializable;
  * @author Cristian Costache
  * @author Daniel Moraru
  */
-/*
- * Modification history
- * -----------------------------------------------
- * 07 July 2004 - DM removed getName() method, use instead
- * 					toString() it's more natural
- * 10 Jan 2004 - DM added support for mutliple similar agents per host;
- * 					if just one agent is activated on the host then toString()
- * 					will return the installation id else the string will be
- * 					installationid:idx where idx >= 1 is the index of of this agent
- */
 public final class AgentId implements Serializable {
+	private static final long serialVersionUID = -5489083071289534947L;
 	private static final String DELIMITER = ":";
     /** Id */
     private String id;

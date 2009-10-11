@@ -9,11 +9,10 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import com.ixora.rms.DataSink;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
-import com.ixora.rms.EntityDataBuffer;
+import com.ixora.rms.DataSink;
 import com.ixora.rms.agents.AgentDataBuffer;
 import com.ixora.rms.dataengine.external.QueryListener;
 import com.ixora.rms.reactions.ReactionDispatcher;
@@ -26,12 +25,6 @@ import com.ixora.rms.services.DataEngineService;
  * This class satisfies data queries.
  * @author Daniel Moraru
  * @author Cristian Costache
- */
-/*
- * Modification history
- * --------------------------------------------------
- * 14 Nov 2004 - DM see DataEngineService
- * 20 Nov 004 - DM see DataEngineService
  */
 public final class DataEngine implements DataEngineService, DataSink, Observer {
 	/** Logger */
@@ -69,11 +62,10 @@ public final class DataEngine implements DataEngineService, DataSink, Observer {
     			for(int i = 0; i < buffs.length; i++) {
     				buff = buffs[i];
     				if(!buff.isEmpty()) {
-	    				EntityDataBuffer[] ebs = buff.getBuffers();
 						// notify all queries of the new data
 						FlatDataBuffer fdb = new FlatDataBuffer(buff);
-						for(Iterator it = fQueries.values().iterator(); it.hasNext();) {
-							DataQueryExecutor dqe = (DataQueryExecutor)it.next();
+						for(Iterator<DataQueryExecutor> it = fQueries.values().iterator(); it.hasNext();) {
+							DataQueryExecutor dqe = it.next();
 							// isolate errors per executor
 							try {
 								dqe.inspectDataBuffer(fdb);

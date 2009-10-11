@@ -22,6 +22,7 @@ import com.ixora.rms.providers.ProviderId;
  * @author Daniel Moraru
  */
 public class AgentShadowRootEntity extends RootEntity {
+	private static final long serialVersionUID = 5631677397995559829L;
 	/** Logger */
 	private static final AppLogger sLogger = AppLoggerFactory.getLogger(AgentShadowRootEntity.class);
 
@@ -109,7 +110,7 @@ public class AgentShadowRootEntity extends RootEntity {
 	 * @throws InvalidConfiguration
 	 */
 	public void configureEntitiesForProvider(ProviderId pid, EntityConfiguration conf) throws InvalidConfiguration, Throwable {
-		for(Iterator iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
+		for(Iterator<Entity> iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
 			((AgentShadowEntity)iter.next()).configureEntitiesForProvider(pid, conf);
 		}
 	}

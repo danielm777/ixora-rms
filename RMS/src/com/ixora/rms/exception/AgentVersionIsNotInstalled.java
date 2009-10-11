@@ -5,9 +5,12 @@ package com.ixora.rms.exception;
 
 import com.ixora.rms.messages.Msg;
 
-
-
+/**
+ * @author Daniel Moraru
+ */
 public final class AgentVersionIsNotInstalled extends RMSException {
+	private static final long serialVersionUID = -2254544884052734365L;
+
 	/**
 	 * @param agentName
      * @param version

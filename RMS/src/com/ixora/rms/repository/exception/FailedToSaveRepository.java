@@ -12,6 +12,7 @@ import com.ixora.rms.repository.messages.Msg;
  * @author Daniel Moraru
  */
 public final class FailedToSaveRepository extends RMSException {
+	private static final long serialVersionUID = 5551595052176076949L;
 
 	/**
 	 * Constructor.

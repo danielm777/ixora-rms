@@ -430,8 +430,6 @@ public final class AgentInstaller extends Observable implements AgentInstallerSe
 			File homeConfigMessagesFolder = new File(homeConfigFolder, "messages");
 			File homeConfigRepositoryFolder = new File(
 					new File(homeConfigFolder, "repository"), agentInstallationId);
-			File homeJarsFolder = new File(homeFolder, "jars");
-			File homeBinFolder = new File(homeFolder, "bin");
 
 			// copy messages
 			File sourceFile = new File(homeConfigMessagesFolder, agentInstallationId + ".properties");

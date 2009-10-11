@@ -55,7 +55,7 @@ public class DataLogWriterDB implements DataLogWriter {
 			statement.setString(2, db.getAgent().toString());
 			statement.setString(3, db.getAgentDescriptor().toString());
 
-			int agentRecordId = 0;
+			//int agentRecordId = 0;
 			EntityDataBuffer[] edbs = db.getBuffers();
 			if(!Utils.isEmptyArray(edbs)) {
 				for(EntityDataBuffer edb : edbs) {

@@ -14,7 +14,8 @@ import com.ixora.rms.CounterDescriptor;
  * A query definition derived from a set of counters.
  */
 public final class MultipleCounterQueryDef extends QueryDef {
-    private ResourceId fTimestamp;
+	private static final long serialVersionUID = 6501547945575141342L;
+	private ResourceId fTimestamp;
 
     /**
      * Default constructor to support XML.

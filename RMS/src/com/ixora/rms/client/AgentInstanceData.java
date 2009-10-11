@@ -22,6 +22,7 @@ import com.ixora.rms.agents.AgentLocation;
  * @author Daniel Moraru
  */
 public final class AgentInstanceData implements XMLExternalizable, Cloneable {
+	private static final long serialVersionUID = -4776466372277396230L;
 	/** Agent activation details */
 	private AgentActivationData activationData;
 	/** Descriptor */

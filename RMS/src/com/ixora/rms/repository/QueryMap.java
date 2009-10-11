@@ -21,18 +21,19 @@ import com.ixora.rms.dataengine.Cube;
  * @author Daniel Moraru
  */
 public class QueryMap implements XMLExternalizable {
+	private static final long serialVersionUID = -2753779034638751220L;
 	/** Logger */
 	private static final AppLogger logger =
 		AppLoggerFactory.getLogger(QueryMap.class);
 	/** Queries */
-	private CaseInsensitiveLinkedMap queries;
+	private CaseInsensitiveLinkedMap<Cube> queries;
 
 	/**
 	 * Constructor.
 	 */
 	public QueryMap() {
 		super();
-		queries = new CaseInsensitiveLinkedMap();
+		queries = new CaseInsensitiveLinkedMap<Cube>();
 	}
 
 	/**s

@@ -10,6 +10,7 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public final class ReactionStateRecord implements Serializable {
+	private static final long serialVersionUID = -8576818090939401456L;
 	private ReactionState fState;
 	private long fTimestamp;
 

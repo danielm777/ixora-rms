@@ -15,7 +15,10 @@ import com.ixora.rms.repository.AgentInstallationData;
 import com.ixora.rms.repository.ProviderInstance;
 
 
-/** Holds agent data */
+/** 
+ * Holds agent data 
+ * @author Daniel Moraru
+ */
 final class AgentInfoImpl extends ArtefactInfoContainerImpl
 		implements AgentInfo {
 	/** Translated agent name */
@@ -37,7 +40,7 @@ final class AgentInfoImpl extends ArtefactInfoContainerImpl
 	 * Key: String
 	 * Value: ProviderInstanceInfo
 	 */
-	private CaseInsensitiveLinkedMap providerInstances;
+	private CaseInsensitiveLinkedMap<ProviderInstanceInfo> providerInstances;
 
 	/**
 	 * Constructor.
@@ -157,7 +160,7 @@ final class AgentInfoImpl extends ArtefactInfoContainerImpl
 			return;
 		}
 		if(this.providerInstances == null) {
-			this.providerInstances = new CaseInsensitiveLinkedMap();
+			this.providerInstances = new CaseInsensitiveLinkedMap<ProviderInstanceInfo>();
 		}
 		for(ProviderInstance pi : pis) {
 			this.providerInstances.put(pi.getInstanceName()
@@ -170,7 +173,7 @@ final class AgentInfoImpl extends ArtefactInfoContainerImpl
 	 */
 	void addProviderInstanceData(ProviderInstance pi) {
 		if(this.providerInstances == null) {
-			this.providerInstances = new CaseInsensitiveLinkedMap();
+			this.providerInstances = new CaseInsensitiveLinkedMap<ProviderInstanceInfo>();
 		}
 		ProviderInstanceInfoImpl pimpl = (ProviderInstanceInfoImpl)this.providerInstances.get(pi.getInstanceName());
 		if(pimpl == null) {

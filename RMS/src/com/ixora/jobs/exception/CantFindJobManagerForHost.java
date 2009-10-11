@@ -12,8 +12,9 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class CantFindJobManagerForHost extends RMSException {
+	private static final long serialVersionUID = -1280362869394995246L;
 
-    /**
+	/**
      * Constructor.
      * @param host
      */

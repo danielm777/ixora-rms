@@ -39,6 +39,7 @@ import com.ixora.rms.services.AgentRepositoryService;
 public final class RemoteAgentManagerImpl
 			extends UnicastRemoteObject
 					implements RemoteAgentManager, Unreferenced {
+	private static final long serialVersionUID = -3039674617270322916L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(RemoteAgentManagerImpl.class);
 	/** Agent manager */

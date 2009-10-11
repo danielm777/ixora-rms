@@ -13,8 +13,9 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class MatchingHostsNotFound extends RMSException {
+	private static final long serialVersionUID = -6623973032111686467L;
 
-    /**
+	/**
      * Constructor.
      * @param host
      */

@@ -9,7 +9,9 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ParserIsMissing extends RMSException {
-    /**
+	private static final long serialVersionUID = 3083569922973545681L;
+
+	/**
      * Constructor.
      * @param msg
      */

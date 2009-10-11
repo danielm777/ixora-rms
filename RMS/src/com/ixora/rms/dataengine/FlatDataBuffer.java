@@ -35,6 +35,8 @@ import com.ixora.rms.exception.InvalidDataException;
  *
  * This list can be filtered using a list of ResourceIds, with or without
  * regular expressions.
+ * @author Cristian Costache
+ * @author Daniel Moraru
  */
 public class FlatDataBuffer  {
 	/** Logger */
@@ -88,7 +90,6 @@ public class FlatDataBuffer  {
 			        throw new InvalidDataException(
 			                "Null counter history in data from agent " + buff.getAgent());
 				}
-				int samplesSize = 0;
 				for(int idxCounter = 0; idxCounter < counterIds.length; idxCounter++) {
 					// Get the counter id from the RecordDefinition
 					CounterId counterId = counterIds[idxCounter];
@@ -97,7 +98,6 @@ public class FlatDataBuffer  {
 					// get counter type
 					CounterType counterType = rd.getEntityDescriptor().getCounterDescriptor(counterId).getType();
 					add(new ResourceData(rid, counterType, vals, null));
-					samplesSize = vals.length; // either counter will do
 				}
 
 				// Add one timestamp counter
@@ -210,8 +210,8 @@ public class FlatDataBuffer  {
 		} else {
 		    boolean bFound = false;
 			// Get counter history from the databuffer, for each match
-			for(Iterator it = fResourceData.iterator(); it.hasNext();) {
-				ResourceData data = (ResourceData) it.next();
+			for(Iterator<ResourceData> it = fResourceData.iterator(); it.hasNext();) {
+				ResourceData data = it.next();
 
 				// If the resource id is incomplete then we must fabricate its history,
 				// otherwise we just get it from the databuffer
@@ -321,11 +321,11 @@ public class FlatDataBuffer  {
 	 * Assumes all counters in here have the same samples length.
 	 */
 	public int getCounterSamplesCount() {
-		Iterator it = fResourceData.iterator();
+		Iterator<ResourceData> it = fResourceData.iterator();
 		if (!it.hasNext()) {
 			return 0;
 		}
-		ResourceData rd = (ResourceData)it.next();
+		ResourceData rd = it.next();
 		if(rd == null) {
 			return 0;
 		}

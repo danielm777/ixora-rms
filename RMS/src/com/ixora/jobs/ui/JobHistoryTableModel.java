@@ -22,6 +22,7 @@ import com.ixora.common.MessageRepository;
  * @author Daniel Moraru
  */
 public final class JobHistoryTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = -6363880333758097949L;
 	/** Column1 */
 	private final String[] columns = {
 		MessageRepository.get(JobsComponent.NAME, Msg.MODELS_TABLES_JOBHISTORY_COL1),
@@ -32,15 +33,15 @@ public final class JobHistoryTableModel extends AbstractTableModel {
 		MessageRepository.get(JobsComponent.NAME, Msg.MODELS_TABLES_JOBHISTORY_COL6)
 	};
 	/** List of JobHistoryDetails */
-	private List dtls;
+	private List<JobHistoryDetails> dtls;
 
 	/**
 	 * HostInfoTableModel.
 	 * @param jobs collection of JobHistoryDetails
 	 */
-	public JobHistoryTableModel(Collection jobs) {
+	public JobHistoryTableModel(Collection<JobHistoryDetails> jobs) {
 		super();
-		dtls = new ArrayList(jobs);
+		dtls = new ArrayList<JobHistoryDetails>(jobs);
 	}
 
 	/**
@@ -102,8 +103,8 @@ public final class JobHistoryTableModel extends AbstractTableModel {
 	 * Sets the job history details
 	 * @param dtls
 	 */
-	public void setJobHistoryDetails(Collection dtls) {
-	    this.dtls = new ArrayList(dtls);
+	public void setJobHistoryDetails(Collection<JobHistoryDetails> dtls) {
+	    this.dtls = new ArrayList<JobHistoryDetails>(dtls);
 	    fireTableDataChanged();
 	}
 
@@ -122,8 +123,8 @@ public final class JobHistoryTableModel extends AbstractTableModel {
 	public int getRowForJob(JobId jid) {
 	    JobHistoryDetails jd;
 	    int i = 0;
-	    for(Iterator iter = dtls.iterator(); iter.hasNext();++i) {
-        	jd = (JobHistoryDetails)iter.next();
+	    for(Iterator<JobHistoryDetails> iter = dtls.iterator(); iter.hasNext();++i) {
+        	jd = iter.next();
         	if(jd.getJobId().equals(jid)) {
         	    return i;
         	}

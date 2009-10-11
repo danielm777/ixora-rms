@@ -9,7 +9,8 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public class JobEventAbstract implements Serializable {
-    /** Host on which the job runs */
+	private static final long serialVersionUID = -164752942104988612L;
+	/** Host on which the job runs */
     protected String host;
     /** Job that generated this event */
     protected JobId jid;

@@ -15,7 +15,8 @@ import com.ixora.jobs.ui.JobDefinitionPanelDefault;
  */
 public final class TelnetCommandJobDefinitionPanel extends
         JobDefinitionPanelDefault {
-    /** Property key for external command */
+	private static final long serialVersionUID = -6345887713841804690L;
+	/** Property key for external command */
     private static final String EXTERNAL_COMMAND = Msg.TEXT_JOB_TELNET_EXTERNAL_COMMAND;
     private static final String USERNAME = Msg.TEXT_JOB_TELNET_USERNAME;
     private static final String PASSWORD = Msg.TEXT_JOB_TELNET_PASSWORD;

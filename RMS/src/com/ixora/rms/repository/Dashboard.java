@@ -24,6 +24,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public final class Dashboard extends VersionableAgentArtefactAbstract implements AuthoredArtefact {
+	private static final long serialVersionUID = -3786962747123778552L;
 	/** Dashboard name */
 	private String name;
 	/** Dashboard description */
@@ -164,12 +165,12 @@ public final class Dashboard extends VersionableAgentArtefactAbstract implements
 		// views
 		n = XMLUtils.findChild(node, "views");
 		if(n != null) {
-			List nl = XMLUtils.findChildren(n, "view");
+			List<Node> nl = XMLUtils.findChildren(n, "view");
 			if(!Utils.isEmptyCollection(nl)){
 				this.views = new DataViewId[nl.size()];
 				int i = 0;
-				for(Iterator iter = nl.iterator(); iter.hasNext(); ++i) {
-		            n = (Node)iter.next();
+				for(Iterator<Node> iter = nl.iterator(); iter.hasNext(); ++i) {
+		            n = iter.next();
 		            Attr a = XMLUtils.findAttribute(n, "id");
 		            if(a == null) {
 		                throw new XMLAttributeMissing("id");
@@ -181,11 +182,11 @@ public final class Dashboard extends VersionableAgentArtefactAbstract implements
 		// counters
 		n = XMLUtils.findChild(node, "counters");
 		if(n != null) {
-			List nl = XMLUtils.findChildren(n, "counter");
+			List<Node> nl = XMLUtils.findChildren(n, "counter");
 			if(!Utils.isEmptyCollection(nl)){
 				this.counters = new ResourceId[nl.size()];
 				int i = 0;
-				for(Iterator iter = nl.iterator(); iter.hasNext(); ++i) {
+				for(Iterator<Node> iter = nl.iterator(); iter.hasNext(); ++i) {
 		            n = (Node)iter.next();
 		            Attr a = XMLUtils.findAttribute(n, "id");
 		            if(a == null) {

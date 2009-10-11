@@ -10,7 +10,8 @@ import com.ixora.common.typedproperties.TypedProperties;
  * @author Daniel Moraru
  */
 public class JobProperties extends TypedProperties {
-    public static final String JOB_NAME = Msg.TEXT_JOBS_JOB_NAME;
+	private static final long serialVersionUID = 6293866032260423657L;
+	public static final String JOB_NAME = Msg.TEXT_JOBS_JOB_NAME;
     public static final String JOB_DATE = Msg.TEXT_JOBS_SCHEDULED_DATE;
     public static final String JOB_HOST = Msg.TEXT_JOBS_HOST;
 

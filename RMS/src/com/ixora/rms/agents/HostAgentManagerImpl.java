@@ -161,7 +161,7 @@ public final class HostAgentManagerImpl implements HostAgentManager {
 		this.fAgents = new HashMap<AgentId, AgentData>();
 		this.fDataBuffers = new LinkedList<AgentDataBuffer>();
 		this.fEventHandler = new EventHandler();
-		this.fAgentsWithPrivateCollectors = Collections.synchronizedSet(new HashSet());
+		this.fAgentsWithPrivateCollectors = Collections.synchronizedSet(new HashSet<AgentId>());
 		this.fClassLoadingHelper = new ClassLoadingHelper();
 		this.fCollector = new Collector("AgentDataCollector") {
 			protected void collect() {
@@ -253,7 +253,7 @@ public final class HostAgentManagerImpl implements HostAgentManager {
 			    // classloader
                 String suoVersion = conf.getSystemUnderObservationVersion();
                 VersionableAgentInstallationData vad = agentInstallationData.getVersionData(suoVersion);
-                Class clazz;
+                Class<?> clazz;
                 try {
                     clazz = fClassLoadingHelper.getClass(
                     		agentId.toString(),
@@ -267,7 +267,7 @@ public final class HostAgentManagerImpl implements HostAgentManager {
                     logger.error(e);
                     throw new AgentIsNotInstalled(agentId.getInstallationId(), e);
                 }
-                Constructor cons = clazz.getConstructor(new Class[] {AgentId.class, Agent.Listener.class});
+                Constructor<?> cons = clazz.getConstructor(new Class[] {AgentId.class, Agent.Listener.class});
 			    agent = (Agent)cons.newInstance(new Object[] {agentId, this.fEventHandler});
 				EntityDescriptorTree entities = agent.configure(conf);
 				// everything ok, register the agent
@@ -385,14 +385,11 @@ public final class HostAgentManagerImpl implements HostAgentManager {
 	 */
 	public void deactivateAllAgents() {
 		synchronized(this.fAgents) {
-			Map.Entry entry;
-			AgentData ad;
-			AgentId agentId;
-			for (Iterator iter = this.fAgents.entrySet().iterator();
+			for(Iterator<Map.Entry<AgentId, AgentData>> iter = this.fAgents.entrySet().iterator();
 					iter.hasNext();) {
-				entry = (Map.Entry)iter.next();
-				ad = (AgentData)entry.getValue();
-				agentId = (AgentId)entry.getKey();
+				Map.Entry<AgentId, AgentData> entry = iter.next();
+				AgentData ad = entry.getValue();
+				AgentId agentId = entry.getKey();
 				try {
 					deactivateAgent(agentId, ad, false);
 				} catch(RMSException e) {

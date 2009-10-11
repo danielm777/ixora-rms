@@ -17,7 +17,8 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public final class AgentActivationData implements XMLExternalizable, Cloneable {
-    /** Agent configuration details */
+	private static final long serialVersionUID = -7939795643007611080L;
+	/** Agent configuration details */
     private AgentConfiguration config;
     /** Agent location */
     private AgentLocation location;

@@ -10,7 +10,8 @@ import com.ixora.rms.ResourceId;
  * @author Daniel Moraru
  */
 public final class QueryId extends TreeArtefactId {
-    public static final char MARKER_START = '{';
+	private static final long serialVersionUID = -6973308108401217856L;
+	public static final char MARKER_START = '{';
     public static final char MARKER_END = '}';
 
 	/**

@@ -10,13 +10,12 @@ import java.util.Set;
 
 import org.w3c.dom.Node;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLText;
 import com.ixora.common.xml.exception.XMLException;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.dataengine.Cube;
 import com.ixora.rms.dataengine.QueryClientAbstract;
-import com.ixora.rms.dataengine.QueryResult;
 import com.ixora.rms.dataengine.definitions.FunctionDef;
 import com.ixora.rms.dataengine.definitions.ParamDef;
 import com.ixora.rms.dataengine.definitions.QueryDef;
@@ -29,7 +28,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public abstract class DataView extends QueryClientAbstract implements VersionableAgentArtefact, AuthoredArtefact {
-//	 source for the data view
+	private static final long serialVersionUID = -250994584462884655L;
+	//	 source for the data view
 	/** The data view comes from repository */
 	public static final int DATAVIEW_SOURCE_REPOSITORY = 0;
 	/** The data view was designed by user on the fly */
@@ -45,7 +45,8 @@ public abstract class DataView extends QueryClientAbstract implements Versionabl
     /**
      * Constructor.
      */
-    protected DataView() {
+    @SuppressWarnings("serial")
+	protected DataView() {
         super();
         versionableArtefact = new VersionableAgentArtefactAbstract() {
             /**
@@ -63,7 +64,8 @@ public abstract class DataView extends QueryClientAbstract implements Versionabl
      * @param query views's query definition
      * @param isCustom
      */
-    protected DataView(String viewname, String description, QueryDef query, String author) {
+    @SuppressWarnings("serial")
+	protected DataView(String viewname, String description, QueryDef query, String author) {
         super();
         this.name.setValue(viewname);
         this.description.setValue(description);
@@ -114,7 +116,7 @@ public abstract class DataView extends QueryClientAbstract implements Versionabl
 	    // Make sure parameters for all functions refer to valid IDs
 	    for (FunctionDef function : getQueryDef().getFunctions()) {
 	        for (ParamDef param : function.getParameters()) {
-	            QueryResult qr = realizedCube.getQueryResult(param.getID());
+	            realizedCube.getQueryResult(param.getID());
 	        }
 	    	String idRes = function.getID();
 	    	if (setIDs.contains(idRes)) {

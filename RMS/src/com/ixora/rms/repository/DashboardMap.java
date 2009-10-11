@@ -18,7 +18,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public class DashboardMap extends VersionableAgentArtefactMap<Dashboard> {
-
+	private static final long serialVersionUID = -1689751366833510569L;
 	/**
 	 * Constructor.
 	 */

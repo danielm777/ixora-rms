@@ -17,6 +17,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class ProviderInstanceMap extends VersionableAgentArtefactMap<ProviderInstance> {
+	private static final long serialVersionUID = -6112038774585948420L;
 
 	/**
 	 * Constructor.

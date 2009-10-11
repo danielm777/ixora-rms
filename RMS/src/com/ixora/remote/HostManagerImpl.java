@@ -35,6 +35,7 @@ import com.ixora.rms.exception.RMSException;
 public final class HostManagerImpl
 	extends UnicastRemoteObject
 	implements HostManager, HostManagerConfigurationConstants {
+	private static final long serialVersionUID = -1159068683038356360L;
 	/**
 	 * Logger.
 	 */
@@ -279,10 +280,9 @@ public final class HostManagerImpl
 			long time = System.currentTimeMillis();
 			ClientData cd;
 			String client;
-			Map.Entry entry;
-			for(Iterator iter = this.fClientData.entrySet().iterator();
+			for(Iterator<Map.Entry<String, ClientData>> iter = this.fClientData.entrySet().iterator();
 				iter.hasNext();) {
-				entry = (Map.Entry)iter.next();
+				Map.Entry<String, ClientData> entry = iter.next();
 				cd = (ClientData)entry.getValue();
 				if(time - cd.lastPing > fCheckLostClientsInterval) {
 					client = (String)entry.getKey();

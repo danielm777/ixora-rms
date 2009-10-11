@@ -11,6 +11,7 @@ import com.ixora.rms.providers.messages.Msg;
  * @author Daniel Moraru
  */
 public final class InvalidProviderConfiguration extends RMSException {
+	private static final long serialVersionUID = -7732407220684461793L;
 
 	/**
 	 * Constructor.

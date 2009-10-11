@@ -20,6 +20,7 @@ import com.ixora.rms.dataengine.definitions.StyledTagDef;
  * a Query.
  */
 public class QueryResult implements Serializable {
+	private static final long serialVersionUID = 5138998403900525967L;
 	/** Style associated with this query result */
 	protected Style	fStyle;
 	/** True if it was already localized */

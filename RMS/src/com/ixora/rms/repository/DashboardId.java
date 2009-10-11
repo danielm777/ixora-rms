@@ -10,7 +10,8 @@ import com.ixora.rms.ResourceId;
  * @author Daniel Moraru
  */
 public final class DashboardId extends TreeArtefactId {
-    public static final char MARKER_START = '#';
+	private static final long serialVersionUID = -7660119877525096005L;
+	public static final char MARKER_START = '#';
     public static final char MARKER_END = '#';
 
 	/**

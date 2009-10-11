@@ -9,7 +9,7 @@ import com.ixora.common.exception.AppException;
  * @author Daniel Moraru
  */
 public class RMSException extends AppException {
-
+	private static final long serialVersionUID = 5045448860894090816L;
 	/**
 	 *
 	 */

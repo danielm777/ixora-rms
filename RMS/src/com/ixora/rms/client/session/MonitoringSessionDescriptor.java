@@ -34,6 +34,7 @@ import com.ixora.rms.ui.dataviewboard.handler.DataViewScreenDescriptor;
  * @author Daniel Moraru
  */
 public final class MonitoringSessionDescriptor implements XMLExternalizable {
+	private static final long serialVersionUID = 4484193307721800119L;
 	/** The location where this session is externalized */
 	private String fLocation;
 	/** The name of the monitoring scheme */
@@ -203,8 +204,8 @@ public final class MonitoringSessionDescriptor implements XMLExternalizable {
 		Element elHosts = doc.createElement("hosts");
 		elSession.appendChild(elHosts);
 		HostDetails hd;
-		for(Iterator iter = fHosts.values().iterator(); iter.hasNext();) {
-			hd = (HostDetails)iter.next();
+		for(Iterator<HostDetails> iter = fHosts.values().iterator(); iter.hasNext();) {
+			hd = iter.next();
 			hd.toXML(elHosts);
 		}
 		// save queries
@@ -252,10 +253,10 @@ public final class MonitoringSessionDescriptor implements XMLExternalizable {
 		if(n == null) {
 			throw new XMLNodeMissing("hosts");
 		}
-		List l = XMLUtils.findChildren(n, "host");
+		List<Node> l = XMLUtils.findChildren(n, "host");
 		HostDetails hd;
-		for(Iterator iter = l.iterator(); iter.hasNext();) {
-			n = (Node)iter.next();
+		for(Iterator<Node> iter = l.iterator(); iter.hasNext();) {
+			n = iter.next();
 			hd = new HostDetails();
 			hd.fromXML(n);
 			addHost(hd);
@@ -263,10 +264,10 @@ public final class MonitoringSessionDescriptor implements XMLExternalizable {
 		// load queries
 		n = XMLUtils.findChild(node, "queries");
 		if(n != null) {
-			List nl = XMLUtils.findChildren(n, "query");
+			List<Node> nl = XMLUtils.findChildren(n, "query");
 			this.fQueries = new HashMap<QueryId, QueryDef>();
-			for(Iterator iter = nl.iterator(); iter.hasNext();) {
-	            n = (Node)iter.next();
+			for(Iterator<Node> iter = nl.iterator(); iter.hasNext();) {
+	            n = iter.next();
 	            Node nQuery = XMLUtils.findChild(n, "query");
 	            if(nQuery == null) {
 	            	throw new XMLNodeMissing("query");
@@ -293,10 +294,10 @@ public final class MonitoringSessionDescriptor implements XMLExternalizable {
 		// load dashboards
 		n = XMLUtils.findChild(node, "dashboards");
 		if(n != null) {
-			List nl = XMLUtils.findChildren(n, "dashboard");
+			List<Node> nl = XMLUtils.findChildren(n, "dashboard");
 			this.fDashboards = new LinkedList<DashboardId>();
-			for(Iterator iter = nl.iterator(); iter.hasNext();) {
-	            n = (Node)iter.next();
+			for(Iterator<Node> iter = nl.iterator(); iter.hasNext();) {
+	            n = iter.next();
 	            a = XMLUtils.findAttribute(n, "id");
 	            if(a == null) {
 	                throw new XMLAttributeMissing("id");

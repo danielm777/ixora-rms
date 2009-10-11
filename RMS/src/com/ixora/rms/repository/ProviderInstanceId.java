@@ -10,7 +10,8 @@ import com.ixora.rms.ResourceId;
  * @author Daniel Moraru
  */
 public final class ProviderInstanceId extends TreeArtefactId {
-    public static final char MARKER_START = '$';
+	private static final long serialVersionUID = -739116024408490951L;
+	public static final char MARKER_START = '$';
     public static final char MARKER_END = '$';
 
 	/**

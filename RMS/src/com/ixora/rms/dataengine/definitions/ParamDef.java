@@ -14,9 +14,10 @@ import com.ixora.common.xml.XMLTag;
  * Loads and saves contents into XML.
  */
 public class ParamDef extends XMLTag {
-    private XMLAttribute	id = new XMLAttributeString("id", true);
-    private XMLAttribute	value = new XMLAttributeString("value");
-    private XMLAttribute	type = new XMLAttributeString("type");
+	private static final long serialVersionUID = -7546559427726779416L;
+	private XMLAttribute id = new XMLAttributeString("id", true);
+    private XMLAttribute value = new XMLAttributeString("value");
+    private XMLAttribute type = new XMLAttributeString("type");
 
     /**
      * Constructs an empty object, ready to be loaded from XML

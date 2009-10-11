@@ -9,10 +9,12 @@ import com.ixora.rms.providers.parsers.exception.InvalidParsingRules;
 
 /**
  * DuplicateResourceInParsingRules.
+ * @author Daniel Moraru
  */
 public final class DuplicateResourceInParsingRules extends InvalidParsingRules {
+	private static final long serialVersionUID = 5152893432238378293L;
 
-    /**
+	/**
      * Constructor.
      * @param duplicate
      */

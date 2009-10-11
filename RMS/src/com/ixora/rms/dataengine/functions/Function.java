@@ -26,6 +26,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public abstract class Function extends QueryResult {
+	private static final long serialVersionUID = 5100714696272652271L;
 	/** A function can operate on one or more counters */
 	private List<ResourceId> fParams = new LinkedList<ResourceId>();
     /** Whether this function maintains state, which means cloning is required */

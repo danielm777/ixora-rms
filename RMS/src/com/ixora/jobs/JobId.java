@@ -9,7 +9,8 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public final class JobId implements Serializable {
-    private static final String DELIMITER = "/";
+	private static final long serialVersionUID = -4451451415746885544L;
+	private static final String DELIMITER = "/";
     /** Id */
     private String id;
 

@@ -30,6 +30,7 @@ import com.ixora.rms.MonitoringLevel;
 /** Entity data */
 final class EntityInfoImpl extends ArtefactInfoContainerImpl
 		implements EntityInfo {
+	private static final long serialVersionUID = 6928978549721350639L;
 	/** Entity descriptor */
 	private EntityDescriptor entity;
 	/** Current entity configuration */
@@ -118,8 +119,8 @@ final class EntityInfoImpl extends ArtefactInfoContainerImpl
 		Collection<CounterDescriptor> c = this.entity.getCounterDescriptorsForLevel(level);
 		List<CounterInfo> ret = new ArrayList<CounterInfo>(c.size());
 		CounterDescriptor cd;
-		for(Iterator iter = c.iterator(); iter.hasNext();) {
-			cd = (CounterDescriptor)iter.next();
+		for(Iterator<CounterDescriptor> iter = c.iterator(); iter.hasNext();) {
+			cd = iter.next();
 			ret.add(counters.get(cd.getId()));
 		}
 		return ret;
@@ -241,7 +242,7 @@ final class EntityInfoImpl extends ArtefactInfoContainerImpl
      * @return true if the flag was actually changed
 	 */
 	private boolean updateEnabledFlag() {
-		Set c = this.configuration.getMonitoredCountersIds();
+		Set<CounterId> c = this.configuration.getMonitoredCountersIds();
 		boolean mustBeEnabled = true;
         if(c == null || c.size() == 0) {
             mustBeEnabled = false;

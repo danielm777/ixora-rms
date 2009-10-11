@@ -12,6 +12,7 @@ import com.ixora.rms.EntityDescriptorTree;
  * @author Daniel Moraru
  */
 public final class AgentConfigurationTuple implements Serializable {
+	private static final long serialVersionUID = -1484007915946373413L;
 	/** Agent configuration */
 	private AgentDescriptor fAgentDescriptor;
 	/** Descriptor */

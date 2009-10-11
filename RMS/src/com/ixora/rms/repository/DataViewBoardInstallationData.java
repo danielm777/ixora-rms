@@ -19,7 +19,8 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
 /**
  * @author Daniel Moraru
  */
-public final class DataViewBoardInstallationData implements InstallationArtefact, Comparable {
+public final class DataViewBoardInstallationData implements InstallationArtefact, Comparable<DataViewBoardInstallationData> {
+	private static final long serialVersionUID = -6201852858823968690L;
 	/** Board class */
 	private String fBoardClass;
 	/** Board counter filter class */
@@ -181,8 +182,8 @@ public final class DataViewBoardInstallationData implements InstallationArtefact
 	 * Compares according to the preference index.
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(Object arg0) {
-		int other = ((DataViewBoardInstallationData)arg0).fPreferenceIndex;
+	public int compareTo(DataViewBoardInstallationData arg0) {
+		int other = arg0.fPreferenceIndex;
 		if(fPreferenceIndex > other) {
 			return 1;
 		} else if(fPreferenceIndex < other) {

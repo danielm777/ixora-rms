@@ -20,6 +20,7 @@ import com.ixora.rms.MonitoringLevel;
  */
 final class CounterInfoImpl extends ArtefactInfoImpl
 		implements CounterInfo {
+	private static final long serialVersionUID = 6813927539224663847L;
 	/** CounterDescriptor */
 	private CounterDescriptor counter;
 

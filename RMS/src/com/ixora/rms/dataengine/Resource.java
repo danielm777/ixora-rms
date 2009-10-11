@@ -12,6 +12,7 @@ import com.ixora.rms.dataengine.definitions.ResourceDef;
  * Together with Functions, Resources are possible outputs of a Query.
  */
 public class Resource extends QueryResult {
+	private static final long serialVersionUID = 7228395732610030414L;
 	/**
 	 * IDs used to identify a counter. Some of them might be omitted,
 	 * others may contain regular expressions or wildcards

@@ -7,7 +7,8 @@ package com.ixora.jobs;
  * @author Daniel Moraru
  */
 public final class JobLogEvent extends JobEventAbstract {
-// data type
+	private static final long serialVersionUID = -5921959498506067072L;
+	// data type
     public static final int OUTPUT = 0;
     public static final int ERROR = 1;
 

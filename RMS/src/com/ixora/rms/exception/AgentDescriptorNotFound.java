@@ -11,6 +11,8 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentDescriptorNotFound extends RMSException {
+	private static final long serialVersionUID = -6720320378138336113L;
+
 	/**
 	 * Constructor.
 	 * @param eid

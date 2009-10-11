@@ -7,7 +7,8 @@ package com.ixora.jobs;
  * @author Daniel Moraru
  */
 public final class JobStateEvent extends JobEventAbstract {
-    /** State of the job that generated this event */
+	private static final long serialVersionUID = 7650671274553804984L;
+	/** State of the job that generated this event */
     private JobState state;
     /** Error data associated with a state of ERROR */
     private String errorData;

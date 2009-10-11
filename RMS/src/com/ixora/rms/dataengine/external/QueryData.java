@@ -25,6 +25,7 @@ import java.util.LinkedList;
  * </pre>
  */
 public class QueryData extends LinkedList<QuerySeries> {
+	private static final long serialVersionUID = 2709623091131293621L;
 
 	/**
 	 * Adds a Series object to the list

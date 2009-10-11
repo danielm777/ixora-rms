@@ -21,8 +21,8 @@ import com.ixora.rms.dataengine.definitions.FunctionDef;
  * Takes two counters: the value and the timestamp.
  * Needs at least two samples before it starts returning anything.
  */
-public class TimeDifferential extends Function
-{
+public class TimeDifferential extends Function {
+	private static final long serialVersionUID = -4376753474979961748L;
 	protected double 	previousValue = 0;
 	protected double 	previousTimestamp = 0;
 	protected boolean isFirst = true;

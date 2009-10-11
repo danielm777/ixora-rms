@@ -129,7 +129,7 @@ public final class HostProviderManagerImpl implements HostProviderManager {
 		this.fProviders = new HashMap<ProviderId, ProviderData>();
 		this.fDataBuffers = new LinkedList<ProviderDataBuffer>();
 		this.fEventHandler = new EventHandler();
-		this.fProvidersWithPrivateCollectors = Collections.synchronizedSet(new HashSet());
+		this.fProvidersWithPrivateCollectors = Collections.synchronizedSet(new HashSet<ProviderId>());
 		this.fClassLoadingHelper = new ClassLoadingHelper();
 		this.fCollector = new Collector("ProviderDataCollector") {
 			protected void collect() {
@@ -157,7 +157,7 @@ public final class HostProviderManagerImpl implements HostProviderManager {
 			boolean error = false;
 			Provider provider = null;
 			try {
-				Class clazz = fClassLoadingHelper.getClass(
+				Class<?> clazz = fClassLoadingHelper.getClass(
 						ret.toString(),
 						providerInstallationData.getProviderClass(),
 						providerInstallationData.getJars(), conf.getCustom());
@@ -385,10 +385,10 @@ public final class HostProviderManagerImpl implements HostProviderManager {
 	 */
 	public void deactivateAllProviders() {
 		synchronized(this.fProviders) {
-			for (Iterator iter = this.fProviders.entrySet().iterator(); iter.hasNext();) {
-				Map.Entry entry = (Map.Entry)iter.next();
-				ProviderData pd = (ProviderData)entry.getValue();
-				ProviderId providerId = (ProviderId)entry.getKey();
+			for (Iterator<Map.Entry<ProviderId, ProviderData>> iter = this.fProviders.entrySet().iterator(); iter.hasNext();) {
+				Map.Entry<ProviderId, ProviderData> entry = iter.next();
+				ProviderData pd = entry.getValue();
+				ProviderId providerId = entry.getKey();
 				try {
 					fClassLoadingHelper.prepareThreadOnEnter(pd.providerId.toString());
 					deactivateProvider(providerId, pd, false);

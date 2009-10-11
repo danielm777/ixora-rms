@@ -21,13 +21,17 @@ import com.ixora.common.xml.exception.XMLException;
  * Contains definition for a query (data only, no functionality),
  * which is a list of functions or resources.
  * Loads and saves contents into XML.
+ * @author Cristian Costache
+ * @author Daniel Moraru
  */
 public class QueryDef extends XMLTag {
-    protected XMLTagList	resources = new XMLSameTagList(ResourceDef.class);
-    protected XMLTagList	reactions = new XMLSameTagList(ReactionDef.class);
-    protected XMLTagList	functions = new XMLMultiTagList(
-            new XMLTagFactory() {
-                public XMLTag createFromXML(Node n) {
+	private static final long serialVersionUID = 2630667521805675404L;
+	protected XMLTagList<ResourceDef> resources = new XMLSameTagList<ResourceDef>(ResourceDef.class);
+    protected XMLTagList<ReactionDef> reactions = new XMLSameTagList<ReactionDef>(ReactionDef.class);
+    @SuppressWarnings("serial")
+	protected XMLTagList<FunctionDef> functions = new XMLMultiTagList<FunctionDef>(
+            new XMLTagFactory<FunctionDef>() {
+                public FunctionDef createFromXML(Node n) {
             		if (n.getNodeName().equals("function")) {
             		    if (XMLUtils.findChild(n, "code") != null)
             		    	return new ScriptFunctionDef();

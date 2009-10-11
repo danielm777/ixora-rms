@@ -11,6 +11,7 @@ import com.ixora.rms.providers.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ProviderNotInstalled extends RMSException {
+	private static final long serialVersionUID = 3290327100810148433L;
 
 	/**
 	 * Constructor.

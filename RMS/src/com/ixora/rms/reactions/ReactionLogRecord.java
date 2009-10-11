@@ -11,6 +11,7 @@ import java.util.List;
  * @author Daniel Moraru
  */
 public final class ReactionLogRecord implements Serializable {
+	private static final long serialVersionUID = 2485058161888624084L;
 	private ReactionId fReactionId;
 	private LinkedList<ReactionStateRecord> fStates;
 	private ReactionEvent fReactionEvent;
@@ -61,6 +62,7 @@ public final class ReactionLogRecord implements Serializable {
 	/**
 	 * @return states.
 	 */
+	@SuppressWarnings("unchecked")
 	public List<ReactionStateRecord> getStates() {
 		return (List<ReactionStateRecord>)fStates.clone();
 	}

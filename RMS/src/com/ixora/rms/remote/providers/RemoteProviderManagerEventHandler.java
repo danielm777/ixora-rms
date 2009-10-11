@@ -21,6 +21,7 @@ import com.ixora.rms.providers.ProviderState;
  */
 public class RemoteProviderManagerEventHandler extends UnicastRemoteObject
 		implements RemoteProviderManagerListener {
+	private static final long serialVersionUID = 648093285654701018L;
 	/**
 	 * Local listener.
 	 */

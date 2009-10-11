@@ -15,6 +15,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public final class ParserInstallationData implements InstallationArtefact {
+	private static final long serialVersionUID = 569116239505465257L;
 	/** Parser class */
 	private String clazz;
 	/** Parser name */

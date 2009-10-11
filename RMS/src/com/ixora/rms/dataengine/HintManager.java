@@ -45,11 +45,11 @@ public final class HintManager
 			Node	firstChild = doc.getDocumentElement();
 
 			// Look for style definitions
-			List nodesStyles = XMLUtils.findChildren(firstChild, "style");
-			for (Iterator it = nodesStyles.iterator(); it.hasNext();) {
+			List<Node> nodesStyles = XMLUtils.findChildren(firstChild, "style");
+			for (Iterator<Node> it = nodesStyles.iterator(); it.hasNext();) {
 				// Load style definition from XML
 				StyleDef sd = new StyleDef();
-				sd.fromXML((Node) it.next());
+				sd.fromXML(it.next());
 
 				// Add style to repository
 				Style style = new Style(sd);

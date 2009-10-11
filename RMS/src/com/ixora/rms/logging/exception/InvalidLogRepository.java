@@ -9,7 +9,8 @@ package com.ixora.rms.logging.exception;
  * @author Daniel Moraru
  */
 public final class InvalidLogRepository extends DataLogException {
-    /**
+	private static final long serialVersionUID = -5940242716356689518L;
+	/**
      * Constructor.
      * @param msgKey
      * @param msgTokens

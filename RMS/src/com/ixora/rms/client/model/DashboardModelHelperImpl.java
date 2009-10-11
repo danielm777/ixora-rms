@@ -277,14 +277,14 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
 		if(cs == null) {
 			return null;
 		}
-		List ret = new LinkedList();
+		List<DataViewInfoData> ret = new LinkedList<DataViewInfoData>();
         for(DashboardInfo dinfo : cs) {
             DataViewInfoData[] views = getDataViewInfoData(context, dinfo.getDashboard().getName());
             if(views != null) {
                 ret.addAll(Arrays.asList(views));
             }
 		}
-	    return (DataViewInfoData[])ret.toArray(new DataViewInfoData[ret.size()]);
+	    return ret.toArray(new DataViewInfoData[ret.size()]);
 	}
 
 	/**
@@ -300,7 +300,7 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
 		if(dinfo == null) {
 			return null;
 		}
-		List ret = new LinkedList();
+		List<DataViewInfoData> ret = new LinkedList<DataViewInfoData>();
 		Dashboard db = dinfo.getDashboard();
 		DataViewId[] views = db.getViews();
 		if(views == null) {
@@ -338,7 +338,7 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
         if(dinfo == null) {
             return null;
         }
-        List ret = new LinkedList();
+        List<CounterInfoData> ret = new LinkedList<CounterInfoData>();
         Dashboard db = dinfo.getDashboard();
         ResourceId[] counters = db.getCounters();
         if(counters == null) {
@@ -361,7 +361,7 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
             }
             ret.add(new CounterInfoData(m, cinfo));
         }
-        return (CounterInfoData[])ret.toArray(new CounterInfoData[ret.size()]);
+        return ret.toArray(new CounterInfoData[ret.size()]);
     }
 
     /**
@@ -383,7 +383,7 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
         if(cs == null) {
             return null;
         }
-        List ret = new LinkedList();
+        List<CounterInfoData> ret = new LinkedList<CounterInfoData>();
         for(DashboardInfo dinfo : cs) {
             CounterInfoData[] counters = getCounterInfoData(context, dinfo.getDashboard().getName());
             if(counters != null) {
@@ -391,7 +391,7 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
             }
 
         }
-        return (CounterInfoData[])ret.toArray(new CounterInfoData[ret.size()]);
+        return ret.toArray(new CounterInfoData[ret.size()]);
     }
 
     /**
@@ -498,13 +498,14 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
     /**
      * @see com.ixora.rms.client.model.DashboardModelHelper#getAllDashboardsToRealize()
      */
-    public Map<ResourceId, Collection<DashboardInfo>> getAllDashboardsToRealize() {
+    @SuppressWarnings("unchecked")
+	public Map<ResourceId, Collection<DashboardInfo>> getAllDashboardsToRealize() {
     	Map<ResourceId, Collection<DashboardInfo>> ret = new HashMap<ResourceId, Collection<DashboardInfo>>();
         SessionNode sn = model.getSessionNode();
-        Enumeration e = sn.breadthFirstEnumeration();
+        Enumeration<ResourceNode> e = sn.breadthFirstEnumeration();
         ResourceNode rn;
         while(e.hasMoreElements()) {
-            rn = (ResourceNode)e.nextElement();
+            rn = e.nextElement();
 	        // get the realizable dashboards
             Collection<DashboardInfo> col = sn.getArtefactInfoContainer().getDashboardsToRealize();
 	        if(col != null) {
@@ -518,13 +519,14 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
     /**
      * @see com.ixora.rms.client.model.DashboardModelHelper#getAllDashboardsToUnRealize()
      */
-    public Map<ResourceId, Collection<DashboardInfo>> getAllDashboardsToUnRealize() {
+    @SuppressWarnings("unchecked")
+	public Map<ResourceId, Collection<DashboardInfo>> getAllDashboardsToUnRealize() {
     	Map<ResourceId, Collection<DashboardInfo>> ret = new HashMap<ResourceId, Collection<DashboardInfo>>();
         SessionNode sn = model.getSessionNode();
-        Enumeration e = sn.breadthFirstEnumeration();
+        Enumeration<ResourceNode> e = sn.breadthFirstEnumeration();
         ResourceNode rn;
         while(e.hasMoreElements()) {
-            rn = (ResourceNode)e.nextElement();
+            rn = e.nextElement();
 	        // get the unrealizable dashboards
 	        Collection<DashboardInfo> col = sn.getArtefactInfoContainer().getDashboardsToUnRealize();
 	        if(col != null) {
@@ -595,9 +597,10 @@ final class DashboardModelHelperImpl implements DashboardModelHelper {
 	/**
 	 * @see com.ixora.rms.client.model.DashboardModelHelper#getAllCommittedDashboards(int)
 	 */
+	@SuppressWarnings("unchecked")
 	public Collection<DashboardId> getAllCommittedDashboards(int flag) {
 		Collection<DashboardId> ret = new LinkedList<DashboardId>();
-		Enumeration e = model.getSessionNode().breadthFirstEnumeration();
+		Enumeration<SessionModelTreeNode> e = model.getSessionNode().breadthFirstEnumeration();
 		while(e.hasMoreElements()) {
 			SessionModelTreeNode sn = (SessionModelTreeNode)e.nextElement();
 			Collection<DashboardInfo> dashboards = sn.getArtefactInfoContainer().getDashboardInfo();

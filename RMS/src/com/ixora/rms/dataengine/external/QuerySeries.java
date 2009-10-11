@@ -16,6 +16,7 @@ import com.ixora.rms.exception.QueryNoSuchResultException;
  * QueryResultData objects).
  */
 public class QuerySeries extends LinkedList<QueryResultData> {
+	private static final long serialVersionUID = -3417035197966571993L;
 
 	/**
 	 * Constructs a QuerySeries
@@ -33,8 +34,8 @@ public class QuerySeries extends LinkedList<QueryResultData> {
      * @throws QueryNoSuchResultException if result is not defined in this query
      */
 	public QueryResultData getData(String id) throws QueryNoSuchResultException {
-		for (Iterator it = this.iterator(); it.hasNext();) {
-			QueryResultData qrd = (QueryResultData) it.next();
+		for (Iterator<QueryResultData> it = this.iterator(); it.hasNext();) {
+			QueryResultData qrd = it.next();
 			if (qrd.getQueryResult().getStyle().getID().equals(id))
 				return qrd;
 		}

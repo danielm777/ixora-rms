@@ -11,8 +11,9 @@ import com.ixora.rms.repository.messages.Msg;
  * FailedToUninstallAgent
  */
 public class FailedToUninstallAgent extends RMSException {
+	private static final long serialVersionUID = 1593742084024199214L;
 
-    public FailedToUninstallAgent(String agentId, Exception e) {
+	public FailedToUninstallAgent(String agentId, Exception e) {
         super(RepositoryComponent.NAME, Msg.REPOSITORY_ERROR_FAILED_TO_UNINSTALL_AGENT,
         		new String[]{agentId, e.getLocalizedMessage()});
     }

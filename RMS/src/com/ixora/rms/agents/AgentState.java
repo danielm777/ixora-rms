@@ -9,7 +9,8 @@ import com.ixora.rms.messages.Msg;
  * @author: Daniel Moraru
  */
 public final class AgentState extends Enum {
-    public static final AgentState READY =
+	private static final long serialVersionUID = 134703756120958971L;
+	public static final AgentState READY =
     	new AgentState(0, MessageRepository.get(Msg.RMS_ENUM_AGENTSTATE_READY));
     public static final AgentState STARTED =
     	new AgentState(1, MessageRepository.get(Msg.RMS_ENUM_AGENTSTATE_STARTED));

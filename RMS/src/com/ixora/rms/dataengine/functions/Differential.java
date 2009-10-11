@@ -18,6 +18,7 @@ import com.ixora.rms.dataengine.definitions.FunctionDef;
  *
  */
 public class Differential extends Function {
+	private static final long serialVersionUID = 1069663309323697287L;
 	protected double fPreviousValue = 0;
 	protected boolean fIsFirst = true;
 

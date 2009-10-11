@@ -9,7 +9,8 @@ import com.ixora.rms.providers.messages.Msg;
  * @author: Daniel Moraru
  */
 public final class ProviderLocation extends Enum {
-    public static final ProviderLocation LOCAL =
+	private static final long serialVersionUID = 5438110468792465545L;
+	public static final ProviderLocation LOCAL =
     	new ProviderLocation(0, MessageRepository.get(
     			ProvidersComponent.NAME, Msg.RMS_ENUM_PROVIDERLOCATION_LOCAL));
     public static final ProviderLocation REMOTE =

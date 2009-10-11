@@ -15,8 +15,9 @@ import com.ixora.rms.dataengine.Style;
  * A query definition derived from a single counter.
  */
 public final class SingleCounterQueryDef extends QueryDef {
+	private static final long serialVersionUID = -5323567933933559324L;
 
-    /**
+	/**
      * Default constructor to support XML.
      */
     public SingleCounterQueryDef() {

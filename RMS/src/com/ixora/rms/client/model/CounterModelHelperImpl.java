@@ -76,9 +76,9 @@ public class CounterModelHelperImpl implements CounterModelHelper {
 		Map<ResourceId, List<ResourceInfo>> countersPerEntity = new HashMap<ResourceId, List<ResourceInfo>>();
 		ResourceId rid;
 		ResourceInfo[] ris;
-		for(Iterator iter =
+		for(Iterator<ResourceDef> iter =
 			query.getResources().iterator(); iter.hasNext();) {
-			rid = ((ResourceDef)iter.next()).getResourceId();
+			rid = iter.next().getResourceId();
 			if(context != null) {
 				rid = rid.complete(context);
 			}

@@ -348,7 +348,7 @@ public final class MonitoringSessionRealizer {
 	    canceled = false;
 		// prepare progress info
 		Collection<HostDetails> hosts = session.getHostDetails();
-		List hostNames = new ArrayList(hosts.size());
+		List<String> hostNames = new ArrayList<String>(hosts.size());
 		HostDetails hd;
 		String host;
 		int max = hosts.size();
@@ -393,7 +393,7 @@ public final class MonitoringSessionRealizer {
 									id.getAgentName()));
 					progress.setDelta(1);
 					sessionModel.addAgent(host, id, dd);
-					Collection entities = ad.getEntities();
+					Collection<EntityDetails> entities = ad.getEntities();
 					// each entity...
 					for(Iterator<EntityDetails> iter3 = entities.iterator();
 						iter3.hasNext() && !canceled;) {

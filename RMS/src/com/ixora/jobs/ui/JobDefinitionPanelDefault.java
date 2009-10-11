@@ -21,7 +21,8 @@ import com.ixora.common.typedproperties.ui.TypedPropertiesEditor;
  * @author Daniel Moraru
  */
 public abstract class JobDefinitionPanelDefault extends JobDefinitionPanel {
-    /** Typed props editor */
+	private static final long serialVersionUID = 1776297727925661108L;
+	/** Typed props editor */
     protected TypedPropertiesEditor editor;
     /** Job properties */
     protected JobProperties properties;

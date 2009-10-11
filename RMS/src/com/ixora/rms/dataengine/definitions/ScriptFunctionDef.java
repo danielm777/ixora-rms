@@ -14,6 +14,7 @@ import com.ixora.common.xml.XMLText;
  * Loads and saves contents into XML.
  */
 public class ScriptFunctionDef extends FunctionDef {
+	private static final long serialVersionUID = 8375836082846764347L;
 	private XMLText	code = new XMLText("code");
 
     /**

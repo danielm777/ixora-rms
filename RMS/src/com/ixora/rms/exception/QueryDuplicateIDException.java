@@ -8,8 +8,11 @@ import com.ixora.rms.messages.Msg;
 
 /**
  * QueryDuplicateIDException
+ * @author Daniel Moraru
  */
 public class QueryDuplicateIDException extends QueryException {
+	private static final long serialVersionUID = -8223987110643734426L;
+
 	/**
 	 * Constructor.
 	 */

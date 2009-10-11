@@ -14,10 +14,10 @@ import java.util.TimerTask;
 
 import javax.swing.SwingUtilities;
 
+import com.ixora.common.history.HistoryMgr;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.utils.Utils;
-import com.ixora.common.xml.history.HistoryMgr;
 import com.ixora.rms.ui.RMSViewContainer;
 import com.ixora.rms.ui.dataviewboard.handler.DataViewBoardHandler;
 

@@ -15,7 +15,8 @@ import com.ixora.common.xml.XMLTagList;
  * Loads and saves contents into XML.
  */
 public class ValueFilterDef extends FunctionDef {
-    private XMLTagList	rules = new XMLSameTagList(ValueFilterRuleDef.class);
+	private static final long serialVersionUID = 9039951624880974249L;
+	private XMLTagList<ValueFilterRuleDef>	rules = new XMLSameTagList<ValueFilterRuleDef>(ValueFilterRuleDef.class);
 
     /**
      * Constructs an empty object, ready to be loaded from XML
