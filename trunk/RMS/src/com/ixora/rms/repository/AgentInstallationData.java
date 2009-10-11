@@ -22,6 +22,7 @@ import com.ixora.rms.exception.AgentVersionIsNotInstalled;
  * @author Daniel Moraru
  */
 public final class AgentInstallationData implements InstallationArtefact {
+	private static final long serialVersionUID = -812024275951557532L;
 	/** Agent implementation class name */
 	private String implClass;
 	/** Agent description */
@@ -351,7 +352,7 @@ public final class AgentInstallationData implements InstallationArtefact {
 			this.category = XMLUtils.getText(n);
 		}
 
-		List m;
+		List<Node> m;
 		// versions are optional
 		n = XMLUtils.findChild(node, "versions");
         if(n != null) {
@@ -359,10 +360,10 @@ public final class AgentInstallationData implements InstallationArtefact {
 			if(m.size() == 0) {
 				throw new XMLNodeMissing("version");
 			}
-			List vers = new ArrayList(m.size());
+			List<String> vers = new ArrayList<String>(m.size());
 			String v;
-			for(Iterator iter = m.iterator(); iter.hasNext();) {
-				 n = (Node)iter.next();
+			for(Iterator<Node> iter = m.iterator(); iter.hasNext();) {
+				 n = iter.next();
 				 v = XMLUtils.getText(n);
 				 if(v != null) {
 				 	vers.add(v);

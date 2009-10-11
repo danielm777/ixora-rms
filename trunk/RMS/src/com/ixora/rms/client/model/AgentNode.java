@@ -22,6 +22,8 @@ import com.ixora.rms.repository.AgentInstallationData;
  */
 public final class AgentNode extends DefaultMutableTreeNode
 			implements ResourceNodeWithEntities {
+	private static final long serialVersionUID = 5601572853552532003L;
+
 	/**
      * AgentNode constructor.
      * @param idtls
@@ -57,7 +59,8 @@ public final class AgentNode extends DefaultMutableTreeNode
     /**
      * @see com.ixora.rms.client.model.ResourceNode#findPathsMatching(com.ixora.rms.ResourceId, java.util.List, boolean)
      */
-    public void findPathsMatching(ResourceId ridex, List result, boolean aggressive) {
+    @SuppressWarnings("unchecked")
+	public void findPathsMatching(ResourceId ridex, List<ResourcePath> result, boolean aggressive) {
         if(!ridex.isValid()) {
             return;
         }
@@ -75,7 +78,7 @@ public final class AgentNode extends DefaultMutableTreeNode
         // keep searching through the children
         if(ridex.contains(rid)) {
             retrieveChildren();
-            Enumeration e = children();
+            Enumeration<TreeNode> e = children();
             while(e.hasMoreElements()) {
             	TreeNode tn = (TreeNode)e.nextElement();
             	if(tn instanceof ResourceNode) {
@@ -90,10 +93,11 @@ public final class AgentNode extends DefaultMutableTreeNode
 	/**
 	 * @see com.ixora.rms.client.model.ResourceNodeWithEntities#findChild(com.ixora.rms.EntityId)
 	 */
+	@SuppressWarnings("unchecked")
 	public EntityNode findChild(EntityId id) {
-		Enumeration e = children();
+		Enumeration<TreeNode> e = children();
 		while(e.hasMoreElements()) {
-			TreeNode tn = (TreeNode)e.nextElement();
+			TreeNode tn = e.nextElement();
 			if(tn instanceof EntityNode) {
 				EntityNode node = (EntityNode)tn;
 				if(node.getEntityInfoImpl().getId().equals(id)) {
@@ -107,14 +111,15 @@ public final class AgentNode extends DefaultMutableTreeNode
 	/**
 	 * @see com.ixora.rms.client.model.ResourceNodeWithEntities#findDescendant(com.ixora.rms.EntityId, boolean)
 	 */
+	@SuppressWarnings("unchecked")
 	public EntityNode findDescendant(EntityId id, boolean aggressive) {
 		// search all children first
 		if(aggressive) {
 			retrieveChildren();
 		}
-		Enumeration e = children();
+		Enumeration<TreeNode> e = children();
 		while(e.hasMoreElements()) {
-			TreeNode tn = (TreeNode)e.nextElement();
+			TreeNode tn = e.nextElement();
 			if(tn instanceof EntityNode) {
 				EntityNode node = (EntityNode)tn;
 				node = node.findDescendant(id, aggressive);
@@ -130,17 +135,18 @@ public final class AgentNode extends DefaultMutableTreeNode
 	 * Use this to enumerate all entities.
 	 * @return an enumeration with all entities for this agent
 	 */
-	public Enumeration entities() {
+	@SuppressWarnings("unchecked")
+	public Enumeration<EntityNode> entities() {
 		// TODO revisit, possible memory problems
 		// but we can't assume all children are entities
-		List ret = new LinkedList();
-		Enumeration en = breadthFirstEnumeration();
+		List<EntityNode> ret = new LinkedList<EntityNode>();
+		Enumeration<TreeNode> en = breadthFirstEnumeration();
 		// get rid off this node
 		en.nextElement();
 		while(en.hasMoreElements()) {
 			TreeNode tn = (TreeNode)en.nextElement();
 			if(tn instanceof EntityNode) {
-				ret.add(tn);
+				ret.add((EntityNode)tn);
 			}
 		}
 		return Collections.enumeration(ret);
@@ -173,10 +179,11 @@ public final class AgentNode extends DefaultMutableTreeNode
     /**
      * @see com.ixora.rms.client.model.SessionModelTreeNode#hasEnabledDescendants()
      */
-    public boolean hasEnabledDescendants() {
-        Enumeration e = children();
+    @SuppressWarnings("unchecked")
+	public boolean hasEnabledDescendants() {
+        Enumeration<TreeNode> e = children();
         while(e.hasMoreElements()) {
-        	TreeNode tn = (TreeNode)e.nextElement();
+        	TreeNode tn = e.nextElement();
         	if(tn instanceof SessionModelTreeNode) {
 	        	SessionModelTreeNode sn = (SessionModelTreeNode)tn;
 	            if(sn.hasEnabledDescendants()) {
@@ -210,11 +217,12 @@ public final class AgentNode extends DefaultMutableTreeNode
     /**
      * @return
      */
-    private int getChildEntityCount() {
+    @SuppressWarnings("unchecked")
+	private int getChildEntityCount() {
     	int ret = 0;
-    	Enumeration enumer = children();
+    	Enumeration<TreeNode> enumer = children();
     	while(enumer.hasMoreElements()) {
-			TreeNode tn = (TreeNode)enumer.nextElement();
+			TreeNode tn = enumer.nextElement();
 			if(tn instanceof EntityNode) {
 				ret++;
 			}

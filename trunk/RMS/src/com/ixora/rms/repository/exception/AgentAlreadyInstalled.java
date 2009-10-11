@@ -11,8 +11,9 @@ import com.ixora.rms.repository.messages.Msg;
  * AgentAlreadyInstalled
  */
 public class AgentAlreadyInstalled extends RMSException {
+	private static final long serialVersionUID = 5889527762693638110L;
 
-    public AgentAlreadyInstalled(String agentId) {
+	public AgentAlreadyInstalled(String agentId) {
         super(RepositoryComponent.NAME, Msg.REPOSITORY_ERROR_AGENT_ALREADY_INSTALLED, new String[]{agentId});
     }
 }

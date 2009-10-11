@@ -20,7 +20,7 @@ public final class JobHistory {
      * Key: JobId
      * Value: JobHistoryDetails
      */
-    private Map jobs;
+    private Map<JobId, JobHistoryDetails> jobs;
     /** Max log size for jobs */
     private int maxLogSize;
 
@@ -48,7 +48,7 @@ public final class JobHistory {
     JobHistory(JobEngine je) {
         super();
         je.addListener(new EventHandler());
-        this.jobs = new LinkedHashMap();
+        this.jobs = new LinkedHashMap<JobId, JobHistoryDetails>();
         maxLogSize = ConfigurationMgr.getInt(JobsComponent.NAME,
         	JobsConfigurationConstants.MAX_JOB_LOG_SIZE);
         // this val is in MB, convert it roughly into chars
@@ -61,7 +61,7 @@ public final class JobHistory {
      * Key: JobId
      * Value: JobHistoryDetails
      */
-    public Map getJobs() {
+    public Map<JobId, JobHistoryDetails> getJobs() {
         synchronized(this.jobs) {
             return Collections.unmodifiableMap(this.jobs);
         }

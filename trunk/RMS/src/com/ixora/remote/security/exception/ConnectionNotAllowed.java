@@ -10,6 +10,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class ConnectionNotAllowed extends RMSException {
+	private static final long serialVersionUID = -2125025188337393198L;
+
 	/**
 	 * Constructor.
 	 */

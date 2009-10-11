@@ -882,8 +882,8 @@ public final class MonitoringSession
 				}
 			}
 			// start all agents
-			for(Iterator iter = this.fHostManagers.values().iterator(); iter.hasNext();) {
-				HostHandler hh = (HostHandler)iter.next();
+			for(Iterator <HostHandler>iter = this.fHostManagers.values().iterator(); iter.hasNext();) {
+				HostHandler hh = iter.next();
 				HostAgentManager ham = hh.getLocalAgentManager();
 				if(ham != null) {
 					ham.startAllAgents();
@@ -912,9 +912,9 @@ public final class MonitoringSession
 				}
 			}
 			// stop all agents
-			for(Iterator iter = this.fHostManagers.values().iterator(); iter.hasNext();) {
+			for(Iterator<HostHandler> iter = this.fHostManagers.values().iterator(); iter.hasNext();) {
 				try {
-					HostHandler hh = (HostHandler)iter.next();
+					HostHandler hh = iter.next();
 					HostAgentManager ham = hh.getLocalAgentManager();
 					if(ham != null) {
                         try {
@@ -949,9 +949,9 @@ public final class MonitoringSession
 					logger.error(t);
 				}
 			}
-			for(Iterator iter = this.fHostManagers.values().iterator(); iter.hasNext();) {
+			for(Iterator<HostHandler> iter = this.fHostManagers.values().iterator(); iter.hasNext();) {
 				try {
-					HostHandler hh = (HostHandler)iter.next();
+					HostHandler hh = iter.next();
 					HostAgentManager ham = hh.getLocalAgentManager();
 					if(ham != null) {
 						ham.deactivateAllAgents();
@@ -1124,9 +1124,9 @@ public final class MonitoringSession
 		AgentId agentId,
 		EntityDescriptorTree entities) {
 		synchronized (this.fListeners) {
-			for(Iterator iter = this.fListeners.iterator(); iter.hasNext();) {
+			for(Iterator<Listener> iter = this.fListeners.iterator(); iter.hasNext();) {
 				try {
-					((Listener)iter.next()).entitiesChanged(host, agentId, entities);
+					iter.next().entitiesChanged(host, agentId, entities);
 				} catch(Exception ex) {
 					logger.error(ex);
 				}

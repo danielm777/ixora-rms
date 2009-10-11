@@ -23,8 +23,9 @@ import com.ixora.common.xml.exception.XMLException;
  * Loads and saves contents into XML.
  */
 public class FunctionDef extends StyledTagDef {
+	private static final long serialVersionUID = -4206136821667283770L;
 	protected XMLAttribute	op = new XMLAttributeString("op", true);
-    protected XMLTagList	params = new XMLSameTagList(ParamDef.class);
+    protected XMLTagList<ParamDef> params = new XMLSameTagList<ParamDef>(ParamDef.class);
 
     /**
      * Constructs an empty object, ready to be loaded from XML

@@ -27,7 +27,8 @@ import com.ixora.common.ui.jobs.UIWorkerJobDefault;
  * ActionScheduleJob.
  */
 final class ActionCreateJobLike extends AbstractAction {
-    /** Job engine */
+	private static final long serialVersionUID = 3698789332788718364L;
+	/** Job engine */
     private JobEngineService jobEngine;
     /** Job manager viewer */
     private JobManagerViewer jobManagerViewer;

@@ -14,7 +14,8 @@ import com.ixora.rms.EntityId;
  * @author Daniel Moraru
  */
 public abstract class TreeArtefactId implements Serializable {
-    /** A character that is prepended to the name of the artefact */
+	private static final long serialVersionUID = -989293148057364301L;
+	/** A character that is prepended to the name of the artefact */
     private final char markerStart;
     /** A character that is appended to the name of the artefact */
     private final char markerEnd;

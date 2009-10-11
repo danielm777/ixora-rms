@@ -42,11 +42,11 @@ public final class ConnectionChecker {
 		fEnabled = ConfigurationMgr.getBoolean(HostManagerComponent.NAME, HostManagerConfigurationConstants.HOST_NAME_SECURITY_ENABLED);
 		if(fEnabled) {
 			fHosts = new HashSet<String>();
-			List hosts = ConfigurationMgr.getList(HostManagerComponent.NAME,
+			List<String> hosts = ConfigurationMgr.getList(HostManagerComponent.NAME,
 					String.class, HostManagerConfigurationConstants.HOSTS_ALLOWED);
 			if(!Utils.isEmptyCollection(hosts)) {
-				for(Iterator iter = hosts.iterator(); iter.hasNext();) {
-					String host = (String)iter.next();
+				for(Iterator<String> iter = hosts.iterator(); iter.hasNext();) {
+					String host = iter.next();
 					// get the IP address
 					try {
 						InetAddress ia = InetAddress.getByName(host);

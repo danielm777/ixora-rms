@@ -28,8 +28,9 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class Janino extends Function {
-    private transient ScriptEvaluator fScriptEvaluator;
-    private Class fReturnType;
+	private static final long serialVersionUID = -9195236613294967965L;
+	private transient ScriptEvaluator fScriptEvaluator;
+    private Class<?> fReturnType;
 
     /** Used to check if Resource ids make good variable names */
     private static Pattern 	identifierPattern = Pattern.compile("[a-zA-Z]\\w*");
@@ -42,7 +43,7 @@ public class Janino extends Function {
 
     /** These members are storing state through serialization */
     private String[] fVars;
-    private Class[] fTypes;
+    private Class<?>[] fTypes;
     private String  fCode;
 
     /**

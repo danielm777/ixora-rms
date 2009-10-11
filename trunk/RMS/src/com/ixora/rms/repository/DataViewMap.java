@@ -17,6 +17,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class DataViewMap extends VersionableAgentArtefactMap<DataView> {
+	private static final long serialVersionUID = 7210364988740783847L;
 
 	/**
 	 * Constructor.

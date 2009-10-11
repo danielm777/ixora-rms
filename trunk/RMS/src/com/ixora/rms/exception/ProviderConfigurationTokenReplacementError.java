@@ -9,7 +9,9 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ProviderConfigurationTokenReplacementError extends RMSException {
-    /**
+	private static final long serialVersionUID = 4431466080101197252L;
+
+	/**
      * Constructor.
      * @param eid
      */

@@ -205,6 +205,7 @@ public final class TreeArtefactRepository {
 	/**
 	 * @return all entity resources defined for the given agent
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<EntityId, XMLExternalizable> getEntityResources(String agentId) {
 		AgentData ad = getAgentData(agentId);
 		loadEntityResourcesForAgent(ad);
@@ -326,7 +327,7 @@ public final class TreeArtefactRepository {
 	    }
 		AgentData ad = getAgentData(agentId);
 		if(ad.entityResources == null) {
-			ad.entityResources = new HashMap();
+			ad.entityResources = new HashMap<EntityId, XMLExternalizable>();
 		}
 		ad.entityResources.put(entityId, resources);
 		ad.entityLoaded = true;
@@ -488,7 +489,7 @@ public final class TreeArtefactRepository {
 	 * @param ad
 	 * @return the map key: EntityId, value: XMLExternalizable
 	 */
-	private Map loadEntityResources(AgentData ad)
+	private Map<EntityId, XMLExternalizable> loadEntityResources(AgentData ad)
 		throws XMLException,
 			FileNotFoundException {
 		File f = new File(ad.resourceFolder, entityFile);
@@ -509,8 +510,8 @@ public final class TreeArtefactRepository {
 				return null;
 			}
 			ret = new HashMap<EntityId, XMLExternalizable>();
-			for(Iterator iter = lst.iterator(); iter.hasNext();) {
-				n = (Node)iter.next();
+			for(Iterator<Node> iter = lst.iterator(); iter.hasNext();) {
+				n = iter.next();
 				Attr a = XMLUtils.findAttribute(n, "id");
 				if(a == null) {
 					throw new XMLAttributeMissing("id");
@@ -618,7 +619,6 @@ public final class TreeArtefactRepository {
 		EntityId eid;
 		XMLExternalizable artefact;
 		Element en;
-		Attr a;
 		for(Map.Entry<EntityId, XMLExternalizable> me : ad.entityResources.entrySet()) {
 			eid = me.getKey();
 			artefact = me.getValue();

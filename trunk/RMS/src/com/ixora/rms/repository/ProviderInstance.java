@@ -26,6 +26,7 @@ import com.ixora.rms.providers.ProviderConfiguration;
  * @author Daniel Moraru
  */
 public final class ProviderInstance extends VersionableAgentArtefactAbstract implements AuthoredArtefact {
+	private static final long serialVersionUID = 4763168946154573329L;
 	/** Provider name */
 	private String providerName;
 	/** Instance name */

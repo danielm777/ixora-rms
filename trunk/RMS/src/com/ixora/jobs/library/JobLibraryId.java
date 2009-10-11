@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public final class JobLibraryId implements Serializable {
+	private static final long serialVersionUID = 4135490954684574063L;
 	private String fId;
 	
 	/**

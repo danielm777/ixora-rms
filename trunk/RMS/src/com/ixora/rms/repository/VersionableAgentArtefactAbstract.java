@@ -22,7 +22,8 @@ import com.ixora.common.xml.exception.XMLException;
  * VersionableAgentArtefact
  */
 public abstract class VersionableAgentArtefactAbstract implements XMLExternalizable, VersionableAgentArtefact {
-    /** Agent versions to which this provider instance applies */
+	private static final long serialVersionUID = 4902859385207719773L;
+	/** Agent versions to which this provider instance applies */
     protected HashSet<String> agentVersions;
 
     public VersionableAgentArtefactAbstract() {
@@ -38,7 +39,8 @@ public abstract class VersionableAgentArtefactAbstract implements XMLExternaliza
     /**
      * @see com.ixora.rms.repository.VersionableAgentArtefact#getAgentVersions()
      */
-    public Set<String> getAgentVersions() {
+    @SuppressWarnings("unchecked")
+	public Set<String> getAgentVersions() {
         if(agentVersions == null) {
             return null;
         }
@@ -67,10 +69,10 @@ public abstract class VersionableAgentArtefactAbstract implements XMLExternaliza
     public void fromXML(Node node) throws XMLException {
         Node n = XMLUtils.findChild(node, "agentVersions");
         if(n != null) {
-            List lst = XMLUtils.findChildren(n, "agentVersion");
+            List<Node> lst = XMLUtils.findChildren(n, "agentVersion");
             if(!Utils.isEmptyCollection(lst)) {
-                for(Iterator iter = lst.iterator(); iter.hasNext();) {
-                     String av = XMLUtils.getText((Node)iter.next());
+                for(Iterator<Node> iter = lst.iterator(); iter.hasNext();) {
+                     String av = XMLUtils.getText(iter.next());
                      if(av != null) {
                         this.agentVersions.add(av);
                      }

@@ -25,6 +25,7 @@ import com.ixora.rms.agents.providers.parsers.MonitoringDataParsingRulesDefiniti
  * @author Daniel Moraru
  */
 public final class TableRulesDefinition implements MonitoringDataParsingRulesDefinition {
+	private static final long serialVersionUID = 3506435358154264825L;
 	/** Columns */
 	private ColumnDefinition[] fColumns;
 	/** Column separator */
@@ -161,13 +162,13 @@ public final class TableRulesDefinition implements MonitoringDataParsingRulesDef
 		if(nl.size() == 0) {
 			throw new XMLNodeMissing("column");
 		}
-		List lst = new ArrayList(nl.size());
+		List<ColumnDefinition> lst = new ArrayList<ColumnDefinition>(nl.size());
 		for(Node n2 : nl) {
 			ColumnDefinition cd = new ColumnDefinition();
 			cd.fromXML(n2);
 			lst.add(cd);
 		}
-		this.fColumns = (ColumnDefinition[])lst.toArray(new ColumnDefinition[lst.size()]);
+		this.fColumns = lst.toArray(new ColumnDefinition[lst.size()]);
 
 		n = XMLUtils.findChild(node, "columnSeparator");
 		if(n != null) {

@@ -12,7 +12,10 @@ import com.ixora.rms.EntityDescriptorTree;
  * @author Daniel Moraru
  */
 public class AgentPollBuffer implements Serializable {
+	private static final long serialVersionUID = -3528131953658025671L;
+
 	public final static class NonFatalError implements Serializable {
+		private static final long serialVersionUID = 6290532096739678411L;
 		public String fHost;
 		public AgentId fAgentId;
 		public Throwable fError;
@@ -24,6 +27,7 @@ public class AgentPollBuffer implements Serializable {
 		}
 	}
 	public final static class StateChange implements Serializable {
+		private static final long serialVersionUID = -2501608052648646021L;
 		public String fHost;
 		public AgentId fAgentId;
 		public AgentState fAgentState;
@@ -37,6 +41,7 @@ public class AgentPollBuffer implements Serializable {
 		}
 	}
 	public final static class EntitiesChange implements Serializable {
+		private static final long serialVersionUID = 3880805261085665111L;
 		public String fHost;
 		public AgentId fAgentId;
 		public EntityDescriptorTree fEntityTree;

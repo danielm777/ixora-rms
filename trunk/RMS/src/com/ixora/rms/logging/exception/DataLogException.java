@@ -10,6 +10,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class DataLogException extends RMSException {
+	private static final long serialVersionUID = -1759069863180104400L;
+
 	public DataLogException(String msgKey, boolean needsLocalizing) {
         super(msgKey, needsLocalizing);
     }

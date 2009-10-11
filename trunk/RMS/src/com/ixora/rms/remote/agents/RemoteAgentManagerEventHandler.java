@@ -23,6 +23,7 @@ import com.ixora.rms.agents.HostAgentManager;
 public final class RemoteAgentManagerEventHandler
 	extends UnicastRemoteObject
 	implements RemoteAgentManagerListener {
+	private static final long serialVersionUID = 8918276091597465398L;
 	/**
 	 * Local listener.
 	 */

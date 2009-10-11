@@ -49,7 +49,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class JobLibraryDialog extends AppDialog {
-    /** JobLibraryService */
+	private static final long serialVersionUID = -3097393809627765235L;
+	/** JobLibraryService */
     private JobLibraryService fJobLibrary;
     private JPanel fMainPanel;
     private AppViewContainer fViewContainer;
@@ -104,7 +105,8 @@ public final class JobLibraryDialog extends AppDialog {
 		}
 	}
 
-    private final class ActionSelectJob extends AbstractAction {
+    @SuppressWarnings("serial")
+	private final class ActionSelectJob extends AbstractAction {
 		public ActionSelectJob() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(JobsComponent.NAME, Msg.ACTIONS_LIBRARY_SELECT_JOB), this);
@@ -121,7 +123,8 @@ public final class JobLibraryDialog extends AppDialog {
 		}
     }
 
-    private final class ActionAddJob extends AbstractAction {
+    @SuppressWarnings("serial")
+	private final class ActionAddJob extends AbstractAction {
 		public ActionAddJob() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(JobsComponent.NAME, Msg.ACTIONS_LIBRARY_ADD_JOB), this);
@@ -138,7 +141,8 @@ public final class JobLibraryDialog extends AppDialog {
 		}
     }
 
-    private final class ActionRemoveJobs extends AbstractAction {
+    @SuppressWarnings("serial")
+	private final class ActionRemoveJobs extends AbstractAction {
 		public ActionRemoveJobs() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(JobsComponent.NAME, Msg.ACTIONS_LIBRARY_REMOVE_JOBS), this);
@@ -155,7 +159,8 @@ public final class JobLibraryDialog extends AppDialog {
 		}
     }
 
-    private final class ActionCreateJobLike extends AbstractAction {
+    @SuppressWarnings("serial")
+	private final class ActionCreateJobLike extends AbstractAction {
 		public ActionCreateJobLike() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(JobsComponent.NAME, Msg.ACTIONS_CREATE_JOB_LIKE), this);
@@ -172,7 +177,8 @@ public final class JobLibraryDialog extends AppDialog {
 		}
 	}
 
-    private final class ActionEditJob extends AbstractAction {
+    @SuppressWarnings("serial")
+	private final class ActionEditJob extends AbstractAction {
 		public ActionEditJob() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(JobsComponent.NAME, Msg.ACTIONS_EDIT_JOB), this);
@@ -394,7 +400,8 @@ public final class JobLibraryDialog extends AppDialog {
     /**
      * @see com.ixora.common.ui.AppDialog#getButtons()
      */
-    protected JButton[] getButtons() {
+    @SuppressWarnings("serial")
+	protected JButton[] getButtons() {
     	if(fSelectMode) {
 	        return new JButton[]{
 	 	           new JButton(fActionSelectJob),

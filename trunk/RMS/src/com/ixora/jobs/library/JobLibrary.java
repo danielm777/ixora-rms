@@ -68,6 +68,7 @@ public class JobLibrary implements JobLibraryService {
 	 * @throws RMSException
 	 * @see com.ixora.rms.services.JobLibraryService#getAllJobs()
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<JobLibraryId, JobLibraryDefinition> getAllJobs() throws RMSException {
 		try {
 			synchronized(this) {

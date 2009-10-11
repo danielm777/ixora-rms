@@ -26,6 +26,7 @@ import com.ixora.rms.client.AgentInstanceData;
  * @author Daniel Moraru
  */
 public final class AgentDetails implements XMLExternalizable {
+	private static final long serialVersionUID = 4781035249608187502L;
 	/** Agent deployment details */
 	private AgentInstanceData deploymentDtls;
 	/** Entity details */
@@ -97,14 +98,14 @@ public final class AgentDetails implements XMLExternalizable {
 		if(n == null) {
 			throw new XMLNodeMissing("entities");
 		}
-		List l = XMLUtils.findChildren(n, "entity");
+		List<Node> l = XMLUtils.findChildren(n, "entity");
 		if(l.size() == 0) {
 			return;
 		}
 		this.entities = new ArrayList<EntityDetails>(l.size());
 		EntityDetails ed;
-		for(Iterator iter = l.iterator(); iter.hasNext();) {
-			n = (Node)iter.next();
+		for(Iterator<Node> iter = l.iterator(); iter.hasNext();) {
+			n = iter.next();
 			ed = new EntityDetails();
 			ed.fromXML(n);
 			this.entities.add(ed);

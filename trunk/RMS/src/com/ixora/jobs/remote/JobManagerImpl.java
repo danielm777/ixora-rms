@@ -23,7 +23,9 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class JobManagerImpl extends UnicastRemoteObject implements JobManager {
-    /** Logger */
+	private static final long serialVersionUID = 4117509654010486756L;
+
+	/** Logger */
     private static final AppLogger logger = AppLoggerFactory.getLogger(JobManagerImpl.class);
 
     /**

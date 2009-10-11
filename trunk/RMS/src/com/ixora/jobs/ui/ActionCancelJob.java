@@ -27,7 +27,8 @@ import com.ixora.common.ui.jobs.UIWorkerJobDefault;
  * ActionCancelJob.
  */
 final class ActionCancelJob extends AbstractAction {
-    /** Job engine */
+	private static final long serialVersionUID = -6756356000991796528L;
+	/** Job engine */
     private JobEngineService jobEngine;
     /** Viewer */
     private JobManagerViewer jobManagerViewer;

@@ -11,6 +11,8 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class InvalidEntity extends RMSException {
+	private static final long serialVersionUID = 2642400404527275487L;
+
 	/**
 	 * Constructor.
 	 * @param entity

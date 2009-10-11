@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @author Daniel Moraru
  */
 public final class LogRepositoryInfo implements Serializable {
+	private static final long serialVersionUID = 1805612046621913256L;
 	public static final String TYPE_XML = "xml";
 	public static final String TYPE_DATABASE = "db";
 

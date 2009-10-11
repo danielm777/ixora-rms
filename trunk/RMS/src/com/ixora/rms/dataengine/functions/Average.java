@@ -14,6 +14,7 @@ import com.ixora.rms.dataengine.definitions.FunctionDef;
  * Holds a running average of a value over time.
  */
 public class Average extends Function {
+	private static final long serialVersionUID = -8025229852735316483L;
 	/** Number of elements in the average */
 	protected double fElements = 0;
 	/** Calculated average */

@@ -17,6 +17,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public final class JobLibraryDefinition implements XMLExternalizable {
+	private static final long serialVersionUID = 3463494824633280880L;
 	/** Host where the command is to be executed */
     private String fHost;
     /** Job name */

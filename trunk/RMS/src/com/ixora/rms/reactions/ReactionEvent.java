@@ -11,6 +11,7 @@ import java.util.Date;
  * @author Daniel Moraru
  */
 public final class ReactionEvent implements Serializable {
+	private static final long serialVersionUID = -2179332984401494012L;
 	private long fTimestamp;
 	private String fMessage;
 	private Object[] fParameters;

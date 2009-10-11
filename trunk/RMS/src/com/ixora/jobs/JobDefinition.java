@@ -10,7 +10,8 @@ import java.util.Date;
  * @author Daniel Moraru
  */
 public final class JobDefinition implements Serializable {
-    /**
+	private static final long serialVersionUID = -1059147860218972523L;
+	/**
      * The date when the job must be executed.
      * If null it will execute immediately.
      */

@@ -10,6 +10,7 @@ import com.ixora.rms.dataengine.definitions.StyledTagDef;
  * Style
  */
 public class Style implements Serializable {
+	private static final long serialVersionUID = 3656339114465039929L;
 	// One of the possible values of the "type" attribute
 	public static final String TYPE_STRING = "string";
 	public static final String TYPE_NUMBER = "number";

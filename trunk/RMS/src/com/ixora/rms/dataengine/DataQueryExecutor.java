@@ -32,6 +32,8 @@ import com.ixora.rms.reactions.ReactionId;
 
 /**
  * DataQueryExecutor
+ * @author Cristian Costache
+ * @author Daniel Moraru
  */
 /*
  * Modification history
@@ -226,7 +228,7 @@ public class DataQueryExecutor {
                     fFunctions.add(new Identity(r));
                 } else {
                     ParamDef param = new ParamDef(r.getStyle().getID());
-                    List<ParamDef> listParams = new ArrayList(1);
+                    List<ParamDef> listParams = new ArrayList<ParamDef>(1);
                     listParams.add(param);
                     ScriptFunctionDef sfd = new ScriptFunctionDef(listParams, r.getStyle().getCode());
                     Janino jan = new Janino(sfd, qs.getQuerySource(), null, r.getStyle()); // null context = already realized
@@ -321,8 +323,8 @@ public class DataQueryExecutor {
 		// Get resourceIDs which are the source of this query
 		List<Resource> sources = fQuery.getQuerySource();
 		List<ResourceId> rids = new LinkedList<ResourceId>();
-		for(Iterator it = sources.iterator(); it.hasNext();) {
-			Resource res = (Resource) it.next();
+		for(Iterator<Resource> it = sources.iterator(); it.hasNext();) {
+			Resource res = it.next();
 			rids.add(res.getResourceID());
 		}
 
@@ -493,12 +495,10 @@ public class DataQueryExecutor {
 						// it will be the match of the first counter.
 						ResourceId matchedResourceId = null;
                         String[] captures = null;
-                        CounterType counterType = null;
 						if(cntCounters > 0) {
 							ResourceData rdata = params[0];
 							matchedResourceId = rdata.getResourceId();
                             captures = rdata.getCaptures();
-                            counterType = rdata.getCounterType();
 						}
 
 						// Prepare parameters: a column in the samples
@@ -648,8 +648,8 @@ public class DataQueryExecutor {
 		// have the same number of QueryResultData
 		for (QueryData queryData : data) {
 			int idxSeries = 0;
-			for (Iterator it = queryData.iterator(); it.hasNext();) {
-				QuerySeries querySeries = (QuerySeries) it.next();
+			for (Iterator<QuerySeries> it = queryData.iterator(); it.hasNext();) {
+				QuerySeries querySeries = it.next();
 				if (querySeries.contains(null)) {
 					// Remove the whole series if at least one value is null (filtered out)
 					it.remove();
@@ -723,13 +723,12 @@ public class DataQueryExecutor {
 		// Maybe the listener could accept the full array, rather than each element.
 		synchronized(this.fListeners) {
 			for(int i = 0; i < d.length; i++) {
-				for(Iterator iter = this.fListeners.iterator(); iter.hasNext();) {
+				for(Iterator<QueryListener> iter = this.fListeners.iterator(); iter.hasNext();) {
 					// don't penalize all listeners when one throws an exception
 					try {
 						// TODO: debug, remove
 						//System.out.println(d[i].toString());
-
-						((QueryListener)iter.next()).dataAvailable(d[i]);
+						iter.next().dataAvailable(d[i]);
 					} catch(Exception e) {
 						logger.error(e);
 					}
@@ -744,9 +743,9 @@ public class DataQueryExecutor {
 	 */
 	public void expired() {
 		synchronized(this.fListeners) {
-			for(Iterator iter = this.fListeners.iterator(); iter.hasNext();) {
+			for(Iterator<QueryListener> iter = this.fListeners.iterator(); iter.hasNext();) {
 				try {
-					((QueryListener)iter.next()).expired();
+					iter.next().expired();
 				} catch(Exception e) {
 					logger.error(e);
 				}

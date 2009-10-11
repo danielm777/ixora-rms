@@ -133,7 +133,7 @@ public abstract class AbstractMonitoringDataParser implements MonitoringDataPars
         // fire entities removed now if the parser doesn't specify that
         // they should be accumulated
         if(fHasVolatileEntities && !fAccumulateVolatileEntities) {
-            List<EntityId> eids = new LinkedList();
+            List<EntityId> eids = new LinkedList<EntityId>();
             for(Map.Entry<EntityId, Integer> me : fCurrentEntities.entrySet()) {
                 if(me.getValue() == EXPIRED) {
                     eids.add(me.getKey());

@@ -22,6 +22,7 @@ import com.ixora.rms.EntityId;
  * @author Daniel Moraru
  */
 public final class EntityDetails implements XMLExternalizable  {
+	private static final long serialVersionUID = -3544021621042059124L;
 	/** Entity configuration */
 	private EntityConfiguration configuration;
 	/**

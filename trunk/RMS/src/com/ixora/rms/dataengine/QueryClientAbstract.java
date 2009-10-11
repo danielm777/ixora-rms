@@ -14,12 +14,11 @@ import com.ixora.rms.dataengine.definitions.QueryDef;
  * @author Daniel Moraru
  */
 public abstract class QueryClientAbstract extends XMLTag implements QueryClient {
-
-	protected XMLText 		name = new XMLText("name", true);
-    protected XMLText 		description = new XMLText("description", true);
-
+	private static final long serialVersionUID = -6018052555779511573L;
+	protected XMLText name = new XMLText("name", true);
+    protected XMLText description = new XMLText("description", true);
     /** The (unrealized) definition of the query for this client */
-    protected QueryDef		query = new QueryDef();
+    protected QueryDef query = new QueryDef();
 
     /**
      * Constructor.

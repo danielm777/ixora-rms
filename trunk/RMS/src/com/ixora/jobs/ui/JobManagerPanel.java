@@ -38,7 +38,8 @@ import com.ixora.common.utils.Utils;
  * @author Daniel Moraru
  */
 public final class JobManagerPanel extends JPanel {
-// controls
+	private static final long serialVersionUID = -4570467970168469944L;
+	// controls
 	private JTable jTableJobHistory;
 	private JPanel jPanelJobs;
 	private JPanel jPanelLog;

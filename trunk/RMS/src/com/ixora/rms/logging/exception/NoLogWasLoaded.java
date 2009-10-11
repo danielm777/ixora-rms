@@ -12,6 +12,8 @@ import com.ixora.rms.logging.messages.Msg;
  * @author Daniel Moraru
  */
 public final class NoLogWasLoaded extends DataLogException {
+	private static final long serialVersionUID = 6132985464763195113L;
+
 	public NoLogWasLoaded() {
 		super(LogComponent.NAME, Msg.LOGGING_NO_LOG_WAS_LOADED, true);
 	}

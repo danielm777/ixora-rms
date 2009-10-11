@@ -5,10 +5,12 @@ package com.ixora.rms.exception;
 
 /**
  * InvalidDataException
+ * @author Daniel Moraru
  */
 public class InvalidDataException extends RMSException {
+	private static final long serialVersionUID = -964131927482046756L;
 
-    public InvalidDataException(String s) {
+	public InvalidDataException(String s) {
         super(s);
     }
 

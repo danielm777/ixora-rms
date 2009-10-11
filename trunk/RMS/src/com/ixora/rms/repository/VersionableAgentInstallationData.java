@@ -26,6 +26,7 @@ import com.ixora.rms.agents.AgentLocation;
  * system under observation version.
  */
 public final class VersionableAgentInstallationData extends VersionableAgentArtefactAbstract {
+	private static final long serialVersionUID = -5508095481206689344L;
 	/** There is just one version data per agent version and this is the name */
 	public static final String ARTEFACT_NAME = "data";
     /** Supported states */
@@ -158,15 +159,14 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         if(n == null) {
             throw new XMLNodeMissing("locations");
         }
-        List m = XMLUtils.findChildren(n, "location");
+        List<Node> m = XMLUtils.findChildren(n, "location");
         if(m.size() == 0) {
             throw new XMLNodeMissing("location");
         }
-        List lst = new ArrayList(m.size());
-        AgentLocation al;
-        for(Iterator iter = m.iterator(); iter.hasNext();) {
-             n = (Node)iter.next();
-             al = AgentLocation.resolve(
+        List<AgentLocation> lst = new ArrayList<AgentLocation>(m.size());
+        for(Iterator<Node> iter = m.iterator(); iter.hasNext();) {
+             n = iter.next();
+             AgentLocation al = AgentLocation.resolve(
                 Integer.parseInt(XMLUtils.getText(n)));
              if(al != null) {
                 lst.add(al);
@@ -178,14 +178,14 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         if(n != null) {
             m = XMLUtils.findChildren(n, "level");
             if(m.size() != 0) {
-                lst = new ArrayList(m.size());
+                List<MonitoringLevel> lstml = new ArrayList<MonitoringLevel>(m.size());
                 MonitoringLevel ml;
-                for(Iterator iter = m.iterator(); iter.hasNext();) {
-                     n = (Node)iter.next();
+                for(Iterator<Node> iter = m.iterator(); iter.hasNext();) {
+                     n = iter.next();
                      ml = MonitoringLevel.resolve(
                         Integer.parseInt(XMLUtils.getText(n)));
                      if(ml != null) {
-                        lst.add(ml);
+                        lstml.add(ml);
                         // check if it's default
                         Attr def = XMLUtils.findAttribute(n, "default");
                         if(def != null) {
@@ -194,8 +194,8 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
                      }
                 }
                 // sort levels
-                Collections.sort(lst);
-                this.levels = (MonitoringLevel[])lst.toArray(new MonitoringLevel[lst.size()]);
+                Collections.sort(lstml);
+                this.levels = lstml.toArray(new MonitoringLevel[lstml.size()]);
             }
         }
         // optional
@@ -212,8 +212,8 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
             }
             List<String> jlist = new LinkedList<String>();
             String j;
-            for(Iterator iter = m.iterator(); iter.hasNext();) {
-                 n = (Node)iter.next();
+            for(Iterator<Node> iter = m.iterator(); iter.hasNext();) {
+                 n = iter.next();
                  j = XMLUtils.getText(n);
                  if(j != null && j.length() > 0) {
                     jlist.add(j);
@@ -238,8 +238,8 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
             }
             List<String> jlist = new LinkedList<String>();
             String j;
-            for(Iterator iter = m.iterator(); iter.hasNext();) {
-                 n = (Node)iter.next();
+            for(Iterator<Node> iter = m.iterator(); iter.hasNext();) {
+                 n = iter.next();
                  j = XMLUtils.getText(n);
                  if(j != null && j.length() > 0) {
                     jlist.add(j);

@@ -10,21 +10,21 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
-import com.ixora.jobs.JobHistoryDetails;
-import com.ixora.jobs.JobId;
-import com.ixora.jobs.JobsComponent;
-import com.ixora.jobs.ui.messages.Msg;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIUtils;
+import com.ixora.jobs.JobHistoryDetails;
+import com.ixora.jobs.JobsComponent;
+import com.ixora.jobs.ui.messages.Msg;
 
 
 /**
  * ActionCancelJob.
  */
 final class ActionViewJob extends AbstractAction {
-    /** Viewer */
+	private static final long serialVersionUID = 216296664658265364L;
+	/** Viewer */
     private JobManagerViewer jobManagerViewer;
 
     /**
@@ -54,7 +54,6 @@ final class ActionViewJob extends AbstractAction {
 		    }
 		    JobHistoryDetails dtls = ((JobHistoryTableModel)jobHistoryTable.getModel())
 		    	.getJobHistoryDetailsAtRow(idx);
-		    final JobId jid = dtls.getJobId();
 		    jobManagerViewer.showJobDefinition(dtls.getJobDefinition());
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);

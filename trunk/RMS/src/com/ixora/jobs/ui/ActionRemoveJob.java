@@ -24,7 +24,8 @@ import com.ixora.common.ui.UIUtils;
  * ActionCancelJob.
  */
 final class ActionRemoveJob extends AbstractAction {
-    /** Viewer */
+	private static final long serialVersionUID = -7085804597164637005L;
+	/** Viewer */
     private JobManagerViewer jobManagerViewer;
 
     /**

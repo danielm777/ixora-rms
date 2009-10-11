@@ -181,7 +181,7 @@ class ArtefactInfoContainerImpl implements ArtefactInfoContainer {
     /**
      * @see com.ixora.rms.client.model.ArtefactInfoContainer#getDashboardsToUnRealize()
      */
-    public Collection getDashboardsToUnRealize() {
+    public Collection<DashboardInfo> getDashboardsToUnRealize() {
         Collection<DashboardInfo> gs = getDashboardInfo();
         if(gs == null) {
             return null;

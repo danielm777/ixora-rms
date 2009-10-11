@@ -23,6 +23,7 @@ import com.ixora.rms.dataengine.definitions.ValueFilterRuleDef;
  * @author Daniel Moraru
  */
 public class Filter extends Function {
+	private static final long serialVersionUID = 5711875400744224453L;
 	private List<String> fListValues;
 	private CounterType fReturnType;
 

@@ -26,6 +26,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  * @author Daniel Moraru
  */
 public final class HostDetails implements Serializable, XMLExternalizable {
+	private static final long serialVersionUID = -2828329195296699329L;
 	/** Host */
 	private String host;
 	/** List of agent details */
@@ -103,10 +104,10 @@ public final class HostDetails implements Serializable, XMLExternalizable {
 		if(n == null) {
 			throw new XMLNodeMissing("agents");
 		}
-		List l = XMLUtils.findChildren(n, "agent");
+		List<Node> l = XMLUtils.findChildren(n, "agent");
 		AgentDetails ad;
-		for(Iterator iter = l.iterator(); iter.hasNext();) {
-			n = (Node)iter.next();
+		for(Iterator<Node> iter = l.iterator(); iter.hasNext();) {
+			n = iter.next();
 			ad = new AgentDetails();
 			ad.fromXML(n);
 			addAgentDetails(ad);

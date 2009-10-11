@@ -19,6 +19,7 @@ import com.ixora.rms.agents.AgentId;
  * @author: Daniel Moraru
  */
 public final class HostNode extends DefaultMutableTreeNode implements ResourceNode {
+	private static final long serialVersionUID = -5272245546929547825L;
 	/** Resusable string buffer */
 	private StringBuffer buff;
 
@@ -73,7 +74,8 @@ public final class HostNode extends DefaultMutableTreeNode implements ResourceNo
 	 * as a host will also contain performance, probe and service children.
 	 * @return an enumeration with all monitoring agents for this host
 	 */
-	public Enumeration agents() {
+	@SuppressWarnings("unchecked")
+	public Enumeration<AgentNode> agents() {
 		return children();
 	}
 
@@ -81,10 +83,11 @@ public final class HostNode extends DefaultMutableTreeNode implements ResourceNo
 	/**
 	 * @return the agent node data with the given id
 	 */
+	@SuppressWarnings("unchecked")
 	AgentNode findAgentNode(AgentId agentId) {
-		Enumeration e = children();
+		Enumeration<AgentNode> e = children();
 		while(e.hasMoreElements()) {
-			AgentNode element = (AgentNode)e.nextElement();
+			AgentNode element = e.nextElement();
 			if(agentId.equals(element.getAgentInfo().getDeploymentDtls()
 					.getAgentId())) {
 				return element;
@@ -143,7 +146,8 @@ public final class HostNode extends DefaultMutableTreeNode implements ResourceNo
     /**
      * @see com.ixora.rms.client.model.ResourceNode#findPathsMatching(com.ixora.rms.ResourceId, java.util.List, boolean)
      */
-    public void findPathsMatching(ResourceId ridex, List<ResourcePath> result, boolean aggressive) {
+    @SuppressWarnings("unchecked")
+	public void findPathsMatching(ResourceId ridex, List<ResourcePath> result, boolean aggressive) {
         if(!ridex.isValid()) {
             return;
         }
@@ -160,10 +164,10 @@ public final class HostNode extends DefaultMutableTreeNode implements ResourceNo
         // see if we are on the search path, if so
         // keep searching through the children
         if(ridex.contains(rid)) {
-            Enumeration e = children();
+            Enumeration<ResourceNode> e = children();
             ResourceNode rn;
             while(e.hasMoreElements()) {
-                rn = (ResourceNode)e.nextElement();
+                rn = e.nextElement();
                 rn.findPathsMatching(ridex, result, aggressive);
             }
         }
@@ -195,8 +199,9 @@ public final class HostNode extends DefaultMutableTreeNode implements ResourceNo
     /**
      * @see com.ixora.rms.client.model.SessionModelTreeNode#hasEnabledDescendants()
      */
-    public boolean hasEnabledDescendants() {
-        Enumeration e = children();
+    @SuppressWarnings("unchecked")
+	public boolean hasEnabledDescendants() {
+        Enumeration<SessionModelTreeNode> e = children();
         SessionModelTreeNode sn;
         while(e.hasMoreElements()) {
             sn = (SessionModelTreeNode)e.nextElement();

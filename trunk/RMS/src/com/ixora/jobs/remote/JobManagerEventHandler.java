@@ -19,6 +19,7 @@ import com.ixora.common.thread.RunQueue;
 public final class JobManagerEventHandler
 	extends UnicastRemoteObject
 	implements JobManagerListener {
+	private static final long serialVersionUID = 1085646319981969468L;
 	/**
 	 * Local listener.
 	 */

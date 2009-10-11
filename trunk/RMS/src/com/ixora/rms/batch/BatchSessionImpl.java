@@ -39,6 +39,7 @@ import com.ixora.rms.services.ReactionLogService.ReactionLogEvent;
  * @author Daniel Moraru
  */
 public class BatchSessionImpl extends UnicastRemoteObject implements BatchSession{
+	private static final long serialVersionUID = -4291710964007150834L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(BatchSessionImpl.class);
 	/**

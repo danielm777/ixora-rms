@@ -9,7 +9,8 @@ import com.ixora.rms.messages.Msg;
  * @author: Daniel Moraru
  */
 public final class AgentLocation extends Enum {
-    public static final AgentLocation LOCAL =
+	private static final long serialVersionUID = 2788945525120409609L;
+	public static final AgentLocation LOCAL =
     	new AgentLocation(0, MessageRepository.get(Msg.RMS_ENUM_AGENTLOCATION_LOCAL));
     public static final AgentLocation REMOTE =
     	new AgentLocation(1, MessageRepository.get(Msg.RMS_ENUM_AGENTLOCATION_REMOTE));

@@ -34,6 +34,8 @@ import com.ixora.rms.reactions.ReactionId;
  * @author Daniel Moraru
  */
 public class Reaction implements Analyzer {
+	private static final long serialVersionUID = 5666520305467659227L;
+
 	public interface Listener {
 		void reactionsArmed(ReactionId[] rids);
 		void reactionsDisarmed(ReactionId[] rids);
@@ -47,7 +49,7 @@ public class Reaction implements Analyzer {
 	/** Variable names for all resources */
     private String[] fVars;
     /** Types for the variables above */
-    private Class[] fTypes;
+    private Class<?>[] fTypes;
     /** Identifier */
     private String fIdentifier;
     /** True if in cooling off interval */
@@ -270,7 +272,7 @@ public class Reaction implements Analyzer {
 			Object[] params = new Object[values.size() + 1];
 			int i = 0;
 			for(CounterValue val : values) {
-				Class type = fTypes[i];
+				Class<?> type = fTypes[i];
 				if(val instanceof CounterValueDouble ) {
 					params[i] = new Double(val.getDouble());
 					if(type == Date.class) {
@@ -397,7 +399,7 @@ public class Reaction implements Analyzer {
 	 * @throws RMSException
 	 */
 	public void test(Set<String> rids) throws RMSException {
-		// check firs that the params are in the given rids set
+		// check first that the parameters are in the given rids set
 		Set<String> ps = fDef.getParameters();
 		for(String p : ps) {
 			if(!rids.contains(p)) {

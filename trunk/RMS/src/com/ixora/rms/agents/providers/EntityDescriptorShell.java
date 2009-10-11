@@ -12,6 +12,7 @@ import com.ixora.rms.EntityId;
  * @author Daniel Moraru
  */
 final class EntityDescriptorShell extends EntityDescriptorImpl {
+	private static final long serialVersionUID = -4470278692395571229L;
 
 	/**
 	 * Constructor.

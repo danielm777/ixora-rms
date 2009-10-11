@@ -12,7 +12,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.ixora.rms.HostId;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.utils.Utils;
@@ -23,6 +22,7 @@ import com.ixora.rms.EntityDescriptor;
 import com.ixora.rms.EntityDescriptorImpl;
 import com.ixora.rms.EntityDescriptorTree;
 import com.ixora.rms.EntityId;
+import com.ixora.rms.HostId;
 import com.ixora.rms.agents.Agent;
 import com.ixora.rms.agents.AgentConfiguration;
 import com.ixora.rms.agents.AgentDataBufferImpl;
@@ -232,7 +232,7 @@ public final class AgentShadow extends AbstractAgent {
 						throw new ParserIsMissing(parserName);
 					}
 					String parserClass = parserInstallData.getParserClass();
-					Class c = Class.forName(parserClass);
+					Class<?> c = Utils.getClassLoader(getClass()).loadClass(parserClass);
 					MonitoringDataParser parser = (MonitoringDataParser)c.newInstance();
 					parser.setListener(fEventHandler);
 					parser.setRules(parserInstance.getRules());
@@ -518,6 +518,7 @@ public final class AgentShadow extends AbstractAgent {
 	 * @param descs
 	 */
 	// Note: Thread safe zone
+	@SuppressWarnings("unchecked")
 	private void handleNewEntities(ProviderId pid, EntityDescriptor[] descs) {
         try {
 			ProviderData pd = fProviders.get(pid);

@@ -21,7 +21,8 @@ import com.ixora.rms.repository.exception.ArtefactSaveConflict;
  * VersionableAgentArtefactMap
  */
 public abstract class VersionableAgentArtefactMap<T extends VersionableAgentArtefact> implements XMLExternalizable {
-    private static final String ALL = "all";
+	private static final long serialVersionUID = 4972978296318760521L;
+	private static final String ALL = "all";
     /** Map of artefacts keyed by SUO version and then by name */
     private CaseInsensitiveLinkedMap<Map<String, T>> fArtefacts;
 
@@ -216,7 +217,7 @@ public abstract class VersionableAgentArtefactMap<T extends VersionableAgentArte
         if(forVersion != null) {
             T removed = forVersion.remove(artefact);
             if(removed != null) {
-                List<String> removedVersions = new ArrayList(1);
+                List<String> removedVersions = new ArrayList<String>(1);
                 removedVersions.add(agentVersion);
                 removed.removeAgentVersions(removedVersions);
             }

@@ -41,6 +41,7 @@ public class AggEntityDataBuffer {
 	 * @param buff
 	 * @return false if the given entity buffer cannot be aggregated
 	 */
+	@SuppressWarnings("unchecked")
 	public boolean addEntityDataBuffer(EntityDataBuffer buff) {
 		// check if the passed in buffer can be aggregated
 		// it can't if the record definition is different
@@ -70,7 +71,7 @@ public class AggEntityDataBuffer {
 			fDefinition.setEntityDescriptor(newEd);
 		}
 		// update counter values
-		// it is guarranteed that values.length is the same during
+		// it is guaranteed that values.length is the same during
 		// this aggregation
 		CounterValue[][] values = buff.getBuffer();
 		if(!Utils.isEmptyArray(values)) {

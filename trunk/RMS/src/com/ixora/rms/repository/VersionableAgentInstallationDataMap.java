@@ -15,6 +15,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
  */
 public final class VersionableAgentInstallationDataMap
 	extends VersionableAgentArtefactMap<VersionableAgentInstallationData> {
+	private static final long serialVersionUID = -3845012775321791979L;
 
 	/**
 	 * @param suoVersion

@@ -26,7 +26,8 @@ import com.ixora.common.ui.UIFactoryMgr;
  * @author Daniel Moraru
  */
 public final class JobDefinitionPanelContainer extends JPanel {
-    /** Current job defintion panel */
+	private static final long serialVersionUID = -2272622920725100813L;
+	/** Current job defintion panel */
     private JobDefinitionPanel current;
     /** Available hosts */
     private String[] hosts;

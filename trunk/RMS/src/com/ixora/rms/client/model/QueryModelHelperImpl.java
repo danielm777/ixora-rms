@@ -107,26 +107,22 @@ final class QueryModelHelperImpl implements QueryModelHelper {
 			ResourceId context,
 			QueryInfo ci,
 			boolean value) {
-		Map cpe = model.getCounterHelper().getCounterInfoPerEntity(context, ci.getQuery());
-		List counters;
-		ResourceId eid;
-		Map.Entry me;
-		EntityNode en;
-		for(Iterator iter = cpe.entrySet().iterator(); iter.hasNext();) {
-			me = (Map.Entry)iter.next();
-			eid = (ResourceId)me.getKey();
-			en = model.findEntityNode(
+		Map<ResourceId, List<ResourceInfo>> cpe = model.getCounterHelper().getCounterInfoPerEntity(context, ci.getQuery());
+		for(Iterator<Map.Entry<ResourceId, List<ResourceInfo>>> iter = cpe.entrySet().iterator(); iter.hasNext();) {
+			Map.Entry<ResourceId, List<ResourceInfo>> me = iter.next();
+			ResourceId eid = (ResourceId)me.getKey();
+			EntityNode en = model.findEntityNode(
 					eid.getHostId().toString(),
 					eid.getAgentId(),
 					eid.getEntityId(), false);
 			if(en == null) {
 				continue;
 			}
-			counters = (List)me.getValue();
+			List<ResourceInfo> counters = me.getValue();
 			ResourceInfo ri;
 			CounterInfo ciinf;
-			for(Iterator iterator = counters.iterator(); iterator.hasNext();) {
-				ri = (ResourceInfo)iterator.next();
+			for(Iterator<ResourceInfo> iterator = counters.iterator(); iterator.hasNext();) {
+				ri = iterator.next();
 				ciinf = ri.getCounterInfo();
 				if(ciinf != null) {
 				    switch(flag) {
@@ -177,15 +173,11 @@ final class QueryModelHelperImpl implements QueryModelHelper {
 	private void rollbackCountersForQuery(
 			ResourceId context,
 			QueryInfoImpl qi) {
-		Map cpe = model.getCounterHelper().getCounterInfoPerEntity(context, qi.getQuery());
-		List counters;
-		ResourceId eid;
-		Map.Entry me;
-		EntityNode en;
-		for(Iterator iter = cpe.entrySet().iterator(); iter.hasNext();) {
-			me = (Map.Entry)iter.next();
-			eid = (ResourceId)me.getKey();
-			en = model.findEntityNode(
+		Map<ResourceId, List<ResourceInfo>> cpe = model.getCounterHelper().getCounterInfoPerEntity(context, qi.getQuery());
+		for(Iterator<Map.Entry<ResourceId, List<ResourceInfo>>> iter = cpe.entrySet().iterator(); iter.hasNext();) {
+			Map.Entry<ResourceId, List<ResourceInfo>> me = iter.next();
+			ResourceId eid = (ResourceId)me.getKey();
+			EntityNode en = model.findEntityNode(
 					eid.getHostId().toString(),
 					eid.getAgentId(),
 					eid.getEntityId(), false);
@@ -195,11 +187,11 @@ final class QueryModelHelperImpl implements QueryModelHelper {
 				}
 				continue;
 			}
-			counters = (List)me.getValue();
+			List<ResourceInfo> counters = me.getValue();
 			ResourceInfo ri;
 			CounterInfo ciinf;
-			for(Iterator iterator = counters.iterator(); iterator.hasNext();) {
-				ri = (ResourceInfo)iterator.next();
+			for(Iterator<ResourceInfo> iterator = counters.iterator(); iterator.hasNext();) {
+				ri = iterator.next();
 				ciinf = ri.getCounterInfo();
 				if(ciinf != null) {
 				    model.getCounterHelper().rollbackCounter(en, ciinf.getId(), false);
@@ -222,18 +214,14 @@ final class QueryModelHelperImpl implements QueryModelHelper {
 	 * @return
 	 */
 	public boolean isQueryReady(ResourceId context, QueryDef query) {
-		Map cpe = model.getCounterHelper().getCounterInfoPerEntity(context, query);
-		List counters;
-		ResourceId eid;
-		Map.Entry me;
-		EntityNode en;
+		Map<ResourceId, List<ResourceInfo>> cpe = model.getCounterHelper().getCounterInfoPerEntity(context, query);
 		if(cpe.size() == 0) {
 		    return false;
 		}
-		for(Iterator iter = cpe.entrySet().iterator(); iter.hasNext();) {
-			me = (Map.Entry)iter.next();
-			eid = (ResourceId)me.getKey();
-			en = model.findEntityNode(
+		for(Iterator<Map.Entry<ResourceId, List<ResourceInfo>>> iter = cpe.entrySet().iterator(); iter.hasNext();) {
+			Map.Entry<ResourceId, List<ResourceInfo>> me = iter.next();
+			ResourceId eid = me.getKey();
+			EntityNode en = model.findEntityNode(
 					eid.getHostId().toString(),
 					eid.getAgentId(),
 					eid.getEntityId(), false);
@@ -243,11 +231,10 @@ final class QueryModelHelperImpl implements QueryModelHelper {
 				}
 				return false;
 			}
-			counters = (List)me.getValue();
-			ResourceInfo ri;
+			List<ResourceInfo> counters = me.getValue();
 			CounterInfo ciinf;
-			for(Iterator iterator = counters.iterator(); iterator.hasNext();) {
-				ri = (ResourceInfo)iterator.next();
+			for(Iterator<ResourceInfo> iterator = counters.iterator(); iterator.hasNext();) {
+				ResourceInfo ri = iterator.next();
 				ciinf = ri.getCounterInfo();
 				if(ciinf != null) {
 				    if(!ciinf.isEnabled() || !ciinf.isCommitted()) {
@@ -360,10 +347,11 @@ final class QueryModelHelperImpl implements QueryModelHelper {
     /**
      * @see com.ixora.rms.client.model.QueryModelHelper#getAllQueriesToRealize()
      */
-    public Map<ResourceId, Collection<QueryInfo>> getAllQueriesToRealize() {
+    @SuppressWarnings("unchecked")
+	public Map<ResourceId, Collection<QueryInfo>> getAllQueriesToRealize() {
         Map<ResourceId, Collection<QueryInfo>> ret = new HashMap<ResourceId, Collection<QueryInfo>>();
         SessionNode sn = model.getSessionNode();
-        Enumeration e = sn.breadthFirstEnumeration();
+        Enumeration<ResourceNode> e = sn.breadthFirstEnumeration();
         ResourceNode rn;
         while(e.hasMoreElements()) {
             rn = (ResourceNode)e.nextElement();
@@ -380,13 +368,14 @@ final class QueryModelHelperImpl implements QueryModelHelper {
     /**
      * @see com.ixora.rms.client.model.QueryModelHelper#getAllQueriesToUnRealize()
      */
-    public Map getAllQueriesToUnRealize() {
+    @SuppressWarnings("unchecked")
+	public Map<ResourceId, Collection<QueryInfo>> getAllQueriesToUnRealize() {
         Map<ResourceId, Collection<QueryInfo>> ret = new HashMap<ResourceId, Collection<QueryInfo>>();
         SessionNode sn = model.getSessionNode();
-        Enumeration e = sn.breadthFirstEnumeration();
+        Enumeration<ResourceNode> e = sn.breadthFirstEnumeration();
         ResourceNode rn;
         while(e.hasMoreElements()) {
-            rn = (ResourceNode)e.nextElement();
+            rn = e.nextElement();
 	        // get the unrealizable queries
 	        Collection<QueryInfo> col = sn.getArtefactInfoContainer().getQueriesToUnRealize();
 	        if(col != null) {

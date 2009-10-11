@@ -19,6 +19,7 @@ import com.ixora.common.xml.exception.XMLException;
  * Loads and saves contents into XML.
  */
 public class ResourceDef extends StyledTagDef {
+	private static final long serialVersionUID = 5469622084076948097L;
 	private XMLAttribute rid = new XMLAttributeString("rid", true);
 
     /**

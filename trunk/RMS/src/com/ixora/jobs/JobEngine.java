@@ -245,9 +245,9 @@ public final class JobEngine implements JobEngineService {
     	// that runJob and recordJob in runOneJob() have
     	// been run before processing events
         synchronized(this) {
-            for(Iterator iter = fListeners.iterator(); iter.hasNext();) {
+            for(Iterator<Listener> iter = fListeners.iterator(); iter.hasNext();) {
 	            try {
-	                ((Listener)iter.next()).jobStateEvent(ev);
+	                iter.next().jobStateEvent(ev);
 	            } catch(Exception e) {
 	                logger.error(e);
 	            }
@@ -261,9 +261,9 @@ public final class JobEngine implements JobEngineService {
     private void handleJobLogEvent(JobLogEvent ev) {
     	// see comments on handleJobStateEvent()
         synchronized(this) {
-            for(Iterator iter = fListeners.iterator(); iter.hasNext();) {
+            for(Iterator<Listener> iter = fListeners.iterator(); iter.hasNext();) {
 	            try {
-	                ((Listener)iter.next()).jobLogEvent(ev);
+	                iter.next().jobLogEvent(ev);
 	            } catch(Exception e) {
 	                logger.error(e);
 	            }

@@ -14,6 +14,7 @@ import com.ixora.rms.dataengine.definitions.FunctionDef;
  * Sums (accumulates) the value of a counter over time.
  */
 public class Sum extends Function {
+	private static final long serialVersionUID = -2628166974977802701L;
 	private double	fAccumulator = 0;
 
 	/**

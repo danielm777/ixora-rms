@@ -24,6 +24,7 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class ReactionDef extends XMLTag {
+	private static final long serialVersionUID = 5176936784426892583L;
 	private XMLAttribute params = new XMLAttributeString("params", true);
 	private XMLAttribute severity = new XMLAttributeString("severity", true);
 	private XMLCData arm = new XMLCData("arm", true);

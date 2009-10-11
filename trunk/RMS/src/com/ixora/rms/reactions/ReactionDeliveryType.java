@@ -12,7 +12,8 @@ import com.ixora.common.Enum;
  * @author Daniel Moraru
  */
 public final class ReactionDeliveryType extends Enum {
-    public static final ReactionDeliveryType EMAIL = new ReactionDeliveryType(0, "email");
+	private static final long serialVersionUID = -3831279743612245511L;
+	public static final ReactionDeliveryType EMAIL = new ReactionDeliveryType(0, "email");
 	public static final ReactionDeliveryType JOB = new ReactionDeliveryType(1, "job");
 	public static final ReactionDeliveryType ADVICE = new ReactionDeliveryType(2, "advice");
 

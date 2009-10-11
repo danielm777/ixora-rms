@@ -9,6 +9,7 @@ import java.util.List;
  * @author Daniel Moraru
  */
 public final class ReactionDeliveryInfoEmail extends ReactionDeliveryInfo {
+	private static final long serialVersionUID = -4560711991028751605L;
 	private String fServer;
 	private int fPort;
 	private String fFrom;

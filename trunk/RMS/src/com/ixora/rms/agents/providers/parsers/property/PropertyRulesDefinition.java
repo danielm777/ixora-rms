@@ -31,7 +31,8 @@ import com.ixora.rms.providers.parsers.exception.InvalidParsingRules;
  */
 public final class PropertyRulesDefinition implements
         MonitoringDataParsingRulesDefinition {
-    /** Whether or not to accumulate volatile entities */
+	private static final long serialVersionUID = -5563144256275081898L;
+	/** Whether or not to accumulate volatile entities */
     private boolean fAccumulateVolatileEntities;
     /** Counters provided */
     private Set<ResourceId> fCounters;

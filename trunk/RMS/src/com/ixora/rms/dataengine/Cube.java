@@ -21,6 +21,7 @@ import com.ixora.rms.exception.QueryNoSuchResultException;
  * Implementation for a Query, created based on a QueryDef.
  */
 public class Cube implements Serializable {
+	private static final long serialVersionUID = -213521183634344395L;
 	private List<Function> fFunctions;
 	private List<Resource> fResources;
 	private List<Reaction> fReactions;

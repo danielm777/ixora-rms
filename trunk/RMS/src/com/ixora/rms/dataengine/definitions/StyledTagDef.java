@@ -15,12 +15,12 @@ import com.ixora.common.xml.XMLTag;
  * Loads and saves contents into XML.
  */
 public abstract class StyledTagDef extends XMLTag {
-
+	private static final long serialVersionUID = 5897934505864193726L;
 	protected XMLAttribute id = new XMLAttributeString("id");
-	protected XMLAttributeDouble 	min = new XMLAttributeDouble("min");
-	protected XMLAttributeDouble 	max = new XMLAttributeDouble("max");
-	protected XMLAttributeBoolean	continuous = new XMLAttributeBoolean("continuous");
-	protected XMLAttributeBoolean	stacked = new XMLAttributeBoolean("stacked");
+	protected XMLAttributeDouble min = new XMLAttributeDouble("min");
+	protected XMLAttributeDouble max = new XMLAttributeDouble("max");
+	protected XMLAttributeBoolean continuous = new XMLAttributeBoolean("continuous");
+	protected XMLAttributeBoolean stacked = new XMLAttributeBoolean("stacked");
 	protected XMLAttribute name = new XMLAttributeString("name");
 	protected XMLAttribute iname = new XMLAttributeString("iname");
 	protected XMLAttribute description = new XMLAttributeString("description");

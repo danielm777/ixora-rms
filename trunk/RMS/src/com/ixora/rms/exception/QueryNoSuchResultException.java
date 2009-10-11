@@ -8,8 +8,11 @@ import com.ixora.rms.messages.Msg;
 
 /**
  * QueryNoSuchResultException
+ * @author Daniel Moraru
  */
 public class QueryNoSuchResultException extends QueryException {
+	private static final long serialVersionUID = 768527542196219529L;
+
 	/**
 	 * Constructor.
 	 */

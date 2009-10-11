@@ -11,6 +11,7 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class UnreachableHostManager extends RMSException {
+	private static final long serialVersionUID = -3811172840212271965L;
 
 	/**
 	 * Constructor.

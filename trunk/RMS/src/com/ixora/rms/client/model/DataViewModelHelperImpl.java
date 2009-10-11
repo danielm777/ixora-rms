@@ -41,13 +41,13 @@ final class DataViewModelHelperImpl implements DataViewModelHelper {
 			}
 			return;
 		}
-		Collection dvs = ac.getDataViewInfo();
+		Collection<DataViewInfo> dvs = ac.getDataViewInfo();
 		if(dvs == null) {
 			return;
 		}
 		DataViewInfo dvi;
-		for(Iterator iter = dvs.iterator(); iter.hasNext();) {
-            dvi = (DataViewInfo)iter.next();
+		for(Iterator<DataViewInfo> iter = dvs.iterator(); iter.hasNext();) {
+            dvi = iter.next();
             model.getQueryHelper().rollbackQuery(context,
                     dvi.getDataView().getQueryDef().getIdentifier());
         }
@@ -205,11 +205,11 @@ final class DataViewModelHelperImpl implements DataViewModelHelper {
 			}
 			return;
 		}
-		Collection cs = ac.getDataViewInfo();
+		Collection<DataViewInfo> cs = ac.getDataViewInfo();
 		if(cs == null) {
 			return;
 		}
-		for(Iterator iter = cs.iterator(); iter.hasNext();) {
+		for(Iterator<DataViewInfo> iter = cs.iterator(); iter.hasNext();) {
 			DataViewInfoImpl dvinfo = (DataViewInfoImpl)iter.next();
 			DataView dv = dvinfo.getDataView();
 			QueryInfo qinfo = ac.getQueryInfo(dv.getQueryDef().getIdentifier());

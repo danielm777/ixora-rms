@@ -13,13 +13,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import com.ixora.rms.HostId;
-import com.ixora.rms.HostInformation;
-import com.ixora.rms.HostMonitor;
-import com.ixora.rms.HostReachability;
-import com.ixora.rms.RMSComponent;
-import com.ixora.rms.RMSConfigurationConstants;
-import com.ixora.rms.TimeDeltaCache;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
@@ -28,11 +21,16 @@ import com.ixora.common.remote.ServerSocketFactory;
 import com.ixora.common.remote.ServiceState;
 import com.ixora.common.thread.RunQueue;
 import com.ixora.common.utils.Utils;
-import com.ixora.rms.agents.HostAgentManager;
+import com.ixora.rms.HostId;
+import com.ixora.rms.HostInformation;
+import com.ixora.rms.HostMonitor;
+import com.ixora.rms.HostReachability;
+import com.ixora.rms.RMSComponent;
+import com.ixora.rms.RMSConfigurationConstants;
+import com.ixora.rms.TimeDeltaCache;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.providers.exception.InvalidProviderConfiguration;
 import com.ixora.rms.providers.exception.ProviderNotActivated;
-import com.ixora.rms.remote.agents.RemoteAgentManager;
 import com.ixora.rms.remote.providers.RemoteProviderManager;
 import com.ixora.rms.remote.providers.RemoteProviderManagerEventHandler;
 import com.ixora.rms.services.HostMonitorService;
@@ -443,8 +441,6 @@ public final class ProvidersManager implements ProvidersManagerService, RMSConfi
 	 */
 	private void _configureAllProviders(ProviderConfiguration conf)
 			throws InvalidProviderConfiguration, RemoteException, RMSException {
-		HostAgentManager ham;
-		RemoteAgentManager ram;
 		conf.setGlobalSamplingInterval(true);
 		for(HostHandler hh : this.fHostManagers.values()) {
 			completeProviderConfiguration(conf, hh.getHost());

@@ -2,44 +2,6 @@
  * Created on 27-Dec-2004
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package com.ixora.rms.repository;
 
 import org.w3c.dom.Document;
@@ -57,6 +19,7 @@ import com.ixora.rms.providers.parsers.ParsingRulesDefinition;
  * @author Daniel Moraru
  */
 public final class ParserInstance implements XMLExternalizable {
+	private static final long serialVersionUID = 8473411372203229608L;
 	/** Parser name */
 	private String parserName;
 	/** Parsing rules configuration */

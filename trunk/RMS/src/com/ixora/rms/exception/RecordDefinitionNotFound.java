@@ -11,6 +11,8 @@ import com.ixora.rms.messages.Msg;
  * @author Daniel Moraru
  */
 public final class RecordDefinitionNotFound extends RMSException {
+	private static final long serialVersionUID = -4497067215923781270L;
+
 	/**
 	 * Constructor.
 	 * @param eid

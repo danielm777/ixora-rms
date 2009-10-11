@@ -70,6 +70,7 @@ import com.ixora.rms.services.ProviderInstanceRepositoryService;
 public class SessionModel
 	extends DefaultTreeModel
 		implements ResourceInfoLocator {
+	private static final long serialVersionUID = 6844888756762555031L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(SessionModel.class);
 
@@ -344,11 +345,11 @@ public class SessionModel
 	        return new ResourceInfo[] {new ResourceInfo(
 	                root.getSessionInfo(), null, null, null, null)};
 	    }
-		List lst = root.getPathsMatching(ridex, aggressive);
+		List<ResourcePath> lst = root.getPathsMatching(ridex, aggressive);
 		ResourcePath rp;
 		ResourceInfo[] ret = new ResourceInfo[lst.size()];
 		int i = 0;
-		for(Iterator iter = lst.iterator(); iter.hasNext(); ++i) {
+		for(Iterator<ResourcePath> iter = lst.iterator(); iter.hasNext(); ++i) {
             rp = (ResourcePath)iter.next();
             ret[i] = new ResourceInfo(
 	            root.getSessionInfo(),
@@ -438,26 +439,27 @@ public class SessionModel
 	 * from the session tree.
 	 * @param session
 	 */
+	@SuppressWarnings("unchecked")
 	public synchronized void fillMonitoringSessionDescriptor(MonitoringSessionDescriptor session) {
 		SessionNode root = (SessionNode)getRoot();
-		Enumeration e = root.children();
+		Enumeration<HostNode> e = root.children();
 		// go through hosts
 		while(e.hasMoreElements()) {
-			HostNode hn = (HostNode)e.nextElement();
+			HostNode hn = e.nextElement();
 			HostDetails hd = new HostDetails(hn.getHostInfo().getName());
-			Enumeration e2 = hn.agents();
+			Enumeration<AgentNode> e2 = hn.agents();
 			// go through agents
 			while(e2.hasMoreElements()) {
-				AgentNode an = (AgentNode)e2.nextElement();
+				AgentNode an = e2.nextElement();
 				AgentDetails ad = new AgentDetails(an.getAgentInfo().getDeploymentDtls());
 				// go through dirty (user modified) entities
 				EntityDetails ed;
-				Enumeration e3 = an.children();
+				Enumeration<EntityNode> e3 = an.children();
 				while(e3.hasMoreElements()) {
-					EntityNode en = (EntityNode)e3.nextElement();
-					Enumeration enumeration = en.breadthFirstEnumeration();
+					EntityNode en = e3.nextElement();
+					Enumeration<EntityNode> enumeration = en.breadthFirstEnumeration();
 					while(enumeration.hasMoreElements()) {
-						en = (EntityNode)enumeration.nextElement();
+						en = enumeration.nextElement();
 						// only dirty ones...
 						if(en.getEntityInfo().isDirty()) {
 							ed = new EntityDetails(
@@ -480,17 +482,18 @@ public class SessionModel
 	 * is not required for logging.
 	 * @param session
 	 */
+	@SuppressWarnings("unchecked")
 	public synchronized void fillMonitoringSessionDescriptorForLog(MonitoringSessionDescriptor session) {
 		SessionNode root = (SessionNode)getRoot();
-		Enumeration e = root.children();
+		Enumeration<HostNode> e = root.children();
 		// go through hosts
 		while(e.hasMoreElements()) {
-			HostNode hn = (HostNode)e.nextElement();
+			HostNode hn = e.nextElement();
 			HostDetails hd = new HostDetails(hn.getHostInfo().getName());
-			Enumeration e2 = hn.agents();
+			Enumeration<AgentNode> e2 = hn.agents();
 			// go through agents
 			while(e2.hasMoreElements()) {
-				AgentNode an = (AgentNode)e2.nextElement();
+				AgentNode an = e2.nextElement();
 				AgentDetails ad = new AgentDetails(an.getAgentInfo().getDeploymentDtls());
 				hd.addAgentDetails(ad);
 			}
@@ -803,6 +806,7 @@ public class SessionModel
 	 * @param removed
 	 * @param updated
 	 */
+	@SuppressWarnings("unchecked")
 	private void updateNodes(String host, AgentId agentId, EntityDescriptorTree tree,
 			List<ResourceId> added, List<ResourceId> removed, List<ResourceId> updated) {
 		EntityId parent = tree.getEntityDescriptor().getId();
@@ -836,9 +840,9 @@ public class SessionModel
 		if(nodeDesc.hasChildren() && tree.getChildrenCount() > 0) {
 			// remove children which are not in the new data
 			List<EntityNode> toRemove = new LinkedList<EntityNode>();
-			Enumeration children = parentNode.children();
+			Enumeration<EntityNode> children = parentNode.children();
 			while(children.hasMoreElements()) {
-				EntityNode child = (EntityNode)children.nextElement();
+				EntityNode child = children.nextElement();
 				EntityId childId = child.getEntityInfo().getId();
 				if(tree.getChild(childId) == null) {
 					// remove
@@ -882,12 +886,13 @@ public class SessionModel
 	/**
 	 * @return all the hosts in the model
 	 */
-	public synchronized Collection getAllHosts() {
+	@SuppressWarnings("unchecked")
+	public synchronized Collection<String> getAllHosts() {
 		SessionNode root = (SessionNode)getRoot();
-		Enumeration e = root.children();
-		List ret = new ArrayList(root.getChildCount());
+		Enumeration<HostNode> e = root.children();
+		List<String> ret = new ArrayList<String>(root.getChildCount());
 		while(e.hasMoreElements()) {
-			HostNode hn = (HostNode)e.nextElement();
+			HostNode hn = e.nextElement();
 			ret.add(hn.getHostInfo().getName());
 		}
 		return ret;
@@ -896,12 +901,13 @@ public class SessionModel
     /**
      * @return the total number of agents on all hosts; required by the licensing mechanism
      */
+	@SuppressWarnings("unchecked")
 	public synchronized int getTotalNumberOfAgents() {
         SessionNode root = (SessionNode)getRoot();
-        Enumeration e = root.children();
+        Enumeration<HostNode> e = root.children();
         int ret = 0;
         while(e.hasMoreElements()) {
-            HostNode hn = (HostNode)e.nextElement();
+            HostNode hn = e.nextElement();
             ret += hn.getChildCount();
         }
         return ret;
@@ -930,22 +936,21 @@ public class SessionModel
 	    SessionNode sn = getSessionNode();
 	    loadArtefactsForNode(sn);
 	    // hosts
-	    Enumeration e = sn.hosts();
+	    Enumeration<HostNode> e = sn.hosts();
 	    HostNode hn;
 	    while(e.hasMoreElements()) {
-	        hn = (HostNode)e.nextElement();
+	        hn = e.nextElement();
             loadArtefactsForNode(hn);
             // agents
-            Enumeration e1 = hn.agents();
+            Enumeration<AgentNode> e1 = hn.agents();
             AgentNode an;
             while(e1.hasMoreElements()) {
-                an = (AgentNode)e1.nextElement();
+                an = e1.nextElement();
                 loadArtefactsForNode(an);
                 // entities
-                Enumeration e2 = an.entities();
-                EntityNode en;
+                Enumeration<EntityNode> e2 = an.entities();
                 while(e2.hasMoreElements()) {
-                    en = (EntityNode)e2.nextElement();
+                	EntityNode en = e2.nextElement();
                     loadArtefactsForNode(en);
                 }
             }
@@ -1325,7 +1330,7 @@ public class SessionModel
 	    if(logReplayMode) {
 	        // filter out dashboards, see comments for
 	        // filterDataViews()
-	    	List lst = new LinkedList();
+	    	List<Dashboard> lst = new LinkedList<Dashboard>();
 	    	Dashboard db;
 	    	for(int i = 0; i < dashboards.length; i++) {
                 db = dashboards[i];
@@ -1368,7 +1373,7 @@ public class SessionModel
 	        // query ready, as we are in logReplayMode
 	        // we can safely use the helper models which
 	        // by default use aggressive searching
-	    	List lst = new LinkedList();
+	    	List<DataView> lst = new LinkedList<DataView>();
 	    	ResourceId context = node.getResourceId();
 	    	DataView dv;
 	    	for(int i = 0; i < views.length; i++) {
@@ -1377,7 +1382,7 @@ public class SessionModel
                     lst.add(dv);
                 }
             }
-	    	ret = (DataView[])lst.toArray(new DataView[lst.size()]);
+	    	ret = lst.toArray(new DataView[lst.size()]);
 	    } else {
 	        ret = views;
 	    }
@@ -1524,12 +1529,13 @@ public class SessionModel
     /**
      * @param b
      */
-    public void setShowIdentifiers(boolean b) {
+    @SuppressWarnings("unchecked")
+	public void setShowIdentifiers(boolean b) {
         this.showIdentifiers = b;
 		SessionNode root = (SessionNode)getRoot();
-		Enumeration e = root.breadthFirstEnumeration();
+		Enumeration<SessionModelTreeNode> e = root.breadthFirstEnumeration();
         while(e.hasMoreElements()) {
-            nodeChanged((SessionModelTreeNode)e.nextElement());
+            nodeChanged(e.nextElement());
         }
         fireShowIdentifiersChanged();
     }
@@ -1793,7 +1799,7 @@ public class SessionModel
             versions = en.getAgentNode().getAgentInfo().getInstallationDtls().getSystemUnderObservationVersions();
         }
         if(!Utils.isEmptyArray(versions)) {
-            return new HashSet(Arrays.asList(versions));
+            return new HashSet<String>(Arrays.asList(versions));
         }
         return null;
     }
@@ -1822,7 +1828,7 @@ public class SessionModel
 		if(node.getEntityInfo().canRefreshChildren()) {
 			return node;
 		} else {
-			// find parent able to refreh subtree
+			// find parent able to refresh subtree
 			TreeNode tn = node;
 			do {
 				tn = tn.getParent();

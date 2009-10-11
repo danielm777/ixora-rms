@@ -220,8 +220,8 @@ final class LogParser extends DefaultHandler implements Tags {
             CounterId[] cids = rd.getFields();
             int i = 0;
         	try {
-	            for(Iterator iter = fCounterValues.iterator(); iter.hasNext(); ++i) {
-	                String sample = (String)iter.next();
+	            for(Iterator<String> iter = fCounterValues.iterator(); iter.hasNext(); ++i) {
+	                String sample = iter.next();
 					vals[i] = parseCounterSamples(rd.getEntityDescriptor()
 									.getCounterDescriptor(cids[i]).getType(), sample);
 	            }

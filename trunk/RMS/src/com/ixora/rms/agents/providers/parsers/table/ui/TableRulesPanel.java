@@ -16,17 +16,16 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.typedproperties.TypedProperties;
 import com.ixora.common.typedproperties.ui.list.PropertyListTableModel;
 import com.ixora.common.typedproperties.ui.list.TypedPropertiesListEditor;
-import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterId;
 import com.ixora.rms.EntityId;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.providers.parsers.exception.DuplicateResourceInParsingRules;
 import com.ixora.rms.agents.providers.parsers.table.ColumnDefinition;
 import com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition;
@@ -39,6 +38,7 @@ import com.ixora.rms.providers.parsers.ui.ParsingRulesPanel;
  * @author Daniel Moraru
  */
 public final class TableRulesPanel extends ParsingRulesPanel {
+	private static final long serialVersionUID = -1701264304369155136L;
 	private static final String LABEl_COLUMN_SEPARATOR = MessageRepository.get(
 				ProvidersComponent.NAME, Msg.TEXT_PARSERS_TABLE_COLUMN_SEPARATOR);
 	private static final String LABEl_COLUMN_SEPARATOR_TOOLTIP = MessageRepository.get(
@@ -74,6 +74,7 @@ public final class TableRulesPanel extends ParsingRulesPanel {
 	/**
 	 * Model for the object editor.
 	 */
+	@SuppressWarnings("serial")
 	private final class CustomPropertiesListTableModel extends PropertyListTableModel {
 		public CustomPropertiesListTableModel(TypedProperties arg0, String arg1, List<TypedProperties> arg2) {
 			super(arg0, arg1, arg2, false);
@@ -131,7 +132,6 @@ public final class TableRulesPanel extends ParsingRulesPanel {
 	public TableRulesPanel() {
 		super(new BorderLayout());
 		fPrototype = createFromColumnDefinition(null);
-		int gap = UIConfiguration.getPanelPadding();
 
 		fTextFieldColumnSeparator = UIFactoryMgr.createTextField();
 		Dimension d = fTextFieldColumnSeparator.getPreferredSize();

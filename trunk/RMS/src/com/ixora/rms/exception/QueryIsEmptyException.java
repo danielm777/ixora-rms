@@ -8,8 +8,11 @@ import com.ixora.rms.messages.Msg;
 
 /**
  * QueryEmptyException
+ * @author Daniel Moraru
  */
 public class QueryIsEmptyException extends QueryException {
+	private static final long serialVersionUID = 2322344945732713620L;
+
 	/**
 	 * Constructor.
 	 */
