@@ -11,7 +11,9 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class SaveConflict extends RMSException {
-    /**
+	private static final long serialVersionUID = 3595481700112500038L;
+
+	/**
      * Constructor.
      */
     public SaveConflict(String providerInstanceName) {

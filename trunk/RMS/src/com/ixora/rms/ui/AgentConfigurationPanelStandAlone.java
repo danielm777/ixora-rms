@@ -40,6 +40,7 @@ import com.ixora.rms.ui.messages.Msg;
  */
 public final class AgentConfigurationPanelStandAlone
 	extends JPanel {
+	private static final long serialVersionUID = -6970414448063550167L;
 	/** Monitoring session service */
 	private MonitoringSessionService sessionService;
 	/** Session model */
@@ -92,6 +93,7 @@ public final class AgentConfigurationPanelStandAlone
 	 * Apply changes action.
 	 */
 	private final class ActionApplyChanges extends ActionApply {
+		private static final long serialVersionUID = 7344424624167286896L;
 		public ActionApplyChanges() {
 			super();
 			// disable mnemonic
@@ -166,6 +168,7 @@ public final class AgentConfigurationPanelStandAlone
 				strut, strut, strut, strut));
 		this.actionApplyChanges = new ActionApplyChanges();
 		this.actionCancel = new ActionCancel() {
+			private static final long serialVersionUID = 3145088661339561337L;
 			public void actionPerformed(ActionEvent e) {
 				handleCancel();
 			}

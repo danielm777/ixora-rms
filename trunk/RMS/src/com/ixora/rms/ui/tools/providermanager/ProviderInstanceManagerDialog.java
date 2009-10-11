@@ -57,6 +57,7 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ProviderInstanceManagerDialog extends AppDialog {
+	private static final long serialVersionUID = 6326146909478464574L;
 	private JList fAgentsList;
 	private JList fProvidersList;
 	private JPanel fAgentsPanel;
@@ -84,6 +85,7 @@ public final class ProviderInstanceManagerDialog extends AppDialog {
 	 * Edit provider action.
 	 */
 	private final class ActionEditProviderInstance extends AbstractAction {
+		private static final long serialVersionUID = -2176070554898214366L;
 		public ActionEditProviderInstance() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -101,6 +103,7 @@ public final class ProviderInstanceManagerDialog extends AppDialog {
 	 * Create Like... provider action.
 	 */
 	private final class ActionCreateLikeProviderInstance extends AbstractAction {
+		private static final long serialVersionUID = 2763520242939416964L;
 		public ActionCreateLikeProviderInstance() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -118,6 +121,7 @@ public final class ProviderInstanceManagerDialog extends AppDialog {
 	 * Add provider action.
 	 */
 	private final class ActionAddProviderInstance extends AbstractAction {
+		private static final long serialVersionUID = 8447347141648263744L;
 		public ActionAddProviderInstance() {
 			super();
 			UIUtils.setUsabilityDtls(
@@ -135,6 +139,7 @@ public final class ProviderInstanceManagerDialog extends AppDialog {
 	 * Remove provider action.
 	 */
 	private final class ActionRemoveProviderInstance extends AbstractAction {
+		private static final long serialVersionUID = -5865741234818292710L;
 		public ActionRemoveProviderInstance() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(
@@ -290,6 +295,7 @@ public final class ProviderInstanceManagerDialog extends AppDialog {
    		fActionRemove = new ActionRemoveProviderInstance();
    		fActionCreateLike = new ActionCreateLikeProviderInstance();
    		fActionViewXML = new ActionViewXML(fViewContainer) {
+			private static final long serialVersionUID = 8891707231383129287L;
 			protected String getXML() throws Exception {
 				return getXMLDefinitionForSelectedProviderInstance();
 			}
@@ -326,6 +332,7 @@ public final class ProviderInstanceManagerDialog extends AppDialog {
 			UIFactoryMgr.createButton(this.fActionViewXML),
 			UIFactoryMgr.createButton(this.fActionRemove),
 			UIFactoryMgr.createButton(new ActionClose() {
+				private static final long serialVersionUID = 5863321005786909541L;
 				public void actionPerformed(ActionEvent e) {
 					dispose();
 				}

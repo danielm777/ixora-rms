@@ -12,7 +12,6 @@ import javax.swing.tree.MutableTreeNode;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
-import com.ixora.rms.EntityDescriptor;
 import com.ixora.rms.EntityDescriptorTree;
 import com.ixora.rms.EntityId;
 import com.ixora.rms.agents.AgentId;
@@ -153,7 +152,6 @@ final class LiveSessionTreeExplorer implements SessionTreeExplorer {
 				if(this.fResult == null) {
 					return;
 				}
-				EntityDescriptor e;
 				EntityDescriptorTree entities = (EntityDescriptorTree)
 						this.fResult;
 				model.updateEntities(host, agentId,

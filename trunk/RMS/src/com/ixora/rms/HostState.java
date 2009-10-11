@@ -15,6 +15,7 @@ import com.ixora.common.remote.ServiceState;
  * @author Daniel Moraru
  */
 public final class HostState implements Serializable {
+	private static final long serialVersionUID = 8902097692896067316L;
 	/** Host */
 	private String host;
 	/** Map of service IDs and service states */
@@ -53,7 +54,7 @@ public final class HostState implements Serializable {
 	 * @return all the services available on this host
 	 */
 	public int[] getServices() {
-	    Set sids = this.services.keySet();
+	    Set<Integer> sids = this.services.keySet();
 	    int[] ret = new int[sids.size()];
 	    int i = 0;
 	    for(Iterator<Integer> iter = sids.iterator(); iter.hasNext();++i) {

@@ -11,7 +11,9 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class EntityDescriptorsMissing extends RMSException {
-    /**
+	private static final long serialVersionUID = 4590403097003452921L;
+
+	/**
      * Constructor.
      */
     public EntityDescriptorsMissing() {

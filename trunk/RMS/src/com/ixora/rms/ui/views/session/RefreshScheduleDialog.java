@@ -27,6 +27,7 @@ import com.ixora.common.ui.forms.FormPanel;
  * @author Daniel Moraru
  */
 public class RefreshScheduleDialog extends AppDialog {
+	private static final long serialVersionUID = 6274407365834997874L;
 	private Integer fResult;
 	private JSpinner fSpinner;
 	private JPanel fPanelContent;
@@ -93,6 +94,7 @@ public class RefreshScheduleDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 			UIFactoryMgr.createButton(new ActionOk(){

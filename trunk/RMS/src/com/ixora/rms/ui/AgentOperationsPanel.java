@@ -31,7 +31,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentOperationsPanel extends OperationsPanel {
-// controls
+	private static final long serialVersionUID = -6544208667417828328L;
+	// controls
 	private JTabbedPane jTabbedPane;
 	private AgentConfigurationPanelStandAlone panelConfig;
 	private ProviderInstancePanel panelProviderInstances;

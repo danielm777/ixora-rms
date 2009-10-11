@@ -9,14 +9,8 @@ import java.io.Serializable;
  * @author Cristian Costache
  * @author Daniel Moraru
  */
-/*
- * Modification history
- * -----------------------------------------------
- * 07 July 2004 - DM removed getName() method, use instead
- * 					toString() it's more natural
- */
-public final class HostId implements Serializable, Cloneable
-{
+public final class HostId implements Serializable, Cloneable {
+	private static final long serialVersionUID = -2564755690366187159L;
 	/** Host's name */
 	private String	id;
 

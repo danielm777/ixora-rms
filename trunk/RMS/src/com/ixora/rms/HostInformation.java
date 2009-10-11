@@ -9,6 +9,7 @@ import com.ixora.common.ComponentVersion;
  * @author Daniel Moraru
  */
 public final class HostInformation implements Serializable {
+	private static final long serialVersionUID = 6118356013818913866L;
 	/** Host */
 	private String host;
 	/** Operating system on host */

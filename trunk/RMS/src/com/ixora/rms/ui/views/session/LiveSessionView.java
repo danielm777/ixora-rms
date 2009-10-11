@@ -37,16 +37,11 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.event.TreeWillExpandListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.ExpandVetoException;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import com.ixora.rms.HostInformation;
-import com.ixora.rms.RMS;
-import com.ixora.rms.RMSComponent;
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
@@ -63,6 +58,10 @@ import com.ixora.common.utils.Utils;
 import com.ixora.rms.EntityConfiguration;
 import com.ixora.rms.EntityDescriptorTree;
 import com.ixora.rms.EntityId;
+import com.ixora.rms.HostInformation;
+import com.ixora.rms.RMS;
+import com.ixora.rms.RMSComponent;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.AgentConfiguration;
 import com.ixora.rms.agents.AgentConfigurationTuple;
 import com.ixora.rms.agents.AgentId;
@@ -270,6 +269,7 @@ public final class LiveSessionView extends SessionView {
 	 * Start monitoring session action.
 	 */
 	private final class ActionStartSession extends AbstractAction {
+		private static final long serialVersionUID = 6748532408287972100L;
 		public ActionStartSession() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_STARTSESSION), this);
@@ -290,6 +290,7 @@ public final class LiveSessionView extends SessionView {
 	 * Starts all selected agents.
 	 */
 	private final class ActionStartAgents extends AbstractAction {
+		private static final long serialVersionUID = 6533081136534028895L;
 		public ActionStartAgents() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_STARTAGENTS), this);
@@ -306,6 +307,7 @@ public final class LiveSessionView extends SessionView {
 	 * Displays the error for an agent in ERROR state.
 	 */
 	private final class ActionViewAgentError extends AbstractAction {
+		private static final long serialVersionUID = -1983892786913230176L;
 		public ActionViewAgentError() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_VIEWAGENTERROR), this);
@@ -322,6 +324,7 @@ public final class LiveSessionView extends SessionView {
 	 * Displays the reaction log.
 	 */
 	private final class ActionViewReactionLog extends AbstractAction {
+		private static final long serialVersionUID = -9211461264072764621L;
 		public ActionViewReactionLog() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_VIEW_REACTIONS_LOG), this);
@@ -342,6 +345,7 @@ public final class LiveSessionView extends SessionView {
 	 * Turns on and off reactions.
 	 */
 	private final class ActionTurnOnOffReactions extends AbstractAction {
+		private static final long serialVersionUID = -2597151277259593838L;
 		public ActionTurnOnOffReactions() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_DISABLE_REACTIONS), this);
@@ -362,6 +366,7 @@ public final class LiveSessionView extends SessionView {
 	 * Refreshes the selected agent or entity node.
 	 */
 	private final class ActionRefreshNode extends AbstractAction {
+		private static final long serialVersionUID = -5931556266141179230L;
 		public ActionRefreshNode() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_REFRESHNODE), this);
@@ -378,6 +383,7 @@ public final class LiveSessionView extends SessionView {
 	 * Refreshes the selected agent or entity node.
 	 */
 	private final class ActionRefreshEntityNodeWithSchedule extends AbstractAction {
+		private static final long serialVersionUID = -3762789131115078610L;
 		public ActionRefreshEntityNodeWithSchedule() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_REFRESH_NODE_WITH_SCHEDULE), this);
@@ -397,6 +403,7 @@ public final class LiveSessionView extends SessionView {
 	 *
 	 */
 	private final class ActionEnableAllCounters extends AbstractAction {
+		private static final long serialVersionUID = -2803613420616570954L;
 		public ActionEnableAllCounters() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_ENABLE_ALL_COUNTERS), this);
@@ -413,6 +420,7 @@ public final class LiveSessionView extends SessionView {
 	 * Enables all the counters for the selected entity node recursively.
 	 */
 	private final class ActionEnableAllCountersRecursively extends AbstractAction {
+		private static final long serialVersionUID = 5461506659742428801L;
 		public ActionEnableAllCountersRecursively() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_ENABLE_ALL_COUNTERS_RECURSIVELY), this);
@@ -429,6 +437,7 @@ public final class LiveSessionView extends SessionView {
 	 * Opposite of <code>ActionEnableAllCounters</code>.
 	 */
 	private final class ActionDisableAllCounters extends AbstractAction {
+		private static final long serialVersionUID = -3826212853762845301L;
 		public ActionDisableAllCounters() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_DISABLE_ALL_COUNTERS), this);
@@ -445,6 +454,7 @@ public final class LiveSessionView extends SessionView {
 	 * Opposite of <code>ActionEnableAllCounters</code>..
 	 */
 	private final class ActionDisableAllCountersRecursively extends AbstractAction {
+		private static final long serialVersionUID = 365501094919476224L;
 		public ActionDisableAllCountersRecursively() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_DISABLE_ALL_COUNTERS_RECURSIVELY), this);
@@ -461,6 +471,7 @@ public final class LiveSessionView extends SessionView {
 	 * Stops all selected agents.
 	 */
 	private final class ActionStopAgents extends AbstractAction {
+		private static final long serialVersionUID = -7848594015512898142L;
 		public ActionStopAgents() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_STOPAGENTS), this);
@@ -477,6 +488,7 @@ public final class LiveSessionView extends SessionView {
 	 * Stop monitoring session action.
 	 */
 	private final class ActionStopSession extends AbstractAction {
+		private static final long serialVersionUID = -733604822763271503L;
 		public ActionStopSession() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_STOPSESSION), this);
@@ -497,6 +509,7 @@ public final class LiveSessionView extends SessionView {
 	 * Save session action.
 	 */
 	private final class ActionSaveSession extends AbstractAction {
+		private static final long serialVersionUID = -2377427328741944441L;
 		public ActionSaveSession() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_SAVESESSION), this);
@@ -517,6 +530,7 @@ public final class LiveSessionView extends SessionView {
 	 * Save session as action.
 	 */
 	private final class ActionSaveSessionAs extends AbstractAction {
+		private static final long serialVersionUID = 605243475600177868L;
 		public ActionSaveSessionAs() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_SAVESESSION_AS), this);
@@ -537,6 +551,7 @@ public final class LiveSessionView extends SessionView {
 	 * Enables/disables logging.
 	 */
 	private final class ActionTurnOnOffLogging extends AbstractAction {
+		private static final long serialVersionUID = 6926980200091037867L;
 		public ActionTurnOnOffLogging() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_TURNSONOFFLOGGING), this);
@@ -557,6 +572,7 @@ public final class LiveSessionView extends SessionView {
 	 * Add hosts action.
 	 */
 	private final class ActionAddHosts extends AbstractAction {
+		private static final long serialVersionUID = 3490871877736224440L;
 		public ActionAddHosts() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_ADD_HOSTS), this);
@@ -574,6 +590,7 @@ public final class LiveSessionView extends SessionView {
 	 * Remove hosts action.
 	 */
 	private final class ActionRemoveHosts extends AbstractAction {
+		private static final long serialVersionUID = -3646723937204957261L;
 		public ActionRemoveHosts() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_REMOVE_HOSTS), this);
@@ -591,6 +608,7 @@ public final class LiveSessionView extends SessionView {
 	 * Add agents action.
 	 */
 	private final class ActionAddAgents extends AbstractAction {
+		private static final long serialVersionUID = 8756702813647226065L;
 		public ActionAddAgents() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_ADD_AGENTS), this);
@@ -608,6 +626,7 @@ public final class LiveSessionView extends SessionView {
 	 * Remove agents action.
 	 */
 	private final class ActionRemoveAgents extends AbstractAction {
+		private static final long serialVersionUID = -2694920951743964675L;
 		public ActionRemoveAgents() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_REMOVE_AGENTS), this);
@@ -1038,7 +1057,7 @@ public final class LiveSessionView extends SessionView {
 		} finally {
 			// remove observers and listeners
 			ConfigurationMgr.get(ReactionsComponent.NAME).deleteObserver(eventHandler);
-			Collection hosts = sessionModel.getAllHosts();
+			Collection<String> hosts = sessionModel.getAllHosts();
 			this.sessionModel.close();
             this.rmsMonitoringSession.removeListener(eventHandler);
 			this.rmsMonitoringSession.deactivateAllAgents();
@@ -1577,27 +1596,19 @@ public final class LiveSessionView extends SessionView {
 				return;
 			}
 			StringTokenizer st = new StringTokenizer(inputValue);
-			JTree tree = getLeftPanel().getSessionTree();
-			final DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
-			final SessionNode root = (SessionNode)model.getRoot();
-			final Set hosts = new HashSet();
+			final Set<String> hosts = new HashSet<String>();
 			String host;
 			while(st.hasMoreTokens()) {
 				host = st.nextToken();
 				hosts.add(host);
 			}
 
-			// check the number of hosts against the license
-//			if(max > 0 && max < sessionModel.getAllHosts().size() + hosts.size()) {
-//				throw new LicenseLimitReachedHosts();
-//			}
-
 			// register first in the model so that
-			// the host entries will be availabe for the
+			// the host entries will be available for the
 			// event handler (events generated by the
 			// host monitor)
-			for(Iterator iter = hosts.iterator(); iter.hasNext();) {
-				host = (String)iter.next();
+			for(Iterator<String> iter = hosts.iterator(); iter.hasNext();) {
+				host = iter.next();
 				sessionModel.addHost(host);
 			}
 
@@ -1624,23 +1635,21 @@ public final class LiveSessionView extends SessionView {
 	/**
 	 * Handles the remove hosts event.
 	 */
+	@SuppressWarnings("unchecked")
 	private void handleRemoveHosts() {
 		try {
-			JTree tree = getLeftPanel().getSessionTree();
-			Set nodes = getSelectedHostNodes();
+			Set<HostNode> nodes = getSelectedHostNodes();
 			int size = nodes.size();
 			if(size > 0) {
-				HostNode node;
-				String host;
-				List hosts = new ArrayList(size);
-				for(Iterator iter = nodes.iterator(); iter.hasNext();) {
-					node = (HostNode)iter.next();
-					host = node.getHostInfo().getName();
+				List<String> hosts = new ArrayList<String>(size);
+				for(Iterator<HostNode> iter = nodes.iterator(); iter.hasNext();) {
+					HostNode node = iter.next();
+					String host = node.getHostInfo().getName();
 					hosts.add(host);
 					// check if the host has active agents
-					Enumeration e = node.children();
+					Enumeration<AgentNode> e = node.children();
 					while(e.hasMoreElements()) {
-						AgentNode an = (AgentNode)e.nextElement();
+						AgentNode an = e.nextElement();
 						this.rmsMonitoringSession.deactivateAgent(
 								host,
 								an.getAgentInfo().getDeploymentDtls().getAgentId());
@@ -1660,14 +1669,14 @@ public final class LiveSessionView extends SessionView {
 	 */
 	private void handleAddAgents() {
 		try {
-			Set selectedNodes = getSelectedHostNodes();
+			Set<HostNode> selectedNodes = getSelectedHostNodes();
 			if(selectedNodes == null || selectedNodes.size() == 0) {
 				return;
 			}
-			final List hosts = new ArrayList(selectedNodes.size());
+			final List<String> hosts = new ArrayList<String>(selectedNodes.size());
 			HostNode node;
-			for(Iterator iter = selectedNodes.iterator(); iter.hasNext();) {
-				node = (HostNode)iter.next();
+			for(Iterator<HostNode> iter = selectedNodes.iterator(); iter.hasNext();) {
+				node = iter.next();
 				hosts.add(node.getHostInfo().getName());
 			}
 			// it takes a few moments to build the activation dialog...
@@ -1699,16 +1708,16 @@ public final class LiveSessionView extends SessionView {
 	/**
 	 * Handles the remove agents event.
 	 */
+	@SuppressWarnings("unchecked")
 	private void handleRemoveAgents() {
 		try {
-			Set selectedNodes = getSelectedHostNodes();
-			Enumeration e;
+			Set<HostNode> selectedNodes = getSelectedHostNodes();
 			if(selectedNodes != null && selectedNodes.size() > 0) {
-				for(Iterator iter = selectedNodes.iterator(); iter.hasNext();) {
-					HostNode hn = (HostNode)iter.next();
-					e = hn.agents();
+				for(Iterator<HostNode> iter = selectedNodes.iterator(); iter.hasNext();) {
+					HostNode hn = iter.next();
+					Enumeration<AgentNode> e = hn.agents();
 					while(e.hasMoreElements()) {
-						final AgentNode an = (AgentNode)e.nextElement();
+						final AgentNode an = e.nextElement();
                         try {
     						final String host = hn.getHostInfo().getName();
     						final AgentId agentId = an.getAgentInfo().getDeploymentDtls().getAgentId();
@@ -1734,12 +1743,12 @@ public final class LiveSessionView extends SessionView {
 			}
 			// now check for individual selected agents
 			SessionNode root = (SessionNode)sessionModel.getRoot();
-			e = root.children();
+			Enumeration<HostNode> e = root.children();
 			while(e.hasMoreElements()) {
-				HostNode hn = (HostNode)e.nextElement();
-				Set sa = getSelectedAgentsForHost(hn);
-				for(Iterator iter = sa.iterator(); iter.hasNext();) {
-					final AgentNode an = (AgentNode)iter.next();
+				HostNode hn = e.nextElement();
+				Set<AgentNode> sa = getSelectedAgentsForHost(hn);
+				for(Iterator<AgentNode> iter = sa.iterator(); iter.hasNext();) {
+					final AgentNode an = iter.next();
 					try {
 						final String host = hn.getHostInfo().getName();
 						final AgentId agentId = an.getAgentInfo().getDeploymentDtls().getAgentId();
@@ -2087,10 +2096,10 @@ public final class LiveSessionView extends SessionView {
 	/**
 	 * @return the selected host nodes
 	 */
-	private Set getSelectedHostNodes() {
+	private Set<HostNode> getSelectedHostNodes() {
 		JTree tree = getLeftPanel().getSessionTree();
 		TreePath[] paths = tree.getSelectionPaths();
-		Set hosts = new HashSet();
+		Set<HostNode> hosts = new HashSet<HostNode>();
 		TreePath path;
 		HostNode hn;
 		for(int i = 0; i < paths.length; i++) {
@@ -2108,13 +2117,13 @@ public final class LiveSessionView extends SessionView {
 	 * @return the set of selected agent nodes for the given
 	 * host node
 	 */
-	private Set getSelectedAgentsForHost(HostNode hn) {
+	private Set<AgentNode> getSelectedAgentsForHost(HostNode hn) {
 		JTree tree = getLeftPanel().getSessionTree();
-		Set agents = new HashSet();
-		Enumeration e = hn.agents();
+		Set<AgentNode> agents = new HashSet<AgentNode>();
+		Enumeration<AgentNode> e = hn.agents();
 		AgentNode an;
 		while(e.hasMoreElements()) {
-			an = (AgentNode)e.nextElement();
+			an = e.nextElement();
 			if(tree.isPathSelected(new TreePath(an.getPath()))) {
 				agents.add(an);
 			}
@@ -2138,18 +2147,19 @@ public final class LiveSessionView extends SessionView {
 	/**
 	 * Starts the selected agents.
 	 */
+	@SuppressWarnings("unchecked")
 	private void handleStartAgents() {
         try {
 			// check for individual selected agents
 			SessionNode root = (SessionNode)this.sessionModel.getRoot();
-			Enumeration e = root.children();
+			Enumeration<HostNode> e = root.children();
 			HostNode hn;
 			AgentNode an;
 			while(e.hasMoreElements()) {
 				hn = (HostNode)e.nextElement();
-				Set sa = getSelectedAgentsForHost(hn);
-				for(Iterator iter = sa.iterator(); iter.hasNext();) {
-					an = (AgentNode)iter.next();
+				Set<AgentNode> sa = getSelectedAgentsForHost(hn);
+				for(Iterator<AgentNode> iter = sa.iterator(); iter.hasNext();) {
+					an = iter.next();
 					this.rmsMonitoringSession.startAgent(
 						hn.getHostInfo().getName(),
 						an.getAgentInfo().getDeploymentDtls().getAgentId());
@@ -2163,18 +2173,19 @@ public final class LiveSessionView extends SessionView {
 	/**
 	 * Stops the selected agents.
 	 */
+	@SuppressWarnings("unchecked")
 	private void handleStopAgents() {
         try {
 			// check for individual selected agents
 			SessionNode root = (SessionNode)this.sessionModel.getRoot();
-			Enumeration e = root.children();
+			Enumeration<HostNode> e = root.children();
 			HostNode hn;
 			AgentNode an;
 			while(e.hasMoreElements()) {
 				hn = (HostNode)e.nextElement();
-				Set sa = getSelectedAgentsForHost(hn);
-				for(Iterator iter = sa.iterator(); iter.hasNext();) {
-					an = (AgentNode)iter.next();
+				Set<AgentNode> sa = getSelectedAgentsForHost(hn);
+				for(Iterator<AgentNode> iter = sa.iterator(); iter.hasNext();) {
+					an = iter.next();
 					this.rmsMonitoringSession.stopAgent(
 							hn.getHostInfo().getName(),
 							an.getAgentInfo().getDeploymentDtls().getAgentId());
@@ -2400,7 +2411,6 @@ public final class LiveSessionView extends SessionView {
 			EntityNode en = (EntityNode)node;
 			AgentId agentId = en.getAgentNode().getAgentInfo().getDeploymentDtls().getAgentId();
 			String host = en.getAgentNode().getHostNode().getHostInfo().getName();
-			EntityId parentId = en.getEntityInfo().getId().getParent();
 			// update children
 			EntityDescriptorTree children = rmsMonitoringSession.getAgentEntities(host, agentId, en.getEntityInfo().getId(), true, true);
 			sessionModel.updateEntities(host, agentId, children);

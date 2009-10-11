@@ -10,6 +10,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class LoggingStoppedDueToFatalError extends LicenseException {
+	private static final long serialVersionUID = 2296480395226890860L;
+
 	/**
 	 * Constructor.
 	 */

@@ -12,6 +12,7 @@ import com.ixora.rms.repository.AgentCategory;
  * @author Daniel Moraru
  */
 public class CategoryNode extends DefaultMutableTreeNode {
+	private static final long serialVersionUID = 4065577275842422704L;
 	private String fTranslatedCategory;
 
 	/**

@@ -38,6 +38,7 @@ import com.ixora.rms.services.AgentRepositoryService;
  * @author Daniel Moraru
  */
 public final class AgentsTreePanel extends JPanel {
+	private static final long serialVersionUID = 3633944220682193063L;
 	private JTree fTree;
 	private DefaultTreeModel fTreeModel;
 
@@ -51,6 +52,7 @@ public final class AgentsTreePanel extends JPanel {
 	}
 
 	private static class TreeCellRenderer extends DefaultTreeCellRenderer {
+		private static final long serialVersionUID = -3087777307081468658L;
 		private static final ImageIcon iconAgent = UIConfiguration.getIcon("install_agent_node.gif");
 		private static final ImageIcon iconCategory = UIConfiguration.getIcon("install_cat_node.gif");
 
@@ -84,6 +86,7 @@ public final class AgentsTreePanel extends JPanel {
 	/**
 	 *
 	 */
+	@SuppressWarnings("unchecked")
 	public AgentsTreePanel(AgentRepositoryService ars) {
 		super(new BorderLayout());
 		fTree = UIFactoryMgr.createTree();
@@ -108,14 +111,14 @@ public final class AgentsTreePanel extends JPanel {
 				if(category == null) {
 					category = AgentCategory.MISCELLANEOUS.getStringID();
 				}
-				List catList = perCategory.get(category);
+				List<AgentInstallationData> catList = perCategory.get(category);
 				if(catList == null) {
 					catList = new LinkedList<AgentInstallationData>();
 					perCategory.put(category, catList);
 				}
 				catList.add(aid);
 			}
-			List<String> sortedCategories = new ArrayList(perCategory.keySet());
+			List<String> sortedCategories = new ArrayList<String>(perCategory.keySet());
 			Collections.sort(sortedCategories);
 			sortedCategories.remove(AgentCategory.MISCELLANEOUS.getStringID());
 			// add the misc category at the end
@@ -135,9 +138,9 @@ public final class AgentsTreePanel extends JPanel {
 			}
 		}
 		// expand all nodes
-		Enumeration e = root.breadthFirstEnumeration();
+		Enumeration<DefaultMutableTreeNode> e = root.breadthFirstEnumeration();
 		while(e.hasMoreElements()) {
-			DefaultMutableTreeNode n = (DefaultMutableTreeNode)e.nextElement();
+			DefaultMutableTreeNode n = e.nextElement();
 			fTree.expandPath(new TreePath(n.getPath()));
 		};
 		add(scrollPane, BorderLayout.CENTER);

@@ -24,6 +24,7 @@ import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.forms.FormPanel;
+import com.ixora.common.utils.Utils;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.providers.ProviderConfiguration;
 import com.ixora.rms.providers.ProviderLocation;
@@ -40,6 +41,7 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ProviderPanel extends JPanel {
+	private static final long serialVersionUID = -5975449409969121005L;
 	private static final String LABEl_NAME = MessageRepository.get(ProviderManagerComponent.NAME, Msg.TEXT_PROVIDER_NAME);
 	private static final String LABEl_LOCATION = MessageRepository.get(ProviderManagerComponent.NAME, Msg.TEXT_PROVIDER_LOCATION);
 	private static final String LABEl_OPTIONAL = MessageRepository.get(ProviderManagerComponent.NAME, Msg.TEXT_PROVIDER_OPTIONAL);
@@ -220,7 +222,6 @@ public final class ProviderPanel extends JPanel {
 		boolean inheritsLocation = true;
 		boolean optional = true;
 		boolean selectedByDefault= true;
-		boolean collector = false;
 		ProviderConfiguration conf = null;
 		if(pi == null) {
 			name = ((ProviderNameData)this.providerName.getItemAt(0)).name;
@@ -275,7 +276,7 @@ public final class ProviderPanel extends JPanel {
 	 */
 	private ProviderCustomConfigurationPanel getProviderCustomConfigPanelFor(String name) throws ClassNotFoundException, InstantiationException, IllegalAccessException, RMSException {
 		String confPanelClass = getProviderCustomConfigPanelClass(name);
-		Class c = Class.forName(confPanelClass);
+		Class<?> c = Utils.getClassLoader(getClass()).loadClass(confPanelClass);
 		return (ProviderCustomConfigurationPanel)c.newInstance();
 	}
 

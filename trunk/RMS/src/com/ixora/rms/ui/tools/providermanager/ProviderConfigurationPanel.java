@@ -23,6 +23,8 @@ import com.ixora.rms.ui.tools.providermanager.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ProviderConfigurationPanel extends JPanel {
+	private static final long serialVersionUID = -2417868467537723564L;
+
 	private static final String LABEL_PRIVATE_COLLECTOR =
         MessageRepository.get(ProviderManagerComponent.NAME, Msg.TEXT_PRIVATE_COLLECTOR);
 

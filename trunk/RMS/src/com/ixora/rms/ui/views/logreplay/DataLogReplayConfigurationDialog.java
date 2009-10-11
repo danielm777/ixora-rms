@@ -34,6 +34,7 @@ import com.ixora.rms.logging.LogConfigurationConstants;
  * @author Daniel Moraru
  */
 public class DataLogReplayConfigurationDialog extends AppDialog {
+	private static final long serialVersionUID = -25876768115386442L;
 	// TODO localize
 	private static final String LABEL_TIME_START = "Timestamp Begin";
 	private static final String LABEL_TIME_END = "Timestamp End";
@@ -150,6 +151,7 @@ public class DataLogReplayConfigurationDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 				UIFactoryMgr.createButton(new ActionOk(){
