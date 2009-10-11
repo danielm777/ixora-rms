@@ -112,7 +112,7 @@ final class ShowLicenseDialog extends AppDialog {
 	 * Initializes this dialog.
 	 */
 	private void initialize() {
-		this.padding = 0;
+		this.fPadding = 0;
 		this.fEventHandler = new EventHandler();
         setTitle(MessageRepository.get(Msg.COMMON_UI_TITLE_LICENSE));
         setPreferredSize(new Dimension(350, 350));

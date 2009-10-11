@@ -93,7 +93,7 @@ final class ShowAboutDialog extends AppDialog {
 	 * Initializes this dialog.
 	 */
 	private void initialize() {
-		this.padding = 0;
+		this.fPadding = 0;
 		this.eventHandler = new EventHandler();
         setTitle(MessageRepository.get(Msg.COMMON_UI_TEXT_ABOUT));
         setPreferredSize(new Dimension(396, 500));
