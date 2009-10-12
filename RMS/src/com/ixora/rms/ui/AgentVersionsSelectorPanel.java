@@ -29,7 +29,8 @@ import com.ixora.common.utils.Utils;
  * AgentVersionsSelectorPanel
  */
 public class AgentVersionsSelectorPanel extends JPanel {
-    public static final int BUTTON_LAST = 0;
+	private static final long serialVersionUID = 3797488438571130908L;
+	public static final int BUTTON_LAST = 0;
     public static final int BUTTON_FIRST = 1;
     private static final String ALL = "All"; // TODO localize
     private Window fParent;

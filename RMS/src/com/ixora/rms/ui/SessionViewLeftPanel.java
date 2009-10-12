@@ -15,6 +15,7 @@ import com.ixora.common.ui.UIFactoryMgr;
  * @author Daniel Moraru
  */
 public final class SessionViewLeftPanel extends JPanel {
+	private static final long serialVersionUID = -4075826936771972820L;
 	private javax.swing.JScrollPane jScrollPaneSessionTree;
 	private javax.swing.JTree jTreeSession;
 	private javax.swing.JSplitPane jSplitPane;

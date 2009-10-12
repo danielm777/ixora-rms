@@ -14,6 +14,7 @@ import com.ixora.rms.ui.artefacts.dataview.DataViewSelectorPanel;
  * @author Daniel Moraru
  */
 public abstract class OperationsPanel extends JPanel {
+	private static final long serialVersionUID = 8651626456047246203L;
 	protected DataViewSelectorPanel panelViews;
 	protected DashboardSelectorPanel panelDashboards;
 

@@ -14,6 +14,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class HostInfoTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = 7080773728207550831L;
 	/** Column1 */
 	private final String[] column1 = {
 		MessageRepository.get(Msg.MODELS_TABLES_HOSTINFO_COL1),

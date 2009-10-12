@@ -28,7 +28,8 @@ import com.ixora.rms.client.model.SessionModel;
  * AgentVersionsSelectorPanel
  */
 public class ResourceSelectorPanel extends JPanel {
-    public static final int BUTTON_LAST = 0;
+	private static final long serialVersionUID = 1780338494542393743L;
+	public static final int BUTTON_LAST = 0;
     public static final int BUTTON_FIRST = 1;
     public static final int SELECT_ENTITY = 0;
     public static final int SELECT_COUNTER = 1;

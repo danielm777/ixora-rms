@@ -15,7 +15,8 @@ import com.ixora.rms.client.model.SessionModelTreeNode;
  * @author Daniel Moraru
  */
 public class EntityNodeCellRendererContextAware extends EntityNodeCellRenderer {
-    /** Context */
+	private static final long serialVersionUID = 8078581977576049239L;
+	/** Context */
     private ResourceId context;
 
     /**

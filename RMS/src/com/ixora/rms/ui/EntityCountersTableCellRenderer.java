@@ -16,6 +16,7 @@ import com.ixora.rms.client.model.CounterInfo;
  * @author Daniel Moraru
  */
 final class EntityCountersTableCellRenderer extends DefaultTableCellRenderer {
+	private static final long serialVersionUID = -8130906000223689782L;
 	/** Original font */
 	private Font originalFont;
 

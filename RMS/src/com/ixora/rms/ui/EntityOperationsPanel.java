@@ -27,7 +27,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class EntityOperationsPanel extends OperationsPanel {
-// controls
+	private static final long serialVersionUID = -3388480870830095462L;
+	// controls
 	private JTabbedPane jTabbedPane;
 	private EntityConfigurationPanel panelConfig;
 

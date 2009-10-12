@@ -17,7 +17,8 @@ import com.ixora.rms.client.model.SessionNode;
  */
 public final class SessionModelTreeCellRendererContextAware extends
         SessionModelTreeCellRenderer {
-    private ResourceId context;
+	private static final long serialVersionUID = -1457663169557295520L;
+	private ResourceId context;
     /**
      * Constructor.
      *

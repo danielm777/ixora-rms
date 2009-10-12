@@ -25,6 +25,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class CounterCodeDialog extends AppDialog {
+	private static final long serialVersionUID = -210661911281325950L;
 	private String fCode;
 	private String fName;
 	private String fDescription;
@@ -101,6 +102,7 @@ public class CounterCodeDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 			UIFactoryMgr.createButton(new ActionOk(){

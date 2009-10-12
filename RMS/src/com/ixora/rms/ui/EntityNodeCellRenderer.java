@@ -22,6 +22,7 @@ import com.ixora.rms.client.model.EntityNode;
  * @author Daniel Moraru
  */
 public class EntityNodeCellRenderer extends DefaultTreeCellRenderer {
+	private static final long serialVersionUID = 3293230108236377327L;
 	protected ImageIcon monlevelNone;
 	protected ImageIcon monlevelLow;
 	protected ImageIcon monlevelMed;

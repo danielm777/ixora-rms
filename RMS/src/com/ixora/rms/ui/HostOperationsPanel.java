@@ -26,7 +26,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class HostOperationsPanel extends OperationsPanel {
-// controls
+	private static final long serialVersionUID = 5091399881233462861L;
+	// controls
 	private JTabbedPane jTabbedPane;
 	private HostDetailsPanel panelDetails;
 	/** Log replay mode flag */
