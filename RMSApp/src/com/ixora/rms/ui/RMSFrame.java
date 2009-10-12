@@ -1,7 +1,6 @@
 package com.ixora.rms.ui;
 
 import java.awt.Cursor;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +42,7 @@ import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.ui.AppFrame;
 import com.ixora.common.ui.AppFrameParameters;
-import com.ixora.common.ui.AppSplashScreen;
+import com.ixora.common.ui.AppInitializer;
 import com.ixora.common.ui.ButtonWithPopup;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
@@ -114,8 +113,6 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
         PropertyConfigurator.configure(Utils.getPath("config/log4j.console.properties"));
 		logger = AppLoggerFactory.getLogger(RMSFrame.class);
 	}
-
-	private static AppSplashScreen fSplashScreen;
 
 	// Components
 	private javax.swing.JDesktopPane fDesktopPane;
@@ -426,28 +423,11 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		try {
-			showSplashScreen();
-			initApplication();
-		    EventQueue.invokeLater(new Runnable() {
-		        public void run(){
-		            fSplashScreen.dispose();
-		            fSplashScreen = null;
-		        }
-		    });
-		} catch(Exception e) {
-			logger.error(e);
-			System.exit(1);
-		}
-	}
-
-	/**
-	 * Show a simple graphical splash screen, as a quick preliminary to the main
-	 * screen.
-	 */
-	private static void showSplashScreen() {
-		fSplashScreen = new AppSplashScreen("/splash.gif");
-		fSplashScreen.splash();
+		AppInitializer.initialize(new AppInitializer.Callback(){
+			public void initialize() throws SocketException, FailedToSaveConfiguration, RMSException {
+				initApplication();
+			}			
+		});
 	}
 
 	/**
@@ -524,6 +504,9 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 				throw new AppRuntimeException(e);
 			}
 		}
+
+		// do a quick ping to website
+		UpdateMgr.checkForUpdates("http://www.ixoragroup.com/rms/app_update_check.php");
 
 		// build the GUI on the event dispatch thread
 		SwingUtilities.invokeLater(new Runnable() {
@@ -686,8 +669,6 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 //				LicenseMgr.checkLicense();
 //				fStatusBar.checkLicense();
 				fLicenseChecked = true;
-				// do a quick ping to website
-				UpdateMgr.checkForUpdates("http://www.ixoragroup.com/rms/app_update_check.php");
 			} catch (Exception e) {
 				UIExceptionMgr.userException(e);
 				handleClose();
