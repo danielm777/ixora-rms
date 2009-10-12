@@ -11,6 +11,7 @@ import com.ixora.rms.providers.impl.java.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ImplementationClassNotFound extends RMSException {
+	private static final long serialVersionUID = -460068567722143027L;
 
 	/**
 	 * Constructor.

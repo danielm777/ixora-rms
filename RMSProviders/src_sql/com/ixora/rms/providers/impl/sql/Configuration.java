@@ -13,6 +13,7 @@ import com.ixora.rms.providers.ProviderCustomConfiguration;
  * @author Daniel Moraru
  */
 public class Configuration extends ProviderCustomConfiguration {
+	private static final long serialVersionUID = -6479022062572248015L;
 	public static final String CLASSPATH = "providers.sql.classpath";
 	public static final String CLASSLOADER_ID = "providers.sql.classloader_id";
 	public static final String DRIVER_CLASS = "providers.sql.driver_class";
