@@ -37,6 +37,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentOptionalProvidersSelectorDialog extends AppDialog {
+	private static final long serialVersionUID = -8928381254226595119L;
 
 	/**
 	 * Data for the providers table model.
@@ -63,6 +64,7 @@ public final class AgentOptionalProvidersSelectorDialog extends AppDialog {
 	 * Table model.
 	 */
 	private final static class ProvidersTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = 6488362830602682092L;
 		private ProviderData[] providers;
 
 		public ProvidersTableModel(ProviderInstance[] providers, String[] selectedProviderInstances) {
@@ -224,6 +226,7 @@ public final class AgentOptionalProvidersSelectorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
 				UIFactoryMgr.createButton(new ActionOk() {

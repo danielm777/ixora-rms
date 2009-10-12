@@ -35,6 +35,7 @@ public class ButtonNewViewBoardHandler {
 	 * @author Daniel Moraru
 	 */
 	private final class ViewBoardAction extends AbstractAction {
+		private static final long serialVersionUID = 2586160408232657823L;
 		private String fBoardClass;
 
 		ViewBoardAction(String boardClass, String component, String boardName, String iconName) {

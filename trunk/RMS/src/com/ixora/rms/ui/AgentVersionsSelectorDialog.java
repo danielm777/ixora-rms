@@ -34,6 +34,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class AgentVersionsSelectorDialog extends AppDialog {
+	private static final long serialVersionUID = 9000835773580598927L;
 	private AgentVersionsTableModel fTableModel;
 	private JTable fTable;
 	private JPanel fPanel;
@@ -43,6 +44,7 @@ public final class AgentVersionsSelectorDialog extends AppDialog {
 	 * Model for agent versions table.
 	 */
 	private static class AgentVersionsTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = -875110772118176984L;
 		private static class Entry implements Comparable<Entry> {
 			String fVersion;
 			Boolean fSelected;
@@ -61,7 +63,7 @@ public final class AgentVersionsSelectorDialog extends AppDialog {
 			if(Utils.isEmptyCollection(versions)) {
 				fVersions = new LinkedList<Entry>();
 			} else {
-				fVersions = new ArrayList(versions.size());
+				fVersions = new ArrayList<Entry>(versions.size());
 				for(String v : versions) {
 					fVersions.add(new Entry(v, selected == null ? false : selected.contains(v)));
 				}
@@ -151,14 +153,15 @@ public final class AgentVersionsSelectorDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[] {
-				new JButton(new ActionOk() {
+				UIFactoryMgr.createButton(new ActionOk() {
 					public void actionPerformed(ActionEvent e) {
 						fResult = fTableModel.getSelected();
 						dispose();
 					}}),
-				new JButton(new ActionCancel() {
+					UIFactoryMgr.createButton(new ActionCancel() {
 					public void actionPerformed(ActionEvent e) {
 						fResult = null;
 						dispose();

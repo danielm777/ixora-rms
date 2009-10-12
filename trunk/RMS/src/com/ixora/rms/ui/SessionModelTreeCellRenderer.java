@@ -27,6 +27,7 @@ import com.ixora.rms.client.model.SessionNode;
  * @author Daniel Moraru
  */
 public class SessionModelTreeCellRenderer extends DefaultTreeCellRenderer {
+	private static final long serialVersionUID = -7444191830214954459L;
 	protected ImageIcon schemeIcon;
 	protected ImageIcon hostIcon;
 	protected ImageIcon agentNotRunningIcon;

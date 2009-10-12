@@ -50,7 +50,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ResourceSelectorDialog extends AppDialog {
-    public static final int SELECT_ENTITY = 0;
+	private static final long serialVersionUID = 1302689860101267532L;
+	public static final int SELECT_ENTITY = 0;
     public static final int SELECT_COUNTER = 1;
     private JTree fTreeContext;
     private JTable fTableResources;
@@ -80,6 +81,7 @@ public final class ResourceSelectorDialog extends AppDialog {
 	 * Model for selectable resources table.
 	 */
 	private static class ResourcesTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = -4850952194297077265L;
 		private static class Entry implements Comparable<Entry> {
 			ResourceId fResourceId;
 			Boolean fSelected;
@@ -231,7 +233,8 @@ public final class ResourceSelectorDialog extends AppDialog {
     /**
      * @see com.ixora.common.ui.AppDialog#getButtons()
      */
-    protected JButton[] getButtons() {
+    @SuppressWarnings("serial")
+	protected JButton[] getButtons() {
         return new JButton[]{
         		UIFactoryMgr.createButton(
         			fSelectType == SELECT_COUNTER ?
@@ -252,6 +255,7 @@ public final class ResourceSelectorDialog extends AppDialog {
 	 * @param qgr
 	 * @param scb
 	 */
+	@SuppressWarnings("serial")
 	private void init(
 			int selectType,
 	        SessionTreeExplorer te,
@@ -399,7 +403,7 @@ public final class ResourceSelectorDialog extends AppDialog {
 	                int row = fTableResources.getSelectedRow();
 	                if(row >= 0) {
 	                    ResourceId rid = fResourcesModel.getResourceAt(row);
-	                    fResult = new ArrayList(1);
+	                    fResult = new ArrayList<ResourceId>(1);
 	                    fResult.add(rid);
 	                }
 	            }
@@ -408,7 +412,7 @@ public final class ResourceSelectorDialog extends AppDialog {
 		            ResourceId rid = this.fLastSelectedNode.getResourceId();
 		            if(rid != null) {
 			            if(fSelectType == SELECT_ENTITY) {
-			            	fResult = new ArrayList(1);
+			            	fResult = new ArrayList<ResourceId>(1);
 			            	fResult.add(rid);
 			            }
 		            }

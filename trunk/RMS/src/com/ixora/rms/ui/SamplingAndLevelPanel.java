@@ -36,6 +36,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public class SamplingAndLevelPanel extends JPanel {
+	private static final long serialVersionUID = -7479366440058114390L;
 	public static final String LEVEL = MessageRepository.get(Msg.TEXT_MONITORINGLEVEL);
 	public static final String SAMPLING = MessageRepository.get(Msg.TEXT_SAMPLINGINTERVAL);
 	/** Sampling interval config panel */

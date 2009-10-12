@@ -16,6 +16,7 @@ import com.ixora.rms.HostInformation;
  * @author Daniel Moraru
  */
 public final class HostDetailsPanel extends JPanel {
+	private static final long serialVersionUID = 5007572946557528641L;
 	private JScrollPane jScrollPaneDtls = null;
 	private JTable jTableDtls = null;
 	private HostInfoTableModel model;

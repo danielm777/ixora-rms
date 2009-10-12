@@ -67,6 +67,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class EntityConfigurationPanel extends JPanel {
+	private static final long serialVersionUID = 953171368560230798L;
+
 	/**
 	 * Callback.
 	 */
@@ -133,6 +135,7 @@ public final class EntityConfigurationPanel extends JPanel {
 	 * Apply changes action.
 	 */
 	private final class ActionApplyChanges extends ActionApply {
+		private static final long serialVersionUID = -1331856800985532742L;
 		public ActionApplyChanges() {
 			super();
 			this.enabled = false;
@@ -151,6 +154,7 @@ public final class EntityConfigurationPanel extends JPanel {
 	 * Plot action.
 	 */
 	private final class ActionPlot extends AbstractAction {
+		private static final long serialVersionUID = 4704194006855950132L;
 		public ActionPlot() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_PLOT), this);
@@ -167,6 +171,7 @@ public final class EntityConfigurationPanel extends JPanel {
 	 * Plot action.
 	 */
 	private final class ActionPlotWithCode extends AbstractAction {
+		private static final long serialVersionUID = -1249431743909110523L;
 		public ActionPlotWithCode() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_PLOT_COUNTER_WITH_CODE), this);
@@ -183,6 +188,7 @@ public final class EntityConfigurationPanel extends JPanel {
 	 * Plot action.
 	 */
 	private final class ActionPlotWithStyle extends AbstractAction {
+		private static final long serialVersionUID = -7802977264680868952L;
 		public ActionPlotWithStyle() {
 			super();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.ACTIONS_PLOT_COUNTER_WITH_STYLE), this);
@@ -341,6 +347,7 @@ public final class EntityConfigurationPanel extends JPanel {
 	 * @param viewContainer
 	 * @param listener
 	 */
+	@SuppressWarnings("serial")
 	private void initialize(
 			RMSViewContainer viewContainer,
 			MonitoringSessionService sessionService,

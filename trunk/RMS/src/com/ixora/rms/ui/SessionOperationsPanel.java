@@ -26,7 +26,8 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class SessionOperationsPanel extends OperationsPanel {
-// controls
+	private static final long serialVersionUID = -9084264894328724778L;
+	// controls
 	private JTabbedPane jTabbedPane;
 	/**
 	 * SchemeOperationsPanel constructor used by the log replay view.

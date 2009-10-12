@@ -25,8 +25,9 @@ import com.ixora.rms.client.model.SessionModel;
  */
 public final class EntityCountersTableModel
 	extends AbstractTableModel {
+	private static final long serialVersionUID = 4685473430427683792L;
 	/** Counter data. List of CounterInfo */
-	private List counterData;
+	private List<CounterInfo> counterData;
 	/** In edit node */
 	private EntityNode entity;
 	/** Session model */
@@ -40,7 +41,7 @@ public final class EntityCountersTableModel
 	 */
 	public EntityCountersTableModel(SessionModel sm, boolean logReplayMode) {
 		super();
-		this.counterData = new LinkedList();
+		this.counterData = new LinkedList<CounterInfo>();
 		this.sessionModel = sm;
 		this.logReplayMode = logReplayMode;
 	}
@@ -87,7 +88,7 @@ public final class EntityCountersTableModel
 	/**
 	 * @see javax.swing.table.TableModel#getColumnClass(int)
 	 */
-	public Class getColumnClass(int columnIndex) {
+	public Class<?> getColumnClass(int columnIndex) {
 		switch(columnIndex) {
 			case 0: // enabled column
 				return Boolean.class;
@@ -125,10 +126,10 @@ public final class EntityCountersTableModel
 			.getCounterInfoForLevel(
 					level != null ? level : en.getEntityInfo().getConfiguration().getMonitoringLevel());
 		if(!logReplayMode) {
-			this.counterData = new ArrayList(counters);
+			this.counterData = new ArrayList<CounterInfo>(counters);
 		} else {
 			// in log replay mode filter out all disabled counters
-			this.counterData = new LinkedList();
+			this.counterData = new LinkedList<CounterInfo>();
 			for(CounterInfo ci : counters) {
 				if(ci.isEnabled()) {
 					this.counterData.add(ci);
@@ -142,10 +143,10 @@ public final class EntityCountersTableModel
 	 * @return the selected counters as a collection of CounterId
 	 */
 	public Set<CounterId> getEnabledCounters() {
-		Set ret = new HashSet();
+		Set<CounterId> ret = new HashSet<CounterId>();
 		CounterInfo cd;
-		for(Iterator iter = this.counterData.iterator(); iter.hasNext();) {
-			cd = (CounterInfo)iter.next();
+		for(Iterator<CounterInfo> iter = this.counterData.iterator(); iter.hasNext();) {
+			cd = iter.next();
 			if(cd.isEnabled()) {
 				ret.add(cd.getId());
 			}

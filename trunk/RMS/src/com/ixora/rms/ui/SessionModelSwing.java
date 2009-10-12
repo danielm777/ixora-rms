@@ -34,6 +34,7 @@ import com.ixora.rms.services.ProviderInstanceRepositoryService;
  * @author Daniel Moraru
  */
 public final class SessionModelSwing extends SessionModel {
+	private static final long serialVersionUID = 8210929782330925936L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(SessionModelSwing.class);
 

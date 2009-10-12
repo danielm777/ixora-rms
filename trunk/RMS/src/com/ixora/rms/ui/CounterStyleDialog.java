@@ -24,6 +24,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class CounterStyleDialog extends AppDialog {
+	private static final long serialVersionUID = 6828175684350187120L;
 	private Double fMax;
 	private Double fMin;
 	private FormPanel fForm;
@@ -85,6 +86,7 @@ public class CounterStyleDialog extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 			UIFactoryMgr.createButton(new ActionOk(){

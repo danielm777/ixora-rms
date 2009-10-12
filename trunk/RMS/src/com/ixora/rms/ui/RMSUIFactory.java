@@ -47,6 +47,8 @@ public final class RMSUIFactory extends UIFactoryDefault {
 	 * for some of them.
 	 */
 	private final static class RMSToolBar extends JToolBar {
+		private static final long serialVersionUID = -3587750892474107326L;
+
 		/**
 		 * @see java.awt.Container#add(java.awt.Component, int)
 		 */
