@@ -30,6 +30,7 @@ import javax.swing.plaf.metal.MetalTheme;
 
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
+import com.ixora.common.Product;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.messages.Msg;
@@ -190,6 +191,8 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		super();
 		initialize(params);
 	}
+	
+	
 
     /**
      * Shows the error log.
@@ -598,12 +601,24 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		getStatusBar().getErrorLabel().addMouseListener(fEventHandler);
         setContentPane(getJContentPane());
 		setJMenuBar(getJJMenuBar());
-		setTitle(MessageRepository.get(Msg.COMMON_UI_APP_FRAME_TITLE));
+		
+		setTitle();
 
 		prepareHelp();
 
         fNonFatalErrorBuffer = new NonFatalErrorBuffer(
                 params.getInt(AppFrameParameters.NON_FATAL_ERRORS_BUFFER_SIZE));
+	}
+
+	/**
+	 * Sets the frame title.
+	 */
+	private void setTitle() {
+		String title = MessageRepository.get(Msg.COMMON_UI_APP_FRAME_TITLE);
+		if(title.equals("{0}")) {
+			title = Product.getProductInfo().getName();
+		}
+		setTitle(title);
 	}
 
 	/**
@@ -743,7 +758,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 			fMenuItemHelpAbout = UIFactoryMgr.createMenuItem();
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.COMMON_UI_APP_MENU_HELP_ABOUT), fMenuItemHelpAbout);
 			fMenuItemHelpAbout.addActionListener(this.fEventHandler);
-			//fMenuItemHelpAbout.setIcon(UIConfiguration.getIcon("application.gif"));
+			fMenuItemHelpAbout.setIcon(UIConfiguration.getIcon("application.gif"));
 		}
 		return fMenuItemHelpAbout;
 	}
@@ -915,7 +930,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
             }
             return veto;
 		}
-		setTitle(MessageRepository.get(Msg.COMMON_UI_APP_FRAME_TITLE));
+		setTitle();
         return false;
 	}
 
@@ -998,7 +1013,8 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		}
     }
 
-    /**
+
+	/**
      * @see com.ixora.rms.ui.AppViewContainer#registerMenus(javax.swing.JMenu[], javax.swing.JMenuItem[][])
      */
     public void registerMenus(JMenu[] menus, JMenuItem[][] items) {
@@ -1037,7 +1053,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 */
 	private void hideMenusWithNoItems() {
 		// hide all menus with no menu items
-		if(fMenuActions.getComponentCount() == 0) {
+		if(fMenuActions.getItemCount() == 0) {
 			fMenuActions.setVisible(false);
 		}
 	}

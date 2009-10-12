@@ -278,7 +278,7 @@ final class UIWorkerJobCancelDialog extends AppDialog {
 	 */
 	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
-		return new JButton[]{new JButton(new ActionCancel() {
+		return new JButton[]{UIFactoryMgr.createButton(new ActionCancel() {
 			public void actionPerformed(ActionEvent e) {
 				job.cancel();
 			}

@@ -6,13 +6,13 @@ package com.ixora.common.ui;
  */
 public interface AppEventHub {
 	public interface Listener {
-		void eventRaised(String event, Object obj);
+		void eventRaised(Object event, Object obj);
 	}
 	/**
 	 * @param event
 	 * @param obj
 	 */
-	void raiseEvent(String event, Object obj);
+	void raiseEvent(Object event, Object obj);
 	/**
 	 * @param list
 	 */

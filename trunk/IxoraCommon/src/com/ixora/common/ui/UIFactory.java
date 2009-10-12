@@ -194,4 +194,21 @@ public interface UIFactory {
 	 * @return
 	 */
 	JRadioButton createRadioButton();
+	/**
+	 * @param orientation
+	 * @param continuousLayout
+	 * @return
+	 */
+	JSplitPane createSplitPane(int orientation, boolean continuousLayout);
+	/**
+	 * This method should only be used when tracking of the divider position is needed.<br>
+	 * The last position of the split pane is saved on program exit in the "preferences" component
+	 * configuration.
+	 * @param name The name used to identify this split pane in the "preferences" configuration.
+	 * @param orientation
+	 * @param continuousLayout
+	 * @return
+	 */
+	JSplitPane createSplitPane(String name, int orientation, boolean continuousLayout);
+	
 }
