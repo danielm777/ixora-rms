@@ -279,4 +279,23 @@ public final class UIFactoryMgr {
 	public static JRadioButton createRadioButton() {
 		return uiFactory.createRadioButton();
 	}
+
+	/**
+	 * @param orientation
+	 * @param continuosLayout
+	 * @return
+	 */
+	public static JSplitPane createSplitPane(int orientation, boolean continuosLayout) {
+		return uiFactory.createSplitPane(orientation, continuosLayout);
+	}
+	
+	/**
+	 * @param name
+	 * @param orientation
+	 * @param continuosLayout
+	 * @return
+	 */
+	public static JSplitPane createSplitPane(String name, int orientation, boolean continuosLayout) {
+		return uiFactory.createSplitPane(name, orientation, continuosLayout);
+	}	
 }

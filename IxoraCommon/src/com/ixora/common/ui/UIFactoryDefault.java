@@ -47,6 +47,7 @@ import javax.swing.text.html.StyleSheet;
 
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.typedproperties.exception.PropertyValueNotSet;
 import com.ixora.common.ui.preferences.PreferencesConfigurationConstants;
 
 /**
@@ -94,9 +95,15 @@ public class UIFactoryDefault implements UIFactory {
 				if(e.getChild() == null) {
 					return;
 				}
-				fPane.setDividerLocation(ConfigurationMgr.getInt(
-							PreferencesConfigurationConstants.PREFERENCES,
-							fProperty));
+				ComponentConfiguration pref = ConfigurationMgr.get(PreferencesConfigurationConstants.PREFERENCES);
+				if(pref.hasProperty(fProperty)) {
+					try {
+						int val = pref.getInt(fProperty);
+						fPane.setDividerLocation(val);
+					} catch(PropertyValueNotSet ex) {
+						; // ignore
+					}					
+				}
 			}
 		}
 		public void componentRemoved(ContainerEvent e) {
@@ -364,5 +371,23 @@ public class UIFactoryDefault implements UIFactory {
 	 */
 	public JRadioButton createRadioButton() {
 		return new JRadioButton();
+	}
+	/**
+	 * @see com.ixora.common.ui.UIFactory#createSplitPane(int, boolean)
+	 */
+	public JSplitPane createSplitPane(int orientation, boolean continuousLayout) {
+		JSplitPane ret = new JSplitPane(orientation, continuousLayout);
+		ret.setDividerSize(UIConfiguration.getSplitPaneDividerSize());
+		return ret;
+	}
+	
+	/**
+	 * @see com.ixora.common.ui.UIFactory#createSplitPane(int, boolean)
+	 */
+	public JSplitPane createSplitPane(String name, int orientation, boolean continuousLayout) {
+		JSplitPane ret = createSplitPane(orientation, continuousLayout);
+		ret.setName(name);
+		new SplitPaneDividerPositionTracker(ret);
+		return ret;
 	}
 }

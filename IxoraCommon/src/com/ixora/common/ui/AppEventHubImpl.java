@@ -25,9 +25,9 @@ public class AppEventHubImpl implements AppEventHub {
 	}
 
 	/**
-	 * @see com.ixora.common.ui.AppEventHub#raiseEvent(java.lang.String, java.lang.Object)
+	 * @see com.ixora.common.ui.AppEventHub#raiseEvent(java.lang.Object, java.lang.Object)
 	 */
-	public void raiseEvent(String event, Object obj) {
+	public void raiseEvent(Object event, Object obj) {
 		for(Listener listener : this.fListeners) {
 			listener.eventRaised(event, obj);			
 		}

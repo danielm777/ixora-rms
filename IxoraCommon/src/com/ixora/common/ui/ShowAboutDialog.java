@@ -175,7 +175,7 @@ final class ShowAboutDialog extends AppDialog {
 	        aShowAboutDialog.setModal(true);
 			UIUtils.centerDialogAndShow(parent, aShowAboutDialog);
     	} catch(Exception e) {
-    		logger.error(e);
+    		UIExceptionMgr.userException(e);
     	}
     }
 
