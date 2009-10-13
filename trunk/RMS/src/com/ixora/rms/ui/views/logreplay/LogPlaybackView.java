@@ -374,7 +374,7 @@ public final class LogPlaybackView extends SessionView {
             this.actionPlayLog.setEnabled(false);
 			return;
 		}
-		this.viewContainer.runJob(
+		this.viewContainer.getAppWorker().runJob(
 				new UIWorkerJobDefaultCancelable(
 					this.viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
@@ -406,24 +406,24 @@ public final class LogPlaybackView extends SessionView {
 			        }
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else if(!fCanceled){
-						try {
-						    MonitoringSessionDescriptor scheme = rmsLogReplay.getScheme();
-					        MonitoringSessionRealizer schemeRealizer =
-					            new MonitoringSessionRealizer(sessionModel);
-			                schemeRealizer.realize(rmsAgentRepository, scheme);
-			            	// load artefacts
-			            	sessionModel.loadArtefacts();
-			                // now create screens
-							Collection<DataViewScreenDescriptor> screens = scheme.getDataViewScreens();
-							if(!Utils.isEmptyCollection(screens)) {
-	                            dataViewBoardHandler.initializeFromScreenDescriptors(screens);
+					if(ex == null) {
+						if(!fCanceled){
+							try {
+							    MonitoringSessionDescriptor scheme = rmsLogReplay.getScheme();
+						        MonitoringSessionRealizer schemeRealizer =
+						            new MonitoringSessionRealizer(sessionModel);
+				                schemeRealizer.realize(rmsAgentRepository, scheme);
+				            	// load artefacts
+				            	sessionModel.loadArtefacts();
+				                // now create screens
+								Collection<DataViewScreenDescriptor> screens = scheme.getDataViewScreens();
+								if(!Utils.isEmptyCollection(screens)) {
+		                            dataViewBoardHandler.initializeFromScreenDescriptors(screens);
+								}
+								viewContainer.appendToAppFrameTitle(scheme.getName());
+							} catch(Exception e) {
+								UIExceptionMgr.userException(e);
 							}
-							viewContainer.appendToTitle(scheme.getName());
-						} catch(Exception e) {
-							UIExceptionMgr.userException(e);
 						}
 					}
 				}
@@ -444,7 +444,7 @@ public final class LogPlaybackView extends SessionView {
 	public boolean close() {
 		try {
 			// clear state message
-			viewContainer.setStateMessage(null);
+			viewContainer.getAppStatusBar().setStateMessage(null);
 			// stop html generator
 			this.htmlGenerator.stop();
 			// reset daata view boards
@@ -650,7 +650,7 @@ public final class LogPlaybackView extends SessionView {
 			if(canResetScreens) {
 				dataViewBoardHandler.reset();
 			}
-			viewContainer.runJob(new UIWorkerJobDefault(
+			viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(
@@ -659,9 +659,7 @@ public final class LogPlaybackView extends SessionView {
 				    rmsLogReplay.startReplay(fReplayConfiguration);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
 					    actionPlayLog.setEnabled(false);
 						actionPauseLog.setEnabled(true);
 						actionRewindLog.setEnabled(true);
@@ -679,7 +677,7 @@ public final class LogPlaybackView extends SessionView {
 	private void handlePauseLog() {
 		try {
 			canResetScreens = false;
-			viewContainer.runJob(new UIWorkerJobDefault(
+			viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(
@@ -688,10 +686,7 @@ public final class LogPlaybackView extends SessionView {
 				    rmsLogReplay.pauseReplay();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(
-								new FailedToSaveSession(ex));
-					} else {
+					if(ex == null) {
 						actionPlayLog.setEnabled(true);
 						actionPauseLog.setEnabled(false);
 						actionRewindLog.setEnabled(true);
@@ -710,7 +705,7 @@ public final class LogPlaybackView extends SessionView {
 		try {
 			canResetScreens = true;
 			logStateHandler.reset();
-			viewContainer.runJob(new UIWorkerJobDefault(
+			viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(
@@ -719,9 +714,7 @@ public final class LogPlaybackView extends SessionView {
 				    rmsLogReplay.stopReplay();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
 						actionPlayLog.setEnabled(true);
 						actionPauseLog.setEnabled(false);
 						actionRewindLog.setEnabled(false);

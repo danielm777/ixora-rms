@@ -303,7 +303,7 @@ public final class ProviderInstanceEditorDialog extends AppDialog {
 	private void handleOk() {
 		try {
             final ProviderInstance pi = getProviderInstanceData();
-            fViewContainer.runJobSynch(new UIWorkerJobDefault(
+            fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 					this,
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(ProviderManagerComponent.NAME, Msg.TEXT_SAVING_PROVIDER_INSTANCE)) {
@@ -313,9 +313,7 @@ public final class ProviderInstanceEditorDialog extends AppDialog {
 					edit(fContext, pi);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
                         // switch focus on the Parser tab
                         if(ex instanceof ParsingRulesMissing) {
                             fTabbedPanel.setSelectedIndex(1);

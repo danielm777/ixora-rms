@@ -396,7 +396,7 @@ public abstract class SessionView
 			getJMenuItemToggleHTMLGen().setSelected(false);
 			if(error != null) {
 				// TODO localize
-				viewContainer.setErrorMessage("Error generating HTML.", error);
+				viewContainer.getAppStatusBar().setErrorMessage("Error generating HTML.", error);
 			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);

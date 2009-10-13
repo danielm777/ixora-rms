@@ -33,7 +33,7 @@ class LogReplayProgressHandler {
 			+ " -> "
 			+ sFormat.format(new Date(fTimestampEnd))
 			+ "]";
-		viewContainer.setStateMessage(fStaticText);
+		viewContainer.getAppStatusBar().setStateMessage(fStaticText);
 		reset();
 	}
 
@@ -43,8 +43,8 @@ class LogReplayProgressHandler {
 	public void setProgress(long time) {
 		fTime = time;
 		String progressString = (fTime - fTimestampBegin)/1000 + "sec/" + fLogSpanInSeconds + "sec";
-		fViewContainer.getStatusBar().getProgressBar().setValue((int)time);
-		fViewContainer.getStatusBar().getProgressBar().setString(progressString);
+		fViewContainer.getAppStatusBar().getProgressBar().setValue((int)time);
+		fViewContainer.getAppStatusBar().getProgressBar().setString(progressString);
 	}
 
 	/**
@@ -52,8 +52,8 @@ class LogReplayProgressHandler {
 	 */
 	public void finshed() {
 		String progressString = (fTimestampEnd - fTimestampBegin)/1000 + "sec/" + fLogSpanInSeconds + "sec";
-		fViewContainer.getStatusBar().getProgressBar().setValue((int)fTimestampEnd);
-		fViewContainer.getStatusBar().getProgressBar().setString(progressString);
+		fViewContainer.getAppStatusBar().getProgressBar().setValue((int)fTimestampEnd);
+		fViewContainer.getAppStatusBar().getProgressBar().setString(progressString);
 		//reset();
 	}
 
@@ -61,19 +61,19 @@ class LogReplayProgressHandler {
 	 * Cleans up the common areas.
 	 */
 	public void cleanup() {
-		fViewContainer.getStatusBar().getProgressBar().setStringPainted(false);
-		fViewContainer.getStatusBar().getProgressBar().setString(null);
-		fViewContainer.getStatusBar().getProgressBar().setModel(new DefaultBoundedRangeModel());
+		fViewContainer.getAppStatusBar().getProgressBar().setStringPainted(false);
+		fViewContainer.getAppStatusBar().getProgressBar().setString(null);
+		fViewContainer.getAppStatusBar().getProgressBar().setModel(new DefaultBoundedRangeModel());
 	}
 
 	/**
 	 * Prepares for a new log replay session.
 	 */
 	public void reset() {
-		fViewContainer.getStatusBar().getProgressBar().setModel(new DefaultBoundedRangeModel());
-		fViewContainer.getStatusBar().getProgressBar().setStringPainted(true);
-		fViewContainer.getStatusBar().getProgressBar().setMinimum((int)fTimestampBegin);
-		fViewContainer.getStatusBar().getProgressBar().setMaximum((int)fTimestampEnd);
+		fViewContainer.getAppStatusBar().getProgressBar().setModel(new DefaultBoundedRangeModel());
+		fViewContainer.getAppStatusBar().getProgressBar().setStringPainted(true);
+		fViewContainer.getAppStatusBar().getProgressBar().setMinimum((int)fTimestampBegin);
+		fViewContainer.getAppStatusBar().getProgressBar().setMaximum((int)fTimestampEnd);
 		setProgress(fTimestampBegin);
 	}
 }

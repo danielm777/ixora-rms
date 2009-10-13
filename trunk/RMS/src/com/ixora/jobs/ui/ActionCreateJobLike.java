@@ -66,7 +66,7 @@ final class ActionCreateJobLike extends AbstractAction {
 		    jobManagerViewer.createJobDefinition(
 		    		new JobManagerViewer.Callback(){
 						public void jobDefinition(final JobDefinition jdef){
-						    jobManagerViewer.getViewContainer().runJob(
+						    jobManagerViewer.getViewContainer().getAppWorker().runJob(
 						       new UIWorkerJobDefault(
 						            jobManagerViewer.getWindow(),
 									Cursor.WAIT_CURSOR,
@@ -75,9 +75,7 @@ final class ActionCreateJobLike extends AbstractAction {
 								    this.fResult = jobEngine.runJob(jdef);
 								}
 								public void finished(Throwable ex) {
-									if(ex != null) {
-										UIExceptionMgr.userException(ex);
-									} else {
+									if(ex == null) {
 									    jobManagerViewer.refreshJobTable(((JobId[])this.fResult)[0]);
 									}
 								}

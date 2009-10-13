@@ -511,7 +511,7 @@ final class DashboardEditorDialog extends AppDialog {
                                 // this could happen if the dashboard contains a data view which was
                                 // deleted
                                 // TODO localize
-                                fViewContainer.setErrorMessage("Data view " + completedViewId + " for dashboard "
+                                fViewContainer.getAppStatusBar().setErrorMessage("Data view " + completedViewId + " for dashboard "
                                         + db.getName() + " was not found.", null);
                             }
 				            fDashboardItemsModel.addElement(

@@ -300,7 +300,7 @@ public final class AgentInstallerDialog extends AppDialog {
 			if(selAg.installationData.isCustomAgent() || ConfigurationMgr.isDeveloperMode()) {
 				final AgentInstallationData aid = editor.getResult();
 				if(aid != null) {
-					fViewContainer.runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
+					fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
 							MessageRepository.get(AgentInstallerComponent.NAME, Msg.TEXT_UPDATING_AGENT,
 									new String[] {
 									MessageRepository.get(aid.getAgentInstallationId(), aid.getAgentName())})) {
@@ -308,9 +308,7 @@ public final class AgentInstallerDialog extends AppDialog {
 							fAgentInstaller.update(aid);
 						}
 						public void finished(Throwable ex) {
-							if(ex != null) {
-								UIExceptionMgr.userException(ex);
-							} else {
+							if(ex == null) {
 								// refresh list data
 								loadAgents();
 							}
@@ -361,16 +359,14 @@ public final class AgentInstallerDialog extends AppDialog {
 				UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), editor);
 				final AgentInstallationData aid = editor.getResult();
 				if(aid != null) {
-					fViewContainer.runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
+					fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
 							MessageRepository.get(AgentInstallerComponent.NAME, Msg.TEXT_INSTALLING_AGENT,
 									new String[] {aid.getAgentInstallationId()})) {
 						public void work() throws Throwable {
 							fAgentInstaller.install(aid);
 						}
 						public void finished(Throwable ex) {
-							if(ex != null) {
-								UIExceptionMgr.userException(ex);
-							} else {
+							if(ex == null) {
 								// refresh list data
 								loadAgents();
 								askForAppRestart();
@@ -389,7 +385,7 @@ public final class AgentInstallerDialog extends AppDialog {
 				if(returnVal == JFileChooser.APPROVE_OPTION) {
 				    final File f = fc.getSelectedFile();
 				    if(f != null && f.exists() && f.isFile()) {
-				    	fViewContainer.runJob(
+				    	fViewContainer.getAppWorker().runJob(
 				    			new UIWorkerJobWithExternalProgress(
 				    					fViewContainer.getAppFrame(),
 				    					Cursor.WAIT_CURSOR,
@@ -401,10 +397,7 @@ public final class AgentInstallerDialog extends AppDialog {
 								    	fAgentInstaller.installFromPackage(f, true, this.fProgress);
 									}
 									public void finished(Throwable ex) throws Throwable {
-										if(ex != null) {
-											UIExceptionMgr.userException(
-													fViewContainer.getAppFrame(), ex);
-										} else {
+										if(ex == null) {
 											// refresh list data
 											loadAgents();
 											askForAppRestart();
@@ -459,7 +452,7 @@ public final class AgentInstallerDialog extends AppDialog {
 				    	return;
 				    }
 
-			    	fViewContainer.runJob(
+			    	fViewContainer.getAppWorker().runJob(
 			    			new UIWorkerJobWithExternalProgress(
 			    					fViewContainer.getAppFrame(),
 			    					Cursor.WAIT_CURSOR,
@@ -512,7 +505,7 @@ public final class AgentInstallerDialog extends AppDialog {
 				if(folder == null || !folder.isDirectory()) {
 					throw new AppRuntimeException("Please select a folder");
 				}
-				fViewContainer.runJob(new UIWorkerJobWithExternalProgress(
+				fViewContainer.getAppWorker().runJob(new UIWorkerJobWithExternalProgress(
 						this, Cursor.WAIT_CURSOR,
 						MessageRepository.get(AgentInstallerComponent.NAME,
 								Msg.TEXT_EXPORTING_AGENT,
@@ -523,9 +516,7 @@ public final class AgentInstallerDialog extends AppDialog {
 								folder, fProgress);
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						} else {
+						if(ex == null) {
 							if(fResult != null) {
 								// TODO localize
 								UIUtils.showInfo(AgentInstallerDialog.this,
@@ -569,16 +560,14 @@ public final class AgentInstallerDialog extends AppDialog {
 							selAg.installationData.getAgentInstallationId()}))) {
 				return;
 			}
-			fViewContainer.runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
+			fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
 					MessageRepository.get(AgentInstallerComponent.NAME, Msg.TEXT_UNINSTALLING_AGENT,
 							new String[] {selAg.installationData.getAgentInstallationId()})) {
 				public void work() throws Throwable {
 					fAgentInstaller.uninstall(selAg.installationData.getAgentInstallationId());
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
 						// refresh list data
 						loadAgents();
 					}

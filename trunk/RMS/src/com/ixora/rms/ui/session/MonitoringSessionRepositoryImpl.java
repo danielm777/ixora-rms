@@ -29,6 +29,7 @@ import com.ixora.common.exception.ReadOnlyConfiguration;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.ui.UIExceptionMgr;
+import com.ixora.common.ui.jobs.UIWorkerJob;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
 import com.ixora.common.utils.MRUList;
 import com.ixora.common.utils.Utils;
@@ -219,7 +220,7 @@ public final class MonitoringSessionRepositoryImpl
 	private void loadSession(
 			final RMSViewContainer parent,
 			final File session) throws FailedToLoadSession {
-		parent.runJob(new UIWorkerJobDefault(
+		parent.getAppWorker().runJob(new UIWorkerJobDefault(
 				parent.getAppFrame(),
 				Cursor.WAIT_CURSOR,
 				MessageRepository.get(
@@ -227,37 +228,36 @@ public final class MonitoringSessionRepositoryImpl
 					new String[]{Utils.getFileName(session)})) {
 
 			public void work() throws Exception {
-				Document doc = null;
-				BufferedInputStream is = null;
 				try {
-					doc = XMLUtils.read(
-					is = new BufferedInputStream(
-						new FileInputStream(session)));
-				} finally {
-					if(is != null) {
-						try {
-							is.close();
-						} catch(Exception e) {
+					Document doc = null;
+					BufferedInputStream is = null;
+					try {
+						doc = XMLUtils.read(
+						is = new BufferedInputStream(
+							new FileInputStream(session)));
+					} finally {
+						if(is != null) {
+							try {
+								is.close();
+							} catch(Exception e) {
+							}
 						}
 					}
+					Node n = XMLUtils.findChild(doc.getFirstChild(), "session");
+					if(n == null) {
+						throw new XMLNodeMissing("session");
+					}
+					MonitoringSessionDescriptor ret = new MonitoringSessionDescriptor();
+					ret.fromXML(n);
+					ret.setLocation(session.getParent());
+					setLastUsedSession(session.getAbsolutePath());
+					fResult = ret;
+				} catch (Exception e) {
+					throw new FailedToLoadSession(session.getAbsolutePath(), e);
 				}
-				Node n = XMLUtils.findChild(doc.getFirstChild(), "session");
-				if(n == null) {
-					throw new XMLNodeMissing("session");
-				}
-				MonitoringSessionDescriptor ret = new MonitoringSessionDescriptor();
-				ret.fromXML(n);
-				ret.setLocation(session.getParent());
-				setLastUsedSession(session.getAbsolutePath());
-				fResult = ret;
 			}
             public void finished(Throwable ex) {
-				if(ex != null) {
-					logger.error(ex);
-					UIExceptionMgr.userException(
-						new FailedToLoadSession(
-						session.getAbsolutePath(), ex));
-				} else {
+				if(ex == null) {
 					listener.sessionLoaded((MonitoringSessionDescriptor)fResult);
 				}
 			}
@@ -277,40 +277,45 @@ public final class MonitoringSessionRepositoryImpl
 				final File file,
 				final MonitoringSessionDescriptor session,
 				boolean asynch, boolean saveAs) {
-		parent.runJob(new UIWorkerJobDefault(
+		UIWorkerJob job = new UIWorkerJobDefault(
 				parent.getAppFrame(),
 				Cursor.WAIT_CURSOR,
 				MessageRepository.get(
 					Msg.TEXT_SAVING_SESSION)) {
 			public void work() throws Exception {
-				Document doc = XMLUtils.createEmptyDocument("rms");
-				session.toXML(doc.getDocumentElement());
-				BufferedOutputStream os = null;
 				try {
-					os = new BufferedOutputStream(
-							new FileOutputStream(file));
-					XMLUtils.write(doc, os);
-					setLastUsedSession(file.getAbsolutePath());
-				} finally {
+					Document doc = XMLUtils.createEmptyDocument("rms");
+					session.toXML(doc.getDocumentElement());
+					BufferedOutputStream os = null;
 					try {
-						if(os != null) {
-							os.close();
+						os = new BufferedOutputStream(
+								new FileOutputStream(file));
+						XMLUtils.write(doc, os);
+						setLastUsedSession(file.getAbsolutePath());
+					} finally {
+						try {
+							if(os != null) {
+								os.close();
+							}
+						} catch(Exception e) {
 						}
-					} catch(Exception e) {
 					}
+				} catch (Exception e) {
+				     throw new FailedToSaveSession(session.getName(), e);
 				}
 			}
 			public void finished(Throwable ex) {
 				if(ex != null) {
-				    logger.error(ex);
-					UIExceptionMgr.userException(
-					      new FailedToSaveSession(
-					          session.getName(), ex));
 					session.setName(null);
 					session.setLocation(null);
 				}
 			}
-		}, !asynch);
+		};
+		if(asynch) {
+			parent.getAppWorker().runJob(job);
+		} else {
+			parent.getAppWorker().runJobSynch(job);
+		}
 	}
 
 	/**

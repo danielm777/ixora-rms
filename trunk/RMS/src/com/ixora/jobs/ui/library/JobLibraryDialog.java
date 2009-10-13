@@ -272,15 +272,13 @@ public final class JobLibraryDialog extends AppDialog {
 				JobLibraryDefinition entry = fTableModel.getEntryAtRow(i);
 				ids.add(new JobLibraryId(entry.getName()));
 			}
-			fViewContainer.runJob(new UIWorkerJobDefault(
+			fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					this, Cursor.WAIT_CURSOR, ""){
 				public void work() throws Throwable {
 					fJobLibrary.deleteJobs(ids);
 				}
 				public void finished(Throwable ex) throws Throwable {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
 						reloadJobs();
 					}
 				}
@@ -361,7 +359,7 @@ public final class JobLibraryDialog extends AppDialog {
 							}
 							jobsToRemove[1] = new JobLibraryId(originalDef.getName());
 						}
-						fViewContainer.runJob(new UIWorkerJobDefault(
+						fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 								JobLibraryDialog.this, Cursor.WAIT_CURSOR, ""){
 							public void work() throws Throwable {
 								// any jobs to delete?
@@ -373,9 +371,7 @@ public final class JobLibraryDialog extends AppDialog {
 								fJobLibrary.storeJob(def);
 							}
 							public void finished(Throwable ex) throws Throwable {
-								if(ex != null) {
-									UIExceptionMgr.userException(ex);
-								} else {
+								if(ex == null) {
 									reloadJobs();
 								}
 							}

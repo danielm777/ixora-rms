@@ -45,7 +45,7 @@ import javax.swing.tree.TreeSelectionModel;
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
-import com.ixora.common.ui.AppStatusBar;
+import com.ixora.common.ui.AppStatusBarDefault;
 import com.ixora.common.ui.ShowException;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
@@ -879,7 +879,7 @@ public final class LiveSessionView extends SessionView {
 		if(agentId.getInstallationIdx() > 0) {
 			agentName = agentName + ":" + agentId.getInstallationIdx();
 		}
-        this.viewContainer.setErrorMessage(host + "/" + agentName, t);
+        this.viewContainer.getAppStatusBar().setErrorMessage(host + "/" + agentName, t);
     }
 
     /**
@@ -923,8 +923,8 @@ public final class LiveSessionView extends SessionView {
 		registerComponentsWithViewContainer();
 
 		// add reactions alarm to the status bar
-		viewContainer.getStatusBar().insertStatusBarComponent(getJEditorPaneReactionsAlarm(),
-				AppStatusBar.COMPONENT_PROGRESS, AppStatusBar.POSITION_BEFORE);
+		viewContainer.getAppStatusBar().insertStatusBarComponent(getJEditorPaneReactionsAlarm(),
+				AppStatusBarDefault.COMPONENT_PROGRESS, AppStatusBarDefault.POSITION_BEFORE);
 
 		// now add to 'View' menu
 		viewContainer.registerMenuItemsForMenu(getJMenuView(),
@@ -939,11 +939,11 @@ public final class LiveSessionView extends SessionView {
 
 		if(this.scheme != null) {
 			String sn = scheme.getName();
-			this.viewContainer.appendToTitle(sn);
+			this.viewContainer.appendToAppFrameTitle(sn);
 			this.sessionModel.setSessionName(sn);
 			final MonitoringSessionRealizer realizer =
 				new MonitoringSessionRealizer(this.sessionModel);
-			this.viewContainer.runJob(
+			this.viewContainer.getAppWorker().runJob(
 				new UIWorkerJobCancelableWithExternalProgress(
 					this.viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
@@ -959,9 +959,6 @@ public final class LiveSessionView extends SessionView {
 							scheme);
 				}
 				public void finished(Throwable ex) throws Throwable {
-					if(ex != null) {
-						UIExceptionMgr.exception(ex);
-					}
 					// continue even if an exception occured
 					// realize queries
 					realizer.realizeQueries(queryRealizer, scheme, rmsDataViewRepository);
@@ -980,7 +977,7 @@ public final class LiveSessionView extends SessionView {
 		} else {
 			this.scheme = new MonitoringSessionDescriptor();
 			String sn = MessageRepository.get(Msg.TEXT_UNTITLED_SESSION);
-			this.viewContainer.appendToTitle(sn);
+			this.viewContainer.appendToAppFrameTitle(sn);
 			this.sessionModel.setSessionName(sn);
 			// new scheme so start by adding hosts
 			handleAddHosts();
@@ -1017,7 +1014,7 @@ public final class LiveSessionView extends SessionView {
 			// stop reaction alarm
 			this.reactionAlarm.reset();
 			// remove reactions alarm from status bar
-			this.viewContainer.getStatusBar().removeStatusBarComponent(getJEditorPaneReactionsAlarm());
+			this.viewContainer.getAppStatusBar().removeStatusBarComponent(getJEditorPaneReactionsAlarm());
 			// now remove from 'View' menu
 			this.viewContainer.unregisterMenuItemsForMenu(getJMenuView(),
 					new JMenuItem[]{getJMenuItemViewReactionsLog()});
@@ -1549,7 +1546,7 @@ public final class LiveSessionView extends SessionView {
 			this.scheme = new MonitoringSessionDescriptor(
 				this.scheme.getName(),
 				this.scheme.getLocation());
-			this.viewContainer.runJobSynch(new UIWorkerJobDefault(
+			this.viewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(
@@ -1561,15 +1558,12 @@ public final class LiveSessionView extends SessionView {
 				    schemeRepository.saveSession(scheme, asynch, saveAs);
 					String name = scheme.getName();
 					if(name != null) {
-						viewContainer.appendToTitle(name);
+						viewContainer.appendToAppFrameTitle(name);
 						sessionModel.setSessionName(name);
 					}
 					viewContainer.setSessionDirty(false);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 			});
 		} catch(Exception e) {
@@ -1613,7 +1607,7 @@ public final class LiveSessionView extends SessionView {
 			}
 
 			// this can be a little bit expensive
-			this.viewContainer.runJob(new UIWorkerJobDefault(
+			this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(Msg.TEXT_ADDING_HOST)) {
@@ -1621,9 +1615,6 @@ public final class LiveSessionView extends SessionView {
 					rmsHostMonitor.addHosts(hosts, false);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 			});
 
@@ -1680,7 +1671,7 @@ public final class LiveSessionView extends SessionView {
 				hosts.add(node.getHostInfo().getName());
 			}
 			// it takes a few moments to build the activation dialog...
-			this.viewContainer.runJobSynch(new UIWorkerJobDefault(
+			this.viewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					"") {
@@ -1692,9 +1683,7 @@ public final class LiveSessionView extends SessionView {
 							sessionModel);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null){
 						UIUtils.centerDialogAndShow(
 								viewContainer.getAppFrame(), (AgentActivatorDialog)this.fResult);
 					}
@@ -1721,7 +1710,7 @@ public final class LiveSessionView extends SessionView {
                         try {
     						final String host = hn.getHostInfo().getName();
     						final AgentId agentId = an.getAgentInfo().getDeploymentDtls().getAgentId();
-    						this.viewContainer.runJob(new UIWorkerJobDefault(
+    						this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
     								viewContainer.getAppFrame(),
     								Cursor.WAIT_CURSOR,
     								MessageRepository.get(Msg.TEXT_REMOVING_AGENT, an.getAgentInfo().getTranslatedName())) {
@@ -1730,9 +1719,6 @@ public final class LiveSessionView extends SessionView {
     							}
     							public void finished(Throwable ex) {
     								sessionModel.removeAgent(an);
-    								if(ex != null) {
-    									UIExceptionMgr.userException(ex);
-    								}
     							}
     						});
                         }catch(Throwable t) {
@@ -1752,7 +1738,7 @@ public final class LiveSessionView extends SessionView {
 					try {
 						final String host = hn.getHostInfo().getName();
 						final AgentId agentId = an.getAgentInfo().getDeploymentDtls().getAgentId();
-						this.viewContainer.runJob(new UIWorkerJobDefault(
+						this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 								viewContainer.getAppFrame(),
 								Cursor.WAIT_CURSOR,
 								MessageRepository.get(Msg.TEXT_REMOVING_AGENT, an.getAgentInfo().getTranslatedName())) {
@@ -1874,10 +1860,10 @@ public final class LiveSessionView extends SessionView {
 				this.rmsDataLogService.startLogging(log, sch, this.eventHandler);
 				getJButtonTurnOnOffLogging().setSelected(true);
 				getJMenuItemTurnOnOffLogging().setSelected(true);
-				this.viewContainer.setStateMessage(
+				this.viewContainer.getAppStatusBar().setStateMessage(
 					MessageRepository.get(Msg.TEXT_LOGGINGON, new String[]{log.getRepositoryName()}));
 			} else {
-				this.viewContainer.runJobSynch(new UIWorkerJobDefault(
+				this.viewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 						viewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(Msg.TEXT_CLOSING_LOG)) {
@@ -1885,14 +1871,11 @@ public final class LiveSessionView extends SessionView {
 						rmsDataLogService.stopLogging();
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 					}
 				});
 				getJButtonTurnOnOffLogging().setSelected(false);
 				getJMenuItemTurnOnOffLogging().setSelected(false);
-				this.viewContainer.setStateMessage(null);
+				this.viewContainer.getAppStatusBar().setStateMessage(null);
 			}
 		} catch(Exception e) {
 			// if an exception occured, set to the initial state
@@ -1910,7 +1893,7 @@ public final class LiveSessionView extends SessionView {
 			// logging in progress
 			final MonitoringSessionDescriptor sch = new MonitoringSessionDescriptor("log_" + new Date());
 			fillMonitoringSchemeForLog(sch);
-			this.viewContainer.runJobSynch(new UIWorkerJobDefault(
+			this.viewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(Msg.TEXT_CLOSING_LOG)) {
@@ -1918,14 +1901,11 @@ public final class LiveSessionView extends SessionView {
 					rmsDataLogService.stopLogging();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 			});
 			getJButtonTurnOnOffLogging().setSelected(false);
 			getJMenuItemTurnOnOffLogging().setSelected(false);
-			this.viewContainer.setStateMessage(null);
+			this.viewContainer.getAppStatusBar().setStateMessage(null);
 		}
 	}
 
@@ -2033,7 +2013,7 @@ public final class LiveSessionView extends SessionView {
 	 */
 	private void handleStartSession() {
 		try {
-			this.viewContainer.runJob(new UIWorkerJobDefault(
+			this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(Msg.TEXT_STARTINGSESSION)) {
@@ -2041,9 +2021,7 @@ public final class LiveSessionView extends SessionView {
 					rmsMonitoringSession.startAllAgents();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
 						actionStopSession.setEnabled(true);
 						actionStartSession.setEnabled(false);
 					}
@@ -2059,7 +2037,7 @@ public final class LiveSessionView extends SessionView {
 	 */
 	private void handleStopSession() {
 		try {
-			this.viewContainer.runJob(new UIWorkerJobDefault(
+			this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(Msg.TEXT_STOPPINGSESSION)) {
@@ -2067,9 +2045,7 @@ public final class LiveSessionView extends SessionView {
 					rmsMonitoringSession.stopAllAgents();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
 						actionStopSession.setEnabled(false);
 						actionStartSession.setEnabled(true);
 					}
@@ -2235,7 +2211,7 @@ public final class LiveSessionView extends SessionView {
         	// logging is stopped so update the UI
 			getJButtonTurnOnOffLogging().setSelected(false);
 			getJMenuItemTurnOnOffLogging().setSelected(false);
-			this.viewContainer.setStateMessage(null);
+			this.viewContainer.getAppStatusBar().setStateMessage(null);
     		ShowException.show(this.viewContainer.getAppFrame(),
     				new LoggingStoppedDueToFatalError(t));
         } catch(Exception e) {
@@ -2249,7 +2225,7 @@ public final class LiveSessionView extends SessionView {
 	 */
 	private void handleRefreshOnTreeNode() {
         try {
-			this.viewContainer.runJobSynch(new UIWorkerJobDefault(
+			this.viewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(Msg.TEXT_REFRESHING_VIEW)) {
@@ -2264,9 +2240,6 @@ public final class LiveSessionView extends SessionView {
 		    		refreshViewRecursively(node);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 				});
         } catch(Exception e) {
@@ -2318,7 +2291,7 @@ public final class LiveSessionView extends SessionView {
 				final AgentId agentid = entityNode.getAgentNode().getAgentInfo().getDeploymentDtls().getAgentId();
 				final EntityId entityid = entityNode.getEntityInfo().getId();
 				final EntityNode finalEntityNode = entityNode;
-				this.viewContainer.runJob(new UIWorkerJobDefault(
+				this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 						viewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(Msg.TEXT_APPLYINGCHANGES_ENTITYCONFIGURATION)) {
@@ -2331,9 +2304,6 @@ public final class LiveSessionView extends SessionView {
 			    				entityid, econf);
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 						if(fResult !=null) {
 							sessionModel.updateEntities(host, agentid, (EntityDescriptorTree)fResult);
 							sessionModel.setDirtyEntity(finalEntityNode, true);
@@ -2344,7 +2314,7 @@ public final class LiveSessionView extends SessionView {
 			if(agentNode != null) {
 				final String host = agentNode.getHostNode().getHostInfo().getName();
 				final AgentId agentid = agentNode.getAgentInfo().getDeploymentDtls().getAgentId();
-				this.viewContainer.runJob(new UIWorkerJobDefault(
+				this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 						viewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(Msg.TEXT_APPLYINGCHANGES_AGENTCONFIGURATION)) {
@@ -2371,7 +2341,7 @@ public final class LiveSessionView extends SessionView {
 				final AgentId agentid = intendedEntityNode.getAgentNode().getAgentInfo().getDeploymentDtls().getAgentId();
 				final EntityId entityid = intendedEntityNode.getEntityInfo().getId();
 				final EntityNode finalEntityNode = intendedEntityNode;
-				this.viewContainer.runJob(new UIWorkerJobDefault(
+				this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 						viewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(Msg.TEXT_APPLYINGCHANGES_ENTITYCONFIGURATION)) {
@@ -2454,7 +2424,7 @@ public final class LiveSessionView extends SessionView {
     			message = MessageRepository.get(Msg.TEXT_DISABLING_COUNTERS);
     		}
     		if(node instanceof EntityNode) {
-				this.viewContainer.runJobSynch(new UIWorkerJobDefault(
+				this.viewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 						viewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						message) {
@@ -2475,13 +2445,10 @@ public final class LiveSessionView extends SessionView {
 						sessionModel.setDirtyEntity(en, true);
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 					}
 					});
     		} else if(node instanceof AgentNode) {
-				this.viewContainer.runJobSynch(new UIWorkerJobDefault(
+				this.viewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 						viewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						message) {
@@ -2496,9 +2463,6 @@ public final class LiveSessionView extends SessionView {
 						sessionModel.setAgentConfigurationTuple(an, tuple);
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 					}
 					});
     		}

@@ -65,16 +65,13 @@ public final class AgentActivatorDialog extends AppDialog {
 		 * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
 		 */
 		public void valueChanged(TreeSelectionEvent e) {
-			fViewContainer.runJobSynch(
+			fViewContainer.getAppWorker().runJobSynch(
 					new UIWorkerJobDefault(AgentActivatorDialog.this,
 							Cursor.WAIT_CURSOR, "") {
 				public void work() throws Throwable {
 					handleAgentSelected();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 			});
 		}
@@ -281,7 +278,7 @@ public final class AgentActivatorDialog extends AppDialog {
 			final String translatedAgentName = MessageRepository.get(agentMsgCatalog, agentName);
 			if(fHosts.size() > 1) {
 				// job with progress
-				fViewContainer.runJob(new UIWorkerJobCancelableWithProgress(
+				fViewContainer.getAppWorker().runJob(new UIWorkerJobCancelableWithProgress(
 									this,
 									Cursor.WAIT_CURSOR,
 									MessageRepository.get(
@@ -300,13 +297,10 @@ public final class AgentActivatorDialog extends AppDialog {
 						jobCompleted();
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 					}});
 			} else {
 				// normal job (no progress)
-				fViewContainer.runJob(new UIWorkerJobDefault(
+				fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 									this,
 									Cursor.WAIT_CURSOR,
 									MessageRepository.get(
@@ -322,9 +316,6 @@ public final class AgentActivatorDialog extends AppDialog {
 						HistoryMgr.add(getHistoryIdForAgent(agentInstallationId), ddtls);
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 					}});
 			}
 		} catch(Exception ex) {

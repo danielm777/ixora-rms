@@ -192,7 +192,7 @@ public final class DataViewBoardHandler extends Observable
 			if(ld != null) {
 				ld.setLegendPanelDetailed(control.getLegendPanelDetailed());
 			} else {
-				this.fViewContainer.getStatusBar().setCenterComponent(control.getLegendPanelSimple());
+				this.fViewContainer.getAppStatusBar().setCenterComponent(control.getLegendPanelSimple());
 			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
@@ -204,7 +204,7 @@ public final class DataViewBoardHandler extends Observable
      */
     private void handleControlOutOfFocus(DataViewControl control) {
 		try {
-			this.fViewContainer.getStatusBar().resetCenterComponent();
+			this.fViewContainer.getAppStatusBar().resetCenterComponent();
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}
@@ -829,7 +829,8 @@ public final class DataViewBoardHandler extends Observable
 						plotDataView(vid.complete(context));
 					} catch(FailedToPlotView e) {
 						// print warning and keep going...
-						fViewContainer.setErrorMessage("Dashboard incomplete.", e);
+						// TODO localize
+						fViewContainer.getAppStatusBar().setErrorMessage("Dashboard incomplete.", e);
 					}
 				}
 			}
@@ -842,7 +843,7 @@ public final class DataViewBoardHandler extends Observable
 					    plotCounter(cid, null, null, (Style)null);
 					} catch(FailedToPlotView e) {
 						// print warning and keep going...
-						fViewContainer.setErrorMessage("Dashboard incomplete.", e);
+						fViewContainer.getAppStatusBar().setErrorMessage("Dashboard incomplete.", e);
 					}
 				}
 			}
