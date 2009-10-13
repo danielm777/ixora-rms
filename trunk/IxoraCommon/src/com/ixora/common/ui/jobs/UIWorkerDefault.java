@@ -119,10 +119,10 @@ public final class UIWorkerDefault implements UIWorker {
 			this.runOnFinish = new Runnable() {
 				public void run() {
 					try {
-						job.finished(ex);
 						if(ex != null) {
 							UIExceptionMgr.userException(ex);
-						}
+						}						
+						job.finished(ex);
 					} catch(Throwable e) {
 						UIExceptionMgr.userException(e);
 					} finally {
@@ -223,6 +223,10 @@ public final class UIWorkerDefault implements UIWorker {
 		}
 
 		resetCursor(job);
+
+		if(ex != null) {
+			UIExceptionMgr.userException(ex);
+		}
 
 		try {
 			job.finished(ex);

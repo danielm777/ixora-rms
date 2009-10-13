@@ -130,9 +130,6 @@ public class FeedbackDialog extends AppDialog {
 						});
 					}
 					public void finished(Throwable ex) throws Throwable {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 						dispose();
 					}
 				});

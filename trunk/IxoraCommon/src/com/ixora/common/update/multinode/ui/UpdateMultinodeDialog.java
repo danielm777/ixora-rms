@@ -359,9 +359,6 @@ public final class UpdateMultinodeDialog extends UpdateDialog {
 					updateManagerMulti.addNodes(na);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 			});
 		} catch(Exception e) {

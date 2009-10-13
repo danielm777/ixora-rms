@@ -367,10 +367,6 @@ public class UpdateDialog extends AppDialog {
 					updateManager.refresh();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-						return;
-					}
 					checkedForUpdates = true;
 					// select first component if none selected
 					if(jListModules.getModel().getSize() > 0) {
@@ -400,21 +396,19 @@ public class UpdateDialog extends AppDialog {
 					updateManager.installAllUpdates();
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-						return;
-					}
-					DefaultTreeModel model = (DefaultTreeModel)jTreeUpdates.getModel();
-					if(model == null) {
-						return;
-					}
-					model.nodeChanged((TreeNode)model.getRoot());
-					actionGetAllUpdates.setEnabled(false);
-					actionGetSelectedUpdate.setEnabled(false);
-					if(updateManager.needToRestartApplication()) {
-						jTextAreaDescription.setText(MessageRepository.get(
-								UpdateComponent.NAME,
-								Msg.UPDATE_UI_TEXT_NEED_APPLICATION_RESTART));
+					if(ex == null) {
+						DefaultTreeModel model = (DefaultTreeModel)jTreeUpdates.getModel();
+						if(model == null) {
+							return;
+						}
+						model.nodeChanged((TreeNode)model.getRoot());
+						actionGetAllUpdates.setEnabled(false);
+						actionGetSelectedUpdate.setEnabled(false);
+						if(updateManager.needToRestartApplication()) {
+							jTextAreaDescription.setText(MessageRepository.get(
+									UpdateComponent.NAME,
+									Msg.UPDATE_UI_TEXT_NEED_APPLICATION_RESTART));
+						}
 					}
 				}
 				});
@@ -453,16 +447,14 @@ public class UpdateDialog extends AppDialog {
 					updateManager.installUpdate(m, desc.getUpdateId());
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-						return;
+					if(ex == null) {
+						DefaultTreeModel model = (DefaultTreeModel)jTreeUpdates.getModel();
+						if(model == null) {
+							return;
+						}
+						model.nodeChanged(node);
+						actionGetSelectedUpdate.setEnabled(false);
 					}
-					DefaultTreeModel model = (DefaultTreeModel)jTreeUpdates.getModel();
-					if(model == null) {
-						return;
-					}
-					model.nodeChanged(node);
-					actionGetSelectedUpdate.setEnabled(false);
 				}
 				});
 		} catch (Exception e) {

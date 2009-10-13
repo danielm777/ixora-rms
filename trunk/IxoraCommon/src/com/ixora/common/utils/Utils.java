@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -198,9 +199,10 @@ public class Utils {
      * Zips the content of the given folder and stores the zipped file.
      * @param source Source file
      * @param destination Destination file
+     * @param filter File filter to use.
      * @throws IOException
      */
-    public static void zipFolder(File source, File destination) throws IOException {
+    public static void zipFolder(File source, File destination, FileFilter filter) throws IOException {
     	// check this to avoid infinite looping
     	String ssource = source.getAbsolutePath();
     	String sdest = destination.getAbsolutePath();
@@ -211,7 +213,12 @@ public class Utils {
 		if(source.isFile()) {
 			zip(zo, source, source);
 		} else {
-			File[] files = source.listFiles();
+			File[] files;
+			if(filter == null) {
+				files = source.listFiles();
+			} else {
+				files = source.listFiles(filter);
+			}
 			for(File f : files) {
 				zip(zo, source, f);
 			}
@@ -332,6 +339,16 @@ public class Utils {
         }
     }
 
+    /**
+     * This method discards folders whose names start with '.'. Useful
+     * to discard files that occur in a development environment (.svn for instance).
+     * @param file
+     * @return
+     */
+    public static File[] listFilesForFolder(File file) {
+    	return file.listFiles(new FileFilterExcludeDevArtefacts());
+    }
+    
     /**
      * Gets the stack trace of an exception as a string
      * @param e
@@ -469,7 +486,7 @@ public class Utils {
 	 * @throws IOException
 	 */
 	private static void copyMoveFolderRecursive(File src, File dest, boolean move) throws IOException {
-		File[] fs = src.listFiles();
+		File[] fs = Utils.listFilesForFolder(src);
 		File f;
 		for(int i = 0; i < fs.length; i++) {
 			f = fs[i];

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.ixora.common.utils.Utils;
+
 /*
  * Created on Feb 16, 2004
  */
@@ -45,7 +47,7 @@ public final class UpdateInstallerHook {
 		 * @throws IOException
 		 */
 		private static void copyMoveFolderRecursive(File src, File dest, boolean move) throws IOException {
-			File[] fs = src.listFiles();
+			File[] fs = Utils.listFilesForFolder(src);
 			File f;
 			for(int i = 0; i < fs.length; i++) {
 				f = fs[i];
