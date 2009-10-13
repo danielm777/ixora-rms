@@ -67,7 +67,6 @@ import com.ixora.rms.ui.dataviewboard.handler.DataViewScreenPanel;
 import com.ixora.rms.ui.exporter.HTMLGenerator;
 import com.ixora.rms.ui.exporter.HTMLGenerator.Listener;
 import com.ixora.rms.ui.messages.Msg;
-import com.ixora.rms.ui.session.exception.FailedToSaveSession;
 
 /**
  * Log playback view.

@@ -28,7 +28,6 @@ import com.ixora.common.exception.FailedToSaveConfiguration;
 import com.ixora.common.exception.ReadOnlyConfiguration;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
-import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.jobs.UIWorkerJob;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
 import com.ixora.common.utils.MRUList;

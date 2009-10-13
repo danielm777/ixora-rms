@@ -8,10 +8,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.ixora.common.collections.CaseInsensitiveLinkedMap;
+import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.xml.XMLExternalizable;
-import com.ixora.common.xml.XMLUtils;
 import com.ixora.common.xml.exception.XMLException;
 import com.ixora.rms.dataengine.Cube;
 
@@ -23,6 +23,7 @@ import com.ixora.rms.dataengine.Cube;
 public class QueryMap implements XMLExternalizable {
 	private static final long serialVersionUID = -2753779034638751220L;
 	/** Logger */
+	@SuppressWarnings("unused")
 	private static final AppLogger logger =
 		AppLoggerFactory.getLogger(QueryMap.class);
 	/** Queries */
@@ -88,7 +89,9 @@ public class QueryMap implements XMLExternalizable {
 	 * @see com.ixora.common.xml.XMLExternalizable#fromXML(org.w3c.dom.Node)
 	 */
 	public void fromXML(Node node) throws XMLException {
-		Node n = XMLUtils.findChild(node, "queries");
+		// TODO not implemented yet... at the moment we don't use query maps.
+		throw new AppRuntimeException("Not implemented.");
+/*		Node n = XMLUtils.findChild(node, "queries");
 		if(n != null) {
 			try {
 				XMLExternalizable[] objs = XMLUtils.readObjects(
@@ -105,5 +108,5 @@ public class QueryMap implements XMLExternalizable {
 				logger.error(e);
 			}
 		}
-	}
+*/	}
 }
