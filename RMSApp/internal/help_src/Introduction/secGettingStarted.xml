@@ -51,7 +51,7 @@
 		cannot be established (because of firewalls for instance), the console will use a polling mechanism
 		to retrieve data from the Host Managers using a one way channel.</para>
 
-		<para>Click the Load session button and select winsample.lperf if you are running on Windows.
+		<para>Click the Load session button and select winsample.rms.session if you are running on Windows.
 		This will open a sample monitoring session with system information pertinent
 		to the local machine using the Windows Agent.</para>
 
