@@ -20,6 +20,7 @@ import org.w3c.dom.Document;
 import com.ixora.common.ComponentVersion;
 import com.ixora.common.Product;
 import com.ixora.common.ProgressMonitor;
+import com.ixora.common.utils.FileFilterExcludeDevArtefacts;
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLUtils;
 import com.ixora.common.xml.exception.XMLException;
@@ -445,7 +446,7 @@ public final class AgentInstaller extends Observable implements AgentInstallerSe
 
 			progress.setTask("copying artefacts...");
 			// copy artefacts
-			File[] artefactFiles = homeConfigRepositoryFolder.listFiles();
+			File[] artefactFiles = Utils.listFilesForFolder(homeConfigRepositoryFolder);
 			if(!Utils.isEmptyArray(artefactFiles)) {
 				for(File artefactFile : artefactFiles) {
 					Utils.copyFile(
@@ -524,7 +525,7 @@ public final class AgentInstaller extends Observable implements AgentInstallerSe
 				}
 			}
 			File zipFile = new File(destinationFolder, agentInstallationId + ".agent");
-			Utils.zipFolder(tmpFolder, zipFile);
+			Utils.zipFolder(tmpFolder, zipFile, new FileFilterExcludeDevArtefacts());
 			Utils.deleteFolderContent(tmpFolder);
 			tmpFolder.delete();
 			return zipFile;

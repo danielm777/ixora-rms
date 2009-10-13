@@ -585,7 +585,7 @@ public final class EntityConfigurationPanel extends JPanel {
 				// no change in config
 				return;
 			}
-			this.fViewContainer.runJob(new UIWorkerJobDefault(
+			this.fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					fViewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(
@@ -603,7 +603,6 @@ public final class EntityConfigurationPanel extends JPanel {
 					if(ex != null) {
 						// reset the config to the 'before' one
 						setConfiguration(fEntityNode);
-						UIExceptionMgr.userException(ex);
 					} else {
 						// save the config
 						fSessionModel.updateEntities(
@@ -715,7 +714,7 @@ public final class EntityConfigurationPanel extends JPanel {
 				return;
 			}
 			if(selected.length == 1) {
-				this.fViewContainer.runJobSynch(
+				this.fViewContainer.getAppWorker().runJobSynch(
 				        new UIWorkerJobDefault(
 				                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR, "") {
 	                public void work() throws Exception {
@@ -728,9 +727,6 @@ public final class EntityConfigurationPanel extends JPanel {
 								cid), null, null, (Style)null);
 	                }
 	                public void finished(Throwable ex) {
-	                    if(ex != null) {
-	                        UIExceptionMgr.userException(ex);
-	                    }
 	                }
 				});
 			} else {
@@ -745,7 +741,7 @@ public final class EntityConfigurationPanel extends JPanel {
 							rid.getEntityId(),
 							cid));
                 }
-				this.fViewContainer.runJobSynch(
+				this.fViewContainer.getAppWorker().runJobSynch(
 				        new UIWorkerJobDefault(
 				                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR, "") {
 	                public void work() throws Exception {
@@ -825,7 +821,7 @@ public final class EntityConfigurationPanel extends JPanel {
 			return;
 		}
 		if(selected.length == 1) {
-			this.fViewContainer.runJobSynch(
+			this.fViewContainer.getAppWorker().runJobSynch(
 			        new UIWorkerJobDefault(
 			                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR, "") {
                 public void work() throws Exception {
@@ -838,9 +834,6 @@ public final class EntityConfigurationPanel extends JPanel {
 							cid), name, desc, style);
                 }
                 public void finished(Throwable ex) {
-                    if(ex != null) {
-                        UIExceptionMgr.userException(ex);
-                    }
                 }
 			});
 		}

@@ -226,7 +226,7 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
      */
     protected void handlePlotArtefact() {
 		try {
-			this.fViewContainer.runJobSynch(
+			this.fViewContainer.getAppWorker().runJobSynch(
 			        new UIWorkerJobDefault(
 			                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR,
 			                // TODO localize
@@ -571,7 +571,7 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
 	                    // Note: this method is reading from the session model
 						// and as a result it can only be used safely from
 						// the event dispatching thread
-						this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+						this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 								fViewContainer.getAppFrame(),
 								Cursor.WAIT_CURSOR,
 								MessageRepository.get(
@@ -593,9 +593,6 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
 										}});
 								}
 							public void finished(Throwable ex) {
-								if(ex != null) {
-									UIExceptionMgr.userException(ex);
-								}
 							}
 						});
 					}
@@ -626,7 +623,7 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
 					    // Note: this method is reading from the session model
 						// and as a result it can only be used safely from
 						// the event dispatching thread
-						this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+						this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 								fViewContainer.getAppFrame(),
 								Cursor.WAIT_CURSOR,
 								MessageRepository.get(
@@ -684,7 +681,7 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
 	                    // Note: this method is reading from the session model
 						// and as a result it can only be used safely from
 						// the event dispatching thread
-						this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+						this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 								fViewContainer.getAppFrame(),
 								Cursor.WAIT_CURSOR,
 								MessageRepository.get(
@@ -720,7 +717,7 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
 						    // Note: this method is reading from the session model
 							// and as a result it can only be used safely from
 							// the event dispatching thread
-							this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+							this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 									fViewContainer.getAppFrame(),
 									Cursor.WAIT_CURSOR,
 									MessageRepository.get(

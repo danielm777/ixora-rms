@@ -218,7 +218,7 @@ public final class AgentConfigurationPanelStandAlone
 			final AgentConfiguration delta = before.getDelta(after);
 
 			if(delta != null) {
-				this.viewContainer.runJob(new UIWorkerJobDefault(
+				this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 						viewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(
@@ -230,9 +230,7 @@ public final class AgentConfigurationPanelStandAlone
 								delta);
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						} else {
+						if(ex == null) {
 							sessionModel.setAgentConfigurationTuple(agentNode,
 									(AgentConfigurationTuple)this.fResult);
 						}

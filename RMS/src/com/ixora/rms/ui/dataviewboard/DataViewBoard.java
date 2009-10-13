@@ -270,7 +270,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 				logger.error(e);
 				// TODO localize
 				fControlContext.getViewContainer()
-					.setErrorMessage("Failed to realize query " + qid, e);
+					.getAppStatusBar().setErrorMessage("Failed to realize query " + qid, e);
 			}
 		}
 
@@ -329,7 +329,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
                     plot(dvid.getContext(), pdv.getDataView(), cd);
                 } catch (FailedToPlotView e) {
                 	// report non-critical error
-                    fControlContext.getViewContainer().setErrorMessage(e.getLocalizedMessage(), null);
+                    fControlContext.getViewContainer().getAppStatusBar().setErrorMessage(e.getLocalizedMessage(), null);
                 }
             } else if(cd.getDataView() != null) {
             	// on the fly data view
@@ -337,7 +337,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
                     plot(cd.getDataViewContext(), cd.getDataView(), cd);
                 } catch (FailedToPlotView e) {
                 	// report non-critical error
-                    fControlContext.getViewContainer().setErrorMessage(e.getLocalizedMessage(), null);
+                    fControlContext.getViewContainer().getAppStatusBar().setErrorMessage(e.getLocalizedMessage(), null);
                 }
             }
         }

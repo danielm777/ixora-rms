@@ -63,7 +63,7 @@ final class ActionCancelJob extends AbstractAction {
 		    JobHistoryDetails dtls = ((JobHistoryTableModel)jobHistoryTable.getModel())
 		    	.getJobHistoryDetailsAtRow(idx);
 		    final JobId jid = dtls.getJobId();
-		    jobManagerViewer.getViewContainer().runJob(
+		    jobManagerViewer.getViewContainer().getAppWorker().runJob(
 		            new UIWorkerJobDefault(
 		            jobManagerViewer.getWindow(),
 					Cursor.WAIT_CURSOR,
@@ -73,9 +73,6 @@ final class ActionCancelJob extends AbstractAction {
 				    jobEngine.cancelJob(jid);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 			});
 		} catch(Exception e) {

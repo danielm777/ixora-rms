@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import com.ixora.common.Product;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLUtils;
 import com.ixora.common.xml.exception.XMLException;
 
@@ -113,7 +114,7 @@ public final class InstallationArtefactRepository {
 		if(!repFolder.isDirectory()) {
 			throw new FileNotFoundException(repFolder.getAbsolutePath());
 		}
-		File[] list = repFolder.listFiles();
+		File[] list = Utils.listFilesForFolder(repFolder);
 		File af;
 		for(int i = 0; i < list.length; i++) {
 			af = list[i];

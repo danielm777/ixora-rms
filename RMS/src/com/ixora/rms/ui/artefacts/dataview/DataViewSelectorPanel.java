@@ -342,7 +342,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 				return;
 			}
 			final DataViewInfo dvi = (DataViewInfo)getArtefactInfoAtRow(sel);
-			this.fViewContainer.runJobSynch(
+			this.fViewContainer.getAppWorker().runJobSynch(
 			        new UIWorkerJobDefault(
 			                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR,
 			                // TODO localize
@@ -356,9 +356,6 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
                 	fCallback.plot(new DataViewId(fContext, dvi.getDataView().getName()));
                 }
                 public void finished(Throwable ex) {
-                    if(ex != null) {
-                       UIExceptionMgr.userException(ex);
-                    }
                 }
 			});
 		} catch(Exception ex) {
@@ -377,7 +374,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 				return;
 			}
 			final DataViewInfo dvi = (DataViewInfo)getArtefactInfoAtRow(sel);
-			fViewContainer.runJobSynch(
+			fViewContainer.getAppWorker().runJobSynch(
 					new UIWorkerJobDefault(fViewContainer.getAppFrame(),
 							Cursor.WAIT_CURSOR, "") {
 				public void work() throws Throwable {
@@ -389,9 +386,6 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 							dvi.getDataView(), false);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					}
 				}
 			});
 		} catch(Exception ex) {
@@ -452,7 +446,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 				// Note: this method is reading from the session model
 				// and as a result it can only be used safely from
 				// the event dispatching thread
-				this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+				this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 						fViewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(
@@ -463,9 +457,6 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 						fQueryRealizer.unrealizeQuery(qid, false);
 						}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 					}
 					});
 			}
@@ -535,7 +526,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
                         // Note: this method is reading from the session model
                         // and as a result it can only be used safely from
                         // the event dispatching thread
-                        this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+                        this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
                                 fViewContainer.getAppFrame(),
                                 Cursor.WAIT_CURSOR,
                                 MessageRepository.get(
@@ -546,9 +537,6 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
                                 fQueryRealizer.unrealizeQuery(qid, true);
                             }
                             public void finished(Throwable ex) {
-                                if(ex != null) {
-                                    UIExceptionMgr.userException(ex);
-                                }
                             }
                         });
                     }
@@ -600,7 +588,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 				// Note: this method is reading from the session model
 				// and as a result it can only be used safely from
 				// the event dispatching thread
-				this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+				this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 						fViewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(
@@ -618,9 +606,6 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 						});
 					}
 					public void finished(Throwable ex) {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}
 					}
 				});
 			}
@@ -635,7 +620,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 				// Note: this method is reading from the session model
 				// and as a result it can only be used safely from
 				// the event dispatching thread
-				this.fViewContainer.runJobSynch(new UIWorkerJobDefault(
+				this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
 						fViewContainer.getAppFrame(),
 						Cursor.WAIT_CURSOR,
 						MessageRepository.get(
@@ -703,7 +688,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 						MessageRepository.get(board.getBoardComponenName(), board.getViewName()) + "...") {
 					private static final long serialVersionUID = -6304644066992997069L;
 					public void actionPerformed(ActionEvent e) {
-						fViewContainer.runJobSynch(
+						fViewContainer.getAppWorker().runJobSynch(
 								new UIWorkerJobDefault(fViewContainer.getAppFrame(),
 										Cursor.WAIT_CURSOR, "") {
 							public void work() throws Throwable {
@@ -721,9 +706,6 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
 								handleAddArtefact(sample, false);
 							}
 							public void finished(Throwable ex) {
-								if(ex != null) {
-									UIExceptionMgr.userException(ex);
-								}
 							}
 						});
 					}

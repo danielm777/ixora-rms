@@ -88,7 +88,7 @@ final class LiveSessionTreeExplorer implements SessionTreeExplorer {
 
 		final MutableTreeNode n = new DefaultMutableTreeNode("...", false);
 		model.insertNodeInto(n, an, an.getChildCount());
-		this.viewContainer.runJob(new UIWorkerJobDefault(
+		this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 				owner,
 				Cursor.WAIT_CURSOR,
 				MessageRepository.get(Msg.TEXT_GETTINGAGENTENTITIES)) {
@@ -101,17 +101,16 @@ final class LiveSessionTreeExplorer implements SessionTreeExplorer {
 				this.fResult = entities;
 			}
 			public void finished(Throwable ex) {
-				model.removeNodeFromParent(n);
-				if(ex != null) {
-					UIExceptionMgr.userException(ex);
+				if(ex == null) {
+					model.removeNodeFromParent(n);
+					if(this.fResult == null) {
+						return;
+					}
+					model.updateEntities(
+					        hn.getHostInfo().getName(),
+					        agentId,
+					        (EntityDescriptorTree)this.fResult);
 				}
-				if(this.fResult == null) {
-					return;
-				}
-				model.updateEntities(
-				        hn.getHostInfo().getName(),
-				        agentId,
-				        (EntityDescriptorTree)this.fResult);
 			}
 			});
 	}
@@ -132,7 +131,7 @@ final class LiveSessionTreeExplorer implements SessionTreeExplorer {
 
 		final MutableTreeNode n = new DefaultMutableTreeNode("...", false);
 		model.insertNodeInto(n, en, en.getChildCount());
-		this.viewContainer.runJob(new UIWorkerJobDefault(
+		this.viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 				owner,
 				Cursor.WAIT_CURSOR,
 				MessageRepository.get(Msg.TEXT_GETTINGAGENTENTITIES)) {
@@ -146,9 +145,6 @@ final class LiveSessionTreeExplorer implements SessionTreeExplorer {
 			}
 			public void finished(Throwable ex) {
 				model.removeNodeFromParent(n);
-				if(ex != null) {
-					UIExceptionMgr.userException(ex);
-				}
 				if(this.fResult == null) {
 					return;
 				}

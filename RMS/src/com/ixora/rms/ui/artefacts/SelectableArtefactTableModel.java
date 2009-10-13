@@ -150,7 +150,7 @@ public abstract class SelectableArtefactTableModel<T extends ArtefactInfo>
 			if(columnIndex != 0) {
 				return;
 			}
-			this.fViewContainer.runJobSynch(
+			this.fViewContainer.getAppWorker().runJobSynch(
 			        new UIWorkerJobDefault(
 			                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR, "") {
                 public void work() throws Exception {
@@ -159,9 +159,6 @@ public abstract class SelectableArtefactTableModel<T extends ArtefactInfo>
         			fireTableRowsUpdated(rowIndex, rowIndex);
                 }
                 public void finished(Throwable ex) {
-                    if(ex != null) {
-                        UIExceptionMgr.userException(ex);
-                    }
                 }
 			});
 		} catch(Exception e) {

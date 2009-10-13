@@ -109,7 +109,7 @@ public final class SamplingIntervalPanel
 	 */
 	private void handleChangeSamplingInterval() {
 		try {
-			fViewContainer.runJob(new UIWorkerJobDefault(
+			fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR,
 					// TODO localize
 					"Changing sampling interval..."){
@@ -119,9 +119,7 @@ public final class SamplingIntervalPanel
 							Integer.parseInt(fSamplingSpinner.getValue().toString()));
 				}
 				public void finished(Throwable ex) throws Throwable {
-					if(ex != null) {
-						UIExceptionMgr.exception(ex);
-					} else {
+					if(ex == null) {
 						fAction.setEnabled(false);
 					}
 				}
