@@ -19,12 +19,12 @@ import javax.swing.SwingConstants;
 
 import org.apache.commons.httpclient.NameValuePair;
 
-import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.net.NetUtils;
 import com.ixora.common.ui.actions.ActionCancel;
 import com.ixora.common.ui.actions.ActionOk;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
+import com.ixora.common.ui.preferences.PreferencesConfiguration;
 import com.ixora.common.ui.preferences.PreferencesConfigurationConstants;
 import com.ixora.common.utils.Utils;
 
@@ -78,8 +78,7 @@ public class FeedbackDialog extends AppDialog {
 		buildContentPane();
 
 		// check for email
-		String email = ConfigurationMgr.getString(PreferencesConfigurationConstants.PREFERENCES,
-				PreferencesConfigurationConstants.USER_EMAIL);
+		String email = PreferencesConfiguration.get().getString(PreferencesConfigurationConstants.USER_EMAIL);
 		if(!Utils.isEmptyString(email)) {
 			fTextFieldEmail.setText(email);
 			UIUtils.setFocus(fTextAreaFeedback);
@@ -120,7 +119,7 @@ public class FeedbackDialog extends AppDialog {
 			final String email = fTextFieldEmail.getText().trim();
 			final String comment = fTextAreaFeedback.getText().trim();
 			if(!Utils.isEmptyString(comment)){
-				fAppViewContainer.runJob(new UIWorkerJobDefault(
+				fAppViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 						this,
 						Cursor.WAIT_CURSOR,
 						"Sending feedback...") { // TODO localize
@@ -140,21 +139,17 @@ public class FeedbackDialog extends AppDialog {
 
 				// save email
 				if(!Utils.isEmptyString(email)) {
-					ConfigurationMgr.setString(
-							PreferencesConfigurationConstants.PREFERENCES,
+					PreferencesConfiguration.get().setString(
 							PreferencesConfigurationConstants.USER_EMAIL,
 							email);
-					ConfigurationMgr.save(PreferencesConfigurationConstants.PREFERENCES);
 				}
 			} else {
 				// empty comments
 				// if empty email remove it
 				if(Utils.isEmptyString(email)) {
-					ConfigurationMgr.setString(
-							PreferencesConfigurationConstants.PREFERENCES,
+					PreferencesConfiguration.get().setString(
 							PreferencesConfigurationConstants.USER_EMAIL,
 							"");
-					ConfigurationMgr.save(PreferencesConfigurationConstants.PREFERENCES);
 				}
 				dispose();
 			}

@@ -45,10 +45,8 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
-import com.ixora.common.ComponentConfiguration;
-import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.typedproperties.exception.PropertyValueNotSet;
-import com.ixora.common.ui.preferences.PreferencesConfigurationConstants;
+import com.ixora.common.ui.preferences.PreferencesConfiguration;
 
 /**
  * @author Daniel Moraru
@@ -65,13 +63,10 @@ public class UIFactoryDefault implements UIFactory {
 		 * @param pane
 		 */
 		SplitPaneDividerPositionTracker(JSplitPane pane) {
-			fPane = pane;
-			ComponentConfiguration pref = ConfigurationMgr.get(PreferencesConfigurationConstants.PREFERENCES);
+			fPane = pane;			
 			fProperty = "splitpane." + pane.getName() + ".divider_position";
-			if(!pref.hasProperty(fProperty)) {
-				pref.setProperty(fProperty, ComponentConfiguration.TYPE_INTEGER, false, false);
-			} else {
-				pane.setDividerLocation(pref.getInt(fProperty));
+			if(PreferencesConfiguration.get().hasProperty(fProperty)) {
+				pane.setDividerLocation(PreferencesConfiguration.get().getInt(fProperty));
 			}
 			fPane.addPropertyChangeListener(JSplitPane.DIVIDER_LOCATION_PROPERTY, this);
 			fPane.addContainerListener(this);
@@ -80,8 +75,7 @@ public class UIFactoryDefault implements UIFactory {
 			if(evt.getSource() == fPane) {
 				try {
 					if(JSplitPane.DIVIDER_LOCATION_PROPERTY.equals(evt.getPropertyName())) {
-						ConfigurationMgr.setInt(
-							PreferencesConfigurationConstants.PREFERENCES,
+						PreferencesConfiguration.get().setInt(
 							fProperty,
 							(Integer)evt.getNewValue());
 					}
@@ -95,10 +89,9 @@ public class UIFactoryDefault implements UIFactory {
 				if(e.getChild() == null) {
 					return;
 				}
-				ComponentConfiguration pref = ConfigurationMgr.get(PreferencesConfigurationConstants.PREFERENCES);
-				if(pref.hasProperty(fProperty)) {
+				if(PreferencesConfiguration.get().hasProperty(fProperty)) {
 					try {
-						int val = pref.getInt(fProperty);
+						int val = PreferencesConfiguration.get().getInt(fProperty);
 						fPane.setDividerLocation(val);
 					} catch(PropertyValueNotSet ex) {
 						; // ignore

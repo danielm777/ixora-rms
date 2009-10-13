@@ -169,4 +169,6 @@ public interface Msg {
         "common.ui.app.menu_help_license";
 	public static final String COMMON_UI_APP_MENU_HELP_FEEDBACK =
 		"common.ui.app.menu_help_feedback";
+	public static final String COMMON_UI_TEXT_ERROR_LOG = 
+		"common.ui.text.error_log";
 }

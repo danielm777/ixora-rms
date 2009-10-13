@@ -624,11 +624,20 @@ public class Utils {
     public static String getHTMLNewLine() {
         return "</br>";
     }
+    
+    /**
+     * @param msg
+     * @return The translated message with key <code>msg</code> from the default
+     * component.
+     */
+    public static String getTranslatedMessage(String msg) {
+    	return getTranslatedMessage(null, msg);
+    }
 
 	/**
 	 * @param component
 	 * @param msg
-	 * @return the translated message
+	 * @return The translated message with key <code>msg</code> from component <code>component</code>.
 	 */
 	public static String getTranslatedMessage(String component, String msg) {
     	if(component == null || component.length() == 0) {

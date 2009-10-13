@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.help.HelpSetException;
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -28,7 +29,6 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.MetalTheme;
 
-import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.Product;
 import com.ixora.common.logging.AppLogger;
@@ -39,9 +39,9 @@ import com.ixora.common.security.license.LicenseMgr;
 import com.ixora.common.security.license.ui.ShowLicense;
 import com.ixora.common.ui.help.HelpMgr;
 import com.ixora.common.ui.jobs.UIWorker;
-import com.ixora.common.ui.jobs.UIWorkerJob;
+import com.ixora.common.ui.jobs.UIWorkerDefault;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
-import com.ixora.common.ui.preferences.PreferencesConfigurationConstants;
+import com.ixora.common.ui.preferences.PreferencesConfiguration;
 import com.ixora.common.utils.Utils;
 
 /*
@@ -78,7 +78,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	/** Current view */
 	protected AppView fCurrentView;
 	/** Status bar */
-	protected AppStatusBar fStatusBar;
+	protected AppStatusBarDefault fStatusBar;
 	/** Event hub */
 	protected AppEventHub fEventHub;
     /** Log with non fatal errors */
@@ -90,7 +90,9 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	/** Private event handler */
 	private EventHandler fEventHandler;
 
-	private final class EventHandler extends WindowAdapter implements MouseListener, UIExceptionHandler, ActionListener, NonFatalErrorHandler, HyperlinkListener {
+	private final class EventHandler extends WindowAdapter implements MouseListener, 
+			UIExceptionHandler, ActionListener, NonFatalErrorHandler, HyperlinkListener,
+			AppStatusBar.Listener {
 		/**
 		 * @see com.ixora.common.ui.UIExceptionHandler#exception(java.lang.Throwable)
 		 */
@@ -160,7 +162,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		 */
         public void mouseClicked(MouseEvent e) {
             Object source = e.getSource();
-            if(source == getStatusBar().getErrorLabel() && e.getClickCount() == 2) {
+            if(source == getAppStatusBar().getErrorLabel() && e.getClickCount() == 2) {
                 handleShowNonFatalErrorLog();
                 return;
             }
@@ -173,13 +175,17 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
         }
         public void mouseExited(MouseEvent e) {
         }
-		/**
-		 * @see javax.swing.event.HyperlinkListener#hyperlinkUpdate(javax.swing.event.HyperlinkEvent)
-		 */
 		public void hyperlinkUpdate(HyperlinkEvent e) {
 			if(e.getSource() == fTextPaneErrorLog && e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 				handleShowNonFatalErrorLog();
 			}
+		}
+		public void errorMessageChanged(String newMessage, Throwable error) {
+			handleErrorMessage(newMessage, error);
+		}
+		public void messageChanged(String newMessage) {
+		}
+		public void stateMessageChanged(String newMessage) {
 		}
 	}
 
@@ -243,6 +249,18 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		}
 	}
 
+	/**
+	 * @see com.ixora.common.ui.AppViewContainer#registerToolBarButtons(javax.swing.AbstractButton[])
+	 */
+	public void registerToolBarButtons(AbstractButton[] buttons) {
+		if(!Utils.isEmptyArray(buttons)) {
+			for(AbstractButton abstractButton : buttons) {
+				abstractButton.setText(null);
+			}
+		}
+		registerToolBarComponents(buttons);
+	}
+	
 	/**
 	 * @see AppViewContainer#registerMenuItemsForActionsMenu(javax.swing.JMenuItem[])
 	 */
@@ -444,83 +462,52 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.AppViewContainer#getStatusBar()
+	 * @see com.ixora.rms.ui.AppViewContainer#getAppStatusBar()
 	 */
-	public AppStatusBar getStatusBar() {
+	public AppStatusBar getAppStatusBar() {
 		return this.fStatusBar;
 	}
 
 	/**
-	 * @see com.ixora.common.ui.AppViewContainer#getEventHub()
+	 * @see com.ixora.common.ui.AppViewContainer#getAppEventHub()
 	 */
-	public AppEventHub getEventHub() {
+	public AppEventHub getAppEventHub() {
 		return this.fEventHub;
 	}
 
 	/**
-	 * @see com.ixora.common.ui.AppViewContainer#runJob(com.ixora.common.ui.jobs.UIWorkerJob, boolean)
+	 * @see com.ixora.common.ui.AppViewContainer#getAppWorker()
 	 */
-	public void runJob(UIWorkerJob job, boolean synch) {
-		try {
-			if(synch) {
-				this.fWorker.runJobSynch(job);
-			} else {
-				this.fWorker.runJob(job);
-			}
-		} catch (Exception e) {
-			UIExceptionMgr.exception(e);
-		}
+	public UIWorker getAppWorker() {
+		return this.fWorker;
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.AppViewContainer#runJob(com.ixora.common.ui.jobs.UIWorkerJob)
+	 * @param txt
+	 * @param t
 	 */
-	public void runJob(UIWorkerJob job) {
-		try {
-			this.fWorker.runJob(job);
-		} catch (Exception e) {
-			UIExceptionMgr.exception(e);
-		}
-	}
-
-	/**
-	 * @see com.ixora.rms.ui.AppViewContainer#runJobSynch(com.ixora.common.ui.jobs.UIWorkerJob)
-	 */
-	public void runJobSynch(UIWorkerJob job) {
-		try {
-			this.fWorker.runJobSynch(job);
-		} catch (Exception e) {
-			UIExceptionMgr.exception(e);
-		}
-	}
-
-	/**
-	 * @see com.ixora.rms.ui.AppViewContainer#setStateMessage(java.lang.String)
-	 */
-	public void setStateMessage(String txt) {
-	    this.fStatusBar.setStateMessage(txt);
-	}
-
-	/**
-	 * @see com.ixora.rms.ui.AppViewContainer#setErrorMessage(java.lang.String, java.lang.Throwable)
-	 */
-	public void setErrorMessage(String txt, Throwable t) {
+	private void handleErrorMessage(String txt, Throwable t) {
         if(txt != null) {
             fNonFatalErrorBuffer.nonFatalError(txt, t);
             logger.error(txt, t);
         }
-		fStatusBar.setErrorMessage(txt, t);
 		if(fTextPaneErrorLog != null) {
-			// TODO localize
-			fTextPaneErrorLog.setText("<html>&nbsp;&nbsp;<a href='#'>Error log</a>&nbsp;&nbsp;</html>");
+			fTextPaneErrorLog.setText("<html>&nbsp;&nbsp;<a href='#'>" 
+					+ Utils.getTranslatedMessage(Msg.COMMON_UI_TEXT_ERROR_LOG)
+					+ "</a>&nbsp;&nbsp;</html>");
 		}
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.AppViewContainer#appendToTitle(java.lang.String)
+	 * @see com.ixora.rms.ui.AppViewContainer#appendToAppFrameTitle(java.lang.String)
 	 */
-	public void appendToTitle(String txt) {
-		//setTitle(MessageRepository.get(Msg.TITLE_FRAME_RMS) + ": " + txt);
+	public void appendToAppFrameTitle(String txt) {
+		String title = getTitle();
+		int idx = title.indexOf(':');
+		if(idx > 0) {
+			title = title.substring(0, idx);
+		}
+		setTitle(title + ": " + txt);
 	}
 
 	/**
@@ -539,7 +526,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
      */
     protected void handleNonFatalError(String error, Throwable t) {
         try {
-            setErrorMessage(error, t);
+            handleErrorMessage(error, t);
         } catch(Exception e) {
             UIExceptionMgr.exception(e);
         }
@@ -572,7 +559,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 */
 	protected void initialize(AppFrameParameters params) throws Throwable {
 		this.fEventHandler = new EventHandler();
-		this.fEventHub = new AppEventHubImpl();
+		this.fEventHub = new AppEventHubDefault();
 		// first thing to do
 		UIExceptionMgr.installExceptionHandler(this.fEventHandler);
 		// Note: The following lines setting the theme must be before any
@@ -598,7 +585,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		setIconImage(UIConfiguration.getIcon("application.gif").getImage());
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(this.fEventHandler);
-		getStatusBar().getErrorLabel().addMouseListener(fEventHandler);
+		getAppStatusBar().getErrorLabel().addMouseListener(fEventHandler);
         setContentPane(getJContentPane());
 		setJMenuBar(getJJMenuBar());
 		
@@ -649,12 +636,13 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 * Allows subclasses to replace the default status bar.
 	 */
 	protected void createStatusBar() {
-		this.fStatusBar = new AppStatusBar(UIConfiguration.getIcon("warning.gif"));
+		this.fStatusBar = new AppStatusBarDefault(UIConfiguration.getIcon("warning.gif"));
 		fTextPaneErrorLog = UIFactoryMgr.createHtmlPane();
 		fTextPaneErrorLog.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
 		fTextPaneErrorLog.addHyperlinkListener(fEventHandler);
 		this.fStatusBar.insertStatusBarComponent(fTextPaneErrorLog,
-				AppStatusBar.COMPONENT_ERROR, AppStatusBar.POSITION_AFTER);
+				AppStatusBarDefault.COMPONENT_ERROR, AppStatusBarDefault.POSITION_AFTER);
+		this.fStatusBar.addListener(fEventHandler);
 	}
 
 	/**
@@ -663,7 +651,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 * @throws StartableError
 	 */
 	protected void createUIWorker() throws Throwable {
-		this.fWorker = new UIWorker(
+		this.fWorker = new UIWorkerDefault(
                 this.fEventHandler,
 				this.fStatusBar.getMessageLabel(),
 				this.fStatusBar.getProgressBar());
@@ -907,7 +895,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 			this.dispose();
 			try {
 				// save preferences
-				ConfigurationMgr.save(PreferencesConfigurationConstants.PREFERENCES);
+				PreferencesConfiguration.get().save();
 			} catch(Exception e) {
 				logger.error(e);
 			}
@@ -962,7 +950,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	protected void handleSettings() {
 		try {
 			final AppFrame vc = this;
-			runJobSynch(new UIWorkerJobDefault(
+			fWorker.runJobSynch(new UIWorkerJobDefault(
 					this,
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(Msg.COMMON_UI_APP_TEXT_READING_CONFIGURATION)) {
@@ -970,9 +958,7 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 					fResult = new ConfigurationEditorDialog(vc);
 				}
 				public void finished(Throwable ex) {
-					if(ex != null) {
-						UIExceptionMgr.userException(ex);
-					} else {
+					if(ex == null) {
 						JDialog ud = (JDialog)fResult;
 						ud.setTitle(MessageRepository.get(Msg.COMMON_UI_APP_TITLE_CONFIGURATION_DIALOG));
 						ud.setSize(500, 350);
