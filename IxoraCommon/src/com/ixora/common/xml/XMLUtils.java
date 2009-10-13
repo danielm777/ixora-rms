@@ -441,7 +441,7 @@ public final class XMLUtils {
 	 * @throws ClassNotFoundException
 	 */
 	public static XMLExternalizable[] readObjects(
-			Class<? extends XMLExternalizable> defaultClass,
+			Class<?> defaultClass,
 			Node node,
 			String subnode) throws
 				XMLException,
