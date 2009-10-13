@@ -23,7 +23,6 @@ import org.w3c.dom.NodeList;
 import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.typedproperties.exception.InvalidPropertyValue;
 import com.ixora.common.typedproperties.exception.PropertyNotFound;
-import com.ixora.common.typedproperties.exception.PropertyTypeMismatch;
 import com.ixora.common.typedproperties.exception.PropertyValueNotSet;
 import com.ixora.common.typedproperties.exception.VetoException;
 import com.ixora.common.utils.Utils;
@@ -288,8 +287,6 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * Sets the value for the given property.
 	 * @param key
 	 * @param value
-	 * @throws PropertyTypeMismatch if the value object is not
-	 * of the type required by the given property
 	 * @throws PropertyNotFound
 	 */
 	@SuppressWarnings("unchecked")
@@ -309,7 +306,6 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	 * Sets the default value for the given property
 	 * @param key
 	 * @param value
-	 * @throws PropertyTypeMismatch
 	 * @throws PropertyNotFound
 	 */
 	@SuppressWarnings("unchecked")

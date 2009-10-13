@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * @author Daniel Moraru
  */
-public class AppEventHubImpl implements AppEventHub {
+public class AppEventHubDefault implements AppEventHub {
 	private List<Listener> fListeners;
 	
-	public AppEventHubImpl() {
+	public AppEventHubDefault() {
 		super();
 		this.fListeners = new LinkedList<Listener>();		
 	}
