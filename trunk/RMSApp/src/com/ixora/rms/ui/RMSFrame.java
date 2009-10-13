@@ -52,7 +52,7 @@ import com.ixora.common.ui.actions.ActionBrowse;
 import com.ixora.common.ui.help.HelpMgr;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
 import com.ixora.common.ui.popup.MRUPopupMenuBuilder;
-import com.ixora.common.ui.preferences.PreferencesConfigurationConstants;
+import com.ixora.common.ui.preferences.PreferencesConfiguration;
 import com.ixora.common.update.UpdateMgr;
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.exception.XMLException;
@@ -423,7 +423,7 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		AppInitializer.initialize(new AppInitializer.Callback(){
+		AppInitializer.initialize(RMSComponent.NAME, new AppInitializer.Callback(){
 			public void initialize() throws SocketException, FailedToSaveConfiguration, RMSException {
 				initApplication();
 			}			
@@ -605,9 +605,9 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.RMSViewContainer#appendToTitle(java.lang.String)
+	 * @see com.ixora.rms.ui.RMSViewContainer#appendToAppFrameTitle(java.lang.String)
 	 */
-	public void appendToTitle(String txt) {
+	public void appendToAppFrameTitle(String txt) {
 		setTitle(MessageRepository.get(Msg.TITLE_FRAME_RMS) + ": " + txt);
 	}
 
@@ -625,8 +625,7 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 		//LicenseMgr.installProvider(new DefaultLicenseProvider(this));
 
 		// add main frame as observer to the user preferences
-		ConfigurationMgr.get(PreferencesConfigurationConstants.PREFERENCES)
-				.addObserver(this);
+		PreferencesConfiguration.get().addObserver(this);
 
 		this.fMRUPopupMenuForButton = new MRUPopupMenuBuilder(
 				getJButtonLoadScheme().getPopupMenu(), this.fEventHandler);
@@ -887,7 +886,6 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 				public void finished(Throwable ex) {
 					if (ex != null) {
 						resetCurrentView();
-						UIExceptionMgr.userException(ex);
 					}
 				}
 			});
@@ -922,7 +920,6 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 				public void finished(Throwable ex) {
 					if (ex != null) {
 						resetCurrentView();
-						UIExceptionMgr.userException(ex);
 					}
 				}
 			});

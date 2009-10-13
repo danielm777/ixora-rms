@@ -75,7 +75,7 @@ public final class BatchMain {
 
 	        /////////////////////// DEBUG ONLY
 //	        batchSession.configure(new BatchSessionConfiguration(
-//	        		"C:\\Dev\\redbox\\RMSApp\\config\\session\\repository\\was61.lperf",
+//	        		"C:\\Dev\\redbox\\RMSApp\\config\\session\\repository\\was61.rms.session",
 //	        		new LogRepositoryInfo(LogRepositoryInfo.TYPE_XML, "C:\test.log")));
 	        ///////////////////////
 

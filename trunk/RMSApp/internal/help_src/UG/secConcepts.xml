@@ -110,7 +110,7 @@
 		<title>Monitoring Session</title>
 		<para>In &programName; all information related to a monitoring sesion
 		(hosts, activated agents, counters plotted and so on) can be saved together
-		as a session file (*.lperf).</para>
+		as a session file (*.rms.session).</para>
 
 		<para>When restoring a session &programName; will attempt to connect to the same
 		hosts and enable the same agents, while restoring the screen layout with all
