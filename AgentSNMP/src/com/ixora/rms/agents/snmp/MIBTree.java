@@ -230,7 +230,7 @@ public class MIBTree implements Serializable {
 		boolean mergedAnything = false;
 
 		// Merge all new or modified files in this tree
-		File[] listMIBs = mibDir.listFiles();
+		File[] listMIBs = Utils.listFilesForFolder(mibDir);
 		if (listMIBs != null) {
 			for (int i = 0; i < listMIBs.length; i++) {
 				File mibFile = listMIBs[i];
