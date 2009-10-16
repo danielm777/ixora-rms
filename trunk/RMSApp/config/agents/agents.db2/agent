@@ -6,7 +6,7 @@
 <description>db2.description</description>
 <category>databases</category>
 <javaHelp>secDB2</javaHelp>
-<webHelp>documentation/monitoring-agents/db2</webHelp>
+<webHelp>monitoring-agents/db2</webHelp>
 <versions>
 	<version>8.1</version>
 	<version>8.2</version>
