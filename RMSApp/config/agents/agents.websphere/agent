@@ -14,6 +14,7 @@
   </versions>
   <messageCatalog>agents.websphere</messageCatalog>
   <javaHelp>secWebsphere</javaHelp>
+  <webHelp>documentation/monitoring-agents/websphere</webHelp>
   <versionItems>
     <versionItem>
       <locations>

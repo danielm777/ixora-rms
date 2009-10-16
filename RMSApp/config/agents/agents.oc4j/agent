@@ -11,6 +11,7 @@
   </versions>
   <messageCatalog>agents.oc4j</messageCatalog>
   <javaHelp>secOC4J</javaHelp>
+  <webHelp>documentation/monitoring-agents/oc4j</webHelp>
   <versionItems>
     <versionItem>
       <locations>

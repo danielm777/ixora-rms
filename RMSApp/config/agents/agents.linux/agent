@@ -12,6 +12,7 @@
   </versions>
   <messageCatalog>agents.linux</messageCatalog>
   <javaHelp>secLinux</javaHelp>
+  <webHelp>documentation/monitoring-agents/linux</webHelp>
   <versionItems>
     <versionItem>
       <locations>

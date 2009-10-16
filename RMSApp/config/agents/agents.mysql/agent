@@ -11,6 +11,7 @@
     <version>5.*</version>
   </versions>
   <javaHelp>secMySQL</javaHelp>
+  <webHelp>documentation/monitoring-agents/mysql</webHelp>
   <versionItems>
     <versionItem>
       <locations>

@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.SocketException;
 import java.rmi.RemoteException;
 import java.rmi.server.ExportException;
@@ -49,7 +48,6 @@ import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.actions.ActionBrowse;
-import com.ixora.common.ui.help.HelpMgr;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
 import com.ixora.common.ui.popup.MRUPopupMenuBuilder;
 import com.ixora.common.ui.preferences.PreferencesConfiguration;
@@ -646,14 +644,6 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 
 		registerMenuItemsForFileMenu(new JMenuItem[] { getJMenuLoadSession(),
 				getJMenuItemNewSession(), getJMenuItemLoadLog() });
-	}
-
-	/**
-	 * @see com.ixora.common.ui.AppFrame#prepareHelp()
-	 */
-	protected void prepareHelp() throws MalformedURLException, HelpSetException {
-		HelpMgr.initialize(this, "help/jhelpset.hs", RMSHelpItems.ABOUT,
-				getJMenuItemHelpLaunch(), null);
 	}
 
 	/**

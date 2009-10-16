@@ -6,6 +6,7 @@
 <description>hostavailability.description</description>
 <category>network</category>
 <javaHelp>secHostAvailability</javaHelp>
+<webHelp>documentation/monitoring-agents/hostavailability</webHelp>
 <versionItems>
 	<versionItem>
 		<locations>

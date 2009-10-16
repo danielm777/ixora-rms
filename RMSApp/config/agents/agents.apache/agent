@@ -6,6 +6,7 @@
 <description>apache.description</description>
 <category>webServers</category>
 <javaHelp>secApache</javaHelp>
+<webHelp>documentation/monitoring-agents/apache-http-server</webHelp>
 <versions>
 <version>IBM Http Server 1.3.x</version>
 <version>Oracle Apache 1.3.x</version>

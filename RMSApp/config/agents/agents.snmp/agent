@@ -11,6 +11,7 @@
     <version>SNMPv3</version>
   </versions>
   <javaHelp>secSNMP</javaHelp>
+  <webHelp>documentation/monitoring-agents/snmp</webHelp>
   <versionItems>
     <versionItem>
       <locations>

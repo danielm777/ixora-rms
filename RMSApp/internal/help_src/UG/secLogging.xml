@@ -5,15 +5,14 @@
 	<sect2 id="paraLogging">
 		<title>Logging</title>
 
-		<para>&programName; can record into an offline file all performance data
+		<para>&programName; can record to a file all performance data
 		collected during a monitoring session. This data can later be replayed
 		in offline mode (without a connection to agents or Host Managers) for
 		further analysis.</para>
 
 		<para>Logging can be enabled at any point during a monitoring session by
-		clicking the 'Data Logging' button on the toolbar. Incoming data will start
-		being recorded in the selected log file. The current version of &programName; only
-		supports logging to a disk file.</para>
+		clicking the 'Data Logging' button on the tool bar. Incoming data will start
+		being recorded in the selected log file.</para>
 
 	</sect2>
 
@@ -21,8 +20,8 @@
 	<sect2 id="paraReplaying">
 		<title>Replaying</title>
 
-		<para>To replay a logged session click the 'Load Log' toolbar button and
-		select the log file. A dialog will open as in the figure bellow that prompts you to adjust the
+		<para>To replay a logged session click the 'Load Log' tool bar button and
+		select the log file. A dialog opens as in the figure bellow that prompts you to adjust the
 		time interval to replay.</para>
 
 		<figure>
@@ -39,7 +38,7 @@
 		<para>Please note that some information (for intstance log file records) will never be aggregated no matter
 		what the settings for the log replay.</para>
 
-		<para>After loading a log file, the Console's user interface will change slightly to
+		<para>After loading a log file, the Console's user interface changes slightly to
 		show the log playback controls.</para>
 
 		<figure>

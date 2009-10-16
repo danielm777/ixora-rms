@@ -8,6 +8,7 @@
   <category>applications</category>
   <messageCatalog>agents.logfile</messageCatalog>
   <javaHelp>secLogFile</javaHelp>
+  <webHelp>documentation/monitoring-agents/logfile</webHelp>
   <versionItems>
     <versionItem>
       <locations>

@@ -34,13 +34,7 @@
 	<qandaentry>
 		<question><para>How do I create my own agent package?</para></question>
 		<answer><para>If you created you own custom agent (see <xref linkend="secCustomData#paraAgentInstaller"/>) 
-		and you want to distribute it you can create your own agent package by creating a zip file with the 'agent' extension 
-		which contains the following files: </para>
-		<itemizedlist>
-			<listitem>agent - copied from /config/agents/<agentid></listitem>
-			<listitem>agent.db, agent.dv, entity.db, entity.dv, agent.pi - copied from /config/repository/<agentid></listitem>	
-			<listitem><agent_id>.properties - copied from /config/messages</listitem>
-		</itemizedlist>
+		and you want to distribute it you can create your own agent package by using the Export facility.</para>
 		</answer>
 	</qandaentry>
 
