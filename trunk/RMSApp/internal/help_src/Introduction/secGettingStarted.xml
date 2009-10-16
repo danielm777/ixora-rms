@@ -2,7 +2,7 @@
 	<title>Getting Started with &programName;</title>
 
 	<para>This contains information about how to install and run &programName;. Refer to <xref linkend="chUG"/> for a full
-	overview of its features. IxoraRMS 1.3 requires J2SE 6.0 or above.</para>
+	overview of its features. IxoraRMS requires J2SE 6.0 or above.</para>
 
 	<indexterm><primary>installing</primary></indexterm>
 	<sect2 id="paraInstalling">
@@ -43,15 +43,12 @@
 			hm.launch.bat or hm.lauch.sh file to start the Host Manager thereafter.</listitem>
 		</itemizedlist>
 
-		<para>When running Console for the first time you will need to enter the license key, either
-		purchased or received after downloading the evaluation version.</para>
-
 		<para>Note that &programName; Console will try to communicate to all Host Managers through a
 		bidirectional TCP/IP channel to offer the best user experience but if such a channel
 		cannot be established (because of firewalls for instance), the console will use a polling mechanism
 		to retrieve data from the Host Managers using a one way channel.</para>
 
-		<para>Click the Load session button and select winsample.rms.session if you are running on Windows.
+		<para>Click the Load session button and select winsample.rmss if you are running on Windows.
 		This will open a sample monitoring session with system information pertinent
 		to the local machine using the Windows Agent.</para>
 

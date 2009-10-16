@@ -4,39 +4,20 @@
 	<sect2 id="secLicense">
 		<title>&programName; License Terms and Conditions </title>
 
-		<para>IMPORTANT: READ THIS DOCUMENT CAREFULLY BEFORE COMPLETING THE INSTALLATION PROCESS OR USING THE SOFTWARE. BY COMPLETING INSTALLATION OF THE SOFTWARE ON ANY COMPUTER, YOU ACCEPT THE LICENSE AND AGREE TO BE BOUND BY ALL ITS TERMS. IF YOU DO NOT AGREE, DO NOT INSTALL OR USE THE SOFTWARE. </para>
+	<para>Copyright 2009 Daniel Moraru, Cristian Costache & Contributors</para>
 
-		<para>Definitions: </para>
-		<itemizedlist>
-			<listitem>"Software" means IxoraRMS, the computer program enclosed with this License. </listitem>
-			<listitem>"Documentation" means the written materials included with the Software, including but not limited to the user guide. </listitem>
-			<listitem>"Product" means the Software and the Documentation, including the delivery medium. </listitem>
-			<listitem>"You" and "Your" mean the person or entity that purchased the Product, and includes the end user if purchased by an entity. </listitem>
-			<listitem>"License Key" is a code received by You upon payment of a fee, and which enables the use of the Product. </listitem>
-			<listitem>"Monitored Host" is a physical or virtual computer which can be monitored by IxoraRMS.</listitem>
-			<listitem>"Console Host" is a physical or virtual computer where the IxoraRMS graphical Console is installed.</listitem>
-		</itemizedlist>
+   <para>Licensed under the <xref linkend="secApacheLicense"/> (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at</para>
 
-		<para>Copyrights. The Authors retain all title and ownership rights in the Product, as well as all other rights not expressly granted in this License. The Product is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. The Product is licensed, not sold. </para>
+       <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
 
-		<para>Rights to use the Product. The Authors grant You a one-time, limited, non-transferable and non-exclusive license to use the Product only in conjuction with a valid License Key. The Product is licensed for the use of one Console at one physical site, for any number of
-		Monitored Hosts.</para>
-
-		<para>Prohibitions. You may make copies of the Product for the purposes of backup and installation, subject to the terms of this License. You may not distribute the Product to anyone, for any purpose, commercial or otherwise. You must not make misrepresentations about the origins of the Product, its Authors or its use. </para>
-
-		<para>You may not sell, transfer, rent, sublease, sublicense, or otherwise assign or distribute the Product, or the License Key, to any other person or entity, or transferred between physical sites. </para>
-
-		<para>You may not modify, amend, create derivative works from, adapt, translate, reverse engineer, decompile, disassemble or otherwise reduce the Software to tangible human readable form. </para>
-
-		<para>Confidentiality. The Product is confidential and proprietary to the Authors. You shall take reasonable steps to protect the Product from unauthorized disclosure, use, copying or distribution. </para>
-
-		<para>Duration of License. The License is effective from Your acceptance until terminated. You may terminate this License at any time by notice to the Authors. The License will terminate automatically if you fail to comply with any term or condition of the License. Upon termination, you agree to return the Product and any copies (in any form) to the Authors promptly. The provisions of the License that protect the Product's confidentiality and Author's proprietary rights, and limit Author's liability and disclaim warranties, will continue in force after termination of the License. No refund will be due upon termination except as otherwise provided here. </para>
-
-		<para>DISCLAIMER OF WARRANTIES. THE PRODUCT IS PROVIDED TO YOU "AS IS". THE AUTHORS DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED. IN PARTICULAR, AND WITHOUT LIMITING THE GENERALITY OF THE FOREGOING DISCLAIMER, THE AUTHORS DISCLAIM WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, AND DO NOT WARRANT THAT THE PRODUCT IS SUITABLE FOR YOUR INTENDED USE OR THAT YOU WILL OBTAIN ANY PARTICULAR RESULTS FROM USING THE PRODUCT. </para>
-
-		<para>Limitation of Damages. In no event will the Authors be liable to you for any damages, direct, indirect, incidental, or consequential, including but not limited to damages from any lost profits, revenues, time, savings, data or software arising out of the use of, or inability to use, the Product, even if the Authors have been advised or are aware of the possibility of such damages. In no event shall the Authors' liability to You exceed the registration fee for the Product. </para>
-
-		<para>Severability. Should any part of this agreement be declared to be void or invalid by the final decision of any court of competent jurisdiction, the remainder of this agreement shall continue to be in force between the parties, as if the portion which has been declared invalid or void was excluded from the agreement at commencement thereof. </para>
+   <para>Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</para>
+   
 	</sect2>
 
 	<sect2 id="secOtherLicenses">

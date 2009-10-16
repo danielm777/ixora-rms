@@ -139,6 +139,330 @@
         </rules>
       </parserInstance>
       <descriptors>
+        <entitydescriptor id="root/Network protocols/tcp">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="retransmit timeouts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connection requests">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="send_and_disconnects">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets dropped due to memory allocation failure">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connections established">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="keepalive timeouts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connections in timewait reused">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connection accepts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connections closed">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="spliced connections">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="delayed ACKs for FIN">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="delayed ACKs for SYN">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="persist timeouts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/icmpv6">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="message responses generated">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bad checksums">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="calls to icmp6_error">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad code fields">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages &lt; minimum length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/ipv6">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="packets not delivered due to bad raw IPv6 checksum">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets dropped due to no bufs, etc.">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="too big packets not forwarded">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets for unknown/unsupported protocol">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets for this host">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets dropped due to the full socket receive buffer">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output datagrams fragmented">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="total packets received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments dropped">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with incorrect version number">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments dropped after timeout">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets forwarded">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets not forwardable">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets discarded due to no route">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent with fabricated ipv6 header">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with illegal source">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with data size &lt; data length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments created">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent from this host">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="input packets without enough memory">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with size smaller than minimum">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets reassembled ok">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets without enough memory">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/icmp">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="message responses generated">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bad checksums">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad code fields">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="calls to icmp_error">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
         <entitydescriptor id="root/Network protocols/ip">
           <alternatename/>
           <description/>
@@ -373,42 +697,6 @@
             <type>0</type>
           </counterdescriptor>
         </entitydescriptor>
-        <entitydescriptor id="root/Network protocols/icmp">
-          <alternatename/>
-          <description/>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="message responses generated">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="bad checksums">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="messages with bad length">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="messages with bad code fields">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="calls to icmp_error">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
         <entitydescriptor id="root/Network protocols/udp">
           <alternatename/>
           <description/>
@@ -463,198 +751,6 @@
             <type>0</type>
           </counterdescriptor>
         </entitydescriptor>
-        <entitydescriptor id="root/Network protocols/icmpv6">
-          <alternatename/>
-          <description/>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="message responses generated">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="bad checksums">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="messages with bad length">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="calls to icmp6_error">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="messages with bad code fields">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="messages &lt; minimum length">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
-        <entitydescriptor id="root/Network protocols/ipv6">
-          <alternatename/>
-          <description/>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="packets not delivered due to bad raw IPv6 checksum">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="output packets dropped due to no bufs, etc.">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="too big packets not forwarded">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets for unknown/unsupported protocol">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets for this host">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets dropped due to the full socket receive buffer">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="output datagrams fragmented">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="total packets received">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="fragments received">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="fragments dropped">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="with incorrect version number">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="fragments dropped after timeout">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets forwarded">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets not forwardable">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="output packets discarded due to no route">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets sent with fabricated ipv6 header">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="with illegal source">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="with data size &lt; data length">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="fragments created">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets sent from this host">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="input packets without enough memory">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="with size smaller than minimum">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets reassembled ok">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="output packets without enough memory">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
         <entitydescriptor id="root/Network protocols/igmp">
           <alternatename/>
           <description/>
@@ -685,106 +781,10 @@
             <type>0</type>
           </counterdescriptor>
         </entitydescriptor>
-        <entitydescriptor id="root/Network protocols/tcp">
-          <alternatename/>
-          <description/>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="retransmit timeouts">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="connection requests">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets sent">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="send_and_disconnects">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets dropped due to memory allocation failure">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="packets received">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="connections established">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="keepalive timeouts">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="connections in timewait reused">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="connection accepts">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="connections closed">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="spliced connections">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="delayed ACKs for FIN">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="delayed ACKs for SYN">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="persist timeouts">
-            <alternatename/>
-            <description/>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
       </descriptors>
       <agentVersions>
-        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
         <agentVersion>5.3</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
       </agentVersions>
     </providerInstance>
     <providerInstance class="com.ixora.rms.repository.ProviderInstance">
@@ -867,10 +867,10 @@
         </entitydescriptor>
       </descriptors>
       <agentVersions>
-        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
         <agentVersion>5.3</agentVersion>
         <agentVersion>5.1</agentVersion>
         <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
       </agentVersions>
     </providerInstance>
     <providerInstance class="com.ixora.rms.repository.ProviderInstance">
@@ -954,10 +954,10 @@
         </entitydescriptor>
       </descriptors>
       <agentVersions>
-        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
         <agentVersion>5.3</agentVersion>
         <agentVersion>5.1</agentVersion>
         <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
       </agentVersions>
     </providerInstance>
     <providerInstance class="com.ixora.rms.repository.ProviderInstance">
@@ -1014,6 +1014,66 @@
         </rules>
       </parserInstance>
       <descriptors>
+        <entitydescriptor id="root/System">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Device interrupts">
+            <alternatename/>
+            <description>Device interrupts</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel thread context switches">
+            <alternatename/>
+            <description>Kernel thread context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in run queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in run queue</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in wait queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in wait queue (awaiting resource, awaiting input/output)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description>System calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Threads waiting for I/O">
+            <alternatename/>
+            <description>Number of threads waiting on actual physical I/O per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Memory">
+          <alternatename/>
+          <description>Information about the usage of virtual and real memory. Virtual pages are considered active if they have been accessed. A page is 4096 bytes.</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Active virtual pages">
+            <alternatename/>
+            <description>Active virtual pages</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Free list size">
+            <alternatename/>
+            <description>Size of the free list. Note that a large portion of real memory is utilized as a cache for file system data. It is not unusual for the size of the free list to remain small</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
         <entitydescriptor id="root/CPU">
           <alternatename/>
           <description>Shows details about processor usage</description>
@@ -1082,66 +1142,6 @@
           <counterdescriptor id="Pages scanned">
             <alternatename/>
             <description>Pages scanned by page-replacement algorithm</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
-        <entitydescriptor id="root/System">
-          <alternatename/>
-          <description/>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="Device interrupts">
-            <alternatename/>
-            <description>Device interrupts</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Kernel thread context switches">
-            <alternatename/>
-            <description>Kernel thread context switches</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Kernel threads in run queue">
-            <alternatename/>
-            <description>Number of kernel threads placed in run queue</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Kernel threads in wait queue">
-            <alternatename/>
-            <description>Number of kernel threads placed in wait queue (awaiting resource, awaiting input/output)</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="System calls">
-            <alternatename/>
-            <description>System calls</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Threads waiting for I/O">
-            <alternatename/>
-            <description>Number of threads waiting on actual physical I/O per second</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
-        <entitydescriptor id="root/Memory">
-          <alternatename/>
-          <description>Information about the usage of virtual and real memory. Virtual pages are considered active if they have been accessed. A page is 4096 bytes.</description>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="Active virtual pages">
-            <alternatename/>
-            <description>Active virtual pages</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Free list size">
-            <alternatename/>
-            <description>Size of the free list. Note that a large portion of real memory is utilized as a cache for file system data. It is not unusual for the size of the free list to remain small</description>
             <discreet>false</discreet>
             <type>0</type>
           </counterdescriptor>
@@ -1234,10 +1234,10 @@
         </entitydescriptor>
       </descriptors>
       <agentVersions>
-        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
         <agentVersion>5.3</agentVersion>
         <agentVersion>5.1</agentVersion>
         <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
       </agentVersions>
     </providerInstance>
     <providerInstance class="com.ixora.rms.repository.ProviderInstance">
@@ -1329,10 +1329,10 @@
         </entitydescriptor>
       </descriptors>
       <agentVersions>
-        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
         <agentVersion>5.3</agentVersion>
         <agentVersion>5.1</agentVersion>
         <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
       </agentVersions>
     </providerInstance>
     <providerInstance class="com.ixora.rms.repository.ProviderInstance">
@@ -1380,7 +1380,7 @@
             <column cid="Wait time" eid="root/CPU/{0}" idx="13"/>
             <column cid="Idle time" eid="root/CPU/{0}" idx="14"/>
           </columns>
-          <ignoreLines>System|cpu|ALL|---|mpstat</ignoreLines>
+          <ignoreLines>System|cpu|ALL|---|mpstat|U</ignoreLines>
           <accumulateVolatileEntities>true</accumulateVolatileEntities>
           <convertColumnToRow>false</convertColumnToRow>
         </rules>
@@ -1537,6 +1537,66 @@
         </rules>
       </parserInstance>
       <descriptors>
+        <entitydescriptor id="root/System">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description>System calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Device interrupts">
+            <alternatename/>
+            <description>Device interrupts</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in run queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in run queue</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel thread context switches">
+            <alternatename/>
+            <description>Kernel thread context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Threads waiting for I/O">
+            <alternatename/>
+            <description>Number of threads waiting on actual physical I/O per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in wait queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in wait queue (awaiting resource, awaiting input/output)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Memory">
+          <alternatename/>
+          <description>Information about the usage of virtual and real memory. Virtual pages are considered active if they have been accessed. A page is 4096 bytes.</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Free list size">
+            <alternatename/>
+            <description>Size of the free list. Note that a large portion of real memory is utilized as a cache for file system data. It is not unusual for the size of the free list to remain small</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Active virtual pages">
+            <alternatename/>
+            <description>Active virtual pages</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
         <entitydescriptor id="root/CPU">
           <alternatename/>
           <description>Shows details about processor usage</description>
@@ -1617,66 +1677,6 @@
           <counterdescriptor id="File page-outs">
             <alternatename/>
             <description>File page-outs per second</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
-        <entitydescriptor id="root/Memory">
-          <alternatename/>
-          <description>Information about the usage of virtual and real memory. Virtual pages are considered active if they have been accessed. A page is 4096 bytes.</description>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="Free list size">
-            <alternatename/>
-            <description>Size of the free list. Note that a large portion of real memory is utilized as a cache for file system data. It is not unusual for the size of the free list to remain small</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Active virtual pages">
-            <alternatename/>
-            <description>Active virtual pages</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
-        <entitydescriptor id="root/System">
-          <alternatename/>
-          <description/>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="System calls">
-            <alternatename/>
-            <description>System calls</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Device interrupts">
-            <alternatename/>
-            <description>Device interrupts</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Kernel threads in run queue">
-            <alternatename/>
-            <description>Number of kernel threads placed in run queue</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Kernel thread context switches">
-            <alternatename/>
-            <description>Kernel thread context switches</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Threads waiting for I/O">
-            <alternatename/>
-            <description>Number of threads waiting on actual physical I/O per second</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Kernel threads in wait queue">
-            <alternatename/>
-            <description>Number of kernel threads placed in wait queue (awaiting resource, awaiting input/output)</description>
             <discreet>false</discreet>
             <type>0</type>
           </counterdescriptor>

@@ -5,6 +5,7 @@
 <name>agents.file</name>
 <description>file.description</description>
 <javaHelp>secFile</javaHelp>
+<webHelp>documentation/monitoring-agents/file</webHelp>
  <versionItems>
   	<versionItem>
 	   <locations>

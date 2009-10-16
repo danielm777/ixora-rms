@@ -882,5 +882,37 @@
       <author>system</author>
       <category id="servlet"/>
     </view>
-  </views>
+  <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+    <name>JDBC datasources wait thread count</name>
+    <description>JDBC datasources wait thread count</description>
+    <query>
+      <resource id="id16" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[WaitingThreadCount]"/>
+      <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+    </query>
+    <agentVersions>
+      <agentVersion>6.1.*</agentVersion>
+    </agentVersions>
+    <author>customer</author>
+    <renderer type="XYLine">
+      <domain id="time"/>
+      <range id="id16"/>
+    </renderer>
+  </view>
+  <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+    <name>JMS resources wait thread count</name>
+    <description>JMS resources wait thread count</description>
+    <query>
+      <resource id="id14" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/j2cModule/(.*)/(.*)/[WaitingThreadCount]"/>
+      <resource id="time" rid="-/-/root/(.*)/(.*)/j2cModule/(.*)/(.*)/[#time#]"/>
+    </query>
+    <agentVersions>
+      <agentVersion>6.1.*</agentVersion>
+    </agentVersions>
+    <author>customer</author>
+    <renderer type="XYLine">
+      <domain id="time"/>
+      <range id="id14"/>
+    </renderer>
+  </view>    
+  </views>  
 </rms>

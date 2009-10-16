@@ -1,8 +1,9 @@
 <section id="secPerfMon">
 	<title>Performance Monitoring</title>
 
-	<indexterm><primary>session</primary><secondary>structure</secondary></indexterm>
-	<sect2 id="paraSessionStructure">
+	<indexterm><primary>session</primary><secondary>agent</secondary></indexterm>
+	<sect2 id="paraAddingHosts">
+		<title>Adding Hosts</title>
 		<para>In order to start monitoring you must first create a <xref linkend="paraMonitoringSession"/>
 		by clicking on the New Session button. This will prompt you for an initial list of
 		hosts (more can be added later on by right-clicking on the session and selecting 'Add Host').
@@ -24,11 +25,14 @@
 		<para>A host can have two possible 'online/offline' states, as follows</para>
 		<itemizedlist>
 			<listitem>HM:'online/offline' shows whether <xref linkend="paraHostManager"/> is running on this machine.</listitem>
-			<listitem>P:'online/offline' shows whether this machine responds to 'ping' requests.</listitem>
+			<listitem>P:'online/offline' shows whether this machine responds to ICMP ping messages.</listitem>
 		</itemizedlist>
 
+	</sect2>
+	<sect2 id="paraAddingAgents">
+		<title>Adding Agents</title>
 		<para>Once at least one host is added to the monitoring session, agents can be
-		activated by right-clicking the host and selecting 'Add Agent(s)'</para>
+		activated by right-clicking the host and selecting 'Add Agent(s)' context menu item.</para>
 		<figure>
 			<title>Agent Activator</title>
 			<graphic fileref="images/agent_activator.png"/>
@@ -44,20 +48,19 @@
 	<sect2 id="paraPlotting">
 		<title>Plotting</title>
 
-		<para>Graphic controls in &programName; are displayed on Boards, with each board
+		<para>Graphic controls in &programName; are displayed on boards, with each board
 		supporting one type of control. See <xref linkend="secControls"/> for more details
 		on available controls.</para>
 
       <para>To plot, select one or more counters, right click and select Plot from the
       context menu.</para>
 
-
 		<para>Depending on the type of item plotted, a different graphic will be created.
 		However in each case all resulting controls will always be placed on their appropriate
 		board.
 		<itemizedlist>
 			<listitem>Numeric Counter: If the value of the counter being plotted is a number, it will be
-			displayed as a time series on a new <xref linkend="paraChartControl"/></listitem>
+			displayed as a time series on an appropiate <xref linkend="paraChartControl"/></listitem>
 			<listitem>Text Counter: If the counter has a text value then a <xref linkend="paraPropertiesControl"/>
 			is created.</listitem>
 			<listitem>View: The control created is specified by the view's definition.</listitem>

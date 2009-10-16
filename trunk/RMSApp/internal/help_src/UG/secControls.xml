@@ -105,7 +105,7 @@
 		<itemizedlist>
 			<listitem>&lt;category&gt;(mandatory): selects one resource as the category, used
          when creating bar charts from values in the table.
-         This tag can only have one optional attribute: &lt;removeStale&gt; that has a boolean value. If the value is
+         This tag can only have one optional attribute: removeStale that has a boolean value. If the value is
          true than after every data collection cycle all items that have not been updated will be removed from the table.
          The default value of this attribute is false.
          </listitem>
@@ -158,7 +158,7 @@
 
       </para>
 
-      <para>Dynamic charts can be created, having table's category as domain, and selected
+      <para>From table controls, charts can be created, having table's category as domain, and selected
       columns as ranges. See <xref linkend="paraChartControl"/> for a list of chart styles.
       The control will prompt you to select the renderer type, and which columns to show.
       </para>

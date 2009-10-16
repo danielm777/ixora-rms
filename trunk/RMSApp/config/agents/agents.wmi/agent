@@ -6,6 +6,7 @@
   <description>wmi.description</description>
   <category>network</category>
   <javaHelp>secWMI</javaHelp>
+  <webHelp>documentation/monitoring-agents/wmi</webHelp>
   <versionItems>
     <versionItem>
       <locations>

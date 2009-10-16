@@ -3,10 +3,9 @@
 
 	<indexterm><primary>concepts</primary></indexterm>
 	<sect2 id="paraOverview">
-		<para>&programName; is a performance and resource monitoring tool, designed to present
-		heterogenous data collected from various sources in a graphical way. In &programName;
-		data is collected by Agents and passed to the Console to be displayed
-		visually, or to be recorded for later playback.</para>
+	
+		<para>&programName; is a performance and resource monitoring tool, designed to present heterogeneous data, collected from various sources, in a graphical way. 
+		In &programName; data is collected by Agents and passed to the Console to be displayed or to be recorded for later playback.</para>
 
 		<para>There are two main modes of monitoring using &programName; and choosing one
 		over the other depends whether Host Manager can or needs to be installed on the target machine.</para>
@@ -20,7 +19,7 @@
 		resources on the monitored system.</para>
 
 		<figure>
-			<title>Agentless monitoring</title>
+			<title>Agent-less monitoring</title>
 			<graphic fileref="images/agentless_monitoring.gif"/>
 		</figure>
 		<para>This is the preferred way to monitor a system as it usually is more efficient.
@@ -39,9 +38,9 @@
 		making it available to the Console. Depending on the type of application or system
 		being monitored, an agent can perform its data-collecting duties in two modes:
 		<itemizedlist>
-			<listitem>local: the agent itself is run locally and collects data through the
+			<listitem>Local: the agent itself is run locally and collects data through the
 			network from the monitored system.</listitem>
-			<listitem>remote: Host Manager must have been installed on the monitored system.
+			<listitem>Remote: Host Manager must have been installed on the monitored system.
 			The agent will run on the remote host and will use Host Monitor to send data
 			to the Console.</listitem>
 		</itemizedlist>
@@ -110,7 +109,7 @@
 		<title>Monitoring Session</title>
 		<para>In &programName; all information related to a monitoring sesion
 		(hosts, activated agents, counters plotted and so on) can be saved together
-		as a session file (*.rms.session).</para>
+		as a session file (*.rmss).</para>
 
 		<para>When restoring a session &programName; will attempt to connect to the same
 		hosts and enable the same agents, while restoring the screen layout with all
@@ -127,8 +126,8 @@
 		frequency controlled by the Sampling Interval parameter.</para>
 
 		<para>The Sampling Interval is typically adjusted at Monitoring Session level
-		by changing the value on the application toolbar. This value is propagated
-		and used by all agents, unless overriden.</para>
+		by changing the value on the application toolbar. 
+		This value is propagated and used by all agents, unless overridden at agent or entity level.</para>
 		<figure>
 			<title>Setting Sampling Interval at Session level</title>
 			<graphic fileref="images/toolbar_sample_interval.png"/>

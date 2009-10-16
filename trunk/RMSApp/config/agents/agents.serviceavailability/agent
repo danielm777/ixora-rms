@@ -6,6 +6,7 @@
 <description>serviceavailability.description</description>
 <category>network</category>
 <javaHelp>secServiceAvailability</javaHelp>
+<webHelp>documentation/monitoring-agents/serviceavailability</webHelp>
 <versionItems>
     <versionItem>
 	<locations>

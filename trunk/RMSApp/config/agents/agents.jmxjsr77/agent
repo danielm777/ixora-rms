@@ -8,6 +8,7 @@
   <category>miscellaneous</category>
   <messageCatalog>agents.jmxjsr77</messageCatalog>
   <javaHelp>secJMXJSR77</javaHelp>
+  <webHelp>documentation/monitoring-agents/jmxjsr77</webHelp>
   <versionItems>
     <versionItem>
       <locations>

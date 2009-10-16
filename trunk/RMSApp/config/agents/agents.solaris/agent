@@ -7,6 +7,7 @@
   <description>solaris.description</description>
   <category>operatingSystems</category>
   <javaHelp>secSolaris</javaHelp>
+  <webHelp>documentation/monitoring-agents/solaris</webHelp>
   <versions>
     <version>Solaris 8</version>
     <version>Solaris 9</version>
