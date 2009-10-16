@@ -5,16 +5,7 @@ import java.awt.Window;
 /**
  * @author Daniel Moraru
  */
-public interface AppHelp {
-	public enum ProviderType {
-		JAVA_HELP, WEB
-	}
-	
-	/**
-	 * @return
-	 */
-	ProviderType getPreferredProviderType();
-	
+public interface AppHelpProvider {
 	/**
 	 * @param window
 	 * @param helpID

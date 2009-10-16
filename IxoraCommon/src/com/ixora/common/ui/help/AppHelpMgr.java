@@ -19,7 +19,7 @@ import com.ixora.common.utils.Utils;
  */
 public final class AppHelpMgr implements AppHelp {
 	private static final AppLogger logger = AppLoggerFactory.getLogger(HelpComponent.NAME);
-	private static AppHelp provider;
+	private static AppHelpProvider provider;
 	
 	/**
 	 * @param appFrame the application frame
@@ -40,7 +40,7 @@ public final class AppHelpMgr implements AppHelp {
 				}
 			} else if(HelpConfiguration.HELP_PROVIDER_WEB.equalsIgnoreCase(configuredHelpType)) {
 				try {
-					provider = new AppHelpJavaHelp(appFrame, helpMenuItem);
+					provider = new AppHelpWeb(appFrame, helpMenuItem);
 				} catch(Exception e) {
 					throw new AppException(e);
 				}			
@@ -59,5 +59,17 @@ public final class AppHelpMgr implements AppHelp {
 		} else {
 			provider.showHelp(window, helpID);
 		}
+	}
+
+	/**
+	 * @see com.ixora.common.ui.help.AppHelp#getPreferredProviderType()
+	 */
+	public ProviderType getPreferredProviderType() {
+		if(provider instanceof AppHelpJavaHelp) {
+			return ProviderType.JAVA_HELP;
+		} else if(provider instanceof AppHelpWeb) {
+			return ProviderType.WEB;
+		}
+		return null;
 	}
 }
