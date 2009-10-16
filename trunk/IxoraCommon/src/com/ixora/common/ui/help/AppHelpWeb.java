@@ -19,7 +19,7 @@ import com.ixora.common.utils.Utils;
  * Application help provided by JavaHelp.
  * @author Daniel Moraru
  */
-public class AppHelpWeb implements AppHelp {	
+public class AppHelpWeb implements AppHelpProvider {	
     private String fBaseURL;
 
 	public AppHelpWeb(JFrame appFrame, JMenuItem helpMenuItem) {
@@ -36,7 +36,7 @@ public class AppHelpWeb implements AppHelp {
 	 * @see com.ixora.common.ui.help.AppHelp#showHelp(java.awt.Window, java.lang.String)
 	 */
 	public void showHelp(Window window, String helpID) {
-		launchHelp(fBaseURL + "/helpID");
+		launchHelp(fBaseURL + "/" + helpID);
 	}
 
 	private void launchHelp(final String url) {

@@ -24,7 +24,7 @@ import com.ixora.common.utils.Utils;
  * Application help provided by JavaHelp.
  * @author Daniel Moraru
  */
-public class AppHelpJavaHelp implements AppHelp {
+public class AppHelpJavaHelp implements AppHelpProvider {
 	/** Help broker */
 	private HelpBroker fHelpBroker;
 	/** Appearance customizer */
