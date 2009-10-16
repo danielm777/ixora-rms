@@ -207,7 +207,7 @@ public final class ConfigurationPanel extends DefaultAgentCustomConfigurationPan
 	 * @throws XMLException
 	 */
 	private void persistParsers() throws XMLException {
-		fContext.getViewContainer().runJob(
+		fContext.getViewContainer().getAppWorker().runJob(
 				new UIWorkerJobDefault(
 						fContext.getViewContainer().getAppFrame(),
 						Cursor.WAIT_CURSOR,
@@ -220,9 +220,6 @@ public final class ConfigurationPanel extends DefaultAgentCustomConfigurationPan
 						StoredLogParserDef.class);
 			}
 			public void finished(Throwable ex) throws Throwable {
-				if(ex != null) {
-					UIExceptionMgr.userException(ex);
-				}
 			}
 		});
 	}
