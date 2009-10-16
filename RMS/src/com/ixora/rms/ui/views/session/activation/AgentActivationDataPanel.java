@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 
 import com.ixora.rms.RMSComponent;
 import com.ixora.rms.RMSConfigurationConstants;
-import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;

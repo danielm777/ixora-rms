@@ -22,8 +22,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-import com.ixora.rms.HostId;
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.history.HistoryMgr;
@@ -34,9 +32,10 @@ import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.actions.ActionClose;
 import com.ixora.common.ui.actions.ActionHelp;
-import com.ixora.common.ui.help.HelpMgr;
 import com.ixora.common.ui.jobs.UIWorkerJobCancelableWithProgress;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
+import com.ixora.rms.HostId;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.AgentActivationData;
 import com.ixora.rms.agents.AgentActivationTuple;
 import com.ixora.rms.agents.AgentId;
@@ -443,7 +442,7 @@ public final class AgentActivatorDialog extends AppDialog {
 			AgentData data = agentNode.getAgentData();
 			String help = data.getAgentInstallationDtls().getJavaHelp();
 			if(help != null) {
-				HelpMgr.showHelp(this, help);
+				fViewContainer.getAppHelp().showHelp(this, help);
 			}
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);

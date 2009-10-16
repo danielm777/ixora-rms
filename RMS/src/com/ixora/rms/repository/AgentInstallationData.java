@@ -42,6 +42,8 @@ public final class AgentInstallationData implements InstallationArtefact {
 	private String messageCatalog;
 	/** Help url for java help */
 	private String javaHelp;
+	/** Help url for web help */
+	private String webHelp;
 	/** The categoty this agents belongs to */
 	private String category;
 	/**
@@ -72,6 +74,8 @@ public final class AgentInstallationData implements InstallationArtefact {
 	 * @param jars
 	 * @param uiJar
 	 * @param msgCatlog
+	 * @param javaHelp
+	 * @param webHelp
 	 * @param versData
 	 * @param category the category this agent belongs to
 	 */
@@ -84,10 +88,11 @@ public final class AgentInstallationData implements InstallationArtefact {
 		String[] versions,
 		String msgCatalog,
 		String javaHelp,
+		String webHelp,
         VersionableAgentInstallationDataMap versData,
         String category) {
 		super();
-		init(implClass, customAgent, version, agentName, description, versions, msgCatalog, javaHelp, versData, category);
+		init(implClass, customAgent, version, agentName, description, versions, msgCatalog, javaHelp, webHelp, versData, category);
         // check if we have at least one version data
         Collection<VersionableAgentInstallationData> coll = this.versionData.getAll();
         if(Utils.isEmptyCollection(coll)) {
@@ -104,6 +109,7 @@ public final class AgentInstallationData implements InstallationArtefact {
 	 * @param versions
 	 * @param msgCatalog
 	 * @param javaHelp
+	 * @param webHelp
 	 * @param versData
 	 * @param category
 	 */
@@ -115,6 +121,7 @@ public final class AgentInstallationData implements InstallationArtefact {
 			String[] versions,
 			String msgCatalog,
 			String javaHelp,
+			String webHelp,
 	        VersionableAgentInstallationDataMap versData, String category) {
 		this.implClass = implClass;
 		this.customAgent = customAgent;
@@ -124,6 +131,7 @@ public final class AgentInstallationData implements InstallationArtefact {
 		this.systemVersions = versions;
 		this.messageCatalog = msgCatalog;
 		this.javaHelp = javaHelp;
+		this.webHelp = webHelp;
         this.versionData = versData;
         this.category = category;
 	}
@@ -155,10 +163,11 @@ public final class AgentInstallationData implements InstallationArtefact {
         String[] versions,
         String msgCatalog,
         String javaHelp,
+        String webHelp,
         VersionableAgentInstallationData versData,
         String category) {
     	super();
-        init(implClass, customAgent, version, agentName, description, versions, msgCatalog, javaHelp,
+        init(implClass, customAgent, version, agentName, description, versions, msgCatalog, javaHelp, webHelp,
         		new VersionableAgentInstallationDataMap(), category);
         this.versionData.add(versData);
     }
@@ -240,6 +249,13 @@ public final class AgentInstallationData implements InstallationArtefact {
 	}
 
 	/**
+	 * @return the web help url.
+	 */
+	public String getWebHelp() {
+		return webHelp;
+	}
+	
+	/**
 	 * @return the agent version.
 	 */
 	public ComponentVersion getAgentVersion() {
@@ -313,6 +329,11 @@ public final class AgentInstallationData implements InstallationArtefact {
 			an.appendChild(el);
 			el.appendChild(doc.createTextNode(javaHelp));
 		}
+		if(webHelp != null) {
+			el = doc.createElement("webHelp");
+			an.appendChild(el);
+			el.appendChild(doc.createTextNode(webHelp));
+		}
 		this.versionData.toXML(parent);
 	}
 
@@ -378,6 +399,10 @@ public final class AgentInstallationData implements InstallationArtefact {
 		n = XMLUtils.findChild(node, "javaHelp");
 		if(n != null) {
 			this.javaHelp = XMLUtils.getText(n);
+		}
+		n = XMLUtils.findChild(node, "webHelp");
+		if(n != null) {
+			this.webHelp = XMLUtils.getText(n);
 		}
 
 		this.versionData = new VersionableAgentInstallationDataMap();

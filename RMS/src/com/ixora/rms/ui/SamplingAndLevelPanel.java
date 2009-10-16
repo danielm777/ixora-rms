@@ -19,8 +19,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.ixora.rms.RMSComponent;
-import com.ixora.rms.RMSConfigurationConstants;
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
@@ -30,6 +28,8 @@ import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.rms.MonitoringConfiguration;
 import com.ixora.rms.MonitoringLevel;
+import com.ixora.rms.RMSComponent;
+import com.ixora.rms.RMSConfigurationConstants;
 import com.ixora.rms.ui.messages.Msg;
 
 /**

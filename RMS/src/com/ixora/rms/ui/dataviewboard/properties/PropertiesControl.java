@@ -13,8 +13,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import com.ixora.rms.ResourceId;
-import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ui.filter.RowFilter;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.repository.DataView;

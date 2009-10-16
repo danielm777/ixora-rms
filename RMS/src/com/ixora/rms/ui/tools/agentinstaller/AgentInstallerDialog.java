@@ -350,7 +350,8 @@ public final class AgentInstallerDialog extends AppDialog {
 	                    			null,
 	                    			null,
 	                    			null);
-	                    init = new AgentInstallationData(selectedTemplate.getAgentClass(), true, new ComponentVersion(1,0,0), null, null, null, null, null, vad, null);
+	                    init = new AgentInstallationData(selectedTemplate.getAgentClass(), true, new ComponentVersion(1,0,0), 
+	                    				null, null, null, null, null, null, vad, null);
 	                }
 	            }
 				AgentInstallationDataDialog editor = new AgentInstallationDataDialog(
