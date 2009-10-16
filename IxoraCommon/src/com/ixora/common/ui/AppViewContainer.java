@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import com.ixora.common.ui.help.AppHelp;
 import com.ixora.common.ui.jobs.UIWorker;
 
 /*
@@ -97,4 +98,9 @@ public interface AppViewContainer {
 	 * @return
 	 */
 	UIWorker getAppWorker();
+	
+	/**
+	 * @return
+	 */
+	AppHelp getAppHelp();
 }

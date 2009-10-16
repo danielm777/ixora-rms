@@ -48,7 +48,7 @@ public final class ConfigurationMgr {
 	 */
 	public synchronized static void registerConfiguration(
 			String component,
-			ComponentConfiguration c) {
+			ComponentConfigurationDefault c) {
 		configurations.put(component, c);
 	}
 
@@ -103,7 +103,7 @@ public final class ConfigurationMgr {
 		if(c == null) {
 			try {
 				// try to load it
-				c = new ComponentConfiguration(
+				c = new ComponentConfigurationDefault(
 						"config/" + component.replace('.', '/') + "/config.properties");
 				configurations.put(component, c);
 			} catch (FailedToLoadConfiguration e) {
@@ -118,7 +118,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getString(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getString(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -128,7 +128,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getObject(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getObject(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -138,7 +138,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getFloat(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getFloat(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -156,7 +156,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getInt(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getInt(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -166,7 +166,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getDate(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getDate(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -176,7 +176,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getFile(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getFile(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -186,7 +186,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getColor(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getColor(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -196,7 +196,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getList(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getList(String)
 	 * @param component
 	 * @param property
 	 * @return
@@ -206,7 +206,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#getList(String)
+	 * @see com.ixora.common.ComponentConfigurationDefault#getList(String)
 	 * @param component
 	 * @param clazz
 	 * @param property
@@ -222,7 +222,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#set(String, String, Object)
+	 * @see com.ixora.common.ComponentConfigurationDefault#set(String, String, Object)
 	 * @param component
 	 * @param o
 	 * @throws InvalidPropertyValue
@@ -232,7 +232,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#setInt(String, int)
+	 * @see com.ixora.common.ComponentConfigurationDefault#setInt(String, int)
 	 * @param component
 	 * @param o
 	 */
@@ -241,7 +241,7 @@ public final class ConfigurationMgr {
 	}
 
     /**
-     * @see com.ixora.common.ComponentConfiguration#setString(String, String)
+     * @see com.ixora.common.ComponentConfigurationDefault#setString(String, String)
      * @param component
      * @param o
      */
@@ -250,7 +250,7 @@ public final class ConfigurationMgr {
     }
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#setFloat(String, float)
+	 * @see com.ixora.common.ComponentConfigurationDefault#setFloat(String, float)
 	 * @param component
 	 * @param o
 	 */
@@ -259,7 +259,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#setBoolean(String, boolean)
+	 * @see com.ixora.common.ComponentConfigurationDefault#setBoolean(String, boolean)
 	 * @param component
 	 * @param o
 	 */
@@ -268,7 +268,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#setDate(String, Date)
+	 * @see com.ixora.common.ComponentConfigurationDefault#setDate(String, Date)
 	 * @param component
 	 * @param o
 	 */
@@ -277,7 +277,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#setFile(String, File)
+	 * @see com.ixora.common.ComponentConfigurationDefault#setFile(String, File)
 	 * @param component
 	 * @param o
 	 */
@@ -286,7 +286,7 @@ public final class ConfigurationMgr {
 	}
 
 	/**
-	 * @see com.ixora.common.ComponentConfiguration#setColor(String, Color)
+	 * @see com.ixora.common.ComponentConfigurationDefault#setColor(String, Color)
 	 * @param component
 	 * @param o
 	 */

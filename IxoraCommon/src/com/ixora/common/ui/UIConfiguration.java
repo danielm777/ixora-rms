@@ -6,7 +6,7 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-import com.ixora.common.ComponentConfiguration;
+import com.ixora.common.ComponentConfigurationDefault;
 import com.ixora.common.exception.FailedToLoadConfiguration;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
@@ -17,7 +17,7 @@ import com.ixora.common.utils.Utils;
  * UI configuration.
  * @author: Daniel Moraru
  */
-public final class UIConfiguration extends ComponentConfiguration {
+public final class UIConfiguration extends ComponentConfigurationDefault {
 	private static final long serialVersionUID = 956947740166419981L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(UIConfiguration.class);

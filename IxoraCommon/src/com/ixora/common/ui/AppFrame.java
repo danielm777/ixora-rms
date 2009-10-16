@@ -8,10 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.help.HelpSetException;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -37,7 +35,8 @@ import com.ixora.common.messages.Msg;
 import com.ixora.common.os.OSUtils;
 import com.ixora.common.security.license.LicenseMgr;
 import com.ixora.common.security.license.ui.ShowLicense;
-import com.ixora.common.ui.help.HelpMgr;
+import com.ixora.common.ui.help.AppHelp;
+import com.ixora.common.ui.help.AppHelpMgr;
 import com.ixora.common.ui.jobs.UIWorker;
 import com.ixora.common.ui.jobs.UIWorkerDefault;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
@@ -81,6 +80,8 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	protected AppStatusBarDefault fStatusBar;
 	/** Event hub */
 	protected AppEventHub fEventHub;
+	/** Help */
+	protected AppHelp fHelp;
     /** Log with non fatal errors */
 	protected NonFatalErrorBuffer fNonFatalErrorBuffer;
 	/** Feedback url */
@@ -482,6 +483,14 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		return this.fWorker;
 	}
 
+	
+	/**
+	 * @see com.ixora.common.ui.AppViewContainer#getAppHelp()
+	 */
+	public AppHelp getAppHelp() {
+		return this.fHelp;
+	}
+
 	/**
 	 * @param txt
 	 * @param t
@@ -590,8 +599,8 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		setJMenuBar(getJJMenuBar());
 		
 		setTitle();
-
-		prepareHelp();
+		
+		fHelp = new AppHelpMgr(this, getJMenuItemHelpLaunch());
 
         fNonFatalErrorBuffer = new NonFatalErrorBuffer(
                 params.getInt(AppFrameParameters.NON_FATAL_ERRORS_BUFFER_SIZE));
@@ -621,15 +630,6 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 		if(lookAndFeelClass != null) {
 			UIManager.setLookAndFeel(lookAndFeelClass);
 		}
-	}
-
-	/**
-	 * Prepares the help.
-	 * @throws HelpSetException
-	 * @throws MalformedURLException
-	 */
-	protected void prepareHelp() throws MalformedURLException, HelpSetException {
-		HelpMgr.initialize(this, "help/help.hs", "intro", getJMenuItemHelpLaunch(), null);
 	}
 
 	/**

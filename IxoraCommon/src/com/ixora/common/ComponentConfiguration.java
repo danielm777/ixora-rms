@@ -1,230 +1,45 @@
 package com.ixora.common;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.awt.Color;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
+import java.util.Observer;
+import java.util.Set;
 
-import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
-import com.ixora.common.exception.FailedToLoadConfiguration;
 import com.ixora.common.exception.FailedToSaveConfiguration;
 import com.ixora.common.exception.ReadOnlyConfiguration;
-import com.ixora.common.typedproperties.PropertyEntry;
 import com.ixora.common.typedproperties.TypedProperties;
-import com.ixora.common.utils.Utils;
-import com.ixora.common.xml.XMLUtils;
+import com.ixora.common.typedproperties.exception.InvalidPropertyValue;
 import com.ixora.common.xml.exception.XMLException;
 
-
 /**
- * Application/Component configuration class.
  * @author Daniel Moraru
  */
-public class ComponentConfiguration extends TypedProperties {
-	private static final long serialVersionUID = 7836771735023076337L;
-	/** Path to the conf file */
-	private String confFile;
-
-	/**
-	 * Constructor for a read only configuration.
-	 * @param is
-	 * @throws FailedToLoadConfiguration If an exception occurs while reading the stream
-	 */
-	protected ComponentConfiguration(BufferedInputStream is) throws FailedToLoadConfiguration {
-		super();
-		loadConfiguration(is);
-	}
-
-	/**
-	 * Constructor.
-	 * @param path Relative path to the configuration file.
-	 * @throws FailedToLoadConfiguration If any exception is thrown while trying
-	 * to load the configuration file
-	 */
-	protected ComponentConfiguration(String path) throws FailedToLoadConfiguration {
-		super();
-		loadConfigurationFromFile(path);
-	}
+public interface ComponentConfiguration {
 
 	/**
 	 * Saves the configuration.
 	 * @throws FailedToSaveConfiguration
 	 * @throws ReadOnlyConfiguration
 	 */
-	public void save() throws ReadOnlyConfiguration, FailedToSaveConfiguration {
-		if(this.confFile == null) {
-			// read only
-			throw new ReadOnlyConfiguration();
-		}
-
-		BufferedOutputStream os = null;
-		SafeOverwrite so = new SafeOverwrite(new File(this.confFile));
-		try {
-			// save properties to file
-			so.backup();
-			Document doc = XMLUtils.createEmptyDocument("config");
-			toXML(doc.getDocumentElement());
-
-			// write
-			os = new BufferedOutputStream(new FileOutputStream(this.confFile));
-			XMLUtils.write(doc, os);
-			// don't forget to close before checking file length
-			os.close();
-
-			// commit only if the file has something in it
-			if(new File(this.confFile).length() == 0) {
-				so.rollback(os);
-			} else {
-				so.commit(os);
-			}
-		} catch(Throwable e) {
-			try {
-				so.rollback(os);
-			}catch(IOException e1) {
-				throw new FailedToSaveConfiguration(e1);
-			}
-			throw new FailedToSaveConfiguration(e);
-		}
-	}
+	void save() throws ReadOnlyConfiguration, FailedToSaveConfiguration;
 
 	/**
 	 * @return The property for the given key.<br>
 	 * First it searches the system property then the configuration file properties.
 	 * @param key Property key
 	 */
-	public String getString(String key) {
-		// search first the system properties
-		String prop = System.getProperty(key);
-		if(prop != null) {
-			return prop;
-		}
-		return super.getString(key);
-	}
-
-	/**
-	 * Loads the configuration from the given stream.
-	 * @param is Configuration stream
-	 * @throws FailedToLoadConfiguration If the config stream cannot be accessed AND the default properties
-	 * are not set
-	 */
-	protected void loadConfiguration(InputStream is) throws FailedToLoadConfiguration {
-		try {
-			Document doc = XMLUtils.read(is);
-			fromXML(doc.getFirstChild());
-		} catch(XMLException e) {
-			throw new FailedToLoadConfiguration(e);
-		}
-	}
-
-	/**
-	 * Loads the configuration from the given file.
-	 * @param path
-	 * @throws FailedToLoadConfiguration
-	 */
-	protected void loadConfigurationFromFile(String path) throws FailedToLoadConfiguration {
-		this.confFile = Utils.getPath(path);
-		InputStream fis = null;
-		try {
-			fis = new FileInputStream(this.confFile);
-			loadConfiguration(fis);
-		} catch (FileNotFoundException e) {
-			throw new FailedToLoadConfiguration(e);
-		} finally {
-			try {
-				if(fis != null) {
-					fis.close();
-				}
-			} catch(IOException e) {
-			}
-		}
-	}
-
-	/**
-	 * Makes a collection out of a property of the form
-	 * property = part1, part2,.... to Collection(part1, part2,...).
-	 * The separator is <code>File.pathSeparatorChar</code>.
-	 * @param propKey String
-	 * @return List
-	 */
-	protected List<String> getMultipleStringProp(String propKey) {
-		String lst = getString(propKey);
-		if(lst == null) {
-			return null;
-		}
-		StringTokenizer tok = new StringTokenizer(lst, File.pathSeparator);
-		ArrayList<String> ret = new ArrayList<String>(tok.countTokens());
-		while(tok.hasMoreTokens()) {
-			ret.add(tok.nextToken());
-		}
-
-		return ret;
-	}
-
-	/**
-	 * Similar to <code>getMultipleStringProp(String)</code> with the
-	 * exception that the list will contain instances of the given class
-	 * who must provide a constructor taking as an argument a String.
-	 * @param propKey String
-	 * @return List
-	 * @throws NoSuchMethodException
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 */
-	protected <T> List<T> getMultipleStringProp(Class<T> clazz, String propKey)
-			throws NoSuchMethodException, InstantiationException,
-			IllegalAccessException, InvocationTargetException {
-		String lst = getString(propKey);
-		if(lst == null) {
-			return null;
-		}
-		Constructor<T> constr = clazz.getConstructor(
-		        new Class<?>[]{String.class});
-		StringTokenizer tok = new StringTokenizer(lst, File.pathSeparator);
-		List<T> ret = new ArrayList<T>(tok.countTokens());
-		while(tok.hasMoreTokens()) {
-			ret.add(constr.newInstance(new Object[]{tok.nextToken()}));
-		}
-		return ret;
-	}
-
-	/**
-	 * Packs a collection of values to a certain property<br>
-	 * Collection(prop1, prop2,...) to property = part1, part2,....<br>
-	 * @param propKey Name of the property
-	 * @param vals List of entries to be appended to the property value
-	 */
-	protected void setMultipleStringProp(String propKey, List<?> vals) {
-		int size = vals.size();
-		StringBuffer str = new StringBuffer(size * 10);
-		for(int i = 0; i < size; ++i) {
-			str.append(vals.get(i).toString());
-			if(i < (size - 1)) {
-				str.append(File.pathSeparatorChar);
-			}
-		}
-		setString(propKey, str.toString());
-	}
+	String getString(String key);
 
 	/**
 	 * @param property
 	 * @return a long property
 	 */
-	public List<String> getList(String property) {
-		return getMultipleStringProp(property);
-	}
+	List<String> getList(String property);
 
 	/**
 	 * @param property
@@ -236,31 +51,144 @@ public class ComponentConfiguration extends TypedProperties {
 	 * @throws InstantiationException
 	 * @throws NoSuchMethodException
 	 */
-	public <T> List<T> getList(Class<T> clazz, String property) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		return getMultipleStringProp(clazz, property);
-	}
+	<T> List<T> getList(Class<T> clazz, String property)
+			throws NoSuchMethodException, InstantiationException,
+			IllegalAccessException, InvocationTargetException;
 
 	/**
 	 * Sets the list property with the given name.
 	 * @param property
 	 * @param col
 	 */
-	public void setList(String property, List<?> col) {
-		setMultipleStringProp(property, col);
-	}
+	void setList(String property, List<?> col);
 
 	/**
 	 * @see java.lang.Object#clone()
 	 */
-	public Object clone() {
-        ComponentConfiguration conf = (ComponentConfiguration)super.clone();
-        conf.props = new LinkedHashMap<String, PropertyEntry<?>>();
-        conf.confFile = this.confFile;
-		for(Iterator<String> itr = props.keySet().iterator(); itr.hasNext();) {
-			String key = itr.next();
-			PropertyEntry<?> pe = props.get(key);
-			conf.props.put(key, (PropertyEntry<?>)pe.clone());
-		}
-		return conf;
-	}
+	Object clone();
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#apply(com.ixora.common.typedproperties.TypedProperties)
+	 */
+	void apply(TypedProperties other) throws InvalidPropertyValue;
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#fromXML(org.w3c.dom.Node)
+	 */
+	void fromXML(Node node) throws XMLException;
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getBoolean(java.lang.String)
+	 */
+	boolean getBoolean(String property);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getColor(java.lang.String)
+	 */
+	Color getColor(String property);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getDate(java.lang.String)
+	 */
+	Date getDate(String property);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getFile(java.lang.String)
+	 */
+	File getFile(String property);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getFloat(java.lang.String)
+	 */
+	float getFloat(String property);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getInt(java.lang.String)
+	 */
+	int getInt(String property);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getObject(java.lang.String)
+	 */
+	Object getObject(String property);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#getValue(java.lang.String)
+	 */
+	Object getValue(String key);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#hasProperty(java.lang.String)
+	 */
+	boolean hasProperty(String prop);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#keys()
+	 */
+	Set<String> keys();
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setBoolean(java.lang.String, boolean)
+	 */
+	void setBoolean(String key, boolean value);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setColor(java.lang.String, java.awt.Color)
+	 */
+	void setColor(String key, Color value);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setDate(java.lang.String, java.util.Date)
+	 */
+	void setDate(String key, Date date);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setDefaults()
+	 */
+	void setDefaults();
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setFile(java.lang.String, java.io.File)
+	 */
+	void setFile(String key, File value);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setFloat(java.lang.String, float)
+	 */
+	void setFloat(String key, float value);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setInt(java.lang.String, int)
+	 */
+	void setInt(String key, int value);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setObject(java.lang.String, java.lang.Object)
+	 */
+	<T> void setObject(String key, T value);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setString(java.lang.String, java.lang.String)
+	 */
+	void setString(String key, String value);
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#toXML(org.w3c.dom.Node)
+	 */
+	void toXML(Node parent) throws XMLException;
+
+	/**
+	 * @see com.ixora.common.typedproperties.TypedProperties#setDefaultValue(String, Object)
+	 */
+	<T> void setDefaultValue(String key, T value);
+
+	/**
+	 * @param observer
+	 */
+	void addObserver(Observer observer);
+
+	/**
+	 * @param observer
+	 */
+	void deleteObserver(Observer observer);
 }
