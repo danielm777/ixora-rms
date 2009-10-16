@@ -11,7 +11,7 @@
     <version>2005</version>
   </versions>
   <javaHelp>secSQLServer</javaHelp>
-  <webHelp>documentation/monitoring-agents/sqlserver</webHelp>
+  <webHelp>monitoring-agents/sqlserver</webHelp>
   <versionItems>
     <versionItem>
       <locations>

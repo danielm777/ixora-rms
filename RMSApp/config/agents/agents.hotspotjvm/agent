@@ -11,7 +11,7 @@
   </versions>
   <messageCatalog>agents.hotspotjvm</messageCatalog>
   <javaHelp>secHotspotJVM</javaHelp>
-  <webHelp>documentation/monitoring-agents/hotspotjvm</webHelp>
+  <webHelp>monitoring-agents/hotspotjvm</webHelp>
   <versionItems>
     <versionItem>
       <locations>

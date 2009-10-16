@@ -10,7 +10,7 @@
 <version>4.2.*</version>
 </versions>
 <javaHelp>secJBoss</javaHelp>
-<webHelp>documentation/monitoring-agents/jboss</webHelp>
+<webHelp>monitoring-agents/jboss</webHelp>
 <versionItems>
 	<versionItem>
 		<locations>

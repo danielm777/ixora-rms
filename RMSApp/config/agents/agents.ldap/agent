@@ -6,7 +6,7 @@
   <description>ldap.description</description>
   <category>network</category>
   <javaHelp>secLDAP</javaHelp>
-  <webHelp>documentation/monitoring-agents/ldap</webHelp>
+  <webHelp>monitoring-agents/ldap</webHelp>
   <versionItems>
     <versionItem>
       <locations>

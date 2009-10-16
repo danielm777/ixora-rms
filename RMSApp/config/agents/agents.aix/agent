@@ -14,7 +14,7 @@
   </versions>
   <messageCatalog>agents.aix</messageCatalog>
   <javaHelp>secAIX</javaHelp>
-  <webHelp>documentation/monitoring-agents/aix</webHelp>
+  <webHelp>monitoring-agents/aix</webHelp>
   <versionItems>
     <versionItem>
       <locations>

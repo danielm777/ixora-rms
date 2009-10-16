@@ -10,7 +10,7 @@
     <version>8.*</version>
   </versions>
   <javaHelp>secWeblogic</javaHelp>
-  <webHelp>documentation/monitoring-agents/weblogic</webHelp>
+  <webHelp>monitoring-agents/weblogic</webHelp>
   <versionItems>
     <versionItem>
       <locations>
