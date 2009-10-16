@@ -69,7 +69,8 @@ public final class AgentInstallationDataDialog extends AppDialog {
 	private JTextField fTextFieldClass;
 	private JTextField fTextFieldCategory;
 	private JTextField fTextFieldMessageCatalog;
-	private JTextField fTextFieldHelpId;
+	private JTextField fTextFieldHelpIdJava;
+	private JTextField fTextFieldHelpIdWeb;
 	private TypedPropertiesListEditor fEditorTargetVersions;
 	private TypedProperties fPrototypeTargetVersion;
 	private JList fVersionDataList;
@@ -154,7 +155,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 		fTextFieldClass = UIFactoryMgr.createTextField();
 		fTextFieldCategory = UIFactoryMgr.createTextField();
 		fTextFieldMessageCatalog = UIFactoryMgr.createTextField();
-		fTextFieldHelpId = UIFactoryMgr.createTextField();
+		fTextFieldHelpIdJava = UIFactoryMgr.createTextField();
 		fPrototypeTargetVersion = createFromVersion(null);
 
 		fEditorTargetVersions = new TypedPropertiesListEditor(fPrototypeTargetVersion,
@@ -219,7 +220,8 @@ public final class AgentInstallationDataDialog extends AppDialog {
 			fTextFieldClass.setText(aid.getAgentImplClass());
 			fTextFieldCategory.setText(aid.getCategory());
 			fTextFieldMessageCatalog.setText(aid.getMessageCatalog());
-			fTextFieldHelpId.setText(aid.getJavaHelp());
+			fTextFieldHelpIdJava.setText(aid.getJavaHelp());
+			fTextFieldHelpIdWeb.setText(aid.getWebHelp());
             // monitored system versions
             String[] versions = aid.getSystemUnderObservationVersions();
             if(versions != null) {
@@ -245,7 +247,8 @@ public final class AgentInstallationDataDialog extends AppDialog {
 						LABEL_AGENT_CLASS,
 						LABEL_AGENT_CATEGORY,
                         LABEL_AGENT_MSG_CATALOG,
-                        "Help ID", // TODO localize
+                        "Java Help ID", // TODO localize
+                        "Web Help URL", // TODO localize
                         LABEL_AGENT_TARGET_VERSIONS,
                         "Version Data" // TODO localize
 				},
@@ -255,7 +258,8 @@ public final class AgentInstallationDataDialog extends AppDialog {
 						fTextFieldClass,
 						fTextFieldCategory,
                         fTextFieldMessageCatalog,
-                        fTextFieldHelpId,
+                        fTextFieldHelpIdJava,
+                        fTextFieldHelpIdWeb,
                         fEditorTargetVersions,
                         fPanelVersionData
 				});
@@ -355,9 +359,13 @@ public final class AgentInstallationDataDialog extends AppDialog {
 			if(Utils.isEmptyString(msgCatalog)) {
 				msgCatalog = null;
 			}
-			String helpId = fTextFieldHelpId.getText();
-			if(Utils.isEmptyString(helpId)) {
-				helpId = null;
+			String helpIdJava = fTextFieldHelpIdJava.getText();
+			if(Utils.isEmptyString(helpIdJava)) {
+				helpIdJava = null;
+			}
+			String helpIdWeb = fTextFieldHelpIdWeb.getText();
+			if(Utils.isEmptyString(helpIdWeb)) {
+				helpIdWeb = null;
 			}
 	        // check if we have at least one version data
 	        Collection<VersionableAgentInstallationData> coll = fVersionData.getAll();
@@ -369,7 +377,8 @@ public final class AgentInstallationDataDialog extends AppDialog {
 					true,
 					new ComponentVersion(1, 0, 0),
 					name,
-					description, versions, msgCatalog, helpId, fVersionData, category);
+					description, versions, msgCatalog, helpIdJava, 
+					helpIdWeb, fVersionData, category);
 			dispose();
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);

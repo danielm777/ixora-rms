@@ -21,8 +21,8 @@ import javax.swing.filechooser.FileView;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.exception.FailedToSaveConfiguration;
 import com.ixora.common.exception.ReadOnlyConfiguration;

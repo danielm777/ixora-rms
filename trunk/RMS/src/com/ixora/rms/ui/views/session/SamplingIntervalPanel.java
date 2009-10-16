@@ -23,8 +23,6 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.ixora.rms.RMSComponent;
-import com.ixora.rms.RMSConfigurationConstants;
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
@@ -34,6 +32,8 @@ import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
+import com.ixora.rms.RMSComponent;
+import com.ixora.rms.RMSConfigurationConstants;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.ui.RMSUIUtils;
 import com.ixora.rms.ui.RMSViewContainer;

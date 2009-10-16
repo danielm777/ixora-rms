@@ -42,8 +42,8 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.AppStatusBarDefault;
 import com.ixora.common.ui.ShowException;

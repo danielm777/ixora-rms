@@ -49,14 +49,14 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleInsets;
 
-import com.ixora.rms.RMSComponent;
-import com.ixora.rms.RMSConfigurationConstants;
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.utils.Utils;
+import com.ixora.rms.RMSComponent;
+import com.ixora.rms.RMSConfigurationConstants;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.dataengine.external.QueryData;
 import com.ixora.rms.exception.QueryException;

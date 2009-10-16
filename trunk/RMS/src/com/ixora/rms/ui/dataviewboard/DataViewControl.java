@@ -22,8 +22,8 @@ import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
 import com.ixora.rms.ResourceId;
-import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
