@@ -31,8 +31,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.messages.Msg;
 import com.ixora.common.typedproperties.TypedProperties;
