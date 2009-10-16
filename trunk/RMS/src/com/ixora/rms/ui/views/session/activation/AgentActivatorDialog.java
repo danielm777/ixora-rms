@@ -32,6 +32,7 @@ import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.actions.ActionClose;
 import com.ixora.common.ui.actions.ActionHelp;
+import com.ixora.common.ui.help.AppHelp;
 import com.ixora.common.ui.jobs.UIWorkerJobCancelableWithProgress;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
 import com.ixora.rms.HostId;
@@ -440,7 +441,12 @@ public final class AgentActivatorDialog extends AppDialog {
 				return;
 			}
 			AgentData data = agentNode.getAgentData();
-			String help = data.getAgentInstallationDtls().getJavaHelp();
+			String help = null;
+			if(fViewContainer.getAppHelp().getPreferredProviderType() == AppHelp.ProviderType.JAVA_HELP) {
+				help = data.getAgentInstallationDtls().getJavaHelp();
+			} else if(fViewContainer.getAppHelp().getPreferredProviderType() == AppHelp.ProviderType.WEB) {
+				help = data.getAgentInstallationDtls().getWebHelp();
+			}
 			if(help != null) {
 				fViewContainer.getAppHelp().showHelp(this, help);
 			}
