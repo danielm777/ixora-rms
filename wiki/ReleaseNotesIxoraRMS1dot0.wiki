@@ -8,4 +8,5 @@ These are the release notes for IxoraRMS 1.0
 = Details =
 
 Issues:
- * The Linux release of the DB2 agent has no native library. In the meantime you can get the code from the IxoraResources project and build it yourself. 
+ * The Linux release of the DB2 agent has no native library. In the meantime you can get the code from the IxoraResources project in the source repository and build it yourself. 
+ * Check Issues for a list of known functional problems in this release.
