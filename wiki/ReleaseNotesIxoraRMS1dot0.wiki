@@ -7,6 +7,9 @@ These are the release notes for IxoraRMS 1.0
 
 = Details =
 
+Required JVM level: 
+JRE 6.0 or later is required to run IxoraRMS 1.0
+
 Issues:
  * The Linux release of the DB2 agent has no native library. In the meantime you can get the code from the !IxoraResources project in the source repository and build it yourself. 
  * Check [http://code.google.com/p/ixora-rms/issues/list Issues] for a list of known functional problems in this release.
