@@ -10,13 +10,12 @@
 
 <!-- create .jar -->
 <target name="jars">
-	<jar jarfile="${destDir}/mibble.jar" basedir="${root}/mibble/classes"/>
-	<jar jarfile="${destDir}/jfreechart.jar" basedir="${root}/jfreechart/classes"/>
 	<jar jarfile="${destDir}/IxoraCommon.jar" basedir="${root}/IxoraCommon/classes"/>
 	<jar jarfile="${destDir}/RMSCommon.jar" basedir="${root}/RMS/classes"/>
 	<jar jarfile="${destDir}/RMS.jar" basedir="${rootApp}/classes"/>
 	<jar jarfile="${destDir}/RMSJMX.jar" basedir="${root}/RMSJMX/classes"/>
-
+	<jar jarfile="${destDir}/RMSLibsPatch.jar" basedir="${root}/RMSLibsPatch/classes"/>
+	
 	<!-- SQL Provider -->
 	<jar jarfile="${destDir}/Provider_sql_ui.jar">
 		<fileset dir="${root}/RMSProviders/classes/">

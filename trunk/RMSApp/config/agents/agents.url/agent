@@ -6,7 +6,7 @@
 <description>url.description</description>
 <category>applications</category>
 <javaHelp>secURL</javaHelp>
-<webHelp>monitoring-agents/url</webHelp>
+<webHelp>monitoring-agents/web-application-url-monitor</webHelp>
  <versionItems>
   	<versionItem>
 	   <locations>

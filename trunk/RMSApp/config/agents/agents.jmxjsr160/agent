@@ -6,7 +6,7 @@
 <description>jmxjsr160.description</description>
 <category>network</category>
 <javaHelp>secJSR160</javaHelp>
-<webHelp>monitoring-agents/jmxjsr160</webHelp>
+<webHelp>monitoring-agents/jmx-jsr160</webHelp>
 <versionItems>
 	<versionItem>
 		<locations>

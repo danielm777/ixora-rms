@@ -1,6 +1,6 @@
 @echo off
 
-set RMSLIB=config/messages/;jars/IxoraCommon.jar;jars/RMS.jar;jars/RMSCommon.jar;jars/AgentProviderHost.jar;jars/ganymed-ssh2.jar;lib/commons-httpclient.jar;lib/commons-codec.jar;lib/commons-codec.jar;lib/commons-logging-api.jar;lib/commons-net.jar;lib/janino.jar;lib/jcommon.jar;lib/liquidlnf.jar;lib/log4j.jar;lib/looks.jar;lib/mailapi.jar;lib/smtp.jar;lib/xalan.jar;lib/xerces.jar;lib/xercesImpl.jar;lib/xml-apis.jar;lib/SNMP4J.jar;jars/mibble.jar;lib/grammatica-bin.jar;lib/ldap.jar
+set RMSLIB=config/messages/;jars/IxoraCommon.jar;jars/RMS.jar;jars/RMSCommon.jar;jars/AgentProviderHost.jar;jars/RMSLibsPatch.jar;jars/ganymed-ssh2.jar;lib/commons-httpclient.jar;lib/commons-codec.jar;lib/commons-codec.jar;lib/commons-logging-api.jar;lib/commons-net.jar;lib/janino.jar;lib/jcommon.jar;lib/liquidlnf.jar;lib/log4j.jar;lib/looks.jar;lib/mailapi.jar;lib/smtp.jar;lib/xalan.jar;lib/xerces.jar;lib/xercesImpl.jar;lib/xml-apis.jar;lib/SNMP4J.jar;jars/mibble.jar;lib/grammatica-bin.jar;lib/ldap.jar
 
 set AGENTS=;
 set CLASSPATH=%AGENTS%;%RMSLIB%

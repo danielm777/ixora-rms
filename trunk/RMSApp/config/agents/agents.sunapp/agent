@@ -11,7 +11,7 @@
   </versions>
   <messageCatalog>agents.sunapp</messageCatalog>
   <javaHelp>secSunApp</javaHelp>
-  <webHelp>monitoring-agents/sunapp</webHelp>
+  <webHelp>monitoring-agents/sun-application-server</webHelp>
   <versionItems>
     <versionItem>
       <locations>

@@ -1,7 +1,6 @@
-Run package.bat to build zip files for all platforms.
+Run package.bat to build zipped files for all platforms.
 
-The result is generated under the 'output' folder ready for deployment: two files
-for each platform: with and without JRE.
+The result is generated under the 'output' folder ready for deployment.
 
 VER IMPORTANT: to preserve file permissions for JREs, they MUST NOT:
  - be copied to/from a non-NTFS partition
