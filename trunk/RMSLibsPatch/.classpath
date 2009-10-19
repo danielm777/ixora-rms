@@ -5,5 +5,5 @@
 	<classpathentry kind="lib" path="/IxoraResources/lib/ganymed-ssh2.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/jfreechart.jar"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/jcommon.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="output" path="classes"/>
 </classpath>
