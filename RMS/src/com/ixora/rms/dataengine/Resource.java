@@ -13,15 +13,13 @@ import com.ixora.rms.dataengine.definitions.ResourceDef;
  */
 public class Resource extends QueryResult {
 	private static final long serialVersionUID = 7228395732610030414L;
-	/**
-	 * IDs used to identify a counter. Some of them might be omitted,
-	 * others may contain regular expressions or wildcards
-	 */
+	/** The identifier for this resource */
 	private ResourceId	resourceID;
 
 	/**
 	 * Constructs a Resource based on its associated XML definition.
 	 * @param rd object holding definition (loaded from XML)
+	 * @param ridContext the context of this resource
 	 */
 	public Resource(ResourceDef rd, ResourceId ridContext) {
 	    super(rd);

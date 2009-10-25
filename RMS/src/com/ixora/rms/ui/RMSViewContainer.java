@@ -29,5 +29,10 @@ public interface RMSViewContainer extends AppViewContainer {
 	/**
 	 * @return whether the session has been touched
 	 */
-	boolean isSessionDirty();
+	boolean isSessionDirty();	
+	
+	/**
+	 * @return the session view
+	 */
+	SessionView getSessionView();
 }

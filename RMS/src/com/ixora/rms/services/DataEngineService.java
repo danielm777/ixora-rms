@@ -4,7 +4,7 @@
 package com.ixora.rms.services;
 
 import com.ixora.common.Service;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.external.QueryListener;
 import com.ixora.rms.repository.QueryId;
 
@@ -27,7 +27,7 @@ public interface DataEngineService extends Service {
 	 * @param cube query to be registered with the data engine
 	 * @param listener query executor listener
 	 */
-	void addQuery(QueryId qid, Cube cube, QueryListener listener);
+	void addQuery(QueryId qid, RealizedQuery cube, QueryListener listener);
 	/**
 	 * Unregisters the query with the given id from the data engine.
 	 * @param qid

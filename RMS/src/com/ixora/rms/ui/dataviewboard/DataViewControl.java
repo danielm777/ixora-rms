@@ -37,7 +37,7 @@ import com.ixora.rms.CounterId;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.client.locator.SessionDataViewInfo;
 import com.ixora.rms.client.locator.SessionResourceInfo;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryResultData;
 import com.ixora.rms.dataengine.external.QueryData;
 import com.ixora.rms.dataengine.external.QueryListener;
@@ -96,7 +96,7 @@ public abstract class DataViewControl extends JPanel
 	/** The data view used by this control */
 	protected DataView fDataView;
 	/** Realized cube */
-	protected Cube fRealizedCube;
+	protected RealizedQuery fRealizedCube;
 	/** Cache of localization data for resource infos */
 	protected Map<ResourceId, SessionResourceInfo> fLocalizationInfoCache;
 	/** Reaction log */
@@ -292,7 +292,7 @@ public abstract class DataViewControl extends JPanel
 	/**
 	 * @return The realized query
 	 */
-	public Cube getRealizedQuery() {
+	public RealizedQuery getRealizedQuery() {
 	    return fRealizedCube;
 	}
 
@@ -308,7 +308,7 @@ public abstract class DataViewControl extends JPanel
 	 * @param context ResourceID to use when completing relative resources
 	 */
 	private void realizeQuery(ResourceId context) {
-	    this.fRealizedCube = new Cube(fLocator,
+	    this.fRealizedCube = new RealizedQuery(fLocator,
 	    		this.fDataView.getQueryDef(), context);
 	}
 

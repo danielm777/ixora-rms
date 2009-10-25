@@ -16,7 +16,7 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.xy.XYDataset;
 
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryResult;
 import com.ixora.rms.dataengine.Style;
 import com.ixora.rms.exception.QueryException;
@@ -48,7 +48,7 @@ public class ChartImpl {
 	 * description, renderers and so on)
 	 * @param maxItemCount for XY series
 	 */
-	public ChartImpl(ChartDef chartDef, Cube realizedQuery, int maxItemCount) {
+	public ChartImpl(ChartDef chartDef, RealizedQuery realizedQuery, int maxItemCount) {
 		super();
 		realize(chartDef, realizedQuery, maxItemCount);
 	}
@@ -62,7 +62,7 @@ public class ChartImpl {
 	 * @param realizedQuery query which provides data for the chart
 	 * @param maxItemCount
 	 */
-	private void realize(ChartDef chartDef, Cube realizedQuery, int maxItemCount) {
+	private void realize(ChartDef chartDef, RealizedQuery realizedQuery, int maxItemCount) {
 		// Create implementations for renderers
 		for (RendererDef rd : chartDef.getRenderers()) {
 			renderers.add(new RendererImpl(realizedQuery, rd, maxItemCount));

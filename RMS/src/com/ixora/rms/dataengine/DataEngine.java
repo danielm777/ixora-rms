@@ -94,9 +94,9 @@ public final class DataEngine implements DataEngineService, DataSink, Observer {
 	/**
 	 * Creates an object to execute the query of the cube. Also attaches
 	 * the output of the query to the specified listener.
-	 * @see com.ixora.rms.services.DataEngineService#addQuery(com.ixora.rms.repository.QueryId, com.ixora.rms.dataengine.hints.Cube, com.ixora.rms.dataengine.DataQueryExecutor.Listener)
+	 * @see com.ixora.rms.services.DataEngineService#addQuery(com.ixora.rms.repository.QueryId, com.ixora.rms.dataengine.RealizedQuery.Cube, com.ixora.rms.dataengine.DataQueryExecutor.Listener)
 	 */
-	public void addQuery(QueryId qid, Cube cube, QueryListener listener) {
+	public void addQuery(QueryId qid, RealizedQuery cube, QueryListener listener) {
 		synchronized(this.fQueries) {
 			DataQueryExecutor queryExecutor = new DataQueryExecutor(cube, fReactionDispatcher,
 					fLogReplayMode ? false : fAnalyzersEnabled, fReactionCoolOff);

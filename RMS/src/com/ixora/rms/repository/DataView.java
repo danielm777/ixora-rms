@@ -14,7 +14,7 @@ import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLText;
 import com.ixora.common.xml.exception.XMLException;
 import com.ixora.rms.ResourceId;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryClientAbstract;
 import com.ixora.rms.dataengine.definitions.FunctionDef;
 import com.ixora.rms.dataengine.definitions.ParamDef;
@@ -100,7 +100,7 @@ public abstract class DataView extends QueryClientAbstract implements Versionabl
      */
 	public void testDataView(ResourceId context) throws RMSException {
         // Make sure that the cube can be realized (query definition ok)
-	    Cube realizedCube = new Cube(getQueryDef(), context);
+	    RealizedQuery realizedCube = new RealizedQuery(getQueryDef(), context);
 
 	    // Make sure all IDs are unique
 	    Set<String>	setIDs = new HashSet<String>();

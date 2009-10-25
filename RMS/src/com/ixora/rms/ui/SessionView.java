@@ -308,7 +308,7 @@ public abstract class SessionView
     /**
      * @see com.ixora.rms.ui.SessionView#getActionSetViewBoardName()
      */
-    protected ActionSetViewBoardName getActionSetViewBoardName() {
+    public ActionSetViewBoardName getActionSetViewBoardName() {
         if(actionSetViewBoardName == null) {
             actionSetViewBoardName = new ActionSetViewBoardName(dataViewBoardHandler);
         }

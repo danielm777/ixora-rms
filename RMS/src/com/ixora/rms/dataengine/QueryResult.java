@@ -59,6 +59,12 @@ public class QueryResult implements Serializable {
 	 * Two QueryResults are equal if they have the same ID property
 	 */
 	public boolean equals(Object rhs) {
+		if(!(rhs instanceof QueryResult)) {
+			return false;
+		}
+		if(rhs == this) {
+			return true;
+		}
 		QueryResult qr = (QueryResult)rhs;
 		String	lhsID = this.getStyle().getID();
 		String	rhsID = qr.getStyle().getID();

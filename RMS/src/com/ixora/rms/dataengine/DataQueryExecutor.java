@@ -35,13 +35,6 @@ import com.ixora.rms.reactions.ReactionId;
  * @author Cristian Costache
  * @author Daniel Moraru
  */
-/*
- * Modification history
- * --------------------------------------------------
- * 14 Nov 2004 - DM added addListener() and removeListener() methods to allow
- * one query to have multiple listeners.
- * 20 Nov 2004 - DM added expired() as part of the work for fixing resource leaks
- */
 public class DataQueryExecutor {
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DataQueryExecutor.class);
@@ -52,8 +45,8 @@ public class DataQueryExecutor {
 	private static final int REGEX_INSTANCE_CLEANUP_INTERVAL = 60000;
 	/** Listeners */
 	private List<QueryListener> fListeners = new LinkedList<QueryListener>();
-	/** Cube's query */
-	private Cube fQuery;
+	/** Realized query */
+	private RealizedQuery fQuery;
 	/** Functions */
 	private List<Function> fFunctions = new LinkedList<Function>();
 	/** Each regexp match will have a different function instance */
@@ -212,7 +205,7 @@ public class DataQueryExecutor {
 	 * @param analyzersEnabled
 	 * @param reactionCoolOffTime
 	 */
-	public DataQueryExecutor(Cube qs, ReactionDispatcher dispatcher, boolean analyzersEnabled, int reactionCoolOffTime) {
+	public DataQueryExecutor(RealizedQuery qs, ReactionDispatcher dispatcher, boolean analyzersEnabled, int reactionCoolOffTime) {
 		this.fEventHandler = new EventHandler();
 		this.fQuery = qs;
 		this.fReactionDispatcher = dispatcher;
