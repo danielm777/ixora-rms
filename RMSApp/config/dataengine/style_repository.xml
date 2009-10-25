@@ -1,0 +1,8 @@
+<rms>
+	<!-- Style 'percentage', useful for values between 0 and 100 --> 
+	<style id="percentage" continuous="true" format="#,###,###,###,###,###.####'%'"/>
+	
+	<!-- Extends 'percentage' and adds name, description and stacked -->
+	<style id="CPU" name="CPU" description="The CPU dimension" stacked="true" style="percentage"/>
+</rms>
+
