@@ -95,12 +95,17 @@ public interface AppViewContainer {
 	AppEventHub getAppEventHub();
 	
 	/**
-	 * @return
+	 * @return the application worker
 	 */
 	UIWorker getAppWorker();
 	
 	/**
-	 * @return
+	 * @return the application help
 	 */
 	AppHelp getAppHelp();
+	
+	/**
+	 * @return the current application view
+	 */
+	AppView getAppView();
 }

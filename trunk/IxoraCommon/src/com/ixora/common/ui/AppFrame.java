@@ -492,6 +492,13 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	}
 
 	/**
+	 * @see com.ixora.common.ui.AppViewContainer#getAppView()
+	 */
+	public AppView getAppView() {
+		return fCurrentView;
+	}
+
+	/**
 	 * @param txt
 	 * @param t
 	 */
