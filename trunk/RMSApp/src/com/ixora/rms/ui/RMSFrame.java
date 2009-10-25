@@ -1165,4 +1165,11 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	protected JComponent getDisplayPanel() {
 		return getJSplitPane();
 	}
+
+	/**
+	 * @see com.ixora.rms.ui.RMSViewContainer#getSessionView()
+	 */
+	public SessionView getSessionView() {
+		return (SessionView)getAppView();
+	}
 }
