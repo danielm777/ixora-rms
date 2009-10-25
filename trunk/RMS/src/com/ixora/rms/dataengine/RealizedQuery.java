@@ -2,11 +2,13 @@ package com.ixora.rms.dataengine;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.utils.Utils;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.dataengine.definitions.FunctionDef;
 import com.ixora.rms.dataengine.definitions.QueryDef;
@@ -17,13 +19,12 @@ import com.ixora.rms.dataengine.reactions.Reaction;
 import com.ixora.rms.exception.QueryNoSuchResultException;
 
 /**
- * Cube
- * Implementation for a Query, created based on a QueryDef.
+ * Realization of a Query, created based on a QueryDef.
  */
-public class Cube implements Serializable {
+public class RealizedQuery implements Serializable {
 	private static final long serialVersionUID = -213521183634344395L;
-	private List<Function> fFunctions;
-	private List<Resource> fResources;
+	private Map<String, Function> fFunctions;
+	private Map<String, Resource> fResources;
 	private List<Reaction> fReactions;
 
 	/** This mirrors queryDef's identifier */
@@ -44,7 +45,7 @@ public class Cube implements Serializable {
      * @param queryDef
      * @param ridContext
      */
-    public Cube(QueryDef queryDef, ResourceId ridContext) {
+    public RealizedQuery(QueryDef queryDef, ResourceId ridContext) {
         this(null, queryDef, ridContext);
     }
 
@@ -53,61 +54,40 @@ public class Cube implements Serializable {
      * @param queryDef
      * @param ridContext
      */
-	public Cube(SessionArtefactInfoLocator locator, QueryDef queryDef, ResourceId ridContext) {
+	public RealizedQuery(SessionArtefactInfoLocator locator, QueryDef queryDef, ResourceId ridContext) {
 		super();
-		fFunctions = new LinkedList<Function>();
-		fResources = new LinkedList<Resource>();
+		fFunctions = new LinkedHashMap<String, Function>();
+		fResources = new LinkedHashMap<String, Resource>();
 		this.fIdentifier = queryDef.getIdentifier();
 		this.fInfoLocator = locator;
 		for (ResourceDef resourceDef : queryDef.getResources()) {
 		    Resource resource = new Resource(resourceDef, ridContext);
             resource.localize(locator);
-			fResources.add(resource);
+			fResources.put(resource.getStyle().getID(), resource);
 		}
 		for (FunctionDef functionDef : queryDef.getFunctions()) {
-			Function function = Function.createFunction(functionDef, fResources, ridContext);
+			Function function = Function.createFunction(functionDef, 
+					new LinkedList<Resource>(fResources.values()), ridContext);
 			function.localize(locator);
-            fFunctions.add(function);
+            fFunctions.put(function.getStyle().getID(), function);
 		}
 		List<ReactionDef> rs = queryDef.getReactions();
 		if(!Utils.isEmptyCollection(rs)) {
 			fReactions = new LinkedList<Reaction>();
 			for(ReactionDef reactionDef : rs) {
-				fReactions.add(new Reaction(reactionDef, fResources, ridContext));
+				fReactions.add(new Reaction(reactionDef, 
+						new LinkedList<Resource>(fResources.values()), ridContext));
 			}
 		}
 	}
-
-//	/**
-//	 * NOTE: fuctions don't implement getDef() properly yet so this
-//	 * method MUST not be invoked.
-//	 * Builds and returns a definition for the underlying query.
-//	 * @return a QueryDef for this cube
-//	 */
-//	public QueryDef getQueryDef() {
-//		// build the definition
-//		// build resource defs
-//		List<ResourceDef> res = new ArrayList<ResourceDef>(this.resources.size());
-//		for(Resource r : this.resources) {
-//			res.add(r.getResourceDef());
-//		}
-//
-//		// build function defs
-//		List<FunctionDef> fun = new ArrayList<FunctionDef>(this.functions.size());
-//		for(Function f : this.functions) {
-//			fun.add(f.getFunctionDef());
-//		}
-//
-//		return new QueryDef(getIdentifier(), res, fun);
-//	}
 
 	/**
 	 * @return the contents of this query as a list of QueryResults
 	 */
 	public List<QueryResult> getQueryResults() {
 		List<QueryResult> qrList = new LinkedList<QueryResult>();
-		qrList.addAll(fResources);
-		qrList.addAll(fFunctions);
+		qrList.addAll(fResources.values());
+		qrList.addAll(fFunctions.values());
 		return qrList;
 	}
 
@@ -125,15 +105,13 @@ public class Cube implements Serializable {
 	 * @return a QueryResult by ID, or throws exception if not found
 	 */
 	public QueryResult getQueryResult(String id) throws QueryNoSuchResultException {
-		for (Function f : fFunctions) {
-			if (f.getStyle().getID().equals(id)) {
-				return f;
-			}
+		Function f = fFunctions.get(id);
+		if(f != null) {
+			return f;
 		}
-		for (Resource r : fResources) {
-		    if (r.getStyle().getID().equals(id)) {
-		        return r;
-		    }
+		Resource r = fResources.get(id);
+		if(r != null) {
+			return r;
 		}
 
 		throw new QueryNoSuchResultException(id);
@@ -143,7 +121,7 @@ public class Cube implements Serializable {
 	 * @return
 	 */
 	public List<Resource> getQuerySource() {
-	    return fResources;
+	    return new LinkedList<Resource>(fResources.values());
 	}
 
 	/**
@@ -158,10 +136,10 @@ public class Cube implements Serializable {
 	 */
 	public void localize() {
 		if(fInfoLocator != null) {
-			for(Resource resource : this.fResources) {
+			for(Resource resource : this.fResources.values()) {
 	            resource.localize(this.fInfoLocator);
 			}
-			for(Function function : this.fFunctions) {
+			for(Function function : this.fFunctions.values()) {
 	            function.localize(this.fInfoLocator);
 			}
 		}

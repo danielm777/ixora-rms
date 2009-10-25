@@ -33,7 +33,7 @@ import com.ixora.common.ui.UIUtils;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterDescriptor;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryResult;
 import com.ixora.rms.dataengine.definitions.FunctionDef;
 import com.ixora.rms.dataengine.definitions.ParamDef;
@@ -666,7 +666,7 @@ public class TableControl extends TableBasedControl
 	 * @return
 	 */
 	private String[] getChartItemsFromDataView() {
-		Cube query = this.getRealizedQuery();
+		RealizedQuery query = this.getRealizedQuery();
 		List<String> ret = new LinkedList<String>();
         for(QueryResult queryResult : query.getQueryResults()) {
 			String id = queryResult.getStyle().getID();
@@ -682,7 +682,7 @@ public class TableControl extends TableBasedControl
 	 * @return
 	 */
 	private String[] getChartItemsDisplayNamesFromDataView() {
-		Cube query = this.getRealizedQuery();
+		RealizedQuery query = this.getRealizedQuery();
 		List<String> ret = new LinkedList<String>();
 		for(QueryResult queryResult : query.getQueryResults()) {
 			String id = queryResult.getStyle().getID();

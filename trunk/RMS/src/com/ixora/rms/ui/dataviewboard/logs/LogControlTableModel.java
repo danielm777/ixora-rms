@@ -20,7 +20,7 @@ import com.ixora.rms.agents.impl.logfile.LogRecordBatch;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.data.CounterValue;
 import com.ixora.rms.data.CounterValueObject;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryResultData;
 import com.ixora.rms.dataengine.external.QueryData;
 import com.ixora.rms.dataengine.external.QuerySeries;
@@ -94,7 +94,7 @@ public class LogControlTableModel extends TableBasedControlTableModel {
 	public LogControlTableModel(
 			SessionArtefactInfoLocator locator,
 			LogDef def,
-			Cube cube, int buffSize) {
+			RealizedQuery cube, int buffSize) {
 		super();
 		fRecords = new CircullarLinkedList<LogRecordData>(buffSize);
 	}

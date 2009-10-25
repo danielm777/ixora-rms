@@ -28,7 +28,7 @@ import com.ixora.rms.client.model.EntityInfo;
 import com.ixora.rms.client.model.QueryInfo;
 import com.ixora.rms.client.model.ResourceInfo;
 import com.ixora.rms.client.model.SessionModel;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.definitions.QueryDef;
 import com.ixora.rms.dataengine.external.QueryListener;
 import com.ixora.rms.exception.InvalidAgentState;
@@ -344,7 +344,7 @@ public final class QueryRealizerImpl implements QueryRealizer {
 
     		// create query and register it with the data engine if not already registered
     		if(!fDataEngine.isQueryRegistered(qid)) {
-    			Cube cube = new Cube(fArtefactInfoLocator, query, context);
+    			RealizedQuery cube = new RealizedQuery(fArtefactInfoLocator, query, context);
     			fDataEngine.addQuery(qid, cube, fEventHandler);
     		}
         }

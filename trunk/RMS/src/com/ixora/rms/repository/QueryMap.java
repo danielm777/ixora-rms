@@ -13,7 +13,7 @@ import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.xml.XMLExternalizable;
 import com.ixora.common.xml.exception.XMLException;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 
 /**
  * This is a container for a set of queries that knows to
@@ -27,29 +27,29 @@ public class QueryMap implements XMLExternalizable {
 	private static final AppLogger logger =
 		AppLoggerFactory.getLogger(QueryMap.class);
 	/** Queries */
-	private CaseInsensitiveLinkedMap<Cube> queries;
+	private CaseInsensitiveLinkedMap<RealizedQuery> queries;
 
 	/**
 	 * Constructor.
 	 */
 	public QueryMap() {
 		super();
-		queries = new CaseInsensitiveLinkedMap<Cube>();
+		queries = new CaseInsensitiveLinkedMap<RealizedQuery>();
 	}
 
 	/**s
 	 * @return the counter groups
 	 */
-	public Cube[] getQueries() {
-		return (Cube[])this.queries.values().toArray(
-				new Cube[this.queries.size()]);
+	public RealizedQuery[] getQueries() {
+		return (RealizedQuery[])this.queries.values().toArray(
+				new RealizedQuery[this.queries.size()]);
 	}
 
 	/**
 	 * Adds a query.
 	 * @param query
 	 */
-	public void addQuery(Cube query) {
+	public void addQuery(RealizedQuery query) {
 		this.queries.put(query.getIdentifier(), query);
 	}
 
@@ -66,8 +66,8 @@ public class QueryMap implements XMLExternalizable {
 	 * @param name
 	 * @return
 	 */
-	public Cube getQuery(String name) {
-		return (Cube)this.queries.get(name);
+	public RealizedQuery getQuery(String name) {
+		return (RealizedQuery)this.queries.get(name);
 	}
 
 	/**

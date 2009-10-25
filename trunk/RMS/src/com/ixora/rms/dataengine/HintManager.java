@@ -4,13 +4,15 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLUtils;
 import com.ixora.common.xml.exception.XMLException;
 import com.ixora.rms.dataengine.definitions.StyleDef;
@@ -21,28 +23,24 @@ import com.ixora.rms.dataengine.definitions.StyleDef;
  * @author Cristian Costache
  * @author Daniel Moraru
  */
-// -------------------------------------
-// DM - 31/Oct/2004 - realize() must support a null context
-// as a null context represents a scheme
-public final class HintManager
-{
+public final class HintManager {
 	/** Single instance of this class */
 	private static final HintManager instance = new HintManager();
+	
 	public static HintManager instance() { return instance; }
 
-	/** Repository: Styles */
-	protected List<Style>	styles = new LinkedList<Style>();
+	/** Repository: Styles, keyed by ID */
+	protected Map<String, Style> fStyles = new HashMap<String, Style>();
 
 	/** Loads the XML definitions for all counters/values etc */
 	public HintManager() {
-		// TODO: load the XML definitions repository
-		File file = new File(".\\test_repository.xml");
+		File file = new File(Utils.getPath("config/dataengine/style_repository.xml"));
 		Document doc = null;
 		try {
 			doc = XMLUtils.read(
 					new BufferedInputStream(
 							new FileInputStream(file)));
-			Node	firstChild = doc.getDocumentElement();
+			Node firstChild = doc.getDocumentElement();
 
 			// Look for style definitions
 			List<Node> nodesStyles = XMLUtils.findChildren(firstChild, "style");
@@ -53,7 +51,7 @@ public final class HintManager
 
 				// Add style to repository
 				Style style = new Style(sd);
-				styles.add(style);
+				fStyles.put(style.getID(), style);
 			}
 		}
 		catch (XMLException e)	{}
@@ -69,17 +67,16 @@ public final class HintManager
 		String baseStyle = s.getStyle();
 		if (baseStyle != null) {
 			// The name of a style to inherit is specified: look for it
-			for (Style bs : styles) {
-				if (bs.getID().equals(baseStyle)) {
-					// First resolve the base style recursively
-					resolveStyle(bs);
+			Style bs = fStyles.get(baseStyle);
+			if(bs != null) {
+				// First resolve the base style recursively
+				resolveStyle(bs);
 
-					// Now merge results into output style
-					s.merge(bs);
+				// Now merge results into output style
+				s.merge(bs);
 
-					// And we're done
-					return;
-				}
+				// And we're done
+				return;
 			}
 		}
 	}

@@ -45,7 +45,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.xy.XYDataset;
 
 import com.ixora.common.exception.AppRuntimeException;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryResult;
 import com.ixora.rms.dataengine.Style;
 import com.ixora.rms.exception.QueryException;
@@ -64,14 +64,14 @@ public class RendererImpl {
 	private AbstractRenderer fRenderer;
 	private RMSDataset fDataset;
 	/** Definitions that this implementation is based on */
-	private Cube fCube;
+	private RealizedQuery fCube;
 	private RendererDef fRendererDef;
 	/** Style of the first counter on the Y axis, to determine axis properties */
 	private Style fRangeStyle;
 	/** Max number of item for a XYSeries */
 	private int fMaxItemCount;
 
-	public RendererImpl(Cube cube, RendererDef rDef, int maxItem) {
+	public RendererImpl(RealizedQuery cube, RendererDef rDef, int maxItem) {
 		fCube = cube;
 		fRendererDef = rDef;
 		fMaxItemCount = maxItem;

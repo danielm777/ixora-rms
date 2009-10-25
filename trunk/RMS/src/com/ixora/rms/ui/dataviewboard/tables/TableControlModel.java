@@ -25,7 +25,7 @@ import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.data.CounterValue;
 import com.ixora.rms.data.CounterValueDouble;
 import com.ixora.rms.data.CounterValueString;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryResult;
 import com.ixora.rms.dataengine.QueryResultData;
 import com.ixora.rms.dataengine.Style;
@@ -76,7 +76,7 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
      */
     private boolean fColumnsAreTranslated;
     /** Cached realized query, needed for localization of column data */
-    private Cube fRealizedQuery;
+    private RealizedQuery fRealizedQuery;
     /**
      * Table data formatter.
      */
@@ -140,7 +140,7 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
      * @param defaultNumberFormat
      */
     public TableControlModel(SessionArtefactInfoLocator locator,
-            TableDef tabledef, Cube realizedQuery,
+            TableDef tabledef, RealizedQuery realizedQuery,
     		TableControlFormatter formatter) {
         super();
         fDefinition = tabledef;
@@ -165,7 +165,7 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
      * Sets up the columns in the table.
      * @param realizedQuery
      */
-    private void setUpColumns(Cube realizedQuery) {
+    private void setUpColumns(RealizedQuery realizedQuery) {
         fColumnNames.clear();
         fColumnDescriptions.clear();
         fColumnIds.clear();

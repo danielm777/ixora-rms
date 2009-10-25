@@ -17,7 +17,7 @@ import com.ixora.common.xml.XMLSameTagList;
 import com.ixora.common.xml.XMLTag;
 import com.ixora.common.xml.exception.XMLException;
 import com.ixora.rms.ResourceId;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.definitions.QueryDef;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.repository.DataView;
@@ -240,7 +240,7 @@ public final class TableDef extends DataView {
     	super.testDataView(context);
 
         // Make sure that the cube can be realized (query definition ok)
-	    Cube realizedCube = new Cube(getQueryDef(), context);
+	    RealizedQuery realizedCube = new RealizedQuery(getQueryDef(), context);
 
 	    // Make sure that category id is valid (exists in the query)
 	   	realizedCube.getQueryResult(getCategory());

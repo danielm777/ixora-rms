@@ -9,7 +9,7 @@ import java.util.List;
 import com.ixora.common.xml.XMLSameTagList;
 import com.ixora.common.xml.XMLTagList;
 import com.ixora.rms.ResourceId;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.definitions.QueryDef;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.repository.DataView;
@@ -86,7 +86,7 @@ public class ChartDef extends DataView {
     	super.testDataView(context);
 
         // Make sure that the cube can be realized (query definition ok)
-	    Cube realizedCube = new Cube(getQueryDef(), context);
+	    RealizedQuery realizedCube = new RealizedQuery(getQueryDef(), context);
 
 	    // Make sure we have at least one renderer
 	    if (getRenderers().size() < 1) {

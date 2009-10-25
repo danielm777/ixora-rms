@@ -127,7 +127,7 @@ public class Style implements Serializable {
 
 	/**
 	 * Merges the contents of the other style into this one. If a value
-	 * is already set in the current style it will take precendence.
+	 * is already set in the current style it will take precedence.
 	 */
 	public void merge(Style s) {
 

@@ -5,6 +5,7 @@ package com.ixora.rms.ui.dataviewboard;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -13,14 +14,19 @@ import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.plaf.InternalFrameUI;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.common.ui.UIFactoryMgr;
+import com.ixora.common.ui.popup.PopupListener;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.QueryRealizer;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.client.locator.SessionDataViewInfo;
-import com.ixora.rms.dataengine.Cube;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.Style;
 import com.ixora.rms.repository.DataView;
 import com.ixora.rms.repository.DataViewId;
@@ -39,6 +45,9 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DataViewBoard.class);
 
+	/** Popup menu that appears on the title bar */
+	private JPopupMenu fTitleBarPopupMenu;
+	
     /**
 	 * Listener.
 	 */
@@ -63,12 +72,15 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
    /**
 	* Event handler.
 	*/
-	private final class EventHandler implements DataViewControl.Listener {
+	private final class EventHandler extends PopupListener implements DataViewControl.Listener {
 		/**
 		 * @see com.ixora.rms.ui.dataviewboard.DataViewControl.Listener#controlInFocus(com.ixora.rms.ui.dataviewboard.DataViewControl)
 		 */
 		public void controlInFocus(DataViewControl control) {
 			handleControlInFocus(control);
+		}
+		protected void showPopup(MouseEvent me) {
+			handleShowTitleBarPopupMenu(me);
 		}
 	}
 
@@ -118,6 +130,13 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	}
 
 	/**
+	 * @param me
+	 */
+	public void handleShowTitleBarPopupMenu(MouseEvent me) {
+		fTitleBarPopupMenu.show(me.getComponent(), me.getX(), me.getY());		
+	}
+
+	/**
 	 * Sets the listener.
 	 * @param listener
 	 */
@@ -137,6 +156,8 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 			throw new IllegalArgumentException("null data view control context");
 		}
 		this.fControlContext = ctxt;
+		this.fTitleBarPopupMenu.add(fControlContext.getViewContainer()
+				.getSessionView().getActionSetViewBoardName());		
 	}
 
 	/**
@@ -254,7 +275,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 		}
 		// register query with the data engine and register the control
 		// as a listener to the query
-		Cube q = dvc.getRealizedQuery();
+		RealizedQuery q = dvc.getRealizedQuery();
 		QueryId qid = new QueryId(context,	q.getIdentifier());
 		if(!this.fDataEngine.isQueryRegistered(qid)) {
 			this.fDataEngine.addQuery(qid, q, dvc);
@@ -500,6 +521,13 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 		this.fLocator = locator;
 		this.fEventHandler = new EventHandler();
 		this.fControls = new LinkedList<DataViewControl>();
+		this.fTitleBarPopupMenu = UIFactoryMgr.createPopupMenu();
+		
+		InternalFrameUI ui = getUI();
+		if(ui instanceof BasicInternalFrameUI) {
+			BasicInternalFrameUI bui = (BasicInternalFrameUI)ui;
+			bui.getNorthPane().addMouseListener(fEventHandler);
+		}
 	}
 
 	/**
