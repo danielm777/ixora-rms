@@ -19,6 +19,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.StringWriter;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.URL;
@@ -714,6 +715,23 @@ public class Utils {
     	return (o == null || o.length == 0) ? true : false;
     }
 
+    /**
+     * @param array
+     * @return true if <code>array</code> is null or is empty
+     */
+    public static boolean isEmptyArray(Object array) {
+    	if(array == null) {
+    		return true;
+    	}
+    	if(!array.getClass().isArray()) {
+    		throw new IllegalArgumentException("The array object must be an array");
+    	}
+    	if(Array.getLength(array) == 0) {
+    		return true;
+    	}
+    	return false;
+    }
+    
     /**
      * @param c
      * @return true if c is null or is empty
