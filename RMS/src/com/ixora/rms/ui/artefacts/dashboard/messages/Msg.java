@@ -53,4 +53,6 @@ public interface Msg {
 		"dashboard.text.confirm_monitoring_level_increase_for_data_view";
 	public static final String TEXT_CONFIRM_MONITORING_LEVEL_INCREASE_FOR_COUNTER =
 		"dashboard.text.confirm_monitoring_level_increase_for_counter";
+	public static final String TEXT_PLOTTING_DASHBOARD = 
+		"dashboard.text.plotting";
 }
