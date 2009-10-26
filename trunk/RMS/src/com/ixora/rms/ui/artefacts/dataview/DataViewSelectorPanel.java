@@ -263,7 +263,7 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
             c.setMaxWidth(25);
             c = jTableArtefacts.getColumnModel().getColumn(3);
             c.setCellRenderer(new SelectableArtefactTableCellRenderer());
-            jTableArtefacts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            jTableArtefacts.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         }
         return jTableArtefacts;
     }
@@ -336,24 +336,25 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
      */
     protected void handlePlotArtefact() {
 		try {
-			final JTable table = getJTableArtefacts();
-			final int sel = table.getSelectedRow();
-			if (sel < 0) {
+			JTable table = getJTableArtefacts();
+			final int[] sel = table.getSelectedRows();
+			if(Utils.isEmptyArray(sel)) {
 				return;
 			}
-			final DataViewInfo dvi = (DataViewInfo)getArtefactInfoAtRow(sel);
 			this.fViewContainer.getAppWorker().runJobSynch(
 			        new UIWorkerJobDefault(
 			                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR,
-			                // TODO localize
-			        		"Plotting data view...") {
+			        		MessageRepository.get(Msg.TEXT_PLOTTING_DATA_VIEW)) {
                 public void work() throws Exception {
-        			if(!dvi.getFlag(DataViewInfo.ENABLED) && dvi.isCommitted()) {
-        				// enable it first
-        				((DataViewTableModel)fTableModelArtefacts).enableDataView(sel);
-        				applyChangesLocally();
+        			for(int idx : sel) {
+        				DataViewInfo dvi = (DataViewInfo)getArtefactInfoAtRow(idx);
+	        			if(!dvi.getFlag(DataViewInfo.ENABLED) && dvi.isCommitted()) {
+	        				// enable it first
+	        				((DataViewTableModel)fTableModelArtefacts).enableDataView(idx);
+	        				applyChangesLocally();
+	        			}
+	                	fCallback.plot(new DataViewId(fContext, dvi.getDataView().getName()));
         			}
-                	fCallback.plot(new DataViewId(fContext, dvi.getDataView().getName()));
                 }
                 public void finished(Throwable ex) {
                 }
@@ -413,52 +414,54 @@ public final class DataViewSelectorPanel extends ArtefactSelectorPanel<DataViewI
     protected void handleRemoveArtefact() {
 		try {
 			JTable table = getJTableArtefacts();
-			int sel = table.getSelectedRow();
-			if(sel < 0) {
+			int[] sel = table.getSelectedRows();
+			if(Utils.isEmptyArray(sel)) {
 				return;
 			}
-			final DataViewInfo dvi = (DataViewInfo)getArtefactInfoAtRow(sel);
-			DataViewMap map = fDataViewRepository.getDataViewMap(fContext);
-			if(map == null) {
-			    logger.error("Couldn't find data view map for context: " + this.fContext);
-			    return;
-			}
-			// ask for confirmation
-			if(!UIUtils.getBooleanOkCancelInput(this.fViewContainer.getAppFrame(),
-					MessageRepository.get(Msg.TITLE_CONFIRM_REMOVE_DATAVIEW),
-					MessageRepository.get(Msg.TEXT_CONFIRM_REMOVE_DATAVIEW,
-							new String[] {dvi.getTranslatedName()}))) {
-				return;
-			}
-
-            // remove view for the current agent version
-			map.remove(dvi.getDataView().getName(), fSUOVersion);
-			fDataViewRepository.setDataViewMap(fContext, map);
-			fDataViewRepository.save();
-			// update model
-			this.fSessionData.getDataViewHelper()
-				.removeDataView(fContext,
-			        dvi.getDataView().getName());
-			// refreshes the table model
-			refreshTableModel();
-			if(!fLogReplayMode) {
-				// unregister query with the query realizer
-				// Note: this method is reading from the session model
-				// and as a result it can only be used safely from
-				// the event dispatching thread
-				this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
-						fViewContainer.getAppFrame(),
-						Cursor.WAIT_CURSOR,
-						MessageRepository.get(
-							Msg.TEXT_UNREALIZING_DATAVIEW,
-							new String[]{dvi.getTranslatedName()})) {
-					public void work() throws Exception {
-						QueryId qid = new QueryId(fContext, dvi.getDataView().getQueryDef().getIdentifier());
-						fQueryRealizer.unrealizeQuery(qid, false);
+			for(int idx : sel) {
+				final DataViewInfo dvi = (DataViewInfo)getArtefactInfoAtRow(idx);
+				DataViewMap map = fDataViewRepository.getDataViewMap(fContext);
+				if(map == null) {
+				    logger.error("Couldn't find data view map for context: " + this.fContext);
+				    return;
+				}
+				// ask for confirmation
+				if(!UIUtils.getBooleanOkCancelInput(this.fViewContainer.getAppFrame(),
+						MessageRepository.get(Msg.TITLE_CONFIRM_REMOVE_DATAVIEW),
+						MessageRepository.get(Msg.TEXT_CONFIRM_REMOVE_DATAVIEW,
+								new String[] {dvi.getTranslatedName()}))) {
+					return;
+				}
+	
+	            // remove view for the current agent version
+				map.remove(dvi.getDataView().getName(), fSUOVersion);
+				fDataViewRepository.setDataViewMap(fContext, map);
+				fDataViewRepository.save();
+				// update model
+				this.fSessionData.getDataViewHelper()
+					.removeDataView(fContext,
+				        dvi.getDataView().getName());
+				// refreshes the table model
+				refreshTableModel();
+				if(!fLogReplayMode) {
+					// unregister query with the query realizer
+					// Note: this method is reading from the session model
+					// and as a result it can only be used safely from
+					// the event dispatching thread
+					this.fViewContainer.getAppWorker().runJobSynch(new UIWorkerJobDefault(
+							fViewContainer.getAppFrame(),
+							Cursor.WAIT_CURSOR,
+							MessageRepository.get(
+								Msg.TEXT_UNREALIZING_DATAVIEW,
+								new String[]{dvi.getTranslatedName()})) {
+						public void work() throws Exception {
+							QueryId qid = new QueryId(fContext, dvi.getDataView().getQueryDef().getIdentifier());
+							fQueryRealizer.unrealizeQuery(qid, false);
+							}
+						public void finished(Throwable ex) {
 						}
-					public void finished(Throwable ex) {
-					}
-					});
+						});
+				}
 			}
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);

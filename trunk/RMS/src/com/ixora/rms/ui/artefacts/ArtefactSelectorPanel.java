@@ -39,6 +39,7 @@ import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.actions.ActionApply;
 import com.ixora.common.ui.actions.ActionCancel;
 import com.ixora.common.ui.popup.PopupListener;
+import com.ixora.common.utils.Utils;
 import com.ixora.rms.client.QueryRealizer;
 import com.ixora.rms.client.model.AgentNode;
 import com.ixora.rms.client.model.ArtefactInfo;
@@ -468,7 +469,7 @@ public abstract class ArtefactSelectorPanel<T extends ArtefactInfo> extends JPan
 			c.setMaxWidth(25);
 			c = jTableArtefacts.getColumnModel().getColumn(1);
 			c.setCellRenderer(new SelectableArtefactTableCellRenderer());
-			jTableArtefacts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jTableArtefacts.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		}
 		return jTableArtefacts;
 	}
@@ -637,12 +638,16 @@ public abstract class ArtefactSelectorPanel<T extends ArtefactInfo> extends JPan
 	 */
 	private void handleArtefactSelected(ListSelectionEvent e) {
 		try {
-			int sel = getJTableArtefacts().getSelectedRow();
-			if(sel < 0) {
+			int[] sel = getJTableArtefacts().getSelectedRows();
+			if(Utils.isEmptyArray(sel)) {
 				return;
 			}
-			ArtefactInfo data = getArtefactInfoAtRow(sel);
-			setDescriptionText(data.getTranslatedDescription());
+			if(sel.length == 1) {
+				ArtefactInfo data = getArtefactInfoAtRow(sel[0]);
+				setDescriptionText(data.getTranslatedDescription());
+			} else {
+				setDescriptionText(null);
+			}
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);
 		}
@@ -693,17 +698,30 @@ public abstract class ArtefactSelectorPanel<T extends ArtefactInfo> extends JPan
 			getJMenuItemRemove().setVisible(false);
 			getJMenuItemViewXML().setVisible(false);
 			JTable table = getJTableArtefacts();
-			int sel = table.getSelectedRow();
-			if(sel >= 0) {
-				ArtefactInfo ai = getArtefactInfoAtRow(sel);
-				if(showPlotMenuItemForArtefact(ai)) {
-					getJMenuItemPlot().setVisible(true);
+			int[] sel = table.getSelectedRows();
+			if(!Utils.isEmptyArray(sel)) {
+				if(sel.length == 1) {
+					ArtefactInfo ai = getArtefactInfoAtRow(sel[0]);
+					if(showPlotMenuItemForArtefact(ai)) {
+						getJMenuItemPlot().setVisible(true);
+					}
+					getJMenuItemEdit().setVisible(true);
+					getJMenuItemRemove().setVisible(true);
+					getJMenuItemViewXML().setVisible(true);
+				} else {
+					getJMenuItemEdit().setVisible(false);
+					getJMenuItemViewXML().setVisible(false);
+					boolean canPlot = true;
+					for(int idx : sel) {
+						ArtefactInfo ai = getArtefactInfoAtRow(idx);
+						if(!showPlotMenuItemForArtefact(ai)) {
+							canPlot = false;
+						}
+					}
+					getJMenuItemPlot().setVisible(canPlot);
 				}
-				getJMenuItemEdit().setVisible(true);
-				getJMenuItemRemove().setVisible(true);
-				getJMenuItemViewXML().setVisible(true);
+				getJPopupMenu().show(e.getComponent(), e.getX(), e.getY());
 			}
-			getJPopupMenu().show(e.getComponent(), e.getX(), e.getY());
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);
 		}

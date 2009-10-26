@@ -55,4 +55,6 @@ public interface Msg {
 		"dataview.title.confirm_monitoring_level_increase";
 	public static final String TEXT_CONFIRM_MONITORING_LEVEL_INCREASE =
 		"dataview.text.confirm_monitoring_level_increase";
+	public static final String TEXT_PLOTTING_DATA_VIEW = 
+		"dataview.text.plotting";
 }

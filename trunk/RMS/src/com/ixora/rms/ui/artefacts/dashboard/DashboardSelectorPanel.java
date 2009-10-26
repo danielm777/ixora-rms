@@ -226,43 +226,45 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
      */
     protected void handlePlotArtefact() {
 		try {
+			final JTable table = getJTableArtefacts();
+			final int[] sel = table.getSelectedRows();
+			if(Utils.isEmptyArray(sel)) {
+				return;
+			}
+
 			this.fViewContainer.getAppWorker().runJobSynch(
 			        new UIWorkerJobDefault(
 			                fViewContainer.getAppFrame(), Cursor.WAIT_CURSOR,
-			                // TODO localize
-			        		"Plotting dashboard...") {
+			        		MessageRepository.get(Msg.TEXT_PLOTTING_DASHBOARD)) {
                 public void work() throws Exception {
-        			JTable table = getJTableArtefacts();
-        			int sel = table.getSelectedRow();
-        			if (sel < 0) {
-        				return;
+        			for(int idx : sel) {
+	        			DashboardInfo di = (DashboardInfo)
+	        				table.getModel().getValueAt(idx, 1);
+	
+	        			Dashboard dtls = di.getDashboard();
+	        			if(dtls == null) {
+	        			    logger.error("No dashboard");
+	        			    return;
+	        			}
+	
+	        			DataViewId[] members = dtls.getViews();
+	        			ResourceId[] counters = dtls.getCounters();
+	        			if(Utils.isEmptyArray(members)
+	        					&& Utils.isEmptyArray(counters)) {
+	        				// TODO localize
+	        				throw new RMSException(
+	        						"Dashboard " + di.getTranslatedName()
+									+ " has no data views.");
+	        			}
+	
+	        			if(!di.getFlag(DataViewInfo.ENABLED) && di.isCommitted()) {
+	        				// enable it first
+	        				((DashboardTableModel)fTableModelArtefacts).enableDashboard(idx);
+	        				applyChangesLocally();
+	        			}
+	
+	        			callback.plot(new DashboardId(fContext, dtls.getName()));
         			}
-        			DashboardInfo di = (DashboardInfo)
-        				table.getModel().getValueAt(sel, 1);
-
-        			Dashboard dtls = di.getDashboard();
-        			if(dtls == null) {
-        			    logger.error("No dashboard");
-        			    return;
-        			}
-
-        			DataViewId[] members = dtls.getViews();
-        			ResourceId[] counters = dtls.getCounters();
-        			if(Utils.isEmptyArray(members)
-        					&& Utils.isEmptyArray(counters)) {
-        				// TODO localize
-        				throw new RMSException(
-        						"Dashboard " + di.getTranslatedName()
-								+ " has no data views.");
-        			}
-
-        			if(!di.getFlag(DataViewInfo.ENABLED) && di.isCommitted()) {
-        				// enable it first
-        				((DashboardTableModel)fTableModelArtefacts).enableDashboard(sel);
-        				applyChangesLocally();
-        			}
-
-        			callback.plot(new DashboardId(fContext, dtls.getName()));
                 }
                 public void finished(Throwable ex) {
                     ; // nothing, synched job
@@ -335,33 +337,35 @@ public final class DashboardSelectorPanel extends ArtefactSelectorPanel<Dashboar
     protected void handleRemoveArtefact() {
 		try {
 			JTable table = getJTableArtefacts();
-			int sel = table.getSelectedRow();
-			if(sel < 0) {
+			int[] sel = table.getSelectedRows();
+			if(Utils.isEmptyArray(sel)) {
 				return;
 			}
-			DashboardInfo gi = (DashboardInfo)
-				table.getModel().getValueAt(sel, 1);
-			DashboardMap map = fDashboardRepository.getDashboardMap(fContext);
-			if(map == null) {
-			    logger.error("Couldn't find query gruop map for context: " + this.fContext);
-			    return;
+			for(int idx : sel) {
+				DashboardInfo gi = (DashboardInfo)
+					table.getModel().getValueAt(idx, 1);
+				DashboardMap map = fDashboardRepository.getDashboardMap(fContext);
+				if(map == null) {
+				    logger.error("Couldn't find query gruop map for context: " + this.fContext);
+				    return;
+				}
+				// ask for confitmation
+				if(!UIUtils.getBooleanOkCancelInput(this.fViewContainer.getAppFrame(),
+						MessageRepository.get(Msg.TITLE_CONFIRM_REMOVE_DASHBOARD),
+						MessageRepository.get(Msg.TEXT_CONFIRM_REMOVE_DASHBOARD,
+								new String[] {gi.getTranslatedName()}))) {
+					return;
+				}
+				// remove the dashboard only for the current fSUOVersion
+				map.remove(gi.getDashboard().getName(), fSUOVersion);
+	            fDashboardRepository.setDashboardMap(fContext, map);
+	            fDashboardRepository.save();
+				// update model
+				fSessionData.getDashboardHelper().removeDashboard(fContext,
+				        gi.getDashboard().getName());
+				// refresh table model
+				refreshTableModel();
 			}
-			// ask for confitmation
-			if(!UIUtils.getBooleanOkCancelInput(this.fViewContainer.getAppFrame(),
-					MessageRepository.get(Msg.TITLE_CONFIRM_REMOVE_DASHBOARD),
-					MessageRepository.get(Msg.TEXT_CONFIRM_REMOVE_DASHBOARD,
-							new String[] {gi.getTranslatedName()}))) {
-				return;
-			}
-			// remove the dashboard only for the current fSUOVersion
-			map.remove(gi.getDashboard().getName(), fSUOVersion);
-            fDashboardRepository.setDashboardMap(fContext, map);
-            fDashboardRepository.save();
-			// update model
-			fSessionData.getDashboardHelper().removeDashboard(fContext,
-			        gi.getDashboard().getName());
-			// refresh table model
-			refreshTableModel();
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);
 		}
