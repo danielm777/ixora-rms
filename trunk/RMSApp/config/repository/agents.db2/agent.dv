@@ -16,6 +16,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="agent"/>
@@ -43,6 +44,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="app"/>
@@ -77,6 +79,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="sql"/>
@@ -94,6 +97,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="table"/>
@@ -121,6 +125,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="container"/>
@@ -184,6 +189,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="bp"/>
@@ -207,6 +213,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -230,6 +237,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -251,6 +259,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -271,6 +280,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYArea">
@@ -291,6 +301,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -311,6 +322,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="StackedXYArea">
@@ -345,6 +357,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
     </view>
@@ -359,6 +372,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -413,6 +427,7 @@
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="sql" removeStale="true"/>
@@ -435,6 +450,8 @@
       </query>
       <agentVersions>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="Bar2D">
