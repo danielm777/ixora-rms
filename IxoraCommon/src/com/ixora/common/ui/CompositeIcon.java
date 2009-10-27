@@ -14,17 +14,15 @@ import javax.swing.Icon;
  * CompositeIcon
  */
 public class CompositeIcon implements Icon {
-    protected List<Icon>	listIcons;
-    protected int		compositeWidth;
-    protected int		compositeHeight;
+    protected List<Icon> listIcons;
+    protected int compositeWidth;
+    protected int compositeHeight;
 
     /**
      * Constructor
      */
     public CompositeIcon() {
         listIcons = new LinkedList<Icon>();
-        compositeWidth = 0;
-        compositeHeight = 0;
     }
 
     /**
@@ -58,7 +56,7 @@ public class CompositeIcon implements Icon {
         // Paint all icons to the right of each other
         int dx = 0;
         for (Icon icon : listIcons) {
-            icon.paintIcon(c, g, x+dx, y);
+            icon.paintIcon(c, g, x + dx, y);
             dx += icon.getIconWidth();
         }
     }

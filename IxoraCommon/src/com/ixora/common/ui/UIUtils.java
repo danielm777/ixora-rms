@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.util.Enumeration;
 import java.util.StringTokenizer;
 
 import javax.swing.Action;
@@ -24,6 +26,9 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.ui.actions.ActionCancel;
@@ -602,5 +607,27 @@ public final class UIUtils {
 				comp.requestFocus();
 			}
 		});
+	}
+	
+	/**
+	 * Changes the font size, application wide.
+	 * @param scale The scaling factor.
+	 */
+	public static void changeAppFontSize(Component cmp, float scale) {
+		UIDefaults defaults = UIManager.getDefaults(); 
+		Enumeration<Object> keys = defaults.keys(); 
+		while(keys.hasMoreElements()) { 
+			Object key = keys.nextElement(); 
+			Object value = defaults.get(key); 
+			if(value != null && value instanceof Font) { 
+				Font font = UIManager.getFont(key); 
+				if(font != null) { 
+					int size = font.getSize(); 
+					UIManager.put(key, 
+						new FontUIResource(font.deriveFont(size + scale))); 
+				} 
+			} 
+		}
+		SwingUtilities.updateComponentTreeUI(cmp);
 	}
 }

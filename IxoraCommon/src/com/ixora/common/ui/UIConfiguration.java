@@ -78,6 +78,13 @@ public final class UIConfiguration extends ComponentConfigurationDefault {
 	}
 
     /**
+     * @return The font scaling step.
+     */
+    public static int getFontScalingStep() {
+    	return instance.getInt("common.ui.font.scaling_step");
+    }
+    
+    /**
      * @return the URL with the location of the icons
      */
     public static URL getIconsURL() {

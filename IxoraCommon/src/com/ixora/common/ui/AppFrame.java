@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
 import java.net.URL;
 
 import javax.swing.AbstractButton;
@@ -35,6 +36,8 @@ import com.ixora.common.messages.Msg;
 import com.ixora.common.os.OSUtils;
 import com.ixora.common.security.license.LicenseMgr;
 import com.ixora.common.security.license.ui.ShowLicense;
+import com.ixora.common.ui.actions.ActionDecreaseFontApplicationWide;
+import com.ixora.common.ui.actions.ActionIncreaseFontApplicationWide;
 import com.ixora.common.ui.help.AppHelp;
 import com.ixora.common.ui.help.AppHelpMgr;
 import com.ixora.common.ui.jobs.UIWorker;
@@ -630,8 +633,8 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 * @throws Exception
 	 */
 	protected void setUpLookAndFeel(AppFrameParameters params) throws Exception {
-		MetalTheme myTheme = new PropertiesTheme(getClass()
-				.getResourceAsStream(OSUtils.isOs(OSUtils.WINDOWS) ? "/theme_win.thm" : "/theme.thm"));
+		MetalTheme myTheme = new PropertiesTheme(new FileInputStream(
+				Utils.getPath("config/ui/" + (OSUtils.isOs(OSUtils.WINDOWS) ? "theme_win.thm" : "theme.thm"))));
 		MetalLookAndFeel.setCurrentTheme(myTheme);
 		String lookAndFeelClass = params.getString(AppFrameParameters.LOOK_AND_FEEL_CLASS);
 		if(lookAndFeelClass != null) {
@@ -839,6 +842,8 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 			UIUtils.setUsabilityDtls(MessageRepository.get(Msg.COMMON_UI_APP_MENU_CONFIGURATION), fMenuConfiguration);
 			fMenuConfiguration.add(getJMenuItemConfigurationToggleToolBar());
 			fMenuConfiguration.add(getJMenuItemConfigurationToggleStatusBar());
+			fMenuConfiguration.add(new ActionIncreaseFontApplicationWide(this));
+			fMenuConfiguration.add(new ActionDecreaseFontApplicationWide(this));
 			fMenuConfiguration.add(getJMenuItemConfigurationSettings());
 		}
 		return fMenuConfiguration;
