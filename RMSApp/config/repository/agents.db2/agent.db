@@ -2,28 +2,42 @@
 <rms>
   <dashboards>
     <dashboard>
-      <name>DB2 overview</name>
-      <description>An overview of DB2 activity</description>
+      <name>DB2 details</name>
+      <description/>
       <views>
-        <view id=":SQL statements, per execution data:"/>
-        <view id=":Tables:"/>
-        <view id=":Bufferpools:"/>
-        <view id=":Applications:"/>
-        <view id=":Containers:"/>
-        <view id=":Agents:"/>
-        <view id="/:Bufferpool data I/O operations:"/>
-        <view id="/:Bufferpool index I/O operations:"/>
-        <view id="/:Bufferpool page cleaners:"/>
-        <view id="/:Log space:"/>
-        <view id="/:DB2 overview:"/>
-        <view id="/:Commit and rollback statements:"/>
-        <view id="/:Applications currently connected:"/>
+        <view id="/:SQL statements, per execution data:"/>
+        <view id="/:Tables:"/>
+        <view id="/:Agents:"/>
+        <view id="/:Applications:"/>
       </views>
       <author>system</author>
       <counters/>
       <agentVersions>
         <agentVersion>8.2</agentVersion>
         <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>DB2 overview</name>
+      <description>An overview of DB2 activity</description>
+      <views>
+        <view id=":Bufferpools:"/>
+        <view id=":Containers:"/>
+        <view id=":Bufferpool data I/O operations:"/>
+        <view id=":Bufferpool index I/O operations:"/>
+        <view id=":Log space:"/>
+        <view id=":DB2 overview:"/>
+        <view id=":Commit and rollback statements:"/>
+        <view id=":Applications currently connected:"/>
+        <view id="/:Row operations:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
       </agentVersions>
     </dashboard>
   </dashboards>
