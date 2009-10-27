@@ -354,27 +354,29 @@ public final class AgentInstallerDialog extends AppDialog {
 	                    				null, null, null, null, null, null, vad, null);
 	                }
 	            }
-				AgentInstallationDataDialog editor = new AgentInstallationDataDialog(
-				       fViewContainer, init, false, false);
-				editor.setModal(true);
-				UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), editor);
-				final AgentInstallationData aid = editor.getResult();
-				if(aid != null) {
-					fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
-							MessageRepository.get(AgentInstallerComponent.NAME, Msg.TEXT_INSTALLING_AGENT,
-									new String[] {aid.getAgentInstallationId()})) {
-						public void work() throws Throwable {
-							fAgentInstaller.install(aid);
-						}
-						public void finished(Throwable ex) {
-							if(ex == null) {
-								// refresh list data
-								loadAgents();
-								askForAppRestart();
+	            if(init != null) {
+					AgentInstallationDataDialog editor = new AgentInstallationDataDialog(
+					       fViewContainer, init, false, false);
+					editor.setModal(true);
+					UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), editor);
+					final AgentInstallationData aid = editor.getResult();
+					if(aid != null) {
+						fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR,
+								MessageRepository.get(AgentInstallerComponent.NAME, Msg.TEXT_INSTALLING_AGENT,
+										new String[] {aid.getAgentInstallationId()})) {
+							public void work() throws Throwable {
+								fAgentInstaller.install(aid);
 							}
-						}
-					});
-				}
+							public void finished(Throwable ex) {
+								if(ex == null) {
+									// refresh list data
+									loadAgents();
+									askForAppRestart();
+								}
+							}
+						});
+					}
+	            }
 			} else if(type == AgentInstallationTypeSelectorDialog.PACKAGED_AGENT) {
 				// show file dialog to select the agent package
 				JFileChooser fc = new JFileChooser();
