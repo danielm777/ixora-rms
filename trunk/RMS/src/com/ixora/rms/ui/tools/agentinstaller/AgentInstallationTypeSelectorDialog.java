@@ -66,7 +66,7 @@ public final class AgentInstallationTypeSelectorDialog extends AppDialog {
 		setTitle(MessageRepository.get(
                 AgentInstallerComponent.NAME,
 				Msg.AGENTINSTALLER_TITLE_SELECT_INSTALLATION_TYPE));
-		setPreferredSize(new Dimension(300, 120));
+		setPreferredSize(new Dimension(450, 160));
         fPanel = new JPanel(new BorderLayout());
 		FormPanel formPanel = new FormPanel(FormPanel.VERTICAL2);
         fPanel.add(formPanel, BorderLayout.NORTH);
