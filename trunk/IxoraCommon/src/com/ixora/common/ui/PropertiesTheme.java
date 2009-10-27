@@ -1,5 +1,6 @@
 package com.ixora.common.ui;
 import java.awt.Font;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -35,7 +36,7 @@ public class PropertiesTheme extends DefaultMetalTheme {
 
 	/**
 	 * Metal theme whose properties are taken from an input stream.
-	 * @param is
+	 * @param is the input stream, it does not have to be buffered
 	 * @throws IOException
 	 */
 	public PropertiesTheme(InputStream is) throws IOException {
@@ -166,7 +167,7 @@ public class PropertiesTheme extends DefaultMetalTheme {
 	 */
 	protected void loadFromProps(InputStream stream) throws IOException {
 		Properties prop = new Properties();
-		prop.load(stream);
+		prop.load(new BufferedInputStream(stream));
 
 		Object colorString = prop.get("color.primary1");
 		if (colorString != null){

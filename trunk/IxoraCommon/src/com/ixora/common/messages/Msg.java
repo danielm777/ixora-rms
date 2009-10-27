@@ -69,6 +69,10 @@ public interface Msg {
 		"common.ui.actions.new";
 	public static final String COMMON_UI_ACTIONS_UP =
 		"common.ui.actions.up";
+	public static final String COMMON_UI_INCREASE_FONT_APPLICATION_WIDE =
+		"common.ui.actions.increase_font_application_wide";
+	public static final String COMMON_UI_DECREASE_FONT_APPLICATION_WIDE =
+		"common.ui.actions.decrease_font_application_wide";
 	public static final String COMMON_UI_ACTIONS_DOWN =
 		"common.ui.actions.down";
 	public static final String COMMON_UI_TEXT_PROPERTY =
