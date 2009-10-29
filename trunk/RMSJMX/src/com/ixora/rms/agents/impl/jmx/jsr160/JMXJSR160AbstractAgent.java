@@ -90,4 +90,11 @@ public abstract class JMXJSR160AbstractAgent extends JMXAbstractAgent {
 	protected String getKeyFilter(String domain) {
 		return "*";
 	}
+
+	/**
+	 * @see com.ixora.rms.agents.impl.AbstractAgent#sortEntities()
+	 */
+	protected boolean sortEntities() {
+		return true;
+	}
 }

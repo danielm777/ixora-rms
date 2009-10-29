@@ -97,6 +97,9 @@ public class JMXEntity extends Entity {
 						continue;
 					}
 					String type = ai.getType();
+					if(type == null) {
+						type = String.class.getName();
+					}
 					CounterType ctype = convertType(type);
 					if(ctype != null) {
 						boolean discrete = isBoolean(type);
