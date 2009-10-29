@@ -64,7 +64,7 @@ public class AppInitializer {
 	 * screen.
 	 */
 	private static void showSplashScreen() {
-		fSplashScreen = new AppSplashScreen("splash.gif");
+		fSplashScreen = new AppSplashScreen("/splash.gif");
 		fSplashScreen.splash();
 	}
 }
