@@ -3,6 +3,7 @@
  */
 package com.ixora.rms.repository;
 
+import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLTag;
 import com.ixora.common.xml.XMLText;
 
@@ -11,10 +12,13 @@ import com.ixora.common.xml.XMLText;
  */
 public class AgentTemplate extends XMLTag implements InstallationArtefact {
 	private static final long serialVersionUID = -580612798471758259L;
-	protected XMLText templateId = new XMLText("templateId");
-    protected XMLText templateName = new XMLText("templateName");
-    protected XMLText agentClass = new XMLText("agentClass");
-    protected XMLText agentConfigurationPanelClass = new XMLText("agentConfigurationPanelClass");
+	private XMLText templateId = new XMLText("templateId");
+    private XMLText templateName = new XMLText("templateName");
+    private XMLText agentClass = new XMLText("agentClass");
+    private XMLText agentConfigurationPanelClass = new XMLText("agentConfigurationPanelClass");
+    private XMLText jars = new XMLText("jars");
+    private XMLText uiJar = new XMLText("uiJar");
+    private XMLText natLibs = new XMLText("natLibs");
 
     /**
      * Default constructor to support XML.
@@ -56,5 +60,38 @@ public class AgentTemplate extends XMLTag implements InstallationArtefact {
      */
     public String getTemplateName() {
         return templateName.getValue();
+    }
+    
+    /**
+     * @return
+     */
+    public String[] getJars() {
+    	String val = jars.getValue();
+    	if(Utils.isEmptyString(val)) {
+    		return null;
+    	}
+    	return val.split(",");
+    }
+
+    /**
+     * @return
+     */
+    public String[] getNativeLibs() {
+    	String val = natLibs.getValue();
+    	if(Utils.isEmptyString(val)) {
+    		return null;
+    	}
+    	return val.split(",");
+    }
+
+    /**
+     * @return
+     */
+    public String getUIJar() {
+    	String val = uiJar.getValue();
+    	if(Utils.isEmptyString(val)) {
+    		return null;
+    	}
+    	return val;    	
     }
 }

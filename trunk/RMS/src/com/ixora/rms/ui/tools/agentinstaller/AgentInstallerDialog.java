@@ -347,9 +347,9 @@ public final class AgentInstallerDialog extends AppDialog {
 	                    			new AgentLocation[]{AgentLocation.LOCAL, AgentLocation.REMOTE},
 	                    			null,
 	                    			0,
-	                    			null,
-	                    			null,
-	                    			null);
+	                    			selectedTemplate.getJars(),
+	                    			selectedTemplate.getUIJar(),
+	                    			selectedTemplate.getNativeLibs());
 	                    init = new AgentInstallationData(selectedTemplate.getAgentClass(), true, new ComponentVersion(1,0,0), 
 	                    				null, null, null, null, null, null, vad, null);
 	                }

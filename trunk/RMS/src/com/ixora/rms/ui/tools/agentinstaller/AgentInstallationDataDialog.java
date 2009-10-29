@@ -156,6 +156,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 		fTextFieldCategory = UIFactoryMgr.createTextField();
 		fTextFieldMessageCatalog = UIFactoryMgr.createTextField();
 		fTextFieldHelpIdJava = UIFactoryMgr.createTextField();
+		fTextFieldHelpIdWeb = UIFactoryMgr.createTextField();
 		fPrototypeTargetVersion = createFromVersion(null);
 
 		fEditorTargetVersions = new TypedPropertiesListEditor(fPrototypeTargetVersion,
