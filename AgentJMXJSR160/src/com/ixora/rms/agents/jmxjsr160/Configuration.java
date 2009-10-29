@@ -20,6 +20,6 @@ public class Configuration extends ConfigurationWithClasspathAndExtraProperties 
 	public Configuration() {
 		super();
         setProperty(JMX_CONNECTION_STRING, TYPE_STRING, true, true);
-        setString(JMX_CONNECTION_STRING, "service:jmx:rmi:");
+        setString(JMX_CONNECTION_STRING, "service:jmx:rmi:///jndi/rmi://{host}:9999/jmxrmi");
 	}
 }
