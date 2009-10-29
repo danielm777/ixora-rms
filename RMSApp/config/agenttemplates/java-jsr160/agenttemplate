@@ -1,0 +1,8 @@
+<template>
+<templateId>java-jsr160</templateId>
+<templateName>agentinstaller.template.java-jsr160</templateName>
+<agentClass>com.ixora.rms.agents.jmxjsr160.JMXJSR160Agent</agentClass>
+<agentConfigurationPanelClass>com.ixora.rms.agents.jmxjsr160.ConfigurationPanel</agentConfigurationPanelClass>
+<jars>/jars/AgentJMXJSR160.jar,/jars/RMSJMX.jar,/lib/javax77.jar</jars>
+<uiJar>/jars/AgentJMXJSR160_ui.jar</uiJar>
+</template>
