@@ -31,6 +31,7 @@ import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
+import javax.swing.ListModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultFormatter;
@@ -297,5 +298,13 @@ public final class UIFactoryMgr {
 	 */
 	public static JSplitPane createSplitPane(String name, int orientation, boolean continuosLayout) {
 		return uiFactory.createSplitPane(name, orientation, continuosLayout);
+	}
+
+	/**
+	 * @param model
+	 * @return
+	 */
+	public static JList createList(ListModel model) {
+		return uiFactory.createList(model);
 	}	
 }
