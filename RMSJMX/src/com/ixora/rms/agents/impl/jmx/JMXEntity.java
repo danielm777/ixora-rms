@@ -140,28 +140,30 @@ public class JMXEntity extends Entity {
 							continue;
 						}
 						String type = ai.getType();
-						CounterType ctype = convertType(type);
-						if(ctype == null) {
-							if(type.equals(CompositeData.class.getName())) {
-								EntityId eid = JMXEntityCompositeData.createEntityId(getId(), ai.getName());
-								Entity child = getChildEntity(eid);
-								if(child == null) {
-									child = new JMXEntityCompositeData(getId(), getJMXContext(), fObjectName, ai.getName());
-									addChildEntity(child);
-								} else {
-									((JMXEntity)child).update(null);
+						if(type != null) {
+							CounterType ctype = convertType(type);
+							if(ctype == null) {
+								if(type.equals(CompositeData.class.getName())) {
+									EntityId eid = JMXEntityCompositeData.createEntityId(getId(), ai.getName());
+									Entity child = getChildEntity(eid);
+									if(child == null) {
+										child = new JMXEntityCompositeData(getId(), getJMXContext(), fObjectName, ai.getName());
+										addChildEntity(child);
+									} else {
+										((JMXEntity)child).update(null);
+									}
+								} else if(type.equals(Stats.class.getName())) {
+									EntityId eid = JMXJSR77Entity.createEntityId(getId(), ai.getName());
+									Entity child = getChildEntity(eid);
+									if(child == null) {
+										child = new JMXJSR77Entity(getId(), getJMXContext(), fObjectName, ai.getName());
+										addChildEntity(child);
+									} else {
+										((JMXEntity)child).update(null);
+									}
+									// complex type
+									processComplexAttribute(ai, true);
 								}
-							} else if(type.equals(Stats.class.getName())) {
-								EntityId eid = JMXJSR77Entity.createEntityId(getId(), ai.getName());
-								Entity child = getChildEntity(eid);
-								if(child == null) {
-									child = new JMXJSR77Entity(getId(), getJMXContext(), fObjectName, ai.getName());
-									addChildEntity(child);
-								} else {
-									((JMXEntity)child).update(null);
-								}
-								// complex type
-								processComplexAttribute(ai, true);
 							}
 						}
 					}
