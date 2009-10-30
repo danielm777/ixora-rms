@@ -33,6 +33,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeExpansionEvent;
@@ -43,7 +44,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.ExpandVetoException;
 import javax.swing.tree.TreePath;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
@@ -60,6 +60,7 @@ import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLUtils;
 import com.ixora.rms.MonitoringLevel;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.model.ArtefactInfoContainer;
 import com.ixora.rms.client.model.CounterInfo;
 import com.ixora.rms.client.model.DataViewInfo;
@@ -70,6 +71,7 @@ import com.ixora.rms.repository.AuthoredArtefactHelper;
 import com.ixora.rms.repository.Dashboard;
 import com.ixora.rms.repository.DashboardId;
 import com.ixora.rms.repository.DashboardMap;
+import com.ixora.rms.repository.DataView;
 import com.ixora.rms.repository.DataViewId;
 import com.ixora.rms.repository.exception.ArtefactSaveConflict;
 import com.ixora.rms.services.DashboardRepositoryService;
@@ -80,6 +82,9 @@ import com.ixora.rms.ui.SessionTreeExplorer;
 import com.ixora.rms.ui.actions.ActionFromXML;
 import com.ixora.rms.ui.artefacts.dashboard.exception.SaveConflict;
 import com.ixora.rms.ui.artefacts.dashboard.messages.Msg;
+import com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef;
+import com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef;
+import com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef;
 
 /**
  * @author Daniel Moraru
@@ -242,6 +247,29 @@ final class DashboardEditorDialog extends AppDialog {
         public String toString() {
             return fCounterInfo.toString();
         }
+    }
+    
+    private final static class ViewsListRenderer extends JLabel implements ListCellRenderer {
+    	private static final ImageIcon fIconChart = UIConfiguration.getIcon("chartsboard.gif");
+    	private static final ImageIcon fIconTable = UIConfiguration.getIcon("tablesboard.gif");
+    	private static final ImageIcon fIconProperties = UIConfiguration.getIcon("propertiesboard.gif");
+    	
+		public Component getListCellRendererComponent(JList list, Object value,
+				int index, boolean isSelected, boolean cellHasFocus) {
+			DataViewInfo dvi = (DataViewInfo)value;
+			setText(dvi.toString());
+			DataView dv = dvi.getDataView();
+			if(dv instanceof ChartDef) {
+				setIcon(fIconChart);
+			} else if(dv instanceof TableDef) {
+				setIcon(fIconTable);
+			} else if(dv instanceof PropertiesDef) {
+				setIcon(fIconProperties);
+			}  else {
+				setIcon(null);
+			}
+			return this;
+		}    	
     }
 
     /**
@@ -610,12 +638,13 @@ final class DashboardEditorDialog extends AppDialog {
 		fDashboardRepository = qgr;
 		fEventHandler = new EventHandler();
 		fViewsModel = new DefaultListModel();
-		jListViews = new JList(fViewsModel);
+		jListViews = UIFactoryMgr.createList(fViewsModel);
+		jListViews.setCellRenderer(new ViewsListRenderer());
 		fCountersModel = new DefaultListModel();
-		jListCounters = new JList(fCountersModel);
+		jListCounters = UIFactoryMgr.createList(fCountersModel);
         jListCounters.setCellRenderer(new CounterListCellRenderer());
 		fDashboardItemsModel = new DefaultListModel();
-		jListDashboardItems = new JList(fDashboardItemsModel);
+		jListDashboardItems = UIFactoryMgr.createList(fDashboardItemsModel);
 		jTreeContext = UIFactoryMgr.createTree();
 		jTreeContext.setModel(null);
 
