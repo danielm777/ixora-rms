@@ -38,6 +38,7 @@ import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
+import javax.swing.ListModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultFormatter;
@@ -382,5 +383,12 @@ public class UIFactoryDefault implements UIFactory {
 		ret.setName(name);
 		new SplitPaneDividerPositionTracker(ret);
 		return ret;
+	}
+	
+	/**
+	 * @see com.ixora.common.ui.UIFactory#createList(javax.swing.ListModel)
+	 */
+	public JList createList(ListModel model) {
+		return new JList(model);
 	}
 }
