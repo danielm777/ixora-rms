@@ -16,12 +16,11 @@ import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.ui.SpringUtilities;
 import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.QueryRealizer;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.dataengine.Style;
 import com.ixora.rms.repository.DataView;
 import com.ixora.rms.services.DataEngineService;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.DataViewBoard;
+import com.ixora.rms.ui.dataviewboard.DataViewBoardContext;
 import com.ixora.rms.ui.dataviewboard.DataViewControl;
 import com.ixora.rms.ui.dataviewboard.DataViewControlContext;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
@@ -46,12 +45,11 @@ public final class TablesBoard extends DataViewBoard
 	/**
 	 * @param qr
 	 * @param des
-	 * @param rls
-	 * @param locator
+	 * @param context
 	 */
     public TablesBoard(
-    		QueryRealizer qr, DataEngineService des, ReactionLogService rls, SessionArtefactInfoLocator locator) {
-		super(qr, des, rls, locator, "",
+    		QueryRealizer qr, DataEngineService des, DataViewBoardContext context) {
+		super(qr, des, context, "",
 				true, //resizable
 				true, //closable
 				true, //maximizable

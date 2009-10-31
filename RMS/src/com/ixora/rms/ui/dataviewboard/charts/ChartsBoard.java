@@ -13,19 +13,18 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.rms.CounterType;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.QueryRealizer;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.client.locator.SessionResourceInfo;
 import com.ixora.rms.dataengine.Style;
 import com.ixora.rms.repository.DataView;
 import com.ixora.rms.services.DataEngineService;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.DataViewBoard;
+import com.ixora.rms.ui.dataviewboard.DataViewBoardContext;
 import com.ixora.rms.ui.dataviewboard.DataViewControl;
 import com.ixora.rms.ui.dataviewboard.DataViewControlContext;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
@@ -48,11 +47,10 @@ public final class ChartsBoard extends DataViewBoard
 	 * Constructor.
 	 * @param qr
 	 * @param des
-	 * @param rls
-	 * @param locator
+	 * @param context
 	 */
-	public ChartsBoard(QueryRealizer qr, DataEngineService des, ReactionLogService rls, SessionArtefactInfoLocator locator) {
-		super(qr, des, rls, locator, "",
+	public ChartsBoard(QueryRealizer qr, DataEngineService des, DataViewBoardContext context) {
+		super(qr, des, context, "",
 		true, //resizable
 		true, //closable
 		true, //maximizable
@@ -130,7 +128,7 @@ public final class ChartsBoard extends DataViewBoard
         Set<ResourceId> numerics = new HashSet<ResourceId>();
         Set<ResourceId> strings = new HashSet<ResourceId>();
         for(ResourceId counter : counters) {
-            SessionResourceInfo ri = fLocator.getResourceInfo(counter);
+            SessionResourceInfo ri = fContext.getSessionArtefactLocator().getResourceInfo(counter);
             if(ri == null || ri.getCounterInfo() == null) {
                 logger.error("Counter " + counter
                         + " not found. Derived query will be incomplete");
