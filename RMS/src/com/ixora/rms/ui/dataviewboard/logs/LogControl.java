@@ -12,12 +12,10 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.ui.filter.RowFilter;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.repository.DataView;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.DataViewBoard;
 import com.ixora.rms.ui.dataviewboard.DataViewControlContext;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
@@ -64,8 +62,8 @@ public class LogControl extends TableBasedControl implements Observer {
 	 * @param dataView
 	 * @throws FailedToCreateControl
 	 */
-	public LogControl(DataViewBoard owner, Listener listener, DataViewControlContext context, SessionArtefactInfoLocator locator, ReactionLogService rls, ResourceId resourceContext, DataView dataView) throws FailedToCreateControl {
-		super(owner, listener, context, locator, rls, resourceContext, dataView);
+	public LogControl(DataViewBoard owner, Listener listener, DataViewControlContext context, ResourceId resourceContext, DataView dataView) throws FailedToCreateControl {
+		super(owner, listener, context, resourceContext, dataView);
 		buildLegend();
 		ConfigurationMgr.get(LogBoardComponent.NAME).addObserver(this);
 	}
@@ -81,7 +79,7 @@ public class LogControl extends TableBasedControl implements Observer {
 	 * @see com.ixora.rms.ui.dataviewboard.utils.TableBasedControl#createTableModel()
 	 */
 	protected TableBasedControlTableModel createTableModel() {
-		fTableModel = new LogControlTableModel(fLocator,
+		fTableModel = new LogControlTableModel(fControlContext.getSessionArtefactLocator(),
 				(LogDef)fDataView, getRealizedQuery(),
 				ConfigurationMgr.getInt(LogBoardComponent.NAME,
 						LogBoardConfigurationConstants.LOGBOARD_LOG_RECORD_BUFFER_SIZE));
