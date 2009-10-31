@@ -19,7 +19,7 @@ import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.rms.repository.DataViewBoardInstallationData;
 import com.ixora.rms.services.DataViewBoardRepositoryService;
 import com.ixora.rms.ui.actions.ActionNewViewBoard;
-import com.ixora.rms.ui.dataviewboard.handler.DataViewBoardHandler;
+import com.ixora.rms.ui.dataviewboard.DataViewBoardHandler;
 
 /**
  * Handles the popup button 'Create New View Board'.
