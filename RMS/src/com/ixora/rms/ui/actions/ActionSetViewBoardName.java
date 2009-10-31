@@ -10,7 +10,7 @@ import javax.swing.AbstractAction;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIUtils;
-import com.ixora.rms.ui.dataviewboard.handler.DataViewBoardHandler;
+import com.ixora.rms.ui.dataviewboard.DataViewBoardHandler;
 import com.ixora.rms.ui.messages.Msg;
 
 
