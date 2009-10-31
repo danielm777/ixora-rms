@@ -33,8 +33,8 @@ import com.ixora.rms.ui.actions.ActionShowLegendWindow;
 import com.ixora.rms.ui.actions.ActionTileViewBoards;
 import com.ixora.rms.ui.actions.ActionToggleIdentifiers;
 import com.ixora.rms.ui.actions.ActionToggleHTMLGeneration;
-import com.ixora.rms.ui.dataviewboard.handler.DataViewBoardHandler;
-import com.ixora.rms.ui.dataviewboard.handler.DataViewScreenPanel;
+import com.ixora.rms.ui.dataviewboard.DataViewBoardHandler;
+import com.ixora.rms.ui.dataviewboard.DataViewScreenPanel;
 import com.ixora.rms.ui.exporter.HTMLGenerator;
 import com.ixora.rms.ui.messages.Msg;
 
