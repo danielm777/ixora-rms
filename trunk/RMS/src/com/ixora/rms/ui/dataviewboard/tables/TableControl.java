@@ -23,7 +23,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIConfiguration;
@@ -32,9 +31,9 @@ import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterDescriptor;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
-import com.ixora.rms.dataengine.RealizedQuery;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.dataengine.QueryResult;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.definitions.FunctionDef;
 import com.ixora.rms.dataengine.definitions.ParamDef;
 import com.ixora.rms.dataengine.definitions.QueryDef;
@@ -43,7 +42,6 @@ import com.ixora.rms.dataengine.definitions.ValueFilterDef;
 import com.ixora.rms.dataengine.definitions.ValueFilterRuleDef;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.repository.DataView;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.DataViewControlContext;
 import com.ixora.rms.ui.dataviewboard.charts.ChartStyle;
 import com.ixora.rms.ui.dataviewboard.charts.definitions.RendererDef;
@@ -281,11 +279,9 @@ public class TableControl extends TableBasedControl
     public TableControl(TablesBoard owner,
     		Listener listener,
 			DataViewControlContext context,
-    		SessionArtefactInfoLocator locator,
-    		ReactionLogService rls,
 			ResourceId resourceContext,
 			DataView dv) throws FailedToCreateControl {
-        super(owner, listener, context, locator, rls, resourceContext, dv);
+        super(owner, listener, context, resourceContext, dv);
         this.fEventHandler = new EventHandler();
 
         fActionViewAsBarChart = new ActionViewAsBarChart();
@@ -749,7 +745,7 @@ public class TableControl extends TableBasedControl
 	protected TableBasedControlTableModel createTableModel() {
 		TableDef tableDef = (TableDef)this.fDataView;
 		fTableModel = new TableControlModel(
-                this.fLocator,
+                fControlContext.getSessionArtefactLocator(),
                 tableDef,
         		getRealizedQuery(),
         		getOwnCellRenderer().getFormatter()

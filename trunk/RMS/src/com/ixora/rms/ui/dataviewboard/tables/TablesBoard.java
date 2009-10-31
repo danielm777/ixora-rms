@@ -12,9 +12,9 @@ import java.util.Observer;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.ui.SpringUtilities;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.QueryRealizer;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.dataengine.Style;
@@ -73,16 +73,16 @@ public final class TablesBoard extends DataViewBoard
     /**
      * @see com.ixora.rms.ui.dataviewboard.DataViewBoard#addControl(com.ixora.rms.ui.dataviewboard.DataViewControl)
      */
-    protected void addControl(DataViewControl dvc) {
+    public void addControl(DataViewControl dvc) {
         super.addControl(dvc);
         rearrange();
     }
 
     /**
-     * @see com.ixora.rms.ui.dataviewboard.DataViewBoard#removeControl(com.ixora.rms.ui.dataviewboard.DataViewControl)
+     * @see com.ixora.rms.ui.dataviewboard.DataViewBoard#detachControl(com.ixora.rms.ui.dataviewboard.DataViewControl)
      */
-    public void removeControl(DataViewControl dvc) {
-        super.removeControl(dvc);
+    public void detachControl(DataViewControl dvc) {
+        super.detachControl(dvc);
         rearrange();
     }
 
@@ -168,7 +168,7 @@ public final class TablesBoard extends DataViewBoard
 	 * @see com.ixora.rms.ui.dataviewboard.DataViewBoard#createControl(com.ixora.rms.ui.dataviewboard.DataViewControlContext, com.ixora.rms.internal.ResourceId, com.ixora.rms.repository.DataView)
 	 */
 	protected DataViewControl createControl(DataViewControlContext context, ResourceId resourceContext, DataView view) throws FailedToCreateControl {
-        return new TableControl(this, this.fEventHandler, context, fLocator, fReactionLog, resourceContext, view);
+        return new TableControl(this, this.fEventHandler, context, resourceContext, view);
 	}
 
 	/**
@@ -184,4 +184,11 @@ public final class TablesBoard extends DataViewBoard
     protected DataView createDataViewForCounters(ResourceId context, List<ResourceId> counter, String viewName, List<ResourceId> rejected) {
         return null;
     }
+    
+	/**
+	 * @see com.ixora.rms.ui.dataviewboard.DataViewBoard#acceptControl(com.ixora.rms.ui.dataviewboard.DataViewControl)
+	 */
+	protected boolean acceptControl(DataViewControl control) {
+		return control instanceof TableControl;
+	}  
 }
