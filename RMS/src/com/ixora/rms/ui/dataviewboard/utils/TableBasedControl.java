@@ -37,7 +37,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.TableSorter;
 import com.ixora.common.ui.UIConfiguration;
@@ -48,10 +47,9 @@ import com.ixora.common.ui.filter.FilterDefinitionDialog;
 import com.ixora.common.ui.filter.FilteredTableModel;
 import com.ixora.common.ui.filter.RowFilter;
 import com.ixora.common.ui.filter.FilteredTableModel.FilterEvent;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.dataengine.external.QueryData;
 import com.ixora.rms.repository.DataView;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.DataViewBoard;
 import com.ixora.rms.ui.dataviewboard.DataViewControl;
 import com.ixora.rms.ui.dataviewboard.DataViewControlContext;
@@ -207,8 +205,8 @@ public abstract class TableBasedControl extends DataViewControl {
 	 * @param dataView
 	 * @throws FailedToCreateControl
 	 */
-	public TableBasedControl(DataViewBoard owner, Listener listener, DataViewControlContext context, SessionArtefactInfoLocator locator, ReactionLogService rls, ResourceId resourceContext, DataView dataView) throws FailedToCreateControl {
-		super(owner, listener, context, locator, rls, resourceContext, dataView);
+	public TableBasedControl(DataViewBoard owner, Listener listener, DataViewControlContext context, ResourceId resourceContext, DataView dataView) throws FailedToCreateControl {
+		super(owner, listener, context, resourceContext, dataView);
 		fEventHandler = new EventHandler();
 		fActionPrintTable = new ActionPrint();
 		fActionToggleFilter = new ActionToggleFilter();
