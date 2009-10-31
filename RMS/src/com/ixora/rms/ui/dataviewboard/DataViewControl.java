@@ -11,34 +11,36 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
-import com.ixora.rms.ResourceId;
-import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.ComponentConfiguration;
+import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.popup.PopupListener;
+import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLUtils;
 import com.ixora.common.xml.exception.XMLException;
 import com.ixora.rms.CounterDescriptor;
 import com.ixora.rms.CounterId;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.locator.SessionDataViewInfo;
 import com.ixora.rms.client.locator.SessionResourceInfo;
-import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.QueryResultData;
+import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.external.QueryData;
 import com.ixora.rms.dataengine.external.QueryListener;
 import com.ixora.rms.dataengine.external.QuerySeries;
@@ -47,7 +49,6 @@ import com.ixora.rms.reactions.ReactionsComponent;
 import com.ixora.rms.reactions.ReactionsComponentConfigurationConstants;
 import com.ixora.rms.repository.DataView;
 import com.ixora.rms.repository.DataViewId;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.actions.ActionViewXML;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
 import com.ixora.rms.ui.dataviewboard.legend.Legend;
@@ -72,6 +73,14 @@ public abstract class DataViewControl extends JPanel
 		 */
 		void controlInFocus(DataViewControl control);
 	}
+	
+	/** Callback */
+	public interface Callback {		
+		/**
+		 * Invoked when the control needs to move to another view board.
+		 */
+		void move(DataViewControl source, String screen, String viewBoard);
+	}
 
 	/** Listener */
 	protected Listener fListener;
@@ -89,8 +98,8 @@ public abstract class DataViewControl extends JPanel
 	protected JMenuItem fMenuItemRemove;
 	/** View data view as XML menu item */
 	protected JMenuItem fMenuItemViewAsXML;
-	/** Resource info locator */
-	protected SessionArtefactInfoLocator fLocator;
+	/** Move menu */
+	protected JMenu fMenuMove;	
 	/** Context */
 	protected ResourceId fContextId;
 	/** The data view used by this control */
@@ -99,8 +108,6 @@ public abstract class DataViewControl extends JPanel
 	protected RealizedQuery fRealizedCube;
 	/** Cache of localization data for resource infos */
 	protected Map<ResourceId, SessionResourceInfo> fLocalizationInfoCache;
-	/** Reaction log */
-	protected ReactionLogService fReactionLog;
 	/**
 	 * Execution context. Used by controls to get access to plotting system so that
 	 * they can provide different controls for their data view
@@ -147,7 +154,7 @@ public abstract class DataViewControl extends JPanel
 			handleShowPopup(e);
 		}
 	}
-
+	
 	/**
 	 * Event handler.
 	 */
@@ -174,8 +181,6 @@ public abstract class DataViewControl extends JPanel
 	 * @param owner
 	 * @param listener
 	 * @param context
-	 * @param locator
-	 * @param rls
 	 * @param resourceContext
 	 * @param dataViewInfo
 	 * @throws FailedToCreateControl
@@ -184,14 +189,13 @@ public abstract class DataViewControl extends JPanel
 			DataViewBoard owner,
 			Listener listener,
 			DataViewControlContext context,
-	        SessionArtefactInfoLocator locator,
-	        ReactionLogService rls, ResourceId resourceContext,
+			ResourceId resourceContext,
 			DataView dataView) throws FailedToCreateControl {
 		super(new BorderLayout());
-		init(owner, listener, context, locator, rls);
+		init(owner, listener, context);
 		add(getDisplayPanel(), BorderLayout.CENTER);
-		if(rls != null) {
-			fReactionsAlertPanel = new ReactionsAlertPanel(context.getViewContainer(), rls);
+		if(context.getReactionLogService() != null) {
+			fReactionsAlertPanel = new ReactionsAlertPanel(context.getViewContainer(), context.getReactionLogService());
 			fReactionsAlertPanel.setVisible(false);
 			add(fReactionsAlertPanel, BorderLayout.NORTH);
 		}
@@ -207,7 +211,7 @@ public abstract class DataViewControl extends JPanel
 					resourceContext.getAgentId(),
 					resourceContext.getEntityId(),
 					new CounterId(dataView.getQueryDef().getIdentifier()));
-			fSessionResourceInfoOnCounter = fLocator.getResourceInfo(counterId);
+			fSessionResourceInfoOnCounter = fControlContext.getSessionArtefactLocator().getResourceInfo(counterId);
 			if(fSessionResourceInfoOnCounter != null
 					&& fSessionResourceInfoOnCounter.getCounterInfo() != null) {
 				this.fDataViewInfo = new SessionDataViewInfo(
@@ -216,12 +220,12 @@ public abstract class DataViewControl extends JPanel
 			}
 		} else if(fDataView.getSource() == DataView.DATAVIEW_SOURCE_REPOSITORY) {
 			DataViewId vid = new DataViewId(resourceContext, fDataView.getName());
-			this.fDataViewInfo = fLocator.getDataViewInfo(vid);
+			this.fDataViewInfo = fControlContext.getSessionArtefactLocator().getDataViewInfo(vid);
 			if(this.fDataViewInfo == null) {
 				// this should never happen for a repository data view
 				throw new FailedToCreateControl("Could not find data view " + vid, false);
 			} else {
-                SessionResourceInfo rInfo = fLocator.getResourceInfo(vid.getContext());
+                SessionResourceInfo rInfo = fControlContext.getSessionArtefactLocator().getResourceInfo(vid.getContext());
                 if(rInfo != null) {
                     this.fTranslatedContext = rInfo.getTranslatedPath();
                 }
@@ -229,7 +233,7 @@ public abstract class DataViewControl extends JPanel
 		} else {
 			// on the fly defined view
 			this.fDataViewInfo = new SessionDataViewInfo(fDataView);
-            SessionResourceInfo rInfo = fLocator.getResourceInfo(resourceContext);
+            SessionResourceInfo rInfo = fControlContext.getSessionArtefactLocator().getResourceInfo(resourceContext);
             if(rInfo != null) {
                 this.fTranslatedContext = rInfo.getTranslatedPath();
             }
@@ -249,22 +253,17 @@ public abstract class DataViewControl extends JPanel
 	 */
 	private void init(DataViewBoard owner,
 			Listener listener,
-			DataViewControlContext context,
-	        SessionArtefactInfoLocator locator, ReactionLogService rls) {
+			DataViewControlContext context) {
 		this.fListener = listener;
 		this.fOwner = owner;
 		this.fControlContext = context;
-	    this.fLocator = locator;
-	    this.fReactionLog = rls;
 
 		this.fPopupEventHandler = new PopupEventHandler();
 		this.fEventHandler = new EventHandler();
 
 		fPopupMenu = UIFactoryMgr.createPopupMenu();
 		fMenuItemRemove = UIFactoryMgr.createMenuItem();
-		fMenuItemRemove.setText(
-		        MessageRepository.get(
-		                Msg.ACTIONS_REMOVE_DATAVIEW_CONTROL));
+		fMenuItemRemove.setText(MessageRepository.get(Msg.ACTIONS_REMOVE_DATAVIEW_CONTROL));
 		fMenuItemViewAsXML = UIFactoryMgr.createMenuItem(
 				new ActionViewXML(fControlContext.getViewContainer()) {
 					private static final long serialVersionUID = 391758259112654610L;
@@ -273,13 +272,37 @@ public abstract class DataViewControl extends JPanel
 						return getXMLDefinitionForDataView();
 					}
 				});
-
+		fMenuMove = UIFactoryMgr.createMenu();
+		fMenuMove.setText(MessageRepository.get(Msg.ACTIONS_MOVE_DATAVIEW_CONTROL));
+		
 		fMenuItemRemove.addActionListener(fEventHandler);
 
 		fPopupMenu.add(fMenuItemRemove);
 		fPopupMenu.add(fMenuItemViewAsXML);
+		fPopupMenu.add(fMenuMove);
 	}
 
+
+	/**
+	 * @param owner the new owner of the control
+	 */
+	public void setOwner(DataViewBoard owner) {
+		fOwner = owner;
+	}
+
+	/**
+	 * @return the owner of this control
+	 */
+	public DataViewBoard getOwner() {
+		return fOwner;
+	}
+	
+	/**
+	 * @param controlContext the new control context
+	 */
+	public void setControlContext(DataViewControlContext controlContext) {
+		fControlContext = controlContext;
+	}
 
 	/**
 	 * @return
@@ -308,7 +331,7 @@ public abstract class DataViewControl extends JPanel
 	 * @param context ResourceID to use when completing relative resources
 	 */
 	private void realizeQuery(ResourceId context) {
-	    this.fRealizedCube = new RealizedQuery(fLocator,
+	    this.fRealizedCube = new RealizedQuery(fControlContext.getSessionArtefactLocator(),
 	    		this.fDataView.getQueryDef(), context);
 	}
 
@@ -532,6 +555,31 @@ public abstract class DataViewControl extends JPanel
 	 */
 	protected void handleShowPopup(MouseEvent e) {
 		try {
+			Map<String, List<DataViewBoard>> ab = fControlContext.getAvailableDataViewBoards(this);
+			if(Utils.isEmptyMap(ab)) {
+				fMenuMove.setVisible(false);
+			} else {
+				// clean up first
+				fMenuMove.removeAll();
+				// add the new ones
+				for(Map.Entry<String, List<DataViewBoard>> entry : ab.entrySet()) {
+					final String fscreen = entry.getKey();
+					JMenu sm = UIFactoryMgr.createMenu();
+					sm.setText(entry.getKey() + "...");
+					for(DataViewBoard dvb : entry.getValue()) {
+						final DataViewBoard fdvb = dvb;
+						JMenuItem mi = UIFactoryMgr.createMenuItem();
+						mi.setText(dvb.getTitle());
+						mi.addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent e) {
+								handleMove(fscreen, fdvb.getTitle());
+							}});
+						sm.add(mi);
+					}
+					fMenuMove.add(sm);
+				}
+				fMenuMove.setVisible(true);
+			}
 			fPopupMenu.show(e.getComponent(), e.getX(), e.getY());
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);
@@ -545,6 +593,19 @@ public abstract class DataViewControl extends JPanel
 		try {
 			cleanup();
 			fOwner.removeControl(this);
+		} catch(Exception ex) {
+			UIExceptionMgr.userException(ex);
+		}
+	}
+
+	/**
+	 * Removes this control from its parent.
+	 * @param screen
+	 * @param viewBoard
+	 */
+	protected void handleMove(String screen, String viewBoard) {
+		try {
+			fControlContext.getCallback().move(this, screen, viewBoard);
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);
 		}
@@ -575,7 +636,7 @@ public abstract class DataViewControl extends JPanel
 					fContextId.getEntityId(),
 					new CounterId(fDataView.getQueryDef().getIdentifier()));
 			}
-			fSessionResourceInfoOnCounter = fLocator.getResourceInfo(rid);
+			fSessionResourceInfoOnCounter = fControlContext.getSessionArtefactLocator().getResourceInfo(rid);
 			if(fSessionResourceInfoOnCounter != null
 					&& fSessionResourceInfoOnCounter.getCounterInfo() != null) {
 				this.fDataViewInfo = new SessionDataViewInfo(
@@ -597,7 +658,7 @@ public abstract class DataViewControl extends JPanel
             	}
             	SessionResourceInfo rInfo = fLocalizationInfoCache.get(rID);
             	if (rInfo == null) {
-            		rInfo = fLocator.getResourceInfo(rID);
+            		rInfo = fControlContext.getSessionArtefactLocator().getResourceInfo(rID);
             		fLocalizationInfoCache.put(rID, rInfo);
             	}
                 queryResultData.localizeTokens(rInfo);

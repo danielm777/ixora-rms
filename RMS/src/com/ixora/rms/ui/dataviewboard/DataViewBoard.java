@@ -383,12 +383,20 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 			}
 		}
 
+		// detach the control component
+		detachControl(dvc);		
+	}
+	
+	/**
+	 * @param dvc
+	 */
+	public void detachControl(DataViewControl dvc) {
 		// remove the control component
 		fBoard.remove(dvc);
 		fControls.remove(dvc);
 		validate();
-		repaint();
-
+		repaint();		
+		
 		// fire event
 		fireControlRemoved(dvc);
 	}
@@ -422,7 +430,8 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	 * Adds a control to the board.
 	 * @param dvc
 	 */
-	protected void addControl(DataViewControl dvc) {
+	public void addControl(DataViewControl dvc) {
+		dvc.setOwner(this);
 		fBoard.add(dvc);
 		fControls.add(dvc);
 		revalidate();
@@ -508,6 +517,13 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
     protected abstract DataView createDataViewForCounters(
     		ResourceId context, List<ResourceId> counters, String viewName, List<ResourceId> rejected);
 
+    /**
+     * Subclasses must check here if this control can be plotted.
+     * @param control
+     * @return true if the board could plot the given control
+     */
+    protected abstract boolean acceptControl(DataViewControl control);
+    
 	/**
 	 * @param qr
 	 * @param des
@@ -562,5 +578,16 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 		}
 		buff.append("</table>");
 		buff.append("</div>");
+	}
+
+	/**
+	 * @param control
+	 * @return true if the given control can be plotted on this board.
+	 */
+	public boolean canPlotControl(DataViewControl control) {
+		if(acceptControl(control)) {
+			return !reachedMaximumControls();
+		}
+		return false;
 	}
 }
