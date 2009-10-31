@@ -57,11 +57,9 @@ import com.ixora.common.utils.Utils;
 import com.ixora.rms.RMSComponent;
 import com.ixora.rms.RMSConfigurationConstants;
 import com.ixora.rms.ResourceId;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.dataengine.external.QueryData;
 import com.ixora.rms.exception.QueryException;
 import com.ixora.rms.repository.DataView;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.DataViewControl;
 import com.ixora.rms.ui.dataviewboard.DataViewControlContext;
 import com.ixora.rms.ui.dataviewboard.DataViewControlDescriptor;
@@ -129,11 +127,9 @@ public final class ChartControl extends DataViewControl
 			ChartsBoard owner,
 			Listener listener,
 			DataViewControlContext context,
-			SessionArtefactInfoLocator locator,
-			ReactionLogService rls,
 			ResourceId resourceContext, DataView dv)
 		throws ChartException, QueryException, FailedToCreateControl {
-	    super(owner, listener, context, locator, rls, resourceContext, dv);
+	    super(owner, listener, context, resourceContext, dv);
 	    fDatasets = new LinkedList<RMSDataset>();
 
 	    // Create chart implementation based on definition
