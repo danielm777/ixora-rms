@@ -29,7 +29,7 @@ public interface DataViewControlContext {
 	/**
 	 * @return
 	 */
-	DataViewControl.Callback getCallback();
+	DataViewControl.Callback getDataViewControlCallback();
 	/**
 	 * @param control
 	 * @return a map with view boards grouped by screen names

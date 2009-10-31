@@ -10,15 +10,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
@@ -27,6 +28,7 @@ import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterType;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.QueryRealizer;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocatorImpl;
@@ -37,6 +39,7 @@ import com.ixora.rms.client.model.CounterInfo;
 import com.ixora.rms.client.model.ResourceInfo;
 import com.ixora.rms.client.model.SessionModel;
 import com.ixora.rms.dataengine.Style;
+import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.repository.DashboardId;
 import com.ixora.rms.repository.DataView;
 import com.ixora.rms.repository.DataViewBoardInstallationData;
@@ -60,7 +63,7 @@ import com.ixora.rms.ui.messages.Msg;
  * @author Daniel Moraru
  */
 public final class DataViewBoardHandler extends Observable
-		implements DataViewPlotter, DataViewControlContext, HTMLProvider {
+		implements DataViewPlotter, DataViewControlContext, DataViewBoardContext, HTMLProvider {
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DataViewBoardHandler.class);
 	/** The name of the default screen */
@@ -105,7 +108,7 @@ public final class DataViewBoardHandler extends Observable
 	/**
 	 * Event handler.
 	 */
-	private final class EventHandler implements DataViewBoard.Listener, DataViewControl.Callback {
+	private final class EventHandler implements DataViewBoard.Listener, DataViewControl.Callback, DataViewBoard.Callback {
 		/**
 		 * @see com.ixora.rms.ui.dataviewboard.DataViewBoard.Listener#controlInFocus(com.ixora.rms.ui.dataviewboard.DataViewControl)
 		 */
@@ -129,6 +132,12 @@ public final class DataViewBoardHandler extends Observable
 		 */
 		public void move(DataViewControl source, String screen, String viewBoard) {
 			handleMoveControl(source, screen, viewBoard);			
+		}
+		/**
+		 * @see com.ixora.rms.ui.dataviewboard.DataViewBoard.Callback#moveBoard(com.ixora.rms.ui.dataviewboard.DataViewBoard, java.lang.String)
+		 */
+		public void moveBoard(DataViewBoard board, String screen) {
+			handleMoveBoard(board, screen);
 		}
 	}
 
@@ -185,6 +194,7 @@ public final class DataViewBoardHandler extends Observable
 		}
 	}
 
+
 	/**
      * @see com.ixora.rms.ui.dataviewboard.DataViewBoard.Listener#controlInFocus(com.ixora.rms.ui.dataviewboard.DataViewControl)
      */
@@ -235,6 +245,25 @@ public final class DataViewBoardHandler extends Observable
 				if(receivingViewBoard != null) {
 					control.getOwner().detachControl(control);
 					receivingViewBoard.addControl(control);
+				}
+			}
+		} catch(Exception e) {
+			UIExceptionMgr.userException(e);
+		}		
+	}
+
+	/**
+	 * @param board
+	 * @param screen
+	 */
+	private void handleMoveBoard(DataViewBoard board, String screen) {
+		try {
+			DataViewScreen dvscreen = fScreens.get(fCurrentScreen);
+			if(dvscreen != null) {
+				DataViewScreen receivingScreen = fScreens.get(screen);
+				if(receivingScreen != null) {
+					dvscreen.removeBoard(board);
+					receivingScreen.addBoard(board);
 				}
 			}
 		} catch(Exception e) {
@@ -573,7 +602,7 @@ public final class DataViewBoardHandler extends Observable
     /**
      * Renames the selected view board.
      */
-    public void renameBoard() {
+    public void renameBoard() throws RMSException {
         if(getCurrentScreen().getComponentCount() == 0) {
             return;
         }
@@ -591,6 +620,10 @@ public final class DataViewBoardHandler extends Observable
                 MessageRepository.get(
                         Msg.TEXT_NEW_VIEWBOARD_NAME)
                 );
+        if(getCurrentScreen().getBoard(newTitle) != null) {
+        	throw new RMSException(Msg.ERROR_BOARD_NAME_ALREADY_EXISTS, 
+        			new String[]{newTitle, getCurrentScreen().getName()});
+        }
         if(newTitle != null) {
             dvb.setTitle(newTitle);
         }
@@ -666,11 +699,10 @@ public final class DataViewBoardHandler extends Observable
 	 */
 	private DataViewBoard createBoard(String boardClass, DataViewScreen screen) throws SecurityException, NoSuchMethodException, ClassNotFoundException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
 	    Constructor<?> cons = Utils.getClassLoader(getClass()).loadClass(boardClass).getConstructor(
-	            new Class[] {QueryRealizer.class, DataEngineService.class, ReactionLogService.class, SessionArtefactInfoLocator.class});
+	            new Class[] {QueryRealizer.class, DataEngineService.class, DataViewBoardContext.class});
 	    DataViewBoard board = (DataViewBoard)cons.newInstance(
-	            new Object[] {fQueryRealizer, fDataEngine, fReactionLog, fPlottedInfoLocator});
+	            new Object[] {fQueryRealizer, fDataEngine, this});
 		board.setListener(this.fEventHandler);
-		board.setDataViewControlContext(this);
 		board.setFrameIcon(fBoardIcons.get(boardClass));
 		screen.addBoard(board);
 		return board;
@@ -919,9 +951,9 @@ public final class DataViewBoardHandler extends Observable
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.dataviewboard.DataViewControlContext#getCallback()
+	 * @see com.ixora.rms.ui.dataviewboard.DataViewControlContext#getDataViewControlCallback()
 	 */
-	public Callback getCallback() {
+	public Callback getDataViewControlCallback() {
 		return fEventHandler;
 	}
 
@@ -939,6 +971,31 @@ public final class DataViewBoardHandler extends Observable
 		}
 		return ret;
 	}
-	
-	
+
+	/**
+	 * @see com.ixora.rms.ui.dataviewboard.DataViewBoardContext#getAvailableDataViewScreens(com.ixora.rms.ui.dataviewboard.DataViewBoard)
+	 */
+	public Set<String> getAvailableDataViewScreens(DataViewBoard board) {
+		Set<String> ret = new HashSet<String>();
+		for(DataViewScreen screen : fScreens.values()) {
+			if(board.getParent() != screen) {
+				ret.add(screen.getName());
+			}
+		}
+		return ret;
+	}
+
+	/**
+	 * @see com.ixora.rms.ui.dataviewboard.DataViewBoardContext#getDataViewControlContext()
+	 */
+	public DataViewControlContext getDataViewControlContext() {
+		return this;
+	}
+
+	/**
+	 * @see com.ixora.rms.ui.dataviewboard.DataViewBoardContext#getDataViewBoardCallback()
+	 */
+	public com.ixora.rms.ui.dataviewboard.DataViewBoard.Callback getDataViewBoardCallback() {
+		return fEventHandler;
+	}
 }

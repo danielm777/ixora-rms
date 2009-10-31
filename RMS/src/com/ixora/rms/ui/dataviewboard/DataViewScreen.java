@@ -72,15 +72,33 @@ public final class DataViewScreen extends JDesktopPane implements HTMLProvider {
 	 * @param frame
 	 */
 	public void addBoard(DataViewBoard frame) {
+		String title = frame.getTitle();
+		int frames = getComponentCount();
+		if(Utils.isEmptyString(title)) {
+			title = MessageRepository.get(Msg.TITLE_VIEWBOARD) + " " + frames;
+		} 
+		while(getBoard(title) != null) {
+			title = title + "-";
+		}
+		frame.setTitle(title);
 		super.add(frame, 1);
 		frame.addInternalFrameListener(this.fEventHandler);
-		int frames = getComponentCount();
 		frame.setLocation(frames * OFFSET, frames * OFFSET);
 		frame.setVisible(true);
 		setSelectedFrame(frame);
-		frame.setTitle(
-			MessageRepository.get(Msg.TITLE_VIEWBOARD) + " " + frames);
-		frames++;
+	}
+	
+	
+	
+	/**
+	 * @param frame
+	 */
+	public void removeBoard(DataViewBoard frame) {
+		super.remove(frame);
+		frame.setVisible(false);
+		frame.removeInternalFrameListener(fEventHandler);
+		revalidate();
+		repaint();
 	}
 	
 	/**
