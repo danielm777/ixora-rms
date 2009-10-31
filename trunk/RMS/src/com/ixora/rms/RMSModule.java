@@ -3,7 +3,7 @@
  */
 package com.ixora.rms;
 
-import com.ixora.common.ComponentVersion;
+import com.ixora.common.Product;
 import com.ixora.common.update.Module;
 
 /**
@@ -15,6 +15,6 @@ public final class RMSModule extends Module {
 	/**
 	 */
 	public RMSModule() {
-		super("RMS", new ComponentVersion(1, 0, 0));
+		super("RMS", Product.getProductInfo().getVersion());
 	}
 }
