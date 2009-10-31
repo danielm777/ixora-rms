@@ -11,8 +11,8 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import com.ixora.rms.ResourceId;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.QueryRealizer;
 import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.dataengine.Style;
@@ -85,7 +85,7 @@ public class PropertiesBoard extends DataViewBoard implements Observer {
 	protected DataViewControl createControl(DataViewControlContext context,
 			ResourceId resourceContext, DataView view)
 			throws FailedToCreateControl {
-		return new PropertiesControl(this, this.fEventHandler, context, fLocator, fReactionLog, resourceContext, view);
+		return new PropertiesControl(this, this.fEventHandler, context, resourceContext, view);
 	}
 
 	/**
@@ -106,6 +106,13 @@ public class PropertiesBoard extends DataViewBoard implements Observer {
     protected DataView createDataViewForCounters(ResourceId context, List<ResourceId> counters, String viewName, List<ResourceId> rejected) {
         return new PropertiesCounterSetDataView(context, counters, viewName);
     }
+
+	/**
+	 * @see com.ixora.rms.ui.dataviewboard.DataViewBoard#acceptControl(com.ixora.rms.ui.dataviewboard.DataViewControl)
+	 */
+	protected boolean acceptControl(DataViewControl control) {
+		return control instanceof PropertiesControl;
+	}
 
 	/**
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
