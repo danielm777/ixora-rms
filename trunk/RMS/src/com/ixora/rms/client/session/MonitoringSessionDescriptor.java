@@ -26,7 +26,7 @@ import com.ixora.common.xml.exception.XMLNodeMissing;
 import com.ixora.rms.dataengine.definitions.QueryDef;
 import com.ixora.rms.repository.DashboardId;
 import com.ixora.rms.repository.QueryId;
-import com.ixora.rms.ui.dataviewboard.handler.DataViewScreenDescriptor;
+import com.ixora.rms.ui.dataviewboard.DataViewScreenDescriptor;
 
 /**
  * A monitoring session describing hosts, agents, entities and their
