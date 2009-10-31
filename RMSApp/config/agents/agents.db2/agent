@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-<version>1.0.0</version>
+<version></version>
 <class>com.ixora.rms.agents.db2.DB2Agent</class>
 <name>agents.db2</name>
 <description>db2.description</description>

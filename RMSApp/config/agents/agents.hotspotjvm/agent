@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
   <class>com.ixora.rms.agents.hotspotjvm.HotSpotJVMAgent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.hotspotjvm</name>
   <description>hotspotjvm.description</description>
   <custom>false</custom>

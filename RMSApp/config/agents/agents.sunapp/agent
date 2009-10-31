@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
   <class>com.ixora.rms.agents.sunapp.SunAppAgent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.sunapp</name>
   <description>sunapp.description</description>
   <custom>false</custom>

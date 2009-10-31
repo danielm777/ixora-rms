@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
   <class>com.ixora.rms.agents.jmxjsr77.JMXJSR77Agent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.jmxjsr77</name>
   <description>jmxjsr77.description</description>
   <custom>true</custom>

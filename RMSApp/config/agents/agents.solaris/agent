@@ -2,7 +2,7 @@
 <agent>
   <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
   <customconfigpanel>com.ixora.rms.agents.providerhost.ProcessConfigurationPanel</customconfigpanel>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.solaris</name>
   <description>solaris.description</description>
   <category>operatingSystems</category>
