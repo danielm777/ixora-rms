@@ -12,13 +12,11 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import com.ixora.rms.ResourceId;
-import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.ComponentConfiguration;
+import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.ui.filter.RowFilter;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.repository.DataView;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.DataViewBoard;
 import com.ixora.rms.ui.dataviewboard.DataViewControlContext;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
@@ -54,12 +52,10 @@ public class PropertiesControl extends TableBasedControl implements Observer {
 	 */
 	public PropertiesControl(DataViewBoard owner, Listener listener,
 			DataViewControlContext context,
-			SessionArtefactInfoLocator locator,
-			ReactionLogService rls,
 			ResourceId resourceContext,
 			DataView dataView)
 			throws FailedToCreateControl {
-		super(owner, listener, context, locator, rls, resourceContext, dataView);
+		super(owner, listener, context, resourceContext, dataView);
 		ConfigurationMgr.get(PropertiesBoardComponent.NAME).addObserver(this);
 		buildLegend();
 	}
