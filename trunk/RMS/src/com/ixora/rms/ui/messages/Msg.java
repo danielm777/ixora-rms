@@ -125,7 +125,9 @@ public interface Msg {
     public static final String ACTIONS_REMOVE_DATAVIEW_CONTROL =
         "ui.actions.remove_data_view_control";
 	public static final String ACTIONS_MOVE_DATAVIEW_CONTROL = 
-		"ui.actions.move_data_view_control";    
+		"ui.actions.move_data_view_control";  
+	public static final String ACTIONS_MOVE_DATAVIEW_BOARD = 
+		"ui.actions.move_data_view_board";
 	public static final String ACTIONS_ADD_DATA_VIEW_SCREEN =
 		"ui.actions.add_data_view_screen";
 	public static final String ACTIONS_REMOVE_DATA_VIEW_SCREEN =
@@ -312,6 +314,8 @@ public interface Msg {
 		"ui.error.license_not_available_for_agent";
 	public static final String ERROR_LOGGING_STOPPED_DUE_TO_FATAL_ERROR =
 		"ui.error.logging_stopped_due_to_fatal_error";
+	public static final String ERROR_BOARD_NAME_ALREADY_EXISTS = 
+		"ui.error.board_name_already_exists";
 	public static final String TEXT_CLOSING_VIEW =
 		"ui.text.closing_view";
 	public static final String TEXT_SAVE_MONITORING_SESSION =
@@ -339,5 +343,4 @@ public interface Msg {
 		"dataviewboard.text.invalid_filter";
 	public static final String DATAVIEWBOARD_FILTER_WILL_NOT_BE_SET =
 		"dataviewboard.text.filter_will_not_be_set";
-
 }
