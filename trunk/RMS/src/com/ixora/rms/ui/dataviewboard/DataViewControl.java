@@ -605,7 +605,7 @@ public abstract class DataViewControl extends JPanel
 	 */
 	protected void handleMove(String screen, String viewBoard) {
 		try {
-			fControlContext.getCallback().move(this, screen, viewBoard);
+			fControlContext.getDataViewControlCallback().move(this, screen, viewBoard);
 		} catch(Exception ex) {
 			UIExceptionMgr.userException(ex);
 		}

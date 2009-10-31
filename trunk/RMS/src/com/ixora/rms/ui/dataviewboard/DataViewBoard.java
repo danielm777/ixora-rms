@@ -5,26 +5,33 @@ package com.ixora.rms.ui.dataviewboard;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.plaf.InternalFrameUI;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
+import com.ixora.common.MessageRepository;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.popup.PopupListener;
+import com.ixora.common.utils.Utils;
 import com.ixora.rms.ResourceId;
 import com.ixora.rms.client.QueryRealizer;
-import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.client.locator.SessionDataViewInfo;
 import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.Style;
@@ -32,10 +39,10 @@ import com.ixora.rms.repository.DataView;
 import com.ixora.rms.repository.DataViewId;
 import com.ixora.rms.repository.QueryId;
 import com.ixora.rms.services.DataEngineService;
-import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToPlotView;
 import com.ixora.rms.ui.exporter.HTMLProvider;
+import com.ixora.rms.ui.messages.Msg;
 
 /**
  * @author Daniel Moraru
@@ -44,9 +51,6 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	private static final long serialVersionUID = -9120328043793730316L;
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DataViewBoard.class);
-
-	/** Popup menu that appears on the title bar */
-	private JPopupMenu fTitleBarPopupMenu;
 	
     /**
 	 * Listener.
@@ -68,6 +72,14 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 		 */
 		void controlRemoved(DataViewControl control);
 	}
+	
+	public interface Callback {
+		/**
+		 * @param board
+		 * @param screen
+		 */
+		void moveBoard(DataViewBoard board, String screen);
+	}
 
    /**
 	* Event handler.
@@ -87,8 +99,6 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 
 	/** Listener */
 	private Listener fListener;
-	/** DataViewControlContext */
-	private DataViewControlContext fControlContext;
 	/** The control having the focus */
 	private DataViewControl fControlInFocus;
 	/** Control board */
@@ -97,18 +107,21 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	protected EventHandler fEventHandler;
 	/** Date engine service */
 	protected DataEngineService fDataEngine;
-	/** Reaction log service */
-	protected ReactionLogService fReactionLog;
 	/** Reference to all controls on the board. List of DataViewControl. */
 	protected LinkedList<DataViewControl> fControls;
-	/** Info locator */
-	protected SessionArtefactInfoLocator fLocator;
 	/** Query realizer */
 	protected QueryRealizer fQueryRealizer;
+	/** Popup menu that appears on the title bar */
+	protected JPopupMenu fTitleBarPopupMenu;
+	/** Move menu */
+	protected JMenu fMenuMove;	
+	/** Context */
+	protected DataViewBoardContext fContext;
 
 	/**
+	 * @param qr
 	 * @param des
-	 * @param model
+	 * @param context
 	 * @param title
 	 * @param resizable
 	 * @param closable
@@ -118,22 +131,52 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	protected DataViewBoard(
 		QueryRealizer qr,
 		DataEngineService des,
-		ReactionLogService rls,
-		SessionArtefactInfoLocator locator,
+		DataViewBoardContext context,
 		String title,
 		boolean resizable,
 		boolean closable,
 		boolean maximizable,
 		boolean iconifiable) {
 		super(title, resizable, closable, maximizable, iconifiable);
-		init(qr, des, rls, locator);
+		init(qr, des, context);
 	}
 
 	/**
 	 * @param me
 	 */
 	public void handleShowTitleBarPopupMenu(MouseEvent me) {
+		// build the menu
+		Set<String> screens = fContext.getAvailableDataViewScreens(this);
+		if(Utils.isEmptyCollection(screens)) {
+			fMenuMove.setVisible(false);
+		} else {
+			// clean up first
+			fMenuMove.removeAll();
+			// add the new ones
+			for(String screen : screens) {
+				final String fscreen = screen;
+				JMenuItem mi = UIFactoryMgr.createMenuItem();
+				mi.setText(fscreen);
+				mi.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						handleMove(fscreen);
+					}});
+				fMenuMove.add(mi);
+			}
+			fMenuMove.setVisible(true);
+		}
 		fTitleBarPopupMenu.show(me.getComponent(), me.getX(), me.getY());		
+	}
+
+	/**
+	 * @param fscreen
+	 */
+	private void handleMove(String fscreen) {
+		try {
+			fContext.getDataViewBoardCallback().moveBoard(this, fscreen);
+		} catch(Exception e) {
+			UIExceptionMgr.userException(e);
+		}
 	}
 
 	/**
@@ -148,16 +191,14 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	}
 
 	/**
-	 * Sets the context for the controls managed by this board.
+	 * Sets the context for this board.
 	 * @param ctxt
 	 */
-	public void setDataViewControlContext(DataViewControlContext ctxt) {
+	public void setDataViewBoardContext(DataViewBoardContext ctxt) {
 		if(ctxt == null) {
 			throw new IllegalArgumentException("null data view control context");
 		}
-		this.fControlContext = ctxt;
-		this.fTitleBarPopupMenu.add(fControlContext.getViewContainer()
-				.getSessionView().getActionSetViewBoardName());		
+		this.fContext = ctxt;
 	}
 
 	/**
@@ -247,19 +288,19 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 
 	/**
 	 * Asks the view board to plot the given view.
-	 * @param context
+	 * @param resourceContext
 	 * @param dataView
 	 * @param controlDescriptor
 	 * @throws FailedToPlotView
 	 * @throws FailedToCreateControl
 	 */
 	private void plot(
-	        ResourceId context,
+	        ResourceId resourceContext,
 	        DataView dataView,
 			DataViewControlDescriptor controlDescriptor) throws FailedToPlotView, FailedToCreateControl {
 		// create a control to render the cube
-        DataViewControl dvc = createControl(fControlContext, context, dataView);
-		prepareControl(context, dvc, controlDescriptor);
+        DataViewControl dvc = createControl(fContext.getDataViewControlContext(), resourceContext, dataView);
+		prepareControl(resourceContext, dvc, controlDescriptor);
 	}
 
 	/**
@@ -290,7 +331,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 			}catch(Exception e) {
 				logger.error(e);
 				// TODO localize
-				fControlContext.getViewContainer()
+				fContext.getViewContainer()
 					.getAppStatusBar().setErrorMessage("Failed to realize query " + qid, e);
 			}
 		}
@@ -340,7 +381,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
                 DataViewId dvid = cd.getDataViewId();
                 try {
                 	// use locator to find DataView
-                	SessionDataViewInfo pdv = fLocator.getDataViewInfo(dvid);
+                	SessionDataViewInfo pdv = fContext.getSessionArtefactLocator().getDataViewInfo(dvid);
                 	if(pdv == null) {
                 		// might happen if the data view with this id has been
                 		// removed
@@ -350,7 +391,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
                     plot(dvid.getContext(), pdv.getDataView(), cd);
                 } catch (FailedToPlotView e) {
                 	// report non-critical error
-                    fControlContext.getViewContainer().getAppStatusBar().setErrorMessage(e.getLocalizedMessage(), null);
+                    fContext.getViewContainer().getAppStatusBar().setErrorMessage(e.getLocalizedMessage(), null);
                 }
             } else if(cd.getDataView() != null) {
             	// on the fly data view
@@ -358,7 +399,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
                     plot(cd.getDataViewContext(), cd.getDataView(), cd);
                 } catch (FailedToPlotView e) {
                 	// report non-critical error
-                    fControlContext.getViewContainer().getAppStatusBar().setErrorMessage(e.getLocalizedMessage(), null);
+                    fContext.getViewContainer().getAppStatusBar().setErrorMessage(e.getLocalizedMessage(), null);
                 }
             }
         }
@@ -530,15 +571,20 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 	 * @param rls
 	 * @param model
 	 */
-	private void init(QueryRealizer qr, DataEngineService des, ReactionLogService rls, SessionArtefactInfoLocator locator) {
-		this.fQueryRealizer = qr;
-		this.fDataEngine = des;
-		this.fReactionLog = rls;
-		this.fLocator = locator;
-		this.fEventHandler = new EventHandler();
-		this.fControls = new LinkedList<DataViewControl>();
-		this.fTitleBarPopupMenu = UIFactoryMgr.createPopupMenu();
-		
+	private void init(QueryRealizer qr, DataEngineService des, DataViewBoardContext context) {
+		fQueryRealizer = qr;
+		fDataEngine = des;
+		fContext = context;
+		fEventHandler = new EventHandler();
+		fControls = new LinkedList<DataViewControl>();
+		fTitleBarPopupMenu = UIFactoryMgr.createPopupMenu();
+		fMenuMove = UIFactoryMgr.createMenu();
+		fMenuMove.setText(MessageRepository.get(Msg.ACTIONS_MOVE_DATAVIEW_BOARD));
+
+		fTitleBarPopupMenu.add(fContext.getViewContainer()
+				.getSessionView().getActionSetViewBoardName());		
+		fTitleBarPopupMenu.add(fMenuMove);
+
 		InternalFrameUI ui = getUI();
 		if(ui instanceof BasicInternalFrameUI) {
 			BasicInternalFrameUI bui = (BasicInternalFrameUI)ui;
