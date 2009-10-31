@@ -3,10 +3,14 @@
  */
 package com.ixora.rms.ui.dataviewboard;
 
+import java.util.List;
+import java.util.Map;
+
 import com.ixora.rms.ResourceId;
+import com.ixora.rms.client.locator.SessionArtefactInfoLocator;
 import com.ixora.rms.repository.QueryId;
+import com.ixora.rms.services.ReactionLogService;
 import com.ixora.rms.ui.RMSViewContainer;
-import com.ixora.rms.ui.dataviewboard.handler.DataViewPlotter;
 
 /**
  * This is the execution context for data view controls. Through this interface they can get
@@ -22,6 +26,15 @@ public interface DataViewControlContext {
 	 * @return the view container
 	 */
 	RMSViewContainer getViewContainer();
+	/**
+	 * @return
+	 */
+	DataViewControl.Callback getCallback();
+	/**
+	 * @param control
+	 * @return a map with view boards grouped by screen names
+	 */
+	Map<String, List<DataViewBoard>> getAvailableDataViewBoards(DataViewControl control);
     /**
      * @param queryId
      * @return
@@ -29,7 +42,15 @@ public interface DataViewControlContext {
     boolean isQueryRegistered(QueryId queryId);
     /**
      * @param context
-     * @return a data view name that is guarranteed to be valid
+     * @return a data view name that is guaranteed to be valid
      */
-    String createValidDataViewName(ResourceId context);
+    String createValidDataViewName(ResourceId context);    
+    /**
+     * @return
+     */
+    SessionArtefactInfoLocator getSessionArtefactLocator();
+    /**
+     * @return
+     */
+    ReactionLogService getReactionLogService();
 }
