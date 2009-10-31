@@ -14,7 +14,7 @@ public final  class IxoraCommonModule extends Module {
 	/**
 	 */
 	public IxoraCommonModule() {
-		super("IxoraCommon", new ComponentVersion(1, 0, 0));
+		super("IxoraCommon", new ComponentVersion(1, 1, 0));
 	}
 
 }
