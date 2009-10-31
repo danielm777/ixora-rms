@@ -52,7 +52,7 @@ public class LogBoard extends DataViewBoard {
 	protected DataViewControl createControl(DataViewControlContext context,
 			ResourceId resourceContext, DataView view)
 			throws FailedToCreateControl {
-		return new LogControl(this, fEventHandler, context, fLocator, fReactionLog, resourceContext, view);
+		return new LogControl(this, fEventHandler, context, resourceContext, view);
 	}
 
 	/**
@@ -77,4 +77,11 @@ public class LogBoard extends DataViewBoard {
 	public boolean reachedMaximumControls() {
 		return fControls.size() == 1;
 	}
+	
+	/**
+	 * @see com.ixora.rms.ui.dataviewboard.DataViewBoard#acceptControl(com.ixora.rms.ui.dataviewboard.DataViewControl)
+	 */
+	protected boolean acceptControl(DataViewControl control) {
+		return control instanceof LogControl;
+	}	
 }
