@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
   <class>com.ixora.rms.agents.mysql.MySQLAgent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.mysql</name>
   <description>mysql.description</description>
   <category>databases</category>

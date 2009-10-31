@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
   <class>com.ixora.rms.agents.weblogic.WeblogicAgent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.weblogic</name>
   <description>weblogic.description</description>
   <category>appServers</category>

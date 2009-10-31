@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-<version>1.0.0</version>
+<version></version>
 <class>com.ixora.rms.agents.jboss.JBossAgent</class>
 <name>agents.jboss</name>
 <description>jboss.description</description>

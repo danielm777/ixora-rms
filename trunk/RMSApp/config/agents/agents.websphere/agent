@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
   <class>com.ixora.rms.agents.websphere.WebSphereAgent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.websphere</name>
   <description>websphere.description</description>
   <custom>false</custom>

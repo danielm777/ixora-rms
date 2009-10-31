@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
   <class>com.ixora.rms.agents.jmxjsr160.JMXJSR160Agent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.tomcat</name>
   <description>tomcat.description</description>
   <custom>true</custom>
