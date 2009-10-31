@@ -96,7 +96,7 @@ final class ShowAboutDialog extends AppDialog {
 		this.fPadding = 0;
 		this.eventHandler = new EventHandler();
         setTitle(MessageRepository.get(Msg.COMMON_UI_TEXT_ABOUT));
-        setPreferredSize(new Dimension(396, 500));
+        setPreferredSize(new Dimension(396, 570));
         htmlPane = UIFactoryMgr.createHtmlPane();
         htmlPane.addHyperlinkListener(this.eventHandler);
 
