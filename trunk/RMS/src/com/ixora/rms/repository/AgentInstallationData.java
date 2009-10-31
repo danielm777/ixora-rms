@@ -11,6 +11,7 @@ import org.w3c.dom.Node;
 
 import com.ixora.common.ComponentVersion;
 import com.ixora.common.MessageRepository;
+import com.ixora.common.Product;
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLUtils;
 import com.ixora.common.xml.exception.XMLException;
@@ -355,8 +356,12 @@ public final class AgentInstallationData implements InstallationArtefact {
 		if(n == null) {
 			throw new XMLNodeMissing("version");
 		}
-		this.agentVersion = new ComponentVersion(
-				XMLUtils.getText(n));
+		String textVersion = XMLUtils.getText(n);
+		if(Utils.isEmptyString(textVersion)) {
+			this.agentVersion = Product.getProductInfo().getVersion();
+		} else {
+			this.agentVersion = new ComponentVersion(textVersion);
+		}
 		n = XMLUtils.findChild(node, "description");
 		if(n == null) {
 			throw new XMLNodeMissing("description");
