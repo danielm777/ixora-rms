@@ -19,7 +19,7 @@ import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.ui.RMSViewContainer;
-import com.ixora.rms.ui.dataviewboard.handler.DataViewBoardHandler;
+import com.ixora.rms.ui.dataviewboard.DataViewBoardHandler;
 
 /**
  * @author Daniel Moraru
