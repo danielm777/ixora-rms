@@ -124,6 +124,8 @@ public interface Msg {
 		"ui.actions.play_log";
     public static final String ACTIONS_REMOVE_DATAVIEW_CONTROL =
         "ui.actions.remove_data_view_control";
+	public static final String ACTIONS_MOVE_DATAVIEW_CONTROL = 
+		"ui.actions.move_data_view_control";    
 	public static final String ACTIONS_ADD_DATA_VIEW_SCREEN =
 		"ui.actions.add_data_view_screen";
 	public static final String ACTIONS_REMOVE_DATA_VIEW_SCREEN =
