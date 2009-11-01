@@ -4,7 +4,6 @@
   <version></version>
   <name>agents.tomcat</name>
   <description>tomcat.description</description>
-  <custom>true</custom>
   <category>appServers</category>
   <versions>
     <version>5.x</version>
