@@ -27,6 +27,9 @@ rmdir /S /Q "IxoraRMS\config\repository\CustomSQLAgent"
 rmdir /S /Q "IxoraRMS\config\agents\CustomJavaAgent"
 rmdir /S /Q "IxoraRMS\config\repository\CustomJavaAgent"
 
+rmdir /S /Q "IxoraRMS\config\agents\CustomJSR160"
+rmdir /S /Q "IxoraRMS\config\repository\CustomJSR160"
+
 rmdir /S /Q "IxoraRMS\config\agents\agents.jmxjsr77"
 rmdir /S /Q "IxoraRMS\config\repository\agents.jmxjsr77"
 del /Q "IxoraRMS\config\messages\agents.jmxjsr77.properties"
