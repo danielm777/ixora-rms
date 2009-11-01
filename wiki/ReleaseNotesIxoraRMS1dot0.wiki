@@ -1,12 +1,5 @@
 #summary Release notes for IxoraRMS 1.0.
 
-= Introduction =
-
-These are the release notes for IxoraRMS 1.0
-
-
-= Details =
-
 Required JVM level: JRE 6.0 or later is required to run IxoraRMS 1.0
 
 Documentation: Check the online documentation at [http://www.ixorarms.com/documentation ixorarms.com]
