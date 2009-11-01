@@ -1,3 +1,3 @@
 #summary Release notes for IxoraRMS v1.1 beta.
 
-This release contains usability improvements, support for custom JMX JSR 160 agents and for  Apache Tomcat.
+This release contains bug fixes, usability improvements, support for custom JMX JSR 160 agents and for Apache Tomcat.
