@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
+  <version>1.0.0</version>
+  <name>agents.postgresql</name>
+  <description>postgresql.description</description>
+  <custom>true</custom>
+  <category>databases</category>
+  <versions>
+    <version>8.3</version>
+  </versions>
+  <messageCatalog>agents.postgresql</messageCatalog>
+  <javaHelp>secPostgreSQL</javaHelp>
+  <webHelp>monitoring-agents/postgresql</webHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.providerhost.SQLConfigurationPanel</customconfigpanel>
+      <agentVersions/>
+    </versionItem>
+  </versionItems>
+</agent>
