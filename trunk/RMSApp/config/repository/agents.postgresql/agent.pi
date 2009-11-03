@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <providerInstances>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Processes</instanceName>
+      <description>Database processes statistics</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{agent.Classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="agents.postgresql"/>
+          <providers.sql.driver_class type="0" value="{agent.JDBCDriverClass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:postgresql://{host}:{agent.Port}/{agent.Database}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574007473656C656374206461746E616D652C70726F637069642C77616974696E672C71756572795F73746172742C6261636B656E645F73746172742C636C69656E745F616464722C636C69656E745F706F72742C63757272656E745F71756572792066726F6D2070675F737461745F6163746976697479"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Processes/{0#1}" idx="0"/>
+            <column eid="root/Processes/{0#1}" idx="1"/>
+            <column cid="Query waiting status" eid="root/Processes/{0#1}" idx="2"/>
+            <column cid="Query start time" eid="root/Processes/{0#1}" idx="3"/>
+            <column cid="Backend start time" eid="root/Processes/{0#1}" idx="4"/>
+            <column cid="Client address" eid="root/Processes/{0#1}" idx="5"/>
+            <column cid="Client port" eid="root/Processes/{0#1}" idx="6"/>
+            <column cid="Current query" eid="root/Processes/{0#1}" idx="7"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Processes/{0#1}">
+          <alternatename/>
+          <description>Database process</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Backend start time">
+            <alternatename/>
+            <description>Time at which the process was started</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Client address">
+            <alternatename/>
+            <description>Address of the remote client</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Client port">
+            <alternatename/>
+            <description>Port of the remote client</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Current query">
+            <alternatename/>
+            <description>Currently executing SQL query</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Query start time">
+            <alternatename/>
+            <description>Time at which the current query began execution</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Query waiting status">
+            <alternatename/>
+            <description>Query's waiting status</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>8.3</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
+      <instanceName>Databases</instanceName>
+      <description>Provides statistics about all databases defined in the server</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{agent.Classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="agents.postgresql"/>
+          <providers.sql.driver_class type="0" value="{agent.JDBCDriverClass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:postgresql://{host}:{agent.Port}/{agent.Database}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574009B73656C656374206461746E616D652C6E756D6261636B656E64732C786163745F636F6D6D69742C786163745F726F6C6C6261636B2C626C6B735F726561642C626C6B735F6869742C7475705F72657475726E65642C7475705F666574636865642C7475705F696E7365727465642C7475705F757064617465642C7475705F64656C657465642066726F6D2070675F737461745F6461746162617365"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Databases/{0}" idx="0"/>
+            <column cid="Active processes" eid="root/Databases/{0}" idx="1"/>
+            <column cid="Transactions committed" eid="root/Databases/{0}" idx="2"/>
+            <column cid="Transactions rolled back" eid="root/Databases/{0}" idx="3"/>
+            <column cid="Disks blocks read" eid="root/Databases/{0}" idx="4"/>
+            <column cid="Buffer hits" eid="root/Databases/{0}" idx="5"/>
+            <column cid="Tuples returned" eid="root/Databases/{0}" idx="6"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Databases/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Active processes">
+            <alternatename/>
+            <description>Number of active server processes</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Buffer hits">
+            <alternatename/>
+            <description>Total buffer hits (i.e. block read requests avoided by finding the block already in buffer cache)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Disks blocks read">
+            <alternatename/>
+            <description>Total disk blocks read</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Transactions committed">
+            <alternatename/>
+            <description>Number of transactions committed in this database</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Transactions rolled back">
+            <alternatename/>
+            <description>Number of transactions rolled back in this database</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Tuples returned">
+            <alternatename/>
+            <description>dontknow</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>8.3</agentVersion>
+      </agentVersions>
+    </providerInstance>
+  </providerInstances>
+</rms>
