@@ -106,7 +106,7 @@ public final class TableParser extends AbstractMonitoringDataParser {
 				}
                 String tok = tokens[idx];
                 if(tok == null) {
-                    throw new InvalidData("Invalid data. Substitution value is null.");
+                    throw new InvalidData("Invalid data. Substitution value is null at index " + idx + ".");
                 }
 				result.append(EntityId.escapePathComponent(tok));
 			} else {
