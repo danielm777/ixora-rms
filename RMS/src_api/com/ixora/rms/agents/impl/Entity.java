@@ -905,7 +905,7 @@ public abstract class Entity extends EntityDescriptorImpl {
 	/**
 	 * Sorts the children entities by their id.
 	 */
-	protected void sortChildren() {
+	public void sortChildren() {
 		// sort children
 		TreeMap<EntityId, Entity> sorted = new TreeMap<EntityId, Entity>();
 		for(Entity child : fChildrenEntities.values()) {

@@ -96,6 +96,9 @@ public class AgentShadowRootEntity extends RootEntity {
 					}
 				}
 			}
+			if(fContext.sortEntities()) {
+				sortChildren();
+			}
 		} catch(Throwable t) {
 			// AgentShadowEntity shouldn't throw any exception
 			// so I'll catch this here

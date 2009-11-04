@@ -576,6 +576,9 @@ public final class AgentShadow extends AbstractAgent {
                         ((AgentShadowRootEntity)entity).addChildEntity(new AgentShadowEntity(newDesc, pid, fContext));
                     }
                 }
+                if(fContext.sortEntities()) {
+                	entity.sortChildren();
+                }
                 // fire now event for parent
                 if(entity instanceof AgentShadowEntity) {
                     ((AgentShadowEntity)entity).fireChildrenEntitiesChanged();
@@ -672,5 +675,13 @@ public final class AgentShadow extends AbstractAgent {
           //  logger.error(e);
 			fContext.error(e);
 		}
+	}
+
+	/**
+	 * Overridden to enable the sorting of entities.
+	 * @see com.ixora.rms.agents.impl.AbstractAgent#sortEntities()
+	 */
+	protected boolean sortEntities() {
+		return true;
 	}
 }
