@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/Processes">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Processes</name>
+          <description>Processes statistics</description>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Backend start time]" type="date"/>
+            <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Client address]"/>
+            <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Client port]"/>
+            <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Current query]"/>
+            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Query start time]" type="date"/>
+            <resource id="id6" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Query waiting status]"/>
+            <resource id="id0" iname="$entity[2]" name="Processes" rid="-/-/root/Processes/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+          <column id="id4"/>
+          <column id="id5"/>
+          <column id="id6"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Tables">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Tables statistics</name>
+          <description>Tables statistics</description>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Index scans]"/>
+            <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows deleted]"/>
+            <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows inserted]"/>
+            <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows read by index scan]"/>
+            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows read by sequential scan]"/>
+            <resource id="id6" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows updated]"/>
+            <resource id="id7" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Sequential scans]"/>
+            <resource id="id0" iname="$entity[2]" name="Tables" rid="-/-/root/Tables/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+          <column id="id4"/>
+          <column id="id5"/>
+          <column id="id6"/>
+          <column id="id7"/>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/Catalina">
+      <dashboards>
+        <dashboard>
+          <name>Tomcat overview</name>
+          <description>Tomcat overview</description>
+          <views>
+            <view id="-/-/root/Catalina/:Cache hit ratio:"/>
+            <view id="-/-/root/Catalina/:Global request processors - bytes received:"/>
+            <view id="-/-/root/Catalina/:Global request processors - bytes sent:"/>
+            <view id="-/-/root/Catalina/:Global request processors - error count:"/>
+            <view id="-/-/root/Catalina/:Global request processors - processing time:"/>
+            <view id="-/-/root/Catalina/:Global request processors - request and error count:"/>
+            <view id="-/-/root/Catalina/:Web modules - per module:"/>
+            <view id="-/-/root/Catalina/:Sessions - per path:"/>
+            <view id="-/-/root/Catalina/:Jsp monitor - per module:"/>
+            <view id="-/-/root/Catalina/:String cache:"/>
+            <view id="-/-/root/Catalina/:Thread pools:"/>
+          </views>
+          <author>system</author>
+          <counters/>
+          <agentVersions>
+            <agentVersion>6.x</agentVersion>
+            <agentVersion>5.x</agentVersion>
+          </agentVersions>
+        </dashboard>
+        <dashboard>
+          <name>Tomcat details</name>
+          <description>Tomcat details</description>
+          <views>
+            <view id="-/-/root/Catalina/:Cache:"/>
+            <view id="-/-/root/Catalina/:Global request processors:"/>
+            <view id="-/-/root/Catalina/:Jsp monitor:"/>
+            <view id="-/-/root/Catalina/:Servlets:"/>
+            <view id="-/-/root/Catalina/:Sessions:"/>
+            <view id="-/-/root/Catalina/:Request processor:"/>
+          </views>
+          <author>system</author>
+          <counters/>
+          <agentVersions>
+            <agentVersion>6.x</agentVersion>
+            <agentVersion>5.x</agentVersion>
+          </agentVersions>
+        </dashboard>
+      </dashboards>
+    </entity>
+  </entities>
+</rms>
