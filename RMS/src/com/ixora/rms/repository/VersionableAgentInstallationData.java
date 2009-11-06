@@ -5,9 +5,11 @@ package com.ixora.rms.repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -16,6 +18,7 @@ import org.w3c.dom.Node;
 
 import com.ixora.common.utils.Utils;
 import com.ixora.common.xml.XMLUtils;
+import com.ixora.common.xml.exception.XMLAttributeMissing;
 import com.ixora.common.xml.exception.XMLException;
 import com.ixora.common.xml.exception.XMLNodeMissing;
 import com.ixora.rms.MonitoringLevel;
@@ -43,7 +46,9 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
     private String uiJar;
     /** Agent custom configuration panel class */
     private String configPanelClass;
-    /** Default monitoring level */
+    /** Configuration values */
+    private Map<String, String> configValues;
+	/** Default monitoring level */
     private MonitoringLevel defaultLevel;
     /**
      * Native libraries required by the agent.
@@ -66,6 +71,7 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
      * @param jars
      * @param uiJar
      * @param natlibs
+     * @param configVals
      */
     public VersionableAgentInstallationData(
         String configPanelClass,
@@ -74,7 +80,8 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         int defaultLevelIdx,
         String[] jars,
         String uiJar,
-        String[] natlibs) {
+        String[] natlibs,
+        Map<String, String> configVals) {
         super();
         this.configPanelClass = configPanelClass;
         this.locations = locations;
@@ -85,6 +92,7 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         this.jars = jars;
         this.uiJar = uiJar;
         this.natlibs = natlibs;
+        this.configValues = configVals;
     }
 
     /**
@@ -130,6 +138,16 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
             el = doc.createElement("customconfigpanel");
             node.appendChild(el);
             el.appendChild(doc.createTextNode(configPanelClass));
+        }
+        if(!Utils.isEmptyMap(configValues)) {
+        	el = doc.createElement("defaultconfig");
+        	node.appendChild(el);
+        	for(Map.Entry<String, String> entry : configValues.entrySet()) {
+				Element el3 = doc.createElement("property");
+				el.appendChild(el3);
+				el3.setAttribute("name", entry.getKey());
+				el3.setAttribute("value", entry.getValue());
+			}
         }
         if(uiJar != null) {
             el = doc.createElement("uiJar");
@@ -203,6 +221,29 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         if(n != null) {
             this.configPanelClass = XMLUtils.getText(n);
         }
+        // optional
+        n = XMLUtils.findChild(node, "defaultconfig");
+        if(n != null) {
+            m = XMLUtils.findChildren(n, "property");
+            if(m.size() != 0) {
+                for(Iterator<Node> iter = m.iterator(); iter.hasNext();) {
+                    n = iter.next();
+                    Attr a = XMLUtils.findAttribute(n, "name");
+                    if(a == null) {
+                    	throw new XMLAttributeMissing("name");
+                    }
+                    String prop = a.getValue();
+                    a = XMLUtils.findAttribute(n, "value");
+                    if(a == null) {
+                    	throw new XMLAttributeMissing("value");
+                    }
+                    if(this.configValues == null) {
+                        this.configValues = new HashMap<String, String>();
+                    }
+                    this.configValues.put(prop, a.getValue());        
+                }
+            }        	
+        }        
         // optional
         n = XMLUtils.findChild(node, "jars");
         if(n != null) {
@@ -341,6 +382,17 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
     }
 
     /**
+     * @return
+     */
+    public Map<String, String> getConfigValues() {
+    	if(configValues == null) {
+    		return null;
+    	} else {
+    		return Collections.unmodifiableMap(configValues);
+    	}
+	}
+    
+    /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object obj) {
@@ -356,7 +408,8 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
             && Utils.equals(this.jars, that.jars)
             && Utils.equals(this.levels, that.levels)
             && Utils.equals(this.locations, that.locations)
-            && Utils.equals(this.uiJar, that.uiJar);
+            && Utils.equals(this.uiJar, that.uiJar)
+            && Utils.equals(this.configValues, that.configValues);
     }
 
     /**
@@ -370,6 +423,7 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         hc = Utils.hashCode(hc, this.jars);
         hc = Utils.hashCode(hc, this.levels);
         hc = Utils.hashCode(hc, this.locations);
+        hc = Utils.hashCode(hc, this.configValues);
         return hc;
     }
 
