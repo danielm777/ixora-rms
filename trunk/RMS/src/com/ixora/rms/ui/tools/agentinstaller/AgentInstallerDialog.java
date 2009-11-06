@@ -349,7 +349,8 @@ public final class AgentInstallerDialog extends AppDialog {
 	                    			0,
 	                    			selectedTemplate.getJars(),
 	                    			selectedTemplate.getUIJar(),
-	                    			selectedTemplate.getNativeLibs());
+	                    			selectedTemplate.getNativeLibs(),
+	                    			null);
 	                    init = new AgentInstallationData(selectedTemplate.getAgentClass(), true, new ComponentVersion(1,0,0), 
 	                    				null, null, null, null, null, null, vad, null);
 	                }

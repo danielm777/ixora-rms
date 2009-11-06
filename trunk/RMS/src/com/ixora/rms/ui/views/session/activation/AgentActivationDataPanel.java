@@ -10,22 +10,24 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import com.ixora.rms.RMSComponent;
-import com.ixora.rms.RMSConfigurationConstants;
-import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.ComponentConfiguration;
+import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.common.utils.Utils;
+import com.ixora.rms.RMSComponent;
+import com.ixora.rms.RMSConfigurationConstants;
 import com.ixora.rms.agents.AgentActivationData;
 import com.ixora.rms.agents.AgentConfiguration;
+import com.ixora.rms.agents.AgentCustomConfiguration;
 import com.ixora.rms.agents.AgentLocation;
 import com.ixora.rms.agents.ui.AgentCustomConfigurationPanel;
 import com.ixora.rms.agents.ui.AgentCustomConfigurationPanelContext;
@@ -227,12 +229,19 @@ public class AgentActivationDataPanel extends JPanel {
                     fAgentConfPanelContext);
         }
         if(acd == null || cleanCustomConfig) {
+        	AgentCustomConfiguration agentCustomConfig = null;
+        	if(acp != null) {
+        		agentCustomConfig = acp.createAgentCustomConfiguration();
+        	}
+        	Map<String, String> defaultValues = vad.getConfigValues();
+        	if(!Utils.isEmptyMap(defaultValues)) {
+        		agentCustomConfig.setValuesFromMap(defaultValues);
+        	}
             acd = new AgentConfiguration(
                     this.fRMSConfig.getInt(RMSConfigurationConstants.AGENT_CONFIGURATION_SAMPLING_INERVAL),
                     true,
                     vad.getDefaultMonitoringLevel(),
-                    acp != null ?
-                            acp.createAgentCustomConfiguration() : null);
+            		agentCustomConfig);
         }
         acd.setSystemUnderObservationVersion(suoVersion);
         this.fPanelAgentConfig.setAgentConfiguration(acd, fAgentInstallationData, acp);

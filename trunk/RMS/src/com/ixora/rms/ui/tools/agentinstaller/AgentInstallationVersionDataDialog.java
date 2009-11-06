@@ -482,7 +482,8 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 					defaultLevelIdx,
 					jars,
 					uiJar,
-					natlibs);
+					natlibs,
+					null);
 			Set<String> vers = fPanelAgentVersionSelector.getSelectedAgentVersions();
 			if(!Utils.isEmptyCollection(vers)) {
 				vad.addAgentVersions(vers);
