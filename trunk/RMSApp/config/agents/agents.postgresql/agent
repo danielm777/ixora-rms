@@ -19,6 +19,11 @@
         <location>1</location>
       </locations>
       <customconfigpanel>com.ixora.rms.agents.providerhost.SQLConfigurationPanel</customconfigpanel>
+      <defaultconfig>
+      	<property name="Port" value="5432" />
+      	<property name="JDBCDriverClass" value="org.postgresql.Driver" />
+      	<property name="Classpath" value="{home}/lib/postgresql-8.3-603.jdbc4.jar" />
+      </defaultconfig>
       <agentVersions/>
     </versionItem>
   </versionItems>
