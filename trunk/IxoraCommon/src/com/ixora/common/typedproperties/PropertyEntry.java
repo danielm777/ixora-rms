@@ -252,6 +252,14 @@ public abstract class PropertyEntry<T>
         this.value = obj;
         return true;
     }
+    
+    /**
+     * @param val
+     */
+    public void setValueFromString(String val) {
+    	T obj = makeObject(val);
+    	setValue(obj);
+    }
 
     /**
      * @param value the value to set.

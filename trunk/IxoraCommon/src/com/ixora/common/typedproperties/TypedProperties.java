@@ -611,6 +611,20 @@ public class TypedProperties extends Observable implements Cloneable, XMLExterna
 	}
 
 	/**
+	 * @param defaultValues
+	 */
+	public void setValuesFromMap(Map<String, String> defaultValues) {
+		for(Map.Entry<String, String> entry : defaultValues.entrySet()) {        			
+			PropertyEntry<?> pe = getEntry(entry.getKey());
+			if(pe != null) {
+				pe.setValueFromString(entry.getValue());
+			} else {
+				throw new PropertyNotFound(entry.getKey());
+			}
+		}
+	}
+
+	/**
 	 * @param property
 	 * @return
 	 * @throws PropertyNotFound if the given property is not found
