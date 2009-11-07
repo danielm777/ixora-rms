@@ -75,7 +75,7 @@ public class JMXEntityCompositeData extends JMXEntity {
 		for(Counter counter : fCounters.values()) {
 			if(counter.isEnabled()) {
 				Object value = data.get(((JMXCounter)counter).getJMXName());
-				counter.dataReceived(convertValue(counter.getType(), value));
+				counter.dataReceived(value);
 			}
 		}
 	}

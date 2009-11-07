@@ -20,6 +20,7 @@ import javax.management.ObjectName;
 import javax.management.ReflectionException;
 import javax.management.j2ee.statistics.Stats;
 import javax.management.openmbean.CompositeData;
+import javax.management.openmbean.TabularData;
 
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterType;
@@ -27,10 +28,6 @@ import com.ixora.rms.EntityId;
 import com.ixora.rms.agents.AgentExecutionContext;
 import com.ixora.rms.agents.impl.Counter;
 import com.ixora.rms.agents.impl.Entity;
-import com.ixora.rms.data.CounterValue;
-import com.ixora.rms.data.CounterValueDouble;
-import com.ixora.rms.data.CounterValueObject;
-import com.ixora.rms.data.CounterValueString;
 
 /**
  * @author Daniel Moraru
@@ -38,7 +35,7 @@ import com.ixora.rms.data.CounterValueString;
 public class JMXEntity extends Entity {
 	private static final long serialVersionUID = 2053296470688671832L;
 	/** Bean attributes that are counters for this entity */
-	protected String[] fAttributes;
+	protected String[] fAttributesForCounters;
 	/** Object name */
 	protected ObjectName fObjectName;
 	/** True if this entity has no JMX meaning */
@@ -91,7 +88,7 @@ public class JMXEntity extends Entity {
 			fDescription = getJMXContext().getEntityDescription(binfo);
 			MBeanAttributeInfo[] attrInfos = binfo.getAttributes();
 			if(!Utils.isEmptyArray(attrInfos)) {
-				List<String> attrNames = new LinkedList<String>();
+				List<String> attrNamesForCounters = new LinkedList<String>();
 				for(MBeanAttributeInfo ai : attrInfos) {
 					if(!getJMXContext().acceptCounter(oname, ai)) {
 						continue;
@@ -105,10 +102,12 @@ public class JMXEntity extends Entity {
 						boolean discrete = isBoolean(type);
 						String[] nameAndDesc = getJMXContext().getCounterNameAndDescription(oname, ai);
 						addCounter(new JMXCounter(ai.getName(), nameAndDesc[0], nameAndDesc[1], ctype, discrete));
-						attrNames.add(ai.getName());
+						attrNamesForCounters.add(ai.getName());
 					} else {
 						if(type.equals(CompositeData.class.getName())) {
 							addChildEntity(new JMXEntityCompositeData(getId(), c, oname, ai.getName()));
+						} else if(type.equals(TabularData.class.getName())) {
+							addChildEntity(new JMXEntityTabularData(getId(), c, oname, ai.getName()));
 						} else if(type.equals(Stats.class.getName())) {
 							addChildEntity(new JMXJSR77Entity(getId(), c, oname, ai.getName()));
 						} else {
@@ -117,7 +116,7 @@ public class JMXEntity extends Entity {
 						}
 					}
 				}
-				fAttributes = attrNames.toArray(new String[attrNames.size()]);
+				fAttributesForCounters = attrNamesForCounters.toArray(new String[attrNamesForCounters.size()]);
 			}
 		} catch (InstanceNotFoundException e) {
 			fJustAPlaceHolder = true;
@@ -152,6 +151,15 @@ public class JMXEntity extends Entity {
 									} else {
 										((JMXEntity)child).update(null);
 									}
+								}  else if(type.equals(TabularData.class.getName())) {
+									EntityId eid = JMXEntityTabularData.createEntityId(getId(), ai.getName());
+									Entity child = getChildEntity(eid);
+									if(child == null) {
+										child = new JMXEntityTabularData(getId(), getJMXContext(), fObjectName, ai.getName());
+										addChildEntity(child);
+									} else {
+										((JMXEntity)child).update(null);
+									}									
 								} else if(type.equals(Stats.class.getName())) {
 									EntityId eid = JMXJSR77Entity.createEntityId(getId(), ai.getName());
 									Entity child = getChildEntity(eid);
@@ -212,7 +220,7 @@ public class JMXEntity extends Entity {
 	 * @see com.ixora.rms.agents.impl.Entity#retrieveCounterValues()
 	 */
 	protected void retrieveCounterValues() throws Throwable {
-		AttributeList values = getJMXContext().getJMXConnection().getAttributes(fObjectName, fAttributes);
+		AttributeList values = getJMXContext().getJMXConnection().getAttributes(fObjectName, fAttributesForCounters);
 		if(!Utils.isEmptyCollection(values)) {
 			for(Counter c : fCounters.values()) {
 				if(c.isEnabled()) {
@@ -222,7 +230,7 @@ public class JMXEntity extends Entity {
 						Attribute attr = (Attribute)o;
 						String sattr = attr.getName();
 						if(sattr.equals(jmxName)) {
-							counter.dataReceived(convertValue(counter.getType(), attr.getValue()));
+							counter.dataReceived(attr.getValue());
 						}
 					}
 				}
@@ -259,31 +267,6 @@ public class JMXEntity extends Entity {
 			return CounterType.STRING;
 		}
 		return null;
-	}
-
-	/**
-	 * @param value
-	 * @param object
-	 * @return
-	 */
-	protected CounterValue convertValue(CounterType type, Object value) {
-		if(value instanceof Number) {
-			return new CounterValueDouble(((Number)value).doubleValue());
-		} else if(value instanceof Date) {
-			// convert it to double
-			return new CounterValueDouble(((Date)value).getTime());
-		} else {
-			if(value == null) {
-				// decide here what to do with null values
-				if(type == CounterType.DOUBLE || type == CounterType.LONG
-						|| type == CounterType.DATE) {
-					return new CounterValueDouble(0);
-				} else if(type == CounterType.OBJECT){
-					return new CounterValueObject(null);
-				}
-			}
-			return new CounterValueString((String.valueOf(value)));
-		}
 	}
 
 	/**
@@ -325,8 +308,9 @@ public class JMXEntity extends Entity {
 
 	/**
 	 * @param oname
+	 * @throws Throwable 
 	 */
-	protected void update(ObjectName oname) {
+	protected void update(ObjectName oname) throws Throwable {
 		// all that we need to do
 		setTouchedByUpdate(true);
 	}
