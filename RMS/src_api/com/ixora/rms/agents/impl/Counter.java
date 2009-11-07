@@ -1,6 +1,7 @@
 
 package com.ixora.rms.agents.impl;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +12,9 @@ import com.ixora.rms.CounterId;
 import com.ixora.rms.CounterType;
 import com.ixora.rms.MonitoringLevel;
 import com.ixora.rms.data.CounterValue;
+import com.ixora.rms.data.CounterValueDouble;
+import com.ixora.rms.data.CounterValueObject;
+import com.ixora.rms.data.CounterValueString;
 
 /**
  * @author Cristian Costache
@@ -129,6 +133,14 @@ public class Counter extends CounterDescriptorImpl implements Reusable {
 	}
 
 	/**
+	 * Adds the incoming data to the history
+	 * @param data The object will be converted to a suitable value based on counter type.
+	 */
+	public void dataReceived(Object data)	{
+		fSamples.add(convertObjectToValue(fType, data));
+	}
+
+	/**
 	 * Clears the counter history
 	 */
 	public void reset() {
@@ -173,4 +185,30 @@ public class Counter extends CounterDescriptorImpl implements Reusable {
 		buff.append(this.fSamples.size());
 		return buff.toString();
 	}
+	
+	/**
+	 * @param value
+	 * @param object
+	 * @return
+	 */
+	public static CounterValue convertObjectToValue(CounterType type, Object value) {
+		if(value instanceof Number) {
+			return new CounterValueDouble(((Number)value).doubleValue());
+		} else if(value instanceof Date) {
+			// convert it to double
+			return new CounterValueDouble(((Date)value).getTime());
+		} else {
+			if(value == null) {
+				// decide here what to do with null values
+				if(type == CounterType.DOUBLE || type == CounterType.LONG
+						|| type == CounterType.DATE) {
+					return new CounterValueDouble(0);
+				} else if(type == CounterType.OBJECT){
+					return new CounterValueObject(null);
+				}
+			}
+			return new CounterValueString((String.valueOf(value)));
+		}
+	}
+
 }
