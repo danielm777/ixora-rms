@@ -503,8 +503,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 			}
 		}
 
-		// do a quick ping to website
-		UpdateMgr.checkForUpdates("http://www.ixoragroup.com/rms/app_update_check.php");
+		// do a quick ping to website to check for updates
+		UpdateMgr.checkForUpdates();
 
 		// build the GUI on the event dispatch thread
 		SwingUtilities.invokeLater(new Runnable() {
@@ -566,8 +566,6 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 		try {
 			getJSplitPane().setEnabled(true);
 			getJSplitPane().setLeftComponent(panel);
-			// TODO: hack to overcome a problem where the
-			// divider is positioned at 0px
 			if(getJSplitPane().getLastDividerLocation() == 0) {
 				getJSplitPane().setDividerLocation(260);
 			}
