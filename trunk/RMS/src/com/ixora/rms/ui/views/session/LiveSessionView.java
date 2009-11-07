@@ -879,7 +879,7 @@ public final class LiveSessionView extends SessionView {
 		if(agentId.getInstallationIdx() > 0) {
 			agentName = agentName + ":" + agentId.getInstallationIdx();
 		}
-        this.viewContainer.getAppStatusBar().setErrorMessage(host + "/" + agentName, t);
+        this.viewContainer.getAppNonFatalErrorHandler().nonFatalError(host + "/" + agentName, t);
     }
 
     /**
