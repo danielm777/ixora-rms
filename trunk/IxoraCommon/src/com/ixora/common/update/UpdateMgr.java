@@ -3,17 +3,10 @@
  */
 package com.ixora.common.update;
 
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.apache.commons.httpclient.NameValuePair;
-
-import com.ixora.common.Product;
-import com.ixora.common.net.NetUtils;
-import com.ixora.common.security.license.LicenseMgr;
 
 /**
  * Allows applications to register local and remote
@@ -103,15 +96,17 @@ public final class UpdateMgr {
 	}
 
 	/**
-	 * @param url
 	 */
-	public static void checkForUpdates(final String url) {
-		try {
+	public static void checkForUpdates() {
+// TODO		
+/*		try {
 			new Thread(new Runnable(){
 				public void run() {
 					try {
+						ConfigurationMgr.getString(UpdateComponent.NAME, UpdateConfigurationConstants.SERVER_CHECK_FOR_UPDATES_URL);
+						License lic = LicenseMgr.getLicense();
 						NetUtils.postHttpForm(new URL(url), new NameValuePair[]{
-							new NameValuePair("lic", LicenseMgr.getLicense().toString(true)),
+							new NameValuePair("lic", lic != null ? lic.toString(true) : ""),
 							new NameValuePair("app_version",
 									Product.getProductInfo().getVersion().toString())
 						});
@@ -123,5 +118,5 @@ public final class UpdateMgr {
 		} catch(Exception e) {
 			; // ignore
 		}
-	}
+*/	}
 }

@@ -485,8 +485,14 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	public UIWorker getAppWorker() {
 		return this.fWorker;
 	}
-
 	
+	/**
+	 * @see com.ixora.common.ui.AppViewContainer#getAppNonFatalErrorHandler()
+	 */
+	public NonFatalErrorHandler getAppNonFatalErrorHandler() {
+		return this.fEventHandler;
+	}
+
 	/**
 	 * @see com.ixora.common.ui.AppViewContainer#getAppHelp()
 	 */
@@ -506,15 +512,14 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 * @param t
 	 */
 	private void handleErrorMessage(String txt, Throwable t) {
-        if(txt != null) {
-            fNonFatalErrorBuffer.nonFatalError(txt, t);
-            logger.error(txt, t);
-        }
+        fNonFatalErrorBuffer.nonFatalError(txt, t);
+        logger.error(txt, t);
 		if(fTextPaneErrorLog != null) {
 			fTextPaneErrorLog.setText("<html>&nbsp;&nbsp;<a href='#'>" 
 					+ Utils.getTranslatedMessage(Msg.COMMON_UI_TEXT_ERROR_LOG)
 					+ "</a>&nbsp;&nbsp;</html>");
 		}
+		fStatusBar.setErrorMessage(txt, t);
 	}
 
 	/**
