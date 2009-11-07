@@ -108,4 +108,9 @@ public interface AppViewContainer {
 	 * @return the current application view
 	 */
 	AppView getAppView();
+	
+	/**
+	 * @return the handler for non-fatal errors
+	 */
+	NonFatalErrorHandler getAppNonFatalErrorHandler();
 }

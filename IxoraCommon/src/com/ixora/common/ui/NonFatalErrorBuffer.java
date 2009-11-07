@@ -34,7 +34,7 @@ public final class NonFatalErrorBuffer implements NonFatalErrorHandler {
         */
        LogEntry(String error, Throwable exception) {
            if(error == null) {
-               throw new IllegalArgumentException("no error message");
+               error = "";
            }
            this.error = error;
            this.exception = exception;
