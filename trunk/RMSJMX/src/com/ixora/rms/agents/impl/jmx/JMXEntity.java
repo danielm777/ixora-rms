@@ -149,7 +149,7 @@ public class JMXEntity extends Entity {
 										child = new JMXEntityCompositeData(getId(), getJMXContext(), fObjectName, ai.getName());
 										addChildEntity(child);
 									} else {
-										((JMXEntity)child).update(null);
+										((JMXEntity)child).update();
 									}
 								}  else if(type.equals(TabularData.class.getName())) {
 									EntityId eid = JMXEntityTabularData.createEntityId(getId(), ai.getName());
@@ -158,7 +158,7 @@ public class JMXEntity extends Entity {
 										child = new JMXEntityTabularData(getId(), getJMXContext(), fObjectName, ai.getName());
 										addChildEntity(child);
 									} else {
-										((JMXEntity)child).update(null);
+										((JMXEntity)child).update();
 									}									
 								} else if(type.equals(Stats.class.getName())) {
 									EntityId eid = JMXJSR77Entity.createEntityId(getId(), ai.getName());
@@ -167,7 +167,7 @@ public class JMXEntity extends Entity {
 										child = new JMXJSR77Entity(getId(), getJMXContext(), fObjectName, ai.getName());
 										addChildEntity(child);
 									} else {
-										((JMXEntity)child).update(null);
+										((JMXEntity)child).update();
 									}
 									// complex type
 									processComplexAttribute(ai, true);
@@ -307,10 +307,9 @@ public class JMXEntity extends Entity {
 	}
 
 	/**
-	 * @param oname
 	 * @throws Throwable 
 	 */
-	protected void update(ObjectName oname) throws Throwable {
+	protected void update() throws Throwable {
 		// all that we need to do
 		setTouchedByUpdate(true);
 	}
