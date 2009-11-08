@@ -26,12 +26,12 @@ public class JMXEntityTabularData extends JMXEntity {
 	private static final long serialVersionUID = 6488719974776307095L;
 	private String fAttributeName;
 
-	private static class ChildEntity extends JMXEntity {
+	private class ChildEntity extends Entity {
 		private static final long serialVersionUID = -1166526914495536506L;
 
 		ChildEntity(EntityId eid, CompositeData cd, TabularData td,
 				ObjectName oname, String attrName, JMXAgentExecutionContext ctxt) {
-			super(eid, ctxt, oname);
+			super(eid, ctxt);
 			CompositeType rowType = cd.getCompositeType();
 			fDescription = rowType.getDescription();
 			List<String> itemsToIgnore = td.getTabularType().getIndexNames();
@@ -57,27 +57,33 @@ public class JMXEntityTabularData extends JMXEntity {
 			}
 		}
 		
+		protected void enable() {
+			super.enable();
+			// inform parent 
+			JMXEntityTabularData.this.fEnabled = true;
+		}
+
+		protected void disable() {
+			super.disable();
+			// inform parent 
+			JMXEntityTabularData.this.fEnabled = false;			
+		}
+
+		/**
+		 * @see com.ixora.rms.agents.impl.jmx.JMXEntity#retrieveCounterValues()
+		 */
+		protected void retrieveCounterValues() throws Throwable {
+			;//overridden to do nothing, the counters are updated by parent 
+		}
+
 		void update(CompositeData cd) {
 			for(Counter counter : fCounters.values()) {
 				JMXCounter jmxCounter = (JMXCounter)counter;
 				Object value = cd.get(jmxCounter.getJMXName());
-				jmxCounter.reset();
 				jmxCounter.dataReceived(value);
 			}
-		}
-		
-		static EntityId createEntityId(EntityId parent, TabularData td, CompositeData cd) {
-			Object[] index = td.calculateIndex(cd);
-			// form the name from the elements of the index
-			StringBuilder buff = new StringBuilder();
-			for(int i = 0; i < index.length; i++) {
-				buff.append(index[i]);
-				if(i < index.length - 1) {
-					buff.append("#");
-				}
-			}
-			return new EntityId(parent, buff.toString());
-		}
+			setTouchedByUpdate(true);
+		}		
 	}
 
 	/**
@@ -108,7 +114,7 @@ public class JMXEntityTabularData extends JMXEntity {
 			Collection<CompositeData> vals = (Collection<CompositeData>)data.values();
 			if(!Utils.isEmptyCollection(vals)) {
 				for(CompositeData val : vals) {
-					EntityId childId = ChildEntity.createEntityId(fEntityId, data, val);
+					EntityId childId = createEntityIdForChild(data, val);
 					Entity child = getChildEntity(childId);
 					if(child != null) {
 						ChildEntity jmxChild = (ChildEntity)child;
@@ -118,9 +124,11 @@ public class JMXEntityTabularData extends JMXEntity {
 					}
 				}
 			}			
-						
 		}
 		removeStaleChildren();
+		if(getJMXContext().sortEntities()) {
+			sortChildren();
+		}
 	}
 	
 	/**
@@ -128,6 +136,7 @@ public class JMXEntityTabularData extends JMXEntity {
 	 * @see com.ixora.rms.agents.impl.jmx.JMXEntity#update(javax.management.ObjectName)
 	 */
 	protected void update(ObjectName oname) throws Throwable {
+		setTouchedByUpdate(true);
 		updateChildrenEntities(false);
 	}
 
@@ -145,5 +154,18 @@ public class JMXEntityTabularData extends JMXEntity {
 	 */
 	public static EntityId createEntityId(EntityId parent, String attrName) {
 		return new EntityId(parent, attrName);
+	}
+	
+	private EntityId createEntityIdForChild(TabularData td, CompositeData cd) {
+		Object[] index = td.calculateIndex(cd);
+		// form the name from the elements of the index
+		StringBuilder buff = new StringBuilder();
+		for(int i = 0; i < index.length; i++) {
+			buff.append(index[i]);
+			if(i < index.length - 1) {
+				buff.append("#");
+			}
+		}
+		return new EntityId(fEntityId, buff.toString());
 	}	
 }

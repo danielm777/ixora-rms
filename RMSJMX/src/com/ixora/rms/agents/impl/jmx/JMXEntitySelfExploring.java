@@ -170,7 +170,7 @@ public class JMXEntitySelfExploring extends JMXEntity {
 			}
 			// update existing children
 			for(Entity child : fChildrenEntities.values()) {
-				((JMXEntity)child).update(null);
+				((JMXEntity)child).update();
 			}
 
 			// now remove stale children
@@ -279,7 +279,7 @@ public class JMXEntitySelfExploring extends JMXEntity {
 			JMXEntitySelfExploring ent = new JMXEntitySelfExploring(getId(), getJMXContext(), child);
 			addChildEntity(ent);
 		} else {
-			((JMXEntitySelfExploring)childEnt).update(child);
+			((JMXEntitySelfExploring)childEnt).update();
 		}
 		return childId;
 	}
