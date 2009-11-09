@@ -89,100 +89,6 @@
     </providerInstance>
     <providerInstance class="com.ixora.rms.repository.ProviderInstance">
       <providerName>providers.sql.name</providerName>
-      <instanceName>Tables</instanceName>
-      <description>Statistics for all tables in the database</description>
-      <author>system</author>
-      <remote>false</remote>
-      <optional>true</optional>
-      <selectedByDefault>true</selectedByDefault>
-      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
-      <config>
-        <config class="com.ixora.rms.providers.impl.sql.Configuration">
-          <providers.sql.classpath notrequired="true" type="0" value="{agent.Classpath}"/>
-          <providers.sql.classloader_id notrequired="true" type="0" value="agents.postgresql"/>
-          <providers.sql.driver_class type="0" value="{agent.JDBCDriverClass}"/>
-          <providers.sql.username notrequired="true" type="0" value="{agent.Username}"/>
-          <providers.sql.password notrequired="true" type="0" value="{agent.Password}"/>
-          <providers.sql.connection_string type="0" value="jdbc:postgresql://{host}:{agent.Port}/{agent.Database}"/>
-          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED00057400CD73656C65637420736368656D616E616D652C72656C6E616D652C7365715F7363616E2C7365715F7475705F726561642C6964785F7363616E2C6964785F7475705F66657463682C6E5F7475705F696E732C6E5F7475705F7570642C6E5F7475705F64656C2C6E5F7475705F686F745F7570642C6E5F6C6976655F7475702C6E5F646561645F7475702C6C6173745F76616375756D2C6C6173745F6175746F76616375756D2C6C6173745F6175746F616E616C797A652066726F6D2070675F737461745F616C6C5F7461626C6573"/>
-        </config>
-        <usePrivateCollector>false</usePrivateCollector>
-      </config>
-      <parserInstance>
-        <parser>providers.parsers.table.name</parser>
-        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
-          <columnSeparator> 	</columnSeparator>
-          <columns>
-            <column eid="root/Tables/{0-1}" idx="0"/>
-            <column eid="root/Tables/{0-1}" idx="1"/>
-            <column cid="Sequential scans" eid="root/Tables/{0-1}" idx="2"/>
-            <column cid="Rows read by sequential scan" eid="root/Tables/{0-1}" idx="3"/>
-            <column cid="Index scans" eid="root/Tables/{0-1}" idx="4"/>
-            <column cid="Rows read by index scan" eid="root/Tables/{0-1}" idx="5"/>
-            <column cid="Rows inserted" eid="root/Tables/{0-1}" idx="6"/>
-            <column cid="Rows updated" eid="root/Tables/{0-1}" idx="7"/>
-            <column cid="Rows deleted" eid="root/Tables/{0-1}" idx="8"/>
-          </columns>
-          <accumulateVolatileEntities>true</accumulateVolatileEntities>
-          <convertColumnToRow>false</convertColumnToRow>
-        </rules>
-      </parserInstance>
-      <descriptors>
-        <entitydescriptor id="root/Tables/{0-1}">
-          <alternatename/>
-          <description/>
-          <haschildren>false</haschildren>
-          <indsampling>false</indsampling>
-          <counterdescriptor id="Index scans">
-            <alternatename/>
-            <description>Number of index scans initiated (over all indexes belonging to the table)</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Rows deleted">
-            <alternatename/>
-            <description>Number of row deletions</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Rows inserted">
-            <alternatename/>
-            <description>Number of row insertions</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Rows read by index scan">
-            <alternatename/>
-            <description>Number of rows read by index scans</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Rows read by sequential scan">
-            <alternatename/>
-            <description>Number of rows read by sequential scans</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Rows updated">
-            <alternatename/>
-            <description>Number of row updates</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Sequential scans">
-            <alternatename/>
-            <description>Number of sequential scans</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-        </entitydescriptor>
-      </descriptors>
-      <agentVersions>
-        <agentVersion>8.3</agentVersion>
-      </agentVersions>
-    </providerInstance>
-    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
-      <providerName>providers.sql.name</providerName>
       <instanceName>Processes</instanceName>
       <description>Database processes statistics</description>
       <author>system</author>
@@ -270,6 +176,156 @@
     </providerInstance>
     <providerInstance class="com.ixora.rms.repository.ProviderInstance">
       <providerName>providers.sql.name</providerName>
+      <instanceName>Tables</instanceName>
+      <description>Statistics for all tables in the database</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.sql.Configuration">
+          <providers.sql.classpath notrequired="true" type="0" value="{agent.Classpath}"/>
+          <providers.sql.classloader_id notrequired="true" type="0" value="agents.postgresql"/>
+          <providers.sql.driver_class type="0" value="{agent.JDBCDriverClass}"/>
+          <providers.sql.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.sql.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.sql.connection_string type="0" value="jdbc:postgresql://{host}:{agent.Port}/{agent.Database}"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574058673656C656374200A09737461742E736368656D616E616D652C0A09737461742E72656C6E616D652C0A0963617365207768656E20737461742E7365715F7363616E206973206E756C6C207468656E203020656C736520737461742E7365715F7363616E20656E642C0A0963617365207768656E20737461742E7365715F7475705F72656164206973206E756C6C207468656E203020656C736520737461742E7365715F7475705F7265616420656E642C0A0963617365207768656E20737461742E6964785F7363616E206973206E756C6C207468656E203020656C736520737461742E6964785F7363616E20656E642C0A0963617365207768656E20737461742E6964785F7475705F6665746368206973206E756C6C207468656E203020656C736520737461742E6964785F7475705F666574636820656E642C0A0963617365207768656E20737461742E6E5F7475705F696E73206973206E756C6C207468656E203020656C736520737461742E6E5F7475705F696E7320656E642C0A0963617365207768656E20737461742E6E5F7475705F757064206973206E756C6C207468656E203020656C736520737461742E6E5F7475705F75706420656E642C0A0963617365207768656E20737461742E6E5F7475705F64656C206973206E756C6C207468656E203020656C736520737461742E6E5F7475705F64656C20656E642C0A0963617365207768656E20737461742E6E5F7475705F686F745F757064206973206E756C6C207468656E203020656C736520737461742E6E5F7475705F686F745F75706420656E642C0A0963617365207768656E20737461742E6E5F6C6976655F747570206973206E756C6C207468656E203020656C736520737461742E6E5F6C6976655F74757020656E642C0A0963617365207768656E20737461742E6E5F646561645F747570206973206E756C6C207468656E203020656C736520737461742E6E5F646561645F74757020656E642C0A0963617365207768656E20696F2E686561705F626C6B735F72656164206973206E756C6C207468656E203020656C736520696F2E686561705F626C6B735F7265616420656E642C0A0963617365207768656E20696F2E686561705F626C6B735F686974206973206E756C6C207468656E203020656C736520696F2E686561705F626C6B735F68697420656E642C0A0963617365207768656E20696F2E6964785F626C6B735F72656164206973206E756C6C207468656E203020656C736520696F2E6964785F626C6B735F7265616420656E642C0A0963617365207768656E20696F2E6964785F626C6B735F686974206973206E756C6C207468656E203020656C736520696F2E6964785F626C6B735F68697420656E642C0A0963617365207768656E20696F2E746F6173745F626C6B735F72656164206973206E756C6C207468656E203020656C736520696F2E746F6173745F626C6B735F7265616420656E642C0A0963617365207768656E20696F2E746F6173745F626C6B735F686974206973206E756C6C207468656E203020656C736520696F2E746F6173745F626C6B735F68697420656E642C0A0963617365207768656E20696F2E746964785F626C6B735F72656164206973206E756C6C207468656E203020656C736520696F2E746964785F626C6B735F7265616420656E642C0A0963617365207768656E20696F2E746964785F626C6B735F686974206973206E756C6C207468656E203020656C736520696F2E746964785F626C6B735F68697420656E640A66726F6D200A0970675F737461745F616C6C5F7461626C657320737461742C2070675F73746174696F5F616C6C5F7461626C657320696F200A7768657265200A09737461742E736368656D616E616D653D696F2E736368656D616E616D6520616E6420737461742E72656C6E616D653D696F2E72656C6E616D650A0A"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Tables/{0#1}" idx="0"/>
+            <column eid="root/Tables/{0#1}" idx="1"/>
+            <column cid="Sequential scans" eid="root/Tables/{0#1}" idx="2"/>
+            <column cid="Rows read by sequential scan" eid="root/Tables/{0#1}" idx="3"/>
+            <column cid="Index scans" eid="root/Tables/{0#1}" idx="4"/>
+            <column cid="Rows read by index scan" eid="root/Tables/{0#1}" idx="5"/>
+            <column cid="Rows inserted" eid="root/Tables/{0#1}" idx="6"/>
+            <column cid="Rows updated" eid="root/Tables/{0#1}" idx="7"/>
+            <column cid="Rows deleted" eid="root/Tables/{0#1}" idx="8"/>
+            <column cid="Data blocks misses" eid="root/Tables/{0#1}" idx="12"/>
+            <column cid="Data blocks hits" eid="root/Tables/{0#1}" idx="13"/>
+            <column cid="Index blocks misses" eid="root/Tables/{0#1}" idx="14"/>
+            <column cid="Index blocks hits" eid="root/Tables/{0#1}" idx="15"/>
+            <column cid="Toast blocks misses" eid="root/Tables/{0#1}" idx="16"/>
+            <column cid="Toast blocks hits" eid="root/Tables/{0#1}" idx="17"/>
+            <column cid="Toast index blocks misses" eid="root/Tables/{0#1}" idx="18"/>
+            <column cid="Toast index blocks hits" eid="root/Tables/{0#1}" idx="19"/>
+          </columns>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Tables/{0#1}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Data blocks hits">
+            <alternatename/>
+            <description>Number of data blocks read that were found in the cache</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Data blocks misses">
+            <alternatename/>
+            <description>Number of data blocks read from disk</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Index blocks hits">
+            <alternatename/>
+            <description>Number of index blocks read that were found in the cache</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Index blocks misses">
+            <alternatename/>
+            <description>Number of index blocks read from disk</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Index scans">
+            <alternatename/>
+            <description>Number of index scans initiated (over all indexes belonging to the table)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Rows deleted">
+            <alternatename/>
+            <description>Number of row deletions</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Rows inserted">
+            <alternatename/>
+            <description>Number of row insertions</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Rows read by index scan">
+            <alternatename/>
+            <description>Number of rows read by index scans</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Rows read by sequential scan">
+            <alternatename/>
+            <description>Number of rows read by sequential scans</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Rows updated">
+            <alternatename/>
+            <description>Number of row updates</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Sequential scans">
+            <alternatename/>
+            <description>Number of sequential scans</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Toast blocks hits">
+            <alternatename/>
+            <description>Toast table data blocks read that were found in the cache</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Toast blocks misses">
+            <alternatename/>
+            <description>Toast table data blocks read from disk</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Toast index blocks hits">
+            <alternatename/>
+            <description>Toast table index blocks read that were found in the cache</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Toast index blocks misses">
+            <alternatename/>
+            <description>Toast table index blocks read from disk</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>8.3</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.sql.name</providerName>
       <instanceName>Indexes</instanceName>
       <description>Statistics for all indexes in the database</description>
       <author>system</author>
@@ -285,7 +341,7 @@
           <providers.sql.username notrequired="true" type="0" value="{agent.Username}"/>
           <providers.sql.password notrequired="true" type="0" value="{agent.Password}"/>
           <providers.sql.connection_string type="0" value="jdbc:postgresql://{host}:{agent.Port}/{agent.Database}"/>
-          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED000574006373656C65637420736368656D616E616D652C72656C6E616D652C696E64657872656C6E616D652C6964785F7363616E2C6964785F7475705F726561642C6964785F7475705F66657463682066726F6D2070675F737461745F616C6C5F696E6465786573"/>
+          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED00057402380A73656C656374200A09737461742E736368656D616E616D652C0A09737461742E72656C6E616D652C0A09737461742E696E64657872656C6E616D652C0A0963617365207768656E20737461742E6964785F7363616E206973206E756C6C207468656E203020656C736520737461742E6964785F7363616E20656E642C0A0963617365207768656E20737461742E6964785F7475705F72656164206973206E756C6C207468656E203020656C736520737461742E6964785F7475705F7265616420656E642C0A0963617365207768656E20737461742E6964785F7475705F6665746368206973206E756C6C207468656E203020656C736520737461742E6964785F7475705F666574636820656E642C0A0963617365207768656E20696F2E6964785F626C6B735F72656164206973206E756C6C207468656E203020656C736520696F2E6964785F626C6B735F7265616420656E642C0A0963617365207768656E20696F2E6964785F626C6B735F686974206973206E756C6C207468656E203020656C736520696F2E6964785F626C6B735F68697420656E640A66726F6D200A0970675F737461745F616C6C5F696E646578657320737461742C2070675F73746174696F5F616C6C5F696E646578657320696F0A776865726520737461742E736368656D616E616D653D696F2E736368656D616E616D6520616E6420737461742E72656C6E616D653D696F2E72656C6E616D6520616E6420737461742E696E64657872656C6E616D653D696F2E696E64657872656C6E616D65"/>
         </config>
         <usePrivateCollector>false</usePrivateCollector>
       </config>
@@ -300,6 +356,8 @@
             <column cid="Index scans" eid="root/Indexes/{0#1#2}" idx="3"/>
             <column cid="Index entries returned by index scans" eid="root/Indexes/{0#1#2}" idx="4"/>
             <column cid="Table rows fetched by simple index scans" eid="root/Indexes/{0#1#2}" idx="5"/>
+            <column cid="Index blocks misses" eid="root/Indexes/IO/{0#1#2}" idx="6"/>
+            <column cid="Index blocks hits" eid="root/Indexes/IO/{0#1#2}" idx="7"/>
           </columns>
           <accumulateVolatileEntities>false</accumulateVolatileEntities>
           <convertColumnToRow>false</convertColumnToRow>
@@ -330,103 +388,20 @@
             <type>0</type>
           </counterdescriptor>
         </entitydescriptor>
-      </descriptors>
-      <agentVersions>
-        <agentVersion>8.3</agentVersion>
-      </agentVersions>
-    </providerInstance>
-    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
-      <providerName>providers.sql.name</providerName>
-      <instanceName>Table IO</instanceName>
-      <description>IO statistics for all tables in the database</description>
-      <author>system</author>
-      <remote>false</remote>
-      <optional>true</optional>
-      <selectedByDefault>true</selectedByDefault>
-      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
-      <config>
-        <config class="com.ixora.rms.providers.impl.sql.Configuration">
-          <providers.sql.classpath notrequired="true" type="0" value="{agent.Classpath}"/>
-          <providers.sql.classloader_id notrequired="true" type="0" value="agents.postgresql"/>
-          <providers.sql.driver_class type="0" value="{agent.JDBCDriverClass}"/>
-          <providers.sql.username notrequired="true" type="0" value="{agent.Username}"/>
-          <providers.sql.password notrequired="true" type="0" value="{agent.Password}"/>
-          <providers.sql.connection_string type="0" value="jdbc:postgresql://{host}:{agent.Port}/{agent.Database}"/>
-          <providers.sql.sql_query extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED00057400A873656C65637420736368656D616E616D652C72656C6E616D652C686561705F626C6B735F726561642C686561705F626C6B735F6869742C6964785F626C6B735F726561642C6964785F626C6B735F6869742C746F6173745F626C6B735F726561642C746F6173745F626C6B735F6869742C746964785F626C6B735F726561642C746964785F626C6B735F6869742066726F6D2070675F73746174696F5F616C6C5F7461626C65730A"/>
-        </config>
-        <usePrivateCollector>false</usePrivateCollector>
-      </config>
-      <parserInstance>
-        <parser>providers.parsers.table.name</parser>
-        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
-          <columnSeparator> 	</columnSeparator>
-          <columns>
-            <column eid="root/Tables/IO/{0#1}" idx="0"/>
-            <column eid="root/Tables/IO/{0#1}" idx="1"/>
-            <column cid="Data blocks misses" eid="root/Tables/IO/{0#1}" idx="2"/>
-            <column cid="Data blocks hits" eid="root/Tables/IO/{0#1}" idx="3"/>
-            <column cid="Index blocks misses" eid="root/Tables/IO/{0#1}" idx="4"/>
-            <column cid="Index blocks hits" eid="root/Tables/IO/{0#1}" idx="5"/>
-            <column cid="Toast blocks misses" eid="root/Tables/IO/{0#1}" idx="6"/>
-            <column cid="Toast blocks hits" eid="root/Tables/IO/{0#1}" idx="7"/>
-            <column cid="Toast index blocks misses" eid="root/Tables/IO/{0#1}" idx="8"/>
-            <column cid="Toast index blocks hits" eid="root/Tables/IO/{0#1}" idx="9"/>
-          </columns>
-          <accumulateVolatileEntities>false</accumulateVolatileEntities>
-          <convertColumnToRow>false</convertColumnToRow>
-        </rules>
-      </parserInstance>
-      <descriptors>
-        <entitydescriptor id="root/Tables/IO/{0#1}">
+        <entitydescriptor id="root/Indexes/IO/{0#1#2}">
           <alternatename/>
           <description/>
           <haschildren>false</haschildren>
           <indsampling>false</indsampling>
-          <counterdescriptor id="Data blocks hits">
-            <alternatename/>
-            <description>Number of data blocks read that were found in the cache</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Data blocks misses">
-            <alternatename/>
-            <description>Number of data blocks read from disk</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
           <counterdescriptor id="Index blocks hits">
             <alternatename/>
-            <description>Number of index blocks read that were found in the cache</description>
+            <description/>
             <discreet>false</discreet>
             <type>0</type>
           </counterdescriptor>
           <counterdescriptor id="Index blocks misses">
             <alternatename/>
-            <description>Number of index blocks read from disk</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Toast blocks hits">
-            <alternatename/>
-            <description>Toast table data blocks read that were found in the cache</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Toast blocks misses">
-            <alternatename/>
-            <description>Toast table data blocks read from disk</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Toast index blocks hits">
-            <alternatename/>
-            <description>Toast table index blocks read that were found in the cache</description>
-            <discreet>false</discreet>
-            <type>0</type>
-          </counterdescriptor>
-          <counterdescriptor id="Toast index blocks misses">
-            <alternatename/>
-            <description>Toast table index blocks read from disk</description>
+            <description/>
             <discreet>false</discreet>
             <type>0</type>
           </counterdescriptor>
