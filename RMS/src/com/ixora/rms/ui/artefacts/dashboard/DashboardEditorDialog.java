@@ -33,7 +33,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
-import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeExpansionEvent;
@@ -249,26 +248,27 @@ final class DashboardEditorDialog extends AppDialog {
         }
     }
     
-    private final static class ViewsListRenderer extends JLabel implements ListCellRenderer {
+    private final static class ViewsListRenderer extends DefaultListCellRenderer {
     	private static final ImageIcon fIconChart = UIConfiguration.getIcon("chartsboard.gif");
     	private static final ImageIcon fIconTable = UIConfiguration.getIcon("tablesboard.gif");
     	private static final ImageIcon fIconProperties = UIConfiguration.getIcon("propertiesboard.gif");
     	
 		public Component getListCellRendererComponent(JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
+			JLabel renderer = (JLabel)super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			DataViewInfo dvi = (DataViewInfo)value;
 			setText(dvi.toString());
 			DataView dv = dvi.getDataView();
 			if(dv instanceof ChartDef) {
-				setIcon(fIconChart);
+				renderer.setIcon(fIconChart);
 			} else if(dv instanceof TableDef) {
-				setIcon(fIconTable);
+				renderer.setIcon(fIconTable);
 			} else if(dv instanceof PropertiesDef) {
-				setIcon(fIconProperties);
+				renderer.setIcon(fIconProperties);
 			}  else {
-				setIcon(null);
+				renderer.setIcon(null);
 			}
-			return this;
+			return renderer;
 		}    	
     }
 
