@@ -1,2 +1,4 @@
+#summary Release notes for IxoraRMS v1.1.
 #labels Featured
+
 This release contains bug fixes, usability improvements, support for custom JMX JSR 160 agents, Apache Tomcat and PostgreSQL.
