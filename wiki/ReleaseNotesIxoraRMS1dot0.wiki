@@ -1,4 +1,5 @@
 #summary Release notes for IxoraRMS 1.0.
+#labels Deprecated
 
 Required JVM level: JRE 6.0 or later is required to run IxoraRMS 1.0
 
