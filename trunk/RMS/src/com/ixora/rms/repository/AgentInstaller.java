@@ -255,10 +255,18 @@ public final class AgentInstaller extends Observable implements AgentInstallerSe
 			}
 			progress.setDelta(1);
 
-			// create or replace required files
-			progress.setTask("creating files...");
-			File destFile = new File(Utils.getPath("/tmp"));
-			Utils.unzipToFolder(agentPackage, destFile);
+			// create or replace required files			
+			progress.setTask("creating files...");			
+			if(!updateIfExists) {
+				// check first if an agent already exists
+				AgentInstallationData aid = fAgentRepository.getInstalledAgents().get(agentId);
+				if(aid != null) {
+					throw new AgentAlreadyInstalled(aid.getAgentInstallationId());
+				}
+			}
+			// unzip the installation artefact into the application folder
+			File destFolder = new File(Utils.getPath("/"));
+			Utils.unzipToFolder(agentPackage, destFolder);				
 			progress.setDelta(1);
 
 			// reload repositories
@@ -384,7 +392,7 @@ public final class AgentInstaller extends Observable implements AgentInstallerSe
 		agents = fAgentRepository.getInstalledAgents();
 		if(agents.get(agentInstallationId) != null) {
 			// TODO localize
-			throw new RMSException("Agent with identifier " + agentInstallationId + " is already installed");
+			throw new AgentAlreadyInstalled(agentInstallationId);
 		}
 		// export first then install as a package
 		File tmpFolder = Utils.getSystemTempFolder();
