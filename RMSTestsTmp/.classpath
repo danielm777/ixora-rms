@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/IxoraCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMS"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AgentLogFile"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-httpclient.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-codec.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging-api.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/ldap.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
