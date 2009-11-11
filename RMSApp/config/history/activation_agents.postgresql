@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.postgresql">
+    <historyGroupItem date="1.257886848774E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+            <Username notrequired="true" type="0" value="postgres"/>
+            <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <Database notrequired="true" type="0" value="dating_ie"/>
+            <Port notrequired="true" type="1" value="5432"/>
+            <JDBCDriverClass notrequired="true" type="0" value="org.postgresql.Driver"/>
+            <Classpath notrequired="true" type="0" value="{home}/lib/postgresql-8.3-603.jdbc4.jar"/>
+          </config>
+          <version>8.3</version>
+          <providerInstances>
+            <providerInstance>Databases</providerInstance>
+            <providerInstance>Indexes</providerInstance>
+            <providerInstance>Processes</providerInstance>
+            <providerInstance>Tables</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.257812504859E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+            <Username notrequired="true" type="0" value="postgres"/>
+            <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <Database notrequired="true" type="0" value="dating_ie"/>
+            <Port notrequired="true" type="1" value="5432"/>
+            <JDBCDriverClass notrequired="true" type="0" value="org.postgresql.Driver"/>
+            <Classpath notrequired="true" type="0" value="{home}/lib/postgresql-8.3-603.jdbc4.jar"/>
+          </config>
+          <version>8.3</version>
+          <providerInstances>
+            <providerInstance>Databases</providerInstance>
+            <providerInstance>Indexes</providerInstance>
+            <providerInstance>Processes</providerInstance>
+            <providerInstance>Tables</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.257810779406E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+            <Username notrequired="true" type="0" value="postgres"/>
+            <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <Database notrequired="true" type="0" value="dating_ie"/>
+            <Port notrequired="true" type="1" value="5432"/>
+            <JDBCDriverClass notrequired="true" type="0" value="org.postgresql.Driver"/>
+            <Classpath notrequired="true" type="0" value="{home}/lib/postgresql-8.3-603.jdbc4.jar"/>
+          </config>
+          <version>8.3</version>
+          <providerInstances>
+            <providerInstance>Indexes</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>
