@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rms>
-  <historyGroup id="activation_agents.jmxjsr160">
-    <historyGroupItem date="1.25769260664E12">
+  <historyGroup id="activation_agents.tomcat">
+    <historyGroupItem date="1.257890417505E12">
       <activation class="com.ixora.rms.agents.AgentActivationData">
         <location>0</location>
         <host/>
@@ -16,10 +16,11 @@
             <extra_properties notrequired="true" type="0" value=""/>
             <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9999/jmxrmi"/>
           </config>
+          <version>6.x</version>
         </config>
       </activation>
     </historyGroupItem>
-    <historyGroupItem date="1.257691893421E12">
+    <historyGroupItem date="1.256861172312E12">
       <activation class="com.ixora.rms.agents.AgentActivationData">
         <location>0</location>
         <host/>
@@ -34,10 +35,11 @@
             <extra_properties notrequired="true" type="0" value=""/>
             <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9999/jmxrmi"/>
           </config>
+          <version>5.x</version>
         </config>
       </activation>
     </historyGroupItem>
-    <historyGroupItem date="1.257687608E12">
+    <historyGroupItem date="1.256860602156E12">
       <activation class="com.ixora.rms.agents.AgentActivationData">
         <location>0</location>
         <host/>
@@ -52,6 +54,7 @@
             <extra_properties notrequired="true" type="0" value=""/>
             <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:9999/jmxrmi"/>
           </config>
+          <version>6.x</version>
         </config>
       </activation>
     </historyGroupItem>

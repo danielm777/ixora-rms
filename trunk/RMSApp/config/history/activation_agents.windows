@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rms>
   <historyGroup id="activation_agents.windows">
-    <historyGroupItem date="1.234221679373E12">
+    <historyGroupItem date="1.257362878015E12">
       <activation class="com.ixora.rms.agents.AgentActivationData">
-        <location>1</location>
+        <location>0</location>
         <host/>
         <agentInstallationId/>
         <config>
@@ -17,7 +17,7 @@
         </config>
       </activation>
     </historyGroupItem>
-    <historyGroupItem date="1.200946362843E12">
+    <historyGroupItem date="1.256947242234E12">
       <activation class="com.ixora.rms.agents.AgentActivationData">
         <location>0</location>
         <host/>
@@ -29,11 +29,11 @@
             <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
             <config.domain notrequired="true" type="0" value=""/>
           </config>
-          <version>Win2000</version>
+          <version>WinXP</version>
         </config>
       </activation>
     </historyGroupItem>
-    <historyGroupItem date="1.200946012125E12">
+    <historyGroupItem date="1.256585142638E12">
       <activation class="com.ixora.rms.agents.AgentActivationData">
         <location>0</location>
         <host/>
@@ -45,7 +45,7 @@
             <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
             <config.domain notrequired="true" type="0" value=""/>
           </config>
-          <version>Win2000</version>
+          <version>WinXP</version>
         </config>
       </activation>
     </historyGroupItem>
