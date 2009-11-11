@@ -1,0 +1,294 @@
+<section id="secConcepts">
+	<title>Concepts</title>
+
+	<indexterm><primary>concepts</primary></indexterm>
+	<sect2 id="paraOverview">
+	
+		<para>&programName; is a performance and resource monitoring tool, designed to present heterogeneous data, collected from various sources, in a graphical way. 
+		In &programName; data is collected by Agents and passed to the Console to be displayed or to be recorded for later playback.</para>
+
+		<para>There are two main modes of monitoring using &programName; and choosing one
+		over the other depends whether Host Manager can or needs to be installed on the target machine.</para>
+
+		<figure>
+			<title>Agent based monitoring</title>
+			<graphic fileref="images/agent_based_monitoring.gif"/>
+		</figure>
+		<para>Agent based monitoring means that the Host Manager component is running on the monitored host
+		and agents are deployed in 'Remote' mode. Use this method only if necessary as it usually consumes more
+		resources on the monitored system.</para>
+
+		<figure>
+			<title>Agent-less monitoring</title>
+			<graphic fileref="images/agentless_monitoring.gif"/>
+		</figure>
+		<para>This is the preferred way to monitor a system as it usually is more efficient.
+		Depending on the platform and the type of application being sampled,
+		some application-specific client tools may be required; an example would be DB2 and Websphere.
+		Others will only require configuring permissions to allow remote access, as is the case
+		when retrieving Windows information through the Remote Registry service. Process-based
+		providers may also be created to execute command line tools through the rexec utility or via
+		telnet or ssh2 sessions.</para>
+	</sect2>
+
+	<indexterm><primary>agents</primary></indexterm>
+	<sect2 id="paraAgents">
+		<title>Agents</title>
+		<para>Agents have the responsibility of collecting data from various sources and
+		making it available to the Console. Depending on the type of application or system
+		being monitored, an agent can perform its data-collecting duties in two modes:
+		<itemizedlist>
+			<listitem>Local: the agent itself is run locally and collects data through the
+			network from the monitored system.</listitem>
+			<listitem>Remote: Host Manager must have been installed on the monitored system.
+			The agent will run on the remote host and will use Host Monitor to send data
+			to the Console.</listitem>
+		</itemizedlist>
+		</para>
+	</sect2>
+
+	<indexterm><primary>providers</primary></indexterm>
+	<sect2 id="paraProviders">
+		<title>Providers</title>
+		<para>Providers are extensions or building blocks for custom monitoring. Their role is to collect
+		small pieces of data in a very simple form and send it to the Console where it will be parsed and
+		inserted into a hierarchical structure.
+		<para>There are three types of providers that can be built:</para>
+		<itemizedlist>
+			<listitem>Process: the monitoring data is extracted using external processes.</listitem>
+			<listitem>SQL: the monitoring data is extracted using a database connection and SQL statements.</listitem>
+			<listitem>Java: the monitoring data is extracted using custom Java code.</listitem>
+		</itemizedlist>
+		</para>
+	</sect2>
+
+	<indexterm><primary>host manager</primary></indexterm>
+	<sect2 id="paraHostManager">
+		<title>Host Manager</title>
+		<para>A Host Manager provides an environment for agents to run in, and acts as a
+		gateway to the Console.</para>
+
+		<para>Install the Host Manger on a monitored machine only if you cannot run the agent in
+		'Local' mode(this usually happens when client side libraries are required but not
+		available on the Console but note that some agents like the 'Log File Monitor' will always
+		require a Host Manger to be running on a remote host). </para>
+
+		<para>Even without any agent enabled a Host Manager will provide a few information
+		elements about the host it runs on. This information (operating system version, architecture
+		and time difference between the host and Console) can be seen by selecting the host node
+		in the session tree.</para>
+
+		<para>When started, Host Manager will detect all available network interfaces and will prompt
+		you to select the one to use.</para>
+	</sect2>
+
+	<indexterm><primary>console</primary></indexterm>
+	<sect2 id="paraConsole">
+		<title>Console</title>
+		<para>All control and display functions of &programName; are available from the Console.
+		Data from all hosts and all agents is presented in a hierarchical layout and can be displayed
+		on screen, or can be recorded in a log file.</para>
+
+		<para>Individual performance counters from each agent can be plotted on charts,
+		tables, properties or dedicated viewers.
+		More complex queries can also be defined, grouping multiple counters from
+		different agents or different hosts on the same chart or table. A powerful syntax
+		is provided for specifying counters to be plotted, described in more detail under <xref linkend="secCustomViews"/>.
+		</para>
+
+		<para>As described under <xref linkend="secCustomData"/>, user-defined agents and providers
+		can also be created from the Console, and can be used along with the built-in agents.</para>
+
+		<para>For ways to create rules that trigger alerts and various reactions see <xref linkend="secReactions"/>.</para>
+
+	</sect2>
+
+	<indexterm><primary>monitoring session</primary></indexterm>
+	<indexterm><primary>session</primary></indexterm>
+	<sect2 id="paraMonitoringSession">
+		<title>Monitoring Session</title>
+		<para>In &programName; all information related to a monitoring sesion
+		(hosts, activated agents, counters plotted and so on) can be saved together
+		as a session file (*.rmss).</para>
+
+		<para>When restoring a session &programName; will attempt to connect to the same
+		hosts and enable the same agents, while restoring the screen layout with all
+		charts visible at the time when the session was saved.</para>
+
+		<para>Saving sessions is a convenient way to manage all your lists of hosts and
+		configuration (such as database connection parameters etc) for each one.</para>
+	</sect2>
+
+	<indexterm><primary>sampling interval</primary></indexterm>
+	<sect2 id="paraSamplingInterval">
+		<title>Sampling Interval</title>
+		<para>Data will be collected regularly from agents, with a
+		frequency controlled by the Sampling Interval parameter.</para>
+
+		<para>The Sampling Interval is typically adjusted at Monitoring Session level
+		by changing the value on the application toolbar. 
+		This value is propagated and used by all agents, unless overridden at agent or entity level.</para>
+		<figure>
+			<title>Setting Sampling Interval at Session level</title>
+			<graphic fileref="images/toolbar_sample_interval.png"/>
+		</figure>
+
+		<para>This setting can be overriden at an agent level by unselecting the 'Default' interval
+		checkbox. More complex agents also allow adjusting the sampling interval per entity.</para>
+
+		<figure>
+			<title>Setting Sampling Interval at Agent Level</title>
+			<graphic fileref="images/agent_interval.png"/>
+		</figure>
+
+	<indexterm><primary>entity refresh schedule</primary></indexterm>
+	<para>
+		You can also configure an entity to update its children periodically. Right click on the entity and from the 
+		context menu choose 'Refresh Schedule'. Note that this action might not be available on
+		every entity. In the dialog box enter a value which will represent the number of
+		sampling intervals between entity update operations. </para>
+
+		<figure>
+			<title>Setting Entity Refresh Schedule</title>
+			<graphic fileref="images/entity_refresh_period.png"/>
+		</figure>
+
+		<para>
+		Once a refresh schedule was set for an entity a refresh icon will upear next to it like in the
+		following example:
+		</para>
+		
+		<figure>
+			<title>Entity Refresh Schedule Icon</title>
+			<graphic fileref="images/entity_refresh_period_icon.png"/>
+		</figure>
+		
+		<para>
+		Note that certain entities are not able to refresh their children and in such circumstances
+		the schedule is set on the first ancestor entity or agent able to refreh its descendants. In this case 
+		a refresh icon will be shown for both the original entity and its ancestor.
+		</para>
+		
+	</sect2>
+
+	<indexterm><primary>monitoring level</primary></indexterm>
+	<sect2 id="paraMonitoringLevel">
+		<title>Monitoring Level</title>
+		<para>For certain agents (WebSphere) the monitoring level can be specified at agent or entity level.
+		The monitoring level controls the amount and type of data that will be collected by the agent.
+		By lowering the monitoring level you can reduce the impact of monitoring on the monitored system.</para>
+
+		<figure>
+			<title>Setting monitoring level at entity level</title>
+			<graphic fileref="images/monitoring_level.png"/>
+		</figure>
+
+	</sect2>
+
+	<indexterm><primary>entity</primary></indexterm>
+	<indexterm><primary>counter</primary></indexterm>
+	<sect2 id="paraEntitiesCounters">
+		<title>Entities and Counters</title>
+		<para>In &programName; counters are the basic performance elements, and they have an
+		associated value that can be for example plotted on a chart. Counters are
+		typically grouped under entities, which in turn are grouped hierarchically under
+		an agent.</para>
+		<figure>
+			<title>Agent, Entities and Counters</title>
+			<graphic fileref="images/entity_counter.png"/>
+		</figure>
+
+		<para>In the figure above you can see entities of the Windows agent, as well
+		as the counters for the selected entity (Processor)</para>
+
+		<para>An agent will return data only for the counters which are enabled. To
+		enable counters, click the checkbox next to them, then click 'Apply'. Enabling
+		counters is also required for recording a session log: only data for enabled
+		counters will be recorded. Note that when enabling a view or a dashboard
+		(see <xref linkend="paraViewsDashboards"/>) all required counters are automatically enabled.
+		This is also true for views which use regular expressions.</para>
+
+		<para>Counters can also be enabled by right-clicking any entity of an agent
+		and selecting 'Enable All Counters' or 'Enable All Counters Recursively'. The
+		recursive option will also enable all counters of all child entities. Dynamic
+		counters (created during a monitoring session) will be created enabled if their
+		parent entity was enabled in this way.</para>
+
+		<indexterm><primary>monitoring level</primary></indexterm>
+		<para>Some agents support the concept of Monitoring Level associated with their
+		entities and counters. This allows the user to control the volume of information
+		displayed, with higher levels resulting in more entities and counters present
+		in agent's tree. If this is supported, markers will be displayed next to each
+		entity to show the current level. Options are provided to control monitoring
+		level per each entity, per subtree or per entire agent.</para>
+	</sect2>
+
+
+	<indexterm><primary>view</primary></indexterm>
+	<indexterm><primary>dashboard</primary></indexterm>
+	<sect2 id="paraViewsDashboards">
+		<title>Views and Dashboards</title>
+		<para>A very powerful feature of &programName; is the ability to group related
+		counters, together with graphic display hints, into a single View object, easy
+		to plot with one click. A view can group counters from the same agent entity
+		(eg: Disk Reads, Disk Writes for a PhysicalDisk entity), different entities as well as counters
+		across multiple hosts (eg: Disk Reads for all monitored hosts).</para>
+
+		<para>Along with Views there are also Dashboards, which are groups of views and
+		individual counters that can be plotted together, making it easy to display all
+		relevant performance metrics for an entire system</para>
+
+		<para>Both views and dashboards can be found at any level in the monitoring
+		session tree.</para>
+
+		<para>Views and dashboards can also be customized or created from scratch, see
+		<xref linkend="secCustomViews"/>.</para>
+
+		<indexterm><primary>screen</primary></indexterm>
+		<para>To control the volume of information shown at a time on the screen, more
+		dashboards can be placed under a Data View Screen and shown or hidden
+		together. &programName; creates an initial screen; more screens can be created
+		later on using the tooolbar controls.</para>
+		<figure>
+			<title>Data View Screen toolbar controls</title>
+			<graphic fileref="images/dataview_screen.png"/>
+		</figure>
+
+	</sect2>
+
+	<indexterm><primary>alerts</primary></indexterm>
+	<indexterm><primary>reactions</primary></indexterm>
+	<indexterm><primary>email</primary></indexterm>
+	<sect2 id="paraReactions">
+		<title>Reactions and Alerts</title>
+		<para>In &programName; it is possible to define complex rules for triggering reactions such as
+		visual alerts, emails, jobs and advices. For more information see <xref linkend="secReactions"/> and
+		<xref linkend="secJobs"/></para>
+	</sect2>
+
+	<indexterm><primary>html web generation</primary></indexterm>
+	<sect2 id="paraHTMLGeneration">
+		<title>HTML Generation</title>
+		<para>In &programName; it is also possible to generate a HTML page with all the data
+		available in the current monitoring session; the HTML generator can be set to refresh the generated data periodically.
+		For more information see <xref linkend="secHTMLGeneration"/></para>
+	</sect2>
+
+	<indexterm><primary>command line non-interactive</primary></indexterm>
+	<sect2 id="paraNonInteractive">
+		<title>Non-Interactive Monitoring Session</title>
+		<para>You can also start a monitoring session in a non-interactive manner using 
+		
+		<programlisting role="linespecific">
+		batchStart.bat(sh) [sessionName] [logFile]
+		</programlisting>
+		
+		where the two parameters are the monitoring session name
+		and the log file where monitoring data will be stored.
+		To stop a session started with batchStart you must run batchStop.bat(sh)</para>
+	</sect2>
+
+	<para></para>
+	<para></para>
+
+</section>

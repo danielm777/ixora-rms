@@ -1,0 +1,23 @@
+<section id="secUpdate">
+	<title>Updating &programName;</title>
+
+    <indexterm><primary>update</primary><secondary>upgrade</secondary></indexterm>
+	<para>The following is the recommended procedure for updating &programName;:</para>
+
+	<para>Rename the old &programName; installation folder and install the new version following
+	the instructions in <xref linkend="secGettingStarted"/>.
+	In order to import your custom agents, start the new version of the application, 
+	go to Tools &gt; Agent Installer... and click on the 'Install' button. From the 
+	'Agent Installation Type' dialog choose 'Import custom agent from another &programName; instance' 
+	and click 'Ok'.
+	From the file chooser select the folder where you have the old &programName; instance. Press 'Ok' and
+	a dialog showing all custom agents available to be imported will be displayed. 
+	Select one and press 'Ok' to import it into the new version of the application.
+	</para>
+	<para>
+	In order to import other custom artefacts you need to start the old version of the application and 
+	copy the XML definition of each artefact you wish to import and paste it using the 'Import From XML'
+	facility in the new version.
+	</para>	
+
+</section>

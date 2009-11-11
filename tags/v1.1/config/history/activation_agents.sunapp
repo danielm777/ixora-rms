@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.sunapp">
+    <historyGroupItem date="1.152744040796E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.sunapp.v8.Configuration">
+            <config.username notrequired="true" type="0" value="admin"/>
+            <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <root_folder notrequired="true" type="0" value="C:/Sun/AppServer"/>
+            <classpath notrequired="true" type="0" value="/lib/appserv-rt.jar,/lib/appserv-admin.jar,/lib/j2ee.jar"/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:8686/management/rmi-jmx-connector"/>
+            <show_just_runtime_data type="3" value="true"/>
+          </config>
+          <version>8.*</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.147986229562E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.sunapp.v8.Configuration">
+            <config.username notrequired="true" type="0" value="admin"/>
+            <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <root_folder notrequired="true" type="0" value="C:/Sun/AppServer"/>
+            <classpath notrequired="true" type="0" value="/lib/appserv-rt.jar,/lib/appserv-admin.jar,/lib/j2ee.jar"/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:8686/management/rmi-jmx-connector"/>
+            <show_just_runtime_data type="3" value="true"/>
+          </config>
+          <version>8.*</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.142547308437E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.sunapp.v8.Configuration">
+            <config.username notrequired="true" type="0" value="admin"/>
+            <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <root_folder notrequired="true" type="0" value="C:/Sun/AppServer"/>
+            <classpath notrequired="true" type="0" value="/lib/appserv-rt.jar,/lib/appserv-admin.jar"/>
+            <jmx_connection_string type="0" value="service:jmx:rmi:///jndi/rmi://{host}:8686/management/rmi-jmx-connector"/>
+            <show_just_runtime_data type="3" value="true"/>
+          </config>
+          <version>8.*</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

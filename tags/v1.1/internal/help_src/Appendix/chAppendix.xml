@@ -1,0 +1,11 @@
+<chapter id="chAppendix">
+	<title>Appendix</title>
+
+	&secApacheLicense;
+	&secBSDLicense;
+	&secLGPL;
+	&secGanymedSSH2License;
+	&secSyntax;
+
+
+</chapter>

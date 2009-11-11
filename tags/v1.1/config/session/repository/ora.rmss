@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="ora">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.oracle</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.oracle.Configuration">
+                    <config.username notrequired="true" type="0" value="system"/>
+                    <config.password notrequired="true" type="10" value="194D110E3DD455FC"/>
+                    <config.port type="1" value="1521"/>
+                    <config.sid type="0" value="oracle"/>
+                    <config.jdbcclass type="0" value="oracle.jdbc.driver.OracleDriver"/>
+                    <config.classpath type="0" value="/lib/ojdbc14.jar"/>
+                  </config>
+                  <version>9i</version>
+                  <providerInstances>
+                    <providerInstance>Bufferpools</providerInstance>
+                    <providerInstance>Data Access Statistics</providerInstance>
+                    <providerInstance>Data Dictionary Cache</providerInstance>
+                    <providerInstance>Dynamic SQL</providerInstance>
+                    <providerInstance>Events</providerInstance>
+                    <providerInstance>Global IO</providerInstance>
+                    <providerInstance>Library Cache</providerInstance>
+                    <providerInstance>Sessions</providerInstance>
+                    <providerInstance>Tablespaces</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.oracle</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.oracle.Configuration">
+                    <config.username notrequired="true" type="0" value="system"/>
+                    <config.password notrequired="true" type="10" value="194D110E3DD455FC"/>
+                    <config.port type="1" value="1521"/>
+                    <config.sid type="0" value="oracle"/>
+                    <config.jdbcclass type="0" value="oracle.jdbc.driver.OracleDriver"/>
+                    <config.classpath type="0" value="/lib/ojdbc14.jar"/>
+                  </config>
+                  <version>9i</version>
+                  <providerInstances>
+                    <providerInstance>Bufferpools</providerInstance>
+                    <providerInstance>Data Access Statistics</providerInstance>
+                    <providerInstance>Data Dictionary Cache</providerInstance>
+                    <providerInstance>Dynamic SQL</providerInstance>
+                    <providerInstance>Events</providerInstance>
+                    <providerInstance>Global IO</providerInstance>
+                    <providerInstance>Library Cache</providerInstance>
+                    <providerInstance>Sessions</providerInstance>
+                    <providerInstance>Tablespaces</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_libcache/{Library cache gets hit ratios}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/ora_libcache/(.*)/[libcache_gethr]"/>
+          <resource id="time" rid="-/-/root/ora_libcache/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.oracle/root/ora_io/{io_consistent_changes}">
+          <resource id="localhost/agents.oracle/root/ora_io/[#time#]" rid="localhost/agents.oracle/root/ora_io/[#time#]"/>
+          <resource id="localhost/agents.oracle/root/ora_io/[io_consistent_changes]" iname="$counter" rid="localhost/agents.oracle/root/ora_io/[io_consistent_changes]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_sessions/{Session details}">
+          <resource id="session" iname="$entity[2]" name="Session" rid="-/-/root/ora_sessions/(.*)"/>
+          <resource id="program" iname="$entity[2]/Program" name="Program" rid="-/-/root/ora_sessions/(.*)/[s_program]"/>
+          <resource id="machine" iname="$entity[2]/Machine" name="Machine" rid="-/-/root/ora_sessions/(.*)/[s_machine]"/>
+          <resource id="osuser" iname="$entity[2]/OS user" name="OS user" rid="-/-/root/ora_sessions/(.*)/[s_osuser]"/>
+          <resource id="status" iname="$entity[2]/Status" name="Status" rid="-/-/root/ora_sessions/(.*)/[s_status]"/>
+          <resource id="type" iname="$entity[2]/Type" name="Type" rid="-/-/root/ora_sessions/(.*)/[s_type]"/>
+          <resource id="processid" iname="$entity[2]/Process ID" name="Process ID" rid="-/-/root/ora_sessions/(.*)/[s_process]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_ts/{Details per tablespace}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_ts/(.*)/[ts_autoextend]" type="string"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_ts/(.*)/[ts_pct_free]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_ts/(.*)/[ts_total_free_space]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_ts/(.*)/[ts_used_space]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_ts/(.*)/[ts_total_space]"/>
+          <resource id="id0" iname="$entity[2]" name="Tablespace" rid="-/-/root/ora_ts/(.*)"/>
+          <reaction params="id0,id1,id2" severity="CRITICAL">
+            <arm><![CDATA[return id2 < 0.05 && "NO".equals(id1);]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "Tablespace " + env.getPath(id0) + " has less then 0.05% free space and the autoextend is " + id1;]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_bp/{Details per bufferpool}">
+          <resource id="bp" iname="$entity[2]" name="Bufferpool" rid="-/-/root/ora_bp/(.*)"/>
+          <resource id="buffers" iname="$entity[2]/Buffers" name="Buffers" rid="-/-/root/ora_bp/(.*)/[bp_buffers]"/>
+          <resource id="blocksize" iname="$entity[2]/Block size" name="Block size" rid="-/-/root/ora_bp/(.*)/[bp_block_size]"/>
+          <resource id="resizestate" iname="$entity[2]/Resize state" name="Resize state" rid="-/-/root/ora_bp/(.*)/[bp_resize_state]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_events/{Average wait time for all events}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_events/(.*)/[ev_average_wait]"/>
+          <resource id="time" rid="-/-/root/ora_events/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_ddcache/{Data dictionary cache gets hit ratios}">
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/ora_ddcache/(.*)/[ddcache_gethr]"/>
+          <resource id="time" rid="-/-/root/ora_ddcache/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.oracle/root/ora_io/{io_sorts_disks}">
+          <resource id="localhost/agents.oracle/root/ora_io/[#time#]" rid="localhost/agents.oracle/root/ora_io/[#time#]"/>
+          <resource id="localhost/agents.oracle/root/ora_io/[io_sorts_disks]" iname="$counter" rid="localhost/agents.oracle/root/ora_io/[io_sorts_disks]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.oracle/root/ora_io/{io_consistent_gets}">
+          <resource id="localhost/agents.oracle/root/ora_io/[#time#]" rid="localhost/agents.oracle/root/ora_io/[#time#]"/>
+          <resource id="localhost/agents.oracle/root/ora_io/[io_consistent_gets]" iname="$counter" rid="localhost/agents.oracle/root/ora_io/[io_consistent_gets]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_da/{Data access statistics}">
+          <resource id="localhost/agents.oracle/root/ora_da/[#time#]" rid="localhost/agents.oracle/root/ora_da/[#time#]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_tf_by_row_id]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_tf_by_row_id]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_tf_continued_row]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_tf_continued_row]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_cache_partitions]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_cache_partitions]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_direct_read]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_direct_read]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_long_tables]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_long_tables]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_rowid_ranges]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_rowid_ranges]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_short_tables]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_short_tables]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_events/{Event details}">
+          <resource id="event" iname="$entity[2]" name="Event" rid="-/-/root/ora_events/(.*)"/>
+          <resource id="timewaited" iname="$entity[2]/Time waited" name="Time waited" rid="-/-/root/ora_events/(.*)/[ev_time_waited]"/>
+          <resource id="avgwait" iname="$entity[2]/Average wait" name="Average wait" rid="-/-/root/ora_events/(.*)/[ev_average_wait]"/>
+          <resource id="totwaits" iname="$entity[2]/Total waits" name="Total waits" rid="-/-/root/ora_events/(.*)/[ev_total_waits]"/>
+          <resource id="timeouts" iname="$entity[2]/Timeouts" name="Timeouts" rid="-/-/root/ora_events/(.*)/[ev_total_timeouts]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.MultipleCounterQueryDef" id="localhost/agents.oracle/root/ora_da/{zczxczxc}">
+          <resource id="localhost/agents.oracle/root/ora_da/[#time#]" rid="localhost/agents.oracle/root/ora_da/[#time#]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_tf_by_row_id]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_tf_by_row_id]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_tf_continued_row]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_tf_continued_row]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_cache_partitions]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_cache_partitions]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_direct_read]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_direct_read]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_long_tables]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_long_tables]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_rowid_ranges]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_rowid_ranges]"/>
+          <resource id="localhost/agents.oracle/root/ora_da/[da_ts_short_tables]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_short_tables]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_io/{User commits and rollbacks}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/ora_io/[io_user_commits]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/ora_io/[io_user_rollbacks]"/>
+          <resource id="time" rid="-/-/root/ora_io/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_io/{Physical reads and writes}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/ora_io/[io_physical_reads]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/ora_io/[io_physical_reads_direct]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/ora_io/[io_physical_writes]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/ora_io/[io_physical_writes_direct]"/>
+          <resource id="time" rid="-/-/root/ora_io/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/dyn_sql/{Details per dynamic SQL}">
+          <resource id="sql" iname="$entity[2]" name="SQL" rid="-/-/root/dyn_sql/(.*)"/>
+          <resource id="executions" iname="$entity[2]/Executions" name="Executions" rid="-/-/root/dyn_sql/(.*)/[sql_executions]"/>
+          <resource id="rowsproc_per_exec" iname="$entity[2]/Rows processed/exec" name="Rows processed/exec" rid="-/-/root/dyn_sql/(.*)/[sql_rows_processed_per_exec]"/>
+          <resource id="buffergets_per_exec" iname="$entity[2]/Buffer gets/exec" name="Buffer gets/exec" rid="-/-/root/dyn_sql/(.*)/[sql_buffer_gets_per_exec]"/>
+          <resource id="diskreads_per_exec" iname="$entity[2]/Disk reads/exec" name="Disk reads/exec" rid="-/-/root/dyn_sql/(.*)/[sql_disk_reads_per_exec]"/>
+          <resource id="sorts_per_exec" iname="$entity[2]/Sorts/exec" name="Sorts/exec" rid="-/-/root/dyn_sql/(.*)/[sql_sorts_per_exec]"/>
+          <resource id="rowsproc" iname="$entity[2]/Rows processed" name="Rows processed" rid="-/-/root/dyn_sql/(.*)/[sql_rows_processed]"/>
+          <resource id="buffergets" iname="$entity[2]/Buffer gets" name="Buffer gets" rid="-/-/root/dyn_sql/(.*)/[sql_buffer_gets]"/>
+          <resource id="diskreads" iname="$entity[2]/Disk reads" name="Disk reads" rid="-/-/root/dyn_sql/(.*)/[sql_disk_reads]"/>
+          <resource id="sorts" iname="$entity[2]/Sorts" name="Sorts" rid="-/-/root/dyn_sql/(.*)/[sql_sorts]"/>
+          <resource id="cmdtype" iname="$entity[2]/Command type" name="Command type" rid="-/-/root/dyn_sql/(.*)/[sql_command_type]"/>
+          <resource id="runmem" iname="$entity[2]/Runtime mem" name="Runtime mem" rid="-/-/root/dyn_sql/(.*)/[sql_runtime_mem]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.oracle/root/ora_ts/{Used and free space for all tablespaces}">
+          <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_ts/(.*)/[ts_total_free_space]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/ora_ts/(.*)/[ts_used_space]"/>
+          <resource id="id0" iname="$entity[2]" name="Tablespace" rid="-/-/root/ora_ts/(.*)"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.oracle/#Oracle overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="895.0" title="Dashboard 4" w="1014.0" x="0.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_io/:User commits and rollbacks:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_io/:Physical reads and writes:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_ts/:Used and free space for all tablespaces:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_events/:Average wait time for all events:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_libcache/:Library cache gets hit ratios:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_ddcache/:Data dictionary cache gets hit ratios:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>io_sorts_disks</name>
+                  <description>io_sorts_disks</description>
+                  <query>
+                    <resource id="localhost/agents.oracle/root/ora_io/[#time#]" rid="localhost/agents.oracle/root/ora_io/[#time#]"/>
+                    <resource id="localhost/agents.oracle/root/ora_io/[io_sorts_disks]" iname="$counter" rid="localhost/agents.oracle/root/ora_io/[io_sorts_disks]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.oracle/root/ora_io"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>io_consistent_gets</name>
+                  <description>io_consistent_gets</description>
+                  <query>
+                    <resource id="localhost/agents.oracle/root/ora_io/[#time#]" rid="localhost/agents.oracle/root/ora_io/[#time#]"/>
+                    <resource id="localhost/agents.oracle/root/ora_io/[io_consistent_gets]" iname="$counter" rid="localhost/agents.oracle/root/ora_io/[io_consistent_gets]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.oracle/root/ora_io"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>io_consistent_changes</name>
+                  <description>io_consistent_changes</description>
+                  <query>
+                    <resource id="localhost/agents.oracle/root/ora_io/[#time#]" rid="localhost/agents.oracle/root/ora_io/[#time#]"/>
+                    <resource id="localhost/agents.oracle/root/ora_io/[io_consistent_changes]" iname="$counter" rid="localhost/agents.oracle/root/ora_io/[io_consistent_changes]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.oracle/root/ora_io"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard" h="550.0" title="Dashboard 5" w="500.0" x="200.0" y="200.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.properties.PropertiesControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.properties.PropertiesCounterSetDataView">
+                  <name>Data access statistics</name>
+                  <description>Shows statistics about data access patterns</description>
+                  <query>
+                    <resource id="localhost/agents.oracle/root/ora_da/[#time#]" rid="localhost/agents.oracle/root/ora_da/[#time#]"/>
+                    <resource id="localhost/agents.oracle/root/ora_da/[da_tf_by_row_id]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_tf_by_row_id]"/>
+                    <resource id="localhost/agents.oracle/root/ora_da/[da_tf_continued_row]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_tf_continued_row]"/>
+                    <resource id="localhost/agents.oracle/root/ora_da/[da_ts_cache_partitions]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_cache_partitions]"/>
+                    <resource id="localhost/agents.oracle/root/ora_da/[da_ts_direct_read]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_direct_read]"/>
+                    <resource id="localhost/agents.oracle/root/ora_da/[da_ts_long_tables]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_long_tables]"/>
+                    <resource id="localhost/agents.oracle/root/ora_da/[da_ts_rowid_ranges]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_rowid_ranges]"/>
+                    <resource id="localhost/agents.oracle/root/ora_da/[da_ts_short_tables]" iname="$counter" rid="localhost/agents.oracle/root/ora_da/[da_ts_short_tables]"/>
+                  </query>
+                  <agentVersions/>
+                  <author>system</author>
+                </view>
+                <context id="localhost/agents.oracle/root/ora_da"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 3" w="600.0" x="120.0" y="120.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_ts/:Details per tablespace:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 2" w="600.0" x="80.0" y="80.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_events/:Event details:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_sessions/:Session details:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 1" w="600.0" x="40.0" y="40.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.oracle/root/ora_bp/:Details per bufferpool:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.oracle/root/dyn_sql/:Details per dynamic SQL:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.windows">
+    <historyGroupItem date="1.257362878015E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.windows.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+            <config.domain notrequired="true" type="0" value=""/>
+          </config>
+          <version>WinXP</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.256947242234E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.windows.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+            <config.domain notrequired="true" type="0" value=""/>
+          </config>
+          <version>WinXP</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.256585142638E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.windows.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+            <config.domain notrequired="true" type="0" value=""/>
+          </config>
+          <version>WinXP</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

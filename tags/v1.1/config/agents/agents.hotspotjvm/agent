@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.hotspotjvm.HotSpotJVMAgent</class>
+  <version></version>
+  <name>agents.hotspotjvm</name>
+  <description>hotspotjvm.description</description>
+  <custom>false</custom>
+  <category>applications</category>
+  <versions>
+    <version>Sun JVM 1.5</version>
+  </versions>
+  <messageCatalog>agents.hotspotjvm</messageCatalog>
+  <javaHelp>secHotspotJVM</javaHelp>
+  <webHelp>monitoring-agents/hotspotjvm</webHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <jars>
+        <jar>/jars/AgentHotspotJVM.jar</jar>
+        <jar>/jars/RMSJMX.jar</jar>
+        <jar>/lib/javax77.jar</jar>
+      </jars>
+      <customconfigpanel>com.ixora.rms.agents.hotspotjvm.ConfigurationPanel</customconfigpanel>
+      <uiJar>/jars/AgentHotspotJVM_ui.jar</uiJar>
+      <agentVersions/>
+    </versionItem>
+  </versionItems>
+</agent>

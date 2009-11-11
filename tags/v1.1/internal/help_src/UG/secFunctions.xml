@@ -1,0 +1,159 @@
+<section id="secFunctions">
+	<title>Functions</title>
+
+	<para>&programName; allows the user to create custom queries where performance counters
+	can be processed through the use of functions. Below is a reference of the available
+	functions:</para>
+
+	<indexterm><primary>script</primary></indexterm>
+	<sect2 id="paraFunctionScript">
+		<title>op="script"</title>
+		<para>The most powerful function is the Script which allows you to use Java
+		language syntax to process counters and return a result.</para>
+
+		<programlisting role="linespecific">
+    &lt;function op="script"&gt;
+        &lt;param id=""/&gt;
+        &lt;code&gt;java function body&lt;/code&gt;
+    &lt;/function>
+		</programlisting>
+
+		<para>The contents of the &lt;code&gt; tag are the body of a complete Java function,
+		which means all arithmetical operators, conditional statements, loops
+		and local variables are allowed. Code must return a value of type Double, or
+		null, by using the return statement. If more exit points are present, all must
+		follow the same rule.</para>
+
+		<para>Note that returning null has the significance of rejecting the current set
+		of values, without sending any data to screen controls, effectively performing
+      a filter.</para>
+
+		<para>Example:</para>
+		<programlisting role="linespecific">
+    &lt;query&gt;
+        &lt;resource id="user" rid="-/-/root/Processor/[% User Time]"/&gt;
+        &lt;resource id="priv" rid="-/-/root/Processor/[% Privileged Time]"/&gt;
+        &lt;function id="total" op="script" name="Total Time" description="Total processor time (user + system)"&gt;
+            &lt;param id="user"/&gt;
+            &lt;param id="priv"/&gt;
+            &lt;code>return user + priv;&lt;/code&gt;
+        &lt;/function&gt;
+    &lt;/query&gt;
+		</programlisting>
+
+		<para>The example above sums up processor user time and system (privileged) time
+		and returns it as a third counter which will be displayed as 'Total Time'.</para>
+
+		<para>Values for all resources specified through the &lt;param&gt; tag are available
+		as local variables, named after their id. When id is not a valid Java identifier,
+		names 'r0', 'r1' and so on will be used, with 'r0' identifying the first parameter.
+		In the example above both 'user' and 'priv' were valid Java identifiers.</para>
+
+	</sect2>
+
+	<indexterm><primary>sum</primary></indexterm>
+	<sect2 id="paraFunctionSum">
+		<title>op="sum"</title>
+		<para>Accepts one parameter as input and accumulates its values over time.
+		Returns the current accumulated value.</para>
+
+		<programlisting role="linespecific">
+    &lt;function op="sum"&gt;
+        &lt;param id=""/&gt;
+    &lt;/function>
+		</programlisting>
+
+	</sect2>
+
+	<indexterm><primary>average</primary></indexterm>
+	<sect2 id="paraFunctionAverage">
+		<title>op="average"</title>
+		<para>Accepts one parameter as input and calculates an average of its values
+		over time. Returns the current average value.</para>
+
+		<programlisting role="linespecific">
+    &lt;function op="average"&gt;
+        &lt;param id=""/&gt;
+    &lt;/function>
+		</programlisting>
+
+	</sect2>
+
+	<indexterm><primary>differential</primary></indexterm>
+	<sect2 id="paraFunctionDifferential">
+		<title>op="diff"</title>
+		<para>Accepts one parameter as input and returns the difference between its
+		current value and the previous (differential).</para>
+
+		<programlisting role="linespecific">
+    f(x, t) = x(t1) - x(t0);
+    where x = value, t = time
+    &lt;function op="diff"&gt;
+        &lt;param id=""/&gt;
+    &lt;/function>
+		</programlisting>
+
+	</sect2>
+
+	<indexterm><primary>time differential</primary></indexterm>
+	<sect2 id="paraFunctionTimeDifferential">
+		<title>op="timediff"</title>
+		<para>Accepts one parameter as input and returns the time relative difference
+		between its current value and the previous.</para>
+
+		<programlisting role="linespecific">
+    f(x, t) = ( x(t1) - x(t0) ) / ( t1- t0 );
+    where x = value, t = time
+    &lt;function op="timediff"&gt;
+        &lt;param id=""/&gt;
+    &lt;/function>
+		</programlisting>
+
+	</sect2>
+
+	<indexterm><primary>identity</primary></indexterm>
+	<sect2 id="paraFunctionIdentity">
+		<title>op="identity"</title>
+		<para>Accepts one parameter as input and returns its value unchanged. Mostly
+		used internaly by the application itself.</para>
+
+		<programlisting role="linespecific">
+    &lt;function op="identity"&gt;
+        &lt;param id=""/&gt;
+    &lt;/function>
+		</programlisting>
+
+	</sect2>
+
+	<indexterm><primary>filter</primary></indexterm>
+	<sect2 id="paraFunctionFilter">
+		<title>op="filter"</title>
+		<para>Accepts one parameter as input and returns its value unchanged but only if
+		matches one of the predefined values. Multiple &lt;value&gt; tags are allowed.</para>
+
+		<programlisting role="linespecific">
+    &lt;function op="filter"&gt;
+        &lt;param id=""/&gt;
+        &lt;value&gt;value1&lt;/value&gt;
+        &lt;value&gt;value2&lt;/value&gt;
+        ...
+    &lt;/function>
+		</programlisting>
+
+		<para>If no value is matched then this function rejects the current data and
+		screen controls are not updated.</para>
+
+	</sect2>
+
+	<sect2 id="paraLimitations">
+		<title>Limitations</title>
+		<para>As with reactions one function can only operate with counters
+		of entities which are provided by the same source; e.g the definition of a reaction can
+		use all the counters from an agent without providers (this is the case with most agents)
+		whereas when providers are used (as in the case of Unix or some of the SQL agents)
+		it can only operate with counters contributed by the same provider.</para>
+	</sect2>
+	<para></para>
+	<para></para>
+
+</section>

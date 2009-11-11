@@ -1,0 +1,49 @@
+<section id="secHostAvailability">
+	<title>Host Availability</title>
+
+	<para>This agent will send heartbeat messages (ping requests) to its host, monitoring 
+	the presence of the host on the network and the latency of its connection.</para>
+
+	<indexterm><primary>host availability</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraHostAvailabilityLocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>Because of the nature of its work, the agent should only be deployed in local mode.</para>
+	</sect2>
+
+	<indexterm><primary>host availability</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraHostAvailabilityVersions">
+		<title>Supported Versions</title>
+		<para>The agent can monitor availability of any TCP/IP enabled host, 
+		regardless of the architecture or operating system.</para>
+	</sect2>
+
+	<indexterm><primary>host availability</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraHostAvailabilityConfig">
+		<title>Configuration</title>
+		<para>The following parameters are available for configuration:</para>
+		<itemizedlist>
+			<listitem>Ping timeout: The maximum number of milliseconds to wait 
+			on a ping heartbeat before declaring it a miss</listitem>
+			<listitem>Packet size: The number of bytes in the ICMP packet</listitem>
+		</itemizedlist>
+	</sect2>
+
+	<indexterm><primary>host availability</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraHostAvailabilityContents">
+		<title>Contents</title>
+		<para>The agent will populate the following values:</para>
+		<itemizedlist>
+			<listitem>Response time: Ping response time in milliseconds</listitem>
+			<listitem>Heartbeat misses: The number of times the heartbeat timed out</listitem>
+		</itemizedlist>
+	</sect2>
+
+	<indexterm><primary>host availability</primary><secondary>screenshots</secondary></indexterm>
+	<sect2 id="paraHostAvailabilityScreenshots">
+		<title>Screenshots</title>
+		<figure>
+			<title>Screenshot</title>
+			<graphic fileref="images/agent_hostavail_sshot.png"/>
+		</figure>
+	</sect2>
+</section>

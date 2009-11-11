@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>MySQL overview</name>
+      <description>MySQL overview</description>
+      <views>
+        <view id="-/-/root/Networking/:Connections:"/>
+        <view id="-/-/root/Networking/Traffic/:Traffic:"/>
+        <view id="-/-/root/General/Threads/:Threads:"/>
+        <view id="-/-/root/Commands executed/:Statement operations:"/>
+        <view id="-/-/root/Performance/Query cache/:Query cache memory blocks:"/>
+        <view id="-/-/root/Performance/Sort/:Sorts:"/>
+        <view id="-/-/root/Commands executed/DML/:DML operations:"/>
+      </views>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/Performance/Query cache/[Qcache_hits]"/>
+        <counter id="-/-/root/Performance/Locks/[Table_locks_waited]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>4.*</agentVersion>
+        <agentVersion>5.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+  </dashboards>
+</rms>

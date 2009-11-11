@@ -1,0 +1,61 @@
+<section id="secJobs">
+	<title>Jobs</title>
+
+	<para>&programName; provides ways to schedule and run jobs. It is provided mainly to be used
+	 as a delivery mechanism for reaction rules (see <xref linkend="secReactions"/>).
+	 In order to do that jobs must be created in the Job Library and their name will be used
+	 as a parameter in the reaction definition.
+	 In the current version just two type of jobs are provided:
+
+	<itemizedlist>
+		<listitem>Command - which requires the HostManager to be running on the remote host.</listitem>
+		<listitem>Telnet command - which is executed via a telnet session.</listitem>
+	</itemizedlist>
+
+	 It is possible to define jobs that will run on multiple hosts by using regular expressions
+	 when specifying the host name in the job definition. In order for the name of the host to be
+	 treated as a regular expression it has to be surrounded by paranthesis like in the following expamle:
+	 (host*) to define a job to be run on all hosts matching the pattern host*
+	 </para>
+
+	<indexterm><primary>jobs</primary></indexterm>
+	<indexterm><primary>library</primary></indexterm>
+	<sect2 id="paraSchedulingJobs">
+		<title>Scheduling Jobs</title>
+		<para>Open the Job Manager which is accessible from the 'Tools\Job Manager' menu and
+		click on the Schedule Job button; this opens the Job Editor dialog.</para>
+
+		<figure>
+			<title>Job editor</title>
+			<graphic fileref="images/job_editor.png"/>
+		</figure>
+
+		When you are finished press the Ok button and the job should now be visible in the Job Manager.
+		Once the job has been executed the content of its output and error streams are available in the
+		'Ouptput' and 'Error' panels of the Job Manager.
+
+		<figure>
+			<title>Job editor</title>
+			<graphic fileref="images/job_manager.png"/>
+		</figure>
+
+	</sect2>
+
+	<indexterm><primary>jobs</primary></indexterm>
+	<indexterm><primary>library</primary></indexterm>
+	<sect2 id="paraCreatingJobs">
+		<title>Creating Jobs for the Job Library</title>
+		<para>Open the Job Manager which is accessible from the 'Tools\Job Manager' menu and
+		click on the Job Library button; this opens the dialog which allows you to maintain jobs
+		stored in the library; then click on the 'Add' button to open the Job Editor.</para>
+
+		<figure>
+			<title>Library job editor</title>
+			<graphic fileref="images/job_lib_editor.png"/>
+		</figure>
+	</sect2>
+
+	<para></para>
+	<para></para>
+
+</section>

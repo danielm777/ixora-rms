@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="htmlgen">
+    <historyGroupItem date="1.221774900906E12">
+      <htmlGeneratorSettings class="com.ixora.rms.ui.exporter.HTMLGeneratorSettings" refresh="0" site="C:\IxoraRMSOut"/>
+    </historyGroupItem>
+    <historyGroupItem date="1.141771979781E12">
+      <htmlGeneratorSettings class="com.ixora.rms.ui.exporter.HTMLGeneratorSettings" refresh="0" site="C:\IxoraRMSOut"/>
+    </historyGroupItem>
+    <historyGroupItem date="1.142719875218E12">
+      <htmlGeneratorSettings class="com.ixora.rms.ui.exporter.HTMLGeneratorSettings" refresh="0" site="C:\IxoraRMSOut"/>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

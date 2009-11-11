@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="remote_win">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>1</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.windows</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.windows.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                    <config.domain notrequired="true" type="0" value=""/>
+                  </config>
+                  <version>WinXP</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.windows</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.windows.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+                    <config.domain notrequired="true" type="0" value=""/>
+                  </config>
+                  <version>WinXP</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/Memory/{Available MBytes}">
+          <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+          <resource id="localhost/agents.windows/root/Memory/[Available MBytes]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Available MBytes]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/PhysicalDisk/{Reads/Writes per second for all physical disks}">
+          <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+          <resource id="id12" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+          <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="PhysicalDisk" rid="-/-/root/PhysicalDisk/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Memory/{Page swapping rate}">
+          <resource id="time" rid="-/-/root/Memory/[#time#]"/>
+          <resource id="in" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Input/sec]"/>
+          <resource id="out" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Output/sec]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/Memory/{Page Faults/sec}">
+          <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+          <resource id="localhost/agents.windows/root/Memory/[Page Faults/sec]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Page Faults/sec]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/TCP/{TCP connection events}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connections Established]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connections Active]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connection Failures]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/TCP/[Connections Reset]"/>
+          <resource id="id0" iname="" rid="-/-/root/TCP/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Network Interface/{Megabytes received/sent per second for all interfaces}">
+          <resource code="return id7/1048576f;" id="id7" iname="$host/$agent/$entity[1]/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
+          <resource code="return id9/1048576f;" id="id9" iname="$host/$agent/$entity[1]/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
+          <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="Network Interface" rid="-/-/root/Network Interface/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/System/{Processor Queue Length}">
+          <resource id="localhost/agents.windows/root/System/[#time#]" rid="localhost/agents.windows/root/System/[#time#]"/>
+          <resource id="localhost/agents.windows/root/System/[Processor Queue Length]" iname="$counter" rid="localhost/agents.windows/root/System/[Processor Queue Length]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Processor/{Usage per processor (timeseries)}">
+          <resource id="id8" iname="$host/$agent/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
+          <resource id="id0" iname="" rid="-/-/root/Processor/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/Processor/{CPU usage}">
+          <resource id="time" rid="-/-/root/Processor/[#time#]"/>
+          <resource id="kerntime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Privileged Time]"/>
+          <resource id="inttime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Interrupt Time]"/>
+          <resource id="usertime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% User Time]"/>
+          <reaction params="usertime,kerntime" severity="HIGH">
+            <arm><![CDATA[return usertime + kerntime > 90;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The CPU usage on host " + env. getHost(usertime) + " has been greater than 90% for the last minute";]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.windows/root/System/{File Operations}">
+          <resource id="time" rid="-/-/-/[#time#]"/>
+          <resource id="readop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Read Operations/sec]"/>
+          <resource id="writeop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Write Operations/sec]"/>
+          <resource id="ctlop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Control Operations/sec]"/>
+        </query>
+      </query>
+      <query>
+        <query class="com.ixora.rms.dataengine.definitions.SingleCounterQueryDef" id="localhost/agents.windows/root/PhysicalDisk/{% Disk Time}">
+          <resource id="localhost/agents.windows/root/PhysicalDisk/[#time#]" rid="localhost/agents.windows/root/PhysicalDisk/[#time#]"/>
+          <resource id="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]" iname="$counter" rid="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.windows/#System overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 1" w="774.0" x="40.0" y="40.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Processor/:CPU usage:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Processor/:Usage per processor (timeseries):"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/PhysicalDisk/:Reads/Writes per second for all physical disks:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Memory/:Page swapping rate:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/System/:File Operations:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/Network Interface/:Megabytes received/sent per second for all interfaces:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.windows/root/TCP/:TCP connection events:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>% Disk Time</name>
+                  <description>% Disk Time</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/PhysicalDisk/[#time#]" rid="localhost/agents.windows/root/PhysicalDisk/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]" iname="$counter" rid="localhost/agents.windows/root/PhysicalDisk/[% Disk Time]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/PhysicalDisk"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Available MBytes</name>
+                  <description>Available MBytes</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/Memory/[Available MBytes]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Available MBytes]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/Memory"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Processor Queue Length</name>
+                  <description>Processor Queue Length</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/System/[#time#]" rid="localhost/agents.windows/root/System/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/System/[Processor Queue Length]" iname="$counter" rid="localhost/agents.windows/root/System/[Processor Queue Length]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/System"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.charts.ChartCounterDataView">
+                  <name>Page Faults/sec</name>
+                  <description>Page Faults/sec</description>
+                  <query>
+                    <resource id="localhost/agents.windows/root/Memory/[#time#]" rid="localhost/agents.windows/root/Memory/[#time#]"/>
+                    <resource id="localhost/agents.windows/root/Memory/[Page Faults/sec]" iname="$counter" rid="localhost/agents.windows/root/Memory/[Page Faults/sec]"/>
+                  </query>
+                  <agentVersions/>
+                </view>
+                <context id="localhost/agents.windows/root/Memory"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

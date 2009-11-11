@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="tmp-weblogic-server2">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.weblogic</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <recursiveEnableAllCounters>true</recursiveEnableAllCounters>
+                  <enableAllCounters>true</enableAllCounters>
+                  <config class="com.ixora.rms.agents.weblogic.v8.Configuration">
+                    <config.username notrequired="true" type="0" value="weblogic"/>
+                    <config.password notrequired="true" type="10" value="EB9E591D8C303B6F61F78598898EA6DC"/>
+                    <root_folder notrequired="true" type="0" value="C:/bea80/weblogic81"/>
+                    <classpath notrequired="true" type="0" value="/server/lib/weblogic.jar"/>
+                    <jmx_provider_url type="0" value="t3://localhost:7041"/>
+                    <jndi_name type="0" value="weblogic.management.home.localhome"/>
+                    <show_just_runtime_data type="3" value="true"/>
+                  </config>
+                  <version>8.*</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.weblogic</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <recursiveEnableAllCounters>true</recursiveEnableAllCounters>
+                  <enableAllCounters>true</enableAllCounters>
+                  <config class="com.ixora.rms.agents.weblogic.v8.Configuration">
+                    <config.username notrequired="true" type="0" value="weblogic"/>
+                    <config.password notrequired="true" type="10" value="EB9E591D8C303B6F61F78598898EA6DC"/>
+                    <root_folder notrequired="true" type="0" value="C:/bea80/weblogic81"/>
+                    <classpath notrequired="true" type="0" value="/server/lib/weblogic.jar"/>
+                    <jmx_provider_url type="0" value="t3://localhost:7041"/>
+                    <jndi_name type="0" value="weblogic.management.home.localhome"/>
+                    <show_just_runtime_data type="3" value="true"/>
+                  </config>
+                  <version>8.*</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.weblogic</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.weblogic.v8.Configuration">
+                    <config.username notrequired="true" type="0" value="weblogic"/>
+                    <config.password notrequired="true" type="10" value="EB9E591D8C303B6F61F78598898EA6DC"/>
+                    <root_folder notrequired="true" type="0" value="C:/bea80/weblogic81"/>
+                    <classpath notrequired="true" type="0" value="/server/lib/weblogic.jar"/>
+                    <jmx_provider_url type="0" value="t3://localhost:7001"/>
+                    <jndi_name type="0" value="weblogic.management.home.localhome"/>
+                    <show_just_runtime_data type="3" value="true"/>
+                  </config>
+                  <version>8.*</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.weblogic:1</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.weblogic.v8.Configuration">
+                    <config.username notrequired="true" type="0" value="weblogic"/>
+                    <config.password notrequired="true" type="10" value="EB9E591D8C303B6F61F78598898EA6DC"/>
+                    <root_folder notrequired="true" type="0" value="C:/bea80/weblogic81"/>
+                    <classpath notrequired="true" type="0" value="/server/lib/weblogic.jar"/>
+                    <jmx_provider_url type="0" value="t3://localhost:7001"/>
+                    <jndi_name type="0" value="weblogic.management.home.localhome"/>
+                    <show_just_runtime_data type="3" value="true"/>
+                  </config>
+                  <version>8.*</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/agents.weblogic:1/{Transactional resources}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionRolledBackTotalCount]"/>
+          <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionTotalCount]"/>
+          <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionCommittedTotalCount]"/>
+          <resource id="id11" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ResourceName]"/>
+          <resource id="id0" iname="$4/$2" name="Server/Resource" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Weblogic servers}">
+          <resource id="id1" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[SocketsOpenedTotalCount]"/>
+          <resource id="id20" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[OpenSocketsCurrentCount]"/>
+          <resource id="id10" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[RestartsTotalCount]"/>
+          <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[ListenAddress]"/>
+          <resource id="id8" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[State]"/>
+          <resource id="id13" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[ActivationTime]" type="date"/>
+          <resource id="id14" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[CurrentDirectory]"/>
+          <resource id="id24" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[WeblogicVersion]"/>
+          <resource id="id0" iname="$2" name="ServerInstance" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Web applications}">
+          <resource id="id2" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[Status]"/>
+          <resource id="id4" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[OpenSessionsHighCount]"/>
+          <resource id="id11" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[OpenSessionsCurrentCount]"/>
+          <resource id="id15" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[ContextRoot]"/>
+          <resource id="id18" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[SessionsOpenedTotalCount]"/>
+          <resource id="id0" iname="$5/$3/$2" name="Server/App/WebApp" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{JVM heap memory}">
+          <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[HeapFreeCurrent]"/>
+          <resource id="id8" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[HeapSizeCurrent]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JVMRuntime" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Execute queues - thread utilization}">
+          <resource id="total" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ExecuteThreadTotalCount]"/>
+          <resource id="idle" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ExecuteThreadCurrentIdleCount]"/>
+          <resource id="id0" iname="$host/$agent/$4/$2" name="Server/ExecuteQueue" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+          <reaction params="idle" severity="HIGH">
+            <arm><![CDATA[return idle == 0 && !(env.getEntityPart(idle, 2).contains("Non-Blocking"));]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "All available threads have been active for the last minute for " + env.getEntityPart(idle, 2);]]></message>
+            <advise><![CDATA[return "If the CPU is not fully utilized consider increasing the number of threads in the execute queue.";]]></advise>
+          </reaction>
+          <function description="The number of threads which are active (Total - Idle)" id="fid1" iname="$4/$2/$counter" name="ActiveThreadsCount" op="script">
+            <param id="total"/>
+            <param id="idle"/>
+            <code>return total - idle;</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Execute queues - pending requests}">
+          <resource id="id2" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PendingRequestCurrentCount]"/>
+          <resource id="time" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[#time#]"/>
+          <reaction params="id2" severity="HIGH">
+            <arm><![CDATA[return id2 > 20;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The number of pending requests for " + env.getEntityPart(id2, 2) + " was higher than 20 for more than one minute.";]]></message>
+            <advise><![CDATA[return "If the CPU is not fully utilized consider increasing the number of threads in the execute queue.";]]></advise>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Locking}">
+          <resource id="id2" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[LockManagerAccessCount]"/>
+          <resource id="id3" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterTotalCount]"/>
+          <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[LockEntriesCurrentCount]"/>
+          <resource id="id5" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[TimeoutTotalCount]"/>
+          <resource id="id6" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterCurrentCount]"/>
+          <resource id="id0" iname="$2" name="Server/App/EJBComponent/EJBLocking" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{Execute queues - thread utilization}">
+          <resource id="total" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ExecuteThreadTotalCount]"/>
+          <resource id="idle" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ExecuteThreadCurrentIdleCount]"/>
+          <resource id="id0" iname="$host/$agent/$4/$2" name="Server/ExecuteQueue" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+          <reaction params="idle" severity="HIGH">
+            <arm><![CDATA[return idle == 0 && !(env.getEntityPart(idle, 2).contains("Non-Blocking"));]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "All available threads have been active for the last minute for " + env.getEntityPart(idle, 2);]]></message>
+            <advise><![CDATA[return "If the CPU is not fully utilized consider increasing the number of threads in the execute queue.";]]></advise>
+          </reaction>
+          <function description="The number of threads which are active (Total - Idle)" id="fid1" iname="$4/$2/$counter" name="ActiveThreadsCount" op="script">
+            <param id="total"/>
+            <param id="idle"/>
+            <code>return total - idle;</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{Web applications}">
+          <resource id="id2" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[Status]"/>
+          <resource id="id4" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[OpenSessionsHighCount]"/>
+          <resource id="id11" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[OpenSessionsCurrentCount]"/>
+          <resource id="id15" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[ContextRoot]"/>
+          <resource id="id18" iname="$5/$3/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[SessionsOpenedTotalCount]"/>
+          <resource id="id0" iname="$5/$3/$2" name="Server/App/WebApp" rid="-/-/root/(.*)/((.*):Type=WebAppComponentRuntime,Name=(.*),ApplicationRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{JDBC connection pools}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveConnectionsAverageCount]"/>
+          <resource id="id4" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[NumUnavailable]"/>
+          <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MaxCapacity]"/>
+          <resource id="id8" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[NumAvailable]"/>
+          <resource id="id9" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[WaitingForConnectionCurrentCount]"/>
+          <resource id="id12" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[CurrCapacity]"/>
+          <resource id="id13" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[FailuresToReconnectCount]"/>
+          <resource id="id15" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PreparedStatementCacheProfileCount]"/>
+          <resource id="id16" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveConnectionsCurrentCount]"/>
+          <resource id="id18" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PrepStmtCacheHitCount]"/>
+          <resource id="id19" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionLeakProfileCount]"/>
+          <resource id="id21" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[LeakedConnectionCount]"/>
+          <resource id="id22" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionDelayTime]"/>
+          <resource id="id25" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PrepStmtCacheMissCount]"/>
+          <resource id="id26" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionsTotalCount]"/>
+          <resource id="id27" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[StatementProfileCount]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JDBCConnPool" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{JMS servers}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[BytesCurrentCount]"/>
+          <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MessagesPendingCount]"/>
+          <resource id="id4" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MessagesCurrentCount]"/>
+          <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[BytesReceivedCount]"/>
+          <resource id="id6" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[SessionPoolsCurrentCount]"/>
+          <resource id="id12" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[DestinationsCurrentCount]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JMSServers" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{JMS servers}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[BytesCurrentCount]"/>
+          <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MessagesPendingCount]"/>
+          <resource id="id4" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MessagesCurrentCount]"/>
+          <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[BytesReceivedCount]"/>
+          <resource id="id6" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[SessionPoolsCurrentCount]"/>
+          <resource id="id12" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[DestinationsCurrentCount]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JMSServers" rid="-/-/root/(.*)/((.*):Type=JMSServerRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{Weblogic servers}">
+          <resource id="id1" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[SocketsOpenedTotalCount]"/>
+          <resource id="id20" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[OpenSocketsCurrentCount]"/>
+          <resource id="id10" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[RestartsTotalCount]"/>
+          <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[ListenAddress]"/>
+          <resource id="id8" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[State]"/>
+          <resource id="id13" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[ActivationTime]" type="date"/>
+          <resource id="id14" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[CurrentDirectory]"/>
+          <resource id="id24" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))/[WeblogicVersion]"/>
+          <resource id="id0" iname="$2" name="ServerInstance" rid="-/-/root/(.*)/((.*):Type=ServerRuntime,Name=(.*),Location=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{JTA runtimes}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionTotalCount]"/>
+          <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionAbandonedTotalCount]"/>
+          <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionRolledBackTotalCount]"/>
+          <resource id="id9" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionCommittedTotalCount]"/>
+          <resource id="id11" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveTransactionsTotalCount]"/>
+          <resource id="id13" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[SecondsActiveTotalCount]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JTARuntime" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{JTA runtimes}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionTotalCount]"/>
+          <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionAbandonedTotalCount]"/>
+          <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionRolledBackTotalCount]"/>
+          <resource id="id9" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionCommittedTotalCount]"/>
+          <resource id="id11" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveTransactionsTotalCount]"/>
+          <resource id="id13" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[SecondsActiveTotalCount]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JTARuntime" rid="-/-/root/(.*)/((.*):Type=JTARuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{JDBC connection pools}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveConnectionsAverageCount]"/>
+          <resource id="id4" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[NumUnavailable]"/>
+          <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[MaxCapacity]"/>
+          <resource id="id8" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[NumAvailable]"/>
+          <resource id="id9" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[WaitingForConnectionCurrentCount]"/>
+          <resource id="id12" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[CurrCapacity]"/>
+          <resource id="id13" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[FailuresToReconnectCount]"/>
+          <resource id="id15" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PreparedStatementCacheProfileCount]"/>
+          <resource id="id16" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ActiveConnectionsCurrentCount]"/>
+          <resource id="id18" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PrepStmtCacheHitCount]"/>
+          <resource id="id19" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionLeakProfileCount]"/>
+          <resource id="id21" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[LeakedConnectionCount]"/>
+          <resource id="id22" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionDelayTime]"/>
+          <resource id="id25" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PrepStmtCacheMissCount]"/>
+          <resource id="id26" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ConnectionsTotalCount]"/>
+          <resource id="id27" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[StatementProfileCount]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JDBCConnPool" rid="-/-/root/(.*)/((.*):Type=JDBCConnectionPoolRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{JVM heap memory}">
+          <resource id="id3" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[HeapFreeCurrent]"/>
+          <resource id="id8" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[HeapSizeCurrent]"/>
+          <resource id="id0" iname="$4/$2" name="Server/JVMRuntime" rid="-/-/root/(.*)/((.*):Type=JVMRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic/{Transactional resources}">
+          <resource id="id1" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionRolledBackTotalCount]"/>
+          <resource id="id5" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionTotalCount]"/>
+          <resource id="id7" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[TransactionCommittedTotalCount]"/>
+          <resource id="id11" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[ResourceName]"/>
+          <resource id="id0" iname="$4/$2" name="Server/Resource" rid="-/-/root/(.*)/((.*):Type=TransactionResourceRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{Execute queues - pending requests}">
+          <resource id="id2" iname="$4/$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[PendingRequestCurrentCount]"/>
+          <resource id="time" rid="-/-/root/(.*)/((.*):Type=ExecuteQueueRuntime,Name=(.*),Location=(.*),ServerRuntime=(.*))/[#time#]"/>
+          <reaction params="id2" severity="HIGH">
+            <arm><![CDATA[return id2 > 20;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The number of pending requests for " + env.getEntityPart(id2, 2) + " was higher than 20 for more than one minute.";]]></message>
+            <advise><![CDATA[return "If the CPU is not fully utilized consider increasing the number of threads in the execute queue.";]]></advise>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.weblogic:1/{Locking}">
+          <resource id="id2" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[LockManagerAccessCount]"/>
+          <resource id="id3" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterTotalCount]"/>
+          <resource id="id4" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[LockEntriesCurrentCount]"/>
+          <resource id="id5" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[TimeoutTotalCount]"/>
+          <resource id="id6" iname="$2/$counter" name="$counter" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))/[WaiterCurrentCount]"/>
+          <resource id="id0" iname="$2" name="Server/App/EJBComponent/EJBLocking" rid="-/-/root/(.*)/((.*):Type=EJBLockingRuntime,Name=(.*),ApplicationRuntime=(.*),EJBComponentRuntime=(.*),Location=(.*),ServerRuntime=(.*))"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.weblogic/#Weblogic overview#"/>
+      <dashboard id="localhost/agents.weblogic:1/#Weblogic overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="550.0" title="Dashboard 5" w="500.0" x="107.0" y="123.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:JVM heap memory:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Execute queues - thread utilization:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic/:Execute queues - pending requests:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:Execute queues - thread utilization:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:Execute queues - pending requests:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:JVM heap memory:"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 9" w="600.0" x="360.0" y="360.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:Web applications:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:Locking:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 8" w="600.0" x="320.0" y="320.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:Weblogic servers:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:Transactional resources:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 7" w="600.0" x="280.0" y="280.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:JMS servers:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:JTA runtimes:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="Dashboard 6" w="600.0" x="240.0" y="240.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:Weblogic servers:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:JDBC connection pools:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="445.0" title="Dashboard 5" w="507.0" x="0.0" y="445.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Locking:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic:1/:JMS servers:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="445.0" title="Dashboard 4" w="507.0" x="507.0" y="445.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Transactional resources:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Web applications:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="445.0" title="Dashboard 2" w="507.0" x="507.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:JDBC connection pools:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:JMS servers:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="445.0" title="Dashboard 3" w="507.0" x="0.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:JTA runtimes:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.weblogic/:Weblogic servers:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

@@ -1,0 +1,59 @@
+<section id="secJBoss">
+	<title>JBoss</title>
+
+	<para>This agent returns performance metrics for a JBoss
+	application server.</para>
+
+	<indexterm><primary>jboss</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraJBossLocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>The agent supports both local and remote modes. A requirement is that JBoss or the client 
+		libraries must be installed on the machine where the agent is 
+		deployed.</para>
+	</sect2>
+
+	<indexterm><primary>jboss</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraJBossVersions">
+		<title>Supported Versions</title>
+		<para>The agent supports JBoss versions 4.x</para>
+	</sect2>
+
+	<indexterm><primary>jboss</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraJBossConfig">
+		<title>Configuration</title>
+		<para>The following configuration options are available:</para>
+		<itemizedlist>
+			<listitem>Username: user name to use when connecting to JBoss</listitem>
+			<listitem>Password: password to use when connecting to JBoss</listitem>
+			<listitem>JBoss home directory: path to the location where
+			JBoss is installed.</listitem>
+			<listitem>Classpath to JBoss client libraries: contains a list of all jars required
+			for monitoring JBoss, the path is relative to the JBoss home directory (above).</listitem>
+			<listitem>Server URL: the URL used to connect to JBoss</listitem>
+			<listitem>JNDI name: the JNDI name used to connect to JBoss</listitem>
+		</itemizedlist>
+		
+		<figure>
+			<title>Configuration sample (JBoss 4.x)</title>
+			<graphic fileref="images/agent_jboss4_config.png"/>
+		</figure>
+		
+	</sect2>
+
+	<indexterm><primary>jboss</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraJBossContents">
+		<title>Contents</title>
+		<para>All data available from JBoss via JMX is accessible; 
+		the runtime data is not structured but a dashboard is provided that contains the most
+		useful data views.</para>
+	</sect2>
+	
+	<indexterm><primary>jboss</primary><secondary>screenshots</secondary></indexterm>
+	<sect2 id="paraJBossScreenshots">
+		<title>Screenshots</title>
+		<figure>
+			<title>Screenshot (JBoss 4.x)</title>
+			<graphic fileref="images/agent_jboss4_sshot.png"/>
+		</figure>
+	</sect2>	
+</section>

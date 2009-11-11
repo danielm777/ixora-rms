@@ -1,0 +1,110 @@
+BODY {
+	font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	margin: 0px 0px 0px 0px;
+	background-color : #FFFFFF ;
+	color : #000000;
+	}
+	
+table, tr, td {
+	vertical-align:top;
+	}
+		
+a:link, a:visited {
+	font-size: 11px; color: #008000; text-decoration: none;
+	}
+
+a:hover {
+	color: #008000;
+	text-decoration: underline;
+	}
+
+hr {
+	background: #C0C0C0; height:2px; border: 1px inset;
+	}
+
+p.boardTitle {
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+div.controlName {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+div.controlDescription {
+	font-size: 12px;
+}
+
+div.board {
+}
+
+div.controlContext {
+	font-size: 11px;
+	font-weight: bold;
+}
+
+table.chartAndLegendTable {
+	font-size: 11px;
+	background-color: #FFFFFF;
+	text-align: left;
+	white-space: nowrap;
+}
+
+chart {
+}
+
+table.legend {
+	font-size: 11px;
+	background-color: #FFFFFF;
+	text-align: left;
+	white-space: nowrap;
+	margin: 0px 0px 0px 0px;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	border: 0px;
+	border-width: 0px;
+	padding: 0px;
+}
+
+table.properties {
+	font-size: 11px;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	text-align: left;
+	white-space: nowrap;
+}
+
+table.properties th.propertiesHeader {
+	background-color: #FFFFCC
+}
+
+table.properties tr.propertiesRowEven {
+	background-color: #F8F8F8
+}
+
+table.tableControl tr.propertiesRowOdd {
+
+}
+
+table.tableControl {
+	font-size: 11px;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	text-align: left;
+	white-space: nowrap;
+}
+
+table.tableControl tr.tableControlRowEven {
+	background-color: #F8F8F8
+}
+
+table.tableControl tr.tableControlRowOdd {
+
+}
+
+table.tableControl th.tableControlHeader {
+	background-color: #FFFFCC
+}

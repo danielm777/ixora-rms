@@ -1,0 +1,49 @@
+<section id="secFAQ">
+	<title>Frequently Asked Questions</title>
+
+	<qandaset>
+
+	<qandaentry>
+		<question><para>How can I easily monitor the availability of several web sites?</para></question>
+		<answer><para>Add the host names of all web sites to the monitoring session (right click on 
+		the session node and 'Add Host(s)'; then select all hosts in the tree, right click and select
+		'Add Agent(s)'; from the list of available agents select 'Service Availablility'; in the configuration
+		panel enter for 'Data' the value 'GET /' or 'GET /<page_name>' FOLLOWED BY A BLANK LINE; 
+		for the 'Port' property enter the port where your web server if configured to listen and press
+		'Activate Agent'. From the list of views available for the session node enable then plot the one
+		called 'TCP/IP services availability overview'. After you start your monitoring session the view
+		will contain a table with the critical counters; if you want to add more agents just activate 
+		them and this view will be automatically updated.
+		</para></answer>
+	</qandaentry>
+	
+	<qandaentry>
+		<question><para>How do I disable reactions?</para></question>
+		<answer><para>Reactions can be disabled from the 'Actions\Disable Reactions' menu.</para></answer>
+	</qandaentry>	
+	
+	<qandaentry>
+		<question><para>How do I create jobs that execute Windows command line instructions?</para></question>
+		<answer><para>
+		Instead of invoking a command like 'del' directly you will have to prefix it with cmd.exe /C like
+		in the example below</para>
+		<programlisting role="linespecific">cmd.exe /C del /Q C:\temp\logs\*</programlisting>
+		</answer>
+	</qandaentry>
+
+	<qandaentry>
+		<question><para>How do I create my own agent package?</para></question>
+		<answer><para>If you created you own custom agent (see <xref linkend="secCustomData#paraAgentInstaller"/>) 
+		and you want to distribute it you can create your own agent package by using the Export facility.</para>
+		</answer>
+	</qandaentry>
+
+	<qandaentry>
+		<question><para>How do I copy values from a table control?</para></question>
+		<answer><para>Double click on the cell, select content (press Ctrl+A) and copy (Ctrl+C or using the context menu)</para>
+		</answer>
+	</qandaentry>
+
+	</qandaset>
+
+</section>

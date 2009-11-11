@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.linux">
+    <historyGroupItem date="1.141768366875E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+            <ExecutionMode type="0" value="Normal"/>
+            <Username type="0" value="-"/>
+            <Password type="10" value="512F2D04B9577C49"/>
+            <UsernamePrompt type="0" value="login:"/>
+            <PasswordPrompt type="0" value="Password:"/>
+            <ShellPrompt type="0" value="]$"/>
+            <Port notrequired="true" type="0" value="0"/>
+          </config>
+          <version>RedHat 9</version>
+          <providerInstances>
+            <providerInstance>Disks data</providerInstance>
+            <providerInstance>File system data</providerInstance>
+            <providerInstance>Network interfaces</providerInstance>
+            <providerInstance>Per CPU data</providerInstance>
+            <providerInstance>Process data</providerInstance>
+            <providerInstance>System data</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.143327858441E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+            <ExecutionMode type="0" value="Normal"/>
+            <Username type="0" value="-"/>
+            <Password type="10" value="512F2D04B9577C49"/>
+            <UsernamePrompt type="0" value="login:"/>
+            <PasswordPrompt type="0" value="Password:"/>
+            <ShellPrompt type="0" value="]$"/>
+            <Port notrequired="true" type="0" value="0"/>
+          </config>
+          <version>RedHat 9</version>
+          <providerInstances>
+            <providerInstance>Disks data</providerInstance>
+            <providerInstance>File system data</providerInstance>
+            <providerInstance>Network interfaces</providerInstance>
+            <providerInstance>Per CPU data</providerInstance>
+            <providerInstance>Process data</providerInstance>
+            <providerInstance>System data</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.142108584953E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.providerhost.ProcessConfiguration">
+            <ExecutionMode type="0" value="Telnet"/>
+            <Username type="0" value="-"/>
+            <Password type="10" value="512F2D04B9577C49"/>
+            <UsernamePrompt type="0" value="login:"/>
+            <PasswordPrompt type="0" value="Password:"/>
+            <ShellPrompt type="0" value="]$"/>
+            <Port notrequired="true" type="0" value="0"/>
+          </config>
+          <version>RedHat 9</version>
+          <providerInstances>
+            <providerInstance>Disks data</providerInstance>
+            <providerInstance>File system data</providerInstance>
+            <providerInstance>Network interfaces</providerInstance>
+            <providerInstance>Per CPU data</providerInstance>
+            <providerInstance>Process data</providerInstance>
+            <providerInstance>System data</providerInstance>
+          </providerInstances>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>
