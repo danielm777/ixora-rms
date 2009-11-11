@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/my-domain/my-domain:key=value/StatsAsTabularData">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Test</name>
+          <description/>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/my-domain/my-domain:key=value/StatsAsTabularData/(.*)/[Counter1]"/>
+            <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/my-domain/my-domain:key=value/StatsAsTabularData/(.*)/[Counter2]"/>
+            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]" name="StatsAsTabularData" rid="-/-/root/my-domain/my-domain:key=value/StatsAsTabularData/(.*)"/>
+          </query>
+          <agentVersions/>
+          <author>customer</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id1"/>
+          <column id="id2"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/java.lang/java.lang:type=Runtime/SystemProperties">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Test</name>
+          <description/>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/java.lang/java.lang:type=Runtime/SystemProperties/(.*)/[value]"/>
+            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]" name="SystemProperties" rid="-/-/root/java.lang/java.lang:type=Runtime/SystemProperties/(.*)"/>
+          </query>
+          <agentVersions/>
+          <author>customer</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id1"/>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

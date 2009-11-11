@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <views>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Agents</name>
+      <description>Agents memory overview</description>
+      <query>
+        <resource id="agent" iname="$entity[1]/$entity[3]/$entity[4]" name="Agent" rid="-/-/root/(.*)/appl/(.*)/(Agent.*)/"/>
+        <resource id="ah_max" iname="$entity[1]/$entity[3]/$entity[4]/$entity[5]/$counter" name="Heap max" rid="-/-/root/(.*)/appl/(.*)/(Agent.*)/sqlm_heap_application/[pool_max_size]"/>
+        <resource id="ah_cur" iname="$entity[1]/$entity[3]/$entity[4]/$entity[5]/$counter" name="Heap curr" rid="-/-/root/(.*)/appl/(.*)/(Agent.*)/sqlm_heap_application/[pool_cur_size]"/>
+        <resource id="ah_wm" iname="$entity[1]/$entity[3]/$entity[4]/$entity[5]/$counter" name="Heap watermark" rid="-/-/root/(.*)/appl/(.*)/(Agent.*)/sqlm_heap_application/[pool_watermark]"/>
+        <resource id="ah_max_ctrl" iname="$entity[1]/$entity[3]/$entity[4]/$entity[5]/$counter" name="Heap ctrl max" rid="-/-/root/(.*)/appl/(.*)/(Agent.*)/sqlm_heap_appl_control/[pool_max_size]"/>
+        <resource id="ah_cur_ctrl" iname="$entity[1]/$entity[3]/$entity[4]/$entity[5]/$counter" name="Heap ctrl curr" rid="-/-/root/(.*)/appl/(.*)/(Agent.*)/sqlm_heap_appl_control/[pool_cur_size]"/>
+        <resource id="ah_wm_ctrl" iname="$entity[1]/$entity[3]/$entity[4]/$entity[5]/$counter" name="Heap ctrl watermark" rid="-/-/root/(.*)/appl/(.*)/(Agent.*)/sqlm_heap_appl_control/[pool_watermark]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="agent"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Applications</name>
+      <description>Applications overview</description>
+      <query>
+        <resource id="app" iname="$entity[1]/$entity[3]" name="App" rid="-/-/root/(.*)/appl/(.*)"/>
+        <resource id="rows_read" iname="$entity[1]/$entity[3]/Rows R" name="Rows R" rid="-/-/root/(.*)/appl/(.*)/[rows_read]"/>
+        <resource id="rows_written" iname="$entity[1]/$entity[3]/Rows W" name="Rows W" rid="-/-/root/(.*)/appl/(.*)/[rows_written]"/>
+        <resource id="lock_wait" iname="$entity[1]/$entity[3]/Lock wait" name="Lock wait" rid="-/-/root/(.*)/appl/(.*)/[lock_wait_time]"/>
+        <resource id="locks_esc" iname="$entity[1]/$entity[3]/Locks esc" name="Locks esc" rid="-/-/root/(.*)/appl/(.*)/[lock_escals]"/>
+        <resource id="deadlocks" iname="$entity[1]/$entity[3]/Deadlocks" name="Deadlocks" rid="-/-/root/(.*)/appl/(.*)/[deadlocks]"/>
+        <resource id="sortov" iname="$entity[1]/$entity[3]/Sort ov" name="Sort ov" rid="-/-/root/(.*)/appl/(.*)/[sort_overflows]"/>
+        <resource id="prefetch_wt" iname="$entity[1]/$entity[3]/Prefetch wait" name="Prefetch wait" rid="-/-/root/(.*)/appl/(.*)/[prefetch_wait_time]"/>
+        <resource id="bp_p_r" rid="-/-/root/(.*)/appl/(.*)/[pool_data_p_reads]"/>
+        <resource id="bp_l_r" rid="-/-/root/(.*)/appl/(.*)/[pool_data_l_reads]"/>
+        <function id="bp_hit_ratio" iname="$entity[1]/$entity[3]/Buff pool HR(%)" name="Buff pool HR(%)" op="script">
+          <param id="bp_p_r"/>
+          <param id="bp_l_r"/>
+          <code>return bp_l_r == 0 ? 100 : 100 - 100*((float)bp_p_r / bp_l_r);</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="app"/>
+      <column id="bp_hit_ratio"/>
+      <column id="rows_read"/>
+      <column id="rows_written"/>
+      <column id="lock_wait"/>
+      <column id="locks_esc"/>
+      <column id="deadlocks"/>
+      <column id="sortov"/>
+      <column id="prefetch_wt"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>SQL statements</name>
+      <description>SQL statements overview</description>
+      <query>
+        <resource id="sql" iname="$entity[3]" name="SQL" rid="-/-/root/(.*)/dynsql_list/(.*)"/>
+        <resource id="num_exec" iname="$entity[3]/$counter" name="Execs" rid="-/-/root/(.*)/dynsql_list/(.*)/[num_executions]"/>
+        <resource id="num_comp" iname="$entity[3]/$counter" name="Comps" rid="-/-/root/(.*)/dynsql_list/(.*)/[num_compilations]"/>
+        <resource id="rows_r" iname="$entity[3]/$counter" name="Rows R" rid="-/-/root/(.*)/dynsql_list/(.*)/[rows_read]"/>
+        <resource id="rows_w" iname="$entity[3]/$counter" name="Rows W" rid="-/-/root/(.*)/dynsql_list/(.*)/[rows_written]"/>
+        <resource id="sorts" iname="$entity[3]/$counter" name="Sorts" rid="-/-/root/(.*)/dynsql_list/(.*)/[stmt_sorts]"/>
+        <resource id="exec_time" iname="$entity[3]/$counter" name="Exec time" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_exec_time]"/>
+        <resource id="sys_time" iname="$entity[3]/$counter" name="Sys time" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_sys_cpu_time]"/>
+        <resource id="usr_time" iname="$entity[3]/$counter" name="Usr time" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_usr_cpu_time]"/>
+        <resource id="prep_time_best" iname="$entity[3]/$counter" name="Best prep" rid="-/-/root/(.*)/dynsql_list/(.*)/[prep_time_best]"/>
+        <resource id="prep_time_worst" iname="$entity[3]/$counter" name="Worst prep" rid="-/-/root/(.*)/dynsql_list/(.*)/[prep_time_worst]"/>
+        <resource id="int_rows_deleted" iname="$entity[3]/$counter" name="Int rows del" rid="-/-/root/(.*)/dynsql_list/(.*)/[int_rows_deleted]"/>
+        <resource id="int_rows_inserted" iname="$entity[3]/$counter" name="Int rows ins" rid="-/-/root/(.*)/dynsql_list/(.*)/[int_rows_inserted]"/>
+        <resource id="int_rows_updated" iname="$entity[3]/$counter" name="Int rows upd" rid="-/-/root/(.*)/dynsql_list/(.*)/[int_rows_updated]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="sql"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Tables</name>
+      <description>Tables overview</description>
+      <query>
+        <resource id="table" iname="$entity[1]/$entity[3]" name="Table" rid="-/-/root/(.*)/table_list/(.*)/"/>
+        <resource id="rows_read" iname="$entity[1]/$entity[3]/$counter" name="Rows R" rid="-/-/root/(.*)/table_list/(.*)/[rows_read]"/>
+        <resource id="rows_written" iname="$entity[1]/$entity[3]/$counter" name="Rows W" rid="-/-/root/(.*)/table_list/(.*)/[rows_written]"/>
+        <resource id="page_reorgs" iname="$entity[1]/$entity[3]/$counter" name="Page reorg" rid="-/-/root/(.*)/table_list/(.*)/[page_reorgs]"/>
+        <resource id="overflow_acc" iname="$entity[1]/$entity[3]/$counter" name="Overflow acc" rid="-/-/root/(.*)/table_list/(.*)/[overflow_accesses]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="table"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Containers</name>
+      <description>Containers overview</description>
+      <query>
+        <resource id="container" iname="$entity[1]/$entity[3]/$entity[5]" name="Container" rid="-/-/root/(.*)/tablespace_list/(.*)/tablespace_nodeinfo/(.*)/"/>
+        <resource id="total_pages" iname="$entity[1]/$entity[3]/$entity[5]/Total pages" name="Total pages" rid="-/-/root/(.*)/tablespace_list/(.*)/tablespace_nodeinfo/(.*)/[container_total_pages]"/>
+        <resource id="usable_pages" iname="$entity[1]/$entity[3]/$entity[5]/Usable pages" name="Usable pages" rid="-/-/root/(.*)/tablespace_list/(.*)/tablespace_nodeinfo/(.*)/[container_usable_pages]"/>
+        <resource id="acc" rid="-/-/root/(.*)/tablespace_list/(.*)/tablespace_nodeinfo/(.*)/[container_accessible]"/>
+        <reaction params="container,total_pages,usable_pages,acc" severity="CRITICAL">
+          <arm><![CDATA[return (float)usable_pages/total_pages < 0.1;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The number of usable pages for container " + env.getPath(container) + " is less then 10%.";]]></message>
+        </reaction>
+        <function id="accf" iname="$entity[1]/$entity[3]/$entity[5]/Accessibe" name="Accessible" op="script">
+          <param id="acc"/>
+          <code>return acc == 0 ? 0 : 1;</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="container"/>
+      <column id="accf"/>
+      <column id="total_pages"/>
+      <column id="usable_pages"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Bufferpools</name>
+      <description>Bufferpools overview</description>
+      <query>
+        <resource id="bp" iname="$entity[1]/$entity[3]" name="Buffer pool" rid="-/-/root/(.*)/bp_list/(.*)"/>
+        <resource id="pool_index_writes" iname="$entity[1]/$entity[3]/$counter" name="Indx writes" rid="-/-/root/(.*)/bp_list/(.*)/[pool_index_writes]"/>
+        <resource id="pool_async_index_writes" iname="$entity[1]/$entity[3]/$counter" name="Async indx writes" rid="-/-/root/(.*)/bp_list/(.*)/[pool_async_index_writes]"/>
+        <resource id="pool_async_data_writes" iname="$entity[1]/$entity[3]/$counter" name="Asynch data writes" rid="-/-/root/(.*)/bp_list/(.*)/[pool_async_data_writes]"/>
+        <resource id="pool_data_writes" iname="$entity[1]/$entity[3]/$counter" name="Data writes" rid="-/-/root/(.*)/bp_list/(.*)/[pool_data_writes]"/>
+        <resource id="unread_prefetch_pages" iname="$entity[1]/$entity[3]/$counter" name="Unread prefetch pages" rid="-/-/root/(.*)/bp_list/(.*)/[unread_prefetch_pages]"/>
+        <resource id="files_closed" iname="$entity[1]/$entity[3]/$counter" name="Files closed" rid="-/-/root/(.*)/bp_list/(.*)/[files_closed]"/>
+        <resource id="bp_p_r" iname="$entity[1]/$entity[3]/$counter" name="BP physical reads" rid="-/-/root/(.*)/bp_list/(.*)/[pool_data_p_reads]"/>
+        <resource id="bp_l_r" iname="$entity[1]/$entity[3]/$counter" name="BP logical reads" rid="-/-/root/(.*)/bp_list/(.*)/[pool_data_l_reads]"/>
+        <reaction params="bp,bp_p_r,bp_l_r" severity="HIGH">
+          <arm><![CDATA[if(bp_l_r == 0 || bp_p_r == 0) return false; if(100*((float)(bp_l_r - bp_p_r)/ bp_l_r) < 90) return true; return false;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The buffer pool hit ratio for bufferpool " + env.getPath(bp) + " is bellow the 90% threshold";]]></message>
+          <advise><![CDATA[return "If you experience poor performance try to increase the size of the memory allocated to this buffer pool";]]></advise>
+        </reaction>
+        <reaction params="bp,pool_index_writes,pool_async_index_writes" severity="HIGH">
+          <arm><![CDATA[if(pool_index_writes == 0 || pool_async_index_writes == 0) return false; if(((float)pool_async_index_writes / pool_index_writes) < 0.8) return true; return false;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The ratio of asynchronous to synchronous writes for bufferpool " + env.getPath(bp) + " is too low, bellow the 80% threshold";]]></message>
+          <advise><![CDATA[return "Try increasing the number of IO servers and page cleaners.";]]></advise>
+        </reaction>
+        <reaction params="bp,pool_async_data_writes,pool_data_writes" severity="HIGH">
+          <arm><![CDATA[if(pool_data_writes == 0 || pool_async_data_writes == 0) return false; if(((float)pool_async_data_writes / pool_data_writes) < 0.8) return true; return false;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The ratio of asynchronous to synchronous writes for bufferpool " + env.getPath(bp) + " is too low, bellow the 80% threshold";]]></message>
+          <advise><![CDATA[return "Try increasing the number of IO servers and page cleaners.";]]></advise>
+        </reaction>
+        <function description="The ratio of asynchronous index writes and total index writes" id="bp_write_perf_indx" iname="$entity[1]/$entity[3]/Write perf idx" name="Write perf idx" op="script">
+          <param id="pool_async_index_writes"/>
+          <param id="pool_index_writes"/>
+          <code>return (pool_index_writes == 0 || pool_async_index_writes == 0) ? 100 : 100*((float)pool_async_index_writes / pool_index_writes);</code>
+        </function>
+        <function description="The ratio of asynchronous data writes and total data writes" id="bp_write_perf" iname="$entity[1]/$entity[3]/Write perf" name="Write perf" op="script">
+          <param id="pool_async_data_writes"/>
+          <param id="pool_data_writes"/>
+          <code>return (pool_data_writes == 0 || pool_async_data_writes == 0) ? 100 : 100*((float)pool_async_data_writes / pool_data_writes);</code>
+        </function>
+        <function description="Buffer pool hit ratio" id="bp_hit_ratio" iname="$entity[1]/$entity[3]/Buff pool HR(%)" name="Buff pool HR(%)" op="script">
+          <param id="bp_p_r"/>
+          <param id="bp_l_r"/>
+          <code>return (bp_l_r == 0 || bp_p_r == 0) ? 100 : 100*((float)(bp_l_r - bp_p_r)/ bp_l_r);</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="bp"/>
+      <column id="bp_hit_ratio"/>
+      <column id="bp_write_perf_indx"/>
+      <column id="bp_write_perf"/>
+      <column id="unread_prefetch_pages"/>
+      <column id="files_closed"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Row operations</name>
+      <description>The number of attempted row operations</description>
+      <query>
+        <resource id="id100" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[rows_deleted]"/>
+        <resource id="id101" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[rows_inserted]"/>
+        <resource id="id102" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[rows_read]"/>
+        <resource id="id103" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[rows_selected]"/>
+        <resource id="id104" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[rows_updated]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id100"/>
+        <range id="id101"/>
+        <range id="id102"/>
+        <range id="id103"/>
+        <range id="id104"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Bufferpool page cleaners</name>
+      <description>The number of times page cleaners were triggered</description>
+      <query>
+        <resource id="id79" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_drty_pg_steal_clns]"/>
+        <resource id="id80" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_drty_pg_thrsh_clns]"/>
+        <resource id="id86" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_lsn_gap_clns]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id79"/>
+        <range id="id80"/>
+        <range id="id86"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Bufferpool data I/O operations</name>
+      <description>Bufferpool data I/O operations</description>
+      <query>
+        <resource id="id75" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_data_l_reads]"/>
+        <resource id="id76" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_data_p_reads]"/>
+        <resource id="id78" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_data_writes]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id75"/>
+        <range id="id76"/>
+        <range id="id78"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Log space</name>
+      <description>Log space</description>
+      <query>
+        <resource id="id123" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[total_log_available]"/>
+        <resource id="id124" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[total_log_used]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYArea">
+        <domain id="time"/>
+        <range id="id123"/>
+        <range id="id124"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Bufferpool index I/O operations</name>
+      <description>Bufferpool index I/O operations</description>
+      <query>
+        <resource id="id82" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_index_l_reads]"/>
+        <resource id="id83" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_index_p_reads]"/>
+        <resource id="id85" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[pool_index_writes]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id82"/>
+        <range id="id83"/>
+        <range id="id85"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Commit and rollback statements</name>
+      <description>Commit and rollback statements attempted</description>
+      <query>
+        <resource id="id16" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[commit_sql_stmts]"/>
+        <resource id="id99" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[rollback_sql_stmts]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="StackedXYArea">
+        <domain id="time"/>
+        <range id="id16"/>
+        <range id="id99"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+      <name>DB2 overview</name>
+      <description/>
+      <query>
+        <resource id="id31" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[dynamic_sql_stmts]"/>
+        <resource id="id32" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[static_sql_stmts]"/>
+        <resource id="id33" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[ddl_sql_stmts]"/>
+        <resource id="id35" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[uid_sql_stmts]"/>
+        <resource id="id34" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[failed_sql_stmts]"/>
+        <resource id="id21" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[commit_sql_stmts]"/>
+        <resource id="id22" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[rollback_sql_stmts]"/>
+        <resource id="id1" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[int_commits]"/>
+        <resource id="id11" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[int_rollbacks]"/>
+        <resource id="id3" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[deadlocks]"/>
+        <resource id="id5" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[lock_timeouts]"/>
+        <resource id="id6" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[locks_waiting]"/>
+        <resource id="id7" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[x_lock_escals]"/>
+        <resource id="id2" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[total_sorts]"/>
+        <resource id="id10" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[sort_overflows]"/>
+        <resource id="id4" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[files_closed]"/>
+        <resource id="id8" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[appls_in_db2]"/>
+        <resource id="id9" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[prefetch_wait_time]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Applications currently connected</name>
+      <description>The number of applications currently connected to the database</description>
+      <query>
+        <resource id="id6" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[appls_cur_cons]"/>
+        <resource id="id7" iname="$entity[1]/$counter" name="$counter" rid="-/-/root/(.*)/[appls_in_db2]"/>
+        <resource id="time" rid="-/-/root/(.*)/[#time#]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="id6"/>
+        <range id="id7"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>SQL statements, per execution data</name>
+      <description>SQL statements overview, per execution data</description>
+      <query>
+        <resource id="sql" iname="$entity[1]/$entity[3]" name="SQL Statement" rid="-/-/root/(.*)/dynsql_list/(.*)"/>
+        <resource id="num_exec" iname="$entity[1]/$entity[3]/$counter" name="Execs" rid="-/-/root/(.*)/dynsql_list/(.*)/[num_executions]"/>
+        <resource id="rows_r" rid="-/-/root/(.*)/dynsql_list/(.*)/[rows_read]"/>
+        <resource id="rows_w" name="Rows W" rid="-/-/root/(.*)/dynsql_list/(.*)/[rows_written]"/>
+        <resource id="sorts" name="Sorts" rid="-/-/root/(.*)/dynsql_list/(.*)/[stmt_sorts]"/>
+        <resource id="exec_time" name="Exec time" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_exec_time]"/>
+        <resource id="sys_time" name="Sys time" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_sys_cpu_time]"/>
+        <resource id="usr_time" name="Usr time" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_usr_cpu_time]"/>
+        <function description="Number of rows read per execution" id="f_rows_read" iname="$entity[1]/$entity[3]/Rows R/Exec" name="Rows R/Exec" op="script">
+          <param id="num_exec"/>
+          <param id="rows_r"/>
+          <code>return num_exec == 0 ? 0 : rows_r/num_exec;</code>
+        </function>
+        <function description="Number of rows written per execution" id="f_rows_written" iname="$entity[1]/$entity[3]/Rows W/Exec" name="Rows W/Exec" op="script">
+          <param id="num_exec"/>
+          <param id="rows_w"/>
+          <code>return num_exec == 0 ? 0 : rows_w/num_exec;</code>
+        </function>
+        <function description="Number of sorts per execution" id="f_sorts" iname="$entity[1]/$entity[3]/Sorts/Exec" name="Sorts/Exec" op="script">
+          <param id="num_exec"/>
+          <param id="sorts"/>
+          <code>return num_exec == 0 ? 0 : sorts/num_exec;</code>
+        </function>
+        <function description="Total execution time per execution" id="f_exec_time" iname="$entity[1]/$entity[3]/Exec time/Exec" name="Exec time/Exec" op="script">
+          <param id="num_exec"/>
+          <param id="exec_time"/>
+          <code>return num_exec == 0 ? 0 : exec_time/num_exec;</code>
+        </function>
+        <function description="System time per execution" id="f_sys_time" iname="$entity[1]/$entity[3]/Sys time/Exec" name="Sys time/Exec" op="script">
+          <param id="num_exec"/>
+          <param id="sys_time"/>
+          <code>return num_exec == 0 ? 0 : sys_time/num_exec;</code>
+        </function>
+        <function description="User time per execution" id="f_usr_time" iname="$entity[1]/$entity[3]/User time/Exec" name="User time/Exec" op="script">
+          <param id="num_exec"/>
+          <param id="usr_time"/>
+          <code>return num_exec == 0 ? 0 : usr_time/num_exec;</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="sql" removeStale="true"/>
+      <column id="num_exec"/>
+      <column id="f_rows_read"/>
+      <column id="f_rows_written"/>
+      <column id="f_sorts"/>
+      <column id="f_exec_time"/>
+      <column id="f_sys_time"/>
+      <column id="f_usr_time"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>SQL statement execution time</name>
+      <description>Number of executions per SQL statement(bar chart)</description>
+      <query>
+        <resource id="sqls" iname="$entity[1]/$entity[3]" name="SQL" rid="-/-/root/(.*)/dynsql_list/(.*)"/>
+        <resource id="exec" iname="$entity[1]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_exec_time]"/>
+        <resource id="sys" iname="$entity[1]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_sys_cpu_time]"/>
+        <resource id="usr" iname="$entity[1]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/dynsql_list/(.*)/[total_usr_cpu_time]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>8.1</agentVersion>
+        <agentVersion>8.2</agentVersion>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="sqls"/>
+        <range id="exec"/>
+        <range id="sys"/>
+        <range id="usr"/>
+      </renderer>
+    </view>
+  </views>
+</rms>

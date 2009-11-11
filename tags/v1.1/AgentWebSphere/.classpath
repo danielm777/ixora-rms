@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/IxoraCommon"/>
+	<classpathentry kind="src" path="/AgentWebSphereProxy"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/was60/admin.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/was60/pmi.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/was60/pmiclient.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMS"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

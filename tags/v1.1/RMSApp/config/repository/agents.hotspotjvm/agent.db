@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>JVM Overview</name>
+      <description>JVM Overview</description>
+      <views>
+        <view id="-/-/-/:JVM throughput:"/>
+        <view id="-/-/root/java.lang/Memory/NonHeapMemoryUsage/:Memory usage (non-heap):"/>
+        <view id="-/-/root/java.lang/Memory/HeapMemoryUsage/:Memory usage (heap):"/>
+        <view id="-/-/root/java.lang/MemoryPool/:Memory usage for all pools:"/>
+        <view id="-/-/root/java.lang/Runtime/:JVM Information:"/>
+        <view id="-/-/root/java.lang/Threading/:Current threads:"/>
+        <view id="-/-/root/java.lang/Memory/:Memory usage by type:"/>
+        <view id="-/-/root/java.lang/MemoryPool/:Memory usage by pool:"/>
+      </views>
+      <counters>
+        <counter id="-/-/root/java.lang/Compilation/[Compilation.TotalCompilationTime]"/>
+        <counter id="-/-/root/java.lang/ClassLoading/[ClassLoading.LoadedClassCount]"/>
+      </counters>
+    </dashboard>
+  </dashboards>
+</rms>

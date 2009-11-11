@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/java.lang/Memory">
+      <dashboards>
+        <dashboard>
+          <name>Memory</name>
+          <description>Heap and non-heap memory overview</description>
+          <views>
+            <view id="-/-/root/java.lang/Memory/:Memory usage by type:"/>
+            <view id="-/-/root/java.lang/Memory/NonHeapMemoryUsage/:Memory usage (non-heap):"/>
+            <view id="-/-/root/java.lang/Memory/HeapMemoryUsage/:Memory usage (heap):"/>
+          </views>
+        </dashboard>
+      </dashboards>
+    </entity>
+  </entities>
+</rms>

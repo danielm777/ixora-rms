@@ -1,0 +1,100 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Syntaxes</title><link href="style.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.68.1" name="generator"><link rel="start" href="index.html" title="IxoraRMS Documentation"><link rel="up" href="ch04.html" title="Appendix"><link rel="prev" href="ch04s04.html" title="Swiss Federal Institute of Technology (ETH Zurich)"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="secSyntax"></a>Syntaxes</h2></div></div></div><a name="N121C" class="indexterm"></a><a name="N1220" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraResourceTags"></a>Resource Name Tags</h3></div></div></div><p>When defining 'name' and 'iname' attributes in a Query, the following tags can be used,
+		and will be replaced at execution time with the appropriate values:</p><div class="itemizedlist"><ul type="disc"><li>$host - the name of the host where this value comes from</li><li>$agent - the name of the agent which generates this value</li><li>$entity - full path of the entity</li><li>$entity[n] - component n in the entity path above (0-based)</li><li>$counter - the name of the counter</li></ul></div><p>In addition, when regular expressions are used, the common $1, ..., $n tags 
+		can be used, and will be replaced with values of the corresponding capturing groups.
+		See Capturing Groups below.</p></div><a name="N1239" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraRESyntax"></a>Regular Expression Syntax</h3></div></div></div><p>Below is a quick reference for the most common regular expression tags
+		supported by IxoraRMS. The full supported syntax is that of the Pattern
+		class, as described in <a href="http://java.sun.com/docs/" target="_top">Java documentation</a>.</p><a name="N1249" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N124F"></a>Characters</h5></div></div></div><pre class="programlisting">
+x The character x 
+\\ The backslash character 
+\0n The character with octal value 0n (0 &lt;= n &lt;= 7) 
+\0nn The character with octal value 0nn (0 &lt;= n &lt;= 7) 
+\0mnn The character with octal value 0mnn (0 &lt;= m &lt;= 3, 0 &lt;= n &lt;= 7) 
+\xhh The character with hexadecimal value 0xhh 
+\uhhhh The character with hexadecimal value 0xhhhh 
+\t The tab character ('\u0009') 
+\n The newline (line feed) character ('\u000A') 
+\r The carriage-return character ('\u000D') 
+\f The form-feed character ('\u000C') 
+\a The alert (bell) character ('\u0007') 
+\e The escape character ('\u001B') 
+\cx The control character corresponding to x </pre></div><a name="N1256" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N125C"></a>Character classes</h5></div></div></div><pre class="programlisting">
+[abc] a, b, or c (simple class) 
+[^abc] Any character except a, b, or c (negation) 
+[a-zA-Z] a through z or A through Z, inclusive (range) 
+[a-d[m-p]] a through d, or m through p: [a-dm-p] (union) 
+[a-z&amp;&amp;[def]] d, e, or f (intersection) 
+[a-z&amp;&amp;[^bc]] a through z, except for b and c: [ad-z] (subtraction) 
+[a-z&amp;&amp;[^m-p]] a through z, and not m through p: [a-lq-z](subtraction) </pre></div><a name="N1263" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N1269"></a>Predefined character classes </h5></div></div></div><pre class="programlisting">
+. Any character (may or may not match line terminators) 
+\d A digit: [0-9] 
+\D A non-digit: [^0-9] 
+\s A whitespace character: [ \t\n\x0B\f\r] 
+\S A non-whitespace character: [^\s] 
+\w A word character: [a-zA-Z_0-9] 
+\W A non-word character: [^\w] </pre></div><a name="N1270" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N1276"></a>POSIX character classes (US-ASCII only)</h5></div></div></div><pre class="programlisting">
+\p{Lower} A lower-case alphabetic character: [a-z] 
+\p{Upper} An upper-case alphabetic character:[A-Z] 
+\p{ASCII} All ASCII:[\x00-\x7F] 
+\p{Alpha} An alphabetic character:[\p{Lower}\p{Upper}] 
+\p{Digit} A decimal digit: [0-9] 
+\p{Alnum} An alphanumeric character:[\p{Alpha}\p{Digit}] 
+\p{Punct} Punctuation: One of !"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~ 
+\p{Graph} A visible character: [\p{Alnum}\p{Punct}] 
+\p{Print} A printable character: [\p{Graph}] 
+\p{Blank} A space or a tab: [ \t] 
+\p{Cntrl} A control character: [\x00-\x1F\x7F] 
+\p{XDigit} A hexadecimal digit: [0-9a-fA-F] 
+\p{Space} A whitespace character: [ \t\n\x0B\f\r] </pre></div><a name="N127D" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N1283"></a>Classes for Unicode blocks and categories</h5></div></div></div><pre class="programlisting">
+\p{InGreek} A character in the Greek block (simple block) 
+\p{Lu} An uppercase letter (simple category) 
+\p{Sc} A currency symbol 
+\P{InGreek} Any character except one in the Greek block (negation) 
+[\p{L}&amp;&amp;[^\p{Lu}]]  Any letter except an uppercase letter (subtraction) </pre></div><a name="N128A" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N1290"></a>Boundary matchers</h5></div></div></div><pre class="programlisting">
+^ The beginning of a line 
+$ The end of a line 
+\b A word boundary 
+\B A non-word boundary 
+\A The beginning of the input 
+\G The end of the previous match 
+\Z The end of the input but for the final terminator, if any 
+\z The end of the input </pre></div><a name="N1297" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N129D"></a>Greedy quantifiers</h5></div></div></div><pre class="programlisting">
+X? X, once or not at all 
+X* X, zero or more times 
+X+ X, one or more times 
+X{n} X, exactly n times 
+X{n,} X, at least n times 
+X{n,m} X, at least n but not more than m times </pre></div><a name="N12A4" class="indexterm"></a><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N12AA"></a>Capturing Groups</h5></div></div></div><p>Capturing groups are created by enclosing parts of the regular expresion in 
+			brackets (). The string matched by a capturing group is accessible later on with the
+			use of $n tags, where $1 .. $n represent capturing groups 1 to n.</p></div></div><a name="N12AF" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraFormattingSyntax"></a>Formatting Syntax</h3></div></div></div><p>The &lt;format&gt; attributes in IxoraRMS accept the standard Java
+      syntax for number and dates formatting (DecimalFormat and SimpleDateFormat).
+      For full information please refer to <a href="http://java.sun.com/docs/" target="_top">Java documentation</a></p><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N12BE"></a>Formatting tokens for numbers</h5></div></div></div><pre class="programlisting">
+0  Number  Digit  
+#  Number  Digit, zero shows as absent  
+.  Number  Decimal separator or monetary decimal separator  
+-  Number  Minus sign  
+,  Number  Grouping separator  
+E  Number  Separates mantissa and exponent in scientific notation. Need not be quoted in prefix or suffix.  
+;  Subpattern boundary  Separates positive and negative subpatterns  
+%  Prefix or suffix  Multiply by 100 and show as percentage  
+\u2030  Prefix or suffix  Multiply by 1000 and show as per mille  
+\u00A4  Prefix or suffix  Currency sign, replaced by currency symbol. If doubled, replaced by international currency symbol. If present in a pattern, the monetary decimal separator is used instead of the decimal separator.  
+'  Prefix or suffix  Used to quote special characters in a prefix or suffix, for example, "'#'#" formats 123 to "#123". To create a single quote itself, use two in a row: "# o''clock".  </pre></div><div class="sect4" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="N12C5"></a>Formatting tokens for dates:</h5></div></div></div><pre class="programlisting">
+G  Era designator
+y  Year
+M  Month in year
+w  Week in year
+W  Week in month
+D  Day in year
+d  Day in month
+F  Day of week in month
+E  Day in week
+a  Am/pm marker
+H  Hour in day (0-23)
+k  Hour in day (1-24)
+K  Hour in am/pm (0-11)
+h  Hour in am/pm (1-12)
+m  Minute in hour
+s  Second in minute
+S  Millisecond
+z  Time zone (General)
+Z  Time zone (RFC 822)</pre></div></div></div></body></html>

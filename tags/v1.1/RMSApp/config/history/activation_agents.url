@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.url">
+    <historyGroupItem date="1.153428025531E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.url.Configuration">
+            <config.url type="0" value="http://www.yahoo.com"/>
+            <config.http_method set="GET,POST" type="0" value="GET"/>
+            <config.http_parameters notrequired="true" notvisible="true" type="9" value=""/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.142517398375E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.url.Configuration">
+            <config.url type="0" value="http://localhost:8080/jobs/my.php"/>
+            <config.http_method set="GET,POST" type="0" value="POST"/>
+            <config.http_parameters notrequired="true" notvisible="true" type="9" value="3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554462D38223F3E0D0A3C726D733E0D0A20203C706172616D7320636C6173733D22636F6D2E6C697665706572662E726D732E6167656E74732E75726C2E52657175657374506172616D6574657273223E0D0A202020203C706172616D206E616D653D22706172616D31222076616C75653D2276616C3120222F3E0D0A202020203C706172616D206E616D653D22706172616D3220222076616C75653D2276616C3220222F3E0D0A20203C2F706172616D733E0D0A3C2F726D733E0D0A"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.142517092781E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.url.Configuration">
+            <config.url type="0" value="http://localhost:8080/jobs/my.php"/>
+            <config.http_method set="GET,POST" type="0" value="POST"/>
+            <config.http_parameters notrequired="true" notvisible="true" type="9" value="3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554462D38223F3E0D0A3C726D733E0D0A20203C706172616D7320636C6173733D22636F6D2E6C697665706572662E726D732E6167656E74732E75726C2E52657175657374506172616D6574657273223E0D0A202020203C706172616D206E616D653D22706172616D31222076616C75653D2276616C3120222F3E0D0A202020203C706172616D206E616D653D22706172616D3220222076616C75653D2276616C3220222F3E0D0A20203C2F706172616D733E0D0A3C2F726D733E0D0A"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <providerInstances>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.java.name</providerName>
+      <instanceName>MyJavaProvider</instanceName>
+      <description/>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.java.Configuration">
+          <providers.java.classpath type="0" value="{agent.Parameter2}, {agent.Parameter3}"/>
+          <providers.java.classloader_id notrequired="true" type="0" value="shared2"/>
+          <providers.java.impl_class type="0" value="com.ixora.tutorials.providers.MyJavaProvider"/>
+          <providers.java.parameters notrequired="true" type="0" value="&quot;{agent.Parameter1}&quot; &quot;root&quot; &quot;password&quot; &quot;any&quot;"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column cid="counter1" eid="root/Entity1" idx="0"/>
+          </columns>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Entity1">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="counter1">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions/>
+    </providerInstance>
+  </providerInstances>
+</rms>

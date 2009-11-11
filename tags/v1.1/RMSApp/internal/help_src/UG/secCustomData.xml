@@ -1,0 +1,411 @@
+<section id="secCustomData">
+	<title>Monitoring Custom Data</title>
+
+	<para>Another exciting feature of &programName; is the ability to add custom
+	data sources and to integrate them seamlessly with the built-in agents.</para>
+
+   <para>A Provider is the component which collects data from an external source
+   and converts it into Entities and Counters. Providers are always associated
+   with Agents, from which they inherit configuration options, and to which they
+   contribute Counters.</para>
+
+   <para>The steps involved in creating a custom data source are:</para>
+	<itemizedlist>
+		<listitem>Create an Agent (optional). Using Agent Installer create a new custom agent which
+      will host the new Provider(s). The agent will provide configuration common
+      to all its providers, and will serve as a root for the entity tree.</listitem>
+
+      <listitem>Create a Provider for this Agent. Using Provider Manager, select the new
+      Agent (or an existing one) and add a new Provider for it. Select one of provider
+      types (Java, SQL or Process) and configure its running parameters and the structure
+      of its Entities and Counters.</listitem>
+
+      <listitem>Activate the new Agent as you would any other agent, optionally enabling
+      or disabling some providers.</listitem>
+	</itemizedlist>
+
+	<indexterm><primary>Agent installer</primary></indexterm>
+	<sect2 id="paraAgentInstaller">
+		<title>Agent Installer</title>
+
+      <para>This window is accessible from Tools/Agent Installer. To add a new Agent,
+      click Install and select a configuration template (SQL, Java or Process). This will
+      populate the fields with appropriate values, and will be enough for most uses.
+      Here is a reference of the agent's properties, some of them are intended for future
+      advanced customizations:</para>
+	   <itemizedlist>
+		   <listitem>Name: agent name, cannot be changed after creation.</listitem>
+		   <listitem>Description: agent description.</listitem>
+		   <listitem>Class: Java class containing agent implementation, manual editing not
+         recommended, reserved for future use.</listitem>
+         <listitem>Category: The name of the category which the agent belongs to. The predefined
+         values are the following:
+        	<itemizedlist>
+		   		<listitem>applications</listitem>
+		   		<listitem>network</listitem>
+		   		<listitem>databases</listitem>
+		   		<listitem>webServers</listitem>
+		   		<listitem>appServers</listitem>
+		   		<listitem>operatingSystems</listitem>
+		   		<listitem>miscellaneous</listitem>
+			</itemizedlist>
+         </listitem>
+		   <listitem>Message Catalog: Usually the same as agent name, the name of properties
+         file (located under config/messages), if any, containing message translations.</listitem>
+         </itemizedlist>
+
+         <para>The following agent definition data can be assigned to one or more agent versions:</para>
+         <itemizedlist>
+		   <listitem>System Versions: Whether agent can monitor multiple versions of the
+         same system. Providers can be associated to one or more versions defined here.</listitem>
+		   <listitem>Location: Whether the agent will be executed locally or deployed remotely.</listitem>
+		   <listitem>Levels: Whether agent supports multiple monitoring levels, and which
+         is the default.</listitem>
+		   <listitem>Jar Paths: List of external jar files that agent may require.</listitem>
+		   <listitem>UI Jar: jar containing agent's user interface (configuration panel).</listitem>
+		   <listitem>Config Panel: Java class containing implementation of the configuration
+         panel displayed in 'Activate Agent' window. If one of the agent templates has been chosen before
+         this field will already be populated.</listitem>
+	   </itemizedlist>
+
+		<figure>
+			<title>Agent Installer</title>
+			<graphic fileref="images/agent_installer.png"/>
+		</figure>
+	</sect2>
+
+	<indexterm><primary>providers</primary></indexterm>
+	<sect2 id="paraProviders">
+		<title>Providers</title>
+
+      <para>Access this window from Tools/Provider Manager. To create a Provider, first
+      select an Agent and click Add. This will bring up Provider Instance Editor.</para>
+
+		<figure>
+			<title>Provider Instsance Editor</title>
+			<graphic fileref="images/provider_editor.png"/>
+		</figure>
+
+      <para>Common fields:</para>
+	   <itemizedlist>
+         <listitem>Agent Versions: available if the associated agent has defined
+         a list of versions. Select which versions this provider is intended to
+         work with.</listitem>
+
+         <listitem>Provider Instance Name: Name for this provider</listitem>
+
+         <listitem>Provider Instance Description: Description for this provider</listitem>
+
+         <listitem>Type: Select either SQL, Java or Process from the dropdown list.
+         Different provider types will have different configuration options,
+         detailed below.</listitem>
+
+         <listitem>Location: Run this provider localy (on the machine where
+         &programName; console is running), remotely (on the monitored host) or
+         wherever the agent is configured to run (inherit location).</listitem>
+
+         <listitem>Optional: Provider can be enabled/disabled before agent is
+         activated.</listitem>
+
+         <listitem>Selected: The default enabled/disabled state of the provider.</listitem>
+
+         <listitem>Requires private collector: Check this if the provider may
+         occasionaly take much longer to execute. If this is selected the provider
+         will not affect the functioning of the common data collectors. Be selective when
+         enabling this flag as too many collectors will impact overall system performance.</listitem>
+
+	   </itemizedlist>
+
+      <para>Note that in all options detailed below you can use properties of the
+      agent, through the following syntax: {agent.propertyname}. Thus, if the agent's
+      configuration has a property called 'propertyname', its value will be used here.
+      This makes it convenient for example to attach multiple SQL based providers,
+      which will all use the username and password configured in the agent.</para>
+
+      <para>Along with the {agent.propertyname} syntax, the following built-in tokens
+      can be used:</para>
+      <itemizedlist>
+	<listitem>{agent} : converts at runtime to agent's name.</listitem>
+	<listitem>{host} : converts to name of the host that this agent is deployed on.</listitem>
+	<listitem>{home} : converts to the folder where &programName; is installed.</listitem>
+	<listitem>{tick} : converts to the sampling interval configured for the agents in seconds.</listitem>
+	<listitem>{tick.ms} : converts to the same sampling interval, but given in
+	milliseconds.</listitem>
+      </itemizedlist>
+
+	  <indexterm><primary>Java provider</primary><secondary>options</secondary></indexterm>
+      <para>Java specific options:</para>
+	   <itemizedlist>
+         <listitem>Classpath: Java classpath required by implementation class.</listitem>
+         <listitem>Class loader id: The id of the class loader to use; Use the
+         same id for multiple provider instances using the same code to allow
+         sharing of resources.</listitem>
+         <listitem>Implementation class: The name of the java class with the
+         implementation for this provider.</listitem>
+         <listitem>Implementation class parameters: Parameters list to be passed
+         to the impplementation class. Each parameter must be between double
+         quotes (e.g. "param1" "param2").</listitem>
+	   </itemizedlist>
+
+	   For more information on Java providers see <xref linkend="secProvidersJava"/>.
+
+	  <indexterm><primary>Process provider</primary><secondary>options</secondary></indexterm>
+      <para>Process specific options:</para>
+	   <itemizedlist>
+         <listitem>Command: Command line to execute.</listitem>
+         <listitem>Process is volatile: Check this if the process returns a block
+         of information and then exits. &programName; will execute the command
+         line each time it needs to retrieve data. Leave this unchecked if the
+         process is continuously returning data.</listitem>
+         <listitem>End of buffer regex: Regular expression that marks a line as being the end of a data buffer.
+         If a process is not volatile and this parameter is left empty every line of output
+         will be sent to the data parser otherwise lines will be buffered until a line where this
+         regular expression has a match is found.</listitem>
+         <listitem>Process remote execution mode: Set to one of the following values:
+			 <itemizedlist>
+	    	     <listitem>{agent.executionMode}: The provider will inherit the execution mode
+	    	     from the agent configuration.</listitem>
+	    	     <listitem>Normal: The provider will be executed locally on the Console host.</listitem>
+  	    	     <listitem>Telnet: The provider will be executed using a Telnet session on the
+  	    	     monitored host.</listitem>
+  	    	     <listitem>SSH2: The provider will be executed using a secure shell session on the
+  	    	     monitored host.</listitem>
+	         </itemizedlist>
+         </listitem>
+         <listitem>Username: Only applies for 'Telnet' or 'SSH2' execution modes: it is the
+         username used to connect to the monitored host. The default value is {agent.Username} which
+         allows the provider the use the value defined at agent level.</listitem>
+         <listitem>Password: applies for 'Telnet' or 'SSH2' execution modes: it is the password
+         used to connect to the monitored host. The default value is {agent.Password} which allows the provider the use
+         the value defined at agent level.</listitem>
+         <listitem>Shell prompt: applies for the 'Telnet' execution mode: it is the shell prompt for
+         the telnet session. To find out this value log in first through a telnet terminal and using the username that you intend to use for the
+         'Username' parameter: The default value is {agent.ShellPrompt} which allows the provider the use
+         the value defined at agent level</listitem>
+         <listitem>Connection port: applies for 'Telnet' or 'SSH2' execution modes: it is
+         the port used for the remote connection. The default value is {agent.Port} which allows
+         the provider the use the value defined at agent level</listitem>
+	   </itemizedlist>
+
+	  <indexterm><primary>SQL provider</primary><secondary>options</secondary></indexterm>
+      <para>SQL specific options:</para>
+	   <itemizedlist>
+         <listitem>Classpath: Classpath pointing to the JDBC driver code.</listitem>
+         <listitem>Class loader id: The id of the class loader to use; Use the same id
+         for multiple provider instances using the same code to allow sharing of
+         resources.</listitem>
+         <listitem>JDBC driver class: The name of the JDBC driver class.</listitem>
+         <listitem>Username: Authenticate using this username.</listitem>
+         <listitem>Password: Authenticate using this password.</listitem>
+         <listitem>JDBC connection string: Connection string used to establish
+         the database connection.</listitem>
+         <listitem>SQL query: The SQL query to execute for data collection.</listitem>
+	   </itemizedlist>
+
+		For more information on SQL providers see <xref linkend="secProvidersSQL"/>.
+
+	  <indexterm><primary>Table parser</primary></indexterm>
+      <para>Table parser options:</para>
+	   <itemizedlist>
+	     <listitem>Convert column to row: If set to true converts the single column result of a query
+         into a single row table; used to facilitate the use of a
+         table parser instead of a properties parser(see the example below); by doing this
+         one can group the data into a hierarchy of entities which would not be possible using
+         the properties parser on this type of data</listitem>
+
+         <listitem>Column separator: character(s) separating columns. Default
+         is whitespace.</listitem>
+
+         <listitem>Ignore lines matching: Each line of text will be search for this regular expression.
+         A line containing it will be ignored by parser.</listitem>
+
+         <listitem>Ignore data columns at: Use this to handle the situation where missing values for a cell
+         can be the same as the column separator. This will allow you to ignore extra cells in
+         rows of data.</listitem>
+
+         <listitem>Accumulate volatile entities: if selected, entities generated
+         dynamically (for example the list of processes on a system) will persist
+         in the entity tree. If not selected dynamic entities will appear and
+         dissapear as they are found or not in the data source.</listitem>
+	   </itemizedlist>
+
+	   <para>Convert column to row example:
+	   If input data is:
+   		<programlisting role="linespecific">
+		 10
+		 22
+		 4
+		 5
+		 506
+		 269
+		</programlisting>
+	   	then by using the conversion the output will be:
+   		<programlisting role="linespecific">
+		 10 22 4 5 506 269
+		</programlisting>
+	   which can be now extracted into a hierarchy like this:
+   		<programlisting role="linespecific">
+   		root
+   		 |_Networking (with counters Aborted_clients and Aborted_connects)
+   		   |_Traffic (with counters Bytes_received	Bytes_sent)
+   		 |_Binlog (with counters Binlog_cache_disk_use Binlog_cache_use
+		</programlisting>
+	   </para>
+
+	  <indexterm><primary>Properties parser</primary></indexterm>
+      <para>Properties parser options:</para>
+	   <itemizedlist>
+         <listitem>Entity regex: A regular expression used to extract entity names. The
+         regex must contain one capturing group. All matches of this group will generate an
+         entity, which gets added under the Base entity (see the note below).</listitem>
+
+         <listitem>Property/Value regex: A regular expression to extract name/value pairs.
+         The regex must contain two capturing groups. By default matches for the first group
+         will generate values, and matches for the second group will generate counter names.</listitem>
+
+         <listitem>Value is second group: For the regex above, specifies whether the second
+         group will generate values and the first will generate counter names.</listitem>
+
+         <listitem>Base entity: All entities generated dynamically will be added under this
+         base entity.</listitem>
+
+         <listitem>Ignore lines matching: Each line of text will be search for this regular expression.
+         A line containing it will be ignored by parser.</listitem>
+
+         <listitem>Accumulate volatile entities: if selected, entities generated
+         dynamically (for example the list of processes on a system) will persist
+         in the entity tree. If not selected dynamic entities will appear and
+         dissapear as they are found or not in the data source.</listitem>
+	   </itemizedlist>
+	   <para>NOTE: Each counter resulted from parsing will need to have an entry in the list of
+	   counters, with a counter ID and an entity ID matching the ones extracted from text. If
+	   the regular expressions match values which are not in this list they will be ignored,
+	   without creating new counters or entities.</para>
+
+	   <para>Example of a property parser definition:</para>
+<programlisting role="linespecific">
+For the command:
+#netstat -s
+Ip:
+    1916 total packets received
+    0 forwarded
+    0 incoming packets discarded
+    1696 incoming packets delivered
+    1718 requests sent out
+Icmp:
+    0 ICMP messages received
+    0 input ICMP message failed.
+    ICMP input histogram:
+    0 ICMP messages sent
+    0 ICMP messages failed
+    ICMP output histogram:
+
+
+The parser definition is:
+Entity regex: ([^:].*):
+Property/Value regex: \s*([^\s]+)\s*([^\(]+).*
+Base entity: root/Network protocols
+
+And the generated entities are:
+Network protocols
+   +- Ip
+   |    [total packets received]
+   |    [forwarded]
+   |    [incoming packets discarded]
+   |    [incoming packets delivered]
+   |    [requests sent out]
+   +- Icmp
+        [ICMP messages received]
+        [input ICMP message failed]
+        [ICMP messages sent]
+        [ICMP messages failed]
+
+</programlisting>
+
+
+	  <para>Column definition</para>
+      <para>Column definition is the main part of creating a provider. Each of
+      the three provider types (SQL, Java and Process) will output a table. On
+      this Parser page you are giving a meaning to each column of this table,
+      by associating it with an Entity or Counter.</para>
+
+      <para>The parser needs to have definitions for all columns, regardless
+      whether they will be visible in the entity tree or not. To skip a column,
+      leave the EntityID and CounterID empty for that particular column index.</para>
+
+      <para>To convert a column into a Counter, enter a CounterID and an EntityID for it.
+      The CounterID is a simple text, which will be looked up in the agent's Message Catalog
+      (see <xref linkend="paraAgentInstaller"/>). If no translation is available
+      for that text, the CounterID will be displayed as-is throughout &programName;.</para>
+
+      <para>The syntax of an EntityID is: <programlisting role="linespecific">root/e1/e2/...</programlisting>
+      where e1, e2 and so on are simple strings, localised in the same way as the
+      CounterID. Each of these elements will result in an Entity being added to the
+      tree. The final Entity in the path will contain the Counter.</para>
+
+      <para>To convert a column into an Entity, only enter an EntityID, but no CounterID.</para>
+
+      <para>To create dynamic (volatile) entities based on values in a certain column,
+      use the syntax: <programlisting role="linespecific">root/e1/{n}</programlisting>
+      where n is the index of the column containing entity names.</para>
+
+      <para>An example of creating entities and counters out of the output of
+      the Unix command ps:</para>
+<programlisting role="linespecific">
+# ps
+   PID  CLS PRI TTY      TIME COMD
+  5996   TS  70 pts004   0:00 sh
+ 18294   TS  59 pts004   0:00 ps
+</programlisting>
+
+      <para>Parser definitions would be:</para>
+<programlisting role="linespecific">
+Column     EntityID              CounterID
+0       root/Processes/{0}
+1       root/Processes/{0}       Scheduling class
+2       root/Processes/{0}       Priority
+3       root/Processes/{0}       TTY
+4       root/Processes/{0}       Time
+5       root/Processes/{0}       Command line
+</programlisting>
+
+      <para>And when the agent containing this provider is activated, the entity
+      tree would look like:</para>
+<programlisting role="linespecific">
+Agent
+  +- Processes
+      +- 5996
+      |   [Scheduling class]
+      |   [Priority]
+      |   [TTY]
+      |   [Time]
+      |   [Command line]
+      +- 18294
+          [Scheduling class]
+          [Priority]
+          [TTY]
+          [Time]
+          [Command line]
+</programlisting>
+
+      <para>You can find more complex examples in the definitions of some
+      &programName;'s own agents, such as Linux or Oracle.</para>
+
+      <para>The Descriptors tab allows entering descriptions and types for
+      entities and counters:</para>
+	   <itemizedlist>
+         <listitem>Description (for both entities and counters): simple string which
+         can be translated, or displayed as is.</listitem>
+
+         <listitem>Type: choose double, long or string for this counter, which
+         will affect how it is displayed in charts.</listitem>
+
+         <listitem>Discrete: check if this counter does not have continuous values
+         (for example it's an error code), may affect the way it is displayed in some
+         charts.</listitem>
+	   </itemizedlist>
+	</sect2>
+		<para></para>
+		<para></para>
+
+</section>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.mysql">
+    <historyGroupItem date="1.186605546343E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.mysql.v50.Configuration">
+            <config.username notrequired="true" type="0" value="root"/>
+            <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <config.port type="1" value="3306"/>
+            <config.jdbc_driver_jar type="0" value="/lib/mysql-connector-java-5.0.0-beta-bin.jar"/>
+            <config.database type="0" value="mysql"/>
+            <config.jdbc_driver_class type="0" value="com.mysql.jdbc.Driver"/>
+          </config>
+          <version>5.*</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.186605420234E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.mysql.v40.Configuration">
+            <config.username notrequired="true" type="0" value="root"/>
+            <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <config.port type="1" value="3306"/>
+            <config.jdbc_driver_jar type="0" value="/lib/mysql-connector-java-5.0.0-beta-bin.jar"/>
+            <config.database type="0" value="mysql"/>
+            <config.jdbc_driver_class type="0" value="com.mysql.jdbc.Driver"/>
+          </config>
+          <version>4.*</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.142716202265E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.mysql.v40.Configuration">
+            <config.username notrequired="true" type="0" value="root"/>
+            <config.password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+            <config.port type="1" value="3306"/>
+            <config.jdbc_driver_jar type="0" value="/lib/mysql-connector-java-5.0.0-beta-bin.jar"/>
+            <config.database type="0" value="mysql"/>
+            <config.jdbc_driver_class type="0" value="com.mysql.jdbc.Driver"/>
+          </config>
+          <version>4.*</version>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="screen_jboss4">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.jboss</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.jboss.v4.Configuration">
+                    <config.username notrequired="true" type="0" value="admin"/>
+                    <config.password notrequired="true" type="10" value="260BC7DC66529C09"/>
+                    <root_folder notrequired="true" type="0" value="C:/jboss-4.0.3RC1"/>
+                    <classpath notrequired="true" type="0" value="/server/default/lib/jboss-management.jar,/client/jboss-jmx.jar,/client/jboss-common.jar,/client/jboss-system.jar,/client/jbossall-client.jar,/client/jboss.jar,/client/concurrent.jar,/client/log4j.jar,/client/jboss-jsr77-client.jar,/client/jboss-transaction.jar,/client/dom4j.jar,/client/jnp-client.jar,/client/jmx-rmi-connector-client.jar,/client/jboss-j2ee.jar"/>
+                    <server_url type="0" value="jnp://localhost:1099"/>
+                    <jndi_name type="0" value="jmx/rmi/RMIAdaptor"/>
+                  </config>
+                  <version>4.*</version>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.jboss</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.jboss.v4.Configuration">
+                    <config.username notrequired="true" type="0" value="admin"/>
+                    <config.password notrequired="true" type="10" value="260BC7DC66529C09"/>
+                    <root_folder notrequired="true" type="0" value="C:/jboss-4.0.3RC1"/>
+                    <classpath notrequired="true" type="0" value="/server/default/lib/jboss-management.jar,/client/jboss-jmx.jar,/client/jboss-common.jar,/client/jboss-system.jar,/client/jbossall-client.jar,/client/jboss.jar,/client/concurrent.jar,/client/log4j.jar,/client/jboss-jsr77-client.jar,/client/jboss-transaction.jar,/client/dom4j.jar,/client/jnp-client.jar,/client/jmx-rmi-connector-client.jar,/client/jboss-j2ee.jar"/>
+                    <server_url type="0" value="jnp://localhost:1099"/>
+                    <jndi_name type="0" value="jmx/rmi/RMIAdaptor"/>
+                  </config>
+                  <version>4.*</version>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.management.local/{Committed/rolledback transactions}">
+          <resource id="jta" iname="$2/$1" name="JTA Resources" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats"/>
+          <resource id="rb" iname="$2/$1" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[RolledbackCount]"/>
+          <resource id="com" iname="$2/$1" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[CommitedCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.web/{WebModules}">
+          <resource id="webmods" iname="$3/$2/$1" name="Server/App/Web module" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))"/>
+          <resource id="pt" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[processingTime]"/>
+          <resource id="tld_scan_time" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[tldScanTime]"/>
+          <resource id="state" iname="$3/$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=WebModule,name=(.*),J2EEApplication=(.*),J2EEServer=(.*))/[state]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.web/{Servlets}">
+          <resource id="servlets" iname="$3/$2/$4/$1" name="Server/App/Web module/Servlet" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))"/>
+          <resource id="pt" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[processingTime]"/>
+          <resource id="max" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[maxTime]"/>
+          <resource id="min" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[minTime]"/>
+          <resource id="rc" iname="$3/$2/$4/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:j2eeType=Servlet,name=(.*),J2EEApplication=(.*),J2EEServer=(.*),WebModule=(.*))/[requestCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.web/{Caches}">
+          <resource id="cache" iname="$1/$2" name="Cache(host/path)" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))"/>
+          <resource id="access_count" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[accessCount]"/>
+          <resource id="cache_max_size" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[cacheMaxSize]"/>
+          <resource id="cache_size" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[cacheSize]"/>
+          <resource id="hits_count" iname="$1/$2/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=Cache,host=(.*),path=(.*))/[hitsCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.management.local/{Time waited on JCA connections}">
+          <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)/[#time#]"/>
+          <resource id="waittime" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)/[WaitTime (avg time)]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.management.local/{JVMs memory}">
+          <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[#time#]"/>
+          <resource id="jvms" iname="$1/$2" name="JVM" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats"/>
+          <resource code="return heap_lb / 1048576f;" id="heap_lb" iname="$1/$2/$counter (in MB)" name="$counter (in MB)" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[HeapSize (lower bound)]"/>
+          <resource code="return heap_ub / 1048576f;" id="heap_ub" iname="$1/$2/$counter (in MB)" name="$counter (in MB)" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[HeapSize (upper bound)]"/>
+          <resource code="return heap_current / 1048576f;" id="heap_current" iname="$1/$2/$counter (in MB)" name="$counter (in MB)" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JVM,name=(.*),J2EEServer=(.*))/stats/[HeapSize (current)]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.management.local/{JCA connection pool utilization}">
+          <resource id="jca" iname="$2/$3/$1/$4" name="JCA Resource" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)"/>
+          <resource id="free" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)/[FreePoolSize (current)]"/>
+          <resource id="poolsize_ub" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)/[PoolSize (upper bound)]"/>
+          <resource id="poolsize" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)/[PoolSize (current)]"/>
+          <function id="used" iname="$2/$3/$1/$4/UsedConnections (current)" name="UsedConnections (current)" op="script">
+            <param id="free"/>
+            <param id="poolsize_ub"/>
+            <code>return poolsize_ub - free;</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.management.local/{Active transactions}">
+          <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[#time#]"/>
+          <resource id="active" iname="$2/$1" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JTAResource,name=(.*),J2EEServer=(.*))/stats/[ActiveCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.web/{RequestProcessors}">
+          <resource id="request_processor" iname="$2/$1" name="Request processor(worker/name)" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))"/>
+          <resource id="request_count" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[requestCount]"/>
+          <resource id="request_proc_time" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[requestProcessingTime]"/>
+          <resource id="proc_time" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[processingTime]"/>
+          <resource id="error_count" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[errorCount]"/>
+          <resource id="bytes_sent" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[bytesSent]"/>
+          <resource id="bytes_recv" iname="$2/$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=RequestProcessor,name=(.*),worker=(.*))/[bytesReceived]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.management.local/{Use time for JCA resources}">
+          <resource id="time" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)/[#time#]"/>
+          <resource id="usetime" iname="$2/$3/$1/$4/$counter" name="$counter" rid="-/-/root/jboss.management.local/(jboss.management.local:j2eeType=JCAResource,name=(.*),J2EEServer=(.*),ResourceAdapter=(.*))/stats/JCAStats/(.*)/[UseTime (avg time)]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.web/{GlobalRequestProcessors}">
+          <resource id="grp" iname="$1" name="GlobalRequestProcessor" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))"/>
+          <resource id="request_count" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[requestCount]"/>
+          <resource id="max_time" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[maxTime]"/>
+          <resource id="bytes_sent" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[bytesSent]"/>
+          <resource id="bytes_recv" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[bytesReceived]"/>
+          <resource id="proc_time" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[processingTime]"/>
+          <resource id="error_count" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=GlobalRequestProcessor,name=(.*))/[errorCount]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.jboss/root/jboss.web/{ThreadPools}">
+          <resource id="thread_pool" iname="$1" name="Thread pool" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))"/>
+          <resource id="current_busy" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[currentThreadsBusy]"/>
+          <resource id="current_count" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[currentThreadCount]"/>
+          <resource id="backlog" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[backlog]"/>
+          <resource id="min_spare" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[minSpareThreads]"/>
+          <resource id="max_spare" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[maxSpareThreads]"/>
+          <resource id="max" iname="$1/$counter" name="$counter" rid="-/-/root/jboss.web/(jboss.web:type=ThreadPool,name=(.*))/[maxThreads]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.jboss/#Runtime overview#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="393.0" title="Dashboard 4" w="557.0" x="0.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.management.local/:JVMs memory:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.management.local/:Committed/rolledback transactions:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.management.local/:Active transactions:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.management.local/:Use time for JCA resources:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.management.local/:JCA connection pool utilization:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.management.local/:Time waited on JCA connections:"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="253.0" title="Dashboard 2" w="415.0" x="0.0" y="533.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.web/:Caches:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="142.0" title="Dashboard 3" w="415.0" x="0.0" y="393.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.web/:GlobalRequestProcessors:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="393.0" title="Dashboard 1" w="415.0" x="415.0" y="393.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.web/:Servlets:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.jboss/root/jboss.web/:WebModules:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

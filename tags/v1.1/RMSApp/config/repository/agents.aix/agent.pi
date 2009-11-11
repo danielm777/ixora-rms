@@ -1,0 +1,1843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <providerInstances>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Network protocol data</instanceName>
+      <description>Network protocol data provided by netstat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>false</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="netstat -s"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="true"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.property.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.property.PropertyRulesDefinition">
+          <counters>
+            <counter>-/-/root/Network protocols/ip/[total packets received]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets for this host]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets for unknown/unsupported protocol]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets not forwardable]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets sent from this host]</counter>
+            <counter>-/-/root/Network protocols/ip/[IP Multicast packets dropped due to no receiver]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets dropped due to the full socket receive buffer]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets processed by threads]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets dropped by threads]</counter>
+            <counter>-/-/root/Network protocols/icmp/[calls to icmp_error]</counter>
+            <counter>-/-/root/Network protocols/icmp/[message responses generated]</counter>
+            <counter>-/-/root/Network protocols/icmp/[messages with bad code fields]</counter>
+            <counter>-/-/root/Network protocols/icmp/[bad checksums]</counter>
+            <counter>-/-/root/Network protocols/icmp/[messages with bad length]</counter>
+            <counter>-/-/root/Network protocols/igmp/[messages received]</counter>
+            <counter>-/-/root/Network protocols/igmp/[membership queries received]</counter>
+            <counter>-/-/root/Network protocols/igmp/[membership reports sent]</counter>
+            <counter>-/-/root/Network protocols/igmp/[membership reports received]</counter>
+            <counter>-/-/root/Network protocols/tcp/[packets sent]</counter>
+            <counter>-/-/root/Network protocols/tcp/[packets received]</counter>
+            <counter>-/-/root/Network protocols/tcp/[connection requests]</counter>
+            <counter>-/-/root/Network protocols/tcp/[connection accepts]</counter>
+            <counter>-/-/root/Network protocols/tcp/[connections established]</counter>
+            <counter>-/-/root/Network protocols/tcp/[connections closed]</counter>
+            <counter>-/-/root/Network protocols/tcp/[retransmit timeouts]</counter>
+            <counter>-/-/root/Network protocols/tcp/[persist timeouts]</counter>
+            <counter>-/-/root/Network protocols/tcp/[keepalive timeouts]</counter>
+            <counter>-/-/root/Network protocols/tcp/[packets dropped due to memory allocation failure]</counter>
+            <counter>-/-/root/Network protocols/tcp/[connections in timewait reused]</counter>
+            <counter>-/-/root/Network protocols/tcp/[delayed ACKs for SYN]</counter>
+            <counter>-/-/root/Network protocols/tcp/[delayed ACKs for FIN]</counter>
+            <counter>-/-/root/Network protocols/tcp/[send_and_disconnects]</counter>
+            <counter>-/-/root/Network protocols/tcp/[spliced connections]</counter>
+            <counter>-/-/root/Network protocols/udp/[datagrams received]</counter>
+            <counter>-/-/root/Network protocols/udp/[incomplete headers]</counter>
+            <counter>-/-/root/Network protocols/udp/[bad data length fields]</counter>
+            <counter>-/-/root/Network protocols/udp/[bad checksums]</counter>
+            <counter>-/-/root/Network protocols/udp/[dropped due to no socket]</counter>
+            <counter>-/-/root/Network protocols/udp/[broadcast/multicast datagrams dropped due to no socket]</counter>
+            <counter>-/-/root/Network protocols/udp/[delivered]</counter>
+            <counter>-/-/root/Network protocols/udp/[datagrams output]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[total packets received]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[with size smaller than minimum]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[with data size &lt; data length]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[with incorrect version number]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[with illegal source]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[input packets without enough memory]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[fragments received]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[fragments dropped]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[fragments dropped after timeout]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets reassembled ok]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets for this host]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets for unknown/unsupported protocol]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets forwarded]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets not forwardable]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[too big packets not forwarded]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets sent from this host]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets sent with fabricated ipv6 header]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[output packets dropped due to no bufs, etc.]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[output packets without enough memory]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[output packets discarded due to no route]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[output datagrams fragmented]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[fragments created]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets dropped due to the full socket receive buffer]</counter>
+            <counter>-/-/root/Network protocols/ipv6/[packets not delivered due to bad raw IPv6 checksum]</counter>
+            <counter>-/-/root/Network protocols/icmpv6/[calls to icmp6_error]</counter>
+            <counter>-/-/root/Network protocols/icmpv6/[messages with bad code fields]</counter>
+            <counter>-/-/root/Network protocols/icmpv6/[messages &lt; minimum length]</counter>
+            <counter>-/-/root/Network protocols/icmpv6/[bad checksums]</counter>
+            <counter>-/-/root/Network protocols/icmpv6/[messages with bad length]</counter>
+            <counter>-/-/root/Network protocols/icmpv6/[message responses generated]</counter>
+            <counter>-/-/root/Network protocols/ip/[bad header checksums]</counter>
+            <counter>-/-/root/Network protocols/ip/[with size smaller than minimum]</counter>
+            <counter>-/-/root/Network protocols/ip/[with data size &lt; data length]</counter>
+            <counter>-/-/root/Network protocols/ip/[with header length &lt; data size]</counter>
+            <counter>-/-/root/Network protocols/ip/[with data length &lt; header length]</counter>
+            <counter>-/-/root/Network protocols/ip/[with bad options]</counter>
+            <counter>-/-/root/Network protocols/ip/[with incorrect version number]</counter>
+            <counter>-/-/root/Network protocols/ip/[fragments received]</counter>
+            <counter>-/-/root/Network protocols/ip/[fragments dropped]</counter>
+            <counter>-/-/root/Network protocols/ip/[fragments dropped after timeout]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets reassembled ok]</counter>
+            <counter>-/-/root/Network protocols/ip/[packets sent with fabricated ip header]</counter>
+            <counter>-/-/root/Network protocols/ip/[output packets dropped due to no bufs, etc.]</counter>
+            <counter>-/-/root/Network protocols/ip/[output packets discarded due to no route]</counter>
+            <counter>-/-/root/Network protocols/ip/[output datagrams fragmented]</counter>
+            <counter>-/-/root/Network protocols/ip/[fragments created]</counter>
+            <counter>-/-/root/Network protocols/ip/[datagrams that can't be fragmented]</counter>
+            <counter>-/-/root/Network protocols/ip/[successful path MTU discovery cycles]</counter>
+            <counter>-/-/root/Network protocols/ip/[path MTU rediscovery cycles attempted]</counter>
+            <counter>-/-/root/Network protocols/ip/[path MTU discovery no-response estimates]</counter>
+            <counter>-/-/root/Network protocols/ip/[path MTU discovery response timeouts]</counter>
+            <counter>-/-/root/Network protocols/ip/[path MTU discovery decreases detected]</counter>
+            <counter>-/-/root/Network protocols/ip/[path MTU discovery packets sent]</counter>
+            <counter>-/-/root/Network protocols/ip/[path MTU discovery memory allocation failures]</counter>
+            <counter>-/-/root/Network protocols/ip/[ipintrq overflows]</counter>
+            <counter>-/-/root/Network protocols/ip/[with illegal source]</counter>
+            <counter>-/-/root/Network protocols/ip/[dead gateway detection packets sent]</counter>
+            <counter>-/-/root/Network protocols/ip/[dead gateway detection packet allocation failures]</counter>
+            <counter>-/-/root/Network protocols/ip/[dead gateway detection gateway allocation failures]</counter>
+          </counters>
+          <baseEntity>root/Network protocols</baseEntity>
+          <propertyValueRegex>\s*([^\s]+)\s*([^\(]+).*</propertyValueRegex>
+          <entityRegex>([^:].*):</entityRegex>
+          <isValueSecondMatch>false</isValueSecondMatch>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <ignoreLines>histogram</ignoreLines>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Network protocols/tcp">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="retransmit timeouts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connection requests">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="send_and_disconnects">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets dropped due to memory allocation failure">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connections established">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="keepalive timeouts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connections in timewait reused">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connection accepts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="connections closed">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="spliced connections">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="delayed ACKs for FIN">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="delayed ACKs for SYN">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="persist timeouts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/icmpv6">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="message responses generated">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bad checksums">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="calls to icmp6_error">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad code fields">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages &lt; minimum length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/ipv6">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="packets not delivered due to bad raw IPv6 checksum">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets dropped due to no bufs, etc.">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="too big packets not forwarded">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets for unknown/unsupported protocol">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets for this host">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets dropped due to the full socket receive buffer">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output datagrams fragmented">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="total packets received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments dropped">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with incorrect version number">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments dropped after timeout">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets forwarded">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets not forwardable">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets discarded due to no route">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent with fabricated ipv6 header">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with illegal source">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with data size &lt; data length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments created">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent from this host">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="input packets without enough memory">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with size smaller than minimum">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets reassembled ok">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets without enough memory">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/icmp">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="message responses generated">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bad checksums">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="messages with bad code fields">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="calls to icmp_error">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/ip">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="path MTU discovery no-response estimates">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets for unknown/unsupported protocol">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets for this host">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bad header checksums">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="successful path MTU discovery cycles">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments dropped">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="dead gateway detection packets sent">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="IP Multicast packets dropped due to no receiver">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="path MTU discovery memory allocation failures">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets processed by threads">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets discarded due to no route">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with illegal source">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent from this host">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments created">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="path MTU rediscovery cycles attempted">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets dropped by threads">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with bad options">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets reassembled ok">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="dead gateway detection packet allocation failures">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="path MTU discovery response timeouts">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output packets dropped due to no bufs, etc.">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="datagrams that can't be fragmented">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with data length &lt; header length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets dropped due to the full socket receive buffer">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="path MTU discovery decreases detected">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="total packets received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="output datagrams fragmented">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets sent with fabricated ip header">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="path MTU discovery packets sent">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with incorrect version number">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="fragments dropped after timeout">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="packets not forwardable">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with data size &lt; data length">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="dead gateway detection gateway allocation failures">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with header length &lt; data size">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="ipintrq overflows">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="with size smaller than minimum">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/udp">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="bad checksums">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="bad data length fields">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="delivered">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="incomplete headers">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="dropped due to no socket">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="datagrams output">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="broadcast/multicast datagrams dropped due to no socket">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="datagrams received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Network protocols/igmp">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="messages received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="membership queries received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="membership reports sent">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="membership reports received">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Disk data</instanceName>
+      <description>Disk data provided by iostat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="iostat -d {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Disks/{0}" idx="0"/>
+            <column cid="Busy" eid="root/Disks/{0}" idx="1"/>
+            <column cid="Kilobytes per second" eid="root/Disks/{0}" idx="2"/>
+            <column cid="Transfers per second" eid="root/Disks/{0}" idx="3"/>
+            <column cid="Kilobytes read" eid="root/Disks/{0}" idx="4"/>
+            <column cid="Kilobytes written" eid="root/Disks/{0}" idx="5"/>
+          </columns>
+          <ignoreLines>Disk history*|Disks:*|System*|iostat*</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Disks/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Busy">
+            <alternatename/>
+            <description>Indicates the percentage of time the physical disk was active (bandwidth utilization for the drive)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kilobytes per second">
+            <alternatename/>
+            <description>Indicates the amount of data transferred (read or written) to the drive in kilobytes per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kilobytes read">
+            <alternatename/>
+            <description>The total number of kilobytes read</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kilobytes written">
+            <alternatename/>
+            <description>The total number of kilobytes written</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Transfers per second">
+            <alternatename/>
+            <description>Indicates the number of transfers per second that were issued to the physical disk. A transfer is an I/O request to the physical disk. Multiple logical requests can be combined into a single I/O request to the disk. A transfer is of indeterminate size</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+        <agentVersion>5.1</agentVersion>
+        <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Process data</instanceName>
+      <description>Process data provided by ps</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="ps -eo pid,pcpu,vsz,comm,ruser,user,class"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="true"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Processes/{3#0}" idx="0"/>
+            <column cid="CPU" eid="root/Processes/{3#0}" idx="1"/>
+            <column cid="Virtual size" eid="root/Processes/{3#0}" idx="2"/>
+            <column eid="root/Processes/{3#0}" idx="3"/>
+            <column cid="Real user" eid="root/Processes/{3#0}" idx="4"/>
+            <column cid="User" eid="root/Processes/{3#0}" idx="5"/>
+            <column cid="Class" eid="root/Processes/{3#0}" idx="6"/>
+          </columns>
+          <ignoreLines>%CPU|defunct|zombie|pid,pcpu|&lt;idle&gt;|&lt;exiting&gt;</ignoreLines>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Processes/{3#0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="CPU">
+            <alternatename/>
+            <description>Ratio of CPU time used to CPU time available, expressed as a percentage</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Class">
+            <alternatename/>
+            <description>The workload management class assigned to the process</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Real user">
+            <alternatename/>
+            <description>The real user ID of the process</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="User">
+            <alternatename/>
+            <description>Effective user ID of the process</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Virtual size">
+            <alternatename/>
+            <description>The size in kilobytes of the process in virtual memory</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+        <agentVersion>5.1</agentVersion>
+        <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>System data</instanceName>
+      <description>System data provided by vmstat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="vmstat -I {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column cid="Kernel threads in run queue" eid="root/System" idx="0"/>
+            <column cid="Kernel threads in wait queue" eid="root/System" idx="1"/>
+            <column cid="Threads waiting for I/O" eid="root/System" idx="2"/>
+            <column cid="Active virtual pages" eid="root/Memory" idx="3"/>
+            <column cid="Free list size" eid="root/Memory" idx="4"/>
+            <column cid="File page-ins" eid="root/Paging" idx="5"/>
+            <column cid="File page-outs" eid="root/Paging" idx="6"/>
+            <column cid="Pages in" eid="root/Paging" idx="7"/>
+            <column cid="Pages out" eid="root/Paging" idx="8"/>
+            <column cid="Pages freed" eid="root/Paging" idx="9"/>
+            <column cid="Pages scanned" eid="root/Paging" idx="10"/>
+            <column cid="Device interrupts" eid="root/System" idx="11"/>
+            <column cid="System calls" eid="root/System" idx="12"/>
+            <column cid="Kernel thread context switches" eid="root/System" idx="13"/>
+            <column cid="User time" eid="root/CPU" idx="14"/>
+            <column cid="System time" eid="root/CPU" idx="15"/>
+            <column cid="Idle time" eid="root/CPU" idx="16"/>
+            <column cid="Wait time" eid="root/CPU" idx="17"/>
+          </columns>
+          <ignoreLines>kthr*|--*|System*|avm|vmstat*</ignoreLines>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/System">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Device interrupts">
+            <alternatename/>
+            <description>Device interrupts</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel thread context switches">
+            <alternatename/>
+            <description>Kernel thread context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in run queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in run queue</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in wait queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in wait queue (awaiting resource, awaiting input/output)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description>System calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Threads waiting for I/O">
+            <alternatename/>
+            <description>Number of threads waiting on actual physical I/O per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Memory">
+          <alternatename/>
+          <description>Information about the usage of virtual and real memory. Virtual pages are considered active if they have been accessed. A page is 4096 bytes.</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Active virtual pages">
+            <alternatename/>
+            <description>Active virtual pages</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Free list size">
+            <alternatename/>
+            <description>Size of the free list. Note that a large portion of real memory is utilized as a cache for file system data. It is not unusual for the size of the free list to remain small</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/CPU">
+          <alternatename/>
+          <description>Shows details about processor usage</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Idle time">
+            <alternatename/>
+            <description>Pages paged out to paging space</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System time">
+            <alternatename/>
+            <description>System time</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="User time">
+            <alternatename/>
+            <description>User time</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Wait time">
+            <alternatename/>
+            <description>CPU idle time during which the system had outstanding disk/NFS I/O request</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Paging">
+          <alternatename/>
+          <description>Information about page faults and paging activity. These are averaged over the interval and given in units per second</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="File page-ins">
+            <alternatename/>
+            <description>File page-ins per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="File page-outs">
+            <alternatename/>
+            <description>File page-outs per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages freed">
+            <alternatename/>
+            <description>Pages freed (page replacement)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages in">
+            <alternatename/>
+            <description>Pages paged in from paging space</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages out">
+            <alternatename/>
+            <description>Pages paged out to paging space</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages scanned">
+            <alternatename/>
+            <description>Pages scanned by page-replacement algorithm</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+        <agentVersion>5.1</agentVersion>
+        <agentVersion>5.2</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>File system data</instanceName>
+      <description>File system data provided by df</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="df -k"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="true"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/File system/{6 on 0}" idx="0"/>
+            <column cid="Blocks" eid="root/File system/{6 on 0}" idx="1"/>
+            <column cid="Free blocks" eid="root/File system/{6 on 0}" idx="2"/>
+            <column cid="%Used" eid="root/File system/{6 on 0}" idx="3"/>
+            <column cid="Iused" eid="root/File system/{6 on 0}" idx="4"/>
+            <column cid="%Iused" eid="root/File system/{6 on 0}" idx="5"/>
+            <column eid="root/File system/{6 on 0}" idx="6"/>
+          </columns>
+          <ignoreLines>Filesystem*|/proc*|df -k*</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/File system/{6 on 0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="%Iused">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="%Used">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Blocks">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Free blocks">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Iused">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+        <agentVersion>5.1</agentVersion>
+        <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Network interface data</instanceName>
+      <description>Network interface data provided by netstat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="netstat -i -f inet"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="true"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/Network interfaces/{0#2}" idx="0"/>
+            <column cid="Mtu" eid="root/Network interfaces/{0#2}" idx="1"/>
+            <column eid="root/Network interfaces/{0#2}" idx="2"/>
+            <column cid="Packets in" eid="root/Network interfaces/{0#2}" idx="3"/>
+            <column cid="Errors in" eid="root/Network interfaces/{0#2}" idx="4"/>
+            <column cid="Packets out" eid="root/Network interfaces/{0#2}" idx="5"/>
+            <column cid="Errors out" eid="root/Network interfaces/{0#2}" idx="6"/>
+            <column cid="Collisions" eid="root/Network interfaces/{0#2}" idx="7"/>
+          </columns>
+          <ignoreLines>Ipkts*|netstat*</ignoreLines>
+          <columnsToIgnoreWhenMoreThanExpected>3</columnsToIgnoreWhenMoreThanExpected>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/Network interfaces/{0#2}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Collisions">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Errors in">
+            <alternatename/>
+            <description>Errors in</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Errors out">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Mtu">
+            <alternatename/>
+            <description>Maximum transmission unit</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Packets in">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Packets out">
+            <alternatename/>
+            <description/>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+        <agentVersion>5.1</agentVersion>
+        <agentVersion>5.2</agentVersion>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Per CPU data</instanceName>
+      <description>Per CPU data provided by mpstat</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="mpstat {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/CPU/{0}" idx="0"/>
+            <column cid="Minor page faults" eid="root/CPU/{0}" idx="1"/>
+            <column cid="Major page faults" eid="root/CPU/{0}" idx="2"/>
+            <column cid="Inter-processor calls" eid="root/CPU/{0}" idx="3"/>
+            <column cid="Interrupts" eid="root/CPU/{0}" idx="4"/>
+            <column cid="Context switches" eid="root/CPU/{0}" idx="5"/>
+            <column cid="Involuntary context switches" eid="root/CPU/{0}" idx="6"/>
+            <column cid="Run queue size" eid="root/CPU/{0}" idx="7"/>
+            <column cid="Thread migrations" eid="root/CPU/{0}" idx="8"/>
+            <column cid="Logical processor affinity" eid="root/CPU/{0}" idx="9"/>
+            <column cid="System calls" eid="root/CPU/{0}" idx="10"/>
+            <column cid="User time" eid="root/CPU/{0}" idx="11"/>
+            <column cid="System time" eid="root/CPU/{0}" idx="12"/>
+            <column cid="Wait time" eid="root/CPU/{0}" idx="13"/>
+            <column cid="Idle time" eid="root/CPU/{0}" idx="14"/>
+          </columns>
+          <ignoreLines>System|cpu|ALL|---|mpstat|U</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/CPU/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Context switches">
+            <alternatename/>
+            <description>Total number of context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Idle time">
+            <alternatename/>
+            <description>The percentage of time that the logical processor was idle and the system did not have an outstanding disk I/O request</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Inter-processor calls">
+            <alternatename/>
+            <description>Total number of inter-processor calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Interrupts">
+            <alternatename/>
+            <description>Total number of interrupts</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Involuntary context switches">
+            <alternatename/>
+            <description>Total number of involuntary context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Logical processor affinity">
+            <alternatename/>
+            <description>The percentage of logical processor redispatches within the scheduling affinity domain 3</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Major page faults">
+            <alternatename/>
+            <description>Major page faults (page faults with disk IO)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Minor page faults">
+            <alternatename/>
+            <description>Minor page faults (page faults with no IO)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Run queue size">
+            <alternatename/>
+            <description>Run queue size</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description>Number of system calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System time">
+            <alternatename/>
+            <description>The percentage of physical processor utilization that occurred while executing at the system level(kernel)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Thread migrations">
+            <alternatename/>
+            <description>Total number of thread migrations (to another logical processor)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="User time">
+            <alternatename/>
+            <description>The percentage of physical processor utilization that occurred while executing at the user level(application)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Wait time">
+            <alternatename/>
+            <description>The percentage of time that the logical processor was idle and the system had an outstanding disk I/O request</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>System data for SPP systems</instanceName>
+      <description>System data provided by vmstat for shared processors partitions</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="vmstat -I {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column cid="Kernel threads in run queue" eid="root/System" idx="0"/>
+            <column cid="Kernel threads in wait queue" eid="root/System" idx="1"/>
+            <column cid="Threads waiting for I/O" eid="root/System" idx="2"/>
+            <column cid="Active virtual pages" eid="root/Memory" idx="3"/>
+            <column cid="Free list size" eid="root/Memory" idx="4"/>
+            <column cid="File page-ins" eid="root/Paging" idx="5"/>
+            <column cid="File page-outs" eid="root/Paging" idx="6"/>
+            <column cid="Pages in" eid="root/Paging" idx="7"/>
+            <column cid="Pages out" eid="root/Paging" idx="8"/>
+            <column cid="Pages freed" eid="root/Paging" idx="9"/>
+            <column cid="Pages scanned" eid="root/Paging" idx="10"/>
+            <column cid="Device interrupts" eid="root/System" idx="11"/>
+            <column cid="System calls" eid="root/System" idx="12"/>
+            <column cid="Kernel thread context switches" eid="root/System" idx="13"/>
+            <column cid="User time" eid="root/CPU" idx="14"/>
+            <column cid="System time" eid="root/CPU" idx="15"/>
+            <column cid="Idle time" eid="root/CPU" idx="16"/>
+            <column cid="Wait time" eid="root/CPU" idx="17"/>
+            <column cid="Physical processors consumed" eid="root/CPU" idx="18"/>
+            <column cid="Entitled capacity consumed" eid="root/CPU" idx="19"/>
+          </columns>
+          <ignoreLines>kthr*|--*|System*|avm|vmstat*</ignoreLines>
+          <accumulateVolatileEntities>false</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/System">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description>System calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Device interrupts">
+            <alternatename/>
+            <description>Device interrupts</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in run queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in run queue</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel thread context switches">
+            <alternatename/>
+            <description>Kernel thread context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Threads waiting for I/O">
+            <alternatename/>
+            <description>Number of threads waiting on actual physical I/O per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Kernel threads in wait queue">
+            <alternatename/>
+            <description>Number of kernel threads placed in wait queue (awaiting resource, awaiting input/output)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Memory">
+          <alternatename/>
+          <description>Information about the usage of virtual and real memory. Virtual pages are considered active if they have been accessed. A page is 4096 bytes.</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Free list size">
+            <alternatename/>
+            <description>Size of the free list. Note that a large portion of real memory is utilized as a cache for file system data. It is not unusual for the size of the free list to remain small</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Active virtual pages">
+            <alternatename/>
+            <description>Active virtual pages</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/CPU">
+          <alternatename/>
+          <description>Shows details about processor usage</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Idle time">
+            <alternatename/>
+            <description>Pages paged out to paging space</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Wait time">
+            <alternatename/>
+            <description>CPU idle time during which the system had outstanding disk/NFS I/O request</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="User time">
+            <alternatename/>
+            <description>User time</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System time">
+            <alternatename/>
+            <description>System time</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Entitled capacity consumed">
+            <alternatename/>
+            <description>The percentage of entitled capacity consumed. Displayed only if the partition is running with the shared processor</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Physical processors consumed">
+            <alternatename/>
+            <description>Number of physical processors consumed. Displayed only if the partition is running with shared processor</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+        <entitydescriptor id="root/Paging">
+          <alternatename/>
+          <description>Information about page faults and paging activity. These are averaged over the interval and given in units per second</description>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="File page-ins">
+            <alternatename/>
+            <description>File page-ins per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages out">
+            <alternatename/>
+            <description>Pages paged out to paging space</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages freed">
+            <alternatename/>
+            <description>Pages freed (page replacement)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages scanned">
+            <alternatename/>
+            <description>Pages scanned by page-replacement algorithm</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Pages in">
+            <alternatename/>
+            <description>Pages paged in from paging space</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="File page-outs">
+            <alternatename/>
+            <description>File page-outs per second</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
+      </agentVersions>
+    </providerInstance>
+    <providerInstance class="com.ixora.rms.repository.ProviderInstance">
+      <providerName>providers.process.name</providerName>
+      <instanceName>Per CPU data for SPP systems</instanceName>
+      <description>Per CPU data provided by mpstat for shared processors partitions</description>
+      <author>system</author>
+      <remote>false</remote>
+      <optional>true</optional>
+      <selectedByDefault>true</selectedByDefault>
+      <inheritsLocationFromAgent>true</inheritsLocationFromAgent>
+      <config>
+        <config class="com.ixora.rms.providers.impl.process.Configuration">
+          <providers.process.command type="0" value="mpstat {tick}"/>
+          <providers.process.is_volatile notrequired="true" type="3" value="false"/>
+          <providers.process.end_of_buffer_marker notrequired="true" type="0" value=""/>
+          <providers.process.execution_mode notrequired="true" set="{agent.ExecutionMode},Normal,Telnet,SSH2" type="0" value="{agent.ExecutionMode}"/>
+          <providers.process.username notrequired="true" type="0" value="{agent.Username}"/>
+          <providers.process.password notrequired="true" type="0" value="{agent.Password}"/>
+          <providers.process.username_prompt notrequired="true" type="0" value="{agent.UsernamePrompt}"/>
+          <providers.process.password_prompt notrequired="true" type="0" value="{agent.PasswordPrompt}"/>
+          <providers.process.shell_prompt notrequired="true" type="0" value="{agent.ShellPrompt}"/>
+          <providers.process.port notrequired="true" type="0" value="{agent.Port}"/>
+        </config>
+        <usePrivateCollector>false</usePrivateCollector>
+      </config>
+      <parserInstance>
+        <parser>providers.parsers.table.name</parser>
+        <rules class="com.ixora.rms.agents.providers.parsers.table.TableRulesDefinition">
+          <columnSeparator> 	</columnSeparator>
+          <columns>
+            <column eid="root/CPU/{0}" idx="0"/>
+            <column cid="Minor page faults" eid="root/CPU/{0}" idx="1"/>
+            <column cid="Major page faults" eid="root/CPU/{0}" idx="2"/>
+            <column cid="Inter-processor calls" eid="root/CPU/{0}" idx="3"/>
+            <column cid="Interrupts" eid="root/CPU/{0}" idx="4"/>
+            <column cid="Context switches" eid="root/CPU/{0}" idx="5"/>
+            <column cid="Involuntary context switches" eid="root/CPU/{0}" idx="6"/>
+            <column cid="Run queue size" eid="root/CPU/{0}" idx="7"/>
+            <column cid="Thread migrations" eid="root/CPU/{0}" idx="8"/>
+            <column cid="Logical processor affinity" eid="root/CPU/{0}" idx="9"/>
+            <column cid="System calls" eid="root/CPU/{0}" idx="10"/>
+            <column cid="User time" eid="root/CPU/{0}" idx="11"/>
+            <column cid="System time" eid="root/CPU/{0}" idx="12"/>
+            <column cid="Wait time" eid="root/CPU/{0}" idx="13"/>
+            <column cid="Idle time" eid="root/CPU/{0}" idx="14"/>
+            <column cid="Fraction of physical processor consumed" eid="root/CPU/{0}" idx="15"/>
+          </columns>
+          <ignoreLines>System|cpu|ALL|---|mpstat</ignoreLines>
+          <accumulateVolatileEntities>true</accumulateVolatileEntities>
+          <convertColumnToRow>false</convertColumnToRow>
+        </rules>
+      </parserInstance>
+      <descriptors>
+        <entitydescriptor id="root/CPU/{0}">
+          <alternatename/>
+          <description/>
+          <haschildren>false</haschildren>
+          <indsampling>false</indsampling>
+          <counterdescriptor id="Context switches">
+            <alternatename/>
+            <description>Total number of context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Fraction of physical processor consumed">
+            <alternatename/>
+            <description>Fraction of physical processor consumed</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Idle time">
+            <alternatename/>
+            <description>The percentage of time that the logical processor was idle and the system did not have an outstanding disk I/O request</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Inter-processor calls">
+            <alternatename/>
+            <description>Total number of inter-processor calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Interrupts">
+            <alternatename/>
+            <description>Total number of interrupts</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Involuntary context switches">
+            <alternatename/>
+            <description>Total number of involuntary context switches</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Logical processor affinity">
+            <alternatename/>
+            <description>The percentage of logical processor redispatches within the scheduling affinity domain 3</description>
+            <discreet>false</discreet>
+            <type>2</type>
+          </counterdescriptor>
+          <counterdescriptor id="Major page faults">
+            <alternatename/>
+            <description>Major page faults (page faults with disk IO)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Minor page faults">
+            <alternatename/>
+            <description>Minor page faults (page faults with no IO)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Run queue size">
+            <alternatename/>
+            <description>Run queue size</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System calls">
+            <alternatename/>
+            <description>Number of system calls</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="System time">
+            <alternatename/>
+            <description>The percentage of physical processor utilization that occurred while executing at the system level(kernel)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Thread migrations">
+            <alternatename/>
+            <description>Total number of thread migrations (to another logical processor)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="User time">
+            <alternatename/>
+            <description>The percentage of physical processor utilization that occurred while executing at the user level(application)</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+          <counterdescriptor id="Wait time">
+            <alternatename/>
+            <description>The percentage of time that the logical processor was idle and the system had an outstanding disk I/O request</description>
+            <discreet>false</discreet>
+            <type>0</type>
+          </counterdescriptor>
+        </entitydescriptor>
+      </descriptors>
+      <agentVersions>
+        <agentVersion>5.3 (Shared Processors Partition)</agentVersion>
+      </agentVersions>
+    </providerInstance>
+  </providerInstances>
+</rms>

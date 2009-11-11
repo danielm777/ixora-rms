@@ -1,0 +1,192 @@
+
+///////////////////////////////////////////////////////////////////////////////////
+/*
+typedef std::string tstring;
+
+
+// Create a Java array of strings from a NULL separated list of strings.
+jobjectArray CreateArray(JNIEnv *env, const TCHAR* szObjects)
+{
+// Count returned entities
+	int		length = 0;
+	for (LPCTSTR szCnt = szObjects; *szCnt != 0; szCnt += lstrlen(szCnt) + 1)
+		length++;
+
+// Create array of strings
+	jobjectArray array = env->NewObjectArray(length, 
+		env->FindClass(_T("java/lang/String")), NULL);
+
+// Fill array
+	int i = 0;
+
+	for (szCnt = szObjects; *szCnt != 0; szCnt += lstrlen(szCnt) + 1)
+	{
+		env->SetObjectArrayElement(array, i, env->NewStringUTF(szCnt));
+		i++;
+	}
+
+	return array;
+}
+
+// Create a Java array of strings from a NULL separated list of strings.
+// Places _Total or _Global_ instances at the beginning.
+jobjectArray CreateInstanceArray(JNIEnv *env, const TCHAR* szObjects, tstring& totalName)
+{
+// Count returned entities
+	int		totalIndex = -1;
+	int		length = 0;
+	for (LPCTSTR szCnt = szObjects; *szCnt != 0; szCnt += lstrlen(szCnt) + 1)
+	{
+		if (_tcsstr(szCnt, _T("_Total")) || _tcsstr(szCnt, _T("_Global_")))
+		{
+			totalIndex = length;
+			totalName = szCnt;
+		}
+		length++;
+	}
+
+// Create array of strings
+	jobjectArray array = env->NewObjectArray(length, 
+		env->FindClass(_T("java/lang/String")), NULL);
+
+// Fill array : exclude _Total from list
+	int i = 0;
+	for (szCnt = szObjects; *szCnt != 0; szCnt += lstrlen(szCnt) + 1)
+	{
+		if (i != totalIndex)
+			env->SetObjectArrayElement(array, i, env->NewStringUTF(szCnt));
+
+		i++;
+	}
+
+	return array;
+}
+
+jobjectArray JNICALL Java_com_redbox_rms_agents_windows_WinPerf_EnumEntities
+  (JNIEnv *env, jclass, jstring machine)
+{
+
+	const TCHAR *szMachineName = NULL;
+	if (machine != NULL)
+		szMachineName = env->GetStringUTFChars(machine, 0);
+
+	PDH_STATUS status;
+	DWORD		dwSize = 0;
+
+// Retrieve the object list size
+	status = PdhEnumObjects(
+		NULL, // data source
+		szMachineName, // machine name
+		NULL, // output object list
+		&dwSize, // required size for object list
+		PERF_DETAIL_WIZARD, // all available detail
+		TRUE // refresh, don't use cache
+		);
+
+	if (dwSize == 0)
+		env->ThrowNew(env->FindClass(_T("com/ixora/rms/agents/windows/WinPerfException")), 
+			PDHErr2String(status));
+
+// Retrieve the actual objects
+	TCHAR* szObjects = (TCHAR*)malloc(dwSize*sizeof(TCHAR));
+	status = PdhEnumObjects(
+		NULL, // data source
+		szMachineName, // machine name
+		szObjects, // object list
+		&dwSize, // required size for object list
+		PERF_DETAIL_WIZARD, // all available detail
+		FALSE // use cache
+		);
+	if (status != ERROR_SUCCESS)
+		env->ThrowNew(env->FindClass(_T("com/ixora/rms/agents/windows/WinPerfException")), 
+			PDHErr2String(status));
+
+	jobjectArray array = CreateArray(env, szObjects);
+
+	free(szObjects);
+
+	if (machine != NULL)
+		env->ReleaseStringUTFChars(machine, szMachineName);
+
+	return array;
+}
+
+JNIEXPORT jstring JNICALL Java_com_redbox_rms_agents_windows_WinPerf_EnumEntityItems
+  (JNIEnv *env, jclass clazz, jstring machine, jstring object, 
+  jobject outCounters, jobject outInstances)
+{
+	if (object == NULL || outCounters == NULL || outInstances == NULL)
+	{
+		env->ThrowNew(env->FindClass(_T("java/lang/NullPointerException")), _T(""));
+		return;
+	}
+
+	const TCHAR *szMachineName = NULL;
+	if (machine != NULL)
+		szMachineName = env->GetStringUTFChars(machine, 0);
+
+	const TCHAR *szObject = env->GetStringUTFChars(object, 0);
+
+	PDH_STATUS  status					= ERROR_SUCCESS;
+	LPTSTR      szCounterListBuffer     = NULL;
+	DWORD       dwCounterListSize       = 0;
+	LPTSTR      szInstanceListBuffer    = NULL;
+	DWORD       dwInstanceListSize      = 0;
+
+// Retrieve the counter list size
+	status = PdhEnumObjectItems (
+		NULL,                   // reserved
+		szMachineName,          // machine
+		szObject,				// object to enumerate
+		NULL,					// output list
+		&dwCounterListSize,     // an 0 length to get size
+		szInstanceListBuffer,
+		&dwInstanceListSize,
+		PERF_DETAIL_WIZARD,     // counter detail level
+		0);
+	if (status != ERROR_SUCCESS) 
+		env->ThrowNew(env->FindClass(_T("com/ixora/rms/agents/windows/WinPerfException")), 
+			PDHErr2String(status));
+
+// Retrieve the actual counters
+	szCounterListBuffer = (LPTSTR)malloc ((dwCounterListSize * sizeof (TCHAR)));
+	szInstanceListBuffer = (LPTSTR)malloc ((dwInstanceListSize * sizeof (TCHAR)));
+
+	status = PdhEnumObjectItems (
+		NULL,   // reserved
+		szMachineName,			// machine
+		szObject,				// object to enumerate
+		szCounterListBuffer,
+		&dwCounterListSize,
+		szInstanceListBuffer,
+		&dwInstanceListSize,
+		PERF_DETAIL_WIZARD,     // counter detail level
+		0);
+	if (status != ERROR_SUCCESS) 
+		env->ThrowNew(env->FindClass(_T("com/ixora/rms/agents/windows/WinPerfException")), 
+			PDHErr2String(status));
+
+// Create java arrays
+	tstring totalName;
+	jobjectArray arCounters = CreateArray(env, szCounterListBuffer);
+	jobjectArray arInstances = CreateInstanceArray(env, szInstanceListBuffer, totalName);
+
+// Set the 'value' field in the holders to be the java arrays
+	jfieldID fieldValue = env->GetFieldID(
+		env->FindClass(_T("com/ixora/common/utils/ObjectHolder")), 
+		_T("value"), 
+		_T("Ljava/lang/Object;"));
+
+	env->SetObjectField(outCounters, fieldValue, arCounters);
+	env->SetObjectField(outInstances, fieldValue, arInstances);
+
+// Cleanup
+	free(szCounterListBuffer);
+	free(szInstanceListBuffer);
+
+	if (machine != NULL)
+		env->ReleaseStringUTFChars(machine, szMachineName);
+	env->ReleaseStringUTFChars(object, szObject);
+
+}
+*/

@@ -1,0 +1,23 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Log and Replay</title><link href="style.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.68.1" name="generator"><link rel="start" href="index.html" title="IxoraRMS Documentation"><link rel="up" href="ch02.html" title="User guide"><link rel="prev" href="ch02s04.html" title="Controls"><link rel="next" href="ch02s06.html" title="Defining Custom Views"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="secLogging"></a>Log and Replay</h2></div></div></div><a name="N353" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraLogging"></a>Logging</h3></div></div></div><p>IxoraRMS can record into an offline file all performance data
+		collected during a monitoring session. This data can later be replayed
+		in offline mode (without a connection to agents or Host Managers) for
+		further analysis.</p><p>Logging can be enabled at any point during a monitoring session by
+		clicking the 'Data Logging' button on the toolbar. Incoming data will start
+		being recorded in the selected log file. The current version of IxoraRMS only
+		supports logging to a disk file.</p></div><a name="N35F" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraReplaying"></a>Replaying</h3></div></div></div><p>To replay a logged session click the 'Load Log' toolbar button and
+		select the log file. A dialog will open as in the figure bellow that prompts you to adjust the
+		time interval to replay.</p><div class="figure"><a name="N369"></a><div><img src="images/log_replay_config.png" alt="Log Replay Configuration Dialog"></div><p class="title"><b>Figure&nbsp;21.&nbsp;Log Replay Configuration Dialog</b></p></div><p>You can have even more control over the speed of the replay operation by
+		adjusting the aggregation interval.
+		The aggregation interval is specified in seconds; all samples collected during this
+		interval will be averaged into one value. Increasing this value can speed up considerably
+		the replay of large log files, although at the expense of some detail.</p><p>Please note that some information (for intstance log file records) will never be aggregated no matter
+		what the settings for the log replay.</p><p>After loading a log file, the Console's user interface will change slightly to
+		show the log playback controls.</p><div class="figure"><a name="N375"></a><div><img src="images/log_controls.png" alt="Log Replay Controls"></div><p class="title"><b>Figure&nbsp;22.&nbsp;Log Replay Controls</b></p></div><div class="itemizedlist"><ul type="disc"><li>1 - Starts/restarts the playing of the logged data</li><li>2 - Pauses the playing of the logged data</li><li>3 - Resets the playing of the logged data</li><li>4 - This control is enabled only when the data being replayed is not aggregated; it controls
+			the speed at which log records are replayed</li></ul></div><p>In log playback mode the session tree is still available but with the
+		following restrictions:
+		<div class="itemizedlist"><ul type="disc"><li>Hosts and agents cannot be edited.</li><li>Only counters and entities which were enabled during recording
+			are shown.</li></ul></div>
+		</p><p>It is important to note that replaying a log does not limit your ability
+		to plot different counters or to define custom views. All counters that were
+		enabled during recording are now available for plotting, regardless whether
+		they were plotted during the original monitoring session or not.</p></div><p></p><p></p></div></body></html>

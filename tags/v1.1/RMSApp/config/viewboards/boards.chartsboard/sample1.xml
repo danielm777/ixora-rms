@@ -1,0 +1,22 @@
+<rms>
+<view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+  <name/>
+  <description>This is a sample chart data view</description>
+  <query>
+    <resource id="process" name="Process" iname="$entity[2]" rid="-/-/root/Process/((?!Idle).*)"/>
+    <resource id="proctime" name="$counter" iname="$entity[2]/$counter" rid="-/-/root/Process/((?!Idle).*)/[% Processor Time]"/>
+    <resource id="usertime" name="$counter" iname="$entity[2]/$counter" rid="-/-/root/Process/((?!Idle).*)/[% User Time]"/>
+    <resource code="return usertime * 3;" description="Usertime by 3" name="$counter by 3" iname="$entity[2]/$counter by 3" id="usertime_by_3" rid="-/-/root/Process/((?!Idle).*)/[% User Time]"/>
+    <function id="other time" name="Other CPU Time" op="script">
+     <param id="proctime"/>
+     <param id="usertime"/>
+     <code>return proctime - usertime;</code>
+    </function>
+  </query>
+  <renderer type="StackedBar2D">
+    <domain id="process"/>
+    <range id="proctime"/>
+    <range id="usertime"/>
+  </renderer>
+</view>
+</rms>

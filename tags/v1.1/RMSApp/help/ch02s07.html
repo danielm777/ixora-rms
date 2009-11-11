@@ -1,0 +1,199 @@
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Monitoring Custom Data</title><link href="style.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.68.1" name="generator"><link rel="start" href="index.html" title="IxoraRMS Documentation"><link rel="up" href="ch02.html" title="User guide"><link rel="prev" href="ch02s06.html" title="Defining Custom Views"><link rel="next" href="ch02s08.html" title="Java Providers"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="secCustomData"></a>Monitoring Custom Data</h2></div></div></div><p>Another exciting feature of IxoraRMS is the ability to add custom
+	data sources and to integrate them seamlessly with the built-in agents.</p><p>A Provider is the component which collects data from an external source
+   and converts it into Entities and Counters. Providers are always associated
+   with Agents, from which they inherit configuration options, and to which they
+   contribute Counters.</p><p>The steps involved in creating a custom data source are:</p><div class="itemizedlist"><ul type="disc"><li>Create an Agent (optional). Using Agent Installer create a new custom agent which
+      will host the new Provider(s). The agent will provide configuration common
+      to all its providers, and will serve as a root for the entity tree.</li><li>Create a Provider for this Agent. Using Provider Manager, select the new
+      Agent (or an existing one) and add a new Provider for it. Select one of provider
+      types (Java, SQL or Process) and configure its running parameters and the structure
+      of its Entities and Counters.</li><li>Activate the new Agent as you would any other agent, optionally enabling
+      or disabling some providers.</li></ul></div><a name="N496" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraAgentInstaller"></a>Agent Installer</h3></div></div></div><p>This window is accessible from Tools/Agent Installer. To add a new Agent,
+      click Install and select a configuration template (SQL, Java or Process). This will
+      populate the fields with appropriate values, and will be enough for most uses.
+      Here is a reference of the agent's properties, some of them are intended for future
+      advanced customizations:</p><div class="itemizedlist"><ul type="disc"><li>Name: agent name, cannot be changed after creation.</li><li>Description: agent description.</li><li>Class: Java class containing agent implementation, manual editing not
+         recommended, reserved for future use.</li><li>Category: The name of the category which the agent belongs to. The predefined
+         values are the following:<div class="itemizedlist"><ul type="circle"><li>applications</li><li>network</li><li>databases</li><li>webServers</li><li>appServers</li><li>operatingSystems</li><li>miscellaneous</li></ul></div></li><li>Message Catalog: Usually the same as agent name, the name of properties
+         file (located under config/messages), if any, containing message translations.</li></ul></div><p>The following agent definition data can be assigned to one or more agent versions:</p><div class="itemizedlist"><ul type="disc"><li>System Versions: Whether agent can monitor multiple versions of the
+         same system. Providers can be associated to one or more versions defined here.</li><li>Location: Whether the agent will be executed locally or deployed remotely.</li><li>Levels: Whether agent supports multiple monitoring levels, and which
+         is the default.</li><li>Jar Paths: List of external jar files that agent may require.</li><li>UI Jar: jar containing agent's user interface (configuration panel).</li><li>Config Panel: Java class containing implementation of the configuration
+         panel displayed in 'Activate Agent' window. If one of the agent templates has been chosen before
+         this field will already be populated.</li></ul></div><div class="figure"><a name="N4C9"></a><div><img src="images/agent_installer.png" alt="Agent Installer"></div><p class="title"><b>Figure&nbsp;26.&nbsp;Agent Installer</b></p></div></div><a name="N4CF" class="indexterm"></a><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="paraProviders"></a>Providers</h3></div></div></div><p>Access this window from Tools/Provider Manager. To create a Provider, first
+      select an Agent and click Add. This will bring up Provider Instance Editor.</p><div class="figure"><a name="N4D9"></a><div><img src="images/provider_editor.png" alt="Provider Instsance Editor"></div><p class="title"><b>Figure&nbsp;27.&nbsp;Provider Instsance Editor</b></p></div><p>Common fields:</p><div class="itemizedlist"><ul type="disc"><li>Agent Versions: available if the associated agent has defined
+         a list of versions. Select which versions this provider is intended to
+         work with.</li><li>Provider Instance Name: Name for this provider</li><li>Provider Instance Description: Description for this provider</li><li>Type: Select either SQL, Java or Process from the dropdown list.
+         Different provider types will have different configuration options,
+         detailed below.</li><li>Location: Run this provider localy (on the machine whereIxoraRMS console is running), remotely (on the monitored host) or
+         wherever the agent is configured to run (inherit location).</li><li>Optional: Provider can be enabled/disabled before agent is
+         activated.</li><li>Selected: The default enabled/disabled state of the provider.</li><li>Requires private collector: Check this if the provider may
+         occasionaly take much longer to execute. If this is selected the provider
+         will not affect the functioning of the common data collectors. Be selective when
+         enabling this flag as too many collectors will impact overall system performance.</li></ul></div><p>Note that in all options detailed below you can use properties of the
+      agent, through the following syntax: {agent.propertyname}. Thus, if the agent's
+      configuration has a property called 'propertyname', its value will be used here.
+      This makes it convenient for example to attach multiple SQL based providers,
+      which will all use the username and password configured in the agent.</p><p>Along with the {agent.propertyname} syntax, the following built-in tokens
+      can be used:</p><div class="itemizedlist"><ul type="disc"><li>{agent} : converts at runtime to agent's name.</li><li>{host} : converts to name of the host that this agent is deployed on.</li><li>{home} : converts to the folder where IxoraRMS is installed.</li><li>{tick} : converts to the sampling interval configured for the agents in seconds.</li><li>{tick.ms} : converts to the same sampling interval, but given in
+	milliseconds.</li></ul></div><a name="N501" class="indexterm"></a><p>Java specific options:</p><div class="itemizedlist"><ul type="disc"><li>Classpath: Java classpath required by implementation class.</li><li>Class loader id: The id of the class loader to use; Use the
+         same id for multiple provider instances using the same code to allow
+         sharing of resources.</li><li>Implementation class: The name of the java class with the
+         implementation for this provider.</li><li>Implementation class parameters: Parameters list to be passed
+         to the impplementation class. Each parameter must be between double
+         quotes (e.g. "param1" "param2").</li></ul></div>
+
+	   For more information on Java providers see <a href="ch02s08.html" title="Java Providers">"Java Providers"</a>.<a name="N516" class="indexterm"></a><p>Process specific options:</p><div class="itemizedlist"><ul type="disc"><li>Command: Command line to execute.</li><li>Process is volatile: Check this if the process returns a block
+         of information and then exits. IxoraRMS will execute the command
+         line each time it needs to retrieve data. Leave this unchecked if the
+         process is continuously returning data.</li><li>End of buffer regex: Regular expression that marks a line as being the end of a data buffer.
+         If a process is not volatile and this parameter is left empty every line of output
+         will be sent to the data parser otherwise lines will be buffered until a line where this
+         regular expression has a match is found.</li><li>Process remote execution mode: Set to one of the following values:<div class="itemizedlist"><ul type="circle"><li>{agent.executionMode}: The provider will inherit the execution mode
+	    	     from the agent configuration.</li><li>Normal: The provider will be executed locally on the Console host.</li><li>Telnet: The provider will be executed using a Telnet session on the
+  	    	     monitored host.</li><li>SSH2: The provider will be executed using a secure shell session on the
+  	    	     monitored host.</li></ul></div></li><li>Username: Only applies for 'Telnet' or 'SSH2' execution modes: it is the
+         username used to connect to the monitored host. The default value is {agent.Username} which
+         allows the provider the use the value defined at agent level.</li><li>Password: applies for 'Telnet' or 'SSH2' execution modes: it is the password
+         used to connect to the monitored host. The default value is {agent.Password} which allows the provider the use
+         the value defined at agent level.</li><li>Shell prompt: applies for the 'Telnet' execution mode: it is the shell prompt for
+         the telnet session. To find out this value log in first through a telnet terminal and using the username that you intend to use for the
+         'Username' parameter: The default value is {agent.ShellPrompt} which allows the provider the use
+         the value defined at agent level</li><li>Connection port: applies for 'Telnet' or 'SSH2' execution modes: it is
+         the port used for the remote connection. The default value is {agent.Port} which allows
+         the provider the use the value defined at agent level</li></ul></div><a name="N538" class="indexterm"></a><p>SQL specific options:</p><div class="itemizedlist"><ul type="disc"><li>Classpath: Classpath pointing to the JDBC driver code.</li><li>Class loader id: The id of the class loader to use; Use the same id
+         for multiple provider instances using the same code to allow sharing of
+         resources.</li><li>JDBC driver class: The name of the JDBC driver class.</li><li>Username: Authenticate using this username.</li><li>Password: Authenticate using this password.</li><li>JDBC connection string: Connection string used to establish
+         the database connection.</li><li>SQL query: The SQL query to execute for data collection.</li></ul></div>
+
+		For more information on SQL providers see <a href="ch02s09.html" title="SQL Providers">"SQL Providers"</a>.<a name="N553" class="indexterm"></a><p>Table parser options:</p><div class="itemizedlist"><ul type="disc"><li>Convert column to row: If set to true converts the single column result of a query
+         into a single row table; used to facilitate the use of a
+         table parser instead of a properties parser(see the example below); by doing this
+         one can group the data into a hierarchy of entities which would not be possible using
+         the properties parser on this type of data</li><li>Column separator: character(s) separating columns. Default
+         is whitespace.</li><li>Ignore lines matching: Each line of text will be search for this regular expression.
+         A line containing it will be ignored by parser.</li><li>Ignore data columns at: Use this to handle the situation where missing values for a cell
+         can be the same as the column separator. This will allow you to ignore extra cells in
+         rows of data.</li><li>Accumulate volatile entities: if selected, entities generated
+         dynamically (for example the list of processes on a system) will persist
+         in the entity tree. If not selected dynamic entities will appear and
+         dissapear as they are found or not in the data source.</li></ul></div><p>Convert column to row example:
+	   If input data is:
+   		<pre class="programlisting">
+		 10
+		 22
+		 4
+		 5
+		 506
+		 269
+		</pre>
+	   	then by using the conversion the output will be:
+   		<pre class="programlisting">
+		 10 22 4 5 506 269
+		</pre>
+	   which can be now extracted into a hierarchy like this:
+   		<pre class="programlisting">
+   		root
+   		 |_Networking (with counters Aborted_clients and Aborted_connects)
+   		   |_Traffic (with counters Bytes_received	Bytes_sent)
+   		 |_Binlog (with counters Binlog_cache_disk_use Binlog_cache_use
+		</pre>
+	   </p><a name="N575" class="indexterm"></a><p>Properties parser options:</p><div class="itemizedlist"><ul type="disc"><li>Entity regex: A regular expression used to extract entity names. The
+         regex must contain one capturing group. All matches of this group will generate an
+         entity, which gets added under the Base entity (see the note below).</li><li>Property/Value regex: A regular expression to extract name/value pairs.
+         The regex must contain two capturing groups. By default matches for the first group
+         will generate values, and matches for the second group will generate counter names.</li><li>Value is second group: For the regex above, specifies whether the second
+         group will generate values and the first will generate counter names.</li><li>Base entity: All entities generated dynamically will be added under this
+         base entity.</li><li>Ignore lines matching: Each line of text will be search for this regular expression.
+         A line containing it will be ignored by parser.</li><li>Accumulate volatile entities: if selected, entities generated
+         dynamically (for example the list of processes on a system) will persist
+         in the entity tree. If not selected dynamic entities will appear and
+         dissapear as they are found or not in the data source.</li></ul></div><p>NOTE: Each counter resulted from parsing will need to have an entry in the list of
+	   counters, with a counter ID and an entity ID matching the ones extracted from text. If
+	   the regular expressions match values which are not in this list they will be ignored,
+	   without creating new counters or entities.</p><p>Example of a property parser definition:</p><pre class="programlisting">
+For the command:
+#netstat -s
+Ip:
+    1916 total packets received
+    0 forwarded
+    0 incoming packets discarded
+    1696 incoming packets delivered
+    1718 requests sent out
+Icmp:
+    0 ICMP messages received
+    0 input ICMP message failed.
+    ICMP input histogram:
+    0 ICMP messages sent
+    0 ICMP messages failed
+    ICMP output histogram:
+
+
+The parser definition is:
+Entity regex: ([^:].*):
+Property/Value regex: \s*([^\s]+)\s*([^\(]+).*
+Base entity: root/Network protocols
+
+And the generated entities are:
+Network protocols
+   +- Ip
+   |    [total packets received]
+   |    [forwarded]
+   |    [incoming packets discarded]
+   |    [incoming packets delivered]
+   |    [requests sent out]
+   +- Icmp
+        [ICMP messages received]
+        [input ICMP message failed]
+        [ICMP messages sent]
+        [ICMP messages failed]
+
+</pre><p>Column definition</p><p>Column definition is the main part of creating a provider. Each of
+      the three provider types (SQL, Java and Process) will output a table. On
+      this Parser page you are giving a meaning to each column of this table,
+      by associating it with an Entity or Counter.</p><p>The parser needs to have definitions for all columns, regardless
+      whether they will be visible in the entity tree or not. To skip a column,
+      leave the EntityID and CounterID empty for that particular column index.</p><p>To convert a column into a Counter, enter a CounterID and an EntityID for it.
+      The CounterID is a simple text, which will be looked up in the agent's Message Catalog
+      (see <a href="ch02s07.html#paraAgentInstaller" title="Agent Installer">"Agent Installer"</a>). If no translation is available
+      for that text, the CounterID will be displayed as-is throughout IxoraRMS.</p><p>The syntax of an EntityID is: <pre class="programlisting">root/e1/e2/...</pre>
+      where e1, e2 and so on are simple strings, localised in the same way as the
+      CounterID. Each of these elements will result in an Entity being added to the
+      tree. The final Entity in the path will contain the Counter.</p><p>To convert a column into an Entity, only enter an EntityID, but no CounterID.</p><p>To create dynamic (volatile) entities based on values in a certain column,
+      use the syntax: <pre class="programlisting">root/e1/{n}</pre>
+      where n is the index of the column containing entity names.</p><p>An example of creating entities and counters out of the output of
+      the Unix command ps:</p><pre class="programlisting">
+# ps
+   PID  CLS PRI TTY      TIME COMD
+  5996   TS  70 pts004   0:00 sh
+ 18294   TS  59 pts004   0:00 ps
+</pre><p>Parser definitions would be:</p><pre class="programlisting">
+Column     EntityID              CounterID
+0       root/Processes/{0}
+1       root/Processes/{0}       Scheduling class
+2       root/Processes/{0}       Priority
+3       root/Processes/{0}       TTY
+4       root/Processes/{0}       Time
+5       root/Processes/{0}       Command line
+</pre><p>And when the agent containing this provider is activated, the entity
+      tree would look like:</p><pre class="programlisting">
+Agent
+  +- Processes
+      +- 5996
+      |   [Scheduling class]
+      |   [Priority]
+      |   [TTY]
+      |   [Time]
+      |   [Command line]
+      +- 18294
+          [Scheduling class]
+          [Priority]
+          [TTY]
+          [Time]
+          [Command line]
+</pre><p>You can find more complex examples in the definitions of some
+      IxoraRMS's own agents, such as Linux or Oracle.</p><p>The Descriptors tab allows entering descriptions and types for
+      entities and counters:</p><div class="itemizedlist"><ul type="disc"><li>Description (for both entities and counters): simple string which
+         can be translated, or displayed as is.</li><li>Type: choose double, long or string for this counter, which
+         will affect how it is displayed in charts.</li><li>Discrete: check if this counter does not have continuous values
+         (for example it's an error code), may affect the way it is displayed in some
+         charts.</li></ul></div></div><p></p><p></p></div></body></html>

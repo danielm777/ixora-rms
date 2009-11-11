@@ -1,0 +1,26 @@
+<rms>
+  <view>
+    <description>CPU usage aggregated for all usertimes</description>
+    <query>
+		<resource id="time" rid="-/-/root/Processor/[#time#]"/>
+		<resource id="kerntime" max="100.0" rid="-/-/root/Processor/[% Privileged Time]"/>
+		<resource id="inttime" max="100.0" rid="-/-/root/Processor/[% Interrupt Time]"/>
+		<resource id="usertime" max="100.0" rid="-/-/root/Processor/[% User Time]"/>
+		<reaction params="usertime" severity="CRITICAL"> 
+			<arm><![CDATA[return usertime > 0.95;]]></arm>
+			<disarm><![CDATA[return env.getSecondsSinceLastArmed() > 60;]]></disarm>
+			<fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>	
+			<delivery><![CDATA[env.email(); env.job("libJob");]]></delivery>
+			<message><![CDATA[return "The usertime usage for " + env.getPath(usertime) + " has been greater than 95% for one minute";]]></message>
+			<advise><![CDATA[return "The usertime usage for " + env.getPath(usertime) + " has been greater than 95% for one minute";]]></advise>
+		</reaction>
+    </query>
+    <author>system</author>
+    <renderer type="StackedXYArea">
+      <domain id="time"/>
+      <range id="kerntime"/>
+      <range id="inttime"/>
+      <range id="usertime"/>
+    </renderer>
+  </view>
+</rms>

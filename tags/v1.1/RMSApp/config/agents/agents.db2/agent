@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+<version></version>
+<class>com.ixora.rms.agents.db2.DB2Agent</class>
+<name>agents.db2</name>
+<description>db2.description</description>
+<category>databases</category>
+<javaHelp>secDB2</javaHelp>
+<webHelp>monitoring-agents/db2</webHelp>
+<versions>
+	<version>8.1</version>
+	<version>8.2</version>
+	<version>9.*</version>
+</versions>
+<versionItems>
+  <versionItem>
+	 <locations>
+	  <location>0</location>
+	  <location>1</location>
+	 </locations>
+	 <customconfigpanel>com.ixora.rms.agents.db2.ConfigurationPanel</customconfigpanel>
+	 <uiJar>/jars/AgentDB2.jar</uiJar>
+      <natlibs>
+        <natlib>/bin/db2perf</natlib>
+      </natlibs>	 
+  </versionItem>
+</versionItems>
+</agent>

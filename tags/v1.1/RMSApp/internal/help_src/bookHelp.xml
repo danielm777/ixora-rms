@@ -1,0 +1,76 @@
+<?xml version='1.0'?>
+<!DOCTYPE book
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+  "C:/Dev/redbox/IxoraResources/libtools/docbook/dtd/docbookx.dtd" [
+<!ENTITY chIntro SYSTEM 'Introduction/chIntro.xml' >
+<!ENTITY secAbout SYSTEM 'Introduction/secAbout.xml' >
+<!ENTITY secGettingStarted SYSTEM 'Introduction/secGettingStarted.xml' >
+<!ENTITY secLicense SYSTEM 'Introduction/secLicense.xml' >
+
+<!ENTITY chUG SYSTEM 'UG/chUG.xml' >
+<!ENTITY secConcepts SYSTEM 'UG/secConcepts.xml' >
+<!ENTITY secUpdate SYSTEM 'UG/secUpdate.xml' >
+<!ENTITY secPerfMon SYSTEM 'UG/secPerfMon.xml' >
+<!ENTITY secControls SYSTEM 'UG/secControls.xml' >
+<!ENTITY secLogging SYSTEM 'UG/secLogging.xml' >
+<!ENTITY secCustomViews SYSTEM 'UG/secCustomViews.xml' >
+<!ENTITY secCustomData SYSTEM 'UG/secCustomData.xml' >
+<!ENTITY secFunctions SYSTEM 'UG/secFunctions.xml' >
+<!ENTITY secReactions SYSTEM 'UG/secReactions.xml' >
+<!ENTITY secJobs SYSTEM 'UG/secJobs.xml' >
+<!ENTITY secHTMLGeneration SYSTEM 'UG/secHTMLGeneration.xml' >
+<!ENTITY secProvidersJava SYSTEM 'UG/secProvidersJava.xml' >
+<!ENTITY secProvidersSQL SYSTEM 'UG/secProvidersSQL.xml' >
+<!ENTITY secFirewallIssues SYSTEM 'UG/secFirewallIssues.xml' >
+
+<!ENTITY chAgents SYSTEM 'Agents/chAgents.xml' >
+<!ENTITY secAIX SYSTEM 'Agents/secAIX.xml' >
+<!ENTITY secApache SYSTEM 'Agents/secApache.xml' >
+<!ENTITY secDB2 SYSTEM 'Agents/secDB2.xml' >
+<!ENTITY secFile SYSTEM 'Agents/secFile.xml' >
+<!ENTITY secHostAvailability SYSTEM 'Agents/secHostAvailability.xml' >
+<!ENTITY secHotspotJVM SYSTEM 'Agents/secHotspotJVM.xml' >
+<!ENTITY secJSR160 SYSTEM 'Agents/secJSR160.xml' >
+<!ENTITY secLDAP SYSTEM 'Agents/secLDAP.xml' >
+<!ENTITY secLinux SYSTEM 'Agents/secLinux.xml' >
+<!ENTITY secMySQL SYSTEM 'Agents/secMySQL.xml' >
+<!ENTITY secOracle SYSTEM 'Agents/secOracle.xml' >
+<!ENTITY secProviderHost SYSTEM 'Agents/secProviderHost.xml' >
+<!ENTITY secServiceAvailability SYSTEM 'Agents/secServiceAvailability.xml' >
+<!ENTITY secSNMP SYSTEM 'Agents/secSNMP.xml' >
+<!ENTITY secSolaris SYSTEM 'Agents/secSolaris.xml' >
+<!ENTITY secSQLServer SYSTEM 'Agents/secSQLServer.xml' >
+<!ENTITY secWebsphere SYSTEM 'Agents/secWebsphere.xml' >
+<!ENTITY secWeblogic SYSTEM 'Agents/secWeblogic.xml' >
+<!ENTITY secJBoss SYSTEM 'Agents/secJBoss.xml' >
+<!ENTITY secSunApp SYSTEM 'Agents/secSunApp.xml' >
+<!ENTITY secWindows SYSTEM 'Agents/secWindows.xml' >
+<!ENTITY secWMI SYSTEM 'Agents/secWMI.xml' >
+<!ENTITY secURL SYSTEM 'Agents/secURL.xml' >
+<!ENTITY secLogFile SYSTEM 'Agents/secLogFile.xml' >
+
+<!ENTITY chAppendix SYSTEM 'Appendix/chAppendix.xml' >
+<!ENTITY secApacheLicense SYSTEM 'Appendix/secApacheLicense.xml' >
+<!ENTITY secGanymedSSH2License SYSTEM 'Appendix/secGanymedSSH2License.xml' >
+<!ENTITY secBSDLicense SYSTEM 'Appendix/secBSDLicense.xml' >
+<!ENTITY secLGPL SYSTEM 'Appendix/secLGPL.xml' >
+<!ENTITY secSyntax SYSTEM 'Appendix/secSyntax.xml' >
+
+
+<!ENTITY programName 'IxoraRMS' >
+<!ENTITY programVersion '1.3.1' >
+<!ENTITY companyName 'IxoraRMS' >
+<!ENTITY programWebsite 'http://www.ixoragroup.com/IxoraRMS' >
+<!ENTITY companyWebsite 'http://www.ixoragroup.com/IxoraRMS' >
+
+]>
+
+<book>
+	<title>&programName; Documentation</title>
+
+	&chIntro;
+	&chUG;
+	&chAgents;
+	&chAppendix;
+
+</book>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+<version></version> 
+<class>com.ixora.rms.agents.apache.ApacheAgent</class>
+<name>agents.apache</name>
+<description>apache.description</description>
+<category>webServers</category>
+<javaHelp>secApache</javaHelp>
+<webHelp>monitoring-agents/apache-http-server</webHelp>
+<versions>
+<version>IBM Http Server 1.3.x</version>
+<version>Oracle Apache 1.3.x</version>
+<version>IBM Http Server 2.0.x</version>
+<version>Oracle Apache 2.0.x</version>
+<version>IBM Http Server 6.0.x</version>
+<version>Oracle-HTTP-Server 10g</version>
+</versions>
+  <versionItems>
+  	<versionItem>
+	   <locations>
+	    <location>0</location>
+	    <location>1</location>
+	   </locations>
+	   <customconfigpanel>com.ixora.rms.agents.apache.ConfigurationPanel</customconfigpanel>
+	   <uiJar>/jars/AgentApache.jar</uiJar>
+	</versionItem>
+  </versionItems>
+</agent>

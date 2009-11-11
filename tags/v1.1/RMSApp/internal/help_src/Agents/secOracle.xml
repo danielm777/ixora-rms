@@ -1,0 +1,58 @@
+<section id="secOracle">
+	<title>Oracle</title>
+
+	<para>This agent retrieves information about an Oracle database system. It uses
+	SQL providers to retrieve its information and can be extended with other providers
+	to return more data. Along with the Unix agents, the Oracle agent can be used as
+	an example when creating your own monitoring data providers.</para>
+
+	<indexterm><primary>oracle</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraOracleLocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>The agent supports both local and remote modes, provided that it can
+		open a database connection from the machine it is deployed on. By default the
+		agent is using the Type 4 JDBC driver so there is no need for any Oracle libraries
+		to be available on the deployment host.</para>
+	</sect2>
+
+	<indexterm><primary>oracle</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraOracleVersions">
+		<title>Supported Versions</title>
+		<para>The agent supports Oracle version 8, 9i and Oracle 10g.</para>
+	</sect2>
+
+	<indexterm><primary>oracle</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraOracleConfig">
+		<title>Configuration</title>
+		<para>The following configuration options are available:</para>
+		<itemizedlist>
+			<listitem>Username: user name to use when connecting to Oracle.</listitem>
+			<listitem>Password: password to use when connecting to Oracle.</listitem>
+			<listitem>Port: port number for the Oracle database server; it defaults to 1521</listitem>
+			<listitem>SID: the Oracle SID of the database to monitor.</listitem>
+			<listitem>JDBC driver class: the name of the java class implementing the Oracle JDBC driver; it defaults to oracle.jdbc.driver.OracleDriver</listitem>
+			<listitem>JDBC driver class path: the path to the jar file with the JDBC driver, relative to the IxoraRMS installation folder.</listitem>
+		</itemizedlist>
+	</sect2>
+
+	<indexterm><primary>oracle</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraOracleContents">
+		<title>Contents</title>
+		<para>The agent returns the following information about an Oracle database:</para>
+		<itemizedlist>
+			<listitem>Events: holds statistics about Oracle system events.</listitem>
+			<listitem>Sessions: contains information about existing Oracle client
+			sessions.</listitem>
+			<listitem>Tablespaces: contains details about tablespaces defined in the
+			system.</listitem>
+			<listitem>Bufferpools: holds bufferpool information.</listitem>
+			<listitem>Dynamic SQL: holds details for the most expensive SQL statements executed
+			by the system.</listitem>
+			<listitem>Data access statistics: holds statistics about data access patterns.</listitem>
+			<listitem>Data dictionary cache: holds information about the data dictionary cache.</listitem>
+			<listitem>Library cache: holds information about the library cache.</listitem>
+			<listitem>I/O statisics: holds statistics for general I/O activity in the database.</listitem>
+		</itemizedlist>
+	</sect2>
+
+</section>

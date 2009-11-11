@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="winsample">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>windows</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.windows.Configuration">
+                    <config.username notrequired="true" type="0" value=""/>
+                    <config.password notrequired="true" type="0" value=""/>
+                    <config.domain notrequired="true" type="0" value=""/>
+                  </config>
+                  <version>WinXP</version>
+                </config>
+              </activation>
+              <id>windows</id>
+            </instanceData>
+            <entities>
+              <entity>
+                <config>
+                  <recursiveEnableAllCounters>false</recursiveEnableAllCounters>
+                  <enableAllCounters>false</enableAllCounters>
+                  <counters/>
+                </config>
+                <entitydescriptor id="root/Server">
+                  <alternatename/>
+                  <description>The Server performance object consists of counters that measure communication between the  local computer and the network.</description>
+                  <haschildren>false</haschildren>
+                  <indsampling>false</indsampling>
+                  <config>
+                    <recursiveEnableAllCounters>false</recursiveEnableAllCounters>
+                    <enableAllCounters>false</enableAllCounters>
+                    <counters/>
+                  </config>
+                </entitydescriptor>
+              </entity>
+            </entities>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/windows/root/PhysicalDisk/{Activity per physical disk}">
+          <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/PhysicalDisk/(.*)"/>
+          <resource id="reads" iname="$entity[2]/Reads/sec" name="Reads/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+          <resource code="return readbytes/1024;" id="readbytes" iname="$entity[2]/Read MB/sec" name="Read MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Read Bytes/sec]"/>
+          <resource id="writes" iname="$entity[2]/Writes/sec" name="Writes/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+          <resource code="return writebytes/1024;" id="writebytes" iname="$entity[2]/Write MB/sec" name="Write MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Write Bytes/sec]"/>
+          <resource id="disktime" iname="$entity[2]/Disk time" name="Disk time" rid="-/-/root/PhysicalDisk/(.*)/[% Disk Time]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/windows/root/System/{Global info}">
+          <resource id="sysuptime" iname="System up time (seconds)" name="System up time (seconds)" rid="-/-/-/[System Up Time]"/>
+          <resource id="processes" iname="Processes" name="Processes" rid="-/-/-/[Processes]"/>
+          <resource id="threads" iname="Threads" name="Threads" rid="-/-/-/[Threads]"/>
+          <resource id="regpctuse" iname="% Registry quota in use" name="% Registry quota in use" rid="-/-/-/[% Registry Quota In Use]"/>
+          <resource id="syscalls" iname="System calls/sec" name="System calls/sec" rid="-/-/-/[System Calls/sec]"/>
+          <resource id="ctxswitches" iname="Context switches/sec" name="Context switches/sec" rid="-/-/-/[Context Switches/sec]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/windows/root/LogicalDisk/{Logical Disk Activity}">
+          <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/LogicalDisk/(.*)"/>
+          <resource id="reads" iname="$entity[2]/Reads/sec" name="Reads/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Reads/sec]"/>
+          <resource code="return readbytes/1024;" id="readbytes" iname="$entity[2]/Read MB/sec" name="Read MB/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Read Bytes/sec]"/>
+          <resource id="writes" iname="$entity[2]/Writes/sec" name="Writes/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Writes/sec]"/>
+          <resource code="return writebytes/1024;" id="writebytes" iname="$entity[2]/Write MB/sec" name="Write MB/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Write Bytes/sec]"/>
+          <resource id="disktime" iname="$entity[2]/Disk time" name="Disk time" rid="-/-/root/LogicalDisk/(.*)/[% Disk Time]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/windows/root/Processor/{Usage per processor}">
+          <resource id="processor" iname="$entity[2]" name="Processor" rid="-/-/root/Processor/(.*)"/>
+          <resource id="proctime" iname="$entity[2]/% Processor Time" max="100.0" name="% Processor Time" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
+          <resource id="usertime" iname="$entity[2]/% User Time" max="100.0" name="% User Time" rid="-/-/root/Processor/(.*)/[% User Time]"/>
+          <resource id="privtime" iname="$entity[2]/% Privileged Time" max="100.0" name="% Privileged Time" rid="-/-/root/Processor/(.*)/[% Privileged Time]"/>
+          <resource id="dpctime" iname="$entity[2]/% DPC Time" max="100.0" name="% DPC Time" rid="-/-/root/Processor/(.*)/[% DPC Time]"/>
+          <resource id="inttime" iname="$entity[2]/% Interrupt Time" max="100.0" name="% Interrupt Time" rid="-/-/root/Processor/(.*)/[% Interrupt Time]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/windows/root/PhysicalDisk/{Physical Disk Activity}">
+          <resource id="localhost/windows/root/PhysicalDisk/(.*)" rid="localhost/windows/root/PhysicalDisk/(.*)"/>
+          <resource id="localhost/windows/root/PhysicalDisk/(.*)/[Disk Reads/sec]" rid="localhost/windows/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+          <resource id="localhost/windows/root/PhysicalDisk/(.*)/[Disk Read Bytes/sec]" rid="localhost/windows/root/PhysicalDisk/(.*)/[Disk Read Bytes/sec]"/>
+          <resource id="localhost/windows/root/PhysicalDisk/(.*)/[Disk Writes/sec]" rid="localhost/windows/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+          <resource id="localhost/windows/root/PhysicalDisk/(.*)/[Disk Write Bytes/sec]" rid="localhost/windows/root/PhysicalDisk/(.*)/[Disk Write Bytes/sec]"/>
+          <resource id="localhost/windows/root/PhysicalDisk/(.*)/[% Disk Time]" rid="localhost/windows/root/PhysicalDisk/(.*)/[% Disk Time]"/>
+          <resource id="localhost/windows/root/PhysicalDisk/(.*)/[#time#]" rid="localhost/windows/root/PhysicalDisk/(.*)/[#time#]"/>
+          <function/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/windows/root/Process/{CPU per process}">
+          <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Process/((?!Idle).*)"/>
+          <resource id="proctime" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Processor Time]"/>
+          <resource id="usertime" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% User Time]"/>
+          <resource id="privtime" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Privileged Time]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/windows/root/Processor/{Comparative usage per CPU}">
+          <resource id="localhost/windows/root/Processor/(.*)" rid="localhost/windows/root/Processor/(.*)"/>
+          <resource id="localhost/windows/root/Processor/(.*)/[% Processor Time]" rid="localhost/windows/root/Processor/(.*)/[% Processor Time]"/>
+          <resource id="localhost/windows/root/Processor/(.*)/[% User Time]" rid="localhost/windows/root/Processor/(.*)/[% User Time]"/>
+          <resource id="localhost/windows/root/Processor/(.*)/[% Privileged Time]" rid="localhost/windows/root/Processor/(.*)/[% Privileged Time]"/>
+          <resource id="localhost/windows/root/Processor/(.*)/[% DPC Time]" rid="localhost/windows/root/Processor/(.*)/[% DPC Time]"/>
+          <resource id="localhost/windows/root/Processor/(.*)/[% Interrupt Time]" rid="localhost/windows/root/Processor/(.*)/[% Interrupt Time]"/>
+          <function/>
+        </query>
+      </query>
+      <query>
+        <query id="{Windows systems overview}">
+          <resource id="(.*)" name="Host" rid="(.*)"/>
+          <resource id="cpu" name="CPU Time" rid="(.*)/(windows.*)/root/Processor/[% Processor Time]"/>
+          <resource id="cpu_queue" name="CPU Queue" rid="(.*)/(windows.*)/root/System/[Processor Queue Length]"/>
+          <resource id="disk_time" name="Disk Time" rid="(.*)/(windows.*)/root/PhysicalDisk/[% Disk Time]"/>
+          <resource id="page_faults_per_sec" name="Page Faults/s" rid="(.*)/(windows.*)/root/Memory/[Page Faults/sec]"/>
+          <resource id="tcp_conn_est" name="TCP Connections" rid="(.*)/(windows.*)/root/TCP/[Connections Established]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards/>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="450.0" title="Dashboard 4" w="400.0" x="336.0" y="267.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.tables.QuickChartDataView">
+                  <name>Physical Disk Activity</name>
+                  <description>Physical Disk Activity</description>
+                  <query>
+                    <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/PhysicalDisk/(.*)"/>
+                    <resource id="reads" iname="$entity[2]/Reads/sec" name="Reads/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+                    <resource code="return readbytes/1024;" id="readbytes" iname="$entity[2]/Read MB/sec" name="Read MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Read Bytes/sec]"/>
+                    <resource id="writes" iname="$entity[2]/Writes/sec" name="Writes/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+                    <resource code="return writebytes/1024;" id="writebytes" iname="$entity[2]/Write MB/sec" name="Write MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Write Bytes/sec]"/>
+                    <resource id="disktime" iname="$entity[2]/Disk time" name="Disk time" rid="-/-/root/PhysicalDisk/(.*)/[% Disk Time]"/>
+                    <resource id="-/-/root/PhysicalDisk/(.*)/[#time#]" rid="-/-/root/PhysicalDisk/(.*)/[#time#]"/>
+                    <function id="hiddenFilterFunction" op="filter">
+                      <param id="disk"/>
+                      <value>localhost/windows/root/PhysicalDisk/0 C:</value>
+                    </function>
+                  </query>
+                  <agentVersions/>
+                  <author>system</author>
+                  <renderer type="XYLine">
+                    <domain id="-/-/root/PhysicalDisk/(.*)/[#time#]"/>
+                    <range id="reads"/>
+                    <range id="writes"/>
+                  </renderer>
+                </view>
+                <context id="localhost/windows/root/PhysicalDisk"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.tables.QuickChartDataView">
+                  <name>Comparative usage per CPU</name>
+                  <description>Comparative usage per CPU</description>
+                  <query>
+                    <resource id="processor" iname="$entity[2]" name="Processor" rid="-/-/root/Processor/(.*)"/>
+                    <resource id="proctime" iname="$entity[2]/% Processor Time" max="100.0" name="% Processor Time" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
+                    <resource id="usertime" iname="$entity[2]/% User Time" max="100.0" name="% User Time" rid="-/-/root/Processor/(.*)/[% User Time]"/>
+                    <resource id="privtime" iname="$entity[2]/% Privileged Time" max="100.0" name="% Privileged Time" rid="-/-/root/Processor/(.*)/[% Privileged Time]"/>
+                    <resource id="dpctime" iname="$entity[2]/% DPC Time" max="100.0" name="% DPC Time" rid="-/-/root/Processor/(.*)/[% DPC Time]"/>
+                    <resource id="inttime" iname="$entity[2]/% Interrupt Time" max="100.0" name="% Interrupt Time" rid="-/-/root/Processor/(.*)/[% Interrupt Time]"/>
+                    <function id="hiddenFilterFunction" op="filter">
+                      <param id="processor"/>
+                      <value>localhost/windows/root/Processor/0</value>
+                      <value>localhost/windows/root/Processor/1</value>
+                    </function>
+                  </query>
+                  <agentVersions/>
+                  <author>system</author>
+                  <renderer type="StackedBar3D">
+                    <domain id="processor"/>
+                    <range id="usertime"/>
+                    <range id="privtime"/>
+                  </renderer>
+                </view>
+                <context id="localhost/windows/root/Processor"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.properties.PropertiesBoard" h="450.0" title="Dashboard 2" w="400.0" x="537.0" y="43.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.properties.PropertiesControlDescriptor">
+                <view id="localhost/windows/root/System/:Global info:"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="341.0" title="Dashboard 3" w="400.0" x="47.0" y="508.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.tables.TableControlDescriptor">
+                <view id="localhost/windows/root/LogicalDisk/:Logical Disk Activity:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="5"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.tables.TableControlDescriptor">
+                <view id="localhost/windows/root/Processor/:Usage per processor:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="396.0" title="Dashboard 1" w="460.0" x="40.0" y="40.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.tables.TableControlDescriptor">
+                <view id=":Windows systems overview:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.tables.TableControlDescriptor">
+                <view id="localhost/windows/root/Process/:CPU per process:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.tables.TableControlDescriptor">
+                <view id="localhost/windows/root/PhysicalDisk/:Activity per physical disk:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

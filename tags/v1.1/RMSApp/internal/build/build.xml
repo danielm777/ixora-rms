@@ -1,0 +1,185 @@
+<project name="RMS" default="jars">
+
+<!-- edit the following lines to your needs -->
+<property name="root"    value="C:/Dev/redbox"/>
+<property name="rootApp"    value="${root}/RMSApp"/>
+<property name="destDir"    value="${rootApp}/jars"/>
+<property name="libdir"     value="${root}/IxoraResources/lib"/>
+<property name="libs"		value="${libdir}/grammatica-bin.jar;${libdir}/SNMP4J.jar;${libdir}/ldap.jar;${libdir}/was511/pmi.jar;${libdir}/log4j.jar;${libdir}/jcommon.jar;${libdir}/janino.jar;${libdir}/jh.jar;${libdir}/jhall.jar;${destDir}/IxoraCommon.jar;${destDir}/RMSCommon.jar;${destDir}/RMS.jar;${destDir}/RMSRemote.jar;${destDir}/IxoraCommon.jar;${destDir}/mibble.jar;${destDir}/ganymed-ssh2.jar;"/>
+<mkdir dir="${destDir}"/>
+
+<!-- create .jar -->
+<target name="jars">
+	<jar jarfile="${destDir}/IxoraCommon.jar" basedir="${root}/IxoraCommon/classes"/>
+	<jar jarfile="${destDir}/RMSCommon.jar" basedir="${root}/RMS/classes"/>
+	<jar jarfile="${destDir}/RMS.jar" basedir="${rootApp}/classes"/>
+	<jar jarfile="${destDir}/RMSJMX.jar" basedir="${root}/RMSJMX/classes"/>
+	<jar jarfile="${destDir}/RMSLibsPatch.jar" basedir="${root}/RMSLibsPatch/classes"/>
+	
+	<!-- SQL Provider -->
+	<jar jarfile="${destDir}/Provider_sql_ui.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/sql/Configuration*.class"/>
+			<include name="**/sql/exception/*.class"/>
+			<include name="**/sql/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/Provider_sql.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/sql/**/*.class"/>
+			<exclude name="**/sql/Configuration*.class"/>
+			<exclude name="**/sql/exception/*.class"/>
+			<exclude name="**/sql/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- Java Provider -->
+	<jar jarfile="${destDir}/Provider_java_ui.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/java/Configuration*.class"/>
+			<include name="**/java/exception/*.class"/>
+			<include name="**/java/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/Provider_java.jar">
+		<fileset dir="${root}/RMSProviders/classes/">
+			<include name="**/java/**/*.class"/>
+			<exclude name="**/java/Configuration*.class"/>
+			<exclude name="**/java/exception/*.class"/>
+			<exclude name="**/java/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentWebsphere -->
+	<jar jarfile="${destDir}/AgentWebsphere.jar">
+		<fileset dir="${root}/AgentWebsphere/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentWebsphere_ui.jar">
+		<fileset dir="${root}/AgentWebsphere/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentWebsphereProxy.jar" basedir="${root}/AgentWebsphereProxy/classes"/>
+
+	<!-- AgentWeblogic -->
+	<jar jarfile="${destDir}/AgentWeblogic.jar">
+		<fileset dir="${root}/AgentWeblogic/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentWeblogic_ui.jar">
+		<fileset dir="${root}/AgentWeblogic/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentSunApp -->
+	<jar jarfile="${destDir}/AgentSunApp.jar">
+		<fileset dir="${root}/AgentSunAppServer/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentSunApp_ui.jar">
+		<fileset dir="${root}/AgentSunAppServer/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentJMXJSR160 -->
+	<jar jarfile="${destDir}/AgentJMXJSR160.jar">
+		<fileset dir="${root}/AgentJMXJSR160/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentJMXJSR160_ui.jar">
+		<fileset dir="${root}/AgentJMXJSR160/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentJBoss -->
+	<jar jarfile="${destDir}/AgentJBoss.jar">
+		<fileset dir="${root}/AgentJBoss/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentJBoss_ui.jar">
+		<fileset dir="${root}/AgentJBoss/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentMySQL -->
+	<jar jarfile="${destDir}/AgentMySQL.jar">
+		<fileset dir="${root}/AgentMySQL/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentMySQL_ui.jar">
+		<fileset dir="${root}/AgentMySQL/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- AgentHotSpotJVM -->
+	<jar jarfile="${destDir}/AgentHotSpotJVM.jar">
+		<fileset dir="${root}/AgentHotSpotJVM/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentHotSpotJVM_ui.jar">
+		<fileset dir="${root}/AgentHotSpotJVM/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+
+	<!-- All other agents -->
+	<jar jarfile="${destDir}/AgentApache.jar" basedir="${root}/AgentApache/classes"/>
+	<jar jarfile="${destDir}/AgentDB2.jar" basedir="${root}/AgentDB2/classes"/>
+	<jar jarfile="${destDir}/AgentHostAvailability.jar" basedir="${root}/AgentHostAvailability/classes"/>
+	<jar jarfile="${destDir}/AgentOracle.jar" basedir="${root}/AgentOracle/classes"/>
+	<jar jarfile="${destDir}/AgentProviderHost.jar" basedir="${root}/AgentProviderHost/classes"/>
+	<jar jarfile="${destDir}/AgentServiceAvailability.jar" basedir="${root}/AgentServiceAvailability/classes"/>
+	<jar jarfile="${destDir}/AgentSQL.jar" basedir="${root}/AgentSQL/classes"/>
+	<jar jarfile="${destDir}/AgentWindows.jar" basedir="${root}/AgentWindows/classes"/>
+	<jar jarfile="${destDir}/AgentWMI.jar" basedir="${root}/AgentWMI/classes"/>
+	<jar jarfile="${destDir}/AgentSNMP.jar" basedir="${root}/AgentSNMP/classes"/>
+	<jar jarfile="${destDir}/AgentLDAP.jar" basedir="${root}/AgentLDAP/classes"/>
+	<jar jarfile="${destDir}/AgentFile.jar" basedir="${root}/AgentFile/classes"/>
+	<jar jarfile="${destDir}/AgentLogFile.jar" basedir="${root}/AgentLogFile/classes"/>
+	<jar jarfile="${destDir}/AgentURL.jar" basedir="${root}/AgentURL/classes"/>
+</target>
+
+</project>
+
+<!-- end file build.xml -->

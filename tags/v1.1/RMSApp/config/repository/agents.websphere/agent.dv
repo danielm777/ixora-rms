@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <views>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Use time for JDBC connections</name>
+      <description>Use time for JDBC connections for all servers(time series)</description>
+      <query>
+        <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+        <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.avgUseTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="usetime"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JDBC datasources overview</name>
+      <description>JDBC datasources overview(table)</description>
+      <query>
+        <resource id="datasource" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="Datasources" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.avgUseTime]"/>
+        <resource id="jdbcusetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.jdbcOperationTimer]"/>
+        <resource id="waittime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.avgWaitTime]"/>
+        <resource id="percentused" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.percentUsed]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="datasource"/>
+      <column id="usetime"/>
+      <column id="jdbcusetime"/>
+      <column id="waittime"/>
+      <column id="percentused"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server concurrent ORB requests</name>
+      <description>Concurrent ORB requests for all servers(bar chart)</description>
+      <query>
+        <resource id="orb" iname="$entity[1]/$entity[2]" name="$entity[3]" rid="-/-/root/(.*)/(.*)/orbPerfModule/"/>
+        <resource id="cr" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/orbPerfModule/[orbPerfModule.concurrentRequests]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="orb"/>
+        <range id="cr"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Response time at JDBC driver layer</name>
+      <description>Response time at JDBC driver layer for JDBC connections for all servers(time series)</description>
+      <query>
+        <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+        <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.jdbcOperationTimer]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="usetime"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>JDBC connection pools utilisation</name>
+      <description>JDBC connection pools, active connections(bar chart)</description>
+      <query>
+        <resource id="pool" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="free" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.freePoolSize]"/>
+        <resource id="size" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.poolSize]"/>
+        <function id="active" name="Active Connections" op="script">
+          <param id="free"/>
+          <param id="size"/>
+          <code>return size-free;</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="pool"/>
+        <range id="active"/>
+        <range id="size"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>JDBC connections closed</name>
+      <description>JDBC connections closed(bar chart); this value should be very small and during operational workload it should be zero</description>
+      <query>
+        <resource id="datasource" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="Connection pool" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="closes" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.numDestroys]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="datasource"/>
+        <range id="closes"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>JDBC SQL statement discards</name>
+      <description>JDBC statement discards(bar chart); for a well tuned system there should be no discards and therefore no data shown in this view</description>
+      <query>
+        <resource id="datasource" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="Datasource" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="discards" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[connectionPoolModule.prepStmtCacheDiscards]"/>
+        <reaction params="datasource,discards" severity="HIGH">
+          <arm><![CDATA[return discards > 30;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The prepared statement discards for " + datasource + " is greater than 30";]]></message>
+          <advise><![CDATA[return "Increase the size of the prepared statement cache until there are no discards.";]]></advise>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="datasource"/>
+        <range id="discards"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Message driven beans overview</name>
+      <description>Message driven beans overview(table)</description>
+      <query>
+        <resource id="bean" iname="$entity[1]/$entity[2]/$entity[6]" name="Message driven beans" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/"/>
+        <resource id="msgcount" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[beanModule.messageCount]"/>
+        <resource id="msgbcount" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[beanModule.messageBackoutCount]"/>
+        <resource id="sesswt" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[beanModule.avgSrvSessionWaitTime]"/>
+        <resource id="cl" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[beanModule.concurrentLives]"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[beanModule.avgMethodRt]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="bean"/>
+      <column id="msgcount"/>
+      <column id="msgbcount"/>
+      <column id="sesswt"/>
+      <column id="cl"/>
+      <column id="rt"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>ORB interceptors overview</name>
+      <description>Processing time by interceptor(bar chart)</description>
+      <query>
+        <resource id="interceptors" iname="$entity[1]/$entity[2]/$entity[5]" name="ORB interceptors" rid="-/-/root/(.*)/(.*)/orbPerfModule/orbPerfModule.interceptors/(.*)"/>
+        <resource id="proc_time" iname="$entity[1]/$entity[2]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/orbPerfModule/orbPerfModule.interceptors/(.*)/[orbPerfModule.interceptors.processingTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="interceptors"/>
+        <range id="proc_time"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server active transactions</name>
+      <description>Active transactions for all servers(bar chart)</description>
+      <query>
+        <resource id="tran" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+        <resource id="global" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.activeGlobalTrans]"/>
+        <resource id="local" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.activeLocalTrans]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="tran"/>
+        <range id="local"/>
+        <range id="global"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server active/live servlet sessions</name>
+      <description>Active and live servlet sessions for all servers(bar chart)</description>
+      <query>
+        <resource id="serv" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/servletSessionsModule/"/>
+        <resource id="as" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[servletSessionsModule.activeSessions]"/>
+        <resource id="ls" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[servletSessionsModule.liveSessions]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="serv"/>
+        <range id="as"/>
+        <range id="ls"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server bean response time</name>
+      <description>Bean response time per server(bar chart)</description>
+      <query>
+        <resource id="bm" iname="$entity[1]/$entity[2]" name="Beans" rid="-/-/root/(.*)/(.*)/beanModule/"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/[beanModule.avgMethodRt]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="bm"/>
+        <range id="rt"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server committed/rolledback transactions</name>
+      <description>Committed/rolledback transaction for all servers(bar chart)</description>
+      <query>
+        <resource id="tran" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+        <resource id="globalC" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.globalTransCommitted]"/>
+        <resource id="localC" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.localTransCommitted]"/>
+        <resource id="globalRB" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.globalTransRolledBack]"/>
+        <resource id="localRB" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.localTransRolledBack]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="tran"/>
+        <range id="globalC"/>
+        <range id="localC"/>
+        <range id="globalRB"/>
+        <range id="localRB"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server JVM memory</name>
+      <description>JVM memory for all servers(bar chart)</description>
+      <query>
+        <resource id="jvm" iname="$entity[1]/$entity[2]/$counter" name="JVM memory" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule/"/>
+        <resource code="return (float)used/1024;" description="Used(MB)" id="used" iname="$entity[1]/$entity[2]/$counter" name="Used(MB)" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule/[jvmRuntimeModule.usedMemory]"/>
+        <resource code="return (float)free/1024;" description="Free(MB)" id="free" iname="$entity[1]/$entity[2]/$counter" name="Free(MB)" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule/[jvmRuntimeModule.freeMemory]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="StackedBar2D">
+        <domain id="jvm"/>
+        <range id="used"/>
+        <range id="free"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server servlet data</name>
+      <description>Per server servlet data for all servers(bar chart)</description>
+      <query>
+        <resource id="web" iname="$entity[1]/$entity[2]" name="$entity[3]" rid="-/-/root/(.*)/(.*)/webAppModule/"/>
+        <resource id="ls" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.numLoadedServlets]"/>
+        <resource id="err" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.servlets.numErrors]"/>
+        <resource id="cr" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.servlets.concurrentRequests]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="web"/>
+        <range id="ls"/>
+        <range id="cr"/>
+        <range id="err"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server transaction duration</name>
+      <description>Transaction duration for all servers(bar chart) in milliseconds</description>
+      <query>
+        <resource id="tran" iname="$entity[1]/$entity[2]" name="$entity[3]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+        <resource id="global" iname="$entity[1]/$entity[2]/$counter" name="$counter(ms)" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.globalTranDuration]"/>
+        <resource id="local" iname="$entity[1]/$entity[2]/$counter" name="$counter(ms)" rid="-/-/root/(.*)/(.*)/transactionModule/[transactionModule.localTranDuration]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="tran"/>
+        <range id="local"/>
+        <range id="global"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Servlet sessions discards</name>
+      <description>Servlet session cache discards(bar chart)</description>
+      <query>
+        <resource id="sessmod" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/servletSessionsModule/"/>
+        <resource id="discards" iname="$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[servletSessionsModule.cacheDiscards]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="sessmod"/>
+        <range id="discards"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlets overview</name>
+      <description>Servlets overview(table)</description>
+      <query>
+        <resource id="servlet" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]" name="Servlet" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.responseTime]"/>
+        <resource id="err" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.numErrors]"/>
+        <resource id="tr" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.totalRequests]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="servlet"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Stateless beans overview</name>
+      <description>Stateless beans overview(table)</description>
+      <query>
+        <resource id="bean" iname="$entity[1]/$entity[2]/$entity[6]" name="Stateless beans" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/"/>
+        <resource id="acmet" iname="$entity[1]/$entity[2]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[beanModule.activeMethods]"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[beanModule.avgMethodRt]"/>
+        <resource id="poolsize" iname="$entity[1]/$entity[2]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[beanModule.poolSize]"/>
+        <resource id="cl" iname="$entity[1]/$entity[2]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[beanModule.concurrentLives]"/>
+        <resource id="gf" iname="$entity[1]/$entity[2]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[beanModule.getsFound]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="bean"/>
+      <column id="acmet"/>
+      <column id="rt"/>
+      <column id="poolsize"/>
+      <column id="cl"/>
+      <column id="gf"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Thread pools utilisation</name>
+      <description>Thread pools, active threads(bar chart)</description>
+      <query>
+        <resource id="pool" iname="$entity[1]/$entity[2]/$entity[4]" name="Thread pool" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/"/>
+        <resource id="active" iname="$entity[1]/$entity[2]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[threadPoolModule.activeThreads]"/>
+        <resource id="size" iname="$entity[1]/$entity[2]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[threadPoolModule.poolSize]"/>
+        <reaction params="pool,active,size" severity="HIGH">
+          <arm><![CDATA[return size > 0 && active == size;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "Thread pool " + pool + " has been maximized for the last minute.";]]></message>
+          <advise><![CDATA[return "If there are no other bottlenecks try and increase the size of the threadpool until the CPU usage is maximized.";]]></advise>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="pool"/>
+        <range id="active"/>
+        <range id="size"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Threads destroyed</name>
+      <description>Thread pools, threads destroyed(bar chart); this value should be as small as possible and it should not increase during operational workload</description>
+      <query>
+        <resource id="pool" iname="$entity[1]/$entity[2]/$entity[4]" name="$entity[3]" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)"/>
+        <resource id="destroys" iname="$entity[1]/$entity[2]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[threadPoolModule.threadDestroys]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>5.1.*</agentVersion>
+        <agentVersion>5.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="pool"/>
+        <range id="destroys"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Use time for JDBC connections</name>
+      <description>Use time for JDBC connections for all servers(time series)</description>
+      <query>
+        <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+        <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[UseTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="usetime"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JDBC datasources overview</name>
+      <description>JDBC datasources overview(table)</description>
+      <query>
+        <resource id="datasource" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="Datasources" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[UseTime]"/>
+        <resource id="jdbcusetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[JDBCTime]"/>
+        <resource id="waittime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[WaitTime]"/>
+        <resource id="percentused" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[PercentUsed]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="datasource"/>
+      <column id="usetime"/>
+      <column id="jdbcusetime"/>
+      <column id="waittime"/>
+      <column id="percentused"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Response time at JDBC driver layer</name>
+      <description>Response time at JDBC driver layer for JDBC connections for all servers(time series)</description>
+      <query>
+        <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+        <resource id="usetime" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[JDBCTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="XYLine">
+        <domain id="time"/>
+        <range id="usetime"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Message driven beans overview</name>
+      <description>Message driven beans overview(table)</description>
+      <query>
+        <resource id="bean" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]" name="Message driven beans" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/"/>
+        <resource id="msgcount" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[MessageCount]"/>
+        <resource id="msgbcount" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[MessageBackoutCount]"/>
+        <resource id="sesswt" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[WaitTime]"/>
+        <resource id="cl" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[LiveCount]"/>
+        <resource id="rt" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.messageDriven/(.*)/[MethodResponseTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="bean"/>
+      <column id="msgcount"/>
+      <column id="msgbcount"/>
+      <column id="sesswt"/>
+      <column id="cl"/>
+      <column id="rt"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server bean response time</name>
+      <description>Bean response time per server(bar chart)</description>
+      <query>
+        <resource id="bm" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/beanModule/"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/[MethodResponseTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="bm"/>
+        <range id="rt"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Servlet session discards</name>
+      <description>Servlet session cache discards(bar chart)</description>
+      <query>
+        <resource id="sessmod" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/servletSessionsModule/"/>
+        <resource id="discards" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[CacheDiscardCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="sessmod"/>
+        <range id="discards"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlet sessions overview</name>
+      <description>Servlet sessions overview(table)</description>
+      <query>
+        <resource id="apps" iname="$entity[1]/$entity[2]/$entity[4]" name="Application" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/"/>
+        <resource id="sess" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[CreateCount]"/>
+        <resource id="inv" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[InvalidateCount]"/>
+        <resource code="return (float)lifetime/1000;" id="lifetime" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="SessionLifeTime(s)" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[LifeTime]"/>
+        <resource id="cachediscards" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[CacheDiscardCount]"/>
+        <resource id="noroom" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/(.*)/[NoRoomForNewSessionCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="apps"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlets overview</name>
+      <description>Servlets overview(table)</description>
+      <query>
+        <resource id="servlet" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]" name="Servlet" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[ServiceTime]"/>
+        <resource id="err" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[ErrorCount]"/>
+        <resource id="tr" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[RequestCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="servlet"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Stateless beans overview</name>
+      <description>Stateless beans overview(table)</description>
+      <query>
+        <resource id="bean" iname="$entity[1]/$entity[2]/$entity[6]" name="Stateless beans" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)"/>
+        <resource id="active_method_count" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[ActiveMethodCount]"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[MethodResponseTime]"/>
+        <resource id="livecount" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[LiveCount]"/>
+        <resource id="method_call_count" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[MethodCallCount]"/>
+        <resource id="drains" iname="$entity[1]/$entity[2]/$entity[3]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/beanModule/(.*)/ejb.stateless/(.*)/[DrainsFromPoolCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="bean"/>
+      <column id="active_method_count"/>
+      <column id="rt"/>
+      <column id="livecount"/>
+      <column id="method_call_count"/>
+      <column id="drains"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>JDBC SQL statement discards</name>
+      <description>JDBC statement discards(bar chart); for a well tuned system there should be no discards and therefore no data shown in this view</description>
+      <query>
+        <resource id="datasource" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="Datasource" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="discards" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[PrepStmtCacheDiscardCount]"/>
+        <reaction params="datasource,discards" severity="HIGH">
+          <arm><![CDATA[return discards > 30;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "The prepared statement discards for " + datasource + " is greater than 30";]]></message>
+          <advise><![CDATA[return "Increase the size of the prepared statement cache until there are no discards.";]]></advise>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar2D">
+        <domain id="datasource"/>
+        <range id="discards"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Threads destroyed</name>
+      <description>Thread pools, threads destroyed(bar chart); this value should be as small as possible and it should not increase during operational workload</description>
+      <query>
+        <resource id="pool" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/"/>
+        <resource id="destroys" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[DestroyCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="pool"/>
+        <range id="destroys"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Thread pools utilisation</name>
+      <description>Thread pools, active threads(bar chart)</description>
+      <query>
+        <resource id="pool" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]" name="Thread pool" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/"/>
+        <resource id="active" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[ActiveCount]"/>
+        <resource id="size" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/threadPoolModule/(.*)/[PoolSize]"/>
+        <reaction params="pool,active,size" severity="HIGH">
+          <arm><![CDATA[return size > 0 && active == size;]]></arm>
+          <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+          <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+          <delivery><![CDATA[env.email();]]></delivery>
+          <message><![CDATA[return "Thread pool " + pool + " has been maximized for the last minute.";]]></message>
+          <advise><![CDATA[return "If there are no other bottlenecks try and increase the size of the threadpool until the CPU usage is maximized.";]]></advise>
+        </reaction>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="pool"/>
+        <range id="active"/>
+        <range id="size"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server transaction duration</name>
+      <description>Transaction duration for all servers(bar chart) in milliseconds</description>
+      <query>
+        <resource id="tran" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+        <resource id="global" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter(ms)" rid="-/-/root/(.*)/(.*)/transactionModule/[GlobalTranTime]"/>
+        <resource id="local" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter(ms)" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalTranTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="tran"/>
+        <range id="local"/>
+        <range id="global"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server servlet data</name>
+      <description>Per server servlet data for all servers(bar chart)</description>
+      <query>
+        <resource id="web" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/webAppModule/"/>
+        <resource id="ls" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[LoadedServletCount]"/>
+        <resource id="err" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[ErrorCount]"/>
+        <resource id="cr" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[ConcurrentRequests]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="web"/>
+        <range id="ls"/>
+        <range id="cr"/>
+        <range id="err"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server JVM memory</name>
+      <description>JVM memory for all servers(bar chart)</description>
+      <query>
+        <resource id="jvm" iname="$entity[1]/$entity[2]/$entity[3]" name="JVM memory" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule"/>
+        <resource code="return (float)used/1024;" id="used" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="Used(MB)" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule/[UsedMemory]"/>
+        <resource code="return (float)free/1024;" id="free" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="Free(MB)" rid="-/-/root/(.*)/(.*)/jvmRuntimeModule/[FreeMemory]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="StackedBar3D">
+        <domain id="jvm"/>
+        <range id="used"/>
+        <range id="free"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server concurrent ORB requests</name>
+      <description>Concurrent ORB requests for all servers(bar chart)</description>
+      <query>
+        <resource id="orb" iname="$entity[1]/$entity[2]/$entity[3]" name="$entity[3]" rid="-/-/root/(.*)/(.*)/orbPerfModule/"/>
+        <resource id="cr" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/orbPerfModule/[ConcurrentRequestCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="orb"/>
+        <range id="cr"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server committed/rolledback transactions</name>
+      <description>Committed/rolledback transaction for all servers(bar chart)</description>
+      <query>
+        <resource id="tran" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+        <resource id="globalC" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[CommittedCount]"/>
+        <resource id="localC" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalCommittedCount]"/>
+        <resource id="globalRB" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[RolledbackCount]"/>
+        <resource id="localRB" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalRolledbackCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="tran"/>
+        <range id="globalC"/>
+        <range id="localC"/>
+        <range id="globalRB"/>
+        <range id="localRB"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server active/live servlet sessions</name>
+      <description>Active and live servlet sessions for all servers(bar chart)</description>
+      <query>
+        <resource id="serv" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/servletSessionsModule/"/>
+        <resource id="as" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[ActiveCount]"/>
+        <resource id="ls" name="$counter" rid="-/-/root/(.*)/(.*)/servletSessionsModule/[LiveCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="serv"/>
+        <range id="as"/>
+        <range id="ls"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server active transactions</name>
+      <description>Active transactions for all servers(bar chart)</description>
+      <query>
+        <resource id="tran" iname="$entity[1]/$entity[2]" rid="-/-/root/(.*)/(.*)/transactionModule/"/>
+        <resource id="global" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[ActiveCount]"/>
+        <resource id="local" name="$counter" rid="-/-/root/(.*)/(.*)/transactionModule/[LocalActiveCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="tran"/>
+        <range id="local"/>
+        <range id="global"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>ORB interceptors overview</name>
+      <description>Processing time by interceptor(bar chart)</description>
+      <query>
+        <resource id="interceptors" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]" rid="-/-/root/(.*)/(.*)/orbPerfModule/orbPerfModule.interceptors/(.*)"/>
+        <resource id="proc_time" iname="$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/orbPerfModule/orbPerfModule.interceptors/(.*)/[ProcessingTime]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="interceptors"/>
+        <range id="proc_time"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>JDBC connections closed</name>
+      <description>JDBC connections closed(bar chart); this value should be very small under operational workload</description>
+      <query>
+        <resource id="datasource" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="discards" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[CloseCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="datasource"/>
+        <range id="discards"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>JDBC connection pools utilisation</name>
+      <description>JDBC connection pools, active connections(bar chart)</description>
+      <query>
+        <resource id="pool" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)"/>
+        <resource id="free" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[FreePoolSize]"/>
+        <resource id="size" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[PoolSize]"/>
+        <function id="active" iname="$entity[1]/$entity[2]/$entity[4]/$entity[5]/Active Connections" name="Active Connections" op="script">
+          <param id="free"/>
+          <param id="size"/>
+          <code>return size-free;</code>
+        </function>
+      </query>
+      <agentVersions>
+        <agentVersion>6.0.*</agentVersion>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="pool"/>
+        <range id="active"/>
+        <range id="size"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+      <name>Per server servlet data</name>
+      <description>Per server servlet data for all servers(bar chart)</description>
+      <query>
+        <resource id="web" iname="$entity[1]/$entity[2]/$entity[3]" rid="-/-/root/(.*)/(.*)/webAppModule/"/>
+        <resource id="ls" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.numLoadedServlets]"/>
+        <resource id="err" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.servlets.numErrors]"/>
+        <resource id="cr" iname="$entity[1]/$entity[2]/$entity[3]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/[webAppModule.servlets.concurrentRequests]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <renderer type="Bar3D">
+        <domain id="web"/>
+        <range id="ls"/>
+        <range id="cr"/>
+        <range id="err"/>
+      </renderer>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Servlets overview</name>
+      <description>Servlets overview(table)</description>
+      <query>
+        <resource id="servlet" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]" name="Servlet" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/"/>
+        <resource id="rt" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.responseTime]"/>
+        <resource id="err" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.numErrors]"/>
+        <resource id="tr" iname="$entity[1]/$entity[2]/$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/webAppModule/(.*)/webAppModule.servlets/(.*)/[webAppModule.servlets.totalRequests]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>6.1.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="servlet"/>
+    </view>
+  <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+    <name>JDBC datasources wait thread count</name>
+    <description>JDBC datasources wait thread count</description>
+    <query>
+      <resource id="id16" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[WaitingThreadCount]"/>
+      <resource id="time" rid="-/-/root/(.*)/(.*)/connectionPoolModule/(.*)/(.*)/[#time#]"/>
+    </query>
+    <agentVersions>
+      <agentVersion>6.1.*</agentVersion>
+    </agentVersions>
+    <author>customer</author>
+    <renderer type="XYLine">
+      <domain id="time"/>
+      <range id="id16"/>
+    </renderer>
+  </view>
+  <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+    <name>JMS resources wait thread count</name>
+    <description>JMS resources wait thread count</description>
+    <query>
+      <resource id="id14" iname="$host/$agent/$entity[1]/$entity[2]/$entity[3]/$entity[4]/$entity[5]/$counter" name="$counter" rid="-/-/root/(.*)/(.*)/j2cModule/(.*)/(.*)/[WaitingThreadCount]"/>
+      <resource id="time" rid="-/-/root/(.*)/(.*)/j2cModule/(.*)/(.*)/[#time#]"/>
+    </query>
+    <agentVersions>
+      <agentVersion>6.1.*</agentVersion>
+    </agentVersions>
+    <author>customer</author>
+    <renderer type="XYLine">
+      <domain id="time"/>
+      <range id="id14"/>
+    </renderer>
+  </view>    
+  </views>  
+</rms>

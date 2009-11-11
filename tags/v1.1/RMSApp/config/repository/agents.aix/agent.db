@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <dashboards>
+    <dashboard>
+      <name>System Overview</name>
+      <description>Dashboard presenting an overview of an AIX machine</description>
+      <views>
+        <view id="-/-/root/CPU/:Overall CPU usage:"/>
+        <view id="-/-/root/Disks/:Details per disk:"/>
+        <view id="-/-/root/Processes/:Details per process:"/>
+        <view id="-/-/root/Network interfaces/:Network interfaces:"/>
+        <view id="-/-/root/File system/:Used space per filesystem(%):"/>
+      </views>
+      <author>system</author>
+      <counters>
+        <counter id="-/-/root/System/[Kernel thread context switches]"/>
+        <counter id="-/-/root/System/[Kernel threads in run queue]"/>
+        <counter id="-/-/root/System/[Threads waiting for I/O]"/>
+        <counter id="-/-/root/System/[Kernel threads in wait queue]"/>
+        <counter id="-/-/root/Paging/[Pages scanned]"/>
+      </counters>
+      <agentVersions>
+        <agentVersion>5.3</agentVersion>
+        <agentVersion>5.1</agentVersion>
+        <agentVersion>5.2</agentVersion>
+      </agentVersions>
+    </dashboard>
+  </dashboards>
+</rms>

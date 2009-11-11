@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: winperf - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "e:\Temp\RSP17.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /I "C:\j2sdk1.4.2_02\include" /I "C:\j2sdk1.4.2_02\include\win32" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "WINPERF_EXPORTS" /Fp"Release/winperf.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\devel\research\redbox\RedboxResources\winperf\winperf.cpp"
+]
+Creating command line "cl.exe @e:\Temp\RSP17.tmp" 
+Creating temporary file "e:\Temp\RSP18.tmp" with contents
+[
+Netapi32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib pdh.lib /nologo /dll /incremental:no /pdb:"Release/winperf.pdb" /machine:I386 /out:"../../RMS/bin/x86-win32/bin/winperf.dll" /implib:"Release/winperf.lib" 
+.\Release\winperf.obj
+]
+Creating command line "link.exe @e:\Temp\RSP18.tmp"
+<h3>Output Window</h3>
+Compiling...
+winperf.cpp
+Linking...
+   Creating library Release/winperf.lib and object Release/winperf.exp
+
+
+
+<h3>Results</h3>
+winperf.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

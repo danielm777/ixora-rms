@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.wmi">
+    <historyGroupItem date="1.153176381531E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.wmi.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.153176324093E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.wmi.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.153176046812E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.wmi.Configuration">
+            <config.username notrequired="true" type="0" value=""/>
+            <config.password notrequired="true" type="10" value="61F78598898EA6DC"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

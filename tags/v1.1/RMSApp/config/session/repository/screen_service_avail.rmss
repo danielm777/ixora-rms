@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="screen_service_avail">
+    <hosts>
+      <host name="www.excite.com">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>www.excite.com</host>
+                <agentInstallationId>agents.serviceavailability</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.serviceavailability</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+      <host name="www.yahoo.com">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>www.yahoo.com</host>
+                <agentInstallationId>agents.serviceavailability</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.serviceavailability</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+      <host name="www.lycos.com">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>www.lycos.com</host>
+                <agentInstallationId>agents.serviceavailability</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.serviceavailability</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+      <host name="www.google.com">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>www.google.com</host>
+                <agentInstallationId>agents.serviceavailability</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.serviceavailability</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.serviceavailability.Configuration">
+                    <data extended_editor="com.ixora.common.typedproperties.ui.ExtendedEditorMultilineText" type="6" value="ACED0005740006474554202F0A"/>
+                    <port type="1" value="80"/>
+                    <read_timeout type="1" value="4000"/>
+                  </config>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="{Response time and Time to connect bar chart}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+          <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="{Service availability for all hosts}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+          <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+          <reaction params="id1" severity="CRITICAL">
+            <arm><![CDATA[return id1 > 5000;]]></arm>
+            <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+            <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+            <delivery><![CDATA[env.email();]]></delivery>
+            <message><![CDATA[return "The response time for service " + env.getEntityPath(id1) + " on host " + env.getHost(id1) + " was greater than 5 seconds for the last minute";]]></message>
+          </reaction>
+        </query>
+      </query>
+      <query>
+        <query id="{Bytes in reply (time series)}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+          <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+          <resource id="(.*)/agents.serviceavailability/root/service/[#time#]" rid="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="{Time to connect (time series)}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+          <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+          <resource id="(.*)/agents.serviceavailability/root/service/[#time#]" rid="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="{Response time (time series)}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+          <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+          <resource id="(.*)/agents.serviceavailability/root/service/[#time#]" rid="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards/>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="548.0" title="Dashboard 2" w="500.0" x="3.0" y="177.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.tables.QuickChartDataView">
+                  <name>Response time and Time to connect bar chart</name>
+                  <description>Response time and Time to connect bar chart</description>
+                  <query>
+                    <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+                    <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+                    <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+                    <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+                    <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+                    <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+                    <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+                  </query>
+                  <agentVersions/>
+                  <author>system</author>
+                  <renderer type="Bar3D">
+                    <domain id="id0"/>
+                    <range id="id1"/>
+                    <range id="id2"/>
+                  </renderer>
+                </view>
+                <context id=""/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.tables.QuickChartDataView">
+                  <name>Response time (time series)</name>
+                  <description>Response time (time series)</description>
+                  <query>
+                    <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+                    <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+                    <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+                    <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+                    <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+                    <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+                    <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+                    <resource id="(.*)/agents.serviceavailability/root/service/[#time#]" rid="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+                  </query>
+                  <agentVersions/>
+                  <author>system</author>
+                  <renderer type="XYLine">
+                    <domain id="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+                    <range id="id1"/>
+                  </renderer>
+                </view>
+                <context id=""/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.tables.QuickChartDataView">
+                  <name>Time to connect (time series)</name>
+                  <description>Time to connect (time series)</description>
+                  <query>
+                    <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+                    <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+                    <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+                    <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+                    <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+                    <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+                    <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+                    <resource id="(.*)/agents.serviceavailability/root/service/[#time#]" rid="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+                  </query>
+                  <agentVersions/>
+                  <author>system</author>
+                  <renderer type="XYLine">
+                    <domain id="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+                    <range id="id2"/>
+                  </renderer>
+                </view>
+                <context id=""/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view class="com.ixora.rms.ui.dataviewboard.tables.QuickChartDataView">
+                  <name>Bytes in reply (time series)</name>
+                  <description>Bytes in reply (time series)</description>
+                  <query>
+                    <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.response_time]"/>
+                    <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_connect]"/>
+                    <resource id="id3" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.time_to_write]"/>
+                    <resource id="id4" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.misses]"/>
+                    <resource id="id5" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.bytes_in_reply]"/>
+                    <resource id="id6" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="(.*)/agents.serviceavailability/root/service/[service.reply]"/>
+                    <resource id="id0" iname="$host" name="Host" rid="(.*)"/>
+                    <resource id="(.*)/agents.serviceavailability/root/service/[#time#]" rid="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+                  </query>
+                  <agentVersions/>
+                  <author>system</author>
+                  <renderer type="XYLine">
+                    <domain id="(.*)/agents.serviceavailability/root/service/[#time#]"/>
+                    <range id="id5"/>
+                  </renderer>
+                </view>
+                <context id=""/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="170.0" title="Dashboard 1" w="638.0" x="1.0" y="8.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id=":Service availability for all hosts:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

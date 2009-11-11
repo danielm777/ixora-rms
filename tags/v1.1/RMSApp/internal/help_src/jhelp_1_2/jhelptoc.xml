@@ -1,0 +1,56 @@
+<toc version="1.0">
+<tocitem target="N2" image="chapter" text="IxoraRMS Documentation">
+	<tocitem target="chAbout" image="chapter" text="Introduction">
+		<tocitem target="secAbout" image="topic" text="About IxoraRMS"></tocitem>
+		<tocitem target="secLicense" image="topic" text="License and Copyrights"></tocitem>
+		<tocitem target="secGettingStarted" image="topic" text="Getting Started with IxoraRMS"></tocitem>
+	</tocitem>
+	<tocitem target="chUG" image="chapter" text="User guide">
+		<tocitem target="secConcepts" image="topic" text="Concepts"></tocitem>
+		<tocitem target="secPerfMon" image="topic" text="Performance Monitoring"></tocitem>
+		<tocitem target="secControls" image="topic" text="Controls"></tocitem>
+		<tocitem target="secLogging" image="topic" text="Log and Replay"></tocitem>
+		<tocitem target="secCustomViews" image="topic" text="Defining Custom Views"></tocitem>
+		<tocitem target="secCustomData" image="topic" text="Monitoring Custom Data"></tocitem>
+		<tocitem target="secProvidersJava" image="topic" text="Java Providers"></tocitem>
+		<tocitem target="secProvidersSQL" image="topic" text="SQL Providers"></tocitem>
+		<tocitem target="secFunctions" image="topic" text="Functions"></tocitem>
+		<tocitem target="secReactions" image="topic" text="Reactions and Alerts"></tocitem>
+		<tocitem target="secJobs" image="topic" text="Jobs"></tocitem>
+		<tocitem target="secHTMLGeneration" image="topic" text="HTML Generation"></tocitem>
+	</tocitem>
+	<tocitem target="chAgents" image="chapter" text="IxoraRMS Agents">
+		<tocitem target="secAIX" image="topic" text="AIX"></tocitem>
+		<tocitem target="secApache" image="topic" text="Apache"></tocitem>
+		<tocitem target="secDB2" image="topic" text="DB2"></tocitem>
+		<tocitem target="secFile" image="topic" text="File Monitor"></tocitem>
+		<tocitem target="secHostAvailability" image="topic" text="Host Availability"></tocitem>
+		<tocitem target="secHotspotJVM" image="topic" text="HotspotJVM"></tocitem>
+		<tocitem target="secJBoss" image="topic" text="JBoss"></tocitem>
+		<tocitem target="secJSR160" image="topic" text="JMX JSR160"></tocitem>
+		<tocitem target="secLDAP" image="topic" text="LDAP"></tocitem>
+		<tocitem target="secLinux" image="topic" text="Linux"></tocitem>
+		<tocitem target="secLogFile" image="topic" text="Log File Monitor"></tocitem>
+		<tocitem target="secMySQL" image="topic" text="MySQL"></tocitem>
+		<tocitem target="secOracle" image="topic" text="Oracle"></tocitem>
+		<tocitem target="secProviderHost" image="topic" text="Provider Host"></tocitem>
+		<tocitem target="secServiceAvailability" image="topic" text="Service Availability"></tocitem>
+		<tocitem target="secSolaris" image="topic" text="Solaris"></tocitem>
+		<tocitem target="secSQLServer" image="topic" text="SQLServer"></tocitem>
+		<tocitem target="secSNMP" image="topic" text="SNMP"></tocitem>
+		<tocitem target="secSunApp" image="topic" text="Sun Application Server"></tocitem>
+		<tocitem target="secURL" image="topic" text="Web Application/URL Monitor"></tocitem>
+		<tocitem target="secWeblogic" image="topic" text="Weblogic"></tocitem>
+		<tocitem target="secWebsphere" image="topic" text="Websphere"></tocitem>
+		<tocitem target="secWindows" image="topic" text="Windows"></tocitem>
+		<tocitem target="secWMI" image="topic" text="WMI"></tocitem>
+	</tocitem>
+	<tocitem target="chAppendix" image="chapter" text="Appendix">
+		<tocitem target="secApacheLicense" image="topic" text="Apache Software License"></tocitem>
+		<tocitem target="secBSDLicense" image="topic" text="Free BSD License"></tocitem>
+		<tocitem target="secLGPL" image="topic" text="Lesser GNU Public License"></tocitem>
+		<tocitem target="secGanymedSSH2License" image="topic" text="Swiss Federal Institute of Technology (ETH Zurich)"></tocitem>
+		<tocitem target="secSyntax" image="topic" text="Syntaxes"></tocitem>
+	</tocitem>
+</tocitem>
+</toc>

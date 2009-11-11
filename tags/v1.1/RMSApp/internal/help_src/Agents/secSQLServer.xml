@@ -1,0 +1,112 @@
+<section id="secSQLServer">
+	<title>SQLServer</title>
+
+	<para>This agent monitors instances of SQL Server and dynamically creates a number of
+	entities and counters holding details about server's operations. Note that these
+	statistics are only updated while the agent is running; SQL Server's activity will not
+	be traced when the agent is stopped.</para>
+
+	<para>Note that more performance counters can be retrieved through the Windows agent.
+	When using Windows agent on the host where SQL Server is installed, additional entities
+	will appear in the tree.</para>
+
+	<indexterm><primary>sql server</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraSQLServerLocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>The agent supports both local and remote modes, provided that it
+		can open a database connection to the SQL Server from the machine it is
+		deployed on. By default the standard SQL Server ODBC driver is used through
+		the Java JDBC/ODBC bridge. If required it can be replaced with a different
+		driver.</para>
+
+		<para>For the purposes of license management it may be important to know that
+		the agent uses one database connection for as long as it's running, closing
+		it when it is stopped. When agent is stopping, a second connection is briefly
+		opened and closed.</para>
+	</sect2>
+
+	<indexterm><primary>sql server</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraSQLServerVersions">
+		<title>Supported Versions</title>
+		<para>This agent supports Microsoft SQL Server 7.0, SQL Server 2000 and
+		SQL Server 2005.</para>
+	</sect2>
+
+	<indexterm><primary>sql server</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraSQLServerConfig">
+		<title>Configuration</title>
+		<para>Note that by default a SQL server instance is configured for Windows authentication,
+		which requires the remote user to a valid Windows user for the server machine. As this may
+		not always be the case, a better option would be to enable SQL Server authentication, which
+		will allow you to specify an user and password. To enable SQL Server Authentication select
+		the Security tab on the server properties in Enterprise Manager:</para>
+
+		<figure>
+			<title>Enabling SQL Server Authentication</title>
+			<graphic fileref="images/sql_config.png"/>
+		</figure>
+
+		<para>The following configuration options are available:</para>
+		<itemizedlist>
+			<listitem>Username: user name to use when connecting to SQL Server.</listitem>
+			<listitem>Password: password to use when connecting to SQL Server.</listitem>
+			<listitem>Instance: either the server name, or the server and instance name to
+			connect to, in the form "serverName\instanceName".</listitem>
+			<listitem>JDBC string (optional): allows you to specify the raw JDBC
+			connection string, for example if you wish to use a different
+			driver to connect to SQL Server. The above username, password and instance will be
+			ignored when this is set.</listitem>
+			<listitem>JDBC class: when using a custom JDBC string, you can also
+			specify a different JDBC class (the default is Sun's JDBC/ODBC bridge).</listitem>
+			<listitem>Cursors: Set to enable cursor events (required by Cursors
+			entity). Disable to improve performance</listitem>
+			<listitem>Database: Set to enable database events (required by
+			Database entity). Disable to improve performance</listitem>
+			<listitem>Errors: Set to enable tracing error events (required by
+			Errors entity). Disable to improve performance</listitem>
+			<listitem>Locks: Set to enable tracing lock events (required by
+			Locks entity). Disable to improve performance</listitem>
+			<listitem>Scans: Set to enable tracing table scan events (required by
+			Scans entity). Disable to improve performance</listitem>
+			<listitem>Sessions: Set to receive existing session information
+			events (required by Sessions entity). Disable to improve performance</listitem>
+			<listitem>Stored Procedures: Set to enable tracing stored procedure
+			and remote calls events (required by Stored Procedures entity). Disable to
+			improve performance</listitem>
+			<listitem>Transactions: Set to enable tracing transaction events
+			(required by Transactions entity). Disable to improve performance</listitem>
+			<listitem>TSQL: Set to enable tracing Transact SQL execution events
+			(required by TSQL entity). Disable to improve performance</listitem>
+		</itemizedlist>
+	</sect2>
+
+	<indexterm><primary>sql server</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraSQLServerContents">
+		<title>Contents</title>
+		<para>Note that counters returned by this agent are dynamically calculated while
+		the agent is attached to SQL Server. They will not be updated for operations
+		which occur while the agent is not running.</para>
+		<itemizedlist>
+			<listitem>Cursors: traces cursor operations, such as the number of cursors
+			opened, closed or executed.</listitem>
+			<listitem>Database: contains counters for data file operations, such
+			as the number of file grows and shrinks.</listitem>
+			<listitem>Errors: holds statistics with the number of various error
+			and warning events.</listitem>
+			<listitem>Locks: contains counters with the number of locks operations,
+			such as number of locks acquired, released and deadlocks.</listitem>
+			<listitem>Scans: traces the number and duration of table scan operations.</listitem>
+			<listitem>Sessions: maintains a list of SQL Server client sessions. This
+			will also include information for sessions started before the agent was
+			activated.</listitem>
+			<listitem>Stored procedures: Traces details of stored procedure calls,
+			including the SQL text, duration and CPU usage.</listitem>
+			<listitem>Transactions: contains counters with details for SQL transactions,
+			such as the number of begin/commit/rollback operations, and total
+			transaction time.</listitem>
+			<listitem>TSQL: holds details for every SQL statement executed by
+			SQL Server, including the text, number of reads/writes and CPU usage.</listitem>
+		</itemizedlist>
+	</sect2>
+
+</section>

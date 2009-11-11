@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="var" path="JRE_LIB" sourcepath="/JDK_SRC"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/mailapi.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/smtp.jar"/>
+	<classpathentry kind="src" path="src_calendar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/jhall.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/xerces.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-codec.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-httpclient.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-logging-api.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/commons-net.jar"/>
+	<classpathentry kind="var" path="JDK_HOME/jre/lib/jce.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RMSLibsPatch"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/ganymed-ssh2.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

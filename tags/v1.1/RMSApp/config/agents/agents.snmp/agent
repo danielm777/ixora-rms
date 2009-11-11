@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+  <class>com.ixora.rms.agents.snmp.SNMPAgent</class>
+  <version></version>
+  <name>agents.snmp</name>
+  <description>snmp.description</description>
+  <category>network</category>
+  <versions>
+    <version>SNMPv2c</version>
+    <version>SNMPv1</version>
+    <version>SNMPv3</version>
+  </versions>
+  <javaHelp>secSNMP</javaHelp>
+  <webHelp>monitoring-agents/snmp</webHelp>
+  <versionItems>
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.snmp.v1.ConfigurationPanelV1</customconfigpanel>
+      <uiJar>/jars/AgentSNMP.jar</uiJar>
+      <agentVersions>
+        <agentVersion>SNMPv1</agentVersion>
+      </agentVersions>
+    </versionItem>
+
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.snmp.v2c.ConfigurationPanelV2c</customconfigpanel>
+      <uiJar>/jars/AgentSNMP.jar</uiJar>
+      <agentVersions>
+        <agentVersion>SNMPv2c</agentVersion>
+      </agentVersions>
+    </versionItem>
+
+    <versionItem>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <customconfigpanel>com.ixora.rms.agents.snmp.v3.ConfigurationPanelV3</customconfigpanel>
+      <uiJar>/jars/AgentSNMP.jar</uiJar>
+      <agentVersions>
+        <agentVersion>SNMPv3</agentVersion>
+      </agentVersions>
+    </versionItem>
+
+  </versionItems>
+</agent>

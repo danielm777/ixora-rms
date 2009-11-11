@@ -1,0 +1,53 @@
+<section id="secMySQL">
+	<title>MySQL</title>
+
+	<para>Monitors the status of MySQL dabase servers.</para>
+
+	<indexterm><primary>mysql</primary><secondary>local/remote</secondary></indexterm>
+	<sect2 id="paraMySQLLocalRemote">
+		<title>Local/Remote Modes</title>
+		<para>The agent supports both local and remote modes.</para>
+	</sect2>
+
+	<indexterm><primary>mysql</primary><secondary>versions</secondary></indexterm>
+	<sect2 id="paraMySQLVersions">
+		<title>Supported Versions</title>
+		<para>The agent has been tested with MySQL version 4.0 and 5.0.</para>
+	</sect2>
+
+	<indexterm><primary>mysql</primary><secondary>config</secondary></indexterm>
+	<sect2 id="paraMySQLConfig">
+		<title>Configuration</title>
+		<para>The following configuration options are available:</para>
+		<itemizedlist>
+			<listitem>Username: Login name to use when connecting to the MySQL server</listitem>
+			<listitem>Password: Password to access the MySQL server</listitem>
+			<listitem>Port number: The port number on which to connect to the MySQL server.</listitem>
+			<listitem>JDBC driver jar name: The path to the jar file that contains the MySQL JDC driver; the path is relative to IxoraRMS installation folder.</listitem>
+			<listitem>Database: The name of the database to monitor</listitem>
+			<listitem>JDBC driver class name: The name of the class implementing the MySQL JDBC driver</listitem>
+		</itemizedlist>
+
+		<figure>
+			<title>Configuration sample</title>
+			<graphic fileref="images/agent_mysql_config.png"/>
+		</figure>
+
+	</sect2>
+
+	<indexterm><primary>mysql</primary><secondary>contents</secondary></indexterm>
+	<sect2 id="paraMySQLContents">
+		<title>Contents</title>
+		<para>The agent returns all the status data available from the database server.</para>
+	</sect2>
+
+	<indexterm><primary>mysql</primary><secondary>screenshots</secondary></indexterm>
+	<sect2 id="paraMySQLScreenshots">
+		<title>Screenshots</title>
+		<figure>
+			<title>Screenshot</title>
+			<graphic fileref="images/agent_mysql_sshot.png"/>
+		</figure>
+	</sect2>
+
+</section>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <entities>
+    <entity id="root/Processes">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Processes</name>
+          <description>Processes statistics</description>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Backend start time]" type="date"/>
+            <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Client address]"/>
+            <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Client port]"/>
+            <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Current query]"/>
+            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Query start time]" type="date"/>
+            <resource id="id6" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Query waiting status]"/>
+            <resource id="id0" iname="$entity[2]" name="Processes" rid="-/-/root/Processes/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+          <column id="id4"/>
+          <column id="id5"/>
+          <column id="id6"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Indexes">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Indexes</name>
+          <description>Index statistics for all indexes in the database</description>
+          <query>
+            <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index blocks hits]"/>
+            <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index blocks misses]"/>
+            <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index entries returned by index scans]"/>
+            <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index scans]"/>
+            <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Table rows fetched by simple index scans]"/>
+            <resource id="id0" iname="$entity[2]" name="Indexes" rid="-/-/root/Indexes/(.*)"/>
+            <function description="Index blocks hit ratio" id="fid1" iname="$entity[2]/Index blocks hit ratio" max="100.0" min="0.0" name="Index blocks hit ratio(%)" op="script">
+              <param id="id1"/>
+              <param id="id2"/>
+              <code>return (id1+id2 == 0) ? 0 : 100*(id1/((float)(id1+id2)));</code>
+            </function>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id3"/>
+          <column id="id4"/>
+          <column id="id5"/>
+          <column id="fid1"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Tables">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Tables statistics</name>
+          <description>Tables statistics</description>
+          <query>
+            <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Index scans]"/>
+            <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows deleted]"/>
+            <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows inserted]"/>
+            <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows read by index scan]"/>
+            <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows read by sequential scan]"/>
+            <resource id="id6" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows updated]"/>
+            <resource id="id7" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Sequential scans]"/>
+            <resource id="id8" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Data blocks hits]"/>
+            <resource id="id9" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Data blocks misses]"/>
+            <resource id="id10" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Index blocks hits]"/>
+            <resource id="id11" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Index blocks misses]"/>
+            <resource id="id12" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast blocks hits]"/>
+            <resource id="id13" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast blocks misses]"/>
+            <resource id="id14" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast index blocks hits]"/>
+            <resource id="id15" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast index blocks misses]"/>
+            <resource id="id0" iname="$entity[2]" name="Tables" rid="-/-/root/Tables/(.*)"/>
+            <function description="Data blocks hit ratio" id="fid1" iname="$entity[2]/Data blocks hit ratio" max="100.0" min="0.0" name="Data blocks hit ratio(%)" op="script">
+              <param id="id8"/>
+              <param id="id9"/>
+              <code>return (id8+id9 == 0) ? 0 : 100*(id8/((float)(id8+id9)));</code>
+            </function>
+            <function description="Index blocks hit ratio" id="fid2" iname="$entity[2]/Index blocks hit ratio" max="100.0" min="0.0" name="Index blocks hit ratio(%)" op="script">
+              <param id="id10"/>
+              <param id="id11"/>
+              <code>return (id10+id11 == 0) ? 0 : 100*(id10/((float)(id10+id11)));</code>
+            </function>
+            <function description="Toast blocks hit ratio" id="fid3" iname="$entity[2]/Toast blocks hit ratio" max="100.0" min="0.0" name="Toast blocks hit ratio(%)" op="script">
+              <param id="id12"/>
+              <param id="id13"/>
+              <code>return (id12+id13 == 0) ? 0 : 100*(id12/((float)(id12+id13)));</code>
+            </function>
+            <function description="Toast index blocks hit ratio" id="fid4" iname="$entity[2]/Toast index blocks hit ratio" max="100.0" min="0.0" name="Toast index blocks hit ratio(%)" op="script">
+              <param id="id14"/>
+              <param id="id15"/>
+              <code>return (id14+id15 == 0) ? 0 : 100*(id14/((float)(id14+id15)));</code>
+            </function>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+          <column id="id4"/>
+          <column id="id5"/>
+          <column id="id6"/>
+          <column id="id7"/>
+          <column id="fid1"/>
+          <column id="fid2"/>
+          <column id="fid3"/>
+          <column id="fid4"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Databases">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Active processes - per database</name>
+          <description>Active processes for all database - bar chart</description>
+          <query>
+            <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Active processes]"/>
+            <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="Bar3D">
+            <domain id="id0"/>
+            <range id="id1"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Buffer hits - per database</name>
+          <description>Buffer hits for all database - bar chart</description>
+          <query>
+            <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Buffer hits]"/>
+            <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="Bar3D">
+            <domain id="id0"/>
+            <range id="id2"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Disk blocks read - per database</name>
+          <description>Disk blocks read for all database - bar chart</description>
+          <query>
+            <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Disks blocks read]"/>
+            <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="Bar3D">
+            <domain id="id0"/>
+            <range id="id3"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Active processes</name>
+          <description>Active processes on all databases - time series</description>
+          <query>
+            <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Active processes]"/>
+            <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="id1"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Buffer hits</name>
+          <description>Buffer hits for all databases - time series</description>
+          <query>
+            <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Buffer hits]"/>
+            <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="id2"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Disk blocks read</name>
+          <description>Disks blocks read for all database - time series</description>
+          <query>
+            <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Disks blocks read]"/>
+            <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="id3"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Transactions committed</name>
+          <description>Transactions committed for all database - time series</description>
+          <query>
+            <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions committed]"/>
+            <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="id4"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Transactions commotted and  rolled back - per database</name>
+          <description>Transactions committed and rolled back for all database - bar chart</description>
+          <query>
+            <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions committed]"/>
+            <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions rolled back]"/>
+            <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="Bar3D">
+            <domain id="id0"/>
+            <range id="id4"/>
+            <range id="id5"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Transactions rolled back</name>
+          <description>Transactions rolled back for all database - time series</description>
+          <query>
+            <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions rolled back]"/>
+            <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="time"/>
+            <range id="id5"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Tables/IO">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Table IO statistics</name>
+          <description>IO statistics for all tables in the database</description>
+          <query>
+            <resource id="id1" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Data blocks hits]"/>
+            <resource id="id2" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Data blocks misses]"/>
+            <resource id="id3" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Index blocks hits]"/>
+            <resource id="id4" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Index blocks misses]"/>
+            <resource id="id5" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Toast blocks hits]"/>
+            <resource id="id6" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Toast blocks misses]"/>
+            <resource id="id7" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Toast index blocks hits]"/>
+            <resource id="id8" iname="$entity[3]/$counter" name="$counter" rid="-/-/root/Tables/IO/(.*)/[Toast index blocks misses]"/>
+            <resource id="id0" iname="$entity[3]" name="IO" rid="-/-/root/Tables/IO/(.*)"/>
+            <function description="Data blocks hit ratio" id="fid1" iname="$entity[3]/Data blocks hit ratio" max="100.0" min="0.0" name="Data blocks hit ratio(%)" op="script">
+              <param id="id1"/>
+              <param id="id2"/>
+              <code>return (id1+id2 == 0) ? 0 : 100*(id1/((float)(id1+id2)));</code>
+            </function>
+            <function description="Index blocks hit ratio" id="fid2" iname="$entity[3]/Index blocks hit ratio" max="100.0" min="0.0" name="Index blocks hit ratio(%)" op="script">
+              <param id="id3"/>
+              <param id="id4"/>
+              <code>return (id3+id4 == 0) ? 0 : 100*(id3/((float)(id3+id4)));</code>
+            </function>
+            <function description="Toast blocks hit ratio" id="fid3" iname="$entity[3]/Toast blocks hit ratio" max="100.0" min="0.0" name="Toast blocks hit ratio(%)" op="script">
+              <param id="id5"/>
+              <param id="id6"/>
+              <code>return (id5+id6 == 0) ? 0 : 100*(id5/((float)(id5+id6)));</code>
+            </function>
+            <function description="Toast index blocks hit ratio" id="fid4" iname="$entity[3]/Toast index blocks hit ratio" max="100.0" min="0.0" name="Toast index blocks hit ratio(%)" op="script">
+              <param id="id7"/>
+              <param id="id8"/>
+              <code>return (id7+id8 == 0) ? 0 : 100*(id7/((float)(id7+id8)));</code>
+            </function>
+          </query>
+          <agentVersions>
+            <agentVersion>8.3</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="id0" removeStale="false"/>
+          <column id="fid1"/>
+          <column id="fid2"/>
+          <column id="fid3"/>
+          <column id="fid4"/>
+          <column id="id1"/>
+          <column id="id2"/>
+          <column id="id3"/>
+          <column id="id4"/>
+          <column id="id5"/>
+          <column id="id6"/>
+          <column id="id7"/>
+          <column id="id8"/>
+        </view>
+      </views>
+    </entity>
+  </entities>
+</rms>

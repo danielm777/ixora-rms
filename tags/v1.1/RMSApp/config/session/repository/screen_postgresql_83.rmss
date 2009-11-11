@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <session name="screen_postgresql_83">
+    <hosts>
+      <host name="localhost">
+        <agents>
+          <agent>
+            <instanceData>
+              <activation>
+                <location>0</location>
+                <host>localhost</host>
+                <agentInstallationId>agents.postgresql</agentInstallationId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="postgres"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="dating_ie"/>
+                    <Port notrequired="true" type="1" value="5432"/>
+                    <JDBCDriverClass notrequired="true" type="0" value="org.postgresql.Driver"/>
+                    <Classpath notrequired="true" type="0" value="{home}/lib/postgresql-8.3-603.jdbc4.jar"/>
+                  </config>
+                  <version>8.3</version>
+                  <providerInstances>
+                    <providerInstance>Databases</providerInstance>
+                    <providerInstance>Indexes</providerInstance>
+                    <providerInstance>Processes</providerInstance>
+                    <providerInstance>Tables</providerInstance>
+                  </providerInstances>
+                </config>
+              </activation>
+              <agentDescriptor>
+                <agentId>agents.postgresql</agentId>
+                <config>
+                  <sampling>-1</sampling>
+                  <config class="com.ixora.rms.agents.providerhost.SQLConfiguration">
+                    <Username notrequired="true" type="0" value="postgres"/>
+                    <Password notrequired="true" type="10" value="4AA343448EF5FF0B61F78598898EA6DC"/>
+                    <Database notrequired="true" type="0" value="dating_ie"/>
+                    <Port notrequired="true" type="1" value="5432"/>
+                    <JDBCDriverClass notrequired="true" type="0" value="org.postgresql.Driver"/>
+                    <Classpath notrequired="true" type="0" value="{home}/lib/postgresql-8.3-603.jdbc4.jar"/>
+                  </config>
+                  <version>8.3</version>
+                  <providerInstances>
+                    <providerInstance>Databases</providerInstance>
+                    <providerInstance>Indexes</providerInstance>
+                    <providerInstance>Processes</providerInstance>
+                    <providerInstance>Tables</providerInstance>
+                  </providerInstances>
+                </config>
+              </agentDescriptor>
+            </instanceData>
+            <entities/>
+          </agent>
+        </agents>
+      </host>
+    </hosts>
+    <queries>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Buffer hits}">
+          <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Buffer hits]"/>
+          <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Transactions rolled back}">
+          <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions rolled back]"/>
+          <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Disk blocks read}">
+          <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Disks blocks read]"/>
+          <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Buffer hits - per database}">
+          <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Buffer hits]"/>
+          <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Disk blocks read - per database}">
+          <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Disks blocks read]"/>
+          <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Active processes - per database}">
+          <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Active processes]"/>
+          <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Active processes}">
+          <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Active processes]"/>
+          <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Indexes/{Indexes}">
+          <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index blocks hits]"/>
+          <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index blocks misses]"/>
+          <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index entries returned by index scans]"/>
+          <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Index scans]"/>
+          <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Indexes/(.*)/[Table rows fetched by simple index scans]"/>
+          <resource id="id0" iname="$entity[2]" name="Indexes" rid="-/-/root/Indexes/(.*)"/>
+          <function description="Index blocks hit ratio" id="fid1" iname="$entity[2]/Index blocks hit ratio" max="100.0" min="0.0" name="Index blocks hit ratio(%)" op="script">
+            <param id="id1"/>
+            <param id="id2"/>
+            <code>return (id1+id2 == 0) ? 0 : 100*(id1/((float)(id1+id2)));</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Tables/{Tables statistics}">
+          <resource id="id1" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Index scans]"/>
+          <resource id="id2" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows deleted]"/>
+          <resource id="id3" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows inserted]"/>
+          <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows read by index scan]"/>
+          <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows read by sequential scan]"/>
+          <resource id="id6" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Rows updated]"/>
+          <resource id="id7" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Sequential scans]"/>
+          <resource id="id8" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Data blocks hits]"/>
+          <resource id="id9" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Data blocks misses]"/>
+          <resource id="id10" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Index blocks hits]"/>
+          <resource id="id11" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Index blocks misses]"/>
+          <resource id="id12" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast blocks hits]"/>
+          <resource id="id13" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast blocks misses]"/>
+          <resource id="id14" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast index blocks hits]"/>
+          <resource id="id15" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Tables/(.*)/[Toast index blocks misses]"/>
+          <resource id="id0" iname="$entity[2]" name="Tables" rid="-/-/root/Tables/(.*)"/>
+          <function description="Data blocks hit ratio" id="fid1" iname="$entity[2]/Data blocks hit ratio" max="100.0" min="0.0" name="Data blocks hit ratio(%)" op="script">
+            <param id="id8"/>
+            <param id="id9"/>
+            <code>return (id8+id9 == 0) ? 0 : 100*(id8/((float)(id8+id9)));</code>
+          </function>
+          <function description="Index blocks hit ratio" id="fid2" iname="$entity[2]/Index blocks hit ratio" max="100.0" min="0.0" name="Index blocks hit ratio(%)" op="script">
+            <param id="id10"/>
+            <param id="id11"/>
+            <code>return (id10+id11 == 0) ? 0 : 100*(id10/((float)(id10+id11)));</code>
+          </function>
+          <function description="Toast blocks hit ratio" id="fid3" iname="$entity[2]/Toast blocks hit ratio" max="100.0" min="0.0" name="Toast blocks hit ratio(%)" op="script">
+            <param id="id12"/>
+            <param id="id13"/>
+            <code>return (id12+id13 == 0) ? 0 : 100*(id12/((float)(id12+id13)));</code>
+          </function>
+          <function description="Toast index blocks hit ratio" id="fid4" iname="$entity[2]/Toast index blocks hit ratio" max="100.0" min="0.0" name="Toast index blocks hit ratio(%)" op="script">
+            <param id="id14"/>
+            <param id="id15"/>
+            <code>return (id14+id15 == 0) ? 0 : 100*(id14/((float)(id14+id15)));</code>
+          </function>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Processes/{Processes}">
+          <resource id="id1" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Backend start time]" type="date"/>
+          <resource id="id2" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Client address]"/>
+          <resource id="id3" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Client port]"/>
+          <resource id="id4" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Current query]"/>
+          <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Query start time]" type="date"/>
+          <resource id="id6" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processes/(.*)/[Query waiting status]"/>
+          <resource id="id0" iname="$entity[2]" name="Processes" rid="-/-/root/Processes/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Transactions commotted and  rolled back - per database}">
+          <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions committed]"/>
+          <resource id="id5" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions rolled back]"/>
+          <resource id="id0" iname="$entity[2]" name="Databases" rid="-/-/root/Databases/(.*)"/>
+        </query>
+      </query>
+      <query>
+        <query id="localhost/agents.postgresql/root/Databases/{Transactions committed}">
+          <resource id="id4" iname="$entity[2]/$counter" name="$counter" rid="-/-/root/Databases/(.*)/[Transactions committed]"/>
+          <resource id="time" rid="-/-/root/Databases/(.*)/[#time#]"/>
+        </query>
+      </query>
+    </queries>
+    <dashboards>
+      <dashboard id="localhost/agents.postgresql/#PostgreSQL overview#"/>
+      <dashboard id="localhost/agents.postgresql/#PostgreSQL details#"/>
+    </dashboards>
+    <screens>
+      <screen>
+        <name>Untitled</name>
+        <selected>true</selected>
+        <viewboards>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="514.0" title="View Board 2" w="737.0" x="907.0" y="-1.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Processes/:Processes:"/>
+                <config sortDirectionDesc="false" sortedColumnIdx="-1"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.tables.TablesBoard" h="550.0" title="View Board 1" w="1640.0" x="2.0" y="510.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Indexes/:Indexes:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="4"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.utils.TableBasedControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Tables/:Tables statistics:"/>
+                <config sortDirectionDesc="true" sortedColumnIdx="5"/>
+              </control>
+            </controls>
+          </viewboard>
+          <viewboard board="com.ixora.rms.ui.dataviewboard.charts.ChartsBoard" h="555.0" title="View Board 0" w="909.0" x="0.0" y="0.0">
+            <controls>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Active processes - per database:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Buffer hits - per database:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Disk blocks read - per database:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Active processes:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Buffer hits:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Disk blocks read:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Transactions committed:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Transactions commotted and  rolled back - per database:"/>
+              </control>
+              <control class="com.ixora.rms.ui.dataviewboard.charts.ChartControlDescriptor">
+                <view id="localhost/agents.postgresql/root/Databases/:Transactions rolled back:"/>
+              </control>
+            </controls>
+          </viewboard>
+        </viewboards>
+      </screen>
+    </screens>
+  </session>
+</rms>

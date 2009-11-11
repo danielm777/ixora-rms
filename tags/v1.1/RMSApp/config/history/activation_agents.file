@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rms>
+  <historyGroup id="activation_agents.file">
+    <historyGroupItem date="1.142716980687E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.file.Configuration">
+            <config.root_folder type="0" value="C:\Programs\IBM\WebSphere\AppServer\profiles\default\logs\server1"/>
+            <config.file_name_pattern type="0" value="[^\.].log"/>
+            <config.ignore_folders type="3" value="false"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+    <historyGroupItem date="1.14143010075E12">
+      <activation class="com.ixora.rms.agents.AgentActivationData">
+        <location>0</location>
+        <host/>
+        <agentInstallationId/>
+        <config>
+          <sampling>-1</sampling>
+          <config class="com.ixora.rms.agents.file.Configuration">
+            <config.root_folder type="0" value="C:\bea\weblogic90\samples\domains\wl_server\servers\examplesServer\logs"/>
+            <config.file_name_pattern type="0" value="[^\.].log"/>
+            <config.ignore_folders type="3" value="false"/>
+          </config>
+        </config>
+      </activation>
+    </historyGroupItem>
+  </historyGroup>
+</rms>

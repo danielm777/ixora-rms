@@ -1,0 +1,50 @@
+<section id="secAbout">
+	<title>About &programName;</title>
+
+	<sect2 id="paraAbout">
+
+		<para>IxoraRMS is a powerful tool for monitoring distributed applications
+		across a variety of architectures and operating systems. Use IxoraRMS to monitor and log the
+		performance of your database, your application server, your operating system or your
+		network connections. View all performance data in the same graphical console and choose
+		to group and plot the information relevant to you.</para>
+
+		<itemizedlist>
+			<listitem>Integrated view over even the most heterogeneous networks
+			<para>Maintain a consistent view across vendors, operating systems and application
+			versions. Regardless of its source, all data is always available in the same graphical
+			console, ready to be plotted in standard or custom charts.</para></listitem>
+
+			<listitem>Extend IxoraRMS with your own data collectors
+			<para>Allows gathering and presenting custom data, extracted from SQL queries, Java
+			applications and command line tools. A very powerful feature which allows
+			you to watch business (application specific) metrics along with overall system
+			performance.</para></listitem>
+
+			<listitem>Create you own custom views
+			<para>Raw counters not enough? Add, subtract, average or write a Java function to transform
+			data before displaying it on the screen. Create statistics over time, or display live
+			data in your own charts.</para></listitem>
+
+			<listitem>Create complex alert and reaction rules
+			<para>Use the power of the Java language to create complex rules that trigger various
+			reactions such as visual alerts, emails and job executions.</para></listitem>
+
+			<listitem>Log now and analyse later
+			<para>Log and replay capability allows recording of monitoring sessions and replying them
+			at a later time. During replay it is possible to choose a specific time interval and
+			choose different visualisation options.</para></listitem>
+
+			<listitem>Agents
+			<para>Built-in monitoring capabilities for Websphere, Weblogic, JBoss, Sun Application Server,
+			SQL Server, DB2, Oracle, Unix and Windows systems, application log files, Apache and IIS web servers,
+			.NET, SNMP and JMX enabled devices, LDAP...</para></listitem>
+
+			<listitem>Access performance data accross Internet
+			<para>You can export a current monitoring session as HTML so that you can have
+			access to performance data from anywhere.</para></listitem>
+		</itemizedlist>
+
+	</sect2>
+
+</section>

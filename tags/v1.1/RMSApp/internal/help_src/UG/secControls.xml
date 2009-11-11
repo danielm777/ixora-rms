@@ -1,0 +1,210 @@
+<section id="secControls">
+	<title>Controls</title>
+
+	<indexterm><primary>chart control</primary></indexterm>
+	<sect2 id="paraChartControl">
+		<title>Chart Control</title>
+		<para>This control can render historic data, as a time series graph, or current
+      values as a comparative bar chart. Various display styles are available.</para>
+
+      <para>When creating a custom chart view use the &lt;renderer&gt; tag to specify
+      display options:</para>
+		<programlisting role="linespecific">
+    &lt;renderer type=""&gt;
+        &lt;domain id=""/&gt;
+        &lt;range id=""/&gt;
+        &lt;range id=""/&gt;
+        ...
+    &lt;/renderer&gt;
+		</programlisting>
+		<itemizedlist>
+			<listitem>&lt;renderer&gt;(mandatory): multiple renderers can be specified, as
+         long as all of them belong to the same class (either Category or XY), as detailed
+         below.</listitem>
+			<listitem>type(mandatory): one of the following values:</listitem>
+		      <itemizedlist>
+
+			   <indexterm><primary>XY renderers</primary></indexterm>
+               <listitem>XY class renderers: display continuous information along the X
+               axis, most common example is a time series chart.
+		            <itemizedlist>
+                     <listitem>XYLine: shows a horizontal continuous line for each of
+                     the ranges. </listitem>
+                     <listitem>XYArea: same as XYLine, but the area below the line is filled.
+                     Multiple ranges will be shown overlapped, and will be better
+                     visible by setting opacity level to less than 100%.</listitem>
+                     <listitem>StackedXYArea: same as XYArea, but multiple ranges
+                     will be shown stacked one on top of the other.</listitem>
+		            </itemizedlist>
+               </listitem>
+
+			   <indexterm><primary>Category renderers</primary></indexterm>
+               <listitem>Category class renderers: display information grouped by discrete
+               values on the X axis, for example bar charts.
+		            <itemizedlist>
+                     <listitem>Bar2D: shows 2D vertical bars of different colors for each range.
+                     Multiple ranges are shown as bars close together.</listitem>
+                     <listitem>StackedBar2D: same as Bar2D, but multiple ranges are shown as
+                     bars stacked one on top of the other.</listitem>
+                     <listitem>Bar3D: same as Bar2D, but with a depth effect which makes it
+                     easier to identify zero values.</listitem>
+                     <listitem>StackedBar3D: same as StackedBar2D but with a depth effect.</listitem>
+                     <listitem>CategoryLine: the discrete values of the domain axis are
+                     joined by a continuous line.</listitem>
+                     <listitem>CategoryArea: same as CategoryLine, but the area under the line
+                     is filled. Multiple ranges will be shown overlapped, and will be better
+                     visible by setting opacity level to less than 100%.</listitem>
+                     <listitem>CategoryStackedArea: same as CategoryArea, but multiple ranges
+                     will be shown stacked one on top of the other. </listitem>
+		            </itemizedlist>
+               </listitem>
+
+		      </itemizedlist>
+            <listitem>&lt;domain&gt;(mandatory): identifies the resource to be used as a
+            generator for values on the X axis.</listitem>
+
+            <listitem>&lt;range&gt;(mandatory): identifies the resource to be used as a
+            generator for values on the Y axis. Multiple &lt;range&gt; tags are allowed</listitem>
+
+            <listitem>id: must be a valid identifier of one of the results (Function or Resource)
+            provided by the Query.</listitem>
+		</itemizedlist>
+
+		<figure>
+			<title>Category Chart Controls: Bar2D, StackedBar2D, Bar3D, StackedBar3D,
+         CategoryLine, CategoryArea, CategoryStackedArea</title>
+			<graphic fileref="images/chart_control_category.png"/>
+		</figure>
+		<figure>
+			<title>XY Chart Controls: XYLine, XYArea, StackedXYArea</title>
+			<graphic fileref="images/chart_control_xy.png"/>
+		</figure>
+
+      <para>When plotting numeric raw counters &programName; will create a chart of type
+      XYLine, with the timestamp as the domain and the counters as ranges.</para>
+
+	</sect2>
+
+	<indexterm><primary>Table control</primary></indexterm>
+	<sect2 id="paraTableControl">
+		<title>Table Control</title>
+		<para>This control displays the raw results of the query in a tabular format,
+      allowing sorting, filtering and dynamic chart creation with selected values. It is
+      especially useful for queries based on regular expressions.</para>
+
+      <para>When creating custom views, a table control will by default include all results
+      of the Query as columns in the table. However you must also use the following tags.</para>
+
+		<programlisting role="linespecific">
+   &lt;category id=""/&gt;
+   &lt;column id=""/&gt;
+   &lt;column id=""/&gt;
+   ...
+		</programlisting>
+
+		<itemizedlist>
+			<listitem>&lt;category&gt;(mandatory): selects one resource as the category, used
+         when creating bar charts from values in the table.
+         This tag can only have one optional attribute: removeStale that has a boolean value. If the value is
+         true than after every data collection cycle all items that have not been updated will be removed from the table.
+         The default value of this attribute is false.
+         </listitem>
+
+         <listitem>&lt;column&gt;(optional): if no &lt;column&gt; tag is specified, all results
+         of the Query will be included in the table. Otherwise the table will only contain
+         resources specified by &lt;category&gt; and &lt;column&gt; tags.</listitem>
+
+         <listitem>id: must be a valid identifier of one of the results (Function or Resource)
+         provided by the Query.</listitem>
+		</itemizedlist>
+
+		<figure>
+			<title>Table Control</title>
+			<graphic fileref="images/table_control.png"/>
+		</figure>
+
+
+      <para>The control will color table cells with shades of red or green, to show that
+      the values have been increasing or decreasing, respectively.</para>
+
+      <para>The filter option allows you to quickly reduce the volume of information to
+      only a relevant subset.The type of filter for a column depends on the type of values
+      in that column:
+
+		<itemizedlist>
+        <listitem>String
+		<figure>
+			<title>String filter</title>
+			<graphic fileref="images/filter_string.png"/>
+		</figure>
+		<para>Check the 'Negative match' box if you want to keep just items that do not match the filter.</para>
+		</listitem>
+
+        <listitem>Number
+		<figure>
+			<title>Number filter</title>
+			<graphic fileref="images/filter_number.png"/>
+		</figure>
+		</listitem>
+
+         <listitem>Date
+		<figure>
+			<title>Date filter</title>
+			<graphic fileref="images/filter_date.png"/>
+		</figure>
+		</listitem>
+
+		</itemizedlist>
+
+      </para>
+
+      <para>From table controls, charts can be created, having table's category as domain, and selected
+      columns as ranges. See <xref linkend="paraChartControl"/> for a list of chart styles.
+      The control will prompt you to select the renderer type, and which columns to show.
+      </para>
+		<itemizedlist>
+			<listitem>Plot contents as bar charts. This will prompt you to select a Category
+         class chart renderer. All values shown in the table will be displayed as a bar chart.
+         Note that if a filter is applied only the visible items are included.</listitem>
+
+         <listitem>Plot contents as time series. This will prompt you to select a XY
+         class chart renderer. All values except the category will be shown in a time series
+         (history) chart. Note that if a filter is applied only the visible items are included.</listitem>
+
+         <listitem>Plot selected as bar charts. Creates a bar chart, but only includes
+         selected items.</listitem>
+
+         <listitem>Plot selected as time series. Creates a time series chart, but only
+         includes selected items.</listitem>
+		</itemizedlist>
+
+	</sect2>
+
+    <indexterm><primary>Properties control</primary></indexterm>
+	<sect2 id="paraPropertiesControl">
+		<title>Properties Control</title>
+		<para>Simple control which shows query results as a list of name / value pairs.</para>
+
+      <para>When creating custom views there are no additional tags required for this control.
+      All query results will be included in the output.</para>
+
+		<figure>
+			<title>Properties Control</title>
+			<graphic fileref="images/properties_control.png"/>
+		</figure>
+	</sect2>
+
+    <indexterm><primary>Log record viewer</primary></indexterm>
+	<sect2 id="paraLogRecordViewer">
+		<title>Log Record Viewer</title>
+		<para>This is a specialized control used only to visualize application log records.</para>
+		<figure>
+			<title>Log Record Viewer</title>
+			<graphic fileref="images/log_board.png"/>
+		</figure>
+
+	</sect2>
+	<para></para>
+	<para></para>
+
+</section>
