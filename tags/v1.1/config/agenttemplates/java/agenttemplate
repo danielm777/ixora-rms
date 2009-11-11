@@ -1,6 +1,0 @@
-<template>
-<templateId>java</templateId>
-<templateName>agentinstaller.template.java</templateName>
-<agentClass>com.ixora.rms.agents.providerhost.ProviderHostAgent</agentClass>
-<agentConfigurationPanelClass>com.ixora.rms.agents.providerhost.ConfigurationPanel</agentConfigurationPanelClass>
-</template>

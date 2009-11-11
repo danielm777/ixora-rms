@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rms>
-  <entities>
-    <entity id="root/C:\\jboss-4.0.3RC1\\server\\default\\log\\server.log">
-      <views/>
-    </entity>
-  </entities>
-</rms>

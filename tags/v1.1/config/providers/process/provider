@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<provider>
-<class>com.ixora.rms.providers.impl.process.ProviderProcess</class>
-<name>providers.process.name</name>
-<confPanelClass>com.ixora.rms.providers.impl.process.ConfigurationPanel</confPanelClass>
-</provider>

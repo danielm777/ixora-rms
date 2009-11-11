@@ -1,6 +1,0 @@
-<template>
-<templateId>sql</templateId>
-<templateName>agentinstaller.template.sql</templateName>
-<agentClass>com.ixora.rms.agents.providerhost.ProviderHostAgent</agentClass>
-<agentConfigurationPanelClass>com.ixora.rms.agents.providerhost.SQLConfigurationPanel</agentConfigurationPanelClass>
-</template>
