@@ -48,7 +48,7 @@ public class WizardStep3 extends WizardStep {
 	private AgentVersionsSelectorPanel fAgentVersionsPanel;
 
 	public WizardStep3(Wizard dlg, Set<String> agentVersions, String currentAgentVersion) {
-		super("Data view definition", "Set the properties for this data view");
+		super("Data View Definition", "Set the properties for this data view");
 		setLayout(new BorderLayout());
 		fTextFieldName = UIFactoryMgr.createTextField();
 		fTextFieldDescription = UIFactoryMgr.createTextField();
