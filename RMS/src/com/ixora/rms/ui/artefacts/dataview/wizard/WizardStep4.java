@@ -42,7 +42,7 @@ public class WizardStep4 extends WizardStep {
 	private WizardStep3.Data fStep3;
 
 	public WizardStep4(Wizard wizard, ResourceId context, SessionModel model, SessionTreeExplorer explorer) {
-		super("Data view definition", "Set the properties for this data view");
+		super("Data View Definition", "Set the properties for this data view");
 		setLayout(new BorderLayout());
 		fContext = context;
 		fModel = model;
