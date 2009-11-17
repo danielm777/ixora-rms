@@ -7,10 +7,11 @@ import com.ixora.rms.agents.jmxjsr160.messages.Msg;
 import com.ixora.rms.agents.utils.ConfigurationWithClasspathAndExtraProperties;
 
 /**
- * Configuration for Weblogic agent.
+ * Configuration for JSR160 agents.
  * @author Daniel Moraru
  */
 public class Configuration extends ConfigurationWithClasspathAndExtraProperties {
+	private static final long serialVersionUID = -277460326169053902L;
 	public static final String JMX_CONNECTION_STRING = Msg.JMX_CONNECTION_STRING;
 
 	/**
