@@ -40,5 +40,6 @@
 	<classpathentry kind="lib" path="C:/Dev/redbox/IxoraResources/lib/jboss/scout.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMS"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMSJMX"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AgentJMXJSR160"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
