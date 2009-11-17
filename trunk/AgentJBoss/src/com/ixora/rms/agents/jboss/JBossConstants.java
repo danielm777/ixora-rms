@@ -9,4 +9,5 @@ package com.ixora.rms.agents.jboss;
 public interface JBossConstants {
 	public static final String VERSION_JBOSS_4 = "4.*";
 	public static final String VERSION_JBOSS_4_2 = "4.2.*";
+	public static final String VERSION_JBOSS_5_JSR160 = "5.*";
 }

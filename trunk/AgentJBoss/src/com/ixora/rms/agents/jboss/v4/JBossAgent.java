@@ -50,6 +50,7 @@ public class JBossAgent extends JMXAbstractAgent {
 	/**
 	 * @see com.ixora.rms.agents.impl.AbstractAgent#configCustomChanged()
 	 */
+	@SuppressWarnings("unchecked")
 	protected void configCustomChanged() throws InvalidConfiguration, Throwable {
 		// set up credentials
 		fEnvMap.put(Context.SECURITY_PRINCIPAL, fConfiguration.getAgentCustomConfiguration().getString(Configuration.USERNAME));
@@ -93,6 +94,9 @@ public class JBossAgent extends JMXAbstractAgent {
 		return true;
 	}
 
+	/**
+	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#processException(java.lang.Throwable)
+	 */
 	protected void processException(Throwable t) throws Throwable {
 		// for some reasons this exception is thrown when retrieving the details
 		// for certain entities...

@@ -8,10 +8,12 @@ import com.ixora.rms.agents.ui.AgentCustomConfigurationPanelContext;
 import com.ixora.rms.agents.ui.DefaultAgentCustomConfigurationPanel;
 
 /**
- * WebSphere custom configuration panel.
+ * JBoss v4.2 custom configuration panel.
  * @author Daniel Moraru
  */
 public class ConfigurationPanel extends DefaultAgentCustomConfigurationPanel {
+	private static final long serialVersionUID = 1531889940701492967L;
+
 	/**
 	 * Constructor.
 	 * @param agentId

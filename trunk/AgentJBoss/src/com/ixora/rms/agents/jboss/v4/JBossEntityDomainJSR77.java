@@ -21,6 +21,7 @@ import com.ixora.rms.agents.impl.jmx.jsr77.JMXJSR77EntitySelfExploring;
  * @author Daniel Moraru
  */
 public class JBossEntityDomainJSR77 extends JMXJSR77EntitySelfExploring {
+	private static final long serialVersionUID = 1605579567402686626L;
 
 	/**
 	 * @param id
