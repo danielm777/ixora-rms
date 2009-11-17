@@ -1,18 +1,18 @@
 /*
  * Created on Jan 25, 2004
  */
-package com.ixora.rms.agents.jboss.v4;
+package com.ixora.rms.agents.jboss.v5;
 
 import com.ixora.rms.agents.AgentCustomConfiguration;
 import com.ixora.rms.agents.ui.AgentCustomConfigurationPanelContext;
 import com.ixora.rms.agents.ui.DefaultAgentCustomConfigurationPanel;
 
 /**
- * WebSphere custom configuration panel.
+ * JBoss v5+ agent custom configuration panel.
  * @author Daniel Moraru
  */
 public class ConfigurationPanel extends DefaultAgentCustomConfigurationPanel {
-	private static final long serialVersionUID = -6035109857961393142L;
+	private static final long serialVersionUID = -7959262685584911436L;
 
 	/**
 	 * Constructor.

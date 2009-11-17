@@ -20,6 +20,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntityRoot;
  * @author Daniel Moraru
  */
 public class JBossEntityRoot extends JMXEntityRoot {
+	private static final long serialVersionUID = -7148306597549489053L;
 
 	/**
 	 * @param c

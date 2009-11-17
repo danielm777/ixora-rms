@@ -11,6 +11,7 @@ import com.ixora.rms.agents.utils.ConfigurationWithClasspath;
  * @author Daniel Moraru
  */
 public class Configuration extends ConfigurationWithClasspath {
+	private static final long serialVersionUID = 1744486653668808449L;
 	public static final String SERVER_URL = Msg.SERVER_URL;
 	public static final String JNDI_NAME = Msg.JNDI_NAME;
 

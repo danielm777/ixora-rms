@@ -10,6 +10,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class JBossNotInstalledOnHost extends RMSException {
+	private static final long serialVersionUID = 3073031574152359814L;
 
 	/**
 	 * Constructor.
