@@ -8,6 +8,7 @@
 <versions>
 <version>4.*</version>
 <version>4.2.*</version>
+<version>5.*</version>
 </versions>
 <javaHelp>secJBoss</javaHelp>
 <webHelp>monitoring-agents/jboss</webHelp>
@@ -40,6 +41,22 @@
 		<uiJar>/jars/AgentJBoss_ui.jar</uiJar>	
 		<agentVersions>
 			<agentVersion>4.2.*</agentVersion>
+		</agentVersions>
+	</versionItem>
+	<versionItem>
+		<locations>
+		<location>0</location>
+		<location>1</location>
+		</locations>
+		<customconfigpanel>com.ixora.rms.agents.jboss.v5.ConfigurationPanel</customconfigpanel>
+		<jars>
+		<jar>/jars/AgentJBoss.jar</jar>
+		<jar>/jars/AgentJMXJSR160.jar</jar>
+		<jar>/jars/RMSJMX.jar</jar>
+		</jars>
+		<uiJar>/jars/AgentJBoss_ui.jar</uiJar>	
+		<agentVersions>
+			<agentVersion>5.*</agentVersion>
 		</agentVersions>
 	</versionItem>
 </versionItems>
