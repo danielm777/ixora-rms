@@ -958,4 +958,27 @@ public class Utils {
 		}
 		return ret;
 	}
+
+	/**
+	 * Stitches together two file system path fragments. It takes care of the position of file path
+	 * separators.
+	 * @param buff
+	 * @param path1
+	 * @param path2
+	 */
+	public static void stitchPathFragments(StringBuffer buff, String path1,	String path2) {
+		boolean fs = false;
+		if(path1.contains("/") || path2.contains("/")) {
+			fs = true;
+		}
+		buff.append(path1);
+		if(!path1.endsWith("\\") && !path1.endsWith("/")) {
+			buff.append(fs ? "/" : "\\");
+		}
+		if(path2.startsWith("\\") || path2.startsWith("/")) {
+			buff.append(path2.substring(1));
+		} else {
+			buff.append(path2);
+		}
+	}
 }
