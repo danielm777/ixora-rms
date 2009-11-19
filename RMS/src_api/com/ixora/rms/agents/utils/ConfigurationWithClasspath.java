@@ -5,6 +5,8 @@ package com.ixora.rms.agents.utils;
 
 import java.util.StringTokenizer;
 
+import com.ixora.common.utils.Utils;
+
 /**
  * @author Daniel Moraru
  */
@@ -28,14 +30,13 @@ public class ConfigurationWithClasspath extends AuthenticationConfiguration {
     public String getClasspath() {
         String home = getString(Msg.ROOT_FOLDER);
         String tmp = getString(Msg.CLASSPATH);
-        if(tmp == null) {
+        if(Utils.isEmptyString(tmp)) {
             return null;
         }
         StringTokenizer tok = new StringTokenizer(tmp, ",");
         StringBuffer buff = new StringBuffer();
         while(tok.hasMoreTokens()) {
-            buff.append(home);
-            buff.append(tok.nextToken());
+        	Utils.stitchPathFragments(buff, home, tok.nextToken().trim());
             if(tok.hasMoreTokens()) {
                 buff.append(',');
             }

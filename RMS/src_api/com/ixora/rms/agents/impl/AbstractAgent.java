@@ -33,6 +33,8 @@ import com.ixora.rms.exception.RMSException;
 public abstract class AbstractAgent implements Agent {
 	/** Configuration token for host */
 	protected final String TOKEN_HOST = "{host}";
+	/** Configuration token for home */
+	protected final String TOKEN_HOME = "{home}";
 	/** Agent id */
 	protected AgentId fAgentId;
 	/** Root entity */
@@ -322,12 +324,12 @@ public abstract class AbstractAgent implements Agent {
 		if(Utils.isEmptyCollection(props)) {
 			return;
 		}
-		String host = fConfiguration == null ? newConf.getMonitoredHost() : fConfiguration.getMonitoredHost();
+		String host = (fConfiguration == null ? newConf.getMonitoredHost() : fConfiguration.getMonitoredHost());
 		for(PropertyEntry<?> pe : props) {
 			if(pe.getType() == TypedProperties.TYPE_STRING) {
 				String val = (String)pe.getValue();
 				if(!Utils.isEmptyString(val)) {
-					String newVal = Utils.replace(val, TOKEN_HOST, host);
+					String newVal = Utils.replace(Utils.replace(val, TOKEN_HOST, host), TOKEN_HOME, Utils.getPath("/"));					
 					conf.setString(pe.getProperty(), newVal);
 				}
 			}
