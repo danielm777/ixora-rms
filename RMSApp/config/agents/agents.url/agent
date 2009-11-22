@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
 <version></version> 
-<class>com.ixora.rms.agents.url.URLAgent</class>
 <name>agents.url</name>
 <description>url.description</description>
 <category>applications</category>
@@ -9,6 +8,7 @@
 <webHelp>monitoring-agents/web-application-url-monitor</webHelp>
  <versionItems>
   	<versionItem>
+  	   <class>com.ixora.rms.agents.url.URLAgent</class>
 	   <locations>
 	    <location>0</location>
 	    <location>1</location>

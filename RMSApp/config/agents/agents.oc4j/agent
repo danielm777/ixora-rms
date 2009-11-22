@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.oc4j.OC4JAgent</class>
   <version></version>
   <name>agents.oc4j</name>
   <description>oc4j.description</description>
@@ -14,6 +13,7 @@
   <webHelp>monitoring-agents/oc4j</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.oc4j.OC4JAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

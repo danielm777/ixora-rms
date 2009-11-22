@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
 <version></version>
-<class>com.ixora.rms.agents.jmxjsr160.JMXJSR160Agent</class>
 <name>agents.jmxjsr160</name>
 <description>jmxjsr160.description</description>
 <category>network</category>
@@ -9,6 +8,7 @@
 <webHelp>monitoring-agents/jmx-jsr160</webHelp>
 <versionItems>
 	<versionItem>
+	    <class>com.ixora.rms.agents.jmxjsr160.JMXJSR160Agent</class>
 		<locations>
 		<location>0</location>
 		<location>1</location>

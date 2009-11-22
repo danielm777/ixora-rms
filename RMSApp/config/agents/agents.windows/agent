@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.windows.WindowsAgent</class>
   <version></version>
   <name>agents.windows</name>
   <description>windows.description</description>
@@ -16,6 +15,7 @@
   <webHelp>monitoring-agents/windows</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.windows.WindowsAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

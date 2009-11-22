@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
-  <version>1.0.0</version>
+  <version></version>
   <name>agents.postgresql</name>
   <description>postgresql.description</description>
   <custom>true</custom>
@@ -14,6 +13,7 @@
   <webHelp>monitoring-agents/postgresql</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

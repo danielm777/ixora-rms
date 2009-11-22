@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
 <version></version> 
-<class>com.ixora.rms.agents.apache.ApacheAgent</class>
 <name>agents.apache</name>
 <description>apache.description</description>
 <category>webServers</category>
@@ -17,6 +16,7 @@
 </versions>
   <versionItems>
   	<versionItem>
+  	   <class>com.ixora.rms.agents.apache.ApacheAgent</class>
 	   <locations>
 	    <location>0</location>
 	    <location>1</location>

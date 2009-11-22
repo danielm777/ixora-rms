@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.sunapp.SunAppAgent</class>
   <version></version>
   <name>agents.sunapp</name>
   <description>sunapp.description</description>
@@ -14,6 +13,7 @@
   <webHelp>monitoring-agents/sun-application-server</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.sunapp.v8.SunAppAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

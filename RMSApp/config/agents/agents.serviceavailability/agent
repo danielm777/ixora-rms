@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
 <version></version>
-<class>com.ixora.rms.agents.serviceavailability.ServiceAvailabilityAgent</class>
 <name>agents.serviceavailability</name>
 <description>serviceavailability.description</description>
 <category>network</category>
@@ -9,6 +8,7 @@
 <webHelp>monitoring-agents/service-availability</webHelp>
 <versionItems>
     <versionItem>
+    <class>com.ixora.rms.agents.serviceavailability.ServiceAvailabilityAgent</class>
 	<locations>
 	<location>0</location>
 	<location>1</location>
