@@ -18,6 +18,7 @@ import com.ixora.rms.agents.logfile.LogParserDefinition;
  * @author Daniel Moraru
  */
 public class StoredLogParserDef implements XMLExternalizable {
+	private static final long serialVersionUID = -286787102077565312L;
 	private String fName;
 	private boolean fCustom;
 	private LogParserDefinition fParserDefinition;

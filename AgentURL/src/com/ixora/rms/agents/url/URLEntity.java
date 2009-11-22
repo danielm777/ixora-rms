@@ -29,6 +29,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class URLEntity extends Entity {
+	private static final long serialVersionUID = 2896158725798301422L;
 	private HttpClient fClient;
 	private HttpMethod fHttpMethod;
 

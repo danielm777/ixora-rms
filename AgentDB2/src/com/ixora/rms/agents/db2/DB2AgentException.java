@@ -11,7 +11,9 @@ import com.ixora.rms.exception.RMSException;
  * the description in a localized string.
  */
 public class DB2AgentException extends RMSException {
-    /**
+	private static final long serialVersionUID = -7203712387563590235L;
+
+	/**
      * Constructor
      * @param s
      * @param e

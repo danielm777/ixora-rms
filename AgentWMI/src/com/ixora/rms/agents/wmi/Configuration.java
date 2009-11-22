@@ -10,6 +10,7 @@ import com.ixora.rms.agents.wmi.messages.Msg;
  * Configuration
  */
 public class Configuration extends AuthenticationConfiguration {
+	private static final long serialVersionUID = 4881176157825375573L;
 	public static final String NAMESPACE = Msg.WMI_CONFIG_NAMESPACE;
 
 	/**

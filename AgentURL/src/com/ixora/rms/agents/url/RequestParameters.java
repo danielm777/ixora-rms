@@ -22,7 +22,10 @@ import com.ixora.common.xml.exception.XMLException;
  * @author Daniel Moraru
  */
 public class RequestParameters implements XMLExternalizable {
+	private static final long serialVersionUID = 6409831150247847364L;
+
 	public final static class NameValue implements Serializable {
+		private static final long serialVersionUID = 1331949395083116368L;
 		private String fName;
 		private String fValue;
 		public NameValue(String name, String value) {

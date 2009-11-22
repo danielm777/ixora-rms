@@ -20,6 +20,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntityRoot;
  * @author Daniel Moraru
  */
 public class HotSpotJVMEntityRoot extends JMXEntityRoot {
+	private static final long serialVersionUID = -3285675331091533116L;
 
 	/**
 	 * Constructor.

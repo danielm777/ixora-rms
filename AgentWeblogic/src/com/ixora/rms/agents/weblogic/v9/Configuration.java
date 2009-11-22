@@ -11,6 +11,7 @@ import com.ixora.rms.agents.weblogic.messages.Msg;
  * @author Daniel Moraru
  */
 public class Configuration extends ConfigurationWithClasspath {
+	private static final long serialVersionUID = 6650202638016617708L;
 	public static final String JMX_CONNECTION_STRING = Msg.JMX_CONNECTION_STRING;
 
 	/**

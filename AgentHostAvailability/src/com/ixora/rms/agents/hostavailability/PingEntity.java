@@ -20,6 +20,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class PingEntity extends Entity {
+	private static final long serialVersionUID = 2507562654982915317L;
 	private int fMisses;
 	private boolean fICMPLibraryNotLoadedErrorSent;
 

@@ -31,6 +31,7 @@ import com.ixora.rms.data.CounterValueDouble;
  */
 public final class ApacheEntityServers extends Entity
 	implements ApacheConstants {
+	private static final long serialVersionUID = 6187024818327912268L;
 	/** Last records obtained after parsing the status page content */
 	private String[][] records;
 	/**
@@ -40,7 +41,7 @@ public final class ApacheEntityServers extends Entity
 	 *
 	 * 		Number of accesses this connection
 	 * 		Number of accesses this child
-	 * 		Number of accessses this slot
+	 * 		Number of accesses this slot
 	 * 		Mode of operation
 	 *		Seconds since beginning of most recent request
 	 *		Milliseconds required to process most recent request
@@ -49,6 +50,7 @@ public final class ApacheEntityServers extends Entity
 	 *		Total megabytes transferred this slot
 	 */
 	private final class ApacheEntityServer extends Entity {
+		private static final long serialVersionUID = -2756982410492433684L;
 		private String[] tokens;
 		/**
 		 * @param id

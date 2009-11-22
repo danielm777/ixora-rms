@@ -36,6 +36,7 @@ import com.ixora.rms.agents.logfile.messages.Msg;
  */
 
 public class LogParserDefinitionEditor extends AppDialog {
+	private static final long serialVersionUID = -7070931376803456827L;
 	private JComboBox fComboParsers;
 	private TypedPropertiesEditor fConfEditor;
 	private JPanel fButtonsPanel;
@@ -87,6 +88,7 @@ public class LogParserDefinitionEditor extends AppDialog {
 	/**
 	 * @param parsers
 	 */
+	@SuppressWarnings("serial")
 	private void init(Map<String, StoredLogParserDef> parsers) {
 		setTitle("Log File Parsers"); // TODO localize
 		setModal(true);
@@ -178,6 +180,7 @@ public class LogParserDefinitionEditor extends AppDialog {
 	/**
 	 * @see com.ixora.common.ui.AppDialog#getButtons()
 	 */
+	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
 			UIFactoryMgr.createButton(new ActionOk(){

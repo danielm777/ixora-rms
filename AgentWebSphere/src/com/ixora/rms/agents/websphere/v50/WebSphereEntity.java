@@ -94,8 +94,8 @@ public class WebSphereEntity extends Entity implements PmiConstants {
 	protected void retrieveCounterValues() throws Throwable {
 		if(data == null) {
 			// reset enabled counter values
-			for(Iterator iter = fCounters.values().iterator(); iter.hasNext();) {
-				Counter c = (Counter)iter.next();
+			for(Iterator<Counter> iter = fCounters.values().iterator(); iter.hasNext();) {
+				Counter c = iter.next();
 				if(c.isEnabled()) {
 					c.reset();
 				}
@@ -279,8 +279,8 @@ public class WebSphereEntity extends Entity implements PmiConstants {
 				// check if collection, if so
 				// get the counters from the parent
 				if(descriptor.getType() == TYPE_COLLECTION) {
-					Collection coll = ((WebSphereEntity)parent).fCounters.values();
-					for(Iterator iter = coll.iterator(); iter.hasNext();) {
+					Collection<Counter> coll = ((WebSphereEntity)parent).fCounters.values();
+					for(Iterator<Counter> iter = coll.iterator(); iter.hasNext();) {
 						WebSphereCounter wasc = (WebSphereCounter)iter.next();
 						if(getCounter(wasc.getId()) == null) {
 							WebSphereCounter c = new WebSphereCounter(wasc);
@@ -369,7 +369,7 @@ public class WebSphereEntity extends Entity implements PmiConstants {
 		}
 		if(rec) {
 			// call this method on all children
-			for(Iterator iter = this.fChildrenEntities.values().iterator(); iter.hasNext();) {
+			for(Iterator<Entity> iter = this.fChildrenEntities.values().iterator(); iter.hasNext();) {
 				((WebSphereEntity)iter.next()).updateMonitoringLevel(rec);
 			}
 		}

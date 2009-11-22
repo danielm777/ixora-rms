@@ -10,6 +10,7 @@ import com.ixora.rms.agents.utils.AuthenticationConfiguration;
  */
 
 public class Configuration extends AuthenticationConfiguration {
+	private static final long serialVersionUID = 1L;
 	// value keys
 	public static final String INSTANCE = Msg.DB2_INSTANCE;
 	public static final String DATABASE = Msg.DB2_DATABASE;

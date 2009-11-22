@@ -17,7 +17,8 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventLocks
  */
 public class SQLTraceEventLocks extends SQLTraceChildEntity {
-    private SQLCounterAccum	fcLocksAcquired;
+	private static final long serialVersionUID = 6749972320124676411L;
+	private SQLCounterAccum	fcLocksAcquired;
     private SQLCounterAccum	fcLocksCanceled;
     private SQLCounterAccum	fcDeadlocks;
     private SQLCounterAccum	fcLocksEscalated;

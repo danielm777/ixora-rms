@@ -11,7 +11,9 @@ import com.ixora.rms.exception.RMSException;
  * SNMPAgentException
  */
 public class SNMPAgentException extends RMSException {
-    /**
+	private static final long serialVersionUID = 7019814322902702155L;
+
+	/**
      * Constructor
      * @param s
      * @param e

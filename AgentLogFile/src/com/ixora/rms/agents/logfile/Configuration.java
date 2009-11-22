@@ -17,6 +17,7 @@ import com.ixora.rms.agents.logfile.messages.Msg;
  * @author Daniel Moraru
  */
 public class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = -7577941759062480634L;
 	public static final String LOG_FILE_PATH = Msg.LOG_FILE_PATH;
 	public static final String FILE_ENCODING = Msg.FILE_ENCODING;
 	public static final String AVAILABLE_LOG_PARSERS = Msg.AVAILABLE_LOG_PARSERS;
@@ -51,9 +52,10 @@ public class Configuration extends AgentCustomConfiguration {
 	}
 
 	/**
-	 * Overriden to update the list of available parsers before applying the given property.
+	 * Overridden to update the list of available parsers before applying the given property.
 	 * @see com.ixora.common.typedproperties.TypedProperties#apply(com.ixora.common.typedproperties.TypedProperties)
 	 */
+	@SuppressWarnings("unchecked")
 	public void apply(TypedProperties other) throws InvalidPropertyValue {
 		// the list of available parsers might have changed...
 		PropertyEntry pe = other.getEntry(AVAILABLE_LOG_PARSERS);

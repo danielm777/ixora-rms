@@ -8,7 +8,9 @@ import com.ixora.rms.exception.RMSException;
  * Thrown by the native code when remote machine is not available
  */
 public class WinPerfException extends RMSException {
-    /**
+	private static final long serialVersionUID = -5389729265123903848L;
+
+	/**
      * WARNING: this constructor is called from the native
      * code, edit with care.
      * @param s

@@ -12,6 +12,8 @@ import com.ixora.rms.agents.ui.DefaultAgentCustomConfigurationPanel;
  * @author Daniel Moraru
  */
 public final class ConfigurationPanel extends DefaultAgentCustomConfigurationPanel {
+	private static final long serialVersionUID = -5996263911372200864L;
+
 	/**
 	 * Constructor.
 	 * @param agentId

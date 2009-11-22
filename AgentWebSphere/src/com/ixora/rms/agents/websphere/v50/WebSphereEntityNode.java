@@ -72,7 +72,7 @@ public class WebSphereEntityNode extends WebSphereEntity {
 	 */
 	protected void changeWASMonitoringLevel(int waslevel, boolean recursive)
 			throws RemoteException, PmiException {
-		for(Iterator iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
+		for(Iterator<Entity> iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
 			PerfDescriptor pd = ((WebSphereEntity)iter.next()).descriptor;
 			try {
 				if(getWASContext().getVersionBehaviour().invokeSetInstrumentationLevel()) {

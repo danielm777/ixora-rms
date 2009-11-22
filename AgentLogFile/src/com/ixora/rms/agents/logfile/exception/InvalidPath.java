@@ -7,6 +7,8 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class InvalidPath extends RMSException {
+	private static final long serialVersionUID = -2002201892911276737L;
+
 	/**
 	 * Constructor.
 	 */

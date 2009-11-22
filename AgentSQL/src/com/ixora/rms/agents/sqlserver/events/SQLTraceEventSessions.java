@@ -18,13 +18,16 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventSessions
  */
 public class SQLTraceEventSessions extends SQLTraceChildEntity {
+	private static final long serialVersionUID = -2339069231609870605L;
 
-    /**
+	/**
      * SQLExistingSessionEntity
      * Used for creating child entities on the fly
      */
     private static class SQLExistingSessionEntity extends Entity {
-        /**
+		private static final long serialVersionUID = 3545214338992927714L;
+
+		/**
          * Default constructor
          * @param idParent
          * @param name

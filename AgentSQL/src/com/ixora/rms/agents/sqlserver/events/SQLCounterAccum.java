@@ -14,7 +14,9 @@ import com.ixora.rms.data.CounterValueDouble;
  * framework to delete the current value.
  */
 public class SQLCounterAccum extends Counter {
-    /**
+	private static final long serialVersionUID = 8084534406382176379L;
+
+	/**
      * Default constructor
      * @param name
      */

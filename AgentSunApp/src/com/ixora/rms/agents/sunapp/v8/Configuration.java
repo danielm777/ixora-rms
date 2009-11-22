@@ -11,6 +11,7 @@ import com.ixora.rms.agents.utils.ConfigurationWithClasspath;
  * @author Daniel Moraru
  */
 public class Configuration extends ConfigurationWithClasspath {
+	private static final long serialVersionUID = 8340356067953841537L;
 	public static final String JMX_CONNECTION_STRING = Msg.JMX_CONNECTION_STRING;
 	public static final String SHOW_JUST_RUNTIME_DATA = Msg.SHOW_JUST_RUNTIME_DATA;
 

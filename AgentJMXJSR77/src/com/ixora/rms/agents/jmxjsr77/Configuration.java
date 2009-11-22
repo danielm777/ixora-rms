@@ -6,10 +6,10 @@ package com.ixora.rms.agents.jmxjsr77;
 import com.ixora.rms.agents.jmxjsr77.messages.Msg;
 
 /**
- * Configuration for Weblogic agent.
  * @author Daniel Moraru
  */
 public class Configuration extends com.ixora.rms.agents.impl.jmx.jsr77.Configuration {
+	private static final long serialVersionUID = 2184258271426869387L;
 	public static final String INITIAL_CTXT_FACTORY = Msg.INITIAL_CTXT_FACTORY;
 
 	/**

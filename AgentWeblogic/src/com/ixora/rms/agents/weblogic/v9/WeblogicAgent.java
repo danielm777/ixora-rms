@@ -3,6 +3,8 @@
  */
 package com.ixora.rms.agents.weblogic.v9;
 
+import java.io.File;
+
 import javax.management.MBeanAttributeInfo;
 import javax.management.MBeanInfo;
 import javax.management.ObjectName;
@@ -15,6 +17,8 @@ import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
 import com.ixora.rms.agents.impl.jmx.jsr160.JMXJSR160AbstractAgent;
 import com.ixora.rms.agents.weblogic.exception.CommunicationError;
+import com.ixora.rms.agents.weblogic.exception.WeblogicNotInstalledOnHost;
+import com.ixora.rms.exception.InvalidConfiguration;
 import com.ixora.rms.exception.RMSException;
 
 /**
@@ -34,6 +38,20 @@ public class WeblogicAgent extends JMXJSR160AbstractAgent {
 		fEnvMap.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
 		fEnvMap.put(JMXConnectorServerFactory.PROTOCOL_PROVIDER_PACKAGES, "weblogic.management.remote");
 	}
+
+	/**
+	 * Overridden to check for the correctness of the installation folder for Weblogic.
+	 * @see com.ixora.rms.agents.impl.jmx.jsr160.JMXJSR160AbstractAgent#configCustomChanged()
+	 */
+	protected void configCustomChanged() throws InvalidConfiguration, Throwable {
+        String wlsHome = fConfiguration.getAgentCustomConfiguration().getString(Configuration.ROOT_FOLDER);
+        File f = new File(wlsHome);
+        if(!f.exists()) {
+            throw new WeblogicNotInstalledOnHost(fConfiguration.getDeploymentHost());
+        }
+		super.configCustomChanged();
+	}
+
 
 	/**
 	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getJMXConnectionURL()

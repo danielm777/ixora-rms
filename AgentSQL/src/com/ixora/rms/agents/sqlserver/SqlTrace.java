@@ -17,6 +17,7 @@ import java.util.List;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.agents.AgentConfiguration;
 import com.ixora.rms.agents.AgentExecutionContext;
+import com.ixora.rms.agents.impl.Entity;
 import com.ixora.rms.agents.sqlserver.events.SQLTraceEventCursors;
 import com.ixora.rms.agents.sqlserver.events.SQLTraceEventDatabase;
 import com.ixora.rms.agents.sqlserver.events.SQLTraceEventErrors;
@@ -35,6 +36,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class SqlTrace extends SQLBasedEntity implements Runnable {
+	private static final long serialVersionUID = -8695188924359154000L;
 	private static final int BEGIN_TRACE_COLUMN_ID = 65530;
 	private static final int LAST_COLUMN_ID = 65522;
 	private static final int EVENT_CLASS_COLUMN_ID = 65526;
@@ -63,8 +65,8 @@ public class SqlTrace extends SQLBasedEntity implements Runnable {
 	 * it to event entities to fill their counters.
 	 */
 	public class SQLColumnData extends HashMap<Integer, byte[]> {
-
-	    private static final int COL_TYPE_UNKNOWN = 0;
+		private static final long serialVersionUID = -4729092680070035601L;
+		private static final int COL_TYPE_UNKNOWN = 0;
 	    private static final int COL_TYPE_STRING = 1;
 	    private static final int COL_TYPE_INT = 2;
 	    private static final int COL_TYPE_LONG = 3;
@@ -288,7 +290,6 @@ public class SqlTrace extends SQLBasedEntity implements Runnable {
 			this.fRunning = true;
 
 		    // The context holds agent configuration and its custom data
-		    AgentConfiguration agentCfg = fContext.getAgentConfiguration();
 			Configuration cfg = (Configuration)fContext.getAgentConfiguration().getAgentCustomConfiguration();
 
 			// First (and only) connection, managed by base class
@@ -323,7 +324,7 @@ public class SqlTrace extends SQLBasedEntity implements Runnable {
 
 			while (rs.next() && isRunning()) {
 				int columnid = rs.getInt("columnid");
-				int length = rs.getInt("length");
+				//int length = rs.getInt("length");
 				byte[] bytes = rs.getBytes("data");
 
 /*
@@ -418,7 +419,7 @@ public class SqlTrace extends SQLBasedEntity implements Runnable {
 	        int eventId, SQLColumnData columnData) {
 	    boolean childEntitiesChanged = false;
 	    // Pass the event for inspection to all predefined entities
-	    for (Iterator itE = fChildrenEntities.values().iterator(); itE.hasNext();) {
+	    for (Iterator<Entity> itE = fChildrenEntities.values().iterator(); itE.hasNext();) {
             SQLTraceChildEntity sqlEntity = (SQLTraceChildEntity) itE.next();
             childEntitiesChanged = sqlEntity.eventReceived(eventId, columnData) || childEntitiesChanged;
         }
@@ -553,6 +554,7 @@ public class SqlTrace extends SQLBasedEntity implements Runnable {
 	private final long makeTime(byte[] bytes) {
 		int year = (Utils.ubyte(bytes[0]) << 0) + (Utils.ubyte(bytes[1]) << 8);
 		int month = (Utils.ubyte(bytes[2]) << 0) + (Utils.ubyte(bytes[3]) << 8);
+		@SuppressWarnings("unused")
 		int dummy = (Utils.ubyte(bytes[4]) << 0) + (Utils.ubyte(bytes[5]) << 8);
 		int day = (Utils.ubyte(bytes[6]) << 0) + (Utils.ubyte(bytes[7]) << 8);
 		int hour = (Utils.ubyte(bytes[8]) << 0) + (Utils.ubyte(bytes[9]) << 8);

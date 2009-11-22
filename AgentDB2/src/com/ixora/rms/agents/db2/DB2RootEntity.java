@@ -19,12 +19,12 @@ import com.ixora.rms.data.CounterValueDouble;
 
 /**
  * DB2Entity
- * Performs main logic of retrieving and updating entities, child entites
+ * Performs main logic of retrieving and updating entities, child entities
  * and counters for a DB2 agent.
  */
-public class DB2RootEntity extends RootEntity
-{
-    private boolean fDirty = false;
+public class DB2RootEntity extends RootEntity {
+	private static final long serialVersionUID = -1137531563087778883L;
+	private boolean fDirty = false;
     private static final String SEP = "`";
 
 	protected static native int Attach(
@@ -113,7 +113,9 @@ public class DB2RootEntity extends RootEntity
 	 * so there's no need to collect data separately.
 	 */
 	public static class DB2Counter extends Counter {
-	    /**
+		private static final long serialVersionUID = 3823002234277848589L;
+
+		/**
 	     * Builds a DB2Counter from a native definition.
 	     * @param nc definition of counter, as provided by native code
 	     */
@@ -138,7 +140,8 @@ public class DB2RootEntity extends RootEntity
 	 * Holds the definition of a DB2 entity as understood by the framework.
 	 */
 	public static class DB2Entity extends Entity {
-	    /**
+		private static final long serialVersionUID = 6666349577813355717L;
+		/**
 	     * Constructs a DB2Entity from native data provided.
 	     * @param id Id of parent entity to add this new entity to
 	     * @param nativeEntity Native data to use as a definition

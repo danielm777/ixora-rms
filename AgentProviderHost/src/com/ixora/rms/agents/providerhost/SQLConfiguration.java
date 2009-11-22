@@ -10,6 +10,7 @@ import com.ixora.rms.agents.messages.Msg;
  * @author Daniel Moraru
  */
 public class SQLConfiguration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = -5239501567046161329L;
 
 	/**
 	 * Constructor.

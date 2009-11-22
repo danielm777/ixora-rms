@@ -11,7 +11,9 @@ import com.ixora.rms.exception.RMSException;
  * Some problem occurred with native code while extracting WMI data
  */
 public class WMIAgentException extends RMSException {
-    /**
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Constructor
      * @param s
      * @param e

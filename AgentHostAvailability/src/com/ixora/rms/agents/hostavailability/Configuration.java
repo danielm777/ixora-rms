@@ -11,6 +11,7 @@ import com.ixora.rms.agents.hostavailability.messages.Msg;
  * @author Daniel Moraru
  */
 public final class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = 933183627619157950L;
 	public static final String PING_TIMEOUT = Msg.PING_TIMEOUT;
 	public static final String PACKET_SIZE = Msg.PACKET_SIZE;
 

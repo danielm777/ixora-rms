@@ -84,7 +84,7 @@ public class WebSphereRootEntity extends RootEntity implements PmiConstants {
 	 * @throws InvalidConfiguration
 	 */
 	public void changeMonitoringLevel(MonitoringLevel level) throws InvalidConfiguration, Throwable {
-		for(Iterator iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
+		for(Iterator<Entity> iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
 			EntityConfiguration nConf = new EntityConfiguration();
 			nConf.setMonitoringLevel(level);
 			nConf.setRecursiveMonitoringLevel(true);

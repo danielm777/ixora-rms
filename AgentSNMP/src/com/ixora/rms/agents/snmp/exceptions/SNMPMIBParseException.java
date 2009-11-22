@@ -6,6 +6,7 @@ package com.ixora.rms.agents.snmp.exceptions;
 import com.ixora.rms.agents.snmp.messages.Msg;
 
 public class SNMPMIBParseException extends SNMPAgentException {
+	private static final long serialVersionUID = 8402635583637474114L;
 
 	/**
 	 * @param s

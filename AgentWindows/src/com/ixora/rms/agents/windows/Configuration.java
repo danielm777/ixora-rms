@@ -11,7 +11,8 @@ import com.ixora.rms.agents.windows.messages.Msg;
  * Parameters for Windows Agent
  */
 public class Configuration extends AuthenticationConfiguration {
-    // value keys
+	private static final long serialVersionUID = -1654744804032767567L;
+	// value keys
     public static final String DOMAIN = Msg.WINDOWSAGENT_DOMAIN;
 
     /**

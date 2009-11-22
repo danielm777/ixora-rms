@@ -23,6 +23,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntityDomain;
  * @author Daniel Moraru
  */
 public class HotSpotJVMEntityDomain extends JMXEntityDomain {
+	private static final long serialVersionUID = -2365302925156213521L;
 
 	/**
 	 * Constructor.

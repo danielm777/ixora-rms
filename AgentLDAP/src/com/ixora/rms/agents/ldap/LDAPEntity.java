@@ -26,6 +26,7 @@ import com.novell.ldap.LDAPSearchResults;
  * @author Daniel Moraru
  */
 public final class LDAPEntity extends Entity {
+	private static final long serialVersionUID = -4038994152871931L;
 	private String fLDAPPath;
 
 	/**
@@ -47,6 +48,7 @@ public final class LDAPEntity extends Entity {
 	/**
 	 * Updates child LDAP nodes
 	 */
+	@SuppressWarnings("unchecked")
 	public void updateData(LDAPAttributeSet attributeSet) {
 		setTouchedByUpdate(true);
         // Read attributes and make counters out of them
@@ -111,6 +113,7 @@ public final class LDAPEntity extends Entity {
 	/**
 	 * @see com.ixora.rms.agents.impl.Entity#retrieveCounterValues()
 	 */
+	@SuppressWarnings("unchecked")
 	protected void retrieveCounterValues() throws Throwable {
 		try {
 			// Extract a list of enabled counters

@@ -35,6 +35,8 @@ import com.ixora.rms.data.CounterValueDouble;
  */
 public final class ApacheEntityStatus extends Entity
 		implements ApacheConstants {
+	private static final long serialVersionUID = 3960207818163346703L;
+
 	/**
 	 * @param parent
 	 * @param c
@@ -132,7 +134,7 @@ public final class ApacheEntityStatus extends Entity
 	}
 
 	/**
-	 * Parses the content vor Apache 1.3.x
+	 * Parses the content for Apache 1.3.x
 	 * All counters will be extracted even if just
 	 * some of them are enabled as it seems to involve
 	 * even more work to filter the disabled ones out.
@@ -142,7 +144,6 @@ public final class ApacheEntityStatus extends Entity
 		char unit;
 		float f;
 		char ch;
-		int n;
 		Counter c;
 // Total accesses
 		int idx = text.indexOf("Total accesses");
@@ -286,7 +287,6 @@ public final class ApacheEntityStatus extends Entity
 		char unit;
 		float f;
 		char ch;
-		int n;
 		Counter c;
 // Total accesses
 		int idx = text.indexOf("Total accesses");
@@ -429,7 +429,6 @@ public final class ApacheEntityStatus extends Entity
 		char unit;
 		float f;
 		char ch;
-		int n;
 		Counter c;
 // Total accesses
 		int idx = text.indexOf("Total accesses");

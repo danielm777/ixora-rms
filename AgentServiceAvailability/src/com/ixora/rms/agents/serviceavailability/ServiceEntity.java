@@ -26,6 +26,7 @@ import com.ixora.rms.data.CounterValueString;
  * @author Daniel Moraru
  */
 public final class ServiceEntity extends Entity {
+	private static final long serialVersionUID = -2399643487589630772L;
 	private int misses;
 	/**
 	 * Cache here the inet address as it's very expensive; There is also a bug in JDK that

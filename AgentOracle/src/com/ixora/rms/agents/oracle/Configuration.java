@@ -11,6 +11,7 @@ import com.ixora.rms.agents.utils.AuthenticationAndPortConfiguration;
  * @author Daniel Moraru
  */
 public class Configuration extends AuthenticationAndPortConfiguration {
+	private static final long serialVersionUID = -5460140623311609876L;
 	public static final String SID = Msg.ORACLE_CONFIG_SID;
 	public static final String JDBC_DRIVER_CLASS = Msg.ORACLE_CONFIG_JDBC_DRIVER_CLASS;
 	public static final String CLASSPATH = Msg.ORACLE_CONFIG_CLASSPATH;

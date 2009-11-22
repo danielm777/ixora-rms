@@ -74,17 +74,17 @@ public class JBossScript implements LogParserScript {
 		return new com.ixora.rms.agents.impl.logfile.LogRecord(timestamp, severity, comp, clazz, method, line, thread, seq, msg);
 	}
 
-	public static void main(String[] args) {
-		try {
-			//2006-03-05 00:43:26,921 DEBUG [org.jboss.deployment.scanner.URLDeploymentScanner] Watch URL for: file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml -> file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml
-			String[] lines = new String[2];
-			lines[0] = "2006-03-05 00:43:26,921 DEBUG [org.jboss.deployment.scanner.URLDeploymentScanner] Watch URL for: file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml -> file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml";
-			lines[1] = "DemoIdentity from the jks keystore file C:\\bea80\\WEBLOG~1\\server\\lib\\DemoIdentity.jks.> ";
-			LogRecord rec = new JBossScript().parse(new LogParserScriptContextImpl(), lines);
-
-			int debug = 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			//2006-03-05 00:43:26,921 DEBUG [org.jboss.deployment.scanner.URLDeploymentScanner] Watch URL for: file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml -> file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml
+//			String[] lines = new String[2];
+//			lines[0] = "2006-03-05 00:43:26,921 DEBUG [org.jboss.deployment.scanner.URLDeploymentScanner] Watch URL for: file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml -> file:/C:/jboss-4.0.3RC1/server/default/deploy/ejb3-interceptors-aop.xml";
+//			lines[1] = "DemoIdentity from the jks keystore file C:\\bea80\\WEBLOG~1\\server\\lib\\DemoIdentity.jks.> ";
+//			LogRecord rec = new JBossScript().parse(new LogParserScriptContextImpl(), lines);
+//
+//			int debug = 0;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

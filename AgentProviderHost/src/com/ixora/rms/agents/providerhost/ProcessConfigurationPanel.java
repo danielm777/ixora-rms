@@ -30,6 +30,10 @@ import com.ixora.rms.providers.impl.process.ProcessExecutionMode;
  * @author Daniel Moraru
  */
 public final class ProcessConfigurationPanel extends AgentCustomConfigurationPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8696775646740345300L;
 	// TODO localize
 	private static final String LABEL_PROCESS_EXEC_MODE = "Process Execution Mode";
 	private static final String LABEL_REMOTE_EXEC_CONFIG = "Remote Execution Configuration";
@@ -41,6 +45,7 @@ public final class ProcessConfigurationPanel extends AgentCustomConfigurationPan
 	private EventHandler fEventHandler;
 
 	private class TypedPropertiesSSH2 extends TypedProperties {
+		private static final long serialVersionUID = -1493304147157913759L;
 		TypedPropertiesSSH2() {
 			super();
 	        setProperty(ProcessConfiguration.USERNAME, TYPE_STRING, true, true);
@@ -70,6 +75,7 @@ public final class ProcessConfigurationPanel extends AgentCustomConfigurationPan
 	}
 
 	private class TypedPropertiesTelnet extends TypedPropertiesSSH2 {
+		private static final long serialVersionUID = 7774190183242522120L;
 		TypedPropertiesTelnet() {
 			super();
 	        setProperty(ProcessConfiguration.USERNAME_PROMPT, TYPE_STRING, true, true);

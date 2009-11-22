@@ -12,6 +12,7 @@ import com.ixora.rms.agents.serviceavailability.messages.Msg;
  * @author Daniel Moraru
  */
 public final class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = 8749655691369981096L;
 	public static final String DATA = Msg.DATA;
 	public static final String PORT = Msg.PORT;
 	public static final String READ_TIMEOUT = Msg.READ_TIMEOUT;

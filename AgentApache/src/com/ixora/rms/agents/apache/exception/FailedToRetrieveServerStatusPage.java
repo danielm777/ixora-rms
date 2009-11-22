@@ -10,6 +10,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class FailedToRetrieveServerStatusPage extends RMSException {
+	private static final long serialVersionUID = -1920137964881229060L;
 
 	/**
 	 * Constructor.

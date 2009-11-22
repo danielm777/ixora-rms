@@ -11,6 +11,7 @@ import com.ixora.rms.agents.utils.AuthenticationAndPortConfiguration;
  * @author Daniel Moraru
  */
 public class Configuration extends AuthenticationAndPortConfiguration {
+	private static final long serialVersionUID = -8525414794572112021L;
 	public static final String BASE_DN = Msg.LDAP_CONFIG_BASE_DN;
 	public static final String TIMEOUT = Msg.LDAP_CONFIG_TIMEOUT;
 	public static final String FILTER = Msg.LDAP_CONFIG_FILTER;

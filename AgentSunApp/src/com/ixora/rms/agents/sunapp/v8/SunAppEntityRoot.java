@@ -24,6 +24,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntityRoot;
  * @author Daniel Moraru
  */
 public class SunAppEntityRoot extends JMXEntityRoot {
+	private static final long serialVersionUID = -3714785557042050417L;
 
 	/**
 	 * @param c

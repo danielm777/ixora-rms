@@ -33,6 +33,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class LogFileEntity extends Entity {
+	private static final long serialVersionUID = 2877446020758936831L;
 	/** Log file */
 	private File fFile;
 	/** The bytes read index */

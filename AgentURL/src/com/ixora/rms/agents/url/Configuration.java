@@ -14,6 +14,7 @@ import com.ixora.rms.agents.url.messages.Msg;
  * @author Daniel Moraru
  */
 public class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = 5001280453537520692L;
 	public static final String HTTP_METHOD_GET = "GET";
 	public static final String HTTP_METHOD_POST = "POST";
 
@@ -40,7 +41,7 @@ public class Configuration extends AgentCustomConfiguration {
 	 */
 	public void veto() throws VetoException {
 		try {
-			URL url = new URL(getString(URL));
+			new URL(getString(URL));
 		} catch (MalformedURLException e) {
 			throw new VetoException("Invalid URL: " + e.getLocalizedMessage());
 		}

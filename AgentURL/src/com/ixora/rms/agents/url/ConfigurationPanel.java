@@ -33,6 +33,7 @@ import com.ixora.rms.agents.url.messages.Msg;
  * @author Daniel Moraru
  */
 public final class ConfigurationPanel extends AgentCustomConfigurationPanel {
+	private static final long serialVersionUID = -2585319696204164109L;
 	private static final String LABEL_REQUEST = "HTTP Request";
 	private static final String LABEL_REQUEST_PARAMETERS = "HTTP Request Parameters";
 
@@ -56,6 +57,7 @@ public final class ConfigurationPanel extends AgentCustomConfigurationPanel {
 	}
 
 	private static final class TypedPropsMain extends TypedProperties {
+		private static final long serialVersionUID = -5170071633000331501L;
 		TypedPropsMain() {
 			super();
 			setProperty(Configuration.URL, TYPE_STRING, true, true);
@@ -74,7 +76,7 @@ public final class ConfigurationPanel extends AgentCustomConfigurationPanel {
 		 */
 		public void veto() throws VetoException {
 			try {
-				URL url = new URL(getString(Configuration.URL));
+				new URL(getString(Configuration.URL));
 			} catch (MalformedURLException e) {
 				throw new VetoException("Invalid URL: " + e.getLocalizedMessage());
 			}
@@ -82,6 +84,7 @@ public final class ConfigurationPanel extends AgentCustomConfigurationPanel {
 	}
 
 	private static final class TypedPropsParam extends TypedProperties {
+		private static final long serialVersionUID = 2877800893841968159L;
 		TypedPropsParam() {
 			// TODO localize
 			setProperty("Parameter", TYPE_STRING, true, true);

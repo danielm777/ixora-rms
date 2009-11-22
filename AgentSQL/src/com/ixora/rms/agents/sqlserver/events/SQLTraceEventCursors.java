@@ -17,8 +17,8 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventCursors
  */
 public class SQLTraceEventCursors extends SQLTraceChildEntity {
-
-    private SQLCounterAccum	fcClosed;
+	private static final long serialVersionUID = 1914928988185040295L;
+	private SQLCounterAccum	fcClosed;
     private SQLCounterAccum	fcExecuted;
     private SQLCounterAccum	fcImplicitConverted;
     private SQLCounterAccum	fcOpened;
