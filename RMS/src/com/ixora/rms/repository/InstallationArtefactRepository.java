@@ -114,24 +114,24 @@ public final class InstallationArtefactRepository {
 		if(!repFolder.isDirectory()) {
 			throw new FileNotFoundException(repFolder.getAbsolutePath());
 		}
-		File[] list = Utils.listFilesForFolder(repFolder);
-		File af;
+		File[] list = Utils.listFilesForFolder(repFolder);		
 		for(int i = 0; i < list.length; i++) {
-			af = list[i];
-			if(!af.isDirectory()) {
+			File artefactFolder = list[i];
+			if(!artefactFolder.isDirectory()) {
 				continue;
 			}
+			File artefactFile = new File(artefactFolder, fArtefactName);
 			BufferedInputStream bs = null;
 			try {
-				bs = new BufferedInputStream(
-						new FileInputStream(new File(af, fArtefactName)));
+				bs = new BufferedInputStream(new FileInputStream(artefactFile));
 				Document doc = XMLUtils.read(bs);
 				Node n = doc.getFirstChild();
 				InstallationArtefact ia = fArtefactFactory.createArtefact();
 				ia.fromXML(n);
 				fArtefacts.put(ia.getInstallationIdentifier(), ia);
 			} catch (Exception e) {
-				logger.error(e);
+				// TODO localize
+				logger.error("Failed to load artefacts from " + artefactFile.getAbsolutePath(), e);
 			} finally {
 				if(bs != null) {
 					try {

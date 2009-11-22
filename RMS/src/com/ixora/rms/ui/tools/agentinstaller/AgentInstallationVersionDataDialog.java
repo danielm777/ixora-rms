@@ -49,6 +49,7 @@ import com.ixora.rms.ui.tools.agentinstaller.messages.Msg;
  */
 public final class AgentInstallationVersionDataDialog extends AppDialog {
 	private static final long serialVersionUID = -135375609851806753L;
+	private static final String LABEL_AGENT_CLASS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_CLASS);
 	private static final String LABEL_AGENT_LOCATIONS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_LOCATIONS);
 	private static final String LABEL_AGENT_LEVELS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_LEVELS);
 	private static final String LABEL_AGENT_JARS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_JARS);
@@ -59,6 +60,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	private JPanel fPanel;
 	private FormPanel fForm;
 
+	private JTextField fTextFieldClass;
 	private JTextField fTextFieldUIJar;
 	private JTextField fTextFieldConfigPanel;
     private AgentVersionsSelectorPanel fPanelAgentVersionSelector;
@@ -262,6 +264,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 			}
 		};
 
+		fTextFieldClass = UIFactoryMgr.createTextField();
 		fTextFieldUIJar = UIFactoryMgr.createTextField();
 		fTextFieldConfigPanel = UIFactoryMgr.createTextField();
 		fPanelAgentVersionSelector = new AgentVersionsSelectorPanel(
@@ -311,6 +314,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 		fForm.addPairs(
 				new String[] {
                         "System Versions", // TODO localize
+                        LABEL_AGENT_CLASS,
                         LABEL_AGENT_LOCATIONS,
 						LABEL_AGENT_LEVELS,
 						LABEL_AGENT_JARS,
@@ -318,8 +322,9 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 						LABEL_AGENT_UIJAR,
 						LABEL_AGENT_CONFIG_PANEL
 				},
-				new Component[] {
+				new Component[] {						
                         fPanelAgentVersionSelector,
+                        fTextFieldClass,
                         spLocations,
 						spLevels,
 						fEditorJars,
@@ -346,6 +351,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
      */
 	private void configurePanelForVersionData(VersionableAgentInstallationData vad) {
 		fPanelAgentVersionSelector.setSelectedAgentVersions(vad.getAgentVersions());
+		fTextFieldClass.setText(vad.getAgentImplClass());
         fTextFieldConfigPanel.setText(vad.getConfigPanelClass());
         String uiJar = vad.getUIJar();
         if(uiJar != null) {
@@ -438,6 +444,10 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 				return;
 			}
 			// build the result
+			String clazz = fTextFieldClass.getText();
+			if(Utils.isEmptyString(clazz)) {
+				throw new InvalidFormData(LABEL_AGENT_CLASS);
+			}
 			AgentLocation[] locations = fLocationsTableModel.getLocations();
 			if(Utils.isEmptyArray(locations)) {
 				throw new InvalidFormData(LABEL_AGENT_LOCATIONS);
@@ -476,6 +486,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 			}
 
 			VersionableAgentInstallationData vad = new VersionableAgentInstallationData(
+					clazz,
 					configPanel,
 					locations,
 					levels,

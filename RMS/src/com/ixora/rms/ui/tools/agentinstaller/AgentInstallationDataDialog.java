@@ -56,7 +56,6 @@ public final class AgentInstallationDataDialog extends AppDialog {
 	private static final long serialVersionUID = -5421573883756354569L;
 	private static final String LABEL_AGENT_NAME = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_NAME);
 	private static final String LABEL_AGENT_DESCRIPTION = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_DESCRIPTION);
-	private static final String LABEL_AGENT_CLASS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_CLASS);
 	private static final String LABEL_AGENT_CATEGORY = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_CATEGORY);
 	private static final String LABEL_AGENT_TARGET_VERSIONS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_TARGET_VERSIONS);
 	private static final String LABEL_AGENT_MSG_CATALOG = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_MSG_CATALOG);
@@ -66,7 +65,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 
 	private JTextField fTextFieldName;
 	private JTextField fTextFieldDescription;
-	private JTextField fTextFieldClass;
+	
 	private JTextField fTextFieldCategory;
 	private JTextField fTextFieldMessageCatalog;
 	private JTextField fTextFieldHelpIdJava;
@@ -152,7 +151,6 @@ public final class AgentInstallationDataDialog extends AppDialog {
 
 		fTextFieldName = UIFactoryMgr.createTextField();
 		fTextFieldDescription = UIFactoryMgr.createTextField();
-		fTextFieldClass = UIFactoryMgr.createTextField();
 		fTextFieldCategory = UIFactoryMgr.createTextField();
 		fTextFieldMessageCatalog = UIFactoryMgr.createTextField();
 		fTextFieldHelpIdJava = UIFactoryMgr.createTextField();
@@ -218,7 +216,6 @@ public final class AgentInstallationDataDialog extends AppDialog {
 			fVersionData = aid.getVersionData();
 			fTextFieldName.setText(aid.getAgentName());
 			fTextFieldDescription.setText(aid.getAgentDescription());
-			fTextFieldClass.setText(aid.getAgentImplClass());
 			fTextFieldCategory.setText(aid.getCategory());
 			fTextFieldMessageCatalog.setText(aid.getMessageCatalog());
 			fTextFieldHelpIdJava.setText(aid.getJavaHelp());
@@ -245,7 +242,6 @@ public final class AgentInstallationDataDialog extends AppDialog {
 				new String[] {
 						LABEL_AGENT_NAME,
 						LABEL_AGENT_DESCRIPTION,
-						LABEL_AGENT_CLASS,
 						LABEL_AGENT_CATEGORY,
                         LABEL_AGENT_MSG_CATALOG,
                         "Java Help ID", // TODO localize
@@ -256,7 +252,6 @@ public final class AgentInstallationDataDialog extends AppDialog {
 				new Component[] {
 						fTextFieldName,
 						fTextFieldDescription,
-						fTextFieldClass,
 						fTextFieldCategory,
                         fTextFieldMessageCatalog,
                         fTextFieldHelpIdJava,
@@ -346,10 +341,6 @@ public final class AgentInstallationDataDialog extends AppDialog {
 			if(Utils.isEmptyString(description)) {
 				description = null;
 			}
-			String clazz = fTextFieldClass.getText();
-			if(Utils.isEmptyString(clazz)) {
-				throw new InvalidFormData(LABEL_AGENT_CLASS);
-			}
 			String category = fTextFieldCategory.getText();
 			if(Utils.isEmptyString(category)) {
 				category = "miscellaneous";
@@ -374,7 +365,6 @@ public final class AgentInstallationDataDialog extends AppDialog {
 	        	throw new VersionDataMissing();
 	        }
 			fResult = new AgentInstallationData(
-					clazz,
 					true,
 					new ComponentVersion(1, 0, 0),
 					name,
