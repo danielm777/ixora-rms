@@ -63,7 +63,7 @@ import com.ixora.rms.data.CounterValueString;
  * SNMPRootEntity
  */
 public class SNMPRootEntity extends RootEntity {
-
+	private static final long serialVersionUID = -3982291098399860921L;
 	private MIBTree fMIBTree;
 	private Snmp	fSNMP;
 	private AbstractTarget fTargetAddress;
@@ -93,6 +93,7 @@ public class SNMPRootEntity extends RootEntity {
 	 * SNMPCounter
 	 */
 	private class SNMPCounter extends Counter {
+		private static final long serialVersionUID = -76356293704395590L;
 
 		/**
 		 * Initializes a SNMPCounter from a MIBNode
@@ -175,6 +176,7 @@ public class SNMPRootEntity extends RootEntity {
 	 * SNMPEntity
 	 */
 	private class SNMPEntity extends Entity {
+		private static final long serialVersionUID = -5645850176383894773L;
 		private MIBNode	fNode;
 		private SNMPCounter fValueCounter;
 		/**
@@ -231,6 +233,7 @@ public class SNMPRootEntity extends RootEntity {
 		 * This is where the actual SNMP retrieval is done
 		 * @see com.ixora.rms.agents.impl.Entity#retrieveCounterValues()
 		 */
+		@SuppressWarnings("unchecked")
 		protected void retrieveCounterValues() throws Throwable {
 
 			// Create a GET command PDU
@@ -318,8 +321,6 @@ public class SNMPRootEntity extends RootEntity {
 		fSNMP = new Snmp(transport);
 
 		if (config instanceof ConfigurationV1) {
-			ConfigurationV1 cfg = (ConfigurationV1)config;
-
 			// Create a community-based target address
 	        Address address = GenericAddress.parse("udp:" + hostName + "/" + snmpPort);
 	        CommunityTarget comunityTarget = new CommunityTarget();
@@ -330,9 +331,6 @@ public class SNMPRootEntity extends RootEntity {
 			fTargetAddress = comunityTarget;
 
 		} else if (config instanceof ConfigurationV2c) {
-
-			ConfigurationV2c cfg = (ConfigurationV2c)config;
-
 			// Create a community-based target address
 	        Address address = GenericAddress.parse("udp:" + hostName + "/" + snmpPort);
 	        CommunityTarget comunityTarget = new CommunityTarget();
@@ -342,8 +340,6 @@ public class SNMPRootEntity extends RootEntity {
 	        comunityTarget.setTimeout(portTimeout);
 			fTargetAddress = comunityTarget;
 		} else {
-			ConfigurationV3 cfg = (ConfigurationV3)config;
-
 			// Add all security protocols
 		    SecurityProtocols.getInstance().addDefaultProtocols();
 		    USM usm = new USM(SecurityProtocols.getInstance(),
@@ -351,7 +347,6 @@ public class SNMPRootEntity extends RootEntity {
 
 			SecurityModels.getInstance().addSecurityModel(usm);
 			OctetString authoritativeEngineID = createOctetString(config.getString(ConfigurationV3.AUTH_CONTEXT_ENGINE));
-			OctetString contextEngineID = createOctetString(config.getString(ConfigurationV3.CONTEXT_ENGINE));
 
 			if (authoritativeEngineID != null) {
 				fSNMP.setLocalEngine(authoritativeEngineID.getValue(), 0, 0);

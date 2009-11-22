@@ -9,6 +9,7 @@ import com.ixora.rms.agents.mysql.Msg;
  * Configuration
  */
 public class Configuration extends com.ixora.rms.agents.mysql.Configuration {
+	private static final long serialVersionUID = -4042202507798857588L;
 
 	/**
 	 * Empty constructor. Required to allow the associated panel

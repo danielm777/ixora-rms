@@ -12,9 +12,10 @@ import com.ixora.rms.agents.utils.SQLODBCConfiguration;
  * @author Crisian Costache
  * @author Daniel Moraru
  */
-public final class Configuration extends SQLODBCConfiguration
-{
-    public static final String SQL_INSTANCE = Msg.SQLSERVERAGENT_CONFIGURATION_SQL_INSTANCE;
+public final class Configuration extends SQLODBCConfiguration {
+	private static final long serialVersionUID = 8655856082363916967L;
+
+	public static final String SQL_INSTANCE = Msg.SQLSERVERAGENT_CONFIGURATION_SQL_INSTANCE;
 
     public static final String EVENT_CURSORS = Msg.SQLSERVERAGENT_CONFIGURATION_EVENT_CURSORS;
 	public static final String EVENT_DATABASE = Msg.SQLSERVERAGENT_CONFIGURATION_EVENT_DATABASE;

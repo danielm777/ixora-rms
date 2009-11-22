@@ -10,8 +10,8 @@ import com.ixora.rms.agents.impl.Counter;
  * SQLTraceCounter
  */
 public class SQLTraceCounter extends Counter {
-
-    public static final int COL_TEXTDATA = 1;
+	private static final long serialVersionUID = -3703649008801608432L;
+	public static final int COL_TEXTDATA = 1;
     public static final int COL_BINARYDATA = 2;
     public static final int COL_DATABASEID = 3;
     public static final int COL_TRANSACTIONID = 4;

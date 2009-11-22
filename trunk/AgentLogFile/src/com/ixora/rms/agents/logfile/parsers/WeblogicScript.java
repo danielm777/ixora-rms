@@ -76,7 +76,7 @@ public class WeblogicScript implements LogParserScript {
 		return new com.ixora.rms.agents.impl.logfile.LogRecord(timestamp, severity, comp, clazz, method, line, thread, seq, msg);
 	}
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			//####<09-Mar-2006 23:53:59 o'clock GMT> <Notice> <Security> <panda> <examplesServer> <main> <<WLS Kernel>> <> <BEA-090170> <Loading the private key stored under the alias DemoIdentity from the jks keystore file C:\bea80\WEBLOG~1\server\lib\DemoIdentity.jks.>
 			String[] lines = new String[2];
@@ -94,4 +94,4 @@ public class WeblogicScript implements LogParserScript {
 			e.printStackTrace();
 		}
 	}
-}
+*/}

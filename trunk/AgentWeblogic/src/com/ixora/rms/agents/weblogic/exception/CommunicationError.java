@@ -10,6 +10,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class CommunicationError extends RMSException {
+	private static final long serialVersionUID = -4174754389463689908L;
 
 	/**
 	 * Constructor.

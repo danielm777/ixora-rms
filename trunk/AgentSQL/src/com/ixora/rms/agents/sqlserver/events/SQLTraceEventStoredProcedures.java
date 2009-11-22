@@ -20,14 +20,16 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventStoredProcedures
  */
 public class SQLTraceEventStoredProcedures extends SQLTraceChildEntity {
+	private static final long serialVersionUID = -4631984500580020347L;
 
-
-    /**
+	/**
      * SQLRPCEntity
      * Used for creating child entities on the fly
      */
     private static class SQLRPCEntity extends Entity {
-        /**
+		private static final long serialVersionUID = -436011156516555063L;
+
+		/**
          * Default constructor
          * @param idParent
          * @param name
@@ -52,7 +54,6 @@ public class SQLTraceEventStoredProcedures extends SQLTraceChildEntity {
     	    String ntUserName = columnData.getString(SQLTraceCounter.COL_NTUSERNAME);
     	    String loginUserName = columnData.getString(SQLTraceCounter.COL_LOGINNAME);
     	    int processID = (int)columnData.getDouble(SQLTraceCounter.COL_CLIENTPROCESSID);
-    	    String textData = columnData.getString(SQLTraceCounter.COL_TEXTDATA);
     	    double cpuUsage = columnData.getDouble(SQLTraceCounter.COL_CPU);
     	    double diskReads = columnData.getDouble(SQLTraceCounter.COL_READS);
     	    double diskWrites = columnData.getDouble(SQLTraceCounter.COL_WRITES);
@@ -230,15 +231,15 @@ public class SQLTraceEventStoredProcedures extends SQLTraceChildEntity {
         switch (eventId) {
         	case SQLTraceCounter.EV_RPC_COMPLETED:
         	    try {
-	        	    String appName = columnData.getString(SQLTraceCounter.COL_APPLICATIONNAME);
-	        	    String ntUserName = columnData.getString(SQLTraceCounter.COL_NTUSERNAME);
-	        	    String loginUserName = columnData.getString(SQLTraceCounter.COL_LOGINNAME);
-	        	    int processID = (int)columnData.getDouble(SQLTraceCounter.COL_CLIENTPROCESSID);
+//	        	    String appName = columnData.getString(SQLTraceCounter.COL_APPLICATIONNAME);
+//	        	    String ntUserName = columnData.getString(SQLTraceCounter.COL_NTUSERNAME);
+//	        	    String loginUserName = columnData.getString(SQLTraceCounter.COL_LOGINNAME);
+//	        	    int processID = (int)columnData.getDouble(SQLTraceCounter.COL_CLIENTPROCESSID);
 	        	    String textData = columnData.getString(SQLTraceCounter.COL_TEXTDATA);
-	        	    double cpuUsage = columnData.getDouble(SQLTraceCounter.COL_CPU);
-	        	    double diskReads = columnData.getDouble(SQLTraceCounter.COL_READS);
-	        	    double diskWrites = columnData.getDouble(SQLTraceCounter.COL_WRITES);
-	        	    double rpcDuration = columnData.getDouble(SQLTraceCounter.COL_DURATION);
+//	        	    double cpuUsage = columnData.getDouble(SQLTraceCounter.COL_CPU);
+//	        	    double diskReads = columnData.getDouble(SQLTraceCounter.COL_READS);
+//	        	    double diskWrites = columnData.getDouble(SQLTraceCounter.COL_WRITES);
+//	        	    double rpcDuration = columnData.getDouble(SQLTraceCounter.COL_DURATION);
 
 	        	    // Filter out sp_trace_setevent calls and empty strings
 	        	    if (!Utils.isEmptyString(textData) &&

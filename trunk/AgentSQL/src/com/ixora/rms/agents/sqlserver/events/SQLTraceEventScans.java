@@ -17,7 +17,8 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventScans
  */
 public class SQLTraceEventScans extends SQLTraceChildEntity {
-    private SQLCounterAccum	fcScans;
+	private static final long serialVersionUID = 1473428188681861178L;
+	private SQLCounterAccum	fcScans;
     private SQLCounterAccum	fcScansDuration;
     private SQLCounterAccum	fcScansReads;
 

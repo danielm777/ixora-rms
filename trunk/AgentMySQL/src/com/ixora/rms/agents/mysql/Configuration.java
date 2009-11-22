@@ -10,6 +10,7 @@ import com.ixora.rms.agents.AgentCustomConfiguration;
  * Configuration
  */
 public class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = -1139748984286868407L;
 	public static final String USERNAME = Msg.USERNAME;
 	public static final String PASSWORD = Msg.PASSWORD;
 	public static final String PORT = Msg.PORT;

@@ -11,6 +11,8 @@ import com.ixora.rms.agents.utils.AuthenticationConfiguration;
  * @author Daniel Moraru
  */
 public final class Configuration extends AuthenticationConfiguration {
+	private static final long serialVersionUID = 3944557714375836440L;
+
 	/**
 	 * Empty constructor. Required to allow the associated panel
 	 * to create an empty configuration instance for editing.

@@ -8,6 +8,8 @@ package com.ixora.rms.agents.db2;
  * Thrown if the native DLLs are not available
  */
 public class DB2AgentNotSupportedException extends DB2AgentException {
+	private static final long serialVersionUID = 3665760851393922941L;
+
 	/**
 	 * Constructor
 	 * @param s

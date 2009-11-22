@@ -129,6 +129,7 @@ public class MIBTree implements Serializable {
 	 * @param fileName
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unchecked")
 	public void loadMIB(MibLoader mibLoader, File mibFile) throws SNMPMIBParseException {
 		try {
 	        Mib mib = mibLoader.load(mibFile);

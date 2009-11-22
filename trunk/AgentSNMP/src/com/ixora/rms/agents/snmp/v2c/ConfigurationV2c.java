@@ -10,6 +10,7 @@ import com.ixora.rms.agents.snmp.messages.Msg;
  * Configuration
  */
 public class ConfigurationV2c extends Configuration {
+	private static final long serialVersionUID = 6507952640732915062L;
 	public static final String COMUNITY = Msg.COMUNITY;
 
 	/**

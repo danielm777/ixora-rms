@@ -3,6 +3,7 @@
  */
 package com.ixora.rms.agents.weblogic.v8;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -19,6 +20,7 @@ import javax.naming.InitialContext;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.weblogic.exception.CommunicationError;
+import com.ixora.rms.agents.weblogic.exception.WeblogicNotInstalledOnHost;
 import com.ixora.rms.agents.impl.jmx.JMXAbstractAgent;
 import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
 import com.ixora.rms.agents.impl.jmx.JMXConnectionMBeanServer;
@@ -45,7 +47,13 @@ public class WeblogicAgent extends JMXAbstractAgent {
 	 * @throws Throwable
 	 * @see com.ixora.rms.agents.impl.AbstractAgent#configCustomChanged()
 	 */
+	@SuppressWarnings("unchecked")
 	protected void configCustomChanged() throws Throwable {
+        String wlsHome = fConfiguration.getAgentCustomConfiguration().getString(Configuration.ROOT_FOLDER);
+        File f = new File(wlsHome);
+        if(!f.exists()) {
+            throw new WeblogicNotInstalledOnHost(fConfiguration.getDeploymentHost());
+        }
 		// set up credentials
 		fEnvMap.put(Context.SECURITY_PRINCIPAL, fConfiguration.getAgentCustomConfiguration().getString(Configuration.USERNAME));
 		fEnvMap.put(Context.SECURITY_CREDENTIALS, fConfiguration.getAgentCustomConfiguration().getString(Configuration.PASSWORD));
@@ -56,7 +64,7 @@ public class WeblogicAgent extends JMXAbstractAgent {
 			// weblogic.management.home.localhome or weblogic.management.adminhome
 			Object home = ctxt.lookup(fConfiguration.getAgentCustomConfiguration().getString(
 					Configuration.JNDI_NAME));
-	        Class homeClass = home.getClass();
+	        Class<?> homeClass = home.getClass();
 	        Method method = homeClass.getMethod("getMBeanServer", new Class[0]);
 	        Object mbeanServerObject = method.invoke(home, new Object[0]);
 			MBeanServer mb = (MBeanServer)mbeanServerObject;

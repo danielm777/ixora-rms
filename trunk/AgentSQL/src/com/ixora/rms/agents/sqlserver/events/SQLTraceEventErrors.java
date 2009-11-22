@@ -17,8 +17,8 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventErrors
  */
 public class SQLTraceEventErrors extends SQLTraceChildEntity {
-
-    private SQLCounterAccum	fcAttention;
+	private static final long serialVersionUID = -3064615764352562179L;
+	private SQLCounterAccum	fcAttention;
     private SQLCounterAccum	fcErrorLog;
     private SQLCounterAccum	fcEventLog;
     private SQLCounterAccum	fcExceptions;

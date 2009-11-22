@@ -20,6 +20,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntityRoot;
  * @author Daniel Moraru
  */
 public class WeblogicEntityRoot extends JMXEntityRoot {
+	private static final long serialVersionUID = -1602925619254960850L;
 
 	/**
 	 * Constructor.

@@ -17,7 +17,8 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventTransactions
  */
 public class SQLTraceEventTransactions extends SQLTraceChildEntity {
-    private SQLCounterAccum	fcBeginTransaction;
+	private static final long serialVersionUID = -6484737821008196220L;
+	private SQLCounterAccum	fcBeginTransaction;
     private SQLCounterAccum	fcCommitTransaction;
     private SQLCounterAccum	fcTransactionDuration;
     private SQLCounterAccum	fcRollbackTransaction;

@@ -12,7 +12,9 @@ import com.ixora.rms.agents.ui.DefaultAgentCustomConfigurationPanel;
  * Panel for configuring Windows Agent
  */
 public class ConfigurationPanel extends DefaultAgentCustomConfigurationPanel {
-    /**
+	private static final long serialVersionUID = 4273295904917645341L;
+
+	/**
      * Constructor.
      * @param agentId
      * @param ctxt

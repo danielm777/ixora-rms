@@ -17,7 +17,8 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventDatabase
  */
 public class SQLTraceEventDatabase extends SQLTraceChildEntity {
-    private SQLCounterAccum	fcDataFileAutoGrows;
+	private static final long serialVersionUID = 6195397918265338059L;
+	private SQLCounterAccum	fcDataFileAutoGrows;
     private SQLCounterAccum	fcDataFileAutoGrowsDuration;
     private SQLCounterAccum	fcDataFileAutoGrowsSize;
     private SQLCounterAccum	fcDataFileAutoShrinks;

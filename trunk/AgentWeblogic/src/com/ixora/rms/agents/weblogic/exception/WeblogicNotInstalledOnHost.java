@@ -10,6 +10,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class WeblogicNotInstalledOnHost extends RMSException {
+	private static final long serialVersionUID = -1193556501034849760L;
 
 	/**
 	 * Constructor.

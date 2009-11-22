@@ -10,6 +10,7 @@ import com.ixora.common.MessageRepository;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.EntityId;
 import com.ixora.rms.agents.AgentExecutionContext;
+import com.ixora.rms.agents.impl.Entity;
 import com.ixora.rms.agents.impl.RootEntity;
 import com.ixora.rms.agents.ldap.messages.Msg;
 import com.ixora.rms.exception.RMSException;
@@ -24,6 +25,7 @@ import com.novell.ldap.LDAPSearchResults;
  * @author Daniel Moraru
  */
 public final class LDAPRootEntity extends RootEntity {
+	private static final long serialVersionUID = -5521596478385229840L;
 
 	/**
 	 * Constructor
@@ -77,7 +79,7 @@ public final class LDAPRootEntity extends RootEntity {
 	            }
             }
             // remove stale children
-            for(Iterator iter = fChildrenEntities.values().iterator(); iter.hasNext(); ) {
+            for(Iterator<Entity> iter = fChildrenEntities.values().iterator(); iter.hasNext(); ) {
 				LDAPEntity entity = (LDAPEntity)iter.next();
 				if(!entity.isTouchedByUpdate()) {
 					iter.remove();

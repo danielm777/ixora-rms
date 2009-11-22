@@ -10,6 +10,7 @@ import com.ixora.rms.agents.snmp.messages.Msg;
  * Configuration
  */
 public class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = -6200742078440083716L;
 	public static final String USER_MIBS_FOLDER = Msg.USER_MIBS_FOLDER;
 	public static final String COMPILED_MIB_FILE_NAME = Msg.COMPILED_MIB_FILE_NAME;
 	public static final String PORT_NUMBER = Msg.PORT_NUMBER;

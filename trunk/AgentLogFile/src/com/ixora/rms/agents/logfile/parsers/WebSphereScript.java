@@ -89,7 +89,7 @@ public class WebSphereScript implements LogParserScript {
 		return new com.ixora.rms.agents.impl.logfile.LogRecord(timestamp, severity, comp, clazz, method, line, thread, seq, msg);
 	}
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			//[07/03/06 22:55:02:344 GMT] 0000003d AdminServiceI W   ADMN0037W: The Perf
 			String[] lines = new String[3];
@@ -107,5 +107,5 @@ public class WebSphereScript implements LogParserScript {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

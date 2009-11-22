@@ -14,8 +14,9 @@ import com.ixora.rms.agents.sqlserver.events.TracedEventColumn;
  * SQLTraceChildEntity
  */
 public abstract class SQLTraceChildEntity extends Entity {
+	private static final long serialVersionUID = 3210344478458078928L;
 
-    /**
+	/**
      * Calls default constructor
      * @param id
      * @param description

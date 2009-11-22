@@ -20,7 +20,9 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventTSQL
  */
 public class SQLTraceEventTSQL extends SQLTraceChildEntity {
-    /**
+	private static final long serialVersionUID = -4865198995501562646L;
+
+	/**
      * Default constructor
      * @param c
      */
@@ -32,7 +34,9 @@ public class SQLTraceEventTSQL extends SQLTraceChildEntity {
      * Used for creating child entities on the fly
      */
     private static class SQLTSQLEntity extends Entity {
-        /**
+		private static final long serialVersionUID = -1773681026056058589L;
+
+		/**
          * Default constructor
          * @param idParent
          * @param name
@@ -57,7 +61,7 @@ public class SQLTraceEventTSQL extends SQLTraceChildEntity {
     	    String ntUserName = columnData.getString(SQLTraceCounter.COL_NTUSERNAME);
     	    String loginUserName = columnData.getString(SQLTraceCounter.COL_LOGINNAME);
     	    int processID = (int)columnData.getDouble(SQLTraceCounter.COL_CLIENTPROCESSID);
-    	    String textData = columnData.getString(SQLTraceCounter.COL_TEXTDATA);
+//    	    String textData = columnData.getString(SQLTraceCounter.COL_TEXTDATA);
     	    double cpuUsage = columnData.getDouble(SQLTraceCounter.COL_CPU);
     	    double diskReads = columnData.getDouble(SQLTraceCounter.COL_READS);
     	    double diskWrites = columnData.getDouble(SQLTraceCounter.COL_WRITES);
@@ -197,15 +201,15 @@ public class SQLTraceEventTSQL extends SQLTraceChildEntity {
         switch (eventId) {
         	case SQLTraceCounter.EV_SQL_BATCHCOMPLETED:
         	    try {
-	        	    String appName = columnData.getString(SQLTraceCounter.COL_APPLICATIONNAME);
-	        	    String ntUserName = columnData.getString(SQLTraceCounter.COL_NTUSERNAME);
-	        	    String loginUserName = columnData.getString(SQLTraceCounter.COL_LOGINNAME);
-	        	    int processID = (int)columnData.getDouble(SQLTraceCounter.COL_CLIENTPROCESSID);
+//	        	    String appName = columnData.getString(SQLTraceCounter.COL_APPLICATIONNAME);
+//	        	    String ntUserName = columnData.getString(SQLTraceCounter.COL_NTUSERNAME);
+//	        	    String loginUserName = columnData.getString(SQLTraceCounter.COL_LOGINNAME);
+//	        	    int processID = (int)columnData.getDouble(SQLTraceCounter.COL_CLIENTPROCESSID);
 	        	    String textData = columnData.getString(SQLTraceCounter.COL_TEXTDATA);
-	        	    double cpuUsage = columnData.getDouble(SQLTraceCounter.COL_CPU);
-	        	    double diskReads = columnData.getDouble(SQLTraceCounter.COL_READS);
-	        	    double diskWrites = columnData.getDouble(SQLTraceCounter.COL_WRITES);
-	        	    double rpcDuration = columnData.getDouble(SQLTraceCounter.COL_DURATION);
+//	        	    double cpuUsage = columnData.getDouble(SQLTraceCounter.COL_CPU);
+//	        	    double diskReads = columnData.getDouble(SQLTraceCounter.COL_READS);
+//	        	    double diskWrites = columnData.getDouble(SQLTraceCounter.COL_WRITES);
+//	        	    double rpcDuration = columnData.getDouble(SQLTraceCounter.COL_DURATION);
 
 	        	    // Filter out empty strings
 	        	    if (!Utils.isEmptyString(textData)) {

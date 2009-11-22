@@ -3,6 +3,7 @@
  */
 package com.ixora.rms.agents.sunapp.v8;
 
+import java.io.File;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.TreeMap;
@@ -16,6 +17,7 @@ import com.ixora.common.utils.Utils;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
 import com.ixora.rms.agents.impl.jmx.jsr160.JMXJSR160AbstractAgent;
+import com.ixora.rms.agents.sunapp.exception.SunAppNotInstalledOnHost;
 import com.ixora.rms.exception.InvalidConfiguration;
 
 /**
@@ -36,6 +38,11 @@ public class SunAppAgent extends JMXJSR160AbstractAgent {
 	 * @see com.ixora.rms.agents.impl.AbstractAgent#configCustomChanged()
 	 */
 	protected void configCustomChanged() throws InvalidConfiguration, Throwable {
+        String home = fConfiguration.getAgentCustomConfiguration().getString(Configuration.ROOT_FOLDER);
+        File f = new File(home);
+        if(!f.exists()) {
+            throw new SunAppNotInstalledOnHost(fConfiguration.getDeploymentHost());
+        }
 		// set up credentials
 		String user = fConfiguration.getAgentCustomConfiguration().getString(Configuration.USERNAME);
 		String pass = fConfiguration.getAgentCustomConfiguration().getString(Configuration.PASSWORD);

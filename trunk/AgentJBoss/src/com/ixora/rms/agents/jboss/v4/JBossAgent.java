@@ -3,6 +3,7 @@
  */
 package com.ixora.rms.agents.jboss.v4;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -22,6 +23,8 @@ import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.impl.jmx.JMXAbstractAgent;
 import com.ixora.rms.agents.impl.jmx.JMXConnectionMBeanServer;
 import com.ixora.rms.agents.impl.jmx.MBeanServerProxy;
+import com.ixora.rms.agents.jboss.exception.JBossNotInstalledOnHost;
+import com.ixora.rms.agents.utils.ConfigurationWithClasspath;
 import com.ixora.rms.exception.InvalidConfiguration;
 import com.ixora.rms.exception.RMSException;
 
@@ -52,6 +55,11 @@ public class JBossAgent extends JMXAbstractAgent {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void configCustomChanged() throws InvalidConfiguration, Throwable {
+		String jbHome = fConfiguration.getAgentCustomConfiguration().getString(ConfigurationWithClasspath.ROOT_FOLDER);
+		File f = new File(jbHome);
+        if(!f.exists()) {
+            throw new JBossNotInstalledOnHost(fConfiguration.getDeploymentHost());
+        }
 		// set up credentials
 		fEnvMap.put(Context.SECURITY_PRINCIPAL, fConfiguration.getAgentCustomConfiguration().getString(Configuration.USERNAME));
 		fEnvMap.put(Context.SECURITY_CREDENTIALS, fConfiguration.getAgentCustomConfiguration().getString(Configuration.PASSWORD));

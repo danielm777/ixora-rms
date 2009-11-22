@@ -14,6 +14,7 @@ import com.ixora.rms.agents.file.messages.Msg;
  * @author Daniel Moraru
  */
 public class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = -4374531369480868776L;
 	public static final String ROOT_FOLDER = Msg.ROOT_FOLDER;
 	public static final String FILE_NAME_PATTERN = Msg.FILE_NAME_PATTERN;
 	public static final String IGNORE_FOLDERS = Msg.IGNORE_FOLDERS;

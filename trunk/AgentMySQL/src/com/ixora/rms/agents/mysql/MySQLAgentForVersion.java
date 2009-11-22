@@ -6,7 +6,6 @@ package com.ixora.rms.agents.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -16,7 +15,6 @@ import com.ixora.rms.CounterId;
 import com.ixora.rms.agents.AgentDataBufferImpl;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.impl.AbstractAgent;
-import com.ixora.rms.agents.mysql.Configuration;
 import com.ixora.rms.exception.InvalidConfiguration;
 import com.ixora.rms.exception.RMSException;
 
@@ -110,7 +108,7 @@ public abstract class MySQLAgentForVersion extends AbstractAgent {
 		try {
 			stat = fConnection.createStatement();
 			rs = stat.executeQuery("show status");
-			ResultSetMetaData metaData = rs.getMetaData();
+			//ResultSetMetaData metaData = rs.getMetaData();
 			while(rs.next()) {
 				// counter name
 				Object obj = rs.getObject(1);

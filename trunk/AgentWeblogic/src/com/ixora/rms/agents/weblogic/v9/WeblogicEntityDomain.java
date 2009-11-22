@@ -21,6 +21,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntitySelfExploring;
  * @author Daniel Moraru
  */
 public class WeblogicEntityDomain extends JMXEntitySelfExploring {
+	private static final long serialVersionUID = 5019601375439580427L;
 
 	/**
 	 * Constructor.

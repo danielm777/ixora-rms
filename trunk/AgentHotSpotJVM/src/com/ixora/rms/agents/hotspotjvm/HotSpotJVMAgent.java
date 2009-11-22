@@ -90,7 +90,7 @@ public class HotSpotJVMAgent extends JMXJSR160AbstractAgent {
 	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#acceptCounter(javax.management.ObjectName, java.lang.String, java.lang.String, javax.management.openmbean.OpenType)
 	 */
 	protected boolean acceptCounter(ObjectName oname, String attrName,
-			String sitem, OpenType otype) {
+			String sitem, OpenType<?> otype) {
 		String soname = oname.toString();
 		if(soname.startsWith("java.lang:type=GarbageCollector")) {
 			if(attrName.equals("LastGcInfo")) {

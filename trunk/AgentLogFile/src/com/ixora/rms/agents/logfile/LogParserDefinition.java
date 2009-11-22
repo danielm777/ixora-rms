@@ -17,6 +17,7 @@ import com.ixora.rms.agents.logfile.messages.Msg;
  * @author Daniel Moraru
  */
 public class LogParserDefinition extends TypedProperties {
+	private static final long serialVersionUID = 6719702976924693120L;
 	public static final String XML_NODE = "logParserDef";
 	public static final String LOG_RECORD_BEGIN_REGEX = Msg.LOG_RECORD_BEGIN_REGEX;
 	public static final String LOG_RECORD_END_REGEX = Msg.LOG_RECORD_END_REGEX;

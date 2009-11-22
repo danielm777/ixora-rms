@@ -32,6 +32,8 @@ import com.ixora.rms.data.CounterValue;
  * @author Daniel Moraru
  */
 public class WMIRootEntity extends RootEntity {
+	private static final long serialVersionUID = -3084319062930795149L;
+
 	/** These are native methods which collect and return WMI information. */
 	private native int ConnectServer(String serverAndNamespace,
 			String userName, String password) throws WMIAgentException;
@@ -54,6 +56,7 @@ public class WMIRootEntity extends RootEntity {
 	 * Stores the value extracted from a property of a WMI instance
 	 */
 	private class WMICounter extends Counter {
+		private static final long serialVersionUID = 7079492374390043557L;
 
 		/**
 		 * @param id
@@ -80,6 +83,8 @@ public class WMIRootEntity extends RootEntity {
 	 * Base class for entities on all levels
 	 */
 	private abstract class WMIEntity extends Entity {
+		private static final long serialVersionUID = 6273568719569661200L;
+
 		/**
 		 * Constructor
 		 */
@@ -102,6 +107,8 @@ public class WMIRootEntity extends RootEntity {
 	 * more classes under it
 	 */
 	private class WMIGroupEntity extends WMIEntity {
+		private static final long serialVersionUID = 8765598337056977972L;
+
 		/**
 		 * Constructor
 		 * @param parentEntity
@@ -158,6 +165,7 @@ public class WMIRootEntity extends RootEntity {
 	 * Defines a real WMI class, which will be populated with its instances
 	 */
 	private class WMIClassEntity extends WMIEntity {
+		private static final long serialVersionUID = 3669356819876035736L;
 		private String fClassName;
 
 		/**
@@ -229,6 +237,7 @@ public class WMIRootEntity extends RootEntity {
 	 * Holds the actual counters and their values
 	 */
 	private class WMIInstanceEntity extends WMIEntity {
+		private static final long serialVersionUID = 5039817860198717349L;
 		private String fWMIClassName;
 		private String fWMIInstanceName;
 

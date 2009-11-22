@@ -8,10 +8,12 @@ import com.ixora.rms.agents.ui.AgentCustomConfigurationPanelContext;
 import com.ixora.rms.agents.ui.DefaultAgentCustomConfigurationPanel;
 
 /**
- * WebSphere custom configuration panel.
+ * Weblogic custom configuration panel.
  * @author Daniel Moraru
  */
 public class ConfigurationPanel extends DefaultAgentCustomConfigurationPanel {
+	private static final long serialVersionUID = -6337475236676582660L;
+
 	/**
 	 * Constructor.
 	 * @param agentId

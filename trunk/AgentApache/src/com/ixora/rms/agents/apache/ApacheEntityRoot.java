@@ -9,6 +9,7 @@ import com.ixora.rms.agents.impl.RootEntity;
  * @author Daniel Moraru
  */
 public final class ApacheEntityRoot extends RootEntity {
+	private static final long serialVersionUID = -8137608649128465941L;
 
 	/**
 	 * Constructor.

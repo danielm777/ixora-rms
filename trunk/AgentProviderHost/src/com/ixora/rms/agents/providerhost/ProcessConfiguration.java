@@ -14,6 +14,7 @@ import com.ixora.rms.providers.impl.process.ProcessExecutionMode;
  * @author Daniel Moraru
  */
 public final class ProcessConfiguration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = 6667532240986984708L;
 	public static final int PORT_TELNET = 23;
 	public static final int PORT_SSH2 = 22;
 	public static final int PORT_DEFAULT = 0;

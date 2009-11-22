@@ -43,6 +43,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class ConfigurationPanel extends DefaultAgentCustomConfigurationPanel {
+	private static final long serialVersionUID = -3846900400370078753L;
 	private static final AppLogger logger = AppLoggerFactory.getLogger(ConfigurationPanel.class);
 	private static final String PARSERS_FILE = "config/repository/agents.logfile/parsers.dat";
 	private static final String NO_PARSER = "-";
@@ -114,6 +115,7 @@ public final class ConfigurationPanel extends DefaultAgentCustomConfigurationPan
 	/**
 	 * @see com.ixora.rms.agents.ui.AgentCustomConfigurationPanel#setAgentCustomConfiguration(com.ixora.rms.agents.AgentCustomConfiguration)
 	 */
+	@SuppressWarnings("unchecked")
 	public void setAgentCustomConfiguration(AgentCustomConfiguration configuration) {
 		// make sure that the passed configuration has values which are
 		// not stale, for instance the list of available parsers might have changed...
@@ -145,6 +147,7 @@ public final class ConfigurationPanel extends DefaultAgentCustomConfigurationPan
 	/**
 	 *
 	 */
+	@SuppressWarnings("unchecked")
 	private void handleEditParserList() {
 		try {
 			Window parent = SwingUtilities.getWindowAncestor(this);

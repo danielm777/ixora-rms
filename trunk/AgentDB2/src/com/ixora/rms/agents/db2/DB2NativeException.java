@@ -8,6 +8,8 @@ package com.ixora.rms.agents.db2;
  * Thrown by native code for any DB2 exception
  */
 public class DB2NativeException extends DB2AgentException {
+	private static final long serialVersionUID = -350254468195455074L;
+
 	/**
 	 * Constructor
 	 * @param s

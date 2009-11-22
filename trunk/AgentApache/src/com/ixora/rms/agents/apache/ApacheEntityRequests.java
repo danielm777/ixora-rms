@@ -29,6 +29,7 @@ import com.ixora.rms.data.CounterValueString;
  */
 public final class ApacheEntityRequests extends Entity
 		implements ApacheConstants {
+	private static final long serialVersionUID = -1282018118828498712L;
 	/** Last records obtained after parsing the status page content */
 	private String[][] records;
 	/**
@@ -40,6 +41,7 @@ public final class ApacheEntityRequests extends Entity
 	 * @author Daniel Moraru
 	 */
 	private final class ApacheEntityRequest extends Entity {
+		private static final long serialVersionUID = 4954220596449359739L;
 		/**
 		 * List of records
 		 */
@@ -76,8 +78,8 @@ public final class ApacheEntityRequests extends Entity
 			Counter c = getCounter(
 				new CounterId(Msg.APACHE_ENTITY_REQUEST_COUNTER_MILLS_REQUIRED_TO_PROCESS_REQUEST));
 			if(c.isEnabled()) {
-				for(Iterator iter = tokens.iterator(); iter.hasNext();) {
-					record = (String[])iter.next();
+				for(Iterator<String[]> iter = tokens.iterator(); iter.hasNext();) {
+					record = iter.next();
 					n = Integer.parseInt(record[ApacheUtils.IDX_MILLISECONDS_REQUIRED_TO_PROCESS_MOST_RECENT_REQUEST]);
 					c.dataReceived(new CounterValueDouble(n));
 				}
@@ -85,8 +87,8 @@ public final class ApacheEntityRequests extends Entity
 			c = getCounter(
 					new CounterId(Msg.APACHE_ENTITY_REQUEST_COUNTER_CLIENT));
 			if(c.isEnabled()) {
-				for(Iterator iter = tokens.iterator(); iter.hasNext();) {
-					record = (String[])iter.next();
+				for(Iterator<String[]> iter = tokens.iterator(); iter.hasNext();) {
+					record = iter.next();
 					c.dataReceived(new CounterValueString(
 							record[ApacheUtils.IDX_CLIENT]));
 				}
@@ -94,8 +96,8 @@ public final class ApacheEntityRequests extends Entity
 			c = getCounter(
 					new CounterId(Msg.APACHE_ENTITY_REQUEST_COUNTER_VHOST));
 			if(c.isEnabled()) {
-				for(Iterator iter = tokens.iterator(); iter.hasNext();) {
-					record = (String[])iter.next();
+				for(Iterator<String[]> iter = tokens.iterator(); iter.hasNext();) {
+					record = iter.next();
 					c.dataReceived(new CounterValueString(
 							record[ApacheUtils.IDX_VHOST]));
 				}
@@ -194,8 +196,8 @@ public final class ApacheEntityRequests extends Entity
 			}
 			// now set the tokens for each request
 			ApacheEntityRequest e;
-			List lst;
-			for(Iterator iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
+			List<String[]> lst;
+			for(Iterator<Entity> iter = fChildrenEntities.values().iterator(); iter.hasNext();) {
 				e = (ApacheEntityRequest)iter.next();
 				lst = m.get(e.getName());
 				if(lst != null) {

@@ -10,6 +10,7 @@ import com.ixora.rms.agents.snmp.messages.Msg;
  * Configuration
  */
 public class ConfigurationV3 extends Configuration {
+	private static final long serialVersionUID = -4159247768319997165L;
 	public static final String USER_NAME = Msg.USER_NAME;
 	public static final String AUTHENTICATION = Msg.AUTHENTICATION;
 	public static final String AUTH_PASSWORD = Msg.AUTH_PASSWORD;

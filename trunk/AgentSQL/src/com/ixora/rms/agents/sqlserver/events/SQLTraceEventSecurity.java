@@ -17,7 +17,9 @@ import com.ixora.rms.agents.sqlserver.SqlTrace;
  * SQLTraceEventSecurity
  */
 public class SQLTraceEventSecurity extends SQLTraceChildEntity {
-    /**
+	private static final long serialVersionUID = 5727988151718544900L;
+
+	/**
      * Default constructor
      * @param c
      */

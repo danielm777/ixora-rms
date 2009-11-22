@@ -10,6 +10,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public final class SunAppNotInstalledOnHost extends RMSException {
+	private static final long serialVersionUID = -7710674176364092512L;
 
 	/**
 	 * Constructor.

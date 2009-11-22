@@ -11,6 +11,7 @@ import com.ixora.rms.agents.weblogic.messages.Msg;
  * @author Daniel Moraru
  */
 public class Configuration extends ConfigurationWithClasspath {
+	private static final long serialVersionUID = -4451399203512643710L;
 	public static final String JMX_PROVIDER_URL = Msg.JMX_PROVIDER_URL;
 	public static final String SHOW_JUST_RUNTIME_DATA = Msg.SHOW_JUST_RUNTIME_DATA;
 	public static final String JNDI_NAME = Msg.JNDI_NAME;

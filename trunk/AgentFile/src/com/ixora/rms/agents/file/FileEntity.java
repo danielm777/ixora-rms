@@ -26,6 +26,7 @@ import com.ixora.rms.data.CounterValueDouble;
  * @author Daniel Moraru
  */
 public class FileEntity extends Entity implements Comparable<FileEntity>{
+	private static final long serialVersionUID = -682661178298561860L;
 	private File fFile;
 	/**
 	 * @param id

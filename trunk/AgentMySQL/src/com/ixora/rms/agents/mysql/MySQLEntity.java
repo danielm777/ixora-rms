@@ -19,6 +19,7 @@ import com.ixora.rms.exception.RMSException;
  * @author Daniel Moraru
  */
 public class MySQLEntity extends Entity {
+	private static final long serialVersionUID = -2053753340827764618L;
 
 	/**
 	 * @param id

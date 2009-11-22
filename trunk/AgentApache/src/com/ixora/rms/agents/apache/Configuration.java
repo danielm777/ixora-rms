@@ -11,6 +11,7 @@ import com.ixora.rms.agents.apache.messages.Msg;
  * @author Daniel Moraru
  */
 public final class Configuration extends AgentCustomConfiguration {
+	private static final long serialVersionUID = 3316735766977692607L;
 	// value keys
 	public static final String PORT = Msg.APACHE_PORT;
 

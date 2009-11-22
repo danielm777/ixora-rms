@@ -4,6 +4,7 @@
 package com.ixora.rms.agents.websphere.v50;
 
 import java.awt.image.DataBuffer;
+import java.io.File;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +25,7 @@ import com.ixora.rms.agents.AgentDataBufferImpl;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.impl.AbstractAgent;
 import com.ixora.rms.agents.websphere.PmiClientProxyMgr;
+import com.ixora.rms.agents.websphere.exception.WebSphereNotInstalledOnHost;
 import com.ixora.rms.agents.websphere.v50.proxy.PerfDescriptor;
 import com.ixora.rms.agents.websphere.v50.proxy.PmiClientProxy;
 import com.ixora.rms.exception.InvalidConfiguration;
@@ -198,8 +200,8 @@ public class WebSphereAgent extends AbstractAgent
 	public WebSphereAgent(AgentId agentId, Listener listener) throws Throwable {
         super(agentId, listener);
 		replaceContext(new WebSphereContext());
-		entityData = new HashMap();
-		moduleData = new HashMap();
+		entityData = new HashMap<EntityId, EntityData>();
+		moduleData = new HashMap<String, ModuleData>();
 		enabledPerfDescriptors = new HashMap<EntityId, PerfDescriptor>();
 		fRootEntity = new WebSphereRootEntity(getWASContext());
         versionBehaviour = new VersionBehaviour();
@@ -320,6 +322,11 @@ public class WebSphereAgent extends AbstractAgent
 	 * @see com.ixora.rms.agents.impl.AbstractAgent#configCustomChanged()
 	 */
 	protected void configCustomChanged() throws InvalidConfiguration, Throwable {
+        String wasHome = fConfiguration.getAgentCustomConfiguration().getString(Configuration.WAS_HOME);
+        File f = new File(wasHome);
+        if(!f.exists()) {
+            throw new WebSphereNotInstalledOnHost(fConfiguration.getDeploymentHost());
+        }
 		connect();
 	    // init nodes and servers as they are needed out of the box
 		((WebSphereRootEntity)fRootEntity).initNodesAndServers();

@@ -201,7 +201,6 @@ final class ApacheUtils {
 		List<String[]> ret = new LinkedList<String[]>();
 		int idx = content.indexOf("Request</");
 		int idxEnd = content.indexOf("</tab", idx);
-		String tmp;
 		while((idx = content.indexOf("<tr", idx)) > 0 && idx < idxEnd) {
 			String[] record = new String[15];
 			// get string to apply regex to
