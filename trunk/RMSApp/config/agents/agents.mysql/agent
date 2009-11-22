@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.mysql.MySQLAgent</class>
   <version></version>
   <name>agents.mysql</name>
   <description>mysql.description</description>
@@ -14,6 +13,7 @@
   <webHelp>monitoring-agents/mysql</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.mysql.v50.MySQLAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>
@@ -28,6 +28,7 @@
       </agentVersions>
     </versionItem>
     <versionItem>
+      <class>com.ixora.rms.agents.mysql.v40.MySQLAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

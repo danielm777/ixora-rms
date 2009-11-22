@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.websphere.WebSphereAgent</class>
   <version></version>
   <name>agents.websphere</name>
   <description>websphere.description</description>
@@ -17,6 +16,7 @@
   <webHelp>monitoring-agents/websphere</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.websphere.v60.WebSphereAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>
@@ -38,6 +38,7 @@
       </agentVersions>
     </versionItem>
     <versionItem>
+      <class>com.ixora.rms.agents.websphere.v50.WebSphereAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>
@@ -60,6 +61,7 @@
       </agentVersions>
     </versionItem>
     <versionItem>
+      <class>com.ixora.rms.agents.websphere.v61.WebSphereAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
   <version></version>
   <name>agents.linux</name>
   <description>linux.description</description>
@@ -15,6 +14,7 @@
   <webHelp>monitoring-agents/linux</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.ldap.LDAPAgent</class>
   <version></version>
   <name>agents.ldap</name>
   <description>ldap.description</description>
@@ -9,6 +8,7 @@
   <webHelp>monitoring-agents/ldap</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.ldap.LDAPAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

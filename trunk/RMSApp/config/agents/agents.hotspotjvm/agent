@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.hotspotjvm.HotSpotJVMAgent</class>
   <version></version>
   <name>agents.hotspotjvm</name>
   <description>hotspotjvm.description</description>
@@ -14,6 +13,7 @@
   <webHelp>monitoring-agents/hotspotjvm</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.hotspotjvm.HotSpotJVMAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

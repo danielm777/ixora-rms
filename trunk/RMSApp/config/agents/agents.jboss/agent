@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
 <version></version>
-<class>com.ixora.rms.agents.jboss.JBossAgent</class>
 <name>agents.jboss</name>
 <description>jboss.description</description>
 <category>appServers</category>
@@ -14,6 +13,7 @@
 <webHelp>monitoring-agents/jboss</webHelp>
 <versionItems>
 	<versionItem>
+		<class>com.ixora.rms.agents.jboss.v4.JBossAgent</class>
 		<locations>
 		<location>0</location>
 		<location>1</location>
@@ -29,6 +29,7 @@
 		</agentVersions>
 	</versionItem>
 	<versionItem>
+		<class>com.ixora.rms.agents.jboss.v4.JBossAgent</class>
 		<locations>
 		<location>0</location>
 		<location>1</location>
@@ -44,6 +45,7 @@
 		</agentVersions>
 	</versionItem>
 	<versionItem>
+		<class>com.ixora.rms.agents.jboss.v5.JBossAgent</class>
 		<locations>
 		<location>0</location>
 		<location>1</location>

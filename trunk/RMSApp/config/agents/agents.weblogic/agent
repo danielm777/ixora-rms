@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.weblogic.WeblogicAgent</class>
   <version></version>
   <name>agents.weblogic</name>
   <description>weblogic.description</description>
@@ -13,6 +12,7 @@
   <webHelp>monitoring-agents/weblogic</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.weblogic.v9.WeblogicAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>
@@ -29,6 +29,7 @@
       </agentVersions>
     </versionItem>
     <versionItem>
+      <class>com.ixora.rms.agents.weblogic.v8.WeblogicAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

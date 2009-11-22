@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
   <customconfigpanel>com.ixora.rms.agents.providerhost.ProcessConfigurationPanel</customconfigpanel>
   <version></version>
   <name>agents.solaris</name>
@@ -15,6 +14,7 @@
   </versions>  
 <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
 	  <customconfigpanel>com.ixora.rms.agents.providerhost.ProcessConfigurationPanel</customconfigpanel>
 	  <locations>
 	    <location>0</location>

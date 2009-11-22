@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.jmxjsr77.JMXJSR77Agent</class>
   <version></version>
   <name>agents.jmxjsr77</name>
   <description>jmxjsr77.description</description>
@@ -11,6 +10,7 @@
   <webHelp>monitoring-agents/jmxjsr77</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.jmxjsr77.JMXJSR77Agent</class>
       <locations>
         <location>0</location>
         <location>1</location>

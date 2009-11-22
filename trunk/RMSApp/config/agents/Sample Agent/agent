@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
   <version>1.0.0</version>
   <name>Sample Agent</name>
   <description>Custom agent that uses monitoring data providers</description>
@@ -13,6 +12,7 @@
   <messageCatalog>Sample Agent</messageCatalog>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.providerhost.ProviderHostAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>

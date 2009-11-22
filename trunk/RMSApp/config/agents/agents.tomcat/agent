@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.jmxjsr160.JMXJSR160Agent</class>
   <version></version>
   <name>agents.tomcat</name>
   <description>tomcat.description</description>
@@ -14,6 +13,7 @@
   <webHelp>monitoring-agents/tomcat</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.jmxjsr160.JMXJSR160Agent</class>
       <locations>
         <location>0</location>
         <location>1</location>

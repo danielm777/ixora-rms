@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <agent>
-  <class>com.ixora.rms.agents.sqlserver.SQLServerAgent</class>
   <version></version>
   <name>agents.sqlserver</name>
   <description>sqlserver.description</description>
@@ -14,6 +13,7 @@
   <webHelp>monitoring-agents/sqlserver</webHelp>
   <versionItems>
     <versionItem>
+      <class>com.ixora.rms.agents.sqlserver.SQLServerAgent</class>
       <locations>
         <location>0</location>
         <location>1</location>
