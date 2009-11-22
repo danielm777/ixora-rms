@@ -257,7 +257,7 @@ public final class HostAgentManagerImpl implements HostAgentManager {
                 try {
                     clazz = fClassLoadingHelper.getClass(
                     		agentId.toString(),
-			    		agentInstallationData.getAgentImplClass(),
+			    		vad.getAgentImplClass(),
                         vad.getJars(),
 			    		conf.getCustom());
                 } catch(NoClassDefFoundError e) {

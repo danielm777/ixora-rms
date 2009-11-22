@@ -24,8 +24,6 @@ import com.ixora.rms.exception.AgentVersionIsNotInstalled;
  */
 public final class AgentInstallationData implements InstallationArtefact {
 	private static final long serialVersionUID = -812024275951557532L;
-	/** Agent implementation class name */
-	private String implClass;
 	/** Agent description */
 	private String description;
 	/** Agent alternate name (user friendly name/description) */
@@ -62,7 +60,6 @@ public final class AgentInstallationData implements InstallationArtefact {
 
 	/**
 	 * Constructor.
-	 * @param implClass agent implementation class
 	 * @param customAgent true if this is a custom agent
 	 * @param version the version of this agent
 	 * @param configPanelClass agent custom configuration panel class
@@ -81,7 +78,6 @@ public final class AgentInstallationData implements InstallationArtefact {
 	 * @param category the category this agent belongs to
 	 */
 	public AgentInstallationData(
-		String implClass,
 		boolean customAgent,
 		ComponentVersion version,
 		String agentName,
@@ -93,7 +89,7 @@ public final class AgentInstallationData implements InstallationArtefact {
         VersionableAgentInstallationDataMap versData,
         String category) {
 		super();
-		init(implClass, customAgent, version, agentName, description, versions, msgCatalog, javaHelp, webHelp, versData, category);
+		init(customAgent, version, agentName, description, versions, msgCatalog, javaHelp, webHelp, versData, category);
         // check if we have at least one version data
         Collection<VersionableAgentInstallationData> coll = this.versionData.getAll();
         if(Utils.isEmptyCollection(coll)) {
@@ -102,7 +98,6 @@ public final class AgentInstallationData implements InstallationArtefact {
 	}
 
 	/**
-	 * @param implClass
 	 * @param customAgent
 	 * @param version
 	 * @param agentName
@@ -114,7 +109,7 @@ public final class AgentInstallationData implements InstallationArtefact {
 	 * @param versData
 	 * @param category
 	 */
-	private void init(String implClass,
+	private void init(
 			boolean customAgent,
 			ComponentVersion version,
 			String agentName,
@@ -124,7 +119,6 @@ public final class AgentInstallationData implements InstallationArtefact {
 			String javaHelp,
 			String webHelp,
 	        VersionableAgentInstallationDataMap versData, String category) {
-		this.implClass = implClass;
 		this.customAgent = customAgent;
 		this.agentVersion = version;
 		this.name = agentName;
@@ -139,7 +133,6 @@ public final class AgentInstallationData implements InstallationArtefact {
 
     /**
      * Constructor.
-     * @param implClass agent implementation class
      * @param customAgent true if this is a custom agent
      * @param version the version of this agent
      * @param configPanelClass agent custom configuration panel class
@@ -156,7 +149,6 @@ public final class AgentInstallationData implements InstallationArtefact {
      * @param category
      */
     public AgentInstallationData(
-        String implClass,
         boolean customAgent,
         ComponentVersion version,
         String agentName,
@@ -168,7 +160,7 @@ public final class AgentInstallationData implements InstallationArtefact {
         VersionableAgentInstallationData versData,
         String category) {
     	super();
-        init(implClass, customAgent, version, agentName, description, versions, msgCatalog, javaHelp, webHelp,
+        init(customAgent, version, agentName, description, versions, msgCatalog, javaHelp, webHelp,
         		new VersionableAgentInstallationDataMap(), category);
         this.versionData.add(versData);
     }
@@ -180,12 +172,6 @@ public final class AgentInstallationData implements InstallationArtefact {
 		return name;
 	}
 
-	/**
-	 * @return the agent class
-	 */
-	public String getAgentImplClass() {
-		return implClass;
-	}
 
     /**
      * @param suoVersion can be null
@@ -290,10 +276,7 @@ public final class AgentInstallationData implements InstallationArtefact {
 	public void toXML(Node parent) throws XMLException {
 		Document doc = parent.getOwnerDocument();
 		Element an = (Element)parent;
-		Element el = doc.createElement("class");
-		an.appendChild(el);
-		el.appendChild(doc.createTextNode(implClass));
-		el = doc.createElement("version");
+		Element el = doc.createElement("version");
 		an.appendChild(el);
 		el.appendChild(doc.createTextNode(agentVersion.toString()));
 		el = doc.createElement("name");
@@ -342,12 +325,7 @@ public final class AgentInstallationData implements InstallationArtefact {
 	 * @see com.ixora.common.xml.XMLExternalizable#fromXML(org.w3c.dom.Node)
 	 */
 	public void fromXML(Node node) throws XMLException {
-		Node n = XMLUtils.findChild(node, "class");
-		if(n == null) {
-			throw new XMLNodeMissing("class");
-		}
-		this.implClass = XMLUtils.getText(n);
-		n = XMLUtils.findChild(node, "name");
+		Node n = XMLUtils.findChild(node, "name");
 		if(n == null) {
 			throw new XMLNodeMissing("name");
 		}

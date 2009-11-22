@@ -343,6 +343,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	                if(selectedTemplate != null) {
 	                    VersionableAgentInstallationData vad =
 	                    	new VersionableAgentInstallationData(
+	                    			selectedTemplate.getAgentClass(),
 	                    			selectedTemplate.getAgentConfigurationPanelClass(),
 	                    			new AgentLocation[]{AgentLocation.LOCAL, AgentLocation.REMOTE},
 	                    			null,
@@ -351,7 +352,7 @@ public final class AgentInstallerDialog extends AppDialog {
 	                    			selectedTemplate.getUIJar(),
 	                    			selectedTemplate.getNativeLibs(),
 	                    			null);
-	                    init = new AgentInstallationData(selectedTemplate.getAgentClass(), true, new ComponentVersion(1,0,0), 
+	                    init = new AgentInstallationData(true, new ComponentVersion(1,0,0), 
 	                    				null, null, null, null, null, null, vad, null);
 	                }
 	            }

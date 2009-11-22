@@ -32,6 +32,8 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
 	private static final long serialVersionUID = -5508095481206689344L;
 	/** There is just one version data per agent version and this is the name */
 	public static final String ARTEFACT_NAME = "data";
+	/** Agent implementation class name */
+	private String implClass;
     /** Supported states */
     private AgentLocation[] locations;
     /** Supported monitoring levels */
@@ -64,6 +66,7 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
     };
 
     /**
+     * @param implClass
      * @param configPanelClass
      * @param locations
      * @param levels
@@ -74,6 +77,7 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
      * @param configVals
      */
     public VersionableAgentInstallationData(
+    	String implClass,
         String configPanelClass,
         AgentLocation[] locations,
         MonitoringLevel[] levels,
@@ -83,6 +87,7 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         String[] natlibs,
         Map<String, String> configVals) {
         super();
+        this.implClass = implClass;
         this.configPanelClass = configPanelClass;
         this.locations = locations;
         this.levels = levels;
@@ -103,7 +108,10 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
         Document doc = parentNode.getOwnerDocument();
         Element node = doc.createElement("versionItem");
         parentNode.appendChild(node);
-        Element el = doc.createElement("locations");
+		Element el = doc.createElement("class");
+		node.appendChild(el);
+		el.appendChild(doc.createTextNode(implClass));
+        el = doc.createElement("locations");
         node.appendChild(el);
         Element el2;
         for(int i = 0; i < locations.length; i++) {
@@ -173,7 +181,12 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
      */
     public void fromXML(Node node) throws XMLException {
     	super.fromXML(node);
-        Node n = XMLUtils.findChild(node, "locations");
+		Node n = XMLUtils.findChild(node, "class");
+		if(n == null) {
+			throw new XMLNodeMissing("class");
+		}
+		this.implClass = XMLUtils.getText(n);    	
+        n = XMLUtils.findChild(node, "locations");
         if(n == null) {
             throw new XMLNodeMissing("locations");
         }
@@ -403,7 +416,8 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
             return false;
         }
         VersionableAgentInstallationData that = (VersionableAgentInstallationData)obj;
-        return Utils.equals(this.configPanelClass, that.configPanelClass)
+        return Utils.equals(this.implClass, that.implClass)
+        	&& Utils.equals(this.configPanelClass, that.configPanelClass)
             && Utils.equals(this.defaultLevel, that.defaultLevel)
             && Utils.equals(this.jars, that.jars)
             && Utils.equals(this.levels, that.levels)
@@ -417,6 +431,7 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
      */
     public int hashCode() {
         int hc = 13;
+        hc = Utils.hashCode(hc, this.implClass);
         hc = Utils.hashCode(hc, this.configPanelClass);
         hc = Utils.hashCode(hc, this.defaultLevel);
         hc = Utils.hashCode(hc, this.uiJar);
@@ -433,4 +448,11 @@ public final class VersionableAgentInstallationData extends VersionableAgentArte
 	public String getArtefactName() {
 		return ARTEFACT_NAME;
 	}
+	
+	/**
+	 * @return the agent class
+	 */
+	public String getAgentImplClass() {
+		return implClass;
+	}	
 }
