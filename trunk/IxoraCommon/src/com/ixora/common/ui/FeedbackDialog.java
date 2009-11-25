@@ -8,6 +8,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.NameValuePair;
 
 import com.ixora.common.net.NetUtils;
@@ -34,15 +36,15 @@ import com.ixora.common.utils.Utils;
 public class FeedbackDialog extends AppDialog {
 	private static final long serialVersionUID = 8166255439999644526L;
 	// TODO localize
-	private static final String LABEL_EMAIL = "Email";
-	private static final String LABEL_FEEDBACK = "Comments";
+	protected static final String LABEL_EMAIL = "Email";
+	protected static final String LABEL_FEEDBACK = "Comments";
 
-	private AppViewContainer fAppViewContainer;
-	private URL fURL;
-	private FormPanel fForm;
-	private JTextField fTextFieldEmail;
-	private JTextArea fTextAreaFeedback;
-	private JPanel fPanel;
+	protected AppViewContainer fAppViewContainer;
+	protected URL fURL;
+	protected FormPanel fForm;
+	protected JTextField fTextFieldEmail;
+	protected JTextArea fTextAreaFeedback;
+	protected JPanel fPanel;
 
 	/**
 	 * @param parent
@@ -124,10 +126,7 @@ public class FeedbackDialog extends AppDialog {
 						Cursor.WAIT_CURSOR,
 						"Sending feedback...") { // TODO localize
 					public void work() throws Throwable {
-						NetUtils.postHttpForm(fURL, new NameValuePair[]{
-								new NameValuePair("email", email),
-								new NameValuePair("feedback", comment),
-						});
+						postData(fURL, email, comment);
 					}
 					public void finished(Throwable ex) throws Throwable {
 						dispose();
@@ -164,5 +163,22 @@ public class FeedbackDialog extends AppDialog {
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}
+	}
+
+	/**
+	 * Subclasses can override this method to post data. By default an HTTP post
+	 * request is sent to the URL <code>url</code> with two parameters named <code>email</code> and <code>feedback</code>.
+	 * @param url
+	 * @param email
+	 * @param comment
+	 * @throws HttpException
+	 * @throws IOException
+	 */
+	protected void postData(URL url, String email, String comment)
+			throws HttpException, IOException {
+		NetUtils.postHttpForm(fURL, new NameValuePair[]{
+				new NameValuePair("email", email),
+				new NameValuePair("feedback", comment),
+		}, null);
 	}
 }
