@@ -7,20 +7,26 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.event.HyperlinkEvent.EventType;
 import javax.swing.table.AbstractTableModel;
 
 import com.ixora.common.MessageRepository;
@@ -29,13 +35,17 @@ import com.ixora.common.typedproperties.ui.list.TypedPropertiesListEditor;
 import com.ixora.common.ui.AppDialog;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
+import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.actions.ActionClose;
 import com.ixora.common.ui.actions.ActionOk;
 import com.ixora.common.ui.exception.InvalidFormData;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.common.utils.Utils;
+import com.ixora.rms.CustomConfiguration;
 import com.ixora.rms.MonitoringLevel;
 import com.ixora.rms.agents.AgentLocation;
+import com.ixora.rms.agents.ui.AgentCustomConfigurationPanel;
+import com.ixora.rms.agents.ui.AgentCustomConfigurationPanelContext;
 import com.ixora.rms.repository.VersionableAgentInstallationData;
 import com.ixora.rms.repository.VersionableAgentInstallationDataMap;
 import com.ixora.rms.repository.exception.ArtefactSaveConflict;
@@ -56,7 +66,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	private static final String LABEL_AGENT_NATLIBS = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_NATLIBS);
 	private static final String LABEL_AGENT_UIJAR = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_UIJAR);
 	private static final String LABEL_AGENT_CONFIG_PANEL = MessageRepository.get(AgentInstallerComponent.NAME, Msg.LABEL_AGENT_CONFIG_PANEL);
-
+	
 	private JPanel fPanel;
 	private FormPanel fForm;
 
@@ -76,7 +86,12 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	private boolean fReadOnly;
     private VersionableAgentInstallationDataMap fVersionData;
     private VersionableAgentInstallationData fOriginalVad;
-
+    private JEditorPane fPaneSetupAgentConfigDefaults;
+    private EventHandler fEventHandler;
+    private Map<String, String> fAgentConfigDefaults;
+	private String fAgentId;
+	private RMSViewContainer fViewContainer;
+    
 	/**
 	 * Model for locations table.
 	 */
@@ -232,6 +247,17 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 		}
 	}
 
+	private class EventHandler implements HyperlinkListener {
+		/**
+		 * @see javax.swing.event.HyperlinkListener#hyperlinkUpdate(javax.swing.event.HyperlinkEvent)
+		 */
+		public void hyperlinkUpdate(HyperlinkEvent e) {
+			if(e.getEventType() == EventType.ACTIVATED) {
+				handleSetupAgentConfigDefaults();
+			}
+		}
+	}
+	
 	/**
 	 * Constructor.
 	 * @param vc
@@ -242,6 +268,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 	 */
 	@SuppressWarnings("serial")
 	public AgentInstallationVersionDataDialog(
+			String agentId,
 			RMSViewContainer vc,
 			String[] suoVersions,
 			VersionableAgentInstallationData vad,
@@ -251,6 +278,9 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 		setModal(true);
 		setTitle(MessageRepository.get(
 				AgentInstallerComponent.NAME, Msg.TITLE_AGENT_INSTALLATION_VERSION_DATA_EDITOR));
+		fEventHandler = new EventHandler();
+		fAgentId = agentId;
+		fViewContainer = vc;
 		fReadOnly = readOnly;
 		fVersionData = versionData;
 		fOriginalVad = vad;
@@ -311,6 +341,16 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 		fEditorNatlibs.setPreferredSize(new Dimension(300, 120));
 		fEditorNatlibs.setMaximumSize(new Dimension(300, 120));
 
+		fPaneSetupAgentConfigDefaults = UIFactoryMgr.createHtmlPane();
+		fPaneSetupAgentConfigDefaults.setPreferredSize(new Dimension(300, 20));
+		fPaneSetupAgentConfigDefaults.setText("<html><a href='#'>" + MessageRepository.get(
+				AgentInstallerComponent.NAME, Msg.LINK_AGENT_CONFIG_DEFAULTS) + "</a></html>");
+		fPaneSetupAgentConfigDefaults.addHyperlinkListener(fEventHandler);
+
+		JPanel agentConfigPanelContainer = new JPanel(new BorderLayout());
+		agentConfigPanelContainer.add(fTextFieldConfigPanel, BorderLayout.NORTH);
+		agentConfigPanelContainer.add(fPaneSetupAgentConfigDefaults, BorderLayout.SOUTH);
+		
 		fForm.addPairs(
 				new String[] {
                         "System Versions", // TODO localize
@@ -330,7 +370,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 						fEditorJars,
 						fEditorNatlibs,
 						fTextFieldUIJar,
-						fTextFieldConfigPanel
+						agentConfigPanelContainer
 				});
 		fPanel.add(fForm, BorderLayout.NORTH);
 
@@ -346,7 +386,29 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 		pack();
 	}
 
-    /**
+    private void handleSetupAgentConfigDefaults() {
+		try {
+			String panelClass = fTextFieldConfigPanel.getText().trim();
+			if(!Utils.isEmptyString(panelClass)) {
+				Class<?> cls = Class.forName(panelClass);
+				Constructor<?> cst = cls.getConstructor(String.class, AgentCustomConfigurationPanelContext.class);
+				AgentCustomConfigurationPanel acp = (AgentCustomConfigurationPanel)cst.newInstance(fAgentId, 
+						new AgentCustomConfigurationPanelContext(fViewContainer));
+				CustomConfiguration cc = acp.createAgentCustomConfiguration();
+				Map<String, String> vals = fOriginalVad.getConfigValues();
+				if(!Utils.isEmptyMap(vals)) {
+					cc.setValuesFromMap(vals);
+				}
+				AgentConfigurationDefaultsDialog dlg = new AgentConfigurationDefaultsDialog(this, fAgentId, cc);
+				UIUtils.centerDialogAndShow(this, dlg);
+				fAgentConfigDefaults = dlg.getResult();
+			}
+		} catch(Exception e) {
+			UIExceptionMgr.userException(e);
+		}
+	}
+
+	/**
      * @param version
      */
 	private void configurePanelForVersionData(VersionableAgentInstallationData vad) {
@@ -440,6 +502,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 		try {
 			if(fReadOnly) {
 				fResult = null;
+				fAgentConfigDefaults = null;
 				dispose();
 				return;
 			}
@@ -494,7 +557,7 @@ public final class AgentInstallationVersionDataDialog extends AppDialog {
 					jars,
 					uiJar,
 					natlibs,
-					null);
+					fAgentConfigDefaults);
 			Set<String> vers = fPanelAgentVersionSelector.getSelectedAgentVersions();
 			if(!Utils.isEmptyCollection(vers)) {
 				vad.addAgentVersions(vers);

@@ -24,7 +24,6 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.ixora.common.ComponentVersion;
 import com.ixora.common.MessageRepository;
 import com.ixora.common.typedproperties.TypedProperties;
 import com.ixora.common.typedproperties.ui.list.TypedPropertiesListEditor;
@@ -82,6 +81,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 	private JButton fButtonDeleteVersionData;
 	private JButton fButtonViewVersionData;
 	private VersionableAgentInstallationDataMap fVersionData;
+	
 
 	private final class EventHandler implements ListSelectionListener {
 		/**
@@ -333,10 +333,8 @@ public final class AgentInstallationDataDialog extends AppDialog {
 				return;
 			}
 			// build the result
-			String name = fTextFieldName.getText();
-			if(Utils.isEmptyString(name)) {
-				throw new InvalidFormData(LABEL_AGENT_NAME);
-			}
+			String name = getAgentId();
+			
 			String description = fTextFieldDescription.getText();
 			if(Utils.isEmptyString(description)) {
 				description = null;
@@ -366,7 +364,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 	        }
 			fResult = new AgentInstallationData(
 					true,
-					new ComponentVersion(1, 0, 0),
+					null,
 					name,
 					description, versions, msgCatalog, helpIdJava, 
 					helpIdWeb, fVersionData, category);
@@ -434,7 +432,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 			if(fReadOnly) {
 				return;
 			}
-			AgentInstallationVersionDataDialog dlg = new AgentInstallationVersionDataDialog(
+			AgentInstallationVersionDataDialog dlg = new AgentInstallationVersionDataDialog(getAgentId(),
 					fViewContainer, getTargetVersionsFromTableModel(), null, fReadOnly, fVersionData);
 			UIUtils.centerDialogAndShow(this, dlg);
 			if(dlg.getResult() != null) {
@@ -457,7 +455,7 @@ public final class AgentInstallationDataDialog extends AppDialog {
 			if(e == null) {
 				return;
 			}
-			AgentInstallationVersionDataDialog dlg = new AgentInstallationVersionDataDialog(
+			AgentInstallationVersionDataDialog dlg = new AgentInstallationVersionDataDialog(getAgentId(),
 					fViewContainer, getTargetVersionsFromTableModel(), e.fVersionData, fReadOnly, fVersionData);
 			UIUtils.centerDialogAndShow(this, dlg);
 			if(dlg.getResult() != null) {
@@ -466,6 +464,14 @@ public final class AgentInstallationDataDialog extends AppDialog {
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}
+	}
+	
+	private String getAgentId() throws InvalidFormData {
+		String name = fTextFieldName.getText();
+		if(Utils.isEmptyString(name)) {
+			throw new InvalidFormData(LABEL_AGENT_NAME);
+		}
+		return name;
 	}
 
 	/**
@@ -502,9 +508,10 @@ public final class AgentInstallationDataDialog extends AppDialog {
 			if(e == null) {
 				return;
 			}
-			AgentInstallationVersionDataDialog dlg = new AgentInstallationVersionDataDialog(
+			AgentInstallationVersionDataDialog dlg = new AgentInstallationVersionDataDialog(getAgentId(),
 					fViewContainer, getTargetVersionsFromTableModel(), e.fVersionData, true, fVersionData);
 			UIUtils.centerDialogAndShow(this, dlg);
+			
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}

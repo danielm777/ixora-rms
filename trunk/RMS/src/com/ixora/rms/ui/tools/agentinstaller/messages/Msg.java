@@ -91,4 +91,8 @@ public interface Msg {
 		"agentinstaller.text.app_restart_warning";
 	public static final String TITLE_APP_RESTART_WARNING =
 		"agentinstaller.title.app_restart_warning";
+	public static final String LINK_AGENT_CONFIG_DEFAULTS = 
+		"agentinstaller.link.agent_config_setup_defaults";
+	public static final String TITLE_AGENT_CONFIGURATION_DEFAULTS = 
+		"agentinstaller.title.agent_config_setup_defaults";
 }
