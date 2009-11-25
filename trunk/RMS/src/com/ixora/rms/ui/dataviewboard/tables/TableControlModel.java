@@ -149,7 +149,7 @@ public class TableControlModel extends TableBasedControlTableModel implements Nu
         fColumnNames = new LinkedList<String>();
         fColumnDescriptions = new LinkedList<String>();
         fColumnIds = new LinkedList<String>();
-        fRemoveStaleCategories = tabledef.removeStaleCategories();
+        fRemoveStaleCategories = tabledef.getRemoveStaleCategories();
 
         setUpColumns(realizedQuery);
 

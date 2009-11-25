@@ -28,8 +28,8 @@ public class Style implements Serializable {
 	private static final String NAME_FORMAT = "format";
 	private static final String NAME_STYLE = "style";
 	private static final String NAME_TYPE = "type";
-    private static final String NAME_CODE = "code";
-    private HashMap<String, Object> fStyles;
+	private static final String NAME_CODE = "code";
+	private HashMap<String, Object> fStyles;
 
 	/** Empty constructor */
 	public Style() {
@@ -39,18 +39,18 @@ public class Style implements Serializable {
 	/** XML constructor */
 	public Style(StyledTagDef std) {
 		fStyles = new HashMap<String, Object>();
-	    this.setContinuous(std.getContinuous());
-	    this.setDescription(std.getDescription());
-	    this.setFormat(std.getFormat());
-	    this.setID(std.getID());
-	    this.setMAX(std.getMAX());
-	    this.setMIN(std.getMIN());
-	    this.setName(std.getName());
-	    this.setIName(std.getIName());
-	    this.setStacked(std.getStacked());
-	    this.setStyle(std.getStyle());
-	    this.setType(std.getType());
-        this.setCode(std.getCode());
+		this.setContinuous(std.getContinuous());
+		this.setDescription(std.getDescription());
+		this.setFormat(std.getFormat());
+		this.setID(std.getID());
+		this.setMAX(std.getMAX());
+		this.setMIN(std.getMIN());
+		this.setName(std.getName());
+		this.setIName(std.getIName());
+		this.setStacked(std.getStacked());
+		this.setStyle(std.getStyle());
+		this.setType(std.getType());
+		this.setCode(std.getCode());
 	}
 
 	/**
@@ -58,113 +58,195 @@ public class Style implements Serializable {
 	 */
 	public StyleDef getStyleDef() {
 		StyleDef def = new StyleDef();
-	    def.setContinuous(getContinuous());
-	    def.setDescription(getDescription());
-	    def.setFormat(getFormat());
-	    def.setID(getID());
-	    def.setMAX(getMAX());
-	    def.setMIN(getMIN());
-	    def.setName(getName());
-	    def.setIName(getIName());
-	    def.setStacked(getStacked());
-	    def.setStyle(getStyle());
-	    def.setType(getType());
-        def.setCode(getCode());
-        return def;
+		def.setContinuous(getContinuous());
+		def.setDescription(getDescription());
+		def.setFormat(getFormat());
+		def.setID(getID());
+		def.setMAX(getMAX());
+		def.setMIN(getMIN());
+		def.setName(getName());
+		def.setIName(getIName());
+		def.setStacked(getStacked());
+		def.setStyle(getStyle());
+		def.setType(getType());
+		def.setCode(getCode());
+		return def;
 	}
 
 	/** Gets/sets the ID property */
-	public String getID() { return (String)fStyles.get(NAME_ID); }
-	public void setID(String value) { fStyles.put(NAME_ID, value); }
+	public String getID() {
+		return (String) fStyles.get(NAME_ID);
+	}
+
+	public void setID(String value) {
+		fStyles.put(NAME_ID, value);
+	}
 
 	/** Gets/sets the MIN property */
-	public Double getMIN() { return (Double)fStyles.get(NAME_MIN); }
-	public void setMIN(Double value) { fStyles.put(NAME_MIN, value); }
-	public void setMIN(String value) { fStyles.put(NAME_MIN, Double.valueOf(value)); }
+	public Double getMIN() {
+		return (Double) fStyles.get(NAME_MIN);
+	}
+
+	public void setMIN(Double value) {
+		fStyles.put(NAME_MIN, value);
+	}
+
+	public void setMIN(String value) {
+		fStyles.put(NAME_MIN, Double.valueOf(value));
+	}
 
 	/** Gets/sets the MAX property */
-	public Double getMAX() { return (Double)fStyles.get(NAME_MAX); }
-	public void setMAX(Double value) { fStyles.put(NAME_MAX, value); }
-	public void setMAX(String value) { fStyles.put(NAME_MAX, Double.valueOf(value)); }
+	public Double getMAX() {
+		return (Double) fStyles.get(NAME_MAX);
+	}
+
+	public void setMAX(Double value) {
+		fStyles.put(NAME_MAX, value);
+	}
+
+	public void setMAX(String value) {
+		fStyles.put(NAME_MAX, Double.valueOf(value));
+	}
 
 	/** Gets/sets the CONTINUOUS property */
-	public Boolean getContinuous() { return (Boolean)fStyles.get(NAME_CONTINUOUS); }
-	public void setContinuous(Boolean value) { fStyles.put(NAME_CONTINUOUS, value); }
-	public void setContinuous(String value) { fStyles.put(NAME_CONTINUOUS, Boolean.valueOf(value)); }
+	public Boolean getContinuous() {
+		return (Boolean) fStyles.get(NAME_CONTINUOUS);
+	}
+
+	public void setContinuous(Boolean value) {
+		fStyles.put(NAME_CONTINUOUS, value);
+	}
+
+	public void setContinuous(String value) {
+		fStyles.put(NAME_CONTINUOUS, Boolean.valueOf(value));
+	}
 
 	/** Gets/sets the STACKED property */
-	public Boolean getStacked() { return (Boolean)fStyles.get(NAME_STACKED); }
-	public void setStacked(Boolean value) { fStyles.put(NAME_STACKED, value); }
-	public void setStacked(String value) { fStyles.put(NAME_STACKED, Boolean.valueOf(value)); }
+	public Boolean getStacked() {
+		return (Boolean) fStyles.get(NAME_STACKED);
+	}
+
+	public void setStacked(Boolean value) {
+		fStyles.put(NAME_STACKED, value);
+	}
+
+	public void setStacked(String value) {
+		fStyles.put(NAME_STACKED, Boolean.valueOf(value));
+	}
 
 	/** Gets/sets the NAME property */
-	public String getName() { return (String)fStyles.get(NAME_NAME); }
-	public void setName(String value) { fStyles.put(NAME_NAME, value); }
+	public String getName() {
+		return (String) fStyles.get(NAME_NAME);
+	}
+
+	public void setName(String value) {
+		fStyles.put(NAME_NAME, value);
+	}
 
 	/** Gets/sets the INAME property */
-	public String getIName() { return (String)fStyles.get(NAME_INAME); }
-	public void setIName(String value) { fStyles.put(NAME_INAME, value); }
+	public String getIName() {
+		return (String) fStyles.get(NAME_INAME);
+	}
+
+	public void setIName(String value) {
+		fStyles.put(NAME_INAME, value);
+	}
 
 	/** Gets/sets the DESCRIPTION property */
-	public String getDescription() { return (String)fStyles.get(NAME_DESCRIPTION); }
-	public void setDescription(String value) { fStyles.put(NAME_DESCRIPTION, value); }
+	public String getDescription() {
+		return (String) fStyles.get(NAME_DESCRIPTION);
+	}
+
+	public void setDescription(String value) {
+		fStyles.put(NAME_DESCRIPTION, value);
+	}
 
 	/** Gets/sets the FORMAT property */
-	public String getFormat() { return (String)fStyles.get(NAME_FORMAT); }
-	public void setFormat(String value) { fStyles.put(NAME_FORMAT, value); }
+	public String getFormat() {
+		return (String) fStyles.get(NAME_FORMAT);
+	}
+
+	public void setFormat(String value) {
+		fStyles.put(NAME_FORMAT, value);
+	}
 
 	/** Gets/sets the STYLE property */
-	public String getStyle() { return (String)fStyles.get(NAME_STYLE); }
-	public void setStyle(String value) { fStyles.put(NAME_STYLE, value); }
+	public String getStyle() {
+		return (String) fStyles.get(NAME_STYLE);
+	}
+
+	public void setStyle(String value) {
+		fStyles.put(NAME_STYLE, value);
+	}
 
 	/** Gets/sets the TYPE property */
-	public String getType() { return (String)fStyles.get(NAME_TYPE); }
-	public void setType(String value) { fStyles.put(NAME_TYPE, value); }
+	public String getType() {
+		return (String) fStyles.get(NAME_TYPE);
+	}
 
-    /** Gets/sets the CODE property */
-    public String getCode() { return (String)fStyles.get(NAME_CODE); }
-    public void setCode(String value) { fStyles.put(NAME_CODE, value); }
+	public void setType(String value) {
+		fStyles.put(NAME_TYPE, value);
+	}
+
+	/** Gets/sets the CODE property */
+	public String getCode() {
+		return (String) fStyles.get(NAME_CODE);
+	}
+
+	public void setCode(String value) {
+		fStyles.put(NAME_CODE, value);
+	}
 
 	/**
-	 * Merges the contents of the other style into this one. If a value
-	 * is already set in the current style it will take precedence.
+	 * Merges the contents of the other style into this one. If a value is
+	 * already set in the current style it will take precedence.
 	 */
 	public void merge(Style s) {
-
-		if (getID() == null)
+		if (getID() == null) {
 			setID(s.getID());
+		}
 
-		if (getMIN() == null)
+		if (getMIN() == null) {
 			setMIN(s.getMIN());
+		}
 
-		if (getMAX() == null)
+		if (getMAX() == null) {
 			setMAX(s.getMAX());
+		}
 
-		if (getContinuous() == null)
+		if (getContinuous() == null) {
 			setContinuous(s.getContinuous());
+		}
 
-		if (getStacked() == null)
+		if (getStacked() == null) {
 			setStacked(s.getStacked());
+		}
 
-		if (getName() == null)
+		if (getName() == null) {
 			setName(s.getName());
+		}
 
-		if (getIName() == null)
+		if (getIName() == null) {
 			setIName(s.getIName());
+		}
 
-		if (getDescription() == null)
+		if (getDescription() == null) {
 			setDescription(s.getDescription());
+		}
 
-		if (getFormat() == null)
+		if (getFormat() == null) {
 			setFormat(s.getFormat());
+		}
 
-		if (getStyle() == null)
+		if (getStyle() == null) {
 			setStyle(s.getStyle());
-
-		if (getType() == null)
+		}
+		if (getType() == null) {
 			setType(s.getType());
+		}
 
-        if (getCode() == null)
-            setCode(s.getCode());
+		if (getCode() == null) {
+			setCode(s.getCode());
+		}
 	}
 }

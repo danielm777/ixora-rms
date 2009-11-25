@@ -340,7 +340,7 @@ public class TableControl extends TableBasedControl
         fPopupMenu.insert(new JPopupMenu.Separator(), 7);
 
         TableDef tableDef = (TableDef)dv;
-		if(tableDef.removeStaleCategories()) {
+		if(tableDef.getRemoveStaleCategories()) {
 			fRemoveStaleEntriesButton.setSelected(true);
 		}
 
