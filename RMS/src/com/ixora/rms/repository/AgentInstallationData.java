@@ -278,7 +278,12 @@ public final class AgentInstallationData implements InstallationArtefact {
 		Element an = (Element)parent;
 		Element el = doc.createElement("version");
 		an.appendChild(el);
-		el.appendChild(doc.createTextNode(agentVersion.toString()));
+		
+		String cvs = "";
+		if(agentVersion != null) {
+			cvs = agentVersion.toString();
+		}
+		el.appendChild(doc.createTextNode(cvs));
 		el = doc.createElement("name");
 		an.appendChild(el);
 		el.appendChild(doc.createTextNode(name));
