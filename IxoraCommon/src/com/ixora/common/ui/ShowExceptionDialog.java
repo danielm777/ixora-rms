@@ -291,11 +291,14 @@ final class ShowExceptionDialog extends AppDialog {
 							}
 						}
                         License lic = LicenseMgr.getLicense();
-						NetUtils.postHttpForm(url, new NameValuePair[]{
-								new NameValuePair("license", lic.toString(true)),
-								new NameValuePair("error", Utils.getTrace(copy).toString()),
-								new NameValuePair("appversion", buff.toString())
-						});
+						NetUtils.postHttpForm(
+								url, 
+								new NameValuePair[]{
+									new NameValuePair("license", lic.toString(true)),
+									new NameValuePair("error", Utils.getTrace(copy).toString()),
+									new NameValuePair("appversion", buff.toString())
+								}, 
+								null);
 					} catch(Exception e) {
 						logger.error(e);
 					}

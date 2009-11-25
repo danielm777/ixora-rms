@@ -72,16 +72,22 @@ public final class NetUtils {
 	/**
 	 * Post the given data using a POST HTTP request.
 	 * @param url
-	 * @param data
+	 * @param dataInBody Parameters sent in the body of the POST request
+	 * @param parameters Parameters sent in the URL of the POST request
 	 * @throws IOException
 	 * @throws HttpException
 	 * @return the PostMethod
 	 */
-	public static PostMethod postHttpForm(URL url, NameValuePair[] data) throws HttpException, IOException {
+	public static PostMethod postHttpForm(URL url, NameValuePair[] dataInBody, NameValuePair[] parameters) throws HttpException, IOException {
 		HttpClient client = new HttpClient();
 	    PostMethod httppost = new PostMethod(url.toString());
 	    httppost.setRequestHeader("User-Agent", "redbox-agent");
-	    httppost.setRequestBody(data);
+	    httppost.setRequestBody(dataInBody);
+	    if(!Utils.isEmptyArray(parameters)) {
+	    	for(NameValuePair nvp : parameters) {
+	    		httppost.addParameter(nvp);
+	    	}
+	    }
 	    try {
 	        client.executeMethod(httppost);
 	        return httppost;

@@ -41,7 +41,7 @@ public class XMLAttributeBoolean extends XMLAttribute {
 
     /** @return the contents of this object, may be null */
     public Boolean getBoolean() {
-        return value == null ? Boolean.FALSE : value;
+        return value;
     }
 
     /**
