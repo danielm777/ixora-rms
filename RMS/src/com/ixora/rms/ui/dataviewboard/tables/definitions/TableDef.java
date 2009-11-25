@@ -84,8 +84,8 @@ public final class TableDef extends DataView {
 		/**
 		 * @return
 		 */
-		public boolean removeStale() {
-			return removeStale.getBoolean().booleanValue();
+		public boolean getRemoveStale() {
+			return removeStale.getBoolean() == null ? false : removeStale.getBoolean().booleanValue();
 		}
 		/**
 		 * @see com.ixora.common.xml.XMLTag#fromXML(org.w3c.dom.Node)
@@ -197,8 +197,8 @@ public final class TableDef extends DataView {
      * have not been updated during the last cycle.
      * @return
      */
-    public boolean removeStaleCategories() {
-    	return category.removeStale();
+    public boolean getRemoveStaleCategories() {
+    	return category.getRemoveStale();
     }
 
     /**
