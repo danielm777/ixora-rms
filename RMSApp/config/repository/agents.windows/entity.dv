@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rms>
   <entities>
-    <entity id="root/SQLServer:Buffer Partition">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Details per buffer partition</name>
-          <description>Shows details per buffer partition</description>
-          <query>
-            <resource id="partition" iname="$entity[2]" name="Partition" rid="-/-/root/SQLServer:Buffer Partition/(.*)"/>
-            <resource id="pages" iname="$entity[2]/Free pages" name="Free pages" rid="-/-/root/SQLServer:Buffer Partition/(.*)/[Free pages]"/>
-            <resource id="reqpersec" iname="$entity[2]/Req/sec" name="Req/sec" rid="-/-/root/SQLServer:Buffer Partition/(.*)/[Free list requests/sec]"/>
-            <resource id="emptypersec" iname="$entity[2]/Empty/sec" name="Empty/sec" rid="-/-/root/SQLServer:Buffer Partition/(.*)/[Free list empty/sec]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="partition"/>
-        </view>
-      </views>
-    </entity>
     <entity id="root/.NET CLR Interop">
       <views>
         <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
@@ -43,6 +22,598 @@
         </view>
       </views>
     </entity>
+    <entity id="root/NBT Connection/Total">
+      <views/>
+    </entity>
+    <entity id="root/SQLServer:Locks">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Details per lock type</name>
+          <description>Shows details per lock type</description>
+          <query>
+            <resource id="lock" iname="$entity[2]" name="Locks" rid="-/-/root/SQLServer:Locks/(.*)"/>
+            <resource id="reqpersec" iname="$entity[2]/Req/sec" name="Req/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Requests/sec]"/>
+            <resource id="waitpersec" iname="$entity[2]/Waits/sec" name="Waits/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Waits/sec]"/>
+            <resource id="deadpersec" iname="$entity[2]/Deadlocks/sec" name="Deadlocks/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Number of Deadlocks/sec]"/>
+            <resource id="timeoutpersec" iname="$entity[2]/Timeouts/sec" name="Timeouts/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Timeouts/sec]"/>
+            <resource id="lockwait" iname="$entity[2]/Wait time (ms)" name="Wait time (ms)" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Wait Time (ms)]"/>
+            <resource id="avgwait" iname="$entity[2]/Avg wait (ms)" name="Avg wait (ms)" rid="-/-/root/SQLServer:Locks/(.*)/[Average Wait Time (ms)]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="lock"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/SQLServer:Buffer Partition">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Details per buffer partition</name>
+          <description>Shows details per buffer partition</description>
+          <query>
+            <resource id="partition" iname="$entity[2]" name="Partition" rid="-/-/root/SQLServer:Buffer Partition/(.*)"/>
+            <resource id="pages" iname="$entity[2]/Free pages" name="Free pages" rid="-/-/root/SQLServer:Buffer Partition/(.*)/[Free pages]"/>
+            <resource id="reqpersec" iname="$entity[2]/Req/sec" name="Req/sec" rid="-/-/root/SQLServer:Buffer Partition/(.*)/[Free list requests/sec]"/>
+            <resource id="emptypersec" iname="$entity[2]/Empty/sec" name="Empty/sec" rid="-/-/root/SQLServer:Buffer Partition/(.*)/[Free list empty/sec]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="partition"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/.NET CLR Memory">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Statistics per application</name>
+          <description>Garbage collection statistics detailed per application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Memory/(.*)"/>
+            <resource id="gctime" iname="$entity[2]/GC Time" name="GC Time" rid="-/-/root/.NET CLR Memory/(.*)/[% Time in GC]"/>
+            <resource code="return totalreserved/1048576;" id="totalreserved" iname="$entity[2]/Reserved MB" name="Reserved MB" rid="-/-/root/.NET CLR Memory/(.*)/[# Total reserved Bytes]"/>
+            <resource code="return bytesallheaps/1048576;" id="bytesallheaps" iname="$entity[2]/All heaps MB" name="All heaps MB" rid="-/-/root/.NET CLR Memory/(.*)/[# Bytes in all Heaps]"/>
+            <resource id="bytespersec" iname="$entity[2]/$counter" name="Allocated bytes/sec" rid="-/-/root/.NET CLR Memory/(.*)/[Allocated Bytes/sec]"/>
+            <resource code="return comittedbytes/1048576;" id="comittedbytes" iname="$entity[2]/Comitted MB" name="Comitted MB" rid="-/-/root/.NET CLR Memory/(.*)/[# Total committed Bytes]"/>
+            <resource code="return loheapsize/1048576;" id="loheapsize" iname="$entity[2]/Large obj heap MB" name="Large obj heap MB" rid="-/-/root/.NET CLR Memory/(.*)/[Large Object Heap size]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Generic statistics</name>
+          <description>Generic statistics related to garbage collection</description>
+          <query>
+            <resource id="gctime" iname="$counter" rid="-/-/root/.NET CLR Memory/[% Time in GC]"/>
+            <resource code="return totalreserved/1048576;" id="totalreserved" iname="Total reserved MB" rid="-/-/root/.NET CLR Memory/[# Total reserved Bytes]"/>
+            <resource code="return bytesallheaps/1048576;" id="bytesallheaps" iname="All heaps MB" rid="-/-/root/.NET CLR Memory/[# Bytes in all Heaps]"/>
+            <resource id="bytespersec" iname="$counter" rid="-/-/root/.NET CLR Memory/[Allocated Bytes/sec]"/>
+            <resource code="return comittedbytes/1048576;" id="comittedbytes" iname="Total committed MB" rid="-/-/root/.NET CLR Memory/[# Total committed Bytes]"/>
+            <resource code="return loheapsize/1048576;" id="loheapsize" iname="Large obj heap MB" rid="-/-/root/.NET CLR Memory/[Large Object Heap size]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/ASP.NET Applications">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Requests per application</name>
+          <description>Request details per ASP.NET application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
+            <resource id="reqpersec" iname="$entity[2]/Requests/Sec" name="Requests/Sec" rid="-/-/root/ASP.NET Applications/(.*)/[Requests/Sec]"/>
+            <resource id="bytesin" iname="$entity[2]/Bytes In" name="Bytes in" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes In Total]"/>
+            <resource id="bytesout" iname="$entity[2]/Bytes out" name="Bytes out" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes Out Total]"/>
+            <resource id="executing" iname="$entity[2]/Requests executing" name="Executing" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Executing]"/>
+            <resource id="failed" iname="$entity[2]/Requests failed" name="Failed" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Failed]"/>
+            <resource id="anonymous" iname="$entity[2]/Anonymous" name="Anonymous" rid="-/-/root/ASP.NET Applications/(.*)/[Anonymous Requests]"/>
+            <resource id="total" iname="$entity[2]/Requests total" name="Total" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Total]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Sessions per application</name>
+          <description>Session details per ASP.NET application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
+            <resource id="active" iname="$entity[2]/Sessions active" name="Active" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Active]"/>
+            <resource id="abandoned" iname="$entity[2]/Sessions abandoned" name="Abandoned" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Abandoned]"/>
+            <resource id="timedout" iname="$entity[2]/Sessions timed out" name="Timed out" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Timed Out]"/>
+            <resource id="executing" iname="$entity[2]/Sessions Total" name="Total" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Total]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Transactions per application</name>
+          <description>Transaction details per ASP.NET application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
+            <resource id="txnpersec" iname="$entity[2]/Transactions/sec" name="Tx/sec" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions/Sec]"/>
+            <resource id="aborted" iname="$entity[2]/Transactions aborted" name="Aborted" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Aborted]"/>
+            <resource id="committed" iname="$entity[2]/Transactions committed" name="Committed" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Committed]"/>
+            <resource id="pending" iname="$entity[2]/Transactions pending" name="Pending" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Pending]"/>
+            <resource id="total" iname="$entity[2]/Transactions total" name="Total" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Total]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Traffic per application</name>
+          <description>Shows traffic details per ASP.NET application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
+            <resource id="bytesin" iname="$entity[2]/Bytes in" name="Bytes in" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes In Total]"/>
+            <resource id="bytesout" iname="$entity[2]/Bytes out" name="Bytes out" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes Out Total]"/>
+            <resource id="reqtotal" iname="$entity[2]/Req total" name="Req total" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Total]"/>
+            <resource id="reqexec" iname="$entity[2]/Executing" name="Executing" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Executing]"/>
+            <resource id="reqfail" iname="$entity[2]/Failed" name="Failed" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Failed]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Terminal Services">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Active and inactive sessions</name>
+          <description>Shows the number of active and inactive sessions as a timeseries chart</description>
+          <query>
+            <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Terminal Services/[Active Sessions]"/>
+            <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Terminal Services/[Inactive Sessions]"/>
+            <resource id="id0" iname="" rid="-/-/root/Terminal Services/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYLine">
+            <domain id="id0"/>
+            <range id="id1"/>
+            <range id="id2"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Network Interface/XPC 802.11b_g Wireless Kit - Packet Scheduler Miniport">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Megabytes received/sent per second for all interfaces</name>
+          <description>Shows received/sent megabytes per second as a bar chart</description>
+          <query>
+            <resource code="return id7/Math.pow(2, 20);" id="id7" iname="$host/$agent/$entity[1]/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
+            <resource code="return id9/Math.pow(2, 20);" id="id9" iname="$host/$agent/$entity[1]/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
+            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="Network Interface" rid="-/-/root/Network Interface/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="id0"/>
+            <range id="id7"/>
+            <range id="id9"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Memory">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Page swapping rate</name>
+          <description>Pages in and out per second</description>
+          <query>
+            <resource id="time" rid="-/-/root/Memory/[#time#]"/>
+            <resource id="in" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Input/sec]"/>
+            <resource id="out" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Output/sec]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="in"/>
+            <range id="out"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Process">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Comparative CPU usage (bar chart)</name>
+          <description>Shows CPU usage in a comparative bar chart</description>
+          <query>
+            <resource id="process" iname="$host/$entity[1]/$entity[2]" name="Process" rid="-/-/root/Process/((?!Idle).*)"/>
+            <resource id="usertime" iname="$host/$entity[1]/$entity[2]/User Time" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% User Time]" style="CPU"/>
+            <resource id="privtime" iname="$host/$entity[1]/$entity[2]/Privileged Time" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Privileged Time]" style="CPU"/>
+            <reaction params="process,usertime,privtime" severity="HIGH">
+              <arm><![CDATA[return usertime + privtime > 90;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email();]]></delivery>
+              <message><![CDATA[return "Process " + env.getPath(process) + " is using " + (usertime + privtime) + " of the CPU on host " + env.getHost(process);]]></message>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="process"/>
+            <range id="privtime"/>
+            <range id="usertime"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>CPU per process</name>
+          <description>Shows CPU usage detailed per process</description>
+          <query>
+            <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Process/((?!Idle).*)"/>
+            <resource id="proctime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Processor Time]"/>
+            <resource id="usertime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% User Time]"/>
+            <resource id="privtime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Privileged Time]"/>
+            <reaction params="process,proctime,usertime,privtime" severity="HIGH">
+              <arm><![CDATA[return proctime > 90;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email();]]></delivery>
+              <message><![CDATA[return "Process " + env.getPath(process) + " is using " + proctime + " of the CPU on host " + env.getHost(process);]]></message>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="process" removeStale="true"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/System">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
+          <name>Global info</name>
+          <description>Shows global system information</description>
+          <query>
+            <resource id="sysuptime" iname="$counter(seconds)" name="$counter(seconds)" rid="-/-/-/[System Up Time]"/>
+            <resource id="processes" iname="$counter" name="$counter" rid="-/-/-/[Processes]"/>
+            <resource id="threads" iname="$counter" name="$counter" rid="-/-/-/[Threads]"/>
+            <resource id="regpctuse" iname="$counter" name="$counter" rid="-/-/-/[% Registry Quota In Use]"/>
+            <resource id="syscalls" iname="$counter" name="$counter" rid="-/-/-/[System Calls/sec]"/>
+            <resource id="ctxswitches" iname="$counter" name="$counter" rid="-/-/-/[Context Switches/sec]"/>
+            <reaction params="ctxswitches" severity="HIGH">
+              <arm><![CDATA[return ctxswitches > 100000;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email();]]></delivery>
+              <message><![CDATA[return "The number of context switches on host " + env.getHost(ctxswitches) + " is too high";]]></message>
+              <advise><![CDATA[return "The number of context switches on host " + env.getHost(ctxswitches) + " is too high. Lower the number of threads or processes.";]]></advise>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>File Operations</name>
+          <description/>
+          <query>
+            <resource id="time" rid="-/-/-/[#time#]"/>
+            <resource id="readop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Read Operations/sec]"/>
+            <resource id="writeop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Write Operations/sec]"/>
+            <resource id="ctlop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Control Operations/sec]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="readop"/>
+            <range id="writeop"/>
+            <range id="ctlop"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/.NET CLR Jit">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Just In Time compilations per application</name>
+          <description>Shows Just In Time compilation details per application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Jit/(.*)"/>
+            <resource id="methods" iname="$entity[2]/Methods Jitted" name="Methods Jitted" rid="-/-/root/.NET CLR Jit/(.*)/[# of Methods Jitted]"/>
+            <resource id="bytes" iname="$entity[2]/Bytes Jitted" name="Bytes Jitted" rid="-/-/root/.NET CLR Jit/(.*)/[# of IL Bytes Jitted]"/>
+            <resource id="jittime" iname="$entity[2]/% JIT Time" name="% JIT Time" rid="-/-/root/.NET CLR Jit/(.*)/[% Time in Jit]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Network Interface">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Per interface statistics</name>
+          <description>Per interface statistics</description>
+          <query>
+            <resource id="inf" iname="$host/$entity[2]" name="Interface" rid="-/-/root/Network Interface/(.*)"/>
+            <resource code="return total/1048576f;" description="Megabytes (received + sent) per second" id="total" iname="$host/$entity[2]/MB/sec" name="MB/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Total/sec]"/>
+            <resource code="return sent/1048576f;" description="Megabytes sent per second" id="sent" iname="$host/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
+            <resource code="return recv/1048576f;" description="Megabytes received per second" id="recv" iname="$host/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
+            <resource id="out-err" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interface/(.*)/[Packets Outbound Errors]"/>
+            <resource id="in-err" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interface/(.*)/[Packets Received Errors]"/>
+            <reaction params="inf,total,sent,recv,out-err,in-err" severity="HIGH">
+              <arm><![CDATA[return total/1048576f > 10;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email();]]></delivery>
+              <message><![CDATA[return "Total traffic on network card " + env.getPath(inf) + " on host " + env.getHost(inf) + " is " + (total/1048576f) + "MB/s. If you have a Gigabit network card increase the threshold for this reaction to 35 MB/s";]]></message>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="inf"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Megabytes received/sent per second for all interfaces</name>
+          <description>Shows received/sent megabytes per second as a bar chart</description>
+          <query>
+            <resource code="return id7/1048576f;" id="id7" iname="$host/$agent/$entity[1]/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
+            <resource code="return id9/1048576f;" id="id9" iname="$host/$agent/$entity[1]/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
+            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="Network Interface" rid="-/-/root/Network Interface/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar3D">
+            <domain id="id0"/>
+            <range id="id7"/>
+            <range id="id9"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/SQLServer:Cache Manager">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Details per cache</name>
+          <description>Shows details per cache</description>
+          <query>
+            <resource id="cache" iname="$entity[2]" name="Cache" rid="-/-/root/SQLServer:Cache Manager/(.*)"/>
+            <resource id="hitratio" iname="$entity[2]/Hit ratio" name="Hit ratio" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Hit Ratio]"/>
+            <resource id="pages" iname="$entity[2]/Pages" name="Pages" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Pages]"/>
+            <resource id="obj" iname="$entity[2]/Objects" name="Objects" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Object Counts]"/>
+            <resource id="usepersec" iname="$entity[2]/Usage/sec" name="Usage/sec" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Use Counts/sec]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="cache"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/.NET CLR Exceptions">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Exceptions per application</name>
+          <description>Shows exception details per application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Exceptions/(.*)"/>
+            <resource id="thrown" iname="$entity[2]/Exceptions thrown" name="Exceptions thrown" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Exceps Thrown]"/>
+            <resource id="expersec" iname="$entity[2]/Exceptions/sec" name="Exc/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Exceps Thrown / sec]"/>
+            <resource id="filterpersec" iname="$entity[2]/Filters/sec" name="Filters/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Filters / sec]"/>
+            <resource id="finallypersec" iname="$entity[2]/Finally/sec" name="Finally/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Finallys / sec]"/>
+            <resource id="depthpersec" iname="$entity[2]/Catch Depth/sec" name="Catch Depth/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[Throw To Catch Depth / sec]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/.NET CLR Loading">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Loading per application</name>
+          <description>Shows number of classes, app domains and assemblies loaded.</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Loading/(.*)"/>
+            <resource id="curclass" iname="$entity[2]/Current classes" name="Classes" rid="-/-/root/.NET CLR Loading/(.*)/[Current Classes Loaded]"/>
+            <resource id="totclass" iname="$entity[2]/Total classes" name="Total classes" rid="-/-/root/.NET CLR Loading/(.*)/[Total Classes Loaded]"/>
+            <resource id="curapp" iname="$entity[2]/Current appdomains" name="AppDomains" rid="-/-/root/.NET CLR Loading/(.*)/[Current appdomains]"/>
+            <resource id="totapp" iname="$entity[2]/Total appdomains" name="Total AppDomains" rid="-/-/root/.NET CLR Loading/(.*)/[Total Appdomains]"/>
+            <resource id="curass" iname="$entity[2]/Current assemblies" name="Assemblies" rid="-/-/root/.NET CLR Loading/(.*)/[Current Assemblies]"/>
+            <resource id="totass" iname="$entity[2]/Total assemblies" name="Total Assemblies" rid="-/-/root/.NET CLR Loading/(.*)/[Total Assemblies]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/PhysicalDisk/0 C: F: E: H:">
+      <views/>
+    </entity>
+    <entity id="root/.NET CLR Security">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Security checks per application</name>
+          <description>Shows security details per application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Security/(.*)"/>
+            <resource id="rtchecks" iname="$entity[2]/Runtime checks" name="Runtime checks" rid="-/-/root/.NET CLR Security/(.*)/[Total Runtime Checks]"/>
+            <resource id="ltchecks" iname="$entity[2]/Link time checks" name="Link time checks" rid="-/-/root/.NET CLR Security/(.*)/[# Link Time Checks]"/>
+            <resource id="stackdepth" iname="$entity[2]/Stack Depth" name="Stack Depth" rid="-/-/root/.NET CLR Security/(.*)/[Stack Walk Depth]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/LogicalDisk">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Logical Disk Activity</name>
+          <description>Shows activity per logical disk</description>
+          <query>
+            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/LogicalDisk/(.*)"/>
+            <resource id="reads" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Disk Reads/sec]"/>
+            <resource code="return readbytes/1024f;" id="readbytes" iname="$host/$entity[1]/$entity[2]/Read MB/sec" name="Read MB/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Read Bytes/sec]"/>
+            <resource id="writes" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Disk Writes/sec]"/>
+            <resource code="return writebytes/1024f;" id="writebytes" iname="$host/$entity[1]/$entity[2]/Write MB/sec" name="Write MB/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Write Bytes/sec]"/>
+            <resource id="disktime" iname="$entity[2]/Disk time" name="Disk time" rid="-/-/root/LogicalDisk/(.*)/[% Disk Time]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="disk"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Logical Disk Status</name>
+          <description>Shows status per logical disk</description>
+          <query>
+            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/LogicalDisk/(.*)"/>
+            <resource id="free" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Free Megabytes]"/>
+            <resource id="avgqueue" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Avg. Disk Queue Length]"/>
+            <resource id="idle" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[% Idle Time]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="disk"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Processes">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Processes Table</name>
+          <description>This shows all processes as a table</description>
+          <query>
+            <resource id="process" name="Process" rid="-/-/(root/Processes/.*)"/>
+            <resource id="user" name="User Time" rid="-/-/(root/Processes/.*)/[User time]"/>
+            <resource id="sys" name="System Time" rid="-/-/(root/Processes/.*)/[System time]"/>
+            <resource id="wait" name="Wait Time" rid="-/-/(root/Processes/.*)/[Wait]"/>
+            <function id="total time" name="Total CPU Time" op="script">
+              <param id="sys"/>
+              <param id="user"/>
+              <code>return sys + user;</code>
+            </function>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <category id="process"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Processes Bar Chart</name>
+          <description>This is the chart that shows all processes</description>
+          <query>
+            <resource id="time" rid="-/-/(root/Processes/.*)/[#time#]"/>
+            <resource id="user" rid="-/-/(root/Processes/.*)/[User time]"/>
+            <resource id="sys" rid="-/-/(root/Processes/.*)/[System time]"/>
+            <resource id="wait" rid="-/-/(root/Processes/.*)/[Wait]"/>
+          </query>
+          <agentVersions/>
+          <author>system</author>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="user"/>
+            <range id="sys"/>
+            <range id="wait"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
     <entity id="root/.NET CLR Remoting">
       <views>
         <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
@@ -61,6 +632,275 @@
           </agentVersions>
           <author>system</author>
           <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/Processor">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Usagex per processor</name>
+          <description>Shows usage detailed per processor</description>
+          <query>
+            <resource id="processor" iname="$entity[2]" name="Processor" rid="-/-/root/Processor/(.*)"/>
+            <resource id="proctime" iname="$entity[2]/% Processor Time" max="100.0" name="% Processor Time" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
+            <resource id="usertime" iname="$entity[2]/% User Time" max="100.0" name="% User Time" rid="-/-/root/Processor/(.*)/[% User Time]"/>
+            <resource id="privtime" iname="$entity[2]/% Privileged Time" max="100.0" name="% Privileged Time" rid="-/-/root/Processor/(.*)/[% Privileged Time]"/>
+            <resource id="dpctime" iname="$entity[2]/% DPC Time" max="100.0" name="% DPC Time" rid="-/-/root/Processor/(.*)/[% DPC Time]"/>
+            <resource id="inttime" iname="$entity[2]/% Interrupt Time" max="100.0" name="% Interrupt Time" rid="-/-/root/Processor/(.*)/[% Interrupt Time]"/>
+            <reaction params="usertime" severity="CRITICAL">
+              <arm><![CDATA[return usertime > 0.95;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 60;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email(); env.job("libJob");]]></delivery>
+              <message><![CDATA[return "The CPU usage for " + env.getHost(usertime) + " has been greater than 95% for one minute";]]></message>
+              <advise><![CDATA[return "The CPU usage for " + env.getHost(usertime) + " has been greater than 95% for one minute";]]></advise>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="processor"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Usage per processor</name>
+          <description>Shows usage detailed per processor</description>
+          <query>
+            <resource id="processor" iname="$entity[2]" name="Processor" rid="-/-/root/Processor/(.*)"/>
+            <resource id="proctime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
+            <resource id="usertime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% User Time]"/>
+            <resource id="privtime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Privileged Time]"/>
+            <resource id="dpctime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% DPC Time]"/>
+            <resource id="inttime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Interrupt Time]"/>
+            <reaction params="usertime,privtime" severity="HIGH">
+              <arm><![CDATA[return usertime + privtime > 90;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email();]]></delivery>
+              <message><![CDATA[return "The usage for CPU number " + env.getEntityPart(usertime, 2) + " on host " + env.getHost(usertime) + " has been greater than 90% for the last minute";]]></message>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="processor"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Test</name>
+          <description>Shows the CPU usage aggregated on all processors split into privileged, interrupt and user time</description>
+          <query>
+            <resource id="time" rid="-/-/root/Processor/[#time#]"/>
+            <resource id="kerntime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Privileged Time]" style="CPU"/>
+            <resource id="inttime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Interrupt Time]" style="CPU"/>
+            <resource id="usertime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% User Time]" style="CPU"/>
+            <reaction params="usertime,kerntime" severity="HIGH">
+              <arm><![CDATA[return usertime + kerntime > 90;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email();]]></delivery>
+              <message><![CDATA[return "The CPU usage on host " + env. getHost(usertime) + " has been greater than 90% for the last minute";]]></message>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="usertime"/>
+            <range id="kerntime"/>
+            <range id="inttime"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>CPU usage</name>
+          <description>Shows the CPU usage aggregated on all processors split into privileged, interrupt and user time</description>
+          <query>
+            <resource id="time" rid="-/-/root/Processor/[#time#]"/>
+            <resource id="kerntime" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Processor/[% Privileged Time]" style="CPU"/>
+            <resource id="inttime" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Processor/[% Interrupt Time]" style="CPU"/>
+            <resource id="usertime" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Processor/[% User Time]" style="CPU"/>
+            <reaction params="usertime,kerntime" severity="HIGH">
+              <arm><![CDATA[return usertime + kerntime > 90;]]></arm>
+              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
+              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
+              <delivery><![CDATA[env.email();]]></delivery>
+              <message><![CDATA[return "The CPU usage on host " + env. getHost(usertime) + " has been greater than 90% for the last minute";]]></message>
+            </reaction>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedXYArea">
+            <domain id="time"/>
+            <range id="usertime"/>
+            <range id="kerntime"/>
+            <range id="inttime"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Usage per processor (timeseries)</name>
+          <description>Shows the usage for all processors as a timeseries chart</description>
+          <query>
+            <resource id="id8" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Processor/(.*)/[% Processor Time]" style="CPU"/>
+            <resource id="id0" iname="" rid="-/-/root/Processor/(.*)/[#time#]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="XYArea">
+            <domain id="id0"/>
+            <range id="id8"/>
+          </renderer>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/.NET CLR LocksAndThreads">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Locks per application</name>
+          <description>Shows lock details per application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR LocksAndThreads/(.*)"/>
+            <resource id="contentions" iname="$entity[2]/Contentions" name="Contentions" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Total # of Contentions]"/>
+            <resource id="contrate" iname="$entity[2]/Contention Rate" name="Contention Rate" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Contention Rate / sec]"/>
+            <resource id="queuelen" iname="$entity[2]/Queue length" name="Queue length" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Current Queue Length]"/>
+            <resource id="queuepeak" iname="$entity[2]/Queue peak" name="Queue peak" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Queue Length Peak]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Threads per application</name>
+          <description>Shows thread details per application</description>
+          <query>
+            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR LocksAndThreads/(.*)"/>
+            <resource id="logical" iname="$entity[2]/Logical threads" name="Logical threads" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[# of current logical Threads]"/>
+            <resource id="physical" iname="$entity[2]/Physical threads" name="Physical threads" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[# of current physical Threads]"/>
+            <resource id="recognized" iname="$entity[2]/Recognized threads" name="Recognized threads" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[# of current recognized threads]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="appl"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/SQLServer:Databases">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Details per database</name>
+          <description>Shows details per database</description>
+          <query>
+            <resource id="dbase" iname="$entity[2]" name="Database" rid="-/-/root/SQLServer:Databases/(.*)"/>
+            <resource id="txnpersec" iname="$entity[2]/Txn/sec" name="Txn/sec" rid="-/-/root/SQLServer:Databases/(.*)/[Transactions/sec]"/>
+            <resource id="activetxn" iname="$entity[2]/Active txns" name="Active txns" rid="-/-/root/SQLServer:Databases/(.*)/[Active Transactions]"/>
+            <resource id="pctlog" iname="$entity[2]/% log use" name="% log use" rid="-/-/root/SQLServer:Databases/(.*)/[Percent Log Used]"/>
+            <resource id="logcache" iname="$entity[2]/Log cache hit ratio" name="Log cache hit ratio" rid="-/-/root/SQLServer:Databases/(.*)/[Log Cache Hit Ratio]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="dbase"/>
+        </view>
+      </views>
+    </entity>
+    <entity id="root/PhysicalDisk">
+      <views>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Activity per physical disk</name>
+          <description>Shows activity per physical disk</description>
+          <query>
+            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/PhysicalDisk/(.*)"/>
+            <resource id="reads" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+            <resource code="return readbytes/1024f;" id="readbytes" iname="$host/$entity[1]/$entity[2]/Read MB/sec" name="Read MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Read Bytes/sec]"/>
+            <resource id="writes" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+            <resource code="return writebytes/1024f;" id="writebytes" iname="$host/$entity[1]/$entity[2]/Write MB/sec" name="Write MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Write Bytes/sec]"/>
+            <resource id="disktime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[% Disk Time]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="disk"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+          <name>Status per physical disk</name>
+          <description>Shows status per physical disk</description>
+          <query>
+            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/PhysicalDisk/(.*)"/>
+            <resource id="avgqueue" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Avg. Disk Queue Length]"/>
+            <resource id="idle" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[% Idle Time]"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <category id="disk"/>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Operations per second for all disks</name>
+          <description>Show reads and writes per second for all disks as a bar chart</description>
+          <query>
+            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+            <resource id="id12" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="PhysicalDisk" rid="-/-/root/PhysicalDisk/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="id0"/>
+            <range id="id5"/>
+            <range id="id12"/>
+          </renderer>
+        </view>
+        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
+          <name>Reads/Writes per second for all physical disks</name>
+          <description>Show reads and writes per second for all physical disks as a bar chart</description>
+          <query>
+            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
+            <resource id="id12" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
+            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="PhysicalDisk" rid="-/-/root/PhysicalDisk/(.*)"/>
+          </query>
+          <agentVersions>
+            <agentVersion>Win2003</agentVersion>
+            <agentVersion>WinXP</agentVersion>
+            <agentVersion>Win2000</agentVersion>
+          </agentVersions>
+          <author>system</author>
+          <renderer type="StackedBar2D">
+            <domain id="id0"/>
+            <range id="id5"/>
+            <range id="id12"/>
+          </renderer>
         </view>
       </views>
     </entity>
@@ -155,818 +995,6 @@
             <range id="id2"/>
             <range id="id3"/>
           </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/.NET CLR Jit">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Just In Time compilations per application</name>
-          <description>Shows Just In Time compilation details per application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Jit/(.*)"/>
-            <resource id="methods" iname="$entity[2]/Methods Jitted" name="Methods Jitted" rid="-/-/root/.NET CLR Jit/(.*)/[# of Methods Jitted]"/>
-            <resource id="bytes" iname="$entity[2]/Bytes Jitted" name="Bytes Jitted" rid="-/-/root/.NET CLR Jit/(.*)/[# of IL Bytes Jitted]"/>
-            <resource id="jittime" iname="$entity[2]/% JIT Time" name="% JIT Time" rid="-/-/root/.NET CLR Jit/(.*)/[% Time in Jit]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/Terminal Services">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Active and inactive sessions</name>
-          <description>Shows the number of active and inactive sessions as a timeseries chart</description>
-          <query>
-            <resource id="id1" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Terminal Services/[Active Sessions]"/>
-            <resource id="id2" iname="$host/$agent/$entity[1]/$counter" name="$counter" rid="-/-/root/Terminal Services/[Inactive Sessions]"/>
-            <resource id="id0" iname="" rid="-/-/root/Terminal Services/[#time#]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="XYLine">
-            <domain id="id0"/>
-            <range id="id1"/>
-            <range id="id2"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/SQLServer:Cache Manager">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Details per cache</name>
-          <description>Shows details per cache</description>
-          <query>
-            <resource id="cache" iname="$entity[2]" name="Cache" rid="-/-/root/SQLServer:Cache Manager/(.*)"/>
-            <resource id="hitratio" iname="$entity[2]/Hit ratio" name="Hit ratio" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Hit Ratio]"/>
-            <resource id="pages" iname="$entity[2]/Pages" name="Pages" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Pages]"/>
-            <resource id="obj" iname="$entity[2]/Objects" name="Objects" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Object Counts]"/>
-            <resource id="usepersec" iname="$entity[2]/Usage/sec" name="Usage/sec" rid="-/-/root/SQLServer:Cache Manager/(.*)/[Cache Use Counts/sec]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="cache"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/System">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
-          <name>Global info</name>
-          <description>Shows global system information</description>
-          <query>
-            <resource id="sysuptime" iname="$counter(seconds)" name="$counter(seconds)" rid="-/-/-/[System Up Time]"/>
-            <resource id="processes" iname="$counter" name="$counter" rid="-/-/-/[Processes]"/>
-            <resource id="threads" iname="$counter" name="$counter" rid="-/-/-/[Threads]"/>
-            <resource id="regpctuse" iname="$counter" name="$counter" rid="-/-/-/[% Registry Quota In Use]"/>
-            <resource id="syscalls" iname="$counter" name="$counter" rid="-/-/-/[System Calls/sec]"/>
-            <resource id="ctxswitches" iname="$counter" name="$counter" rid="-/-/-/[Context Switches/sec]"/>
-            <reaction params="ctxswitches" severity="HIGH">
-              <arm><![CDATA[return ctxswitches > 100000;]]></arm>
-              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
-              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
-              <delivery><![CDATA[env.email();]]></delivery>
-              <message><![CDATA[return "The number of context switches on host " + env.getHost(ctxswitches) + " is too high";]]></message>
-              <advise><![CDATA[return "The number of context switches on host " + env.getHost(ctxswitches) + " is too high. Lower the number of threads or processes.";]]></advise>
-            </reaction>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>File Operations</name>
-          <description/>
-          <query>
-            <resource id="time" rid="-/-/-/[#time#]"/>
-            <resource id="readop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Read Operations/sec]"/>
-            <resource id="writeop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Write Operations/sec]"/>
-            <resource id="ctlop" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/-/[File Control Operations/sec]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedXYArea">
-            <domain id="time"/>
-            <range id="readop"/>
-            <range id="writeop"/>
-            <range id="ctlop"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/Process">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Comparative CPU usage (bar chart)</name>
-          <description>Shows CPU usage in a comparative bar chart</description>
-          <query>
-            <resource id="process" iname="$host/$entity[1]/$entity[2]" name="Process" rid="-/-/root/Process/((?!Idle).*)"/>
-            <resource id="usertime" iname="$host/$entity[1]/$entity[2]/User Time" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% User Time]"/>
-            <resource id="privtime" iname="$host/$entity[1]/$entity[2]/Privileged Time" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Privileged Time]"/>
-            <reaction params="process,usertime,privtime" severity="HIGH">
-              <arm><![CDATA[return usertime + privtime > 90;]]></arm>
-              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
-              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
-              <delivery><![CDATA[env.email();]]></delivery>
-              <message><![CDATA[return "Process " + env.getPath(process) + " is using " + (usertime + privtime) + " of the CPU on host " + env.getHost(process);]]></message>
-            </reaction>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedBar2D">
-            <domain id="process"/>
-            <range id="privtime"/>
-            <range id="usertime"/>
-          </renderer>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>CPU per process</name>
-          <description>Shows CPU usage detailed per process</description>
-          <query>
-            <resource id="process" iname="$entity[2]" name="Process" rid="-/-/root/Process/((?!Idle).*)"/>
-            <resource id="proctime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Processor Time]"/>
-            <resource id="usertime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% User Time]"/>
-            <resource id="privtime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/Process/((?!Idle).*)/[% Privileged Time]"/>
-            <reaction params="process,proctime,usertime,privtime" severity="HIGH">
-              <arm><![CDATA[return proctime > 90;]]></arm>
-              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
-              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
-              <delivery><![CDATA[env.email();]]></delivery>
-              <message><![CDATA[return "Process " + env.getPath(process) + " is using " + proctime + " of the CPU on host " + env.getHost(process);]]></message>
-            </reaction>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="process" removeStale="true"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/.NET CLR Memory">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Statistics per application</name>
-          <description>Garbage collection statistics detailed per application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Memory/(.*)"/>
-            <resource id="gctime" iname="$entity[2]/GC Time" name="GC Time" rid="-/-/root/.NET CLR Memory/(.*)/[% Time in GC]"/>
-            <resource code="return totalreserved/1048576;" id="totalreserved" iname="$entity[2]/Reserved MB" name="Reserved MB" rid="-/-/root/.NET CLR Memory/(.*)/[# Total reserved Bytes]"/>
-            <resource code="return bytesallheaps/1048576;" id="bytesallheaps" iname="$entity[2]/All heaps MB" name="All heaps MB" rid="-/-/root/.NET CLR Memory/(.*)/[# Bytes in all Heaps]"/>
-            <resource id="bytespersec" iname="$entity[2]/$counter" name="Allocated bytes/sec" rid="-/-/root/.NET CLR Memory/(.*)/[Allocated Bytes/sec]"/>
-            <resource code="return comittedbytes/1048576;" id="comittedbytes" iname="$entity[2]/Comitted MB" name="Comitted MB" rid="-/-/root/.NET CLR Memory/(.*)/[# Total committed Bytes]"/>
-            <resource code="return loheapsize/1048576;" id="loheapsize" iname="$entity[2]/Large obj heap MB" name="Large obj heap MB" rid="-/-/root/.NET CLR Memory/(.*)/[Large Object Heap size]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.properties.definitions.PropertiesDef">
-          <name>Generic statistics</name>
-          <description>Generic statistics related to garbage collection</description>
-          <query>
-            <resource id="gctime" iname="$counter" rid="-/-/root/.NET CLR Memory/[% Time in GC]"/>
-            <resource code="return totalreserved/1048576;" id="totalreserved" iname="Total reserved MB" rid="-/-/root/.NET CLR Memory/[# Total reserved Bytes]"/>
-            <resource code="return bytesallheaps/1048576;" id="bytesallheaps" iname="All heaps MB" rid="-/-/root/.NET CLR Memory/[# Bytes in all Heaps]"/>
-            <resource id="bytespersec" iname="$counter" rid="-/-/root/.NET CLR Memory/[Allocated Bytes/sec]"/>
-            <resource code="return comittedbytes/1048576;" id="comittedbytes" iname="Total committed MB" rid="-/-/root/.NET CLR Memory/[# Total committed Bytes]"/>
-            <resource code="return loheapsize/1048576;" id="loheapsize" iname="Large obj heap MB" rid="-/-/root/.NET CLR Memory/[Large Object Heap size]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/Processes">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Processes Table</name>
-          <description>This shows all processes as a table</description>
-          <query>
-            <resource id="process" name="Process" rid="-/-/(root/Processes/.*)"/>
-            <resource id="user" name="User Time" rid="-/-/(root/Processes/.*)/[User time]"/>
-            <resource id="sys" name="System Time" rid="-/-/(root/Processes/.*)/[System time]"/>
-            <resource id="wait" name="Wait Time" rid="-/-/(root/Processes/.*)/[Wait]"/>
-            <function id="total time" name="Total CPU Time" op="script">
-              <param id="sys"/>
-              <param id="user"/>
-              <code>return sys + user;</code>
-            </function>
-          </query>
-          <agentVersions/>
-          <author>system</author>
-          <category id="process"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Processes Bar Chart</name>
-          <description>This is the chart that shows all processes</description>
-          <query>
-            <resource id="time" rid="-/-/(root/Processes/.*)/[#time#]"/>
-            <resource id="user" rid="-/-/(root/Processes/.*)/[User time]"/>
-            <resource id="sys" rid="-/-/(root/Processes/.*)/[System time]"/>
-            <resource id="wait" rid="-/-/(root/Processes/.*)/[Wait]"/>
-          </query>
-          <agentVersions/>
-          <author>system</author>
-          <renderer type="StackedXYArea">
-            <domain id="time"/>
-            <range id="user"/>
-            <range id="sys"/>
-            <range id="wait"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/PhysicalDisk/0 C: F: E: H:">
-      <views/>
-    </entity>
-    <entity id="root/Network Interface">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Per interface statistics</name>
-          <description>Per interface statistics</description>
-          <query>
-            <resource id="inf" iname="$host/$entity[2]" name="Interface" rid="-/-/root/Network Interface/(.*)"/>
-            <resource code="return total/1048576f;" description="Megabytes (received + sent) per second" id="total" iname="$host/$entity[2]/MB/sec" name="MB/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Total/sec]"/>
-            <resource code="return sent/1048576f;" description="Megabytes sent per second" id="sent" iname="$host/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
-            <resource code="return recv/1048576f;" description="Megabytes received per second" id="recv" iname="$host/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
-            <resource id="out-err" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interface/(.*)/[Packets Outbound Errors]"/>
-            <resource id="in-err" iname="$host/$entity[2]/$counter" name="$counter" rid="-/-/root/Network Interface/(.*)/[Packets Received Errors]"/>
-            <reaction params="inf,total,sent,recv,out-err,in-err" severity="HIGH">
-              <arm><![CDATA[return total/1048576f > 10;]]></arm>
-              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
-              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
-              <delivery><![CDATA[env.email();]]></delivery>
-              <message><![CDATA[return "Total traffic on network card " + env.getPath(inf) + " on host " + env.getHost(inf) + " is " + (total/1048576f) + "MB/s. If you have a Gigabit network card increase the threshold for this reaction to 35 MB/s";]]></message>
-            </reaction>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="inf"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Megabytes received/sent per second for all interfaces</name>
-          <description>Shows received/sent megabytes per second as a bar chart</description>
-          <query>
-            <resource code="return id7/1048576f;" id="id7" iname="$host/$agent/$entity[1]/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
-            <resource code="return id9/1048576f;" id="id9" iname="$host/$agent/$entity[1]/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
-            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="Network Interface" rid="-/-/root/Network Interface/(.*)"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedBar3D">
-            <domain id="id0"/>
-            <range id="id7"/>
-            <range id="id9"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/PhysicalDisk">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Activity per physical disk</name>
-          <description>Shows activity per physical disk</description>
-          <query>
-            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/PhysicalDisk/(.*)"/>
-            <resource id="reads" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
-            <resource code="return readbytes/1024f;" id="readbytes" iname="$host/$entity[1]/$entity[2]/Read MB/sec" name="Read MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Read Bytes/sec]"/>
-            <resource id="writes" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
-            <resource code="return writebytes/1024f;" id="writebytes" iname="$host/$entity[1]/$entity[2]/Write MB/sec" name="Write MB/sec" rid="-/-/root/PhysicalDisk/(.*)/[Disk Write Bytes/sec]"/>
-            <resource id="disktime" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[% Disk Time]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="disk"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Status per physical disk</name>
-          <description>Shows status per physical disk</description>
-          <query>
-            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/PhysicalDisk/(.*)"/>
-            <resource id="avgqueue" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Avg. Disk Queue Length]"/>
-            <resource id="idle" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[% Idle Time]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="disk"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Operations per second for all disks</name>
-          <description>Show reads and writes per second for all disks as a bar chart</description>
-          <query>
-            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
-            <resource id="id12" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
-            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="PhysicalDisk" rid="-/-/root/PhysicalDisk/(.*)"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedBar2D">
-            <domain id="id0"/>
-            <range id="id5"/>
-            <range id="id12"/>
-          </renderer>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Reads/Writes per second for all physical disks</name>
-          <description>Show reads and writes per second for all physical disks as a bar chart</description>
-          <query>
-            <resource id="id5" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Reads/sec]"/>
-            <resource id="id12" iname="$host/$agent/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/PhysicalDisk/(.*)/[Disk Writes/sec]"/>
-            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="PhysicalDisk" rid="-/-/root/PhysicalDisk/(.*)"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedBar2D">
-            <domain id="id0"/>
-            <range id="id5"/>
-            <range id="id12"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/.NET CLR Loading">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Loading per application</name>
-          <description>Shows number of classes, app domains and assemblies loaded.</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Loading/(.*)"/>
-            <resource id="curclass" iname="$entity[2]/Current classes" name="Classes" rid="-/-/root/.NET CLR Loading/(.*)/[Current Classes Loaded]"/>
-            <resource id="totclass" iname="$entity[2]/Total classes" name="Total classes" rid="-/-/root/.NET CLR Loading/(.*)/[Total Classes Loaded]"/>
-            <resource id="curapp" iname="$entity[2]/Current appdomains" name="AppDomains" rid="-/-/root/.NET CLR Loading/(.*)/[Current appdomains]"/>
-            <resource id="totapp" iname="$entity[2]/Total appdomains" name="Total AppDomains" rid="-/-/root/.NET CLR Loading/(.*)/[Total Appdomains]"/>
-            <resource id="curass" iname="$entity[2]/Current assemblies" name="Assemblies" rid="-/-/root/.NET CLR Loading/(.*)/[Current Assemblies]"/>
-            <resource id="totass" iname="$entity[2]/Total assemblies" name="Total Assemblies" rid="-/-/root/.NET CLR Loading/(.*)/[Total Assemblies]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/.NET CLR Exceptions">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Exceptions per application</name>
-          <description>Shows exception details per application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Exceptions/(.*)"/>
-            <resource id="thrown" iname="$entity[2]/Exceptions thrown" name="Exceptions thrown" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Exceps Thrown]"/>
-            <resource id="expersec" iname="$entity[2]/Exceptions/sec" name="Exc/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Exceps Thrown / sec]"/>
-            <resource id="filterpersec" iname="$entity[2]/Filters/sec" name="Filters/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Filters / sec]"/>
-            <resource id="finallypersec" iname="$entity[2]/Finally/sec" name="Finally/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[# of Finallys / sec]"/>
-            <resource id="depthpersec" iname="$entity[2]/Catch Depth/sec" name="Catch Depth/sec" rid="-/-/root/.NET CLR Exceptions/(.*)/[Throw To Catch Depth / sec]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/SQLServer:Locks">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Details per lock type</name>
-          <description>Shows details per lock type</description>
-          <query>
-            <resource id="lock" iname="$entity[2]" name="Locks" rid="-/-/root/SQLServer:Locks/(.*)"/>
-            <resource id="reqpersec" iname="$entity[2]/Req/sec" name="Req/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Requests/sec]"/>
-            <resource id="waitpersec" iname="$entity[2]/Waits/sec" name="Waits/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Waits/sec]"/>
-            <resource id="deadpersec" iname="$entity[2]/Deadlocks/sec" name="Deadlocks/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Number of Deadlocks/sec]"/>
-            <resource id="timeoutpersec" iname="$entity[2]/Timeouts/sec" name="Timeouts/sec" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Timeouts/sec]"/>
-            <resource id="lockwait" iname="$entity[2]/Wait time (ms)" name="Wait time (ms)" rid="-/-/root/SQLServer:Locks/(.*)/[Lock Wait Time (ms)]"/>
-            <resource id="avgwait" iname="$entity[2]/Avg wait (ms)" name="Avg wait (ms)" rid="-/-/root/SQLServer:Locks/(.*)/[Average Wait Time (ms)]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="lock"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/Memory">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Page swapping rate</name>
-          <description>Pages in and out per second</description>
-          <query>
-            <resource id="time" rid="-/-/root/Memory/[#time#]"/>
-            <resource id="in" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Input/sec]"/>
-            <resource id="out" iname="$host/$entity[1]/$counter" name="$counter" rid="-/-/root/Memory/[Pages Output/sec]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedXYArea">
-            <domain id="time"/>
-            <range id="in"/>
-            <range id="out"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/Processor">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Usagex per processor</name>
-          <description>Shows usage detailed per processor</description>
-          <query>
-            <resource id="processor" iname="$entity[2]" name="Processor" rid="-/-/root/Processor/(.*)"/>
-            <resource id="proctime" iname="$entity[2]/% Processor Time" max="100.0" name="% Processor Time" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
-            <resource id="usertime" iname="$entity[2]/% User Time" max="100.0" name="% User Time" rid="-/-/root/Processor/(.*)/[% User Time]"/>
-            <resource id="privtime" iname="$entity[2]/% Privileged Time" max="100.0" name="% Privileged Time" rid="-/-/root/Processor/(.*)/[% Privileged Time]"/>
-            <resource id="dpctime" iname="$entity[2]/% DPC Time" max="100.0" name="% DPC Time" rid="-/-/root/Processor/(.*)/[% DPC Time]"/>
-            <resource id="inttime" iname="$entity[2]/% Interrupt Time" max="100.0" name="% Interrupt Time" rid="-/-/root/Processor/(.*)/[% Interrupt Time]"/>
-            <reaction params="usertime" severity="CRITICAL">
-              <arm><![CDATA[return usertime > 0.95;]]></arm>
-              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 60;]]></disarm>
-              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
-              <delivery><![CDATA[env.email(); env.job("libJob");]]></delivery>
-              <message><![CDATA[return "The CPU usage for " + env.getHost(usertime) + " has been greater than 95% for one minute";]]></message>
-              <advise><![CDATA[return "The CPU usage for " + env.getHost(usertime) + " has been greater than 95% for one minute";]]></advise>
-            </reaction>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="processor"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Usage per processor (timeseries)</name>
-          <description>Shows the usage for all processors as a timeseries chart</description>
-          <query>
-            <resource id="id8" iname="$host/$agent/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
-            <resource id="id0" iname="" rid="-/-/root/Processor/(.*)/[#time#]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedXYArea">
-            <domain id="id0"/>
-            <range id="id8"/>
-          </renderer>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Usage per processor</name>
-          <description>Shows usage detailed per processor</description>
-          <query>
-            <resource id="processor" iname="$entity[2]" name="Processor" rid="-/-/root/Processor/(.*)"/>
-            <resource id="proctime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Processor Time]"/>
-            <resource id="usertime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% User Time]"/>
-            <resource id="privtime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Privileged Time]"/>
-            <resource id="dpctime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% DPC Time]"/>
-            <resource id="inttime" iname="$host/$entity[1]/$entity[2]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/(.*)/[% Interrupt Time]"/>
-            <reaction params="usertime,privtime" severity="HIGH">
-              <arm><![CDATA[return usertime + privtime > 90;]]></arm>
-              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
-              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
-              <delivery><![CDATA[env.email();]]></delivery>
-              <message><![CDATA[return "The usage for CPU number " + env.getEntityPart(usertime, 2) + " on host " + env.getHost(usertime) + " has been greater than 90% for the last minute";]]></message>
-            </reaction>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="processor"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>CPU usage</name>
-          <description>Shows the CPU usage aggregated on all processors split into privileged, interrupt and user time</description>
-          <query>
-            <resource id="time" rid="-/-/root/Processor/[#time#]"/>
-            <resource id="kerntime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Privileged Time]"/>
-            <resource id="inttime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% Interrupt Time]"/>
-            <resource id="usertime" iname="$host/$entity[1]/$counter" max="100.0" name="$counter" rid="-/-/root/Processor/[% User Time]"/>
-            <reaction params="usertime,kerntime" severity="HIGH">
-              <arm><![CDATA[return usertime + kerntime > 90;]]></arm>
-              <disarm><![CDATA[return env.getSecondsSinceLastArmed() > 20;]]></disarm>
-              <fire><![CDATA[return env.getSecondsSinceArmed() > 60;]]></fire>
-              <delivery><![CDATA[env.email();]]></delivery>
-              <message><![CDATA[return "The CPU usage on host " + env. getHost(usertime) + " has been greater than 90% for the last minute";]]></message>
-            </reaction>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedXYArea">
-            <domain id="time"/>
-            <range id="usertime"/>
-            <range id="kerntime"/>
-            <range id="inttime"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/SQLServer:Databases">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Details per database</name>
-          <description>Shows details per database</description>
-          <query>
-            <resource id="dbase" iname="$entity[2]" name="Database" rid="-/-/root/SQLServer:Databases/(.*)"/>
-            <resource id="txnpersec" iname="$entity[2]/Txn/sec" name="Txn/sec" rid="-/-/root/SQLServer:Databases/(.*)/[Transactions/sec]"/>
-            <resource id="activetxn" iname="$entity[2]/Active txns" name="Active txns" rid="-/-/root/SQLServer:Databases/(.*)/[Active Transactions]"/>
-            <resource id="pctlog" iname="$entity[2]/% log use" name="% log use" rid="-/-/root/SQLServer:Databases/(.*)/[Percent Log Used]"/>
-            <resource id="logcache" iname="$entity[2]/Log cache hit ratio" name="Log cache hit ratio" rid="-/-/root/SQLServer:Databases/(.*)/[Log Cache Hit Ratio]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="dbase"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/LogicalDisk">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Logical Disk Activity</name>
-          <description>Shows activity per logical disk</description>
-          <query>
-            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/LogicalDisk/(.*)"/>
-            <resource id="reads" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Disk Reads/sec]"/>
-            <resource code="return readbytes/1024f;" id="readbytes" iname="$host/$entity[1]/$entity[2]/Read MB/sec" name="Read MB/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Read Bytes/sec]"/>
-            <resource id="writes" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Disk Writes/sec]"/>
-            <resource code="return writebytes/1024f;" id="writebytes" iname="$host/$entity[1]/$entity[2]/Write MB/sec" name="Write MB/sec" rid="-/-/root/LogicalDisk/(.*)/[Disk Write Bytes/sec]"/>
-            <resource id="disktime" iname="$entity[2]/Disk time" name="Disk time" rid="-/-/root/LogicalDisk/(.*)/[% Disk Time]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="disk"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Logical Disk Status</name>
-          <description>Shows status per logical disk</description>
-          <query>
-            <resource id="disk" iname="$entity[2]" name="Disk" rid="-/-/root/LogicalDisk/(.*)"/>
-            <resource id="free" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Free Megabytes]"/>
-            <resource id="avgqueue" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[Avg. Disk Queue Length]"/>
-            <resource id="idle" iname="$host/$entity[1]/$entity[2]/$counter" name="$counter" rid="-/-/root/LogicalDisk/(.*)/[% Idle Time]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="disk"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/ASP.NET Applications">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Requests per application</name>
-          <description>Request details per ASP.NET application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
-            <resource id="reqpersec" iname="$entity[2]/Requests/Sec" name="Requests/Sec" rid="-/-/root/ASP.NET Applications/(.*)/[Requests/Sec]"/>
-            <resource id="bytesin" iname="$entity[2]/Bytes In" name="Bytes in" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes In Total]"/>
-            <resource id="bytesout" iname="$entity[2]/Bytes out" name="Bytes out" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes Out Total]"/>
-            <resource id="executing" iname="$entity[2]/Requests executing" name="Executing" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Executing]"/>
-            <resource id="failed" iname="$entity[2]/Requests failed" name="Failed" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Failed]"/>
-            <resource id="anonymous" iname="$entity[2]/Anonymous" name="Anonymous" rid="-/-/root/ASP.NET Applications/(.*)/[Anonymous Requests]"/>
-            <resource id="total" iname="$entity[2]/Requests total" name="Total" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Total]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Sessions per application</name>
-          <description>Session details per ASP.NET application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
-            <resource id="active" iname="$entity[2]/Sessions active" name="Active" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Active]"/>
-            <resource id="abandoned" iname="$entity[2]/Sessions abandoned" name="Abandoned" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Abandoned]"/>
-            <resource id="timedout" iname="$entity[2]/Sessions timed out" name="Timed out" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Timed Out]"/>
-            <resource id="executing" iname="$entity[2]/Sessions Total" name="Total" rid="-/-/root/ASP.NET Applications/(.*)/[Sessions Total]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Transactions per application</name>
-          <description>Transaction details per ASP.NET application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
-            <resource id="txnpersec" iname="$entity[2]/Transactions/sec" name="Tx/sec" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions/Sec]"/>
-            <resource id="aborted" iname="$entity[2]/Transactions aborted" name="Aborted" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Aborted]"/>
-            <resource id="committed" iname="$entity[2]/Transactions committed" name="Committed" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Committed]"/>
-            <resource id="pending" iname="$entity[2]/Transactions pending" name="Pending" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Pending]"/>
-            <resource id="total" iname="$entity[2]/Transactions total" name="Total" rid="-/-/root/ASP.NET Applications/(.*)/[Transactions Total]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Traffic per application</name>
-          <description>Shows traffic details per ASP.NET application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/ASP.NET Applications/(.*)"/>
-            <resource id="bytesin" iname="$entity[2]/Bytes in" name="Bytes in" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes In Total]"/>
-            <resource id="bytesout" iname="$entity[2]/Bytes out" name="Bytes out" rid="-/-/root/ASP.NET Applications/(.*)/[Request Bytes Out Total]"/>
-            <resource id="reqtotal" iname="$entity[2]/Req total" name="Req total" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Total]"/>
-            <resource id="reqexec" iname="$entity[2]/Executing" name="Executing" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Executing]"/>
-            <resource id="reqfail" iname="$entity[2]/Failed" name="Failed" rid="-/-/root/ASP.NET Applications/(.*)/[Requests Failed]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/Network Interface/XPC 802.11b_g Wireless Kit - Packet Scheduler Miniport">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
-          <name>Megabytes received/sent per second for all interfaces</name>
-          <description>Shows received/sent megabytes per second as a bar chart</description>
-          <query>
-            <resource code="return id7/Math.pow(2, 20);" id="id7" iname="$host/$agent/$entity[1]/$entity[2]/MB sent/sec" name="MB sent/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Sent/sec]"/>
-            <resource code="return id9/Math.pow(2, 20);" id="id9" iname="$host/$agent/$entity[1]/$entity[2]/MB recv/sec" name="MB recv/sec" rid="-/-/root/Network Interface/(.*)/[Bytes Received/sec]"/>
-            <resource id="id0" iname="$host/$agent/$entity[1]/$entity[2]" name="Network Interface" rid="-/-/root/Network Interface/(.*)"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <renderer type="StackedBar2D">
-            <domain id="id0"/>
-            <range id="id7"/>
-            <range id="id9"/>
-          </renderer>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/NBT Connection/Total">
-      <views/>
-    </entity>
-    <entity id="root/.NET CLR LocksAndThreads">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Locks per application</name>
-          <description>Shows lock details per application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR LocksAndThreads/(.*)"/>
-            <resource id="contentions" iname="$entity[2]/Contentions" name="Contentions" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Total # of Contentions]"/>
-            <resource id="contrate" iname="$entity[2]/Contention Rate" name="Contention Rate" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Contention Rate / sec]"/>
-            <resource id="queuelen" iname="$entity[2]/Queue length" name="Queue length" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Current Queue Length]"/>
-            <resource id="queuepeak" iname="$entity[2]/Queue peak" name="Queue peak" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[Queue Length Peak]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Threads per application</name>
-          <description>Shows thread details per application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR LocksAndThreads/(.*)"/>
-            <resource id="logical" iname="$entity[2]/Logical threads" name="Logical threads" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[# of current logical Threads]"/>
-            <resource id="physical" iname="$entity[2]/Physical threads" name="Physical threads" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[# of current physical Threads]"/>
-            <resource id="recognized" iname="$entity[2]/Recognized threads" name="Recognized threads" rid="-/-/root/.NET CLR LocksAndThreads/(.*)/[# of current recognized threads]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
-        </view>
-      </views>
-    </entity>
-    <entity id="root/.NET CLR Security">
-      <views>
-        <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-          <name>Security checks per application</name>
-          <description>Shows security details per application</description>
-          <query>
-            <resource id="appl" iname="$entity[2]" name="Application" rid="-/-/root/.NET CLR Security/(.*)"/>
-            <resource id="rtchecks" iname="$entity[2]/Runtime checks" name="Runtime checks" rid="-/-/root/.NET CLR Security/(.*)/[Total Runtime Checks]"/>
-            <resource id="ltchecks" iname="$entity[2]/Link time checks" name="Link time checks" rid="-/-/root/.NET CLR Security/(.*)/[# Link Time Checks]"/>
-            <resource id="stackdepth" iname="$entity[2]/Stack Depth" name="Stack Depth" rid="-/-/root/.NET CLR Security/(.*)/[Stack Walk Depth]"/>
-          </query>
-          <agentVersions>
-            <agentVersion>Win2003</agentVersion>
-            <agentVersion>WinXP</agentVersion>
-            <agentVersion>Win2000</agentVersion>
-          </agentVersions>
-          <author>system</author>
-          <category id="appl"/>
         </view>
       </views>
     </entity>
