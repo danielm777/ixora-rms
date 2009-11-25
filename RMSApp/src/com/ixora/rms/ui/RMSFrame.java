@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.SocketException;
+import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.server.ExportException;
 import java.util.Observable;
@@ -29,6 +30,8 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.event.PopupMenuEvent;
 
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.NameValuePair;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.ixora.common.ComponentConfiguration;
@@ -39,10 +42,12 @@ import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.exception.FailedToSaveConfiguration;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.common.net.NetUtils;
 import com.ixora.common.ui.AppFrame;
 import com.ixora.common.ui.AppFrameParameters;
 import com.ixora.common.ui.AppInitializer;
 import com.ixora.common.ui.ButtonWithPopup;
+import com.ixora.common.ui.FeedbackDialog;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
@@ -522,7 +527,7 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 							"javax.swing.plaf.metal.MetalLookAndFeel");
 							//"com.jgoodies.looks.plastic.PlasticXPLookAndFeel");
 					params.setString(AppFrameParameters.FEEDBACK_URL,
-							"http://www.ixoragroup.com/rms/app_feedback.php");
+							"http://spreadsheets.google.com/formResponse");
 					JFrame frame = new RMSFrame(params);
 					UIUtils.maximizeFrameAndShow(frame);
 				} catch(Throwable e) {
@@ -1170,4 +1175,38 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	public SessionView getSessionView() {
 		return (SessionView)getAppView();
 	}
+	
+	/**
+	 * Overridden to change the HTTP request parameters.
+	 * @see com.ixora.common.ui.AppFrame#handleSendFeedback()
+	 */
+	@SuppressWarnings("serial")
+	protected void handleSendFeedback() {
+		try {
+			FeedbackDialog dlg = new FeedbackDialog(this, fFeedbackURL) {
+				protected void postData(URL url, String email, String comment)
+						throws HttpException, IOException {
+					NetUtils.postHttpForm(url, 
+						new NameValuePair[]{
+							new NameValuePair("entry.3.group", "General"),
+							new NameValuePair("entry.3.group.other_option_", "IxoraRMS feedback"),
+							new NameValuePair("entry.4.single", email),
+							new NameValuePair("entry.2.single", comment),
+							new NameValuePair("pageNumber", "0"),
+							new NameValuePair("backupCache", ""),
+							new NameValuePair("submit", "Submit")},
+						new NameValuePair[]{
+							new NameValuePair("key", "tx9wMAl2ak8WS1EKazPYspg"),
+							new NameValuePair("ifq", "")
+							}					
+					);
+				}
+				
+			};
+			UIUtils.centerDialogAndShow(this, dlg);
+		} catch(Exception e) {
+			UIExceptionMgr.userException(e);
+		}
+	}
+	
 }
