@@ -56,6 +56,8 @@ public interface Msg {
 		"ui.actions.save_session_as";
 	public static final String ACTIONS_LOADLOG =
 		"ui.actions.load_log";
+	public static final String ACTIONS_COMPARE_LOGS = 
+		"ui.actions.compare_logs";
     public static final String ACTIONS_LAUNCH_JOBMANAGER =
         "ui.actions.launch_job_manager";
 	public static final String ACTIONS_DISABLE_REACTIONS_FOR_CONTROL =
@@ -302,6 +304,8 @@ public interface Msg {
 		"ui.title.confirm_remove_screen";
 	public static final String TITLE_RESOURCE_SELECTOR =
 		"ui.title.resource_selector";
+	public static final String TITLE_COMPARE_AND_REPLAY_CONFIGURATION = 
+		"ui.title.compare_and_replay_configuration";	
 	public static final String TEXT_CONFIRM_REMOVE_SCREEN =
 		"ui.text.confirm_remove_screen";
 	public static final String ERROR_SCREEN_NAME_ALREADY_EXISTS =
@@ -343,4 +347,24 @@ public interface Msg {
 		"dataviewboard.text.invalid_filter";
 	public static final String DATAVIEWBOARD_FILTER_WILL_NOT_BE_SET =
 		"dataviewboard.text.filter_will_not_be_set";
+	public static final String LABEL_LOG_ONE = 
+		"ui.text.log_one";
+	public static final String LABEL_LOG_TWO = 
+		"ui.text.log_two";
+	public static final String LINK_SETUP_TIME_INTERVAL = 
+		"ui.text.setup_time_interval";
+	public static final String LABEL_AGGREGATION_STEP = 
+		"ui.text.aggregation_step";
+	public static final String TEXT_NO_AGGREGATION = 
+		"ui.text.no_aggregation";
+	public static final String ERROR_TIMESTAMP_MUST_BE_GREATER_OR_EQUAL = 
+		"ui.error.timestamp_must_be_greater_or_equal";
+	public static final String ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL = 
+		"ui.error.timestamp_must_be_smaller_or_equal";
+	public static final String TITLE_TIME_INTERVAL_SELECTOR = 
+		"ui.title.time_interval_selector";
+	public static final String LABEL_TIME_START = 
+		"ui.text.time_start";
+	public static final String LABEL_TIME_END = 
+		"ui.text.time_end";
 }
