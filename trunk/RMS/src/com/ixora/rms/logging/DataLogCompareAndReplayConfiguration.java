@@ -33,6 +33,10 @@ public class DataLogCompareAndReplayConfiguration {
 		}
 		public void setTimestampEnd(long timestampEnd) {
 			fTimestampEnd = timestampEnd;
+		}
+		public void setLog(LogRepositoryInfo logInfo) {
+			fLogRepository = logInfo;
+			
 		}		
 	}
 	

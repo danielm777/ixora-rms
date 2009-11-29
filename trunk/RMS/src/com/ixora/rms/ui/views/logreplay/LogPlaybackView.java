@@ -27,7 +27,6 @@ import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIFactoryMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.ui.jobs.UIWorkerJobDefault;
-import com.ixora.common.ui.jobs.UIWorkerJobDefaultCancelable;
 import com.ixora.common.ui.popup.PopupListener;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.EntityDescriptor;
@@ -47,9 +46,9 @@ import com.ixora.rms.exception.AgentIsNotInstalled;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogRepositoryInfo;
-import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.repository.AgentInstallationData;
 import com.ixora.rms.services.DataLogReplayService;
+import com.ixora.rms.services.DataLogScanningService;
 import com.ixora.rms.ui.AgentOperationsPanel;
 import com.ixora.rms.ui.ButtonNewViewBoardHandler;
 import com.ixora.rms.ui.EntityOperationsPanel;
@@ -132,7 +131,7 @@ public final class LogPlaybackView extends SessionView {
 	private final class EventHandler extends PopupListener
 				implements TreeSelectionListener,
 					DataLogReplayService.ReadListener,
-						DataLogReplayService.ScanListener, Listener {
+						DataLogScanningService.ScanListener, Listener {
 		/**
 		 * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
 		 */
@@ -149,9 +148,9 @@ public final class LogPlaybackView extends SessionView {
 			}
 		}
         /**
-         * @see com.ixora.rms.services.DataLogReplayService.ReadListener#finishedReadingLog()
+         * @see com.ixora.rms.services.DataLogReplayService.ReadListener#finishedReadingLog(com.ixora.rms.logging.LogRepositoryInfo)
          */
-        public void finishedReadingLog() {
+        public void finishedReadingLog(LogRepositoryInfo rep) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                     handleReachedEndOfLogForRead();
@@ -159,9 +158,9 @@ public final class LogPlaybackView extends SessionView {
             });
         }
 		/**
-		 * @see com.ixora.rms.services.DataLogReplayService.ScanListener#newEntity(com.ixora.rms.internal.HostId, com.ixora.rms.internal.agents.AgentId, com.ixora.rms.EntityDescriptor)
+		 * @see com.ixora.rms.services.DataLogScanningService.ScanListener#newEntity(com.ixora.rms.logging.LogRepositoryInfo, com.ixora.rms.HostId, com.ixora.rms.agents.AgentId, com.ixora.rms.EntityDescriptor)
 		 */
-		public void newEntity(final HostId host, final AgentId aid, final EntityDescriptor ed) {
+		public void newEntity(LogRepositoryInfo rep, final HostId host, final AgentId aid, final EntityDescriptor ed) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                 	handleNewEntity(host, aid, ed);
@@ -169,9 +168,9 @@ public final class LogPlaybackView extends SessionView {
             });
 		}
         /**
-         * @see com.ixora.rms.services.DataLogReplayService.ScanListener#newAgent(com.ixora.rms.HostId, com.ixora.rms.agents.AgentDescriptor)
+         * @see com.ixora.rms.services.DataLogScanningService.ScanListener#newAgent(com.ixora.rms.logging.LogRepositoryInfo, com.ixora.rms.HostId, com.ixora.rms.agents.AgentDescriptor)
          */
-        public void newAgent(final HostId host, final AgentDescriptor ad) {
+        public void newAgent(LogRepositoryInfo rep, final HostId host, final AgentDescriptor ad) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                     handleNewAgent(host, ad);
@@ -179,9 +178,9 @@ public final class LogPlaybackView extends SessionView {
             });
         }
         /**
-         * @see com.ixora.rms.services.DataLogReplayService.ReadListener#fatalReadError(java.lang.Exception)
+         * @see com.ixora.rms.services.DataLogReplayService.ReadListener#fatalReadError(com.ixora.rms.logging.LogRepositoryInfo, java.lang.Exception)
          */
-        public void fatalReadError(final Exception e) {
+        public void fatalReadError(LogRepositoryInfo rep, final Exception e) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                     handleReplayFatalError(e);
@@ -189,9 +188,9 @@ public final class LogPlaybackView extends SessionView {
             });
         }
 		/**
-		 * @see com.ixora.rms.services.DataLogReplayService.ScanListener#fatalScanError(java.lang.Exception)
+		 * @see com.ixora.rms.services.DataLogScanningService.ScanListener#fatalScanError(com.ixora.rms.logging.LogRepositoryInfo, java.lang.Exception)
 		 */
-		public void fatalScanError(final Exception e) {
+		public void fatalScanError(LogRepositoryInfo rep, final Exception e) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                     handleReplayFatalError(e);
@@ -199,9 +198,9 @@ public final class LogPlaybackView extends SessionView {
             });
 		}
 		/**
-		 * @see com.ixora.rms.services.DataLogReplayService.ReadListener#readProgress(long)
+		 * @see com.ixora.rms.services.DataLogReplayService.ReadListener#readProgress(com.ixora.rms.logging.LogRepositoryInfo, long)
 		 */
-		public void readProgress(final long time) {
+		public void readProgress(LogRepositoryInfo rep, final long time) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                     handleReadProgress(time);
@@ -209,9 +208,9 @@ public final class LogPlaybackView extends SessionView {
             });
 		}
 		/**
-		 * @see com.ixora.rms.services.DataLogReplayService.ScanListener#finishedScanningLog(long, long)
+		 * @see com.ixora.rms.services.DataLogScanningService.ScanListener#finishedScanningLog(com.ixora.rms.logging.LogRepositoryInfo, long, long)
 		 */
-		public void finishedScanningLog(final long beginTimestamp, final long endTimestamp) {
+		public void finishedScanningLog(LogRepositoryInfo rep, final long beginTimestamp, final long endTimestamp) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                     handleReachedEndOfLogForScan(beginTimestamp, endTimestamp);
@@ -325,6 +324,7 @@ public final class LogPlaybackView extends SessionView {
 	 * @throws Throwable
 	 */
 	public LogPlaybackView(RMSViewContainer vc, DataLogReplayService replayService, 
+			DataLogScanningService scanningService, 
 			DataLogCompareAndReplayConfiguration config) throws Throwable {
 		super(vc);
 		this.fReplayConfiguration = config;
@@ -335,7 +335,7 @@ public final class LogPlaybackView extends SessionView {
 		RMS.getDataEngine().setLogReplayMode(true);
 		this.eventHandler = new EventHandler();
 		this.rmsLogReplay.addReadListener(eventHandler);
-		this.rmsLogReplay.addScanListener(eventHandler);
+		scanningService.addScanListener(eventHandler);
 
 		initializeComponents();
 	}
@@ -370,68 +370,22 @@ public final class LogPlaybackView extends SessionView {
             this.actionPlayLog.setEnabled(false);
 			return;
 		}
-		this.viewContainer.getAppWorker().runJob(
-				new UIWorkerJobDefaultCancelable(
-					this.viewContainer.getAppFrame(),
-					Cursor.WAIT_CURSOR,
-					MessageRepository.get(Msg.TEXT_SCANNING_LOG)) {
-				public void work() throws Exception {
-					rmsLogReplay.loadLog(currentLogRepository);
-			        // start scanning to get the full set of counters enabled
-			        // during the period the log spans
-					DataLogReplayService.ScanListener ev = new DataLogReplayService.ScanListener() {
-						public void newEntity(HostId host, AgentId aid, EntityDescriptor ed) {
-						}
-                        public void newAgent(HostId host, AgentDescriptor ad) {
-                        }
-						public void finishedScanningLog(long beginTimestamp, long endTimestamp) {
-							wakeUp();
-						}
-						public void fatalScanError(Exception e) {
-							wakeUp();
-						}
-					};
-					rmsLogReplay.addScanListener(ev);
-			        try {
-			        	rmsLogReplay.startScanning();
-			        	// TODO dangerous territory (scanning could theoretically finish before
-			        	// hold() is invoked) here but can't think of a better way
-			        	hold();
-			        } finally {
-			        	rmsLogReplay.removeScanListener(ev);
-			        }
-				}
-				public void finished(Throwable ex) {
-					if(ex == null) {
-						if(!fCanceled){
-							try {
-							    MonitoringSessionDescriptor scheme = rmsLogReplay.getScheme();
-						        MonitoringSessionRealizer schemeRealizer =
-						            new MonitoringSessionRealizer(sessionModel);
-				                schemeRealizer.realize(rmsAgentRepository, scheme);
-				            	// load artefacts
-				            	sessionModel.loadArtefacts();
-				                // now create screens
-								Collection<DataViewScreenDescriptor> screens = scheme.getDataViewScreens();
-								if(!Utils.isEmptyCollection(screens)) {
-		                            dataViewBoardHandler.initializeFromScreenDescriptors(screens);
-								}
-								viewContainer.appendToAppFrameTitle(scheme.getName());
-							} catch(Exception e) {
-								UIExceptionMgr.userException(e);
-							}
-						}
-					}
-				}
-				public void cancel() {
-					super.cancel();
-					try {
-						rmsLogReplay.stopScanning();
-					} catch (DataLogException e) {
-						UIExceptionMgr.userException(e);
-					}
-				}
-				});
+		try {
+		    MonitoringSessionDescriptor scheme = rmsLogReplay.getScheme();
+	        MonitoringSessionRealizer schemeRealizer =
+	            new MonitoringSessionRealizer(sessionModel);
+            schemeRealizer.realize(rmsAgentRepository, scheme);
+        	// load artefacts
+        	sessionModel.loadArtefacts();
+            // now create screens
+			Collection<DataViewScreenDescriptor> screens = scheme.getDataViewScreens();
+			if(!Utils.isEmptyCollection(screens)) {
+                dataViewBoardHandler.initializeFromScreenDescriptors(screens);
+			}
+			viewContainer.appendToAppFrameTitle(scheme.getName());
+		} catch(Exception e) {
+			UIExceptionMgr.userException(e);
+		}
 	}
 
 	/**
@@ -468,7 +422,6 @@ public final class LogPlaybackView extends SessionView {
 		} finally {
 			// unregister listeners
 			this.rmsLogReplay.removeReadListener(eventHandler);
-			this.rmsLogReplay.removeScanListener(eventHandler);
 			// shutdown services
 			this.rmsLogReplay.shutdown();
 		}
@@ -804,18 +757,13 @@ public final class LogPlaybackView extends SessionView {
      */
     private void handleReachedEndOfLogForScan(long beginTimestamp, long endTimestamp) {
         try {
-        	// ask here for the DataLogReplayConfiguration
-        	DataLogReplayConfigurationDialog dlg = new DataLogReplayConfigurationDialog(
-        			viewContainer.getAppFrame(), beginTimestamp, endTimestamp, null);
-        	UIUtils.centerDialogAndShow(viewContainer.getAppFrame(), dlg);
-        	fReplayConfiguration = dlg.getResult();
 			this.logStateHandler = new LogReplayProgressHandler(
 					 viewContainer,
 					 MessageRepository.get(
 					           Msg.TEXT_LOADED_LOG,
-					           new String[]{currentLogRepository.getRepositoryName()}),
-					fReplayConfiguration == null ? beginTimestamp : fReplayConfiguration.getTimeBegin(),
-					fReplayConfiguration == null ? endTimestamp : fReplayConfiguration.getTimeEnd());
+					           new String[]{fReplayConfiguration.getLogOne().getLogRepository().getRepositoryName()}),
+					fReplayConfiguration == null ? beginTimestamp : fReplayConfiguration.getLogOne().getTimeBegin(),
+					fReplayConfiguration == null ? endTimestamp : fReplayConfiguration.getLogOne().getTimeEnd());
 			if(fReplayConfiguration != null) {
 				handlePlayLog();
 			}

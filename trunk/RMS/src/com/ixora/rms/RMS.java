@@ -7,15 +7,16 @@ import java.io.FileNotFoundException;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
+import com.ixora.common.xml.exception.XMLException;
 import com.ixora.jobs.JobEngine;
 import com.ixora.jobs.library.JobLibrary;
 import com.ixora.jobs.services.JobEngineService;
 import com.ixora.jobs.services.JobLibraryService;
-import com.ixora.common.xml.exception.XMLException;
 import com.ixora.rms.agents.MonitoringSession;
 import com.ixora.rms.dataengine.DataEngine;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.logging.DataLogReplay;
+import com.ixora.rms.logging.DataLogScanning;
 import com.ixora.rms.logging.DataLogger;
 import com.ixora.rms.providers.ProvidersManager;
 import com.ixora.rms.reactions.ReactionDispatcherImpl;
@@ -36,6 +37,7 @@ import com.ixora.rms.services.AgentTemplateRepositoryService;
 import com.ixora.rms.services.DashboardRepositoryService;
 import com.ixora.rms.services.DataEngineService;
 import com.ixora.rms.services.DataLogReplayService;
+import com.ixora.rms.services.DataLogScanningService;
 import com.ixora.rms.services.DataLogService;
 import com.ixora.rms.services.DataViewBoardRepositoryService;
 import com.ixora.rms.services.DataViewRepositoryService;
@@ -106,6 +108,14 @@ public final class RMS {
 	public static DataLogReplayService getDataLogReplay() {
 		// build this only when needed
 		return new DataLogReplay(dataEngine);
+	}
+
+	/**
+	 * @return the data log scanning service.
+	 */
+	public static DataLogScanningService getDataLogScanning() {
+		// build this only when needed
+		return new DataLogScanning();
 	}
 
 	/**

@@ -15,12 +15,8 @@ import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.rms.DataSink;
-import com.ixora.rms.EntityDescriptor;
-import com.ixora.rms.HostId;
 import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.AgentDataBuffer;
-import com.ixora.rms.agents.AgentDescriptor;
-import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.logging.data.AggAgentDataBuffer;
 import com.ixora.rms.logging.db.DataLogRepositoryDB;
@@ -55,8 +51,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	private boolean fPlaying;
 	/** Paused flag */
 	private boolean fPaused;
-	/** Scanning flag */
-	private boolean fScanning;
     /**
      * Keeps a set of agent data buffers that will be sent
      * in one burst to the data sinks.
@@ -69,8 +63,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	private volatile int fSpeed;
 	/** Listeners */
 	private List<ReadListener> fReadListeners;
-	/** Listeners */
-	private List<ScanListener> fScanListeners;
 	/** Event handler */
 	private EventHandler fEventHandler;
 	/** Aggregation interval;if 0 no aggregation occurs */
@@ -87,7 +79,7 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	/**
 	 * Event handler.
 	 */
-	private final class EventHandler implements DataLogReader.ReadCallback, DataLogReader.ScanCallback {
+	private final class EventHandler implements DataLogReader.ReadCallback {
         /**
          * @see com.ixora.rms.logging.DataLogReader.ReadCallback#handleDataBuffer(com.ixora.rms.logging.DataLogReader, com.ixora.rms.agents.AgentDataBuffer)
          */
@@ -100,30 +92,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
         public void handleReadFatalError(DataLogReader source, Exception e) {
             DataLogReplay.this.fireFatalReadError(getLogRepositoryFromLogReader(source), e);
         }
-		/**
-		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#handleEntity(com.ixora.rms.logging.DataLogReader, com.ixora.rms.HostId, com.ixora.rms.agents.AgentId, com.ixora.rms.EntityDescriptor)
-		 */
-		public void handleEntity(DataLogReader source, HostId host, AgentId aid, EntityDescriptor ed) {
-			DataLogReplay.this.fireNewEntity(getLogRepositoryFromLogReader(source), host, aid, ed);
-		}
-        /**
-         * @see com.ixora.rms.logging.DataLogReader.ScanCallback#handleAgent(com.ixora.rms.logging.DataLogReader, com.ixora.rms.HostId, com.ixora.rms.agents.AgentDescriptor)
-         */
-        public void handleAgent(DataLogReader source, HostId host, AgentDescriptor ad) {
-            DataLogReplay.this.fireNewAgent(getLogRepositoryFromLogReader(source), host, ad);
-        }
-		/**
-		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#finishedScanning(com.ixora.rms.logging.DataLogReader, long, long)
-		 */
-		public void finishedScanning(DataLogReader source, long beginTimestamp, long endTimestamp) {
-			DataLogReplay.this.handleFinishedScanning(getLogRepositoryFromLogReader(source), beginTimestamp, endTimestamp);
-		}
-		/**
-		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#handleScanFatalError(com.ixora.rms.logging.DataLogReader, java.lang.Exception)
-		 */
-		public void handleScanFatalError(DataLogReader source, Exception e) {
-			DataLogReplay.this.fireFatalScanError(getLogRepositoryFromLogReader(source), e);
-		}
 		/**
 		 * @see com.ixora.rms.logging.DataLogReader.ReadCallback#handleReadProgress(com.ixora.rms.logging.DataLogReader, long)
 		 */
@@ -145,7 +113,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
         this.fBurstBuffer = new LinkedList<AgentDataBuffer>();
         this.fAggBuffer = new HashMap<ResourceId, AggAgentDataBuffer>();
 		this.fReadListeners = new LinkedList<ReadListener>();
-		this.fScanListeners = new LinkedList<ScanListener>();
 		this.fSpeed = ConfigurationMgr.get(LogComponent.NAME).getInt(LogConfigurationConstants.LOG_REPLAY_SPEED);
 		this.fAggPeriod = 1000 * ConfigurationMgr.get(LogComponent.NAME).getInt(LogConfigurationConstants.LOG_AGGREGATION_PERIOD);
 		ConfigurationMgr.get(LogComponent.NAME).addObserver(this);
@@ -177,9 +144,7 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	public synchronized void startReplay(DataLogCompareAndReplayConfiguration config) throws DataLogException {
 	    if(fPaused) {
 	        // wake up the paused reader
-	        synchronized(this) {
-	            notify();
-	        }
+            notify();
 	    } else if(!fPlaying) {
 	    	this.fReplayConfig = config;
 			initializeReaders();
@@ -229,38 +194,12 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	}
 
 	/**
-	 * @see com.ixora.rms.services.DataLogReplayService#startScanning()
-	 */
-	public synchronized void startScanning() throws DataLogException {
-		this.fScanning = true;
-		fReader1.scan(fEventHandler);
-		if(fReader2 != null) {
-			fReader2.scan(fEventHandler);
-		}
-	}
-
-	/**
-	 * @see com.ixora.rms.services.DataLogReplayService#stopScanning()
-	 */
-	public synchronized void stopScanning() throws DataLogException {
-		if(!fScanning) {
-			return;
-		}
-		try {
-            if(this.fReader1 == null) {
-                throw new NoLogWasLoaded();
-            }
-			closeReaders();
-		} finally {
-			fScanning = false;
-		}
-	}
-
-	/**
 	 * @throws DataLogException
 	 */
 	private void closeReaders() throws DataLogException {
-		fReader1.close();
+		if(fReader1 != null) {
+			fReader1.close();
+		}
 		if(fReader2 != null) {
 			fReader2.close();
 		}
@@ -269,7 +208,7 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	/**
 	 * @see com.ixora.common.Service#shutdown()
 	 */
-	public void shutdown() {
+	public synchronized void shutdown() {
 	    try {
 	    	reset();
 			if(this.fReader1 != null) {
@@ -316,24 +255,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
         }
     }
 
-	/**
-     * Fires end of log event.
-	 * @param logRepositoryInfo 
-     * @param beginTimestamp
-     * @param endTimestamp
-     */
-    private void fireFinishedScanning(LogRepositoryInfo logRepositoryInfo, long beginTimestamp, long endTimestamp) {
-        synchronized(fScanListeners) {
-            for(ScanListener listener : fScanListeners) {
-                try {
-                    listener.finishedScanningLog(logRepositoryInfo, beginTimestamp, endTimestamp);
-                }catch(Exception e) {
-                    logger.error(e);
-                }
-            }
-        }
-    }
-
     /**
 	 * @param logRepositoryInfo 
      * @param time
@@ -367,58 +288,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
         }
     }
 
-	/**
-     * Fires fatal error.
-	 * @param logRepositoryInfo 
-     * @param e
-     */
-    private void fireFatalScanError(LogRepositoryInfo logRepositoryInfo, Exception e) {
-        synchronized(fScanListeners) {
-            for(ScanListener listener : fScanListeners) {
-                try {
-                    listener.fatalScanError(logRepositoryInfo, e);
-                }catch(Exception ex) {
-                    logger.error(ex);
-                }
-            }
-        }
-    }
-
-	/**
-     * Fires new entity.
-	 * @param logRepositoryInfo 
-     * @param e
-     */
-    private void fireNewEntity(LogRepositoryInfo logRepositoryInfo, HostId hid, AgentId aid, EntityDescriptor entity) {
-        synchronized(fScanListeners) {
-            for(ScanListener listener : fScanListeners) {
-                try {
-                  listener.newEntity(logRepositoryInfo, hid, aid, entity);
-                }catch(Exception ex) {
-                    logger.error(ex);
-                }
-            }
-        }
-    }
-
-    /**
-     * @param logRepositoryInfo 
-     * @param host
-     * @param ad
-     */
-    private void fireNewAgent(LogRepositoryInfo logRepositoryInfo, HostId host, AgentDescriptor ad) {
-        synchronized(fScanListeners) {
-            for(ScanListener listener : fScanListeners) {
-                try {
-                  listener.newAgent(logRepositoryInfo, host, ad);
-                }catch(Exception ex) {
-                    logger.error(ex);
-                }
-            }
-        }
-    }
-
-
     /**
      * @see com.ixora.rms.services.DataLogReplayService#addReadListener(com.ixora.rms.services.DataLogReplayService.Listener)
      */
@@ -430,17 +299,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
         }
     }
 
-	/**
-	 * @see com.ixora.rms.services.DataLogReplayService#addScanListener(com.ixora.rms.services.DataLogReplayService.ScanListener)
-	 */
-	public void addScanListener(ScanListener l) {
-        synchronized(fScanListeners) {
-            if(!fScanListeners.contains(l)) {
-            	fScanListeners.add(l);
-            }
-        }
-	}
-
     /**
      * @see com.ixora.rms.services.DataLogReplayService#removeReadListener(com.ixora.rms.services.DataLogReplayService.Listener)
      */
@@ -450,21 +308,12 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
         }
     }
 
-	/**
-	 * @see com.ixora.rms.services.DataLogReplayService#removeScanListener(com.ixora.rms.services.DataLogReplayService.ScanListener)
-	 */
-	public void removeScanListener(ScanListener l) {
-        synchronized(fScanListeners) {
-        	fScanListeners.remove(l);
-        }
-	}
-
     /**
      * Handles new data buffer event.
      * @param logRepositoryInfo 
      * @param buff is null when data ended
      */
-    private void handleDataBuffer(LogRepositoryInfo logRepositoryInfo, AgentDataBuffer buff) {
+    private synchronized void handleDataBuffer(LogRepositoryInfo logRepositoryInfo, AgentDataBuffer buff) {
         try {
             if(buff == null) {
             	reset();
@@ -494,7 +343,7 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
     /**
 	 * @param buff
 	 */
-	private void handleDataBufferWithAggregation(AgentDataBuffer buff) {
+	private synchronized void handleDataBufferWithAggregation(AgentDataBuffer buff) {
 		ResourceId rid = new ResourceId(buff.getHost(), buff.getAgent(), null, null);
 		if(fAggBuffer.size() == 0) {
 			fAggBuffer.put(rid, new AggAgentDataBuffer(buff));
@@ -545,7 +394,7 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
      * @param buff
      * @throws InterruptedException
      */
-    private void handleDataBufferWithNoAggregation(AgentDataBuffer buff) throws InterruptedException {
+    private synchronized void handleDataBufferWithNoAggregation(AgentDataBuffer buff) throws InterruptedException {
     	// see if we have a burst ready to send
         int burstSize = fBurstBuffer.size();
         if(burstSize > 0) {
@@ -604,24 +453,6 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 			throw e;
 		}
 		return ret;
-	}
-
-	/**
-	 * @param logRepositoryInfo 
-	 *
-	 */
-	private void handleFinishedScanning(LogRepositoryInfo logRepositoryInfo, long beginTimestamp, long endTimestamp) {
-		fScanning = false;
-		// set up timestamps
-		if(logRepositoryInfo == fReplayConfig.getLogOne().getLogRepository()) {
-			fReplayConfig.getLogOne().setTimestampBegin(beginTimestamp);
-			fReplayConfig.getLogOne().setTimestampEnd(endTimestamp);
-		} else if(fReplayConfig.getLogTwo() != null 
-				&& logRepositoryInfo == fReplayConfig.getLogTwo().getLogRepository()) {
-			fReplayConfig.getLogTwo().setTimestampBegin(beginTimestamp);
-			fReplayConfig.getLogTwo().setTimestampEnd(endTimestamp);			
-		}
-		fireFinishedScanning(logRepositoryInfo, beginTimestamp, endTimestamp);
 	}
 
     /**
