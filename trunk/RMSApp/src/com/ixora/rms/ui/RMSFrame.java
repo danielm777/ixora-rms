@@ -70,6 +70,7 @@ import com.ixora.rms.RMSModule;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
+import com.ixora.rms.logging.DataLogScanning;
 import com.ixora.rms.logging.LogComponent;
 import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.reactions.ReactionsComponent;
@@ -913,8 +914,24 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	 * Compares two logs.
 	 */
 	private void handleCompareLogs() {
-		DataLogCompareAndReplayConfigurationDialog dlg = new DataLogCompareAndReplayConfigurationDialog(this, null);
-		UIUtils.centerDialogAndShow(this, dlg);
+		try {
+			if (resetCurrentView()) {
+				return;
+			}
+			DataLogCompareAndReplayConfigurationDialog dlg = new DataLogCompareAndReplayConfigurationDialog(this, null);
+			UIUtils.centerDialogAndShow(this, dlg);
+			DataLogCompareAndReplayConfiguration conf = dlg.getResult();
+			if(conf != null) {
+				try {
+					fCurrentView = new LogPlaybackView(RMSFrame.this, RMS.getDataLogReplay(), null, conf);
+				} catch (Throwable e) {
+					resetCurrentView();
+					UIExceptionMgr.userException(e);
+				}
+			}
+		} catch (Exception e) {
+			UIExceptionMgr.userException(e);
+		}
 	}
 	
 	/**
