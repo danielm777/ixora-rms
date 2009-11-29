@@ -1,10 +1,6 @@
 package com.ixora.rms.services;
 
 import com.ixora.common.Service;
-import com.ixora.rms.EntityDescriptor;
-import com.ixora.rms.HostId;
-import com.ixora.rms.agents.AgentDescriptor;
-import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogRepositoryInfo;
@@ -16,41 +12,6 @@ import com.ixora.rms.logging.exception.InvalidLogRepository;
  * @author Daniel Moraru
  */
 public interface DataLogReplayService extends Service {
-	/**
-     * ScanListener.
-     */
-    public interface ScanListener {
-       	/**
-    	 * Invoked when a entity is discovered during the initial scanning.
-    	 * @param rep
-         * @param host
-         * @param aid
-         * @param ed
-    	 */
-    	void newEntity(LogRepositoryInfo rep, HostId host, AgentId aid, EntityDescriptor ed);
-        /**
-         * Invoked when a new agent descriptor is  discovered during the initial scanning.
-         * @param rep
-         * @param host
-         * @param ad
-         */
-        void newAgent(LogRepositoryInfo rep, HostId host, AgentDescriptor ad);
-        /**
-         * Invoked when the end of log is reached for scanning.
-         * @param rep
-         * @param beginTimestamp
-         * @param endTimestamp
-         * @return the configuration to use for parsing logged data
-         */
-        void finishedScanningLog(LogRepositoryInfo rep, long beginTimestamp, long endTimestamp);
-        /**
-         * Invoked when a fatal error occurred during replay.
-         * @param rep
-         * @param e
-         */
-        void fatalScanError(LogRepositoryInfo rep, Exception e);
-    }
-
 	/**
      * ReadListener.
      */
@@ -98,16 +59,6 @@ public interface DataLogReplayService extends Service {
 	 */
 	void stopReplay() throws DataLogException, InvalidLogRepository;
 	/**
-	 * Starts scanning.
-	 * @throws DataLogException
-	 */
-	void startScanning() throws DataLogException;
-	/**
-	 * Stops the scanning.
-	 * @throws DataLogException
-	 */
-	void stopScanning() throws DataLogException;
-	/**
 	 * Sets the replay speed.
 	 * @param ms pause between data buffers in milliseconds
 	 */
@@ -118,18 +69,8 @@ public interface DataLogReplayService extends Service {
 	 */
 	void addReadListener(ReadListener l);
 	/**
-	 * Adds a scan listener.
-	 * @param l
-	 */
-	void addScanListener(ScanListener l);
-	/**
 	 * Removes a listener.
 	 * @param l
 	 */
 	void removeReadListener(ReadListener l);
-	/**
-	 * Removes a listener.
-	 * @param l
-	 */
-	void removeScanListener(ScanListener l);
 }
