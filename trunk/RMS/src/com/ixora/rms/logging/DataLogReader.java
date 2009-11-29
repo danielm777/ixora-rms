@@ -12,7 +12,7 @@ import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.logging.exception.DataLogException;
 
 /**
- * Log data writer.
+ * Log data reader.
  * @author Daniel Moraru
  */
 public interface DataLogReader {
@@ -22,22 +22,28 @@ public interface DataLogReader {
     public interface ScanCallback {
     	/**
     	 * Invoked when a entity is discovered during the initial scanning.
+    	 * @param source the source of the callback.
     	 */
-    	void handleEntity(HostId host, AgentId aid, EntityDescriptor ed);
+    	void handleEntity(DataLogReader source, HostId host, AgentId aid, EntityDescriptor ed);
         /**
          * Invoked when an agent is discovered during the initial scanning.
+         * @param source the source of the callback.
+         * @param host the host id.
+         * @param ad the agent descriptor.
          */
-        void handleAgent(HostId host, AgentDescriptor ad);
+        void handleAgent(DataLogReader source, HostId host, AgentDescriptor ad);
     	/**
     	 * Invoked when scanning finished.
+    	 * @param source the source of the callback.
     	 * @param beginTimestamp
     	 * @param endTimestamp
     	 */
-    	void finishedScanning(long beginTimestamp, long endTimestamp);
+    	void finishedScanning(DataLogReader source, long beginTimestamp, long endTimestamp);
         /**
+         * @param source the source of the callback.
          * @param e fatal error encountered during scanning
          */
-        void handleScanFatalError(Exception e);
+        void handleScanFatalError(DataLogReader source, Exception e);
     }
 
 	/**
@@ -45,18 +51,21 @@ public interface DataLogReader {
      */
     public interface ReadCallback {
         /**
+         * @param source the source of the callback.
          * @param db a newly read data buffer, null if
          * the end of the log has been reached.
          */
-        void handleDataBuffer(AgentDataBuffer db);
+        void handleDataBuffer(DataLogReader source, AgentDataBuffer db);
         /**
+         * @param source the source of the callback.
          * @param e fatal error encountered during reading
          */
-        void handleReadFatalError(Exception e);
+        void handleReadFatalError(DataLogReader source, Exception e);
         /**
+         * @param source the source of the callback.
          * @param time
          */
-        void handleReadProgress(long time);
+        void handleReadProgress(DataLogReader source, long time);
     }
 
 	/**

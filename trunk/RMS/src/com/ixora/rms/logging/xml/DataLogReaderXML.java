@@ -165,7 +165,7 @@ public final class DataLogReaderXML implements DataLogReader {
                 try {
                     fParser.parse(fTimestampBegin, fTimestampEnd);
                 } catch(Exception e) {
-                    fReadCallback.handleReadFatalError(e);
+                    fReadCallback.handleReadFatalError(DataLogReaderXML.this, e);
                 }
             }
         });
@@ -187,7 +187,7 @@ public final class DataLogReaderXML implements DataLogReader {
                 try {
                     fScanner.scan();
                 } catch(Exception e) {
-                    fScanCallback.handleScanFatalError(e);
+                    fScanCallback.handleScanFatalError(DataLogReaderXML.this, e);
                 }
             }
         });
@@ -217,7 +217,7 @@ public final class DataLogReaderXML implements DataLogReader {
      */
     private void handleDataBuffer(AgentDataBufferImpl buff) {
         try {
-            this.fReadCallback.handleDataBuffer(buff);
+            this.fReadCallback.handleDataBuffer(this, buff);
         } catch(Exception e) {
             sLogger.error(e);
         }
@@ -228,7 +228,7 @@ public final class DataLogReaderXML implements DataLogReader {
      */
     private void handleFinishedParsing() {
         try {
-            this.fReadCallback.handleDataBuffer(null);
+            this.fReadCallback.handleDataBuffer(this, null);
         } catch(Exception e) {
             sLogger.error(e);
         }
@@ -241,7 +241,7 @@ public final class DataLogReaderXML implements DataLogReader {
 	 */
 	private void handleFinishedScanning(long beginTimestamp, long endTimestamp) {
         try {
-            this.fScanCallback.finishedScanning(beginTimestamp, endTimestamp);
+            this.fScanCallback.finishedScanning(this, beginTimestamp, endTimestamp);
             fTimestampBegin = beginTimestamp;
             fTimestampEnd = endTimestamp;
         } catch(Exception e) {
@@ -256,7 +256,7 @@ public final class DataLogReaderXML implements DataLogReader {
 	 */
 	private void handleNewEntity(HostId hid, AgentId aid, EntityDescriptor entity) {
         try {
-            this.fScanCallback.handleEntity(hid, aid, entity);
+            this.fScanCallback.handleEntity(this, hid, aid, entity);
         } catch(Exception e) {
             sLogger.error(e);
         }
@@ -268,7 +268,7 @@ public final class DataLogReaderXML implements DataLogReader {
      */
     private void handleNewAgent(HostId hid, AgentDescriptor agent) {
         try {
-            this.fScanCallback.handleAgent(hid, agent);
+            this.fScanCallback.handleAgent(this, hid, agent);
         } catch(Exception e) {
             sLogger.error(e);
         }
@@ -279,7 +279,7 @@ public final class DataLogReaderXML implements DataLogReader {
 	 */
 	private void handleReadProgress(long time) {
         try {
-            this.fReadCallback.handleReadProgress(time);
+            this.fReadCallback.handleReadProgress(this, time);
         } catch(Exception e) {
             sLogger.error(e);
         }

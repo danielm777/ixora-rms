@@ -45,7 +45,7 @@ import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.client.session.MonitoringSessionRealizer;
 import com.ixora.rms.exception.AgentIsNotInstalled;
 import com.ixora.rms.exception.RMSException;
-import com.ixora.rms.logging.DataLogReplayConfiguration;
+import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.repository.AgentInstallationData;
@@ -112,10 +112,6 @@ public final class LogPlaybackView extends SessionView {
 	 */
 	private SessionViewLeftPanel leftPanel;
 	/**
-	 * Current log repository.
-	 */
-	private LogRepositoryInfo currentLogRepository;
-	/**
 	 * Event handler.
 	 */
 	private EventHandler eventHandler;
@@ -128,7 +124,7 @@ public final class LogPlaybackView extends SessionView {
 	/**
 	 * The replay configuration; it can be null.
 	 */
-	private DataLogReplayConfiguration fReplayConfiguration;
+	private DataLogCompareAndReplayConfiguration fReplayConfiguration;
 
 	/**
 	 * Event handler.
@@ -324,23 +320,24 @@ public final class LogPlaybackView extends SessionView {
 
 	/**
 	 * @param vc
-	 * @param log
+	 * @param replayService
+	 * @param config
 	 * @throws Throwable
 	 */
-	public LogPlaybackView(RMSViewContainer vc, LogRepositoryInfo log) throws Throwable {
+	public LogPlaybackView(RMSViewContainer vc, DataLogReplayService replayService, 
+			DataLogCompareAndReplayConfiguration config) throws Throwable {
 		super(vc);
+		this.fReplayConfiguration = config;
 		this.actionPlayLog = new ActionPlayLog();
 		this.actionPauseLog = new ActionPauseLog();
 		this.actionRewindLog = new ActionRewindLog();
-		this.rmsLogReplay = RMS.getDataLogReplay();
+		this.rmsLogReplay = replayService;
 		RMS.getDataEngine().setLogReplayMode(true);
 		this.eventHandler = new EventHandler();
 		this.rmsLogReplay.addReadListener(eventHandler);
 		this.rmsLogReplay.addScanListener(eventHandler);
 
 		initializeComponents();
-
-		this.currentLogRepository = log;
 	}
 
 	/**
@@ -369,7 +366,7 @@ public final class LogPlaybackView extends SessionView {
 		viewContainer.registerRightComponent(dataViewBoardHandler
 		        .getScreen());
 
-		if(currentLogRepository == null) {
+		if(fReplayConfiguration.getLogOne() == null) {
             this.actionPlayLog.setEnabled(false);
 			return;
 		}
@@ -397,7 +394,7 @@ public final class LogPlaybackView extends SessionView {
 					rmsLogReplay.addScanListener(ev);
 			        try {
 			        	rmsLogReplay.startScanning();
-			        	// TODO dangerous teritory (scanning could theoretically finish before
+			        	// TODO dangerous territory (scanning could theoretically finish before
 			        	// hold() is invoked) here but can't think of a better way
 			        	hold();
 			        } finally {
@@ -819,7 +816,9 @@ public final class LogPlaybackView extends SessionView {
 					           new String[]{currentLogRepository.getRepositoryName()}),
 					fReplayConfiguration == null ? beginTimestamp : fReplayConfiguration.getTimeBegin(),
 					fReplayConfiguration == null ? endTimestamp : fReplayConfiguration.getTimeEnd());
-			handlePlayLog();
+			if(fReplayConfiguration != null) {
+				handlePlayLog();
+			}
 		} catch(Exception e) {
 			UIExceptionMgr.exception(e);
 		}

@@ -1,12 +1,12 @@
 package com.ixora.rms.services;
 
-import com.ixora.rms.HostId;
 import com.ixora.common.Service;
 import com.ixora.rms.EntityDescriptor;
+import com.ixora.rms.HostId;
 import com.ixora.rms.agents.AgentDescriptor;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
-import com.ixora.rms.logging.DataLogReplayConfiguration;
+import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.logging.exception.InvalidLogRepository;
@@ -22,29 +22,33 @@ public interface DataLogReplayService extends Service {
     public interface ScanListener {
        	/**
     	 * Invoked when a entity is discovered during the initial scanning.
+    	 * @param rep
          * @param host
          * @param aid
          * @param ed
     	 */
-    	void newEntity(HostId host, AgentId aid, EntityDescriptor ed);
+    	void newEntity(LogRepositoryInfo rep, HostId host, AgentId aid, EntityDescriptor ed);
         /**
          * Invoked when a new agent descriptor is  discovered during the initial scanning.
+         * @param rep
          * @param host
          * @param ad
          */
-        void newAgent(HostId host, AgentDescriptor ad);
+        void newAgent(LogRepositoryInfo rep, HostId host, AgentDescriptor ad);
         /**
          * Invoked when the end of log is reached for scanning.
+         * @param rep
          * @param beginTimestamp
          * @param endTimestamp
          * @return the configuration to use for parsing logged data
          */
-        void finishedScanningLog(long beginTimestamp, long endTimestamp);
+        void finishedScanningLog(LogRepositoryInfo rep, long beginTimestamp, long endTimestamp);
         /**
-         * Invoked when a fatal error occured during replay.
+         * Invoked when a fatal error occurred during replay.
+         * @param rep
          * @param e
          */
-        void fatalScanError(Exception e);
+        void fatalScanError(LogRepositoryInfo rep, Exception e);
     }
 
 	/**
@@ -53,27 +57,23 @@ public interface DataLogReplayService extends Service {
     public interface ReadListener {
         /**
          * Invoked when the end of log is reached for reading.
+         * @param rep
          */
-        void finishedReadingLog();
+        void finishedReadingLog(LogRepositoryInfo rep);
         /**
          * Reports progress on the read process.
+         * @param rep
          * @param time
          */
-        void readProgress(long time);
+        void readProgress(LogRepositoryInfo rep, long time);
         /**
-         * Invoked when a fatal error occured during replay.
+         * Invoked when a fatal error occurred during replay.
+         * @param rep
          * @param e
          */
-        void fatalReadError(Exception e);
+        void fatalReadError(LogRepositoryInfo rep, Exception e);
     }
-
-	/**
-	 * Specifies the repository to read data from.
-	 * @param rep the log repository details
-	 * @throws InvalidLogRepository
-	 * @throws DataLogException
-	 */
-	void loadLog(LogRepositoryInfo rep) throws InvalidLogRepository, DataLogException;
+	
 	/**
 	 * @return the monitoring scheme describing the
 	 * system at the time the data was logged
@@ -85,7 +85,7 @@ public interface DataLogReplayService extends Service {
 	 * @param
 	 * @throws DataLogException
 	 */
-	void startReplay(DataLogReplayConfiguration config) throws DataLogException;
+	void startReplay(DataLogCompareAndReplayConfiguration config) throws DataLogException;
 	/**
 	 * Pauses the replay.
 	 * @throws DataLogException
