@@ -69,6 +69,7 @@ import com.ixora.rms.RMSConfigurationConstants;
 import com.ixora.rms.RMSModule;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.exception.RMSException;
+import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogComponent;
 import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.reactions.ReactionsComponent;
@@ -76,6 +77,7 @@ import com.ixora.rms.reactions.email.ReactionsEmailComponent;
 import com.ixora.rms.services.AgentInstallerService;
 import com.ixora.rms.services.AgentRepositoryService;
 import com.ixora.rms.services.AgentTemplateRepositoryService;
+import com.ixora.rms.services.DataLogReplayService;
 import com.ixora.rms.services.HostMonitorService;
 import com.ixora.rms.services.ParserRepositoryService;
 import com.ixora.rms.services.ProviderInstanceRepositoryService;
@@ -93,6 +95,7 @@ import com.ixora.rms.ui.session.MonitoringSessionRepositoryComponent;
 import com.ixora.rms.ui.session.MonitoringSessionRepositoryImpl;
 import com.ixora.rms.ui.tools.agentinstaller.AgentInstallerDialog;
 import com.ixora.rms.ui.tools.providermanager.ProviderInstanceManagerDialog;
+import com.ixora.rms.ui.views.logreplay.DataLogCompareAndReplayConfigurationDialog;
 import com.ixora.rms.ui.views.logreplay.LogPlaybackView;
 import com.ixora.rms.ui.views.session.LiveSessionView;
 
@@ -127,6 +130,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	private javax.swing.JMenu fMenuLoadSession;
 
 	private javax.swing.JMenuItem fMenuItemLoadLog;
+	
+	private javax.swing.JMenuItem fMenuItemCompareLogs;
 
 	private javax.swing.JButton fButtonNewSession;
 
@@ -134,6 +139,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 
 	private javax.swing.JButton fButtonLoadLog;
 
+	private javax.swing.JButton fButtonCompareLogs;
+	
 	private javax.swing.JSplitPane fSplitPane;
 
 	private javax.swing.JMenu fMenuTools;
@@ -182,6 +189,8 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	private Action fActionLoadSession = new ActionLoadSession();
 
 	private Action fActionLoadLog = new ActionLoadLog();
+	
+	private Action fActionCompareLogs = new ActionCompareLogs();	
 
 	private Action fActionNewSession = new ActionNewSession();
 
@@ -367,6 +376,30 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 		 */
 		public void actionPerformed(ActionEvent arg0) {
 			handleLoadLogForPlayback();
+		}
+	}
+
+	/**
+	 * Load log action.
+	 */
+	private final class ActionCompareLogs extends AbstractAction {
+		private static final long serialVersionUID = -3938046841428045838L;
+
+		public ActionCompareLogs() {
+			super();
+			UIUtils.setUsabilityDtls(
+					MessageRepository.get(Msg.ACTIONS_COMPARE_LOGS), this);
+			ImageIcon icon = UIConfiguration.getIcon("compare_logs.gif");
+			if(icon != null) {
+				putValue(Action.SMALL_ICON, icon);
+			}
+		}
+
+		/**
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 */
+		public void actionPerformed(ActionEvent arg0) {
+			handleCompareLogs();
 		}
 	}
 
@@ -636,7 +669,7 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 		setTitle(MessageRepository.get(Msg.TITLE_FRAME_RMS));
 
 		registerToolBarComponents(new JComponent[] { getJButtonLoadScheme(),
-				getJButtonNewSession(), getJButtonLoadLog() });
+				getJButtonNewSession(), getJButtonLoadLog(), getJButtonCompareLogs() });
 
 		this.fMonitoringSessionRepository = new MonitoringSessionRepositoryImpl(
 				this, UIConfiguration.getIcon("session_file.gif"),
@@ -646,7 +679,7 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 		fJMenuBar.add(getJMenuTools(), 2);
 
 		registerMenuItemsForFileMenu(new JMenuItem[] { getJMenuLoadSession(),
-				getJMenuItemNewSession(), getJMenuItemLoadLog() });
+				getJMenuItemNewSession(), getJMenuItemLoadLog(), getJMenuItemCompareLogs() });
 	}
 
 	/**
@@ -707,6 +740,18 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	}
 
 	/**
+	 * @return javax.swing.JButton
+	 */
+	private javax.swing.JButton getJButtonCompareLogs() {
+		if (fButtonCompareLogs == null) {
+			fButtonCompareLogs = UIFactoryMgr.createButton(this.fActionCompareLogs);
+			fButtonCompareLogs.setText(null);
+			fButtonCompareLogs.setMnemonic(KeyEvent.VK_UNDEFINED);
+		}
+		return fButtonCompareLogs;
+	}
+
+	/**
 	 * @return javax.swing.JMenuItem
 	 */
 	private javax.swing.JMenuItem getJMenuItemLoadSchemeBrowse() {
@@ -746,6 +791,16 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 			fMenuItemLoadLog = UIFactoryMgr.createMenuItem(this.fActionLoadLog);
 		}
 		return fMenuItemLoadLog;
+	}
+
+	/**
+	 * @return javax.swing.JMenuItem
+	 */
+	private javax.swing.JMenuItem getJMenuItemCompareLogs() {
+		if (fMenuItemCompareLogs == null) {
+			fMenuItemCompareLogs = UIFactoryMgr.createMenuItem(this.fActionCompareLogs);
+		}
+		return fMenuItemCompareLogs;
 	}
 
 	/**
@@ -855,6 +910,14 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 	}
 
 	/**
+	 * Compares two logs.
+	 */
+	private void handleCompareLogs() {
+		DataLogCompareAndReplayConfigurationDialog dlg = new DataLogCompareAndReplayConfigurationDialog(this, null);
+		UIUtils.centerDialogAndShow(this, dlg);
+	}
+	
+	/**
 	 * Handles the load log event.
 	 */
 	private void handleLoadLogForPlayback() {
@@ -862,6 +925,7 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 			if (resetCurrentView()) {
 				return;
 			}
+			final DataLogReplayService replayService = RMS.getDataLogReplay();
 			// run this job synchronously as
 			// it does UI work
 			this.fWorker.runJobSynch(new UIWorkerJobDefault(this,
@@ -872,7 +936,10 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 					        RMSFrame.this);
 					LogRepositoryInfo log = logChooser.getLogInfoForRead();
 					if(log != null) {
-						fCurrentView = new LogPlaybackView(RMSFrame.this, log);
+						fCurrentView = new LogPlaybackView(RMSFrame.this, replayService, 
+								new DataLogCompareAndReplayConfiguration(
+										new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(log, 0, 0)
+										null, ;
 					}
 				}
 
