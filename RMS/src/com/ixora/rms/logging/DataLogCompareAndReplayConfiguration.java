@@ -34,9 +34,8 @@ public class DataLogCompareAndReplayConfiguration {
 		public void setTimestampEnd(long timestampEnd) {
 			fTimestampEnd = timestampEnd;
 		}
-		public void setLog(LogRepositoryInfo logInfo) {
+		public void setLogRepository(LogRepositoryInfo logInfo) {
 			fLogRepository = logInfo;
-			
 		}		
 	}
 	
@@ -62,4 +61,12 @@ public class DataLogCompareAndReplayConfiguration {
 	public LogRepositoryReplayConfig getLogTwo() {
 		return fLogTwo;
 	}
+	
+	public void setLogOne(LogRepositoryReplayConfig log) {
+		fLogOne = log;
+	}
+	
+	public void setLogTwo(LogRepositoryReplayConfig log) {
+		fLogTwo = log;
+	}	
 }
