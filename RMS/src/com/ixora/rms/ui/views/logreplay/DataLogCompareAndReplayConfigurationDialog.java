@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent.EventType;
@@ -32,7 +31,7 @@ import com.ixora.common.ui.actions.ActionBrowse;
 import com.ixora.common.ui.actions.ActionCancel;
 import com.ixora.common.ui.actions.ActionOk;
 import com.ixora.common.ui.forms.FormPanel;
-import com.ixora.common.ui.jobs.UIWorkerJobDefault;
+import com.ixora.common.ui.jobs.UIWorkerJobDefaultCancelable;
 import com.ixora.rms.EntityDescriptor;
 import com.ixora.rms.HostId;
 import com.ixora.rms.RMS;
@@ -44,6 +43,7 @@ import com.ixora.rms.logging.LogComponent;
 import com.ixora.rms.logging.LogConfigurationConstants;
 import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig;
+import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.services.DataLogScanningService;
 import com.ixora.rms.ui.RMSViewContainer;
 import com.ixora.rms.ui.logchooser.LogChooser;
@@ -194,24 +194,29 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			fCheckBoxNoAgg.setSelected(false);
 		}
 
+		fResult = conf;
+		if(fResult == null) {
+			fResult = new DataLogCompareAndReplayConfiguration(null, null, 0);
+		}
+		
 		fCheckBoxNoAgg.addItemListener(fEventHandler);
 		buildContentPane();
 	}
 
 	private void handleBrowseOne() {
 		LogChooser logChooser = new LogChooserImpl(fViewContainer);
-		fResult.getLogOne().setLog(logChooser.getLogInfoForRead());
-		if(fResult.getLogOne().getLogRepository() != null) {
-			fTextFieldLogOne.setText(fResult.getLogOne().getLogRepository().getRepositoryName());
-		}		
+		DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig conf = new DataLogCompareAndReplayConfiguration
+				.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0);		
+		fResult.setLogOne(conf);
+		fTextFieldLogOne.setText(fResult.getLogOne().getLogRepository().getRepositoryName());
 	}
 
 	private void handleBrowseTwo() {
 		LogChooser logChooser = new LogChooserImpl(fViewContainer);
-		fResult.getLogTwo().setLog(logChooser.getLogInfoForRead());
-		if(fResult.getLogTwo().getLogRepository() != null) {
-			fTextFieldLogTwo.setText(fResult.getLogTwo().getLogRepository().getRepositoryName());
-		}		
+		DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig conf = new DataLogCompareAndReplayConfiguration
+				.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0);
+		fResult.setLogTwo(conf);
+		fTextFieldLogTwo.setText(fResult.getLogTwo().getLogRepository().getRepositoryName());
 	}
 
 	/**
@@ -219,32 +224,43 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	 */
 	private void scanLogForTimestamps(final LogRepositoryReplayConfig logRepositoryReplayConfig) {
 		final DataLogScanningService scanningService = RMS.getDataLogScanning();
-		scanningService.addScanListener(new DataLogScanningService.ScanListener(){
-			public void fatalScanError(LogRepositoryInfo rep, Exception e) {
-			}
-			public void finishedScanningLog(final LogRepositoryInfo rep,
-					final long beginTimestamp, final long endTimestamp) {
-				SwingUtilities.invokeLater(new Runnable(){
-					public void run() {
-						handleFinishedScanning(rep, beginTimestamp, endTimestamp);
-					}});
-			}
-			public void newAgent(LogRepositoryInfo rep, HostId host,
-					AgentDescriptor ad) {
-			}
-			public void newEntity(LogRepositoryInfo rep, HostId host,
-					AgentId aid, EntityDescriptor ed) {
-			}});
-
-		fViewContainer.getAppWorker().runJob(new UIWorkerJobDefault(this,
+		fViewContainer.getAppWorker().runJob(new UIWorkerJobDefaultCancelable(this,
 				Cursor.WAIT_CURSOR, MessageRepository
 						.get(Msg.TEXT_SCANNING_LOG)) {
-			public void work() throws Throwable {
+			private DataLogScanningService.ScanListener listener = new DataLogScanningService.ScanListener(){
+				public void fatalScanError(LogRepositoryInfo rep, Exception e) {
+					wakeUp();
+				}
+				public void finishedScanningLog(final LogRepositoryInfo rep,
+						final long beginTimestamp, final long endTimestamp) {
+					handleFinishedScanning(rep, beginTimestamp, endTimestamp);
+					wakeUp();
+				}
+				public void newAgent(LogRepositoryInfo rep, HostId host,
+						AgentDescriptor ad) {
+				}
+				public void newEntity(LogRepositoryInfo rep, HostId host,
+						AgentId aid, EntityDescriptor ed) {
+				}};			
+			public void cancel() {
+				super.cancel();
+				try {
+					scanningService.stopScanning();
+				} catch (DataLogException e) {
+					UIExceptionMgr.userException(e);
+				}
+			}
+			public void work() throws Throwable {				
+				scanningService.addScanListener(listener);
 				scanningService.startScanning(logRepositoryReplayConfig.getLogRepository());
+				hold();
 			}
 			public void finished(Throwable ex) {
-				TimeIntervalSelectorDialog dlg = new TimeIntervalSelectorDialog(fViewContainer, logRepositoryReplayConfig);
-				UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), dlg);
+				scanningService.removeScanListener(listener);
+				if(!canceled()) {
+					TimeIntervalSelectorDialog dlg = new TimeIntervalSelectorDialog(fViewContainer, logRepositoryReplayConfig);
+					UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), dlg);
+				}
 			}
 		});
 	}
@@ -268,7 +284,9 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 
 	private void handleSelectTimeIntervalOne() {
 		try {
-			scanLogForTimestamps(fResult.getLogOne());
+			if(fResult.getLogOne() != null) {
+				scanLogForTimestamps(fResult.getLogOne());
+			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}		
@@ -276,7 +294,9 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	
 	private void handleSelectTimeIntervalTwo() {
 		try {
-			scanLogForTimestamps(fResult.getLogTwo());
+			if(fResult.getLogTwo() != null) {
+				scanLogForTimestamps(fResult.getLogTwo());
+			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}		
