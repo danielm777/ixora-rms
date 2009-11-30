@@ -92,7 +92,7 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 			if(start != null) {
 				if(start.getTime() < fReplayConfig.getTimeBegin()) {
 					throw new RMSException(Msg.ERROR_TIMESTAMP_MUST_BE_GREATER_OR_EQUAL, 
-							new Object[]{start, new Date(fReplayConfig.getTimeBegin())});
+							new String[]{start.toString(), new Date(fReplayConfig.getTimeBegin()).toString()});
 				} else {
 					fReplayConfig.setTimestampBegin(start.getTime());
 				}
@@ -100,10 +100,18 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 			Date end = fFormDateSelectorEnd.getResult();
 			if(end != null) {
 				if(end.getTime() > fReplayConfig.getTimeEnd()) {
-					throw new RMSException(Msg.ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL, 
-							new Object[]{end, new Date(fReplayConfig.getTimeEnd())});
+					throw new RMSException(
+							Msg.ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL, 
+							new String[]{end.toString(), new Date(fReplayConfig.getTimeEnd()).toString()});
 				} else {
 					fReplayConfig.setTimestampEnd(end.getTime());
+				}
+			}
+			if(start != null && end != null) {
+				if(start.after(end)) {
+					throw new RMSException(
+							Msg.ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL, 
+							new String[]{start.toString(), end.toString()});					
 				}
 			}
 			dispose();
