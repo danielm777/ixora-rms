@@ -119,13 +119,7 @@ public final class UIWorkerDefault implements UIWorker {
 			this.runOnFinish = new Runnable() {
 				public void run() {
 					try {
-						if(ex != null) {
-							UIExceptionMgr.userException(ex);
-						}						
-						job.finished(ex);
-					} catch(Throwable e) {
-						UIExceptionMgr.userException(e);
-					} finally {
+						// first clear job artefacts
 						if(fLabelJobDesc != null) {
 							fLabelJobDesc.setText(" ");
 						}
@@ -136,6 +130,16 @@ public final class UIWorkerDefault implements UIWorker {
 							cancelJobDialog.dispose();
 						}
 						resetCursor(job);
+						
+						// then deal with any errors
+						if(ex != null) {
+							UIExceptionMgr.userException(ex);
+						}						
+						
+						// and invoke the finished() hook
+						job.finished(ex);
+					} catch(Throwable e) {
+						UIExceptionMgr.userException(e);
 					}
 				}
 			};
@@ -215,19 +219,21 @@ public final class UIWorkerDefault implements UIWorker {
 			ex = e;
 		}
 
+		// clear job artefacts
 		if(fLabelJobDesc != null) {
 			fLabelJobDesc.setText(" ");
 		}
 		if(fProgressBar != null) {
 			fProgressBar.setValue(0);
 		}
-
 		resetCursor(job);
 
+		// then deal with errors
 		if(ex != null) {
 			UIExceptionMgr.userException(ex);
 		}
-
+		
+		// and invoke the finished() hook
 		try {
 			job.finished(ex);
 		} catch(Throwable e) {
