@@ -14,8 +14,7 @@ import com.ixora.common.ui.actions.ActionCancel;
 import com.ixora.common.ui.actions.ActionOk;
 import com.ixora.common.ui.forms.FormFieldDateSelector;
 import com.ixora.common.ui.forms.FormPanel;
-import com.ixora.rms.exception.RMSException;
-import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
+import com.ixora.rms.logging.TimeInterval;
 import com.ixora.rms.ui.RMSViewContainer;
 import com.ixora.rms.ui.messages.Msg;
 
@@ -28,25 +27,23 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 	private FormPanel fForm;
 	private FormFieldDateSelector fFormDateSelectorStart;
 	private FormFieldDateSelector fFormDateSelectorEnd;
-	private DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig fReplayConfig;
-
+	private TimeInterval fResult;
+	private TimeInterval fLimits;
 
 	/**
 	 * @param parent
-	 * @param timeMin
-	 * @param timeMax
-	 * @param conf
+	 * @param limits
 	 */
 	public TimeIntervalSelectorDialog(RMSViewContainer container,
-			DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig conf) {
+			TimeInterval limits) {
 		super(container.getAppFrame(), VERTICAL);
 		setModal(true);
 		setTitle(MessageRepository.get(Msg.TITLE_TIME_INTERVAL_SELECTOR));
 		fForm = new FormPanel(FormPanel.VERTICAL1);
-		fReplayConfig = conf;
+		fLimits = limits;
 
-		fFormDateSelectorStart = new FormFieldDateSelector(this, new Date(conf.getTimeBegin()));
-		fFormDateSelectorEnd = new FormFieldDateSelector(this, new Date(conf.getTimeEnd()));
+		fFormDateSelectorStart = new FormFieldDateSelector(this, new Date(fLimits.getStart()));
+		fFormDateSelectorEnd = new FormFieldDateSelector(this, new Date(fLimits.getEnd()));
 
 		fForm.addPairs(
 			new String[]{
@@ -87,36 +84,31 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 	}
 
 	private void handleOk() {
-		try {
+		try {			
 			Date start = fFormDateSelectorStart.getResult();
+			long[] ti = new long[2];
 			if(start != null) {
-				if(start.getTime() < fReplayConfig.getTimeBegin()) {
-					throw new RMSException(Msg.ERROR_TIMESTAMP_MUST_BE_GREATER_OR_EQUAL, 
-							new String[]{start.toString(), new Date(fReplayConfig.getTimeBegin()).toString()});
-				} else {
-					fReplayConfig.setTimestampBegin(start.getTime());
-				}
+				ti[0] = start.getTime();
+			} else {
+				ti[0] = fLimits.getStart();
 			}
 			Date end = fFormDateSelectorEnd.getResult();
 			if(end != null) {
-				if(end.getTime() > fReplayConfig.getTimeEnd()) {
-					throw new RMSException(
-							Msg.ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL, 
-							new String[]{end.toString(), new Date(fReplayConfig.getTimeEnd()).toString()});
-				} else {
-					fReplayConfig.setTimestampEnd(end.getTime());
-				}
+				ti[1] = end.getTime();
+			} else {
+				ti[1] = fLimits.getEnd();
 			}
-			if(start != null && end != null) {
-				if(start.after(end)) {
-					throw new RMSException(
-							Msg.ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL, 
-							new String[]{start.toString(), end.toString()});					
-				}
-			}
+			fResult = new TimeInterval(ti[0], ti[1]);
 			dispose();
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}
+	}
+	
+	/**
+	 * @return
+	 */
+	public TimeInterval getResult() {
+		return fResult;
 	}
 }

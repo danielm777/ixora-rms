@@ -3,39 +3,28 @@
  */
 package com.ixora.rms.logging;
 
+import com.ixora.rms.exception.RMSException;
+import com.ixora.rms.messages.Msg;
+
 
 /**
  * @author Daniel Moraru
  */
 public class DataLogCompareAndReplayConfiguration {
 	public static class LogRepositoryReplayConfig {
-		private long fTimestampBegin;
-		private long fTimestampEnd;
+		private TimeInterval fTimeInterval;
 		private LogRepositoryInfo fLogRepository;
 		
-		public LogRepositoryReplayConfig(LogRepositoryInfo logRepository, long timeBegin, long timeEnd) {
+		public LogRepositoryReplayConfig(LogRepositoryInfo logRepository, TimeInterval timeInterval) {
 			super();
 			fLogRepository = logRepository;
-			fTimestampBegin = timeBegin;
-			fTimestampEnd = timeEnd;
+			fTimeInterval = timeInterval;
 		}
-		public long getTimeBegin() {
-			return fTimestampBegin;
-		}
-		public long getTimeEnd() {
-			return fTimestampEnd;
+		public TimeInterval getTimeInterval() {
+			return fTimeInterval;
 		}
 		public LogRepositoryInfo getLogRepository() {
 			return fLogRepository;
-		}		
-		public void setTimestampBegin(long timestampBegin) {
-			fTimestampBegin = timestampBegin;
-		}
-		public void setTimestampEnd(long timestampEnd) {
-			fTimestampEnd = timestampEnd;
-		}
-		public void setLogRepository(LogRepositoryInfo logInfo) {
-			fLogRepository = logInfo;
 		}		
 	}
 	
@@ -43,11 +32,19 @@ public class DataLogCompareAndReplayConfiguration {
 	private LogRepositoryReplayConfig fLogTwo;
 	private int fAggregationStep;
 
-	public DataLogCompareAndReplayConfiguration(LogRepositoryReplayConfig f1, LogRepositoryReplayConfig f2, int aggStep) {
+	public DataLogCompareAndReplayConfiguration(LogRepositoryReplayConfig f1, int aggStep) throws RMSException {
+		super();
+		fLogOne = f1;
+		fAggregationStep = aggStep;
+		validate(false);
+	}
+	
+	public DataLogCompareAndReplayConfiguration(LogRepositoryReplayConfig f1, LogRepositoryReplayConfig f2, int aggStep) throws RMSException {
 		super();
 		fLogOne = f1;
 		fLogTwo = f2;
 		fAggregationStep = aggStep;
+		validate(true);
 	}
 
 	public int getAggregationStep() {
@@ -62,11 +59,20 @@ public class DataLogCompareAndReplayConfiguration {
 		return fLogTwo;
 	}
 	
-	public void setLogOne(LogRepositoryReplayConfig log) {
-		fLogOne = log;
-	}
-	
-	public void setLogTwo(LogRepositoryReplayConfig log) {
-		fLogTwo = log;
+	private void validate(boolean forComparison) throws RMSException {
+		if(fLogOne == null) {
+			throw new RMSException(Msg.ERROR_LOG_ONE_IS_MISSING, true);
+		}
+		if(forComparison && fLogTwo == null) {
+			throw new RMSException(Msg.ERROR_LOG_TWO_IS_MISSING, true);
+		}
+		if(forComparison) {
+			// check that files are not the same
+			if(fLogOne.getLogRepository().getRepositoryName()
+					.equals(fLogTwo.getLogRepository().getRepositoryName())) {
+				throw new RMSException(Msg.ERROR_LOGS_FOR_COMPARISON_ARE_THE_SAME, 
+					new String[]{fLogOne.getLogRepository().getRepositoryName()});
+			}
+		}
 	}	
 }

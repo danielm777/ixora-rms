@@ -16,9 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent.EventType;
+import javax.swing.text.Document;
 
 import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.MessageRepository;
@@ -32,6 +35,7 @@ import com.ixora.common.ui.actions.ActionCancel;
 import com.ixora.common.ui.actions.ActionOk;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.common.ui.jobs.UIWorkerJobDefaultCancelable;
+import com.ixora.common.utils.Utils;
 import com.ixora.rms.EntityDescriptor;
 import com.ixora.rms.HostId;
 import com.ixora.rms.RMS;
@@ -42,6 +46,7 @@ import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogComponent;
 import com.ixora.rms.logging.LogConfigurationConstants;
 import com.ixora.rms.logging.LogRepositoryInfo;
+import com.ixora.rms.logging.TimeInterval;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.services.DataLogScanningService;
@@ -58,23 +63,22 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 
 	private RMSViewContainer fViewContainer;
 	private FormPanel fForm;
-	
 	private JTextField fTextFieldLogOne;
 	private JTextField fTextFieldLogTwo;
 	private JTextField fTextFieldAggStep;
-
 	private JCheckBox fCheckBoxNoAgg;
-	
 	private JEditorPane fPaneSelectTimeIntervalOne;
 	private JEditorPane fPaneSelectTimeIntervalTwo;
-	
 	private JButton fButtonBrowseOne;
 	private JButton fButtonBrowseTwo;
-	
-	private DataLogCompareAndReplayConfiguration fResult;
 	private EventHandler fEventHandler;
-
-	private final class EventHandler implements ItemListener, HyperlinkListener  {
+	private ActionOk fActionOk;
+	private LogRepositoryInfo fLogOne;
+	private LogRepositoryInfo fLogTwo;
+	private TimeInterval fTimeIntervalOne;
+	private TimeInterval fTimeIntervalTwo;
+	
+	private final class EventHandler implements ItemListener, HyperlinkListener, DocumentListener {
 		/**
 		 * @see java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent)
 		 */
@@ -95,6 +99,27 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 					handleSelectTimeIntervalTwo();
 				}
 			}
+		}
+
+		/**
+		 * @see javax.swing.event.DocumentListener#changedUpdate(javax.swing.event.DocumentEvent)
+		 */
+		public void changedUpdate(DocumentEvent e) {
+			handleChangeInLogNameTextField(e.getDocument());
+		}
+
+		/**
+		 * @see javax.swing.event.DocumentListener#insertUpdate(javax.swing.event.DocumentEvent)
+		 */
+		public void insertUpdate(DocumentEvent e) {
+			handleChangeInLogNameTextField(e.getDocument());
+		}
+
+		/**
+		 * @see javax.swing.event.DocumentListener#removeUpdate(javax.swing.event.DocumentEvent)
+		 */
+		public void removeUpdate(DocumentEvent e) {
+			handleChangeInLogNameTextField(e.getDocument());
 		}		
 	}
 
@@ -104,8 +129,7 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	 * @param rep
 	 */
 	@SuppressWarnings("serial")
-	public DataLogCompareAndReplayConfigurationDialog(RMSViewContainer container,
-			DataLogCompareAndReplayConfiguration conf) {
+	public DataLogCompareAndReplayConfigurationDialog(RMSViewContainer container) {
 		super(container.getAppFrame(), VERTICAL);
 		setModal(true);
 		setTitle(MessageRepository.get(Msg.TITLE_COMPARE_AND_REPLAY_CONFIGURATION));
@@ -180,89 +204,133 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			});
 
 		int aggStep;
-		if(conf == null) {
-			aggStep = ConfigurationMgr.getInt(
+		aggStep = ConfigurationMgr.getInt(
 					LogComponent.NAME,
 					LogConfigurationConstants.LOG_AGGREGATION_PERIOD);
-		} else {
-			aggStep = conf.getAggregationStep();
-		}
 		fTextFieldAggStep.setText(String.valueOf(aggStep));
 		if(aggStep == 0) {
 			fCheckBoxNoAgg.setSelected(true);
 		} else {
 			fCheckBoxNoAgg.setSelected(false);
 		}
-
-		fResult = conf;
-		if(fResult == null) {
-			fResult = new DataLogCompareAndReplayConfiguration(null, null, 0);
-		}
+		fActionOk = new ActionOk(){
+			public void actionPerformed(ActionEvent e) {
+				handleOk();
+			}};
+		fActionOk.setEnabled(false);
+		fTextFieldLogTwo.setEnabled(false);
+		fButtonBrowseTwo.setEnabled(false);
 		
 		fCheckBoxNoAgg.addItemListener(fEventHandler);
+		fTextFieldLogOne.getDocument().addDocumentListener(fEventHandler);
+		fTextFieldLogTwo.getDocument().addDocumentListener(fEventHandler);
 		buildContentPane();
+	}
+
+	private void handleChangeInLogNameTextField(Document document) {
+		if(document == fTextFieldLogOne.getDocument()) {
+			if(changeReplayConfig(fResult.getLogOne(), fTextFieldLogOne)){
+				fActionOk.setEnabled(true);
+				fTextFieldLogTwo.setEnabled(true);
+				fButtonBrowseTwo.setEnabled(true);
+			} else {
+				fActionOk.setEnabled(false);
+				fTextFieldLogTwo.setEnabled(false);
+				fButtonBrowseTwo.setEnabled(false);
+			}
+		} else if(document == fTextFieldLogTwo.getDocument()) {
+			changeReplayConfig(fResult.getLogTwo(), fTextFieldLogTwo);
+		}
+	}
+
+	/**
+	 * @param logConfig
+	 * @param tf
+	 * @return true if the log repository is setup
+	 */
+	private boolean changeReplayConfig(
+			DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig logConfig, 
+			JTextField tf) {
+		logConfig.setTimestampBegin(0);
+		logConfig.setTimestampEnd(0);
+		String txt = tf.getText().trim();
+		if(Utils.isEmptyString(txt)) {
+			logConfig.setLogRepository(null);
+			return false;
+		} else {
+			LogRepositoryInfo log = logConfig.getLogRepository(); 
+			logConfig.setLogRepository(new LogRepositoryInfo(txt, 
+					log.getRepositoryType()));
+			return true;
+		}
 	}
 
 	private void handleBrowseOne() {
 		LogChooser logChooser = new LogChooserImpl(fViewContainer);
-		DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig conf = new DataLogCompareAndReplayConfiguration
-				.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0);		
-		fResult.setLogOne(conf);
-		fTextFieldLogOne.setText(fResult.getLogOne().getLogRepository().getRepositoryName());
+		if(fResult.getLogOne() == null) {
+			fResult.setLogOne(new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0));
+		}
+		fTextFieldLogOne.setText(logChooser.getLogInfoForRead().getRepositoryName());
 	}
 
 	private void handleBrowseTwo() {
 		LogChooser logChooser = new LogChooserImpl(fViewContainer);
-		DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig conf = new DataLogCompareAndReplayConfiguration
-				.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0);
-		fResult.setLogTwo(conf);
-		fTextFieldLogTwo.setText(fResult.getLogTwo().getLogRepository().getRepositoryName());
+		if(fResult.getLogTwo() == null) {
+			fResult.setLogTwo(new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0));
+		}
+		fTextFieldLogTwo.setText(logChooser.getLogInfoForRead().getRepositoryName());
 	}
 
 	/**
 	 * @param logRepositoryReplayConfig
 	 */
 	private void scanLogForTimestamps(final LogRepositoryReplayConfig logRepositoryReplayConfig) {
-		final DataLogScanningService scanningService = RMS.getDataLogScanning();
-		fViewContainer.getAppWorker().runJob(new UIWorkerJobDefaultCancelable(this,
-				Cursor.WAIT_CURSOR, MessageRepository
-						.get(Msg.TEXT_SCANNING_LOG)) {
-			private DataLogScanningService.ScanListener listener = new DataLogScanningService.ScanListener(){
-				public void fatalScanError(LogRepositoryInfo rep, Exception e) {
-					wakeUp();
+		// check if scanning is necessary
+		if(logRepositoryReplayConfig.getTimeBegin() == 0 || logRepositoryReplayConfig.getTimeEnd() == 0) {
+			// scan log 
+			final DataLogScanningService scanningService = RMS.getDataLogScanning();
+			fViewContainer.getAppWorker().runJob(new UIWorkerJobDefaultCancelable(this,
+					Cursor.WAIT_CURSOR, MessageRepository
+							.get(Msg.TEXT_SCANNING_LOG)) {
+				private DataLogScanningService.ScanListener listener = new DataLogScanningService.ScanListener(){
+					public void fatalScanError(LogRepositoryInfo rep, Exception e) {
+						wakeUp();
+					}
+					public void finishedScanningLog(final LogRepositoryInfo rep,
+							final long beginTimestamp, final long endTimestamp) {
+						handleFinishedScanning(rep, beginTimestamp, endTimestamp);
+						wakeUp();
+					}
+					public void newAgent(LogRepositoryInfo rep, HostId host,
+							AgentDescriptor ad) {
+					}
+					public void newEntity(LogRepositoryInfo rep, HostId host,
+							AgentId aid, EntityDescriptor ed) {
+					}};			
+				public void cancel() {
+					super.cancel();
+					try {
+						scanningService.stopScanning();
+					} catch (DataLogException e) {
+						UIExceptionMgr.userException(e);
+					}
 				}
-				public void finishedScanningLog(final LogRepositoryInfo rep,
-						final long beginTimestamp, final long endTimestamp) {
-					handleFinishedScanning(rep, beginTimestamp, endTimestamp);
-					wakeUp();
+				public void work() throws Throwable {				
+					scanningService.addScanListener(listener);
+					scanningService.startScanning(logRepositoryReplayConfig.getLogRepository());
+					hold();
 				}
-				public void newAgent(LogRepositoryInfo rep, HostId host,
-						AgentDescriptor ad) {
+				public void finished(Throwable ex) {
+					scanningService.removeScanListener(listener);
+					if(!canceled()) {
+						shotTimeIntervalSelectorDialog(logRepositoryReplayConfig);
+					}
 				}
-				public void newEntity(LogRepositoryInfo rep, HostId host,
-						AgentId aid, EntityDescriptor ed) {
-				}};			
-			public void cancel() {
-				super.cancel();
-				try {
-					scanningService.stopScanning();
-				} catch (DataLogException e) {
-					UIExceptionMgr.userException(e);
-				}
-			}
-			public void work() throws Throwable {				
-				scanningService.addScanListener(listener);
-				scanningService.startScanning(logRepositoryReplayConfig.getLogRepository());
-				hold();
-			}
-			public void finished(Throwable ex) {
-				scanningService.removeScanListener(listener);
-				if(!canceled()) {
-					TimeIntervalSelectorDialog dlg = new TimeIntervalSelectorDialog(fViewContainer, logRepositoryReplayConfig);
-					UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), dlg);
-				}
-			}
-		});
+			});
+		} else {
+			// skip scanning
+			shotTimeIntervalSelectorDialog(logRepositoryReplayConfig);
+		}
 	}
 
 	/**
@@ -335,10 +403,7 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	@SuppressWarnings("serial")
 	protected JButton[] getButtons() {
 		return new JButton[]{
-				UIFactoryMgr.createButton(new ActionOk(){
-					public void actionPerformed(ActionEvent e) {
-						handleOk();
-					}}),
+				UIFactoryMgr.createButton(fActionOk),
 				UIFactoryMgr.createButton(new ActionCancel(){
 					public void actionPerformed(ActionEvent e) {
 						fResult = null;
@@ -349,6 +414,7 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 
 	private void handleOk() {
 		try {
+			fResult.validate(true);
 			String aggStepString = fTextFieldAggStep.getText().trim();
 			int aggStep = 0;
 			try {
@@ -360,7 +426,7 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			if(fCheckBoxNoAgg.isSelected()) {
 				aggStep = 0;
 			}
-			fResult = new DataLogCompareAndReplayConfiguration(null, null, aggStep);
+			fResult.setAggregationStep(aggStep);
 			dispose();
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
@@ -372,5 +438,11 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	 */
 	public DataLogCompareAndReplayConfiguration getResult() {
 		return fResult;
+	}
+
+	private void shotTimeIntervalSelectorDialog(
+			final LogRepositoryReplayConfig logRepositoryReplayConfig) {
+		TimeIntervalSelectorDialog dlg = new TimeIntervalSelectorDialog(fViewContainer, logRepositoryReplayConfig);
+		UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), dlg);
 	}
 }

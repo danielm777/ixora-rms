@@ -357,10 +357,6 @@ public interface Msg {
 		"ui.text.aggregation_step";
 	public static final String TEXT_NO_AGGREGATION = 
 		"ui.text.no_aggregation";
-	public static final String ERROR_TIMESTAMP_MUST_BE_GREATER_OR_EQUAL = 
-		"ui.error.timestamp_must_be_greater_or_equal";
-	public static final String ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL = 
-		"ui.error.timestamp_must_be_smaller_or_equal";
 	public static final String TITLE_TIME_INTERVAL_SELECTOR = 
 		"ui.title.time_interval_selector";
 	public static final String LABEL_TIME_START = 
