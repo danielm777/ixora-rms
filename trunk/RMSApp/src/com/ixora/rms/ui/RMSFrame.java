@@ -918,7 +918,7 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 			if (resetCurrentView()) {
 				return;
 			}
-			DataLogCompareAndReplayConfigurationDialog dlg = new DataLogCompareAndReplayConfigurationDialog(this, null);
+			DataLogCompareAndReplayConfigurationDialog dlg = new DataLogCompareAndReplayConfigurationDialog(this);
 			UIUtils.centerDialogAndShow(this, dlg);
 			DataLogCompareAndReplayConfiguration conf = dlg.getResult();
 			if(conf != null) {
