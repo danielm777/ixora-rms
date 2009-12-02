@@ -95,4 +95,15 @@ public interface Msg {
 
 	public static final String RMS_TEXT_UNTITLED_SESSION =
 		"rms.text.untitled_session";
+	
+	public static final String ERROR_LOG_ONE_IS_MISSING = 
+		"rms.error.log_one_is_missing";
+	public static final String ERROR_LOG_TWO_IS_MISSING = 
+		"rms.error.log_two_is_missing";
+	public static final String ERROR_LOGS_FOR_COMPARISON_ARE_THE_SAME = 
+		"rms.error.logs_for_comparison_are_the_same";	
+	public static final String ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL = 
+		"rms.error.timestamp_must_be_smaller_or_equal";
+	public static final String ERROR_TIMESTAMP_MUST_BE_GREATER_OR_EQUAL = 
+		"rms.error.timestamp_must_be_greater_or_equal";	
 }
