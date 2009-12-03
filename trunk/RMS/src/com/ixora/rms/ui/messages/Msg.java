@@ -363,4 +363,8 @@ public interface Msg {
 		"ui.text.time_start";
 	public static final String LABEL_TIME_END = 
 		"ui.text.time_end";
+	public static final String TITLE_REPLAY_CONFIGURATION = 
+		"ui.title.replay_configuration";
+	public static final String LABEL_LOG = 
+		"ui.label.log";
 }

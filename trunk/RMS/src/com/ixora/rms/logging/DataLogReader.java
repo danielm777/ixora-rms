@@ -37,7 +37,7 @@ public interface DataLogReader {
     	 * @param source the source of the callback.
     	 * @param ti
     	 */
-    	void finishedScanning(DataLogReader source, TimeInterval ti);
+    	void finishedScanning(DataLogReader source, BoundedTimeInterval ti);
         /**
          * @param source the source of the callback.
          * @param e fatal error encountered during scanning
@@ -87,7 +87,7 @@ public interface DataLogReader {
 	 * @param ti
 	 * @throws DataLogException
 	 */
-	void read(ReadCallback cb, TimeInterval ti) throws DataLogException;
+	void read(ReadCallback cb, BoundedTimeInterval ti) throws DataLogException;
 	/**
 	 * Stops reading and closes this reader.
 	 * @throws DataLogException

@@ -22,7 +22,7 @@ import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.logging.DataLogReader;
 import com.ixora.rms.logging.LogComponent;
-import com.ixora.rms.logging.TimeInterval;
+import com.ixora.rms.logging.BoundedTimeInterval;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.logging.exception.InvalidLog;
 import com.ixora.rms.logging.exception.InvalidLogRepository;
@@ -55,7 +55,7 @@ public final class DataLogReaderXML implements DataLogReader {
     /** Event handler */
     private EventHandler fEventHandler;
     /** The interval of the log data */
-    private TimeInterval fTimeInterval;
+    private BoundedTimeInterval fTimeInterval;
 
     /**
      * Event handler.
@@ -150,9 +150,9 @@ public final class DataLogReaderXML implements DataLogReader {
 	}
 
     /**
-     * @see com.ixora.rms.logging.DataLogReader#read(com.ixora.rms.logging.DataLogReader.ReadCallback, com.ixora.rms.logging.TimeInterval)
+     * @see com.ixora.rms.logging.DataLogReader#read(com.ixora.rms.logging.DataLogReader.ReadCallback, com.ixora.rms.logging.BoundedTimeInterval)
      */
-    public void read(ReadCallback cb, TimeInterval ti) throws DataLogException {
+    public void read(ReadCallback cb, BoundedTimeInterval ti) throws DataLogException {
         if(cb == null) {
             throw new IllegalArgumentException("null callback");
         }
@@ -238,7 +238,7 @@ public final class DataLogReaderXML implements DataLogReader {
 	 */
 	private void handleFinishedScanning(long beginTimestamp, long endTimestamp) {
         try {
-        	fTimeInterval = new TimeInterval(beginTimestamp, endTimestamp);
+        	fTimeInterval = new BoundedTimeInterval(beginTimestamp, endTimestamp);
             this.fScanCallback.finishedScanning(this, fTimeInterval);
         } catch(Exception e) {
             sLogger.error(e);

@@ -1,8 +1,6 @@
-/**
- * 18-Mar-2006
- */
 package com.ixora.rms.logging;
 
+import com.ixora.common.utils.Utils;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.messages.Msg;
 
@@ -12,15 +10,16 @@ import com.ixora.rms.messages.Msg;
  */
 public class DataLogCompareAndReplayConfiguration {
 	public static class LogRepositoryReplayConfig {
-		private TimeInterval fTimeInterval;
+		private BoundedTimeInterval fTimeInterval;
 		private LogRepositoryInfo fLogRepository;
 		
-		public LogRepositoryReplayConfig(LogRepositoryInfo logRepository, TimeInterval timeInterval) {
+		public LogRepositoryReplayConfig(LogRepositoryInfo logRepository, BoundedTimeInterval timeInterval) {
 			super();
+			Utils.checkForNull(logRepository, timeInterval);
 			fLogRepository = logRepository;
 			fTimeInterval = timeInterval;
 		}
-		public TimeInterval getTimeInterval() {
+		public BoundedTimeInterval getTimeInterval() {
 			return fTimeInterval;
 		}
 		public LogRepositoryInfo getLogRepository() {
@@ -34,6 +33,7 @@ public class DataLogCompareAndReplayConfiguration {
 
 	public DataLogCompareAndReplayConfiguration(LogRepositoryReplayConfig f1, int aggStep) throws RMSException {
 		super();
+		Utils.checkForNull(f1);
 		fLogOne = f1;
 		fAggregationStep = aggStep;
 		validate(false);

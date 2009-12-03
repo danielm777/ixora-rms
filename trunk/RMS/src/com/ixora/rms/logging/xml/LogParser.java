@@ -44,7 +44,7 @@ import com.ixora.rms.data.CounterValueString;
 import com.ixora.rms.data.ValueObject;
 import com.ixora.rms.exception.AgentDescriptorNotFound;
 import com.ixora.rms.exception.RecordDefinitionNotFound;
-import com.ixora.rms.logging.TimeInterval;
+import com.ixora.rms.logging.BoundedTimeInterval;
 
 /**
  * XML data log parser.
@@ -144,7 +144,7 @@ final class LogParser extends DefaultHandler implements Tags {
      * @throws SAXException
      * @throws IOException
      */
-    public void parse(TimeInterval ti) throws IOException, SAXException {
+    public void parse(BoundedTimeInterval ti) throws IOException, SAXException {
         try {
         	this.fTimestampBegin = ti.getStart();
         	this.fTimestampEnd = ti.getEnd();

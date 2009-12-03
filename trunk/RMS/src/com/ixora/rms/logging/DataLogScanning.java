@@ -50,9 +50,9 @@ public final class DataLogScanning implements DataLogScanningService {
             DataLogScanning.this.fireNewAgent(fLog, host, ad);
         }
 		/**
-		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#finishedScanning(com.ixora.rms.logging.DataLogReader, com.ixora.rms.logging.TimeInterval)
+		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#finishedScanning(com.ixora.rms.logging.DataLogReader, com.ixora.rms.logging.BoundedTimeInterval)
 		 */
-		public void finishedScanning(DataLogReader source, TimeInterval ti) {
+		public void finishedScanning(DataLogReader source, BoundedTimeInterval ti) {
 			DataLogScanning.this.handleFinishedScanning(fLog, ti);
 		}
 		/**
@@ -112,7 +112,7 @@ public final class DataLogScanning implements DataLogScanningService {
      * @param beginTimestamp
      * @param endTimestamp
      */
-    private void fireFinishedScanning(LogRepositoryInfo logRepositoryInfo, TimeInterval ti) {
+    private void fireFinishedScanning(LogRepositoryInfo logRepositoryInfo, BoundedTimeInterval ti) {
         synchronized(fScanListeners) {
             for(ScanListener listener : fScanListeners) {
                 try {
@@ -203,7 +203,7 @@ public final class DataLogScanning implements DataLogScanningService {
 	 * @param logRepositoryInfo 
 	 * @param ti
 	 */
-	private void handleFinishedScanning(LogRepositoryInfo logRepositoryInfo, TimeInterval ti) {
+	private void handleFinishedScanning(LogRepositoryInfo logRepositoryInfo, BoundedTimeInterval ti) {
 		synchronized(this) {
 			fScanning = false;
 		}
