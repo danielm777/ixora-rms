@@ -46,7 +46,7 @@ import com.ixora.rms.exception.AgentIsNotInstalled;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogRepositoryInfo;
-import com.ixora.rms.logging.TimeInterval;
+import com.ixora.rms.logging.BoundedTimeInterval;
 import com.ixora.rms.repository.AgentInstallationData;
 import com.ixora.rms.services.DataLogReplayService;
 import com.ixora.rms.services.DataLogScanningService;
@@ -74,55 +74,55 @@ import com.ixora.rms.ui.messages.Msg;
  */
 public final class LogPlaybackView extends SessionView {
 // internal actions
-	private Action actionPlayLog;
-	private Action actionPauseLog;
-	private Action actionRewindLog;
+	private Action fActionPlayLog;
+	private Action fActionPauseLog;
+	private Action fActionRewindLog;
 
 // controls
-	private javax.swing.JMenuItem jMenuItemPlayLog;
-	private javax.swing.JButton jButtonPlayLog;
-	private javax.swing.JMenuItem jMenuItemPauseLog;
-	private javax.swing.JButton jButtonPauseLog;
-	private javax.swing.JMenuItem jMenuItemRewindLog;
-	private javax.swing.JButton jButtonRewindLog;
-	private ReplaySpeedPanel replaySpeedPanel;
+	private javax.swing.JMenuItem fMenuItemPlayLog;
+	private javax.swing.JButton fButtonPlayLog;
+	private javax.swing.JMenuItem fMenuItemPauseLog;
+	private javax.swing.JButton fButtonPauseLog;
+	private javax.swing.JMenuItem fMenuItemRewindLog;
+	private javax.swing.JButton fButtonRewindLog;
+	private ReplaySpeedPanel fReplaySpeedPanel;
 	/**
 	 * Data log replayer.
 	 */
-	private DataLogReplayService rmsLogReplay;
+	private DataLogReplayService fLogReplay;
 	/**
 	 * Panel for acting upon the selected host.
 	 */
-	private SessionOperationsPanel schemeOperationsPanel;
+	private SessionOperationsPanel fSchemeOperationsPanel;
 	/**
 	 * Panel for acting upon the selected host.
 	 */
-	private HostOperationsPanel hostOperationsPanel;
+	private HostOperationsPanel fHostOperationsPanel;
 	/**
 	 * Panel for acting upon the selected entity.
 	 */
-	private EntityOperationsPanel entityOperationsPanel;
+	private EntityOperationsPanel fEntityOperationsPanel;
 	/**
 	 * Panel for acting upon the selected agent.
 	 */
-	private AgentOperationsPanel agentOperationsPanel;
+	private AgentOperationsPanel fAgentOperationsPanel;
 	/**
 	 * Panel filling the left part of the view container
 	 * hosting the session view.
 	 */
-	private SessionViewLeftPanel leftPanel;
+	private SessionViewLeftPanel fLeftPanel;
 	/**
 	 * Event handler.
 	 */
-	private EventHandler eventHandler;
+	private EventHandler fEventHandler;
 	/**
 	 * Manages state/progress for log replay.
 	 */
-	private LogReplayProgressHandler logStateHandler;
+	private LogReplayProgressHandler fLogStateHandler;
 	/** True if the log replay has finished or it was rewinded */
-	private boolean canResetScreens;
+	private boolean fCanResetScreens;
 	/**
-	 * The replay configuration; it can be null.
+	 * The replay configuration.
 	 */
 	private DataLogCompareAndReplayConfiguration fReplayConfiguration;
 
@@ -209,9 +209,9 @@ public final class LogPlaybackView extends SessionView {
             });
 		}
 		/**
-		 * @see com.ixora.rms.services.DataLogScanningService.ScanListener#finishedScanningLog(com.ixora.rms.logging.LogRepositoryInfo, com.ixora.rms.logging.TimeInterval)
+		 * @see com.ixora.rms.services.DataLogScanningService.ScanListener#finishedScanningLog(com.ixora.rms.logging.LogRepositoryInfo, com.ixora.rms.logging.BoundedTimeInterval)
 		 */
-		public void finishedScanningLog(LogRepositoryInfo rep, final TimeInterval ti) {
+		public void finishedScanningLog(LogRepositoryInfo rep, final BoundedTimeInterval ti) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
                     handleReachedEndOfLogForScan(ti);
@@ -321,26 +321,33 @@ public final class LogPlaybackView extends SessionView {
 	/**
 	 * @param vc
 	 * @param replayService
-	 * @param config
-	 * @throws Throwable
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws RMSException 
 	 */
 	public LogPlaybackView(RMSViewContainer vc, DataLogReplayService replayService, 
-			DataLogScanningService scanningService, 
-			DataLogCompareAndReplayConfiguration config) throws Throwable {
+			DataLogScanningService scanningService) throws RMSException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		super(vc);
-		this.fReplayConfiguration = config;
-		this.actionPlayLog = new ActionPlayLog();
-		this.actionPauseLog = new ActionPauseLog();
-		this.actionRewindLog = new ActionRewindLog();
-		this.rmsLogReplay = replayService;
+		this.fActionPlayLog = new ActionPlayLog();
+		this.fActionPauseLog = new ActionPauseLog();
+		this.fActionRewindLog = new ActionRewindLog();
+		this.fLogReplay = replayService;
 		RMS.getDataEngine().setLogReplayMode(true);
-		this.eventHandler = new EventHandler();
-		this.rmsLogReplay.addReadListener(eventHandler);
-		scanningService.addScanListener(eventHandler);
+		this.fEventHandler = new EventHandler();
+		this.fLogReplay.addReadListener(fEventHandler);
+		scanningService.addScanListener(fEventHandler);
 
 		initializeComponents();
 	}
 
+	/**
+	 * @param conf
+	 */
+	public void setReplayConfiguration(DataLogCompareAndReplayConfiguration conf) {
+		this.fReplayConfiguration = conf;
+	}
+	
 	/**
 	 * @see com.ixora.rms.ui.RMSView#initialize()
 	 */
@@ -358,7 +365,7 @@ public final class LogPlaybackView extends SessionView {
 						getJButtonPauseLog(),
 						getJButtonRewindLog(),
 						getJButtonToggleHTMLGeneration(),
-						replaySpeedPanel
+						fReplaySpeedPanel
 					});
 
 		registerComponentsWithViewContainer();
@@ -367,12 +374,16 @@ public final class LogPlaybackView extends SessionView {
 		viewContainer.registerRightComponent(dataViewBoardHandler
 		        .getScreen());
 
-		if(fReplayConfiguration.getLogOne() == null) {
-            this.actionPlayLog.setEnabled(false);
-			return;
-		}
 		try {
-		    MonitoringSessionDescriptor scheme = rmsLogReplay.getScheme();
+			fLogStateHandler = new LogReplayProgressHandler(
+					viewContainer,
+					MessageRepository.get(
+					           Msg.TEXT_LOADED_LOG,
+					           new String[]{fReplayConfiguration.getLogOne().getLogRepository().getRepositoryName()}),
+					fReplayConfiguration.getLogOne().getTimeInterval().getStart(),
+					fReplayConfiguration.getLogOne().getTimeInterval().getEnd());
+
+		    MonitoringSessionDescriptor scheme = fLogReplay.configure(fReplayConfiguration);
 	        MonitoringSessionRealizer schemeRealizer =
 	            new MonitoringSessionRealizer(sessionModel);
             schemeRealizer.realize(rmsAgentRepository, scheme);
@@ -415,16 +426,16 @@ public final class LogPlaybackView extends SessionView {
 					getJButtonPauseLog(),
 					getJButtonRewindLog(),
 					getJButtonToggleHTMLGeneration(),
-					replaySpeedPanel
+					fReplaySpeedPanel
 				});
-			if(logStateHandler != null) {
-				logStateHandler.cleanup();
+			if(fLogStateHandler != null) {
+				fLogStateHandler.cleanup();
 			}
 		} finally {
 			// unregister listeners
-			this.rmsLogReplay.removeReadListener(eventHandler);
+			this.fLogReplay.removeReadListener(fEventHandler);
 			// shutdown services
-			this.rmsLogReplay.shutdown();
+			this.fLogReplay.shutdown();
 		}
         return false;
 	}
@@ -433,76 +444,76 @@ public final class LogPlaybackView extends SessionView {
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButtonPlayLog() {
-		if(jButtonPlayLog == null) {
-			jButtonPlayLog = UIFactoryMgr.createButton(this.actionPlayLog);
-			jButtonPlayLog.setText(null);
-			jButtonPlayLog.setMnemonic(KeyEvent.VK_UNDEFINED);
+		if(fButtonPlayLog == null) {
+			fButtonPlayLog = UIFactoryMgr.createButton(this.fActionPlayLog);
+			fButtonPlayLog.setText(null);
+			fButtonPlayLog.setMnemonic(KeyEvent.VK_UNDEFINED);
 		}
-		return jButtonPlayLog;
+		return fButtonPlayLog;
 	}
 
 	/**
 	 * @return javax.swing.JMenuItem
 	 */
 	private javax.swing.JMenuItem getJMenuItemPlayLog() {
-		if(jMenuItemPlayLog == null) {
-			jMenuItemPlayLog = UIFactoryMgr.createMenuItem(this.actionPlayLog);
+		if(fMenuItemPlayLog == null) {
+			fMenuItemPlayLog = UIFactoryMgr.createMenuItem(this.fActionPlayLog);
 		}
-		return jMenuItemPlayLog;
+		return fMenuItemPlayLog;
 	}
 
 	/**
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButtonPauseLog() {
-		if(jButtonPauseLog == null) {
-			jButtonPauseLog = UIFactoryMgr.createButton(this.actionPauseLog);
-			jButtonPauseLog.setText(null);
-			jButtonPauseLog.setMnemonic(KeyEvent.VK_UNDEFINED);
+		if(fButtonPauseLog == null) {
+			fButtonPauseLog = UIFactoryMgr.createButton(this.fActionPauseLog);
+			fButtonPauseLog.setText(null);
+			fButtonPauseLog.setMnemonic(KeyEvent.VK_UNDEFINED);
 		}
-		return jButtonPauseLog;
+		return fButtonPauseLog;
 	}
 
 	/**
 	 * @return javax.swing.JMenuItem
 	 */
 	private javax.swing.JMenuItem getJMenuItemPauseLog() {
-		if(jMenuItemPauseLog == null) {
-			jMenuItemPauseLog = UIFactoryMgr.createMenuItem(this.actionPauseLog);
+		if(fMenuItemPauseLog == null) {
+			fMenuItemPauseLog = UIFactoryMgr.createMenuItem(this.fActionPauseLog);
 		}
-		return jMenuItemPauseLog;
+		return fMenuItemPauseLog;
 	}
 
 	/**
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButtonRewindLog() {
-		if(jButtonRewindLog == null) {
-			jButtonRewindLog = UIFactoryMgr.createButton(this.actionRewindLog);
-			jButtonRewindLog.setText(null);
-			jButtonRewindLog.setMnemonic(KeyEvent.VK_UNDEFINED);
+		if(fButtonRewindLog == null) {
+			fButtonRewindLog = UIFactoryMgr.createButton(this.fActionRewindLog);
+			fButtonRewindLog.setText(null);
+			fButtonRewindLog.setMnemonic(KeyEvent.VK_UNDEFINED);
 		}
-		return jButtonRewindLog;
+		return fButtonRewindLog;
 	}
 
 	/**
 	 * @return javax.swing.JMenuItem
 	 */
 	private javax.swing.JMenuItem getJMenuItemRewindLog() {
-		if(jMenuItemRewindLog == null) {
-			jMenuItemRewindLog = UIFactoryMgr.createMenuItem(this.actionRewindLog);
+		if(fMenuItemRewindLog == null) {
+			fMenuItemRewindLog = UIFactoryMgr.createMenuItem(this.fActionRewindLog);
 		}
-		return jMenuItemRewindLog;
+		return fMenuItemRewindLog;
 	}
 
 	/**
 	 * @return the left panel
 	 */
 	private SessionViewLeftPanel getLeftPanel() {
-		if(leftPanel == null) {
-			leftPanel = new SessionViewLeftPanel();
+		if(fLeftPanel == null) {
+			fLeftPanel = new SessionViewLeftPanel();
 		}
-		return leftPanel;
+		return fLeftPanel;
 	}
 
 	/**
@@ -529,12 +540,12 @@ public final class LogPlaybackView extends SessionView {
 		buttonNewViewBoardHandler = new ButtonNewViewBoardHandler(dataViewBoardHandler, rmsDataViewBoardRepository);
 		actionShowHideLegendWindow = new ActionShowLegendWindow(viewContainer);
 
-		replaySpeedPanel = new ReplaySpeedPanel(rmsLogReplay);
+		fReplaySpeedPanel = new ReplaySpeedPanel(fLogReplay);
 
 		dataViewBoardHandler.addObserver(this);
 
 		this.htmlGenerator = new HTMLGenerator(this.viewContainer,
-				dataViewBoardHandler, this.eventHandler);
+				dataViewBoardHandler, this.fEventHandler);
 
 		JTree tree = getLeftPanel().getSessionTree();
 		tree.setModel(this.sessionModel);
@@ -544,11 +555,11 @@ public final class LogPlaybackView extends SessionView {
 		tree.setEditable(false);
 		tree.getSelectionModel().setSelectionMode(
 				TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
-		tree.addMouseListener(this.eventHandler);
-		tree.addTreeSelectionListener(this.eventHandler);
+		tree.addMouseListener(this.fEventHandler);
+		tree.addTreeSelectionListener(this.fEventHandler);
 
 		LogReplayTreeExplorer treeExplorer = new LogReplayTreeExplorer();
-		entityOperationsPanel = new EntityOperationsPanel(
+		fEntityOperationsPanel = new EntityOperationsPanel(
 				this.viewContainer,
 				this.rmsDataEngineService,
 				this.rmsDataViewBoardRepository,
@@ -559,7 +570,7 @@ public final class LogPlaybackView extends SessionView {
 				this.dataViewBoardHandler,
 				this.dataViewBoardHandler,
 				this.dataViewBoardHandler);
-		agentOperationsPanel = 	new AgentOperationsPanel(
+		fAgentOperationsPanel = 	new AgentOperationsPanel(
 				this.viewContainer,
 				this.rmsDataEngineService,
 				this.rmsDataViewBoardRepository,
@@ -569,7 +580,7 @@ public final class LogPlaybackView extends SessionView {
 				treeExplorer,
 				this.dataViewBoardHandler,
 				this.dataViewBoardHandler);
-		hostOperationsPanel = new HostOperationsPanel(
+		fHostOperationsPanel = new HostOperationsPanel(
 				this.viewContainer,
 				this.rmsDataEngineService,
 				this.rmsDataViewBoardRepository,
@@ -579,7 +590,7 @@ public final class LogPlaybackView extends SessionView {
 				treeExplorer,
 				this.dataViewBoardHandler,
 				this.dataViewBoardHandler);
-		schemeOperationsPanel = new SessionOperationsPanel(
+		fSchemeOperationsPanel = new SessionOperationsPanel(
 				this.viewContainer,
 				this.rmsDataEngineService,
 				this.rmsDataViewBoardRepository,
@@ -597,7 +608,7 @@ public final class LogPlaybackView extends SessionView {
 	private void handlePlayLog() {
 		try {
 			// reset controls first if not paused
-			if(canResetScreens) {
+			if(fCanResetScreens) {
 				dataViewBoardHandler.reset();
 			}
 			viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
@@ -606,13 +617,13 @@ public final class LogPlaybackView extends SessionView {
 					MessageRepository.get(
 						Msg.TEXT_STARTINGREPLAY)) {
 				public void work() throws Exception {
-				    rmsLogReplay.startReplay(fReplayConfiguration);
+				    fLogReplay.startReplay();
 				}
 				public void finished(Throwable ex) {
 					if(ex == null) {
-					    actionPlayLog.setEnabled(false);
-						actionPauseLog.setEnabled(true);
-						actionRewindLog.setEnabled(true);
+					    fActionPlayLog.setEnabled(false);
+						fActionPauseLog.setEnabled(true);
+						fActionRewindLog.setEnabled(true);
 					}
 				}
 			});
@@ -626,20 +637,20 @@ public final class LogPlaybackView extends SessionView {
 	 */
 	private void handlePauseLog() {
 		try {
-			canResetScreens = false;
+			fCanResetScreens = false;
 			viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(
 						Msg.TEXT_PAUSINGREPLAY)) {
 				public void work() throws Exception {
-				    rmsLogReplay.pauseReplay();
+				    fLogReplay.pauseReplay();
 				}
 				public void finished(Throwable ex) {
 					if(ex == null) {
-						actionPlayLog.setEnabled(true);
-						actionPauseLog.setEnabled(false);
-						actionRewindLog.setEnabled(true);
+						fActionPlayLog.setEnabled(true);
+						fActionPauseLog.setEnabled(false);
+						fActionRewindLog.setEnabled(true);
 					}
 				}
 			});
@@ -653,21 +664,21 @@ public final class LogPlaybackView extends SessionView {
 	 */
 	private void handleRewindLog() {
 		try {
-			canResetScreens = true;
-			logStateHandler.reset();
+			fCanResetScreens = true;
+			fLogStateHandler.reset();
 			viewContainer.getAppWorker().runJob(new UIWorkerJobDefault(
 					viewContainer.getAppFrame(),
 					Cursor.WAIT_CURSOR,
 					MessageRepository.get(
 						Msg.TEXT_REWINDINGLOG)) {
 				public void work() throws Exception {
-				    rmsLogReplay.stopReplay();
+				    fLogReplay.stopReplay();
 				}
 				public void finished(Throwable ex) {
 					if(ex == null) {
-						actionPlayLog.setEnabled(true);
-						actionPauseLog.setEnabled(false);
-						actionRewindLog.setEnabled(false);
+						fActionPlayLog.setEnabled(true);
+						fActionPauseLog.setEnabled(false);
+						fActionRewindLog.setEnabled(false);
 					}
 				}
 			});
@@ -691,45 +702,45 @@ public final class LogPlaybackView extends SessionView {
 			if(o instanceof HostNode) {
 				HostNode hn = (HostNode)o;
 				ResourceId context = hn.getResourceId();
-				hostOperationsPanel.getPanelViews().setDataViews(
+				fHostOperationsPanel.getPanelViews().setDataViews(
 						context,
 						hn.getHostInfo().getDataViewInfo());
-				hostOperationsPanel.getPanelDashboards().setDashboards(
+				fHostOperationsPanel.getPanelDashboards().setDashboards(
 						context,
 						hn.getHostInfo().getDashboardInfo());
-				getLeftPanel().setBottomComponent(this.hostOperationsPanel);
+				getLeftPanel().setBottomComponent(this.fHostOperationsPanel);
 			} else if(o instanceof AgentNode) {
 				AgentNode an = (AgentNode)o;
-				agentOperationsPanel.getPanelConfig().setAgentConfiguration(an);
+				fAgentOperationsPanel.getPanelConfig().setAgentConfiguration(an);
 				ResourceId context = an.getResourceId();
-				agentOperationsPanel.getPanelViews().setDataViews(
+				fAgentOperationsPanel.getPanelViews().setDataViews(
 						context,
 						an.getAgentInfo().getDataViewInfo());
-				agentOperationsPanel.getPanelDashboards().setDashboards(
+				fAgentOperationsPanel.getPanelDashboards().setDashboards(
 						context,
 						an.getAgentInfo().getDashboardInfo());
-				getLeftPanel().setBottomComponent(this.agentOperationsPanel);
+				getLeftPanel().setBottomComponent(this.fAgentOperationsPanel);
 			} else if(o instanceof EntityNode){
 				EntityNode en = (EntityNode)o;
 				ResourceId context = en.getResourceId();
-				entityOperationsPanel.getPanelConfig().setConfiguration(en);
-				entityOperationsPanel.getPanelViews().setDataViews(
+				fEntityOperationsPanel.getPanelConfig().setConfiguration(en);
+				fEntityOperationsPanel.getPanelViews().setDataViews(
 						context,
 						en.getEntityInfo().getDataViewInfo());
-				entityOperationsPanel.getPanelDashboards().setDashboards(
+				fEntityOperationsPanel.getPanelDashboards().setDashboards(
 						context,
 						en.getEntityInfo().getDashboardInfo());
-				getLeftPanel().setBottomComponent(this.entityOperationsPanel);
+				getLeftPanel().setBottomComponent(this.fEntityOperationsPanel);
 			} else if(o instanceof SessionNode) {
 				SessionNode sn = (SessionNode)o;
 				ResourceId context = sn.getResourceId();
-				schemeOperationsPanel.getPanelViews().setDataViews(
+				fSchemeOperationsPanel.getPanelViews().setDataViews(
 						context,
 						sn.getSessionInfo().getDataViewInfo());
-				schemeOperationsPanel.getPanelDashboards().setDashboards(
+				fSchemeOperationsPanel.getPanelDashboards().setDashboards(
 						context,
 						sn.getSessionInfo().getDashboardInfo());
-				getLeftPanel().setBottomComponent(this.schemeOperationsPanel);
+				getLeftPanel().setBottomComponent(this.fSchemeOperationsPanel);
 			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
@@ -741,11 +752,11 @@ public final class LogPlaybackView extends SessionView {
      */
     private void handleReachedEndOfLogForRead() {
         try {
-        	this.canResetScreens = true;
-        	this.logStateHandler.finshed();
-            this.actionPlayLog.setEnabled(false);
-            this.actionPauseLog.setEnabled(false);
-            this.actionRewindLog.setEnabled(true);
+        	this.fCanResetScreens = true;
+        	this.fLogStateHandler.finshed();
+            this.fActionPlayLog.setEnabled(false);
+            this.fActionPauseLog.setEnabled(false);
+            this.fActionRewindLog.setEnabled(true);
 		} catch(Exception e) {
 			UIExceptionMgr.exception(e);
 		}
@@ -755,18 +766,9 @@ public final class LogPlaybackView extends SessionView {
      * Handles end of log event.
      * @param ti
      */
-    private void handleReachedEndOfLogForScan(TimeInterval ti) {
+    private void handleReachedEndOfLogForScan(BoundedTimeInterval ti) {
         try {
-			this.logStateHandler = new LogReplayProgressHandler(
-					 viewContainer,
-					 MessageRepository.get(
-					           Msg.TEXT_LOADED_LOG,
-					           new String[]{fReplayConfiguration.getLogOne().getLogRepository().getRepositoryName()}),
-					fReplayConfiguration == null ? ti.getStart() : fReplayConfiguration.getLogOne().getTimeInterval().getStart(),
-					fReplayConfiguration == null ? ti.getEnd() : fReplayConfiguration.getLogOne().getTimeInterval().getEnd());
-			if(fReplayConfiguration != null) {
-				handlePlayLog();
-			}
+        	;//
 		} catch(Exception e) {
 			UIExceptionMgr.exception(e);
 		}
@@ -778,7 +780,7 @@ public final class LogPlaybackView extends SessionView {
      */
 	private void handleReadProgress(long time) {
         try {
-        	this.logStateHandler.setProgress(time);
+        	this.fLogStateHandler.setProgress(time);
         } catch(Exception e) {
 			UIExceptionMgr.exception(e);
 		}
@@ -789,10 +791,10 @@ public final class LogPlaybackView extends SessionView {
      */
     private void handleReplayFatalError(Exception e) {
         try {
-        	this.canResetScreens = true;
-            this.actionPlayLog.setEnabled(false);
-            this.actionPauseLog.setEnabled(false);
-            this.actionRewindLog.setEnabled(true);
+        	this.fCanResetScreens = true;
+            this.fActionPlayLog.setEnabled(false);
+            this.fActionPauseLog.setEnabled(false);
+            this.fActionRewindLog.setEnabled(true);
             UIExceptionMgr.userException(e);
 		} catch(Exception ex) {
 			UIExceptionMgr.exception(ex);

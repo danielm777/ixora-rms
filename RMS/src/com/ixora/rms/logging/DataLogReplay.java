@@ -12,6 +12,7 @@ import java.util.Observer;
 
 import com.ixora.common.ComponentConfiguration;
 import com.ixora.common.ConfigurationMgr;
+import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.rms.DataSink;
@@ -129,34 +130,38 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	}
 
 	/**
-	 * @see com.ixora.rms.services.DataLogReplayService#getScheme()
+	 * @see com.ixora.rms.services.DataLogReplayService#configure(com.ixora.rms.logging.DataLogCompareAndReplayConfiguration)
 	 */
-	public MonitoringSessionDescriptor getScheme() {
+	public synchronized MonitoringSessionDescriptor configure(
+			DataLogCompareAndReplayConfiguration config)
+			throws DataLogException {
+    	this.fReplayConfig = config;
+		initializeReaders();
+        if(this.fReader1 == null) {
+            throw new NoLogWasLoaded();
+        }
+		fScheme = fReader1.readSessionDescriptor();
+        fReplayConfig = config;
+    	// this will update fAggPeriod
+    	ConfigurationMgr.setInt(LogComponent.NAME,
+        		LogConfigurationConstants.LOG_AGGREGATION_PERIOD,
+        		config.getAggregationStep());
 		return fScheme;
 	}
 
 	/**
-	 * @see com.ixora.rms.services.DataLogReplayService#startReplay(com.ixora.rms.logging.DataLogCompareAndReplayConfiguration)
+	 * @see com.ixora.rms.services.DataLogReplayService#startReplay()
 	 */
-	public synchronized void startReplay(DataLogCompareAndReplayConfiguration config) throws DataLogException {
+	public synchronized void startReplay() throws DataLogException {
 	    if(fPaused) {
 	        // wake up the paused reader
             notify();
 	    } else if(!fPlaying) {
-	    	this.fReplayConfig = config;
-			initializeReaders();
-            if(this.fReader1 == null) {
-                throw new NoLogWasLoaded();
-            }
-
-			fScheme = fReader1.readSessionDescriptor();
+	    	if(fReplayConfig == null) {
+	    		throw new AppRuntimeException("Configuration is null");
+	    	}
 	        this.fPlaying = true;
-	        this.fReplayConfig = config;
 	        // start reading
-        	// this will update fAggPeriod
-        	ConfigurationMgr.setInt(LogComponent.NAME,
-            		LogConfigurationConstants.LOG_AGGREGATION_PERIOD,
-            		config.getAggregationStep());
         	DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig fc1 = fReplayConfig.getLogOne();
 	        fReader1.read(fEventHandler, fc1.getTimeInterval());
 	        DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig fc2 = fReplayConfig.getLogTwo();

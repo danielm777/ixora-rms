@@ -14,7 +14,7 @@ import com.ixora.common.ui.actions.ActionCancel;
 import com.ixora.common.ui.actions.ActionOk;
 import com.ixora.common.ui.forms.FormFieldDateSelector;
 import com.ixora.common.ui.forms.FormPanel;
-import com.ixora.rms.logging.TimeInterval;
+import com.ixora.rms.logging.BoundedTimeInterval;
 import com.ixora.rms.ui.RMSViewContainer;
 import com.ixora.rms.ui.messages.Msg;
 
@@ -27,15 +27,15 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 	private FormPanel fForm;
 	private FormFieldDateSelector fFormDateSelectorStart;
 	private FormFieldDateSelector fFormDateSelectorEnd;
-	private TimeInterval fResult;
-	private TimeInterval fLimits;
+	private BoundedTimeInterval fResult;
+	private BoundedTimeInterval fLimits;
 
 	/**
 	 * @param parent
 	 * @param limits
 	 */
 	public TimeIntervalSelectorDialog(RMSViewContainer container,
-			TimeInterval limits) {
+			BoundedTimeInterval limits) {
 		super(container.getAppFrame(), VERTICAL);
 		setModal(true);
 		setTitle(MessageRepository.get(Msg.TITLE_TIME_INTERVAL_SELECTOR));
@@ -98,7 +98,7 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 			} else {
 				ti[1] = fLimits.getEnd();
 			}
-			fResult = new TimeInterval(ti[0], ti[1]);
+			fResult = new BoundedTimeInterval(ti[0], ti[1]);
 			dispose();
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
@@ -108,7 +108,7 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 	/**
 	 * @return
 	 */
-	public TimeInterval getResult() {
+	public BoundedTimeInterval getResult() {
 		return fResult;
 	}
 }

@@ -36,17 +36,17 @@ public interface DataLogReplayService extends Service {
     }
 	
 	/**
+	 * @param config
 	 * @return the monitoring scheme describing the
 	 * system at the time the data was logged
 	 * @throws DataLogException
 	 */
-	MonitoringSessionDescriptor getScheme() throws DataLogException;
+	MonitoringSessionDescriptor configure(DataLogCompareAndReplayConfiguration config) throws DataLogException;	
 	/**
 	 * Replays the logs.
-	 * @param
 	 * @throws DataLogException
 	 */
-	void startReplay(DataLogCompareAndReplayConfiguration config) throws DataLogException;
+	void startReplay() throws DataLogException;
 	/**
 	 * Pauses the replay.
 	 * @throws DataLogException

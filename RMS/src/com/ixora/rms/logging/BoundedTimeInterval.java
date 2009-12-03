@@ -8,21 +8,28 @@ import com.ixora.rms.messages.Msg;
 /**
  * @author Daniel Moraru
  */
-public class TimeInterval {
-	private long timeStart;
-	private long timeEnd;
+public class BoundedTimeInterval {
+	private long fStart;
+	private long fEnd;
 	
-	public TimeInterval(long start, long end) throws RMSException {
+	public BoundedTimeInterval(long start, long end) throws RMSException {
 		super();
+		if(start == 0 || end == 0) {
+			// this is for the programmer
+			throw new IllegalArgumentException("Start and end time stamps must be set to non-zero values");
+		}
 		if(start >= end) {
+			// this is for user
 			throw new RMSException(Msg.ERROR_TIMESTAMP_MUST_BE_SMALLER_OR_EQUAL, new String[]{
 					String.valueOf(start),
 					String.valueOf(end)
 			});					
 		}
+		fStart = start;
+		fEnd = end;
 	}
 
-	public TimeInterval(long start, long end, TimeInterval limits) throws RMSException {
+	public BoundedTimeInterval(long start, long end, BoundedTimeInterval limits) throws RMSException {
 		this(start, end);
 		if(start < limits.getStart()) {
 			throw new RMSException(Msg.ERROR_TIMESTAMP_MUST_BE_GREATER_OR_EQUAL, 
@@ -37,10 +44,10 @@ public class TimeInterval {
 	}
 
 	public long getStart() {
-		return timeStart;
+		return fStart;
 	}
 
 	public long getEnd() {
-		return timeEnd;
+		return fEnd;
 	}
 }
