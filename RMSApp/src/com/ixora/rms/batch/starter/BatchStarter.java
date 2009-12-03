@@ -101,7 +101,7 @@ public class BatchStarter extends RMSAppStarter {
 					batchSession.configure(
 							new BatchSessionConfiguration(
 									sessionName,
-									new LogRepositoryInfo(LogRepositoryInfo.TYPE_XML, logFile)));
+									new LogRepositoryInfo(LogRepositoryInfo.Type.xml, logFile)));
 					batchSession.start();
 					System.out.println(MessageRepository.get(BatchComponent.NAME, Msg.SESSION_STARTED));
 				} catch(Exception e) {
