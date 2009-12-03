@@ -878,6 +878,18 @@ public class Utils {
 	}
 
 	/**
+	 * Throws {@link IllegalArgumentException} if any of the <code>objs</code> is null.
+	 * @param objs
+	 */
+	public static void checkForNull(Object... objs) {
+		for(Object obj : objs) {
+			if(obj == null) {
+				throw new IllegalArgumentException("null parameters");
+			}
+		}
+	}
+	
+	/**
 	 * @param locations
 	 * @param selLocation
 	 */
