@@ -6,6 +6,7 @@ import com.ixora.rms.HostId;
 import com.ixora.rms.agents.AgentDescriptor;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.logging.LogRepositoryInfo;
+import com.ixora.rms.logging.TimeInterval;
 import com.ixora.rms.logging.exception.DataLogException;
 
 /**
@@ -34,11 +35,10 @@ public interface DataLogScanningService extends Service {
         /**
          * Invoked when the end of log is reached for scanning.
          * @param rep
-         * @param beginTimestamp
-         * @param endTimestamp
+         * @param ti
          * @return the configuration to use for parsing logged data
          */
-        void finishedScanningLog(LogRepositoryInfo rep, long beginTimestamp, long endTimestamp);
+        void finishedScanningLog(LogRepositoryInfo rep, TimeInterval ti);
         /**
          * Invoked when a fatal error occurred during replay.
          * @param rep

@@ -35,10 +35,9 @@ public interface DataLogReader {
     	/**
     	 * Invoked when scanning finished.
     	 * @param source the source of the callback.
-    	 * @param beginTimestamp
-    	 * @param endTimestamp
+    	 * @param ti
     	 */
-    	void finishedScanning(DataLogReader source, long beginTimestamp, long endTimestamp);
+    	void finishedScanning(DataLogReader source, TimeInterval ti);
         /**
          * @param source the source of the callback.
          * @param e fatal error encountered during scanning
@@ -85,11 +84,10 @@ public interface DataLogReader {
 	/**
 	 * Starts reading.
 	 * @param cb callback to handle read events
-	 * @param timestampEnd
-	 * @param timestampBegin
+	 * @param ti
 	 * @throws DataLogException
 	 */
-	void read(ReadCallback cb, long timestampBegin, long timestampEnd) throws DataLogException;
+	void read(ReadCallback cb, TimeInterval ti) throws DataLogException;
 	/**
 	 * Stops reading and closes this reader.
 	 * @throws DataLogException

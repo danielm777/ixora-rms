@@ -6,26 +6,23 @@ package com.ixora.rms.logging;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.ixora.rms.DataSinkTrimmed;
-import com.ixora.rms.HostId;
-import com.ixora.rms.RecordDefinitionCache;
-import com.ixora.rms.ResourceId;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
+import com.ixora.rms.DataSinkTrimmed;
 import com.ixora.rms.EntityDataBuffer;
 import com.ixora.rms.EntityId;
+import com.ixora.rms.HostId;
 import com.ixora.rms.RecordDefinition;
+import com.ixora.rms.RecordDefinitionCache;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.AgentDataBuffer;
 import com.ixora.rms.agents.AgentDescriptor;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.exception.AgentDescriptorNotFound;
 import com.ixora.rms.exception.RecordDefinitionNotFound;
-import com.ixora.rms.logging.db.DataLogRepositoryDB;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.logging.exception.InvalidLogRepository;
-import com.ixora.rms.logging.messages.Msg;
-import com.ixora.rms.logging.xml.DataLogRepositoryXML;
 import com.ixora.rms.services.DataLogService;
 
 /**
@@ -37,39 +34,39 @@ public final class DataLogger implements DataLogService,
 	/** Logger */
 	private static final AppLogger logger = AppLoggerFactory.getLogger(DataLogger.class);
 	/** Whether or not logging is in progress */
-	private boolean logging;
+	private boolean fLogging;
 	/** Data writer */
-	private DataLogWriter writer;
+	private DataLogWriter fWriter;
 	/** Record definition cache */
-	private RecordDefinitionCache rdCache;
+	private RecordDefinitionCache fRdCache;
 	/** Set of all logged entities */
-	private Set<ResourceId> loggedEntities;
+	private Set<ResourceId> fLoggedEntities;
     /** Set of all logged agents */
-    private Set<ResourceId> loggedAgents;
+    private Set<ResourceId> fLoggedAgents;
     /** Listener */
-    private Listener listener;
+    private Listener fListener;
 
 	/**
 	 * Constructor.
 	 */
 	public DataLogger() {
 		super();
-		loggedEntities = new HashSet<ResourceId>();
-        loggedAgents = new HashSet<ResourceId>();
+		fLoggedEntities = new HashSet<ResourceId>();
+        fLoggedAgents = new HashSet<ResourceId>();
 	}
 
 	/**
 	 * @see com.ixora.rms.DataSinkTrimmed#setRecordDefinitionCache(com.ixora.rms.RecordDefinitionCache)
 	 */
 	public void setRecordDefinitionCache(RecordDefinitionCache rdc) {
-		this.rdCache = rdc;
+		this.fRdCache = rdc;
 	}
 
 	/**
 	 * @see com.ixora.rms.DataSink#receiveDataBuffer(AgentDataBuffer)
 	 */
 	public synchronized void receiveDataBuffers(AgentDataBuffer[] buffs) {
-		if(logging) {
+		if(fLogging) {
             if(buffs == null) {
                 logger.error("No agent data buffers");
                 return;
@@ -98,16 +95,16 @@ public final class DataLogger implements DataLogService,
 	                    // see if the buffer contains new agents and if so
 	                    // make sure the agent descriptor gets logged as well
 	                    ResourceId rid = new ResourceId(host, agent, null, null);
-	                    if(!loggedAgents.contains(rid)) {
+	                    if(!fLoggedAgents.contains(rid)) {
 	                        // get the agent descriptor from the cache
 	                        // and log it
-	                        AgentDescriptor ad = rdCache.getAgentDescriptor(host, agent);
+	                        AgentDescriptor ad = fRdCache.getAgentDescriptor(host, agent);
 	                        if(ad == null) {
 	                        	isCriticalBuffer = true;
 	                            throw new AgentDescriptorNotFound(agent);
 	                        } else {
 	                            buff.setAgentDescriptor(ad);
-	                            loggedAgents.add(rid);
+	                            fLoggedAgents.add(rid);
 	                        }
 	                    }
 						// see if the buffer contains new entities
@@ -122,17 +119,17 @@ public final class DataLogger implements DataLogService,
 										// see if not logged before
 										EntityId eid = eb.getEntityId();
 										rid = new ResourceId(host, agent, eid, null);
-										if(!loggedEntities.contains(rid)) {
+										if(!fLoggedEntities.contains(rid)) {
 											// get the record definition from the cache
 											// and log it
-											RecordDefinition rd = rdCache.getRecordDefinition(
+											RecordDefinition rd = fRdCache.getRecordDefinition(
 													host, agent, eid);
 											if(rd == null) {
 												isCriticalBuffer = true;
 												throw new RecordDefinitionNotFound(eb.getEntityId());
 											} else {
 												eb.setDefinition(rd);
-												loggedEntities.add(rid);
+												fLoggedEntities.add(rid);
 											}
 										}
 									}
@@ -140,10 +137,10 @@ public final class DataLogger implements DataLogService,
 									handleError(t, isCriticalBuffer);
 								}
 							}
-							if(writer != null) {
+							if(fWriter != null) {
 								try {
 									// if anything happens here bail out
-									writer.writeBuffer(buff);
+									fWriter.writeBuffer(buff);
 								} catch(Throwable e) {
 									isCriticalBuffer = true;
 									throw e;
@@ -165,7 +162,7 @@ public final class DataLogger implements DataLogService,
 	 */
 	private void handleError(Throwable t, boolean fatal) {
 		if(fatal) {
-			this.listener.error(t);
+			this.fListener.error(t);
 			reset();
 		} else {
 			logger.error(t);
@@ -181,37 +178,23 @@ public final class DataLogger implements DataLogService,
 		if(rep == null || listener == null) {
 			throw new IllegalArgumentException("null params");
 		}
-		this.listener = listener;
-		String type = rep.getRepositoryType();
-		if(LogRepositoryInfo.TYPE_XML.equals(type)) {
-			writer = new DataLogRepositoryXML().getWriter(rep);
-			writer.writeSessionDescriptor(scheme);
-		} else if(LogRepositoryInfo.TYPE_DATABASE.equals(type)) {
-			writer = new DataLogRepositoryDB().getWriter(rep);
-			writer.writeSessionDescriptor(scheme);
-		} else {
-			InvalidLogRepository e = new InvalidLogRepository(
-			        Msg.LOGGING_UNRECOGNIZED_LOG_TYPE,
-			        new String[]{rep.getRepositoryType()});
-			e.setIsInternalAppError();
-			throw e;
-		}
-		if(writer != null) {
-			logging = true;
-		}
+		this.fListener = listener;
+		fWriter = DataLogUtils.createWriter(rep);
+		fWriter.writeSessionDescriptor(scheme);
+		fLogging = true;
     }
 
     /**
      * @see com.ixora.rms.services.DataLogService#stopLogging()
      */
     public synchronized void stopLogging() throws DataLogException {
-		logging = false;
-		if(writer != null) {
-			writer.close();
-			writer = null;
+		fLogging = false;
+		if(fWriter != null) {
+			fWriter.close();
+			fWriter = null;
 		}
-		loggedEntities.clear();
-		loggedAgents.clear();
+		fLoggedEntities.clear();
+		fLoggedAgents.clear();
     }
 
 	/**
@@ -226,14 +209,14 @@ public final class DataLogger implements DataLogService,
 	 */
 	private void reset() {
 	    try {
-		    logging = false;
-		    if(writer != null) {
-		        writer.close();
-		        writer = null;
+		    fLogging = false;
+		    if(fWriter != null) {
+		        fWriter.close();
+		        fWriter = null;
 		    }
-		    listener = null;
-			loggedEntities.clear();
-			loggedAgents.clear();
+		    fListener = null;
+			fLoggedEntities.clear();
+			fLoggedAgents.clear();
 	    } catch(DataLogException e) {
             logger.error(e);
         }

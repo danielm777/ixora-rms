@@ -22,6 +22,7 @@ import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.logging.DataLogReader;
 import com.ixora.rms.logging.LogComponent;
+import com.ixora.rms.logging.TimeInterval;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.logging.exception.InvalidLog;
 import com.ixora.rms.logging.exception.InvalidLogRepository;
@@ -53,10 +54,8 @@ public final class DataLogReaderXML implements DataLogReader {
     private Thread fScannerThread;
     /** Event handler */
     private EventHandler fEventHandler;
-    /** The begining of the log data */
-    private long fTimestampBegin;
-    /** Last timestamp in the log */
-    private long fTimestampEnd;
+    /** The interval of the log data */
+    private TimeInterval fTimeInterval;
 
     /**
      * Event handler.
@@ -150,20 +149,19 @@ public final class DataLogReaderXML implements DataLogReader {
         }
 	}
 
-	/**
-     * @see com.ixora.rms.logging.DataLogReader#read(com.ixora.rms.logging.DataLogReader.ReadCallback, long, long)
+    /**
+     * @see com.ixora.rms.logging.DataLogReader#read(com.ixora.rms.logging.DataLogReader.ReadCallback, com.ixora.rms.logging.TimeInterval)
      */
-    public void read(ReadCallback cb, long beginTimestamp, long endTimestamp) throws DataLogException {
+    public void read(ReadCallback cb, TimeInterval ti) throws DataLogException {
         if(cb == null) {
             throw new IllegalArgumentException("null callback");
         }
-        this.fTimestampBegin = beginTimestamp;
-        this.fTimestampEnd = endTimestamp;
+        this.fTimeInterval = ti;
         this.fReadCallback = cb;
         this.fReaderThread = new Thread(new Runnable(){
             public void run() {
                 try {
-                    fParser.parse(fTimestampBegin, fTimestampEnd);
+                    fParser.parse(fTimeInterval);
                 } catch(Exception e) {
                     fReadCallback.handleReadFatalError(DataLogReaderXML.this, e);
                 }
@@ -179,8 +177,7 @@ public final class DataLogReaderXML implements DataLogReader {
         if(cb == null) {
             throw new IllegalArgumentException("null callback");
         }
-        fTimestampBegin = 0;
-        fTimestampEnd = 0;
+        fTimeInterval = null;
         this.fScanCallback = cb;
         this.fScannerThread = new Thread(new Runnable(){
             public void run() {
@@ -241,9 +238,8 @@ public final class DataLogReaderXML implements DataLogReader {
 	 */
 	private void handleFinishedScanning(long beginTimestamp, long endTimestamp) {
         try {
-            this.fScanCallback.finishedScanning(this, beginTimestamp, endTimestamp);
-            fTimestampBegin = beginTimestamp;
-            fTimestampEnd = endTimestamp;
+        	fTimeInterval = new TimeInterval(beginTimestamp, endTimestamp);
+            this.fScanCallback.finishedScanning(this, fTimeInterval);
         } catch(Exception e) {
             sLogger.error(e);
         }

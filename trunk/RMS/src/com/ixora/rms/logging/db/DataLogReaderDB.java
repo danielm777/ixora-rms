@@ -5,6 +5,7 @@ package com.ixora.rms.logging.db;
 
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.logging.DataLogReader;
+import com.ixora.rms.logging.TimeInterval;
 import com.ixora.rms.logging.exception.DataLogException;
 
 /**
@@ -38,9 +39,9 @@ public class DataLogReaderDB implements DataLogReader {
 	}
 
 	/**
-	 * @see com.ixora.rms.logging.DataLogReader#read(com.ixora.rms.logging.DataLogReader.ReadCallback, long, long)
+	 * @see com.ixora.rms.logging.DataLogReader#read(com.ixora.rms.logging.DataLogReader.ReadCallback, com.ixora.rms.logging.TimeInterval)
 	 */
-	public void read(ReadCallback cb, long timestampBegin, long timestampEnd)
+	public void read(ReadCallback cb, TimeInterval ti)
 			throws DataLogException {
 		// TODO Auto-generated method stub
 

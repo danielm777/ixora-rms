@@ -19,7 +19,6 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
-import com.ixora.rms.RecordDefinitionCache;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.utils.HexConverter;
@@ -33,6 +32,7 @@ import com.ixora.rms.EntityDescriptor;
 import com.ixora.rms.EntityDescriptorImpl;
 import com.ixora.rms.EntityId;
 import com.ixora.rms.RecordDefinition;
+import com.ixora.rms.RecordDefinitionCache;
 import com.ixora.rms.agents.AgentDataBufferImpl;
 import com.ixora.rms.agents.AgentDescriptor;
 import com.ixora.rms.agents.AgentDescriptorImpl;
@@ -44,6 +44,7 @@ import com.ixora.rms.data.CounterValueString;
 import com.ixora.rms.data.ValueObject;
 import com.ixora.rms.exception.AgentDescriptorNotFound;
 import com.ixora.rms.exception.RecordDefinitionNotFound;
+import com.ixora.rms.logging.TimeInterval;
 
 /**
  * XML data log parser.
@@ -138,17 +139,16 @@ final class LogParser extends DefaultHandler implements Tags {
 
     /**
      * Start parsing.
-     * @param timestampEnd
-     * @param timestampBegin
+     * @param ti
      * @return false on failure
      * @throws SAXException
      * @throws IOException
      */
-    public void parse(long timestampBegin, long timestampEnd) throws IOException, SAXException {
+    public void parse(TimeInterval ti) throws IOException, SAXException {
         try {
-        	this.fTimestampBegin = timestampBegin;
-        	this.fTimestampEnd = timestampEnd;
-        	this.fTimestampLastProgress = timestampBegin;
+        	this.fTimestampBegin = ti.getStart();
+        	this.fTimestampEnd = ti.getEnd();
+        	this.fTimestampLastProgress = ti.getStart();
 	        this.fParser.setContentHandler(this);
 	        this.fParser.setErrorHandler(this);
 	        this.fParser.parse(new InputSource(this.fSource));
