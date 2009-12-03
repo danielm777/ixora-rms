@@ -70,15 +70,12 @@ import com.ixora.rms.RMSModule;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
-import com.ixora.rms.logging.DataLogScanning;
 import com.ixora.rms.logging.LogComponent;
-import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.reactions.ReactionsComponent;
 import com.ixora.rms.reactions.email.ReactionsEmailComponent;
 import com.ixora.rms.services.AgentInstallerService;
 import com.ixora.rms.services.AgentRepositoryService;
 import com.ixora.rms.services.AgentTemplateRepositoryService;
-import com.ixora.rms.services.DataLogReplayService;
 import com.ixora.rms.services.HostMonitorService;
 import com.ixora.rms.services.ParserRepositoryService;
 import com.ixora.rms.services.ProviderInstanceRepositoryService;
@@ -88,8 +85,6 @@ import com.ixora.rms.ui.dataviewboard.charts.ChartsBoardComponent;
 import com.ixora.rms.ui.dataviewboard.logs.LogBoardComponent;
 import com.ixora.rms.ui.dataviewboard.properties.PropertiesBoardComponent;
 import com.ixora.rms.ui.dataviewboard.tables.TablesBoardComponent;
-import com.ixora.rms.ui.logchooser.LogChooser;
-import com.ixora.rms.ui.logchooser.LogChooserImpl;
 import com.ixora.rms.ui.messages.Msg;
 import com.ixora.rms.ui.session.MonitoringSessionRepository;
 import com.ixora.rms.ui.session.MonitoringSessionRepositoryComponent;
@@ -97,6 +92,7 @@ import com.ixora.rms.ui.session.MonitoringSessionRepositoryImpl;
 import com.ixora.rms.ui.tools.agentinstaller.AgentInstallerDialog;
 import com.ixora.rms.ui.tools.providermanager.ProviderInstanceManagerDialog;
 import com.ixora.rms.ui.views.logreplay.DataLogCompareAndReplayConfigurationDialog;
+import com.ixora.rms.ui.views.logreplay.DataLogReplayConfigurationDialog;
 import com.ixora.rms.ui.views.logreplay.LogPlaybackView;
 import com.ixora.rms.ui.views.session.LiveSessionView;
 
@@ -919,11 +915,13 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 				return;
 			}
 			DataLogCompareAndReplayConfigurationDialog dlg = new DataLogCompareAndReplayConfigurationDialog(this);
+			fCurrentView = new LogPlaybackView(RMSFrame.this, RMS.getDataLogReplay(), dlg.getScanningService());
 			UIUtils.centerDialogAndShow(this, dlg);
 			DataLogCompareAndReplayConfiguration conf = dlg.getResult();
 			if(conf != null) {
 				try {
-					fCurrentView = new LogPlaybackView(RMSFrame.this, RMS.getDataLogReplay(), null, conf);
+					((LogPlaybackView)fCurrentView).setReplayConfiguration(conf);
+					fCurrentView.initialize();
 				} catch (Throwable e) {
 					resetCurrentView();
 					UIExceptionMgr.userException(e);
@@ -942,33 +940,19 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 			if (resetCurrentView()) {
 				return;
 			}
-			final DataLogReplayService replayService = RMS.getDataLogReplay();
-			// run this job synchronously as
-			// it does UI work
-			this.fWorker.runJobSynch(new UIWorkerJobDefault(this,
-					Cursor.WAIT_CURSOR, MessageRepository
-							.get(Msg.TEXT_LOADING_LOG_VIEW)) {
-				public void work() throws Throwable {
-					LogChooser logChooser = new LogChooserImpl(
-					        RMSFrame.this);
-					LogRepositoryInfo log = logChooser.getLogInfoForRead();
-					if(log != null) {
-						fCurrentView = new LogPlaybackView(RMSFrame.this, replayService, 
-								new DataLogCompareAndReplayConfiguration(
-										new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(log, 0, 0)
-										null, ;
-					}
+			DataLogReplayConfigurationDialog dlg = new DataLogReplayConfigurationDialog(this);
+			fCurrentView = new LogPlaybackView(RMSFrame.this, RMS.getDataLogReplay(), dlg.getScanningService());
+			UIUtils.centerDialogAndShow(this, dlg);
+			DataLogCompareAndReplayConfiguration conf = dlg.getResult();
+			if(conf != null) {
+				try {
+					((LogPlaybackView)fCurrentView).setReplayConfiguration(conf);
+					fCurrentView.initialize();
+				} catch (Throwable e) {
+					resetCurrentView();
+					UIExceptionMgr.userException(e);
 				}
-
-				public void finished(Throwable ex) {
-					if (ex != null) {
-						resetCurrentView();
-					}
-				}
-			});
-			if (fCurrentView != null) {
-				fCurrentView.initialize();
-			}
+			}			
 		} catch (Throwable e) {
 			resetCurrentView();
 			UIExceptionMgr.userException(e);
