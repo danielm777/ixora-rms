@@ -46,6 +46,7 @@ import com.ixora.rms.exception.AgentIsNotInstalled;
 import com.ixora.rms.exception.RMSException;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogRepositoryInfo;
+import com.ixora.rms.logging.TimeInterval;
 import com.ixora.rms.repository.AgentInstallationData;
 import com.ixora.rms.services.DataLogReplayService;
 import com.ixora.rms.services.DataLogScanningService;
@@ -208,12 +209,12 @@ public final class LogPlaybackView extends SessionView {
             });
 		}
 		/**
-		 * @see com.ixora.rms.services.DataLogScanningService.ScanListener#finishedScanningLog(com.ixora.rms.logging.LogRepositoryInfo, long, long)
+		 * @see com.ixora.rms.services.DataLogScanningService.ScanListener#finishedScanningLog(com.ixora.rms.logging.LogRepositoryInfo, com.ixora.rms.logging.TimeInterval)
 		 */
-		public void finishedScanningLog(LogRepositoryInfo rep, final long beginTimestamp, final long endTimestamp) {
+		public void finishedScanningLog(LogRepositoryInfo rep, final TimeInterval ti) {
             SwingUtilities.invokeLater(new Runnable(){
                 public void run() {
-                    handleReachedEndOfLogForScan(beginTimestamp, endTimestamp);
+                    handleReachedEndOfLogForScan(ti);
                 }
             });
 		}
@@ -752,18 +753,17 @@ public final class LogPlaybackView extends SessionView {
 
     /**
      * Handles end of log event.
-     * @param endTimestamp
-     * @param beginTimestamp
+     * @param ti
      */
-    private void handleReachedEndOfLogForScan(long beginTimestamp, long endTimestamp) {
+    private void handleReachedEndOfLogForScan(TimeInterval ti) {
         try {
 			this.logStateHandler = new LogReplayProgressHandler(
 					 viewContainer,
 					 MessageRepository.get(
 					           Msg.TEXT_LOADED_LOG,
 					           new String[]{fReplayConfiguration.getLogOne().getLogRepository().getRepositoryName()}),
-					fReplayConfiguration == null ? beginTimestamp : fReplayConfiguration.getLogOne().getTimeBegin(),
-					fReplayConfiguration == null ? endTimestamp : fReplayConfiguration.getLogOne().getTimeEnd());
+					fReplayConfiguration == null ? ti.getStart() : fReplayConfiguration.getLogOne().getTimeInterval().getStart(),
+					fReplayConfiguration == null ? ti.getEnd() : fReplayConfiguration.getLogOne().getTimeInterval().getEnd());
 			if(fReplayConfiguration != null) {
 				handlePlayLog();
 			}

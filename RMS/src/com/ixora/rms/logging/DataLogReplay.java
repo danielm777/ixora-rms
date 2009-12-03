@@ -19,12 +19,9 @@ import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.AgentDataBuffer;
 import com.ixora.rms.client.session.MonitoringSessionDescriptor;
 import com.ixora.rms.logging.data.AggAgentDataBuffer;
-import com.ixora.rms.logging.db.DataLogRepositoryDB;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.logging.exception.InvalidLogRepository;
 import com.ixora.rms.logging.exception.NoLogWasLoaded;
-import com.ixora.rms.logging.messages.Msg;
-import com.ixora.rms.logging.xml.DataLogRepositoryXML;
 import com.ixora.rms.services.DataLogReplayService;
 
 /**
@@ -161,10 +158,10 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
             		LogConfigurationConstants.LOG_AGGREGATION_PERIOD,
             		config.getAggregationStep());
         	DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig fc1 = fReplayConfig.getLogOne();
-	        fReader1.read(fEventHandler, fc1.getTimeBegin(), fc1.getTimeEnd());
+	        fReader1.read(fEventHandler, fc1.getTimeInterval());
 	        DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig fc2 = fReplayConfig.getLogTwo();
 	        if(fc2 != null) {
-		        fReader2.read(fEventHandler, fc2.getTimeBegin(), fc2.getTimeEnd());	        	
+		        fReader2.read(fEventHandler, fc2.getTimeInterval());	        	
 	        }	        
 	    }
 	    this.fPaused = false;
@@ -431,28 +428,10 @@ public final class DataLogReplay implements DataLogReplayService, Observer {
 	 */
 	private void initializeReaders() throws InvalidLogRepository, DataLogException {
         reset();
-        fReader1 = createReader(fReplayConfig.getLogOne().getLogRepository());
+        fReader1 = DataLogUtils.createReader(fReplayConfig.getLogOne().getLogRepository());
         if(fReplayConfig.getLogTwo() != null) {
-        	fReader2 = createReader(fReplayConfig.getLogTwo().getLogRepository());
+        	fReader2 = DataLogUtils.createReader(fReplayConfig.getLogTwo().getLogRepository());
         }
-	}
-
-	private DataLogReader createReader(LogRepositoryInfo repositoryInfo1) throws InvalidLogRepository, DataLogException {
-		String type = repositoryInfo1.getRepositoryType();
-		DataLogReader ret = null;
-		if(LogRepositoryInfo.TYPE_XML.equals(type)) {
-			ret = new DataLogRepositoryXML().getReader(repositoryInfo1);
-		} else if(LogRepositoryInfo.TYPE_DATABASE.equals(type)) {
-			ret = new DataLogRepositoryDB().getReader(repositoryInfo1);
-		}
-		if(ret == null) {
-			InvalidLogRepository e = new InvalidLogRepository(
-			        Msg.LOGGING_UNRECOGNIZED_LOG_TYPE,
-			        new String[]{repositoryInfo1.getRepositoryType()});
-			e.setIsInternalAppError();
-			throw e;
-		}
-		return ret;
 	}
 
     /**

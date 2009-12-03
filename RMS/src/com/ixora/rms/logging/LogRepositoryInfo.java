@@ -2,23 +2,26 @@ package com.ixora.rms.logging;
 
 import java.io.Serializable;
 
+import com.ixora.common.utils.Utils;
+
 /**
  * LogRepositoryInfo.
  * @author Daniel Moraru
  */
 public final class LogRepositoryInfo implements Serializable {
 	private static final long serialVersionUID = 1805612046621913256L;
-	public static final String TYPE_XML = "xml";
-	public static final String TYPE_DATABASE = "db";
+	public enum Type {
+		xml, db
+	}
 
 	/**
 	 * Repository name.
 	 */
-	private String repositoryName;
+	private String fRepositoryName;
 	/**
 	 * Repository type.
 	 */
-	private String repositoryType;
+	private Type fRepositoryType;
 
 	/**
 	 * Constructor for LogRepositoryInfo.
@@ -32,14 +35,15 @@ public final class LogRepositoryInfo implements Serializable {
 		    throw new IllegalArgumentException("invalid string " + info);
 		}
 		String tmp = info.substring(0, idx);
-		if(tmp.equalsIgnoreCase(TYPE_XML)) {
-		    repositoryType = TYPE_XML;
-		} else if(tmp.equalsIgnoreCase(TYPE_DATABASE)) {
-		    repositoryType = TYPE_DATABASE;
+		if(tmp.equalsIgnoreCase(Type.xml.name())) {
+		    fRepositoryType = Type.xml;
+		} else if(tmp.equalsIgnoreCase(Type.db.name())) {
+		    fRepositoryType = Type.db;
 		} else {
 		    throw new IllegalArgumentException("invalid string " + info);
 		}
-		this.repositoryName = info.substring(idx + 1);
+		this.fRepositoryName = info.substring(idx + 1);
+		validate();
 	}
 
 	/**
@@ -48,30 +52,37 @@ public final class LogRepositoryInfo implements Serializable {
 	 * @param repositoryName the name of the log repository
 	 */
 	public LogRepositoryInfo(
-			String repositoryType,
+			Type repositoryType,
 			String repositoryName) {
 		super();
-		this.repositoryName = repositoryName;
-		this.repositoryType = repositoryType;
+		this.fRepositoryName = repositoryName;
+		this.fRepositoryType = repositoryType;
+		validate();
+	}
+
+	private void validate() {
+		if(Utils.isEmptyString(fRepositoryName)) {
+			throw new IllegalArgumentException("null repository name");
+		}
 	}
 
 	/**
 	 * @return the name of the repository
 	 */
 	public String getRepositoryName() {
-		return repositoryName;
+		return fRepositoryName;
 	}
 
 	/**
 	 * @return Returns the type of log repository to use.
 	 */
-	public String getRepositoryType() {
-		return repositoryType;
+	public Type getRepositoryType() {
+		return fRepositoryType;
 	}
     /**
      * @see java.lang.Object#toString()
      */
     public String toString() {
-        return repositoryType + "|" + repositoryName;
+        return fRepositoryType.name() + "|" + fRepositoryName;
     }
 }

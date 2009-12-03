@@ -50,7 +50,7 @@ public final class LogChooserHandlerDB implements LogChooserHandler {
      */
     private LogRepositoryInfo getLogFile(LogRepositoryInfo last, boolean forRead) {
 	    return new LogRepositoryInfo(
-	                   LogRepositoryInfo.TYPE_XML,
+	                   LogRepositoryInfo.Type.db,
 	                   "");
     }
 }

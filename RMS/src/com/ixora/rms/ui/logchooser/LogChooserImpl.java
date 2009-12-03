@@ -10,6 +10,7 @@ import com.ixora.common.ConfigurationMgr;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.utils.MRUList;
+import com.ixora.common.utils.Utils;
 import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.ui.RMSViewContainer;
 import com.ixora.rms.ui.logchooser.xml.LogChooserHandlerXML;
@@ -48,16 +49,17 @@ public final class LogChooserImpl
         } catch(Exception e) {
            logger.error(e);
         }
-        String type = null;
+        LogRepositoryInfo.Type type = null;
         LogRepositoryInfo last = null;
-		if(logs != null && logs.size() > 0) {
+		if(!Utils.isEmptyCollection(logs)) {
 		    last = logs.get(0);
 		    type = last.getRepositoryType();
 		} else {
 		   // if not use the type that's marked as the default
-		   type = LogRepositoryInfo.TYPE_XML;
+		   type = LogRepositoryInfo.Type.xml;
 		}
-		if(LogRepositoryInfo.TYPE_XML.equals(type)) {
+		switch(type) {
+			case xml:
 		    	LogChooserHandlerXML xml = new LogChooserHandlerXML(vc);
 		    	LogRepositoryInfo ret = xml.getLogInfoForRead(last);
 		    	if(ret != null) {
@@ -65,6 +67,7 @@ public final class LogChooserImpl
 				    setLastUsedLog(ret);
 					return ret;
 			}
+			break;	
 		}
 		return null;
     }
@@ -110,23 +113,25 @@ public final class LogChooserImpl
         } catch(Exception e) {
            logger.error(e);
         }
-        String type = null;
+        LogRepositoryInfo.Type type = null;
         LogRepositoryInfo last = null;
-		if(logs != null && logs.size() > 0) {
+		if(!Utils.isEmptyCollection(logs)) {
 		    last = (LogRepositoryInfo)logs.get(0);
 		    type = last.getRepositoryType();
 		} else {
 		   // if not use the type that's marked as the default
-		   type = LogRepositoryInfo.TYPE_XML;
+		   type = LogRepositoryInfo.Type.xml;
 		}
-	    if(LogRepositoryInfo.TYPE_XML.equals(type)) {
-	    	LogChooserHandlerXML xml = new LogChooserHandlerXML(vc);
-	    	LogRepositoryInfo ret = xml.getLogInfoForWrite(last);
-	    	if(ret != null) {
-			    // before returning save the repository info
-			    setLastUsedLog(ret);
-				return ret;
-	    	}
+		switch(type) {
+			case xml:
+		    	LogChooserHandlerXML xml = new LogChooserHandlerXML(vc);
+		    	LogRepositoryInfo ret = xml.getLogInfoForWrite(last);
+		    	if(ret != null) {
+				    // before returning save the repository info
+				    setLastUsedLog(ret);
+					return ret;
+		    	}
+			break;
 		}
         return null;
     }

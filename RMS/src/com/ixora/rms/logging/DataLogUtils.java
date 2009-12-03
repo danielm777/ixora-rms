@@ -17,17 +17,45 @@ public class DataLogUtils {
 	 * @throws DataLogException
 	 */
 	public static DataLogReader createReader(LogRepositoryInfo repositoryInfo1) throws InvalidLogRepository, DataLogException {
-		String type = repositoryInfo1.getRepositoryType();
+		LogRepositoryInfo.Type type = repositoryInfo1.getRepositoryType();
 		DataLogReader ret = null;
-		if(LogRepositoryInfo.TYPE_XML.equals(type)) {
+		switch (type) {
+		case xml:
 			ret = new DataLogRepositoryXML().getReader(repositoryInfo1);
-		} else if(LogRepositoryInfo.TYPE_DATABASE.equals(type)) {
+			break;
+		case db:
 			ret = new DataLogRepositoryDB().getReader(repositoryInfo1);
+			break;
+		default:
+			break;
 		}
 		if(ret == null) {
 			InvalidLogRepository e = new InvalidLogRepository(
 			        Msg.LOGGING_UNRECOGNIZED_LOG_TYPE,
-			        new String[]{repositoryInfo1.getRepositoryType()});
+			        new String[]{repositoryInfo1.getRepositoryType().name()});
+			e.setIsInternalAppError();
+			throw e;
+		}
+		return ret;
+	}
+	
+	public static DataLogWriter createWriter(LogRepositoryInfo repositoryInfo) throws InvalidLogRepository {
+		LogRepositoryInfo.Type type = repositoryInfo.getRepositoryType();
+		DataLogWriter ret = null;
+		switch (type) {
+		case xml:
+			ret = new DataLogRepositoryXML().getWriter(repositoryInfo);
+			break;
+		case db:
+			ret = new DataLogRepositoryDB().getWriter(repositoryInfo);
+			break;
+		default:
+			break;
+		}
+		if(ret == null) {
+			InvalidLogRepository e = new InvalidLogRepository(
+			        Msg.LOGGING_UNRECOGNIZED_LOG_TYPE,
+			        new String[]{repositoryInfo.getRepositoryType().name()});
 			e.setIsInternalAppError();
 			throw e;
 		}

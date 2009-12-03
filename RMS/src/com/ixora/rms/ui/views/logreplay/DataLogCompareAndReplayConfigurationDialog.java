@@ -47,7 +47,6 @@ import com.ixora.rms.logging.LogComponent;
 import com.ixora.rms.logging.LogConfigurationConstants;
 import com.ixora.rms.logging.LogRepositoryInfo;
 import com.ixora.rms.logging.TimeInterval;
-import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.services.DataLogScanningService;
 import com.ixora.rms.ui.RMSViewContainer;
@@ -73,10 +72,13 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	private JButton fButtonBrowseTwo;
 	private EventHandler fEventHandler;
 	private ActionOk fActionOk;
-	private LogRepositoryInfo fLogOne;
-	private LogRepositoryInfo fLogTwo;
+	private String fLogOne;
+	private String fLogTwo;
 	private TimeInterval fTimeIntervalOne;
 	private TimeInterval fTimeIntervalTwo;
+	private LogRepositoryInfo.Type fRepositoryType;
+
+	private DataLogCompareAndReplayConfiguration fResult;
 	
 	private final class EventHandler implements ItemListener, HyperlinkListener, DocumentListener {
 		/**
@@ -218,6 +220,7 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 				handleOk();
 			}};
 		fActionOk.setEnabled(false);
+		fTextFieldLogOne.setEnabled(false);
 		fTextFieldLogTwo.setEnabled(false);
 		fButtonBrowseTwo.setEnabled(false);
 		
@@ -229,9 +232,10 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 
 	private void handleChangeInLogNameTextField(Document document) {
 		if(document == fTextFieldLogOne.getDocument()) {
-			if(changeReplayConfig(fResult.getLogOne(), fTextFieldLogOne)){
+			String txt = fTextFieldLogOne.getText().trim();
+			if(!Utils.isEmptyString(txt)) {
+				fLogOne = txt;
 				fActionOk.setEnabled(true);
-				fTextFieldLogTwo.setEnabled(true);
 				fButtonBrowseTwo.setEnabled(true);
 			} else {
 				fActionOk.setEnabled(false);
@@ -239,54 +243,41 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 				fButtonBrowseTwo.setEnabled(false);
 			}
 		} else if(document == fTextFieldLogTwo.getDocument()) {
-			changeReplayConfig(fResult.getLogTwo(), fTextFieldLogTwo);
-		}
-	}
-
-	/**
-	 * @param logConfig
-	 * @param tf
-	 * @return true if the log repository is setup
-	 */
-	private boolean changeReplayConfig(
-			DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig logConfig, 
-			JTextField tf) {
-		logConfig.setTimestampBegin(0);
-		logConfig.setTimestampEnd(0);
-		String txt = tf.getText().trim();
-		if(Utils.isEmptyString(txt)) {
-			logConfig.setLogRepository(null);
-			return false;
-		} else {
-			LogRepositoryInfo log = logConfig.getLogRepository(); 
-			logConfig.setLogRepository(new LogRepositoryInfo(txt, 
-					log.getRepositoryType()));
-			return true;
+			String txt = fTextFieldLogTwo.getText().trim();
+			if(!Utils.isEmptyString(txt)) {
+				fLogTwo = txt;
+			} else {
+				fActionOk.setEnabled(false);
+			}
 		}
 	}
 
 	private void handleBrowseOne() {
 		LogChooser logChooser = new LogChooserImpl(fViewContainer);
-		if(fResult.getLogOne() == null) {
-			fResult.setLogOne(new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0));
+		LogRepositoryInfo log = logChooser.getLogInfoForRead();
+		if(log != null) {
+			fRepositoryType = log.getRepositoryType();
+			fTextFieldLogOne.setText(log.getRepositoryName());
+			fTextFieldLogOne.setEnabled(true);
 		}
-		fTextFieldLogOne.setText(logChooser.getLogInfoForRead().getRepositoryName());
 	}
 
 	private void handleBrowseTwo() {
 		LogChooser logChooser = new LogChooserImpl(fViewContainer);
-		if(fResult.getLogTwo() == null) {
-			fResult.setLogTwo(new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(logChooser.getLogInfoForRead(), 0, 0));
+		LogRepositoryInfo log = logChooser.getLogInfoForRead();
+		if(log != null) {
+			fRepositoryType = log.getRepositoryType();
+			fTextFieldLogTwo.setText(log.getRepositoryName());
+			fTextFieldLogTwo.setEnabled(true);
 		}
-		fTextFieldLogTwo.setText(logChooser.getLogInfoForRead().getRepositoryName());
 	}
 
 	/**
 	 * @param logRepositoryReplayConfig
 	 */
-	private void scanLogForTimestamps(final LogRepositoryReplayConfig logRepositoryReplayConfig) {
+	private void scanLogForTimestamps(final String logName) {
 		// check if scanning is necessary
-		if(logRepositoryReplayConfig.getTimeBegin() == 0 || logRepositoryReplayConfig.getTimeEnd() == 0) {
+		if(fTimeIntervalOne == null) {
 			// scan log 
 			final DataLogScanningService scanningService = RMS.getDataLogScanning();
 			fViewContainer.getAppWorker().runJob(new UIWorkerJobDefaultCancelable(this,
@@ -296,9 +287,9 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 					public void fatalScanError(LogRepositoryInfo rep, Exception e) {
 						wakeUp();
 					}
-					public void finishedScanningLog(final LogRepositoryInfo rep,
-							final long beginTimestamp, final long endTimestamp) {
-						handleFinishedScanning(rep, beginTimestamp, endTimestamp);
+					public void finishedScanningLog(LogRepositoryInfo rep,
+							TimeInterval ti) {
+						handleFinishedScanning(rep, ti);
 						wakeUp();
 					}
 					public void newAgent(LogRepositoryInfo rep, HostId host,
@@ -317,43 +308,39 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 				}
 				public void work() throws Throwable {				
 					scanningService.addScanListener(listener);
-					scanningService.startScanning(logRepositoryReplayConfig.getLogRepository());
+					scanningService.startScanning(new LogRepositoryInfo(fRepositoryType, logName));
 					hold();
 				}
 				public void finished(Throwable ex) {
 					scanningService.removeScanListener(listener);
 					if(!canceled()) {
-						shotTimeIntervalSelectorDialog(logRepositoryReplayConfig);
+						showTimeIntervalSelectorDialog(logName);
 					}
 				}
 			});
 		} else {
 			// skip scanning
-			shotTimeIntervalSelectorDialog(logRepositoryReplayConfig);
+			showTimeIntervalSelectorDialog(logName);
 		}
 	}
 
 	/**
 	 * @param rep
-	 * @param beginTimestamp
-	 * @param endTimestamp
+	 * @param ti
 	 */
 	private void handleFinishedScanning(
-			LogRepositoryInfo rep, long beginTimestamp,
-			long endTimestamp) {
-		if(fResult.getLogOne() != null && rep == fResult.getLogOne().getLogRepository()) {
-			fResult.getLogOne().setTimestampBegin(beginTimestamp);
-			fResult.getLogOne().setTimestampEnd(endTimestamp);
-		} else if(fResult.getLogTwo() != null && rep == fResult.getLogTwo().getLogRepository()) {
-			fResult.getLogTwo().setTimestampBegin(beginTimestamp);
-			fResult.getLogTwo().setTimestampEnd(endTimestamp);
+			LogRepositoryInfo rep, TimeInterval ti) {
+		if(rep.getRepositoryName().equals(fLogOne)) {
+			fTimeIntervalOne = ti;
+		} else if(rep.getRepositoryName().equals(fLogTwo)) {
+			fTimeIntervalTwo = ti;
 		}
 	}
 
 	private void handleSelectTimeIntervalOne() {
 		try {
-			if(fResult.getLogOne() != null) {
-				scanLogForTimestamps(fResult.getLogOne());
+			if(fLogOne != null) {
+				scanLogForTimestamps(fLogOne);
 			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
@@ -362,8 +349,8 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	
 	private void handleSelectTimeIntervalTwo() {
 		try {
-			if(fResult.getLogTwo() != null) {
-				scanLogForTimestamps(fResult.getLogTwo());
+			if(fLogTwo != null) {
+				scanLogForTimestamps(fLogTwo);
 			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
@@ -414,7 +401,6 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 
 	private void handleOk() {
 		try {
-			fResult.validate(true);
 			String aggStepString = fTextFieldAggStep.getText().trim();
 			int aggStep = 0;
 			try {
@@ -426,7 +412,13 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			if(fCheckBoxNoAgg.isSelected()) {
 				aggStep = 0;
 			}
-			fResult.setAggregationStep(aggStep);
+			fResult = new DataLogCompareAndReplayConfiguration(
+					new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
+							new LogRepositoryInfo(fRepositoryType, fLogOne), fTimeIntervalOne),
+					new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
+							new LogRepositoryInfo(fRepositoryType, fLogTwo), fTimeIntervalTwo),
+					aggStep							
+			);
 			dispose();
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
@@ -440,9 +432,20 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 		return fResult;
 	}
 
-	private void shotTimeIntervalSelectorDialog(
-			final LogRepositoryReplayConfig logRepositoryReplayConfig) {
-		TimeIntervalSelectorDialog dlg = new TimeIntervalSelectorDialog(fViewContainer, logRepositoryReplayConfig);
-		UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), dlg);
+	private void showTimeIntervalSelectorDialog(
+			final String logName) {
+		if(fLogOne.equals(logName)) {
+			if(fTimeIntervalOne != null) {
+				TimeIntervalSelectorDialog dlg = new TimeIntervalSelectorDialog(fViewContainer, fTimeIntervalOne);
+				UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), dlg);			
+				fTimeIntervalOne = dlg.getResult();
+			}
+		} else if(fLogTwo.equals(logName)) {
+			if(fTimeIntervalTwo != null) {
+				TimeIntervalSelectorDialog dlg = new TimeIntervalSelectorDialog(fViewContainer, fTimeIntervalTwo);
+				UIUtils.centerDialogAndShow(fViewContainer.getAppFrame(), dlg);
+				fTimeIntervalTwo = dlg.getResult();
+			}
+		}
 	}
 }

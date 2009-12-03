@@ -50,10 +50,10 @@ public final class DataLogScanning implements DataLogScanningService {
             DataLogScanning.this.fireNewAgent(fLog, host, ad);
         }
 		/**
-		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#finishedScanning(com.ixora.rms.logging.DataLogReader, long, long)
+		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#finishedScanning(com.ixora.rms.logging.DataLogReader, com.ixora.rms.logging.TimeInterval)
 		 */
-		public void finishedScanning(DataLogReader source, long beginTimestamp, long endTimestamp) {
-			DataLogScanning.this.handleFinishedScanning(fLog, beginTimestamp, endTimestamp);
+		public void finishedScanning(DataLogReader source, TimeInterval ti) {
+			DataLogScanning.this.handleFinishedScanning(fLog, ti);
 		}
 		/**
 		 * @see com.ixora.rms.logging.DataLogReader.ScanCallback#handleScanFatalError(com.ixora.rms.logging.DataLogReader, java.lang.Exception)
@@ -112,11 +112,11 @@ public final class DataLogScanning implements DataLogScanningService {
      * @param beginTimestamp
      * @param endTimestamp
      */
-    private void fireFinishedScanning(LogRepositoryInfo logRepositoryInfo, long beginTimestamp, long endTimestamp) {
+    private void fireFinishedScanning(LogRepositoryInfo logRepositoryInfo, TimeInterval ti) {
         synchronized(fScanListeners) {
             for(ScanListener listener : fScanListeners) {
                 try {
-                    listener.finishedScanningLog(logRepositoryInfo, beginTimestamp, endTimestamp);
+                    listener.finishedScanningLog(logRepositoryInfo, ti);
                 }catch(Exception e) {
                     logger.error(e);
                 }
@@ -201,14 +201,13 @@ public final class DataLogScanning implements DataLogScanningService {
 
 	/**
 	 * @param logRepositoryInfo 
-	 * @param beginTimestamp
-	 * @param endTimestamp
+	 * @param ti
 	 */
-	private void handleFinishedScanning(LogRepositoryInfo logRepositoryInfo, long beginTimestamp, long endTimestamp) {
+	private void handleFinishedScanning(LogRepositoryInfo logRepositoryInfo, TimeInterval ti) {
 		synchronized(this) {
 			fScanning = false;
 		}
-		fireFinishedScanning(logRepositoryInfo, beginTimestamp, endTimestamp);
+		fireFinishedScanning(logRepositoryInfo, ti);
 	}
 
 	/**

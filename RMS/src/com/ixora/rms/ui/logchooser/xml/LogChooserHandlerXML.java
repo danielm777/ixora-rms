@@ -84,7 +84,7 @@ public final class LogChooserHandlerXML implements LogChooserHandler {
 		    	path = f.getAbsolutePath();
 		    }
 		    return new LogRepositoryInfo(
-	                   LogRepositoryInfo.TYPE_XML,
+	                   LogRepositoryInfo.Type.xml,
 	                   path);
 		}
     	return null;
