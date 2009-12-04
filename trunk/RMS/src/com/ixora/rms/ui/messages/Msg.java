@@ -367,4 +367,10 @@ public interface Msg {
 		"ui.title.replay_configuration";
 	public static final String LABEL_LOG = 
 		"ui.label.log";
+	public static final String ERROR_LOG_ONE_IS_MISSING = 
+		"ui.error.log_one_is_missing";
+	public static final String ERROR_LOG_TWO_IS_MISSING = 
+		"ui.error.log_two_is_missing";
+	public static final String ERROR_LOGS_FOR_COMPARISON_ARE_THE_SAME = 
+		"ui.error.logs_for_comparison_are_the_same";	
 }

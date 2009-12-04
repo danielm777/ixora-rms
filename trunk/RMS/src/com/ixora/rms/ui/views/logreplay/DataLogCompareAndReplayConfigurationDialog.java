@@ -42,11 +42,11 @@ import com.ixora.rms.RMS;
 import com.ixora.rms.agents.AgentDescriptor;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.exception.RMSException;
+import com.ixora.rms.logging.BoundedTimeInterval;
 import com.ixora.rms.logging.DataLogCompareAndReplayConfiguration;
 import com.ixora.rms.logging.LogComponent;
 import com.ixora.rms.logging.LogConfigurationConstants;
 import com.ixora.rms.logging.LogRepositoryInfo;
-import com.ixora.rms.logging.BoundedTimeInterval;
 import com.ixora.rms.logging.exception.DataLogException;
 import com.ixora.rms.services.DataLogScanningService;
 import com.ixora.rms.ui.RMSViewContainer;
@@ -247,7 +247,9 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			String txt = fTextFieldLogOne.getText().trim();
 			if(!Utils.isEmptyString(txt)) {
 				fLogOne = txt;
-				fActionOk.setEnabled(true);
+				if(!Utils.isEmptyString(fLogTwo)) {
+					fActionOk.setEnabled(true);
+				}
 				fButtonBrowseTwo.setEnabled(true);
 			} else {
 				fActionOk.setEnabled(false);
@@ -258,6 +260,9 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			String txt = fTextFieldLogTwo.getText().trim();
 			if(!Utils.isEmptyString(txt)) {
 				fLogTwo = txt;
+				if(!Utils.isEmptyString(fLogOne)) {
+					fActionOk.setEnabled(true);
+				}
 			} else {
 				fActionOk.setEnabled(false);
 			}
@@ -288,42 +293,10 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 	 * @param logRepositoryReplayConfig
 	 */
 	private void scanLogForTimestamps(final String logName) {
-		// check if scanning is necessary
 		if(fTimeIntervalOne == null) {
-			fViewContainer.getAppWorker().runJob(new UIWorkerJobDefaultCancelable(this,
-					Cursor.WAIT_CURSOR, MessageRepository
-							.get(Msg.TEXT_SCANNING_LOG)) {
-				private DataLogScanningService.ScanListener listener = new DataLogScanningService.ScanListener(){
-					public void fatalScanError(LogRepositoryInfo rep, Exception e) {
-						wakeUp();
-					}
-					public void finishedScanningLog(LogRepositoryInfo rep,
-							BoundedTimeInterval ti) {
-						handleFinishedScanning(rep, ti);
-						wakeUp();
-					}
-					public void newAgent(LogRepositoryInfo rep, HostId host,
-							AgentDescriptor ad) {
-					}
-					public void newEntity(LogRepositoryInfo rep, HostId host,
-							AgentId aid, EntityDescriptor ed) {
-					}};			
-				public void cancel() {
-					super.cancel();
-					try {
-						fScanningService.stopScanning();
-					} catch (DataLogException e) {
-						UIExceptionMgr.userException(e);
-					}
-				}
-				public void work() throws Throwable {				
-					fScanningService.addScanListener(listener);
-					fScanningService.startScanning(new LogRepositoryInfo(fRepositoryType, logName));
-					hold();
-				}
-				public void finished(Throwable ex) {
-					fScanningService.removeScanListener(listener);
-					if(!canceled()) {
+			runScanJob(logName, new ScanEndCallback(){
+				public void finishedScanning(Throwable err) {
+					if(err == null) {
 						showTimeIntervalSelectorDialog(logName);
 					}
 				}
@@ -332,8 +305,54 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			// skip scanning
 			showTimeIntervalSelectorDialog(logName);
 		}
+
 	}
 
+	/**
+	 * @param logName
+	 * @param scanEndCallback
+	 */
+	private void runScanJob(final String logName, final ScanEndCallback scanEndCallback) {
+		fViewContainer.getAppWorker().runJob(new UIWorkerJobDefaultCancelable(this,
+				Cursor.WAIT_CURSOR, MessageRepository
+						.get(Msg.TEXT_SCANNING_LOG)) {
+			private DataLogScanningService.ScanListener listener = new DataLogScanningService.ScanListener(){
+				public void fatalScanError(LogRepositoryInfo rep, Exception e) {
+					wakeUp();
+				}
+				public void finishedScanningLog(LogRepositoryInfo rep,
+						BoundedTimeInterval ti) {
+					handleFinishedScanning(rep, ti);
+					wakeUp();
+				}
+				public void newAgent(LogRepositoryInfo rep, HostId host,
+						AgentDescriptor ad) {
+				}
+				public void newEntity(LogRepositoryInfo rep, HostId host,
+						AgentId aid, EntityDescriptor ed) {
+				}};			
+			public void cancel() {
+				super.cancel();
+				try {
+					fScanningService.stopScanning();
+				} catch (DataLogException e) {
+					UIExceptionMgr.userException(e);
+				}
+			}
+			public void work() throws Throwable {				
+				fScanningService.addScanListener(listener);
+				fScanningService.startScanning(new LogRepositoryInfo(fRepositoryType, logName));
+				hold();
+			}
+			public void finished(Throwable ex) {
+				fScanningService.removeScanListener(listener);
+				if(!canceled()) {
+					scanEndCallback.finishedScanning(ex);
+				}
+			}
+		});
+	}
+	
 	/**
 	 * @param rep
 	 * @param ti
@@ -408,9 +427,25 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 					}})
 		};
 	}
+	
+	private interface ScanEndCallback {
+		void finishedScanning(Throwable err);
+	}
 
 	private void handleOk() {
 		try {
+			if(fLogOne == null) {
+				throw new RMSException(Msg.ERROR_LOG_ONE_IS_MISSING, true);
+			}
+			if(fLogTwo == null) {
+				throw new RMSException(Msg.ERROR_LOG_TWO_IS_MISSING, true);
+			}
+			// check that files are not the same
+			if(fLogOne.equals(fLogTwo)) {
+				throw new RMSException(Msg.ERROR_LOGS_FOR_COMPARISON_ARE_THE_SAME, 
+					new String[]{fLogOne});
+			}
+			
 			String aggStepString = fTextFieldAggStep.getText().trim();
 			int aggStep = 0;
 			try {
@@ -422,14 +457,37 @@ public class DataLogCompareAndReplayConfigurationDialog extends AppDialog {
 			if(fCheckBoxNoAgg.isSelected()) {
 				aggStep = 0;
 			}
-			fResult = new DataLogCompareAndReplayConfiguration(
-					new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
-							new LogRepositoryInfo(fRepositoryType, fLogOne), fTimeIntervalOne),
-					new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
-							new LogRepositoryInfo(fRepositoryType, fLogTwo), fTimeIntervalTwo),
-					aggStep							
-			);
-			dispose();
+			final int faggStep = aggStep;
+			if(fTimeIntervalOne == null || fTimeIntervalTwo == null) {
+				// scan first file
+				runScanJob(fLogOne, new ScanEndCallback(){
+					public void finishedScanning(Throwable err) {
+						try {
+							// scan second file
+							runScanJob(fLogTwo, new ScanEndCallback(){
+								public void finishedScanning(Throwable err) {
+									try {
+										if(err == null) {
+											fResult = new DataLogCompareAndReplayConfiguration(
+													new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
+															new LogRepositoryInfo(fRepositoryType, fLogOne), fTimeIntervalOne),
+													new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
+															new LogRepositoryInfo(fRepositoryType, fLogTwo), fTimeIntervalTwo),
+													faggStep							
+											);
+											dispose();
+										}
+									} catch(Exception e) {
+										UIExceptionMgr.userException(e);
+									}
+								}
+							});
+						} catch(Exception e) {
+							UIExceptionMgr.userException(e);
+						}
+					}
+				});
+			}
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}
