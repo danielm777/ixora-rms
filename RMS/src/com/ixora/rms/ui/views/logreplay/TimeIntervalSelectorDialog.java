@@ -98,7 +98,7 @@ public class TimeIntervalSelectorDialog extends AppDialog {
 			} else {
 				ti[1] = fLimits.getEnd();
 			}
-			fResult = new BoundedTimeInterval(ti[0], ti[1]);
+			fResult = new BoundedTimeInterval(ti[0], ti[1], fLimits);
 			dispose();
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);

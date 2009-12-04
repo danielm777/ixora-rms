@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.concurrent.Future;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -233,7 +232,7 @@ public class DataLogReplayConfigurationDialog extends AppDialog {
 	}
 
 	private interface ScanEndCallback {
-		void finishedScanning();
+		void finishedScanning(Throwable err);
 	}
 	
 	/**
@@ -243,8 +242,10 @@ public class DataLogReplayConfigurationDialog extends AppDialog {
 		// check if scanning is necessary
 		if(fTimeIntervalOne == null) {
 			runScanJob(logName, new ScanEndCallback(){
-				public void finishedScanning() {
-					showTimeIntervalSelectorDialog(logName);
+				public void finishedScanning(Throwable err) {
+					if(err == null) {
+						showTimeIntervalSelectorDialog(logName);
+					}
 				}
 			});
 		} else {
@@ -292,7 +293,7 @@ public class DataLogReplayConfigurationDialog extends AppDialog {
 			public void finished(Throwable ex) {
 				fScanningService.removeScanListener(listener);
 				if(!canceled()) {
-					scanEndCallback.finishedScanning();
+					scanEndCallback.finishedScanning(ex);
 				}
 			}
 		});
@@ -374,12 +375,27 @@ public class DataLogReplayConfigurationDialog extends AppDialog {
 			if(fCheckBoxNoAgg.isSelected()) {
 				aggStep = 0;
 			}
-			fResult = new DataLogCompareAndReplayConfiguration(
-					new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
-							new LogRepositoryInfo(fRepositoryType, fLogOne), fTimeIntervalOne),
-					aggStep							
-			);
-			dispose();
+			fActionOk.setEnabled(false);
+			final int faggStep = aggStep;
+			if(fTimeIntervalOne == null) {
+				runScanJob(fLogOne, new ScanEndCallback(){
+					public void finishedScanning(Throwable err) {
+						try {
+							if(err == null) {
+								fResult = new DataLogCompareAndReplayConfiguration(
+										new DataLogCompareAndReplayConfiguration.LogRepositoryReplayConfig(
+												new LogRepositoryInfo(fRepositoryType, fLogOne), fTimeIntervalOne),
+										faggStep							
+								);
+								dispose();
+							}
+						} catch(Exception e) {
+							UIExceptionMgr.userException(e);
+						}
+					}
+				});
+			}
+
 		} catch(Exception e) {
 			UIExceptionMgr.userException(e);
 		}
@@ -389,12 +405,6 @@ public class DataLogReplayConfigurationDialog extends AppDialog {
 	 * @return.
 	 */
 	public DataLogCompareAndReplayConfiguration getResult() {
-		if(fTimeIntervalOne == null) {
-/*			runScanJob(fLogOne, new ScanEndCallback(){
-				public void finishedScanning() {					
-				}
-			});
-*/		}
 		return fResult;
 	}
 
