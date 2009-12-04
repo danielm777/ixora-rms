@@ -921,7 +921,16 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 			if(conf != null) {
 				try {
 					((LogPlaybackView)fCurrentView).setReplayConfiguration(conf);
-					fCurrentView.initialize();
+					getAppWorker().runJobSynch(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR, 
+							MessageRepository.get(Msg.TEXT_LOADING_LOG_VIEW)){
+						public void finished(Throwable ex) throws Throwable {
+							if(ex != null) {
+								resetCurrentView();
+							}
+						}
+						public void work() throws Throwable {
+							fCurrentView.initialize();							
+						}});
 				} catch (Throwable e) {
 					resetCurrentView();
 					UIExceptionMgr.userException(e);
@@ -947,7 +956,16 @@ public final class RMSFrame extends AppFrame implements RMSViewContainer,
 			if(conf != null) {
 				try {
 					((LogPlaybackView)fCurrentView).setReplayConfiguration(conf);
-					fCurrentView.initialize();
+					getAppWorker().runJobSynch(new UIWorkerJobDefault(this, Cursor.WAIT_CURSOR, 
+							MessageRepository.get(Msg.TEXT_LOADING_LOG_VIEW)){
+						public void finished(Throwable ex) throws Throwable {
+							if(ex != null) {
+								resetCurrentView();
+							}
+						}
+						public void work() throws Throwable {
+							fCurrentView.initialize();							
+						}});
 				} catch (Throwable e) {
 					resetCurrentView();
 					UIExceptionMgr.userException(e);
