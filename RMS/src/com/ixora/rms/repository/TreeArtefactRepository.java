@@ -593,6 +593,7 @@ public final class TreeArtefactRepository {
 			XMLUtils.write(doc, os);
 			so.commit(os);
 		} catch(Exception e) {
+			logger.error(e);
 			so.rollback(os);
 		}
 	}
@@ -636,6 +637,7 @@ public final class TreeArtefactRepository {
 			XMLUtils.write(doc, os);
 			so.commit(os);
 		} catch(Exception e) {
+			logger.error(e);
 			so.rollback(os);
 		}
 	}
@@ -666,6 +668,7 @@ public final class TreeArtefactRepository {
 			XMLUtils.write(doc, os);
 			so.commit(os);
 		} catch(Exception e) {
+			logger.error(e);
 			so.rollback(os);
 		}
 	}
@@ -692,6 +695,7 @@ public final class TreeArtefactRepository {
 			XMLUtils.write(doc, os);
 			so.commit(os);
 		} catch(Exception e) {
+			logger.error(e);
 			so.rollback(os);
 		}
 	}
