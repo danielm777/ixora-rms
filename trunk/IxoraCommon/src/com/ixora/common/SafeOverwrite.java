@@ -51,6 +51,7 @@ public final class SafeOverwrite {
 	public void commit(OutputStream os) {
 		if(os != null) {
 			try {
+				os.flush();
 				os.close();
 			} catch(IOException e) {
 			}
