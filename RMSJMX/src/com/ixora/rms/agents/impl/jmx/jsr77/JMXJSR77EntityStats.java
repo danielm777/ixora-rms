@@ -77,8 +77,7 @@ public class JMXJSR77EntityStats extends JMXEntity {
 	 * @see com.ixora.rms.agents.impl.Entity#updateChildrenEntities(boolean)
 	 */
 	public void updateChildrenEntities(boolean recursive) throws Throwable {
-		; // overriden to do nothing as it's children are set from the stats
-		//  during every cycle
+		updateChildrenFromStats(fStats);
 	}
 
 	/**
