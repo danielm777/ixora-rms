@@ -9,6 +9,8 @@ import javax.management.j2ee.statistics.JDBCStats;
 import javax.management.j2ee.statistics.JMSStats;
 import javax.management.j2ee.statistics.Stats;
 
+import com.ixora.common.logging.AppLogger;
+import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.rms.EntityId;
 import com.ixora.rms.agents.impl.Entity;
 import com.ixora.rms.agents.impl.jmx.jsr77.JCAEntity;
@@ -21,6 +23,7 @@ import com.ixora.rms.agents.impl.jmx.jsr77.JMXJSR77EntityStats;
  */
 public class JMXJSR77Entity extends JMXJSR77EntityStats {
 	private static final long serialVersionUID = -6209707597367915181L;
+	private static final AppLogger logger = AppLoggerFactory.getLogger(JMXJSR77Entity.class);
 	/** Attribute name */
 	private String fAttributeName;
 
@@ -36,15 +39,20 @@ public class JMXJSR77Entity extends JMXJSR77EntityStats {
 		super(createEntityId(parent, attrName), c, oname);
 		fHasChildren = false;
 		fAttributeName = attrName;
-		Stats stats = (Stats)getJMXContext().getJMXConnection()
-				.getAttribute(oname, attrName);
-		init(stats);
-		if(stats instanceof JDBCStats) {
-			addChildEntity(new JDBCEntity(getId(), getJMXContext(), (JDBCStats)stats));
-		} else if(stats instanceof JCAStats) {
-			addChildEntity(new JCAEntity(getId(), getJMXContext(), (JCAStats)stats));
-		} else if(stats instanceof JMSStats) {
-			addChildEntity(new JMSEntity(getId(), getJMXContext(), (JMSStats)stats));
+        Object val = getJMXContext().getJMXConnection()
+		        .getAttribute(oname, attrName);
+		if(val instanceof Stats) {
+			Stats stats = (Stats)val;
+			init(stats);
+			if(stats instanceof JDBCStats) {
+			    addChildEntity(new JDBCEntity(getId(), getJMXContext(), (JDBCStats)stats));
+			} else if(stats instanceof JCAStats) {
+			    addChildEntity(new JCAEntity(getId(), getJMXContext(), (JCAStats)stats));
+			} else if(stats instanceof JMSStats) {
+			    addChildEntity(new JMSEntity(getId(), getJMXContext(), (JMSStats)stats));
+			}
+		} else {			
+			logger.error("Value is not a valid J2EE Stats. ObjectName: " + oname + " AttributeName: " + attrName + " Value: " + val + " ValueType: " + (val != null ? val.getClass().getName() : "null"));
 		}
 	}
 
