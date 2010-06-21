@@ -14,6 +14,7 @@ import javax.management.ReflectionException;
 import com.ixora.rms.EntityId;
 import com.ixora.rms.agents.impl.Entity;
 import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
+import com.ixora.rms.agents.impl.jmx.JMXEntityDomain;
 import com.ixora.rms.agents.impl.jmx.JMXEntityRoot;
 
 /**
@@ -41,7 +42,7 @@ public class WeblogicEntityRoot extends JMXEntityRoot {
 		if("com.bea".equals(domain)) {
 			return new WeblogicEntityDomain(id, context);
 		}
-		return null;
+		return new JMXEntityDomain(id, context, domain);
 	}
 
 }
