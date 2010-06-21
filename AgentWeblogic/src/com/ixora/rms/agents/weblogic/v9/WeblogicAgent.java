@@ -15,6 +15,7 @@ import com.ixora.common.utils.Utils;
 import com.ixora.rms.EntityId;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
+import com.ixora.rms.agents.impl.jmx.JMXEntityRoot;
 import com.ixora.rms.agents.impl.jmx.jsr160.JMXJSR160AbstractAgent;
 import com.ixora.rms.agents.weblogic.exception.CommunicationError;
 import com.ixora.rms.agents.weblogic.exception.WeblogicNotInstalledOnHost;
@@ -32,9 +33,19 @@ public class WeblogicAgent extends JMXJSR160AbstractAgent {
 	 */
 	public WeblogicAgent(AgentId agentId, Listener listener) {
 		super(agentId, listener);
-		// do not allow refresh as the entity tree is huge
-		fSafeToRefreshEntitiesRecursivelly = false;
-		fRootEntity = new WeblogicEntityRoot((JMXAgentExecutionContext)fContext);
+		init(new WeblogicEntityRoot((JMXAgentExecutionContext)fContext));
+	}
+	
+	protected WeblogicAgent(AgentId agentId, Listener listener, JMXEntityRoot root) {
+		super(agentId, listener);
+		init(root);		
+	}
+
+	private void init(JMXEntityRoot root) {
+		// pretty useless without this feature; it could have a big performance impact
+		// but it is important
+		//fSafeToRefreshEntitiesRecursivelly = false;
+		fRootEntity = root;
 		fEnvMap.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
 		fEnvMap.put(JMXConnectorServerFactory.PROTOCOL_PROVIDER_PACKAGES, "weblogic.management.remote");
 	}
@@ -131,9 +142,6 @@ public class WeblogicAgent extends JMXJSR160AbstractAgent {
 	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#isEntitySafeToRefreshRecursivelly(com.ixora.rms.EntityId, javax.management.ObjectName)
 	 */
 	protected boolean isEntitySafeToRefreshRecursivelly(EntityId eid, ObjectName on) {
-		if(eid.getPathLength() <= 4) {
-			return false;
-		}
 		String ename = eid.getName();
 		if(ename.equals("Targets")
 				|| ename.equals("Components")
@@ -150,6 +158,6 @@ public class WeblogicAgent extends JMXJSR160AbstractAgent {
 	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getMaximumEntityTreeRecursivityLevel()
 	 */
 	public int getMaximumEntityTreeRecursivityLevel() {
-		return 13;
+		return 4;
 	}
 }
