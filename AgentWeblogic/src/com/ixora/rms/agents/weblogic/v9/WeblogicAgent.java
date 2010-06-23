@@ -119,10 +119,15 @@ public class WeblogicAgent extends JMXJSR160AbstractAgent {
 	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getEntityName(javax.management.ObjectName)
 	 */
 	protected String getEntityName(ObjectName on) {
-		if(on.toString().equals("com.bea:Name=DomainRuntimeService,Type=weblogic.management.mbeanservers.domainruntime.DomainRuntimeServiceMBean")) {
+		String onString = on.toString();
+		if(onString.equals("com.bea:Name=DomainRuntimeService,Type=weblogic.management.mbeanservers.domainruntime.DomainRuntimeServiceMBean")) {
 			return "com.bea";
 		}
-		return on.getKeyProperty("Name");
+		String name = on.getKeyProperty("Name");
+		if(name != null) {
+			return name;
+		}
+		return onString;
 	}
 
 	/**
