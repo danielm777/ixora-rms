@@ -5,12 +5,30 @@
   <description>weblogic.description</description>
   <category>appServers</category>
   <versions>
+  	<version>10.*</version>
     <version>9.*</version>
     <version>8.*</version>
   </versions>
   <javaHelp>secWeblogic</javaHelp>
   <webHelp>monitoring-agents/weblogic</webHelp>
   <versionItems>
+    <versionItem>
+      <class>com.ixora.rms.agents.weblogic.v10.WeblogicAgent</class>
+      <locations>
+        <location>0</location>
+        <location>1</location>
+      </locations>
+      <jars>
+        <jar>/jars/AgentWeblogic.jar</jar>
+        <jar>/jars/RMSJMX.jar</jar>
+        <jar>/lib/javax77.jar</jar>
+      </jars>
+      <customconfigpanel>com.ixora.rms.agents.weblogic.v10.ConfigurationPanel</customconfigpanel>
+      <uiJar>/jars/AgentWeblogic_ui.jar</uiJar>
+      <agentVersions>
+        <agentVersion>10.*</agentVersion>
+      </agentVersions>
+    </versionItem>
     <versionItem>
       <class>com.ixora.rms.agents.weblogic.v9.WeblogicAgent</class>
       <locations>
