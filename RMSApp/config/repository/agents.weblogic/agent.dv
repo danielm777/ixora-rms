@@ -30,47 +30,10 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="channel"/>
-    </view>
-    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-      <name>Persistent stores</name>
-      <description>Persistent stores</description>
-      <query>
-        <resource id="stores" iname="$entity[3]/$entity[5]" name="Work managers" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)"/>
-        <resource id="delete_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[DeleteCount]"/>
-        <resource id="update_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[UpdateCount]"/>
-        <resource id="read_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ReadCount]"/>
-        <resource id="create_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[CreateCount]"/>
-        <resource id="object_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ObjectCount]"/>
-        <resource id="physical_write_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[PhysicalWriteCount]"/>
-      </query>
-      <agentVersions>
-        <agentVersion>9.*</agentVersion>
-      </agentVersions>
-      <author>system</author>
-      <category id="stores"/>
-    </view>
-    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
-      <name>JDBC data sources</name>
-      <description>JDBC data sources</description>
-      <query>
-        <resource id="data_source" iname="$entity[4]/$entity[6]" name="JDBC Data source" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)"/>
-        <resource id="curr_capacity" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
-        <resource id="num_available" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[NumAvailable]"/>
-        <resource id="curr_waiting_for_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[WaitingForConnectionCurrentCount]"/>
-        <resource id="curr_active_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ActiveConnectionsCurrentCount]"/>
-        <resource id="prep_stmt_cache_miss" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[PrepStmtCacheMissCount]"/>
-        <resource id="leaked_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[LeakedConnectionCount]"/>
-        <resource id="conn_delay_time" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ConnectionDelayTime]"/>
-        <resource id="user" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
-      </query>
-      <agentVersions>
-        <agentVersion>9.*</agentVersion>
-      </agentVersions>
-      <author>system</author>
-      <category id="data_source"/>
     </view>
     <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
       <name>Servlets</name>
@@ -84,6 +47,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="servlets"/>
@@ -98,6 +62,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="Bar2D">
@@ -115,6 +80,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -131,6 +97,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -147,6 +114,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -179,6 +147,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="work_managers"/>
@@ -206,6 +175,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="exec_queue"/>
@@ -229,6 +199,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -252,6 +223,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="XYLine">
@@ -271,6 +243,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <renderer type="StackedBar2D">
@@ -293,6 +266,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="id0"/>
@@ -314,6 +288,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="id0"/>
@@ -338,6 +313,7 @@
       </query>
       <agentVersions>
         <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
       </agentVersions>
       <author>system</author>
       <category id="id0"/>
@@ -348,6 +324,45 @@
       <column id="id11"/>
       <column id="id12"/>
       <column id="id13"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>JDBC data sources</name>
+      <description>JDBC data sources</description>
+      <query>
+        <resource id="data_source" iname="$entity[4]/$entity[6]" name="JDBC Data source" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)"/>
+        <resource id="curr_capacity" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
+        <resource id="num_available" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[NumAvailable]"/>
+        <resource id="curr_waiting_for_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[WaitingForConnectionCurrentCount]"/>
+        <resource id="curr_active_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ActiveConnectionsCurrentCount]"/>
+        <resource id="prep_stmt_cache_miss" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[PrepStmtCacheMissCount]"/>
+        <resource id="leaked_conn" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[LeakedConnectionCount]"/>
+        <resource id="conn_delay_time" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[ConnectionDelayTime]"/>
+        <resource id="user" iname="$entity[4]/$entity[6]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/(.*)/JDBCDataSourceRuntimeMBeans/(.*)/[CurrCapacity]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="data_source"/>
+    </view>
+    <view class="com.ixora.rms.ui.dataviewboard.tables.definitions.TableDef">
+      <name>Persistent stores</name>
+      <description>Persistent stores</description>
+      <query>
+        <resource id="stores" iname="$entity[3]/$entity[5]" name="Persistent Stores" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)"/>
+        <resource id="delete_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[DeleteCount]"/>
+        <resource id="update_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[UpdateCount]"/>
+        <resource id="read_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ReadCount]"/>
+        <resource id="create_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[CreateCount]"/>
+        <resource id="object_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[ObjectCount]"/>
+        <resource id="physical_write_count" iname="$entity[3]/$entity[5]/$counter" name="$counter" rid="-/-/root/com.bea/ServerRuntimes/(.*)/PersistentStoreRuntimes/(.*)/[PhysicalWriteCount]"/>
+      </query>
+      <agentVersions>
+        <agentVersion>9.*</agentVersion>
+        <agentVersion>10.*</agentVersion>
+      </agentVersions>
+      <author>system</author>
+      <category id="stores"/>
     </view>
     <view class="com.ixora.rms.ui.dataviewboard.charts.definitions.ChartDef">
       <name>Execute queues - thread utilization</name>

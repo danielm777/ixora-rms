@@ -10,6 +10,30 @@
         <view id=":Work managers:"/>
         <view id=":Persistent stores:"/>
         <view id=":Persistent store operations:"/>
+        <view id=":Active transactions for all servers:"/>
+        <view id=":Queue length for all servers:"/>
+        <view id=":Pending user requests for all servers:"/>
+        <view id=":Throughput for all servers:"/>
+        <view id=":Current connnections for all JMS servers:"/>
+        <view id=":Committed/Rolledback transactions per server:"/>
+        <view id=":Transaction resources:"/>
+        <view id=":JMS destinations:"/>
+      </views>
+      <author>system</author>
+      <counters/>
+      <agentVersions>
+        <agentVersion>10.*</agentVersion>
+      </agentVersions>
+    </dashboard>
+    <dashboard>
+      <name>Weblogic overview</name>
+      <description>Weblogic overview</description>
+      <views>
+        <view id=":Execute queues:"/>
+        <view id=":Server channels:"/>
+        <view id=":Work managers:"/>
+        <view id=":Persistent stores:"/>
+        <view id=":Persistent store operations:"/>
         <view id=":JDBC data sources:"/>
         <view id=":Active transactions for all servers:"/>
         <view id=":Queue length for all servers:"/>
