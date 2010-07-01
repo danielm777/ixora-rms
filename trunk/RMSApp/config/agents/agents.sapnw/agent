@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent>
+<version></version>
+<name>agents.sapnw</name>
+<description>sapnw.description</description>
+<category>appServers</category>
+<versions>
+<version>7.1</version>
+</versions>
+<javaHelp>secSAPNetWeaver</javaHelp>
+<webHelp>monitoring-agents/SAPNetWeaver</webHelp>
+<versionItems>
+	<versionItem>
+		<class>com.ixora.rms.agents.sapnw.v7_1.SAPNetWeaverAgent</class>
+		<locations>
+		<location>0</location>
+		<location>1</location>
+		</locations>
+		<customconfigpanel>com.ixora.rms.agents.sapnw.v7_1.ConfigurationPanel</customconfigpanel>
+		<jars>
+		<jar>/jars/AgentSAPNetWeaver.jar</jar>
+		<jar>/jars/RMSJMX.jar</jar>
+		</jars>
+		<uiJar>/jars/AgentSAPNetWeaver_ui.jar</uiJar>	
+		<agentVersions>
+			<agentVersion>7.1</agentVersion>
+		</agentVersions>
+	</versionItem>
+</versionItems>
+</agent>
