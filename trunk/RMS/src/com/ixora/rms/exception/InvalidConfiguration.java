@@ -35,7 +35,52 @@ public final class InvalidConfiguration extends RMSException {
 		super(s);
 	}
 
-    /**
+	public InvalidConfiguration(String msgKey, boolean needsLocalizing) {
+		super(msgKey, needsLocalizing);
+	}
+
+	public InvalidConfiguration(String msg, Object o) {
+		super(msg, o);
+	}
+
+	public InvalidConfiguration(String component, String msgKey,
+			boolean needsLocalizing) {
+		super(component, msgKey, needsLocalizing);
+	}
+
+	public InvalidConfiguration(String component, String msgKey,
+			String[] msgTokens, Throwable cause) {
+		super(component, msgKey, msgTokens, cause);
+	}
+
+	public InvalidConfiguration(String component, String msgKey,
+			String[] msgTokens) {
+		super(component, msgKey, msgTokens);
+	}
+
+	public InvalidConfiguration(String component, String msgKey,
+			Throwable cause, boolean needsLocalizing) {
+		super(component, msgKey, cause, needsLocalizing);
+	}
+	
+	public InvalidConfiguration(String msgKey, String[] msgTokens) {
+		super(msgKey, msgTokens);
+	}
+	
+	public InvalidConfiguration(String msgKey, Throwable cause,
+			boolean needsLocalizing) {
+		super(msgKey, cause, needsLocalizing);
+	}
+	
+	public InvalidConfiguration(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public InvalidConfiguration(Throwable cause) {
+		super(cause);
+	}
+	
+	/**
      * @see java.lang.Throwable#getLocalizedMessage()
      */
     public String getLocalizedMessage() {
