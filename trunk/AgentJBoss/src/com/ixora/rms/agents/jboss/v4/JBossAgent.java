@@ -4,7 +4,6 @@
 package com.ixora.rms.agents.jboss.v4;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.TreeMap;
@@ -45,7 +44,6 @@ public class JBossAgent extends JMXAbstractAgent {
 	public JBossAgent(AgentId agentId, Listener listener) {
 		super(agentId, listener);
 		//fRootEntity = new JBossEntityRoot((JMXAgentExecutionContext)fContext);
-		fEnvMap = new HashMap<String, Object>();
 		fEnvMap.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
 		fEnvMap.put(Context.URL_PKG_PREFIXES, "org.jboss.naming:org.jnp.interfaces");
 	}
@@ -80,11 +78,15 @@ public class JBossAgent extends JMXAbstractAgent {
 		}
 	}
 
+	
 	/**
-	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getDomainFilter()
+	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#acceptDomain(java.lang.String)
 	 */
-	protected String getDomainFilter() {
-		return "(?!jboss\\.deployment).*";
+	protected boolean acceptDomain(String domain) {
+		if(domain.startsWith("jboss.deployment")) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
