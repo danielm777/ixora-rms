@@ -39,10 +39,9 @@ public class JMXEntityRoot extends RootEntity {
 			if(getChildrenCount() == 0) {
 				// get domains
 				String[] domains = retrieveDomains();
-				String filter = getJMXContext().getDomainFilter();
 				if(!Utils.isEmptyArray(domains)) {
 					for(String domain : domains) {
-						if(Utils.isEmptyString(filter) || domain.matches(filter)) {
+						if(getJMXContext().acceptDomain(domain)) {
 							Entity e = buildDomainEntity(getId(), getJMXContext(), domain);
 							if(e != null) {
 								addChildEntity(e);

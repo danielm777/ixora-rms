@@ -4,7 +4,6 @@
 package com.ixora.rms.agents.impl.jmx.jsr160;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
@@ -31,7 +30,6 @@ public abstract class JMXJSR160AbstractAgent extends JMXAbstractAgent {
 	 */
 	public JMXJSR160AbstractAgent(AgentId agentId, Listener listener) {
 		super(agentId, listener);
-		fEnvMap = new HashMap<String, Object>();
 	}
 
 	/**
@@ -76,13 +74,6 @@ public abstract class JMXJSR160AbstractAgent extends JMXAbstractAgent {
 	 * @throws Throwable
 	 */
 	protected abstract String getJMXConnectionURL() throws Throwable;
-
-	/**
-	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getDomainFilter()
-	 */
-	protected String getDomainFilter() {
-		return ".*";
-	}
 
 	/**
 	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getKeyFilter(java.lang.String)
