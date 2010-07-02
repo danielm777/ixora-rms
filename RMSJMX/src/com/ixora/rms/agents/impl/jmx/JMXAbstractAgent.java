@@ -3,6 +3,7 @@
  */
 package com.ixora.rms.agents.impl.jmx;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.management.MBeanAttributeInfo;
@@ -41,8 +42,8 @@ public abstract class JMXAbstractAgent extends AbstractAgent {
 		/**
 		 * @see com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext#getDomainFilter()
 		 */
-		public String getDomainFilter() {
-			return JMXAbstractAgent.this.getDomainFilter();
+		public boolean acceptDomain(String domain) {
+			return JMXAbstractAgent.this.acceptDomain(domain);
 		}
 		/**
 		 * @see com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext#getKeyFilter(java.lang.String)
@@ -126,13 +127,16 @@ public abstract class JMXAbstractAgent extends AbstractAgent {
 		JMXExecutionContext jmxEC = new JMXExecutionContext();
 		fContext = jmxEC;
 		fRootEntity = new JMXEntityRoot(jmxEC);
+		fEnvMap = new HashMap<String, Object>();
 	}
 
 	/**
-	 * Subclasses must return here the regex pattern for domain names
+	 * Subclasses should filter here the domain names
 	 * @return
 	 */
-	protected abstract String getDomainFilter();
+	protected boolean acceptDomain(String domain) {
+		return true;
+	}
 
 	/**
 	 * Subclasses must return here the JMX pattern used to match object names

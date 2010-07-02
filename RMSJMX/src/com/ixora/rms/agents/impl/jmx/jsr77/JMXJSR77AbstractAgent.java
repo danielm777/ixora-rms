@@ -3,7 +3,6 @@
  */
 package com.ixora.rms.agents.impl.jmx.jsr77;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 
 import javax.management.ObjectName;
@@ -34,7 +33,6 @@ public abstract class JMXJSR77AbstractAgent extends JMXAbstractAgent {
 	public JMXJSR77AbstractAgent(AgentId agentId, Listener listener) {
 		super(agentId, listener);
 		fRootEntity = new JMXJSR77EntityRoot((JMXAgentExecutionContext)fContext);
-		fEnvMap = new HashMap<String, Object>();
 	}
 
 	/**
@@ -70,13 +68,6 @@ public abstract class JMXJSR77AbstractAgent extends JMXAbstractAgent {
 		if(fManagementBean != null) {
 			fManagementBean.remove();
 		}
-	}
-
-	/**
-	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getDomainFilter()
-	 */
-	protected String getDomainFilter() {
-		return ".*";
 	}
 
 	/**

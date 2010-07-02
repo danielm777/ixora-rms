@@ -22,6 +22,8 @@ import javax.management.j2ee.statistics.Stats;
 import javax.management.openmbean.CompositeData;
 import javax.management.openmbean.TabularData;
 
+import com.ixora.common.logging.AppLogger;
+import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterType;
 import com.ixora.rms.EntityId;
@@ -34,6 +36,7 @@ import com.ixora.rms.agents.impl.Entity;
  */
 public class JMXEntity extends Entity {
 	private static final long serialVersionUID = 2053296470688671832L;
+	private static final AppLogger logger = AppLoggerFactory.getLogger(JMXEntity.class);
 	/** Bean attributes that are counters for this entity */
 	protected String[] fAttributesForCounters;
 	/** Object name */
@@ -104,15 +107,20 @@ public class JMXEntity extends Entity {
 						addCounter(new JMXCounter(ai.getName(), nameAndDesc[0], nameAndDesc[1], ctype, discrete));
 						attrNamesForCounters.add(ai.getName());
 					} else {
-						if(type.equals(CompositeData.class.getName())) {
-							addChildEntity(new JMXEntityCompositeData(getId(), c, oname, ai.getName()));
-						} else if(type.equals(TabularData.class.getName())) {
-							addChildEntity(new JMXEntityTabularData(getId(), c, oname, ai.getName()));
-						} else if(type.equals(Stats.class.getName())) {
-							addChildEntity(new JMXJSR77Entity(getId(), c, oname, ai.getName()));
-						} else {
-							// complex type
-							processComplexAttribute(ai, false);
+						try {
+							if(type.equals(CompositeData.class.getName())) {
+								addChildEntity(new JMXEntityCompositeData(getId(), c, oname, ai.getName()));
+							} else if(type.equals(TabularData.class.getName())) {
+								addChildEntity(new JMXEntityTabularData(getId(), c, oname, ai.getName()));
+							} else if(type.equals(Stats.class.getName())) {
+								addChildEntity(new JMXJSR77Entity(getId(), c, oname, ai.getName()));
+							} else {
+								// complex type
+								processComplexAttribute(ai, false);
+							}
+						} catch (Exception e) {
+							// log and keep going
+							logger.error("Failed to add child entity: " + ai + " for entity: " + getId(), e);
 						}
 					}
 				}

@@ -20,10 +20,13 @@ public interface JMXAgentExecutionContext extends AgentExecutionContext {
 	 * @return
 	 */
 	JMXConnection getJMXConnection();
+	
 	/**
-	 * @return the regex pattern to apply for domains
+	 * @param domain
+	 * @return true if it accepts domain <code>domain</code>
 	 */
-	String getDomainFilter();
+	boolean acceptDomain(String domain);
+	
 	/**
 	 * @param domain
 	 * @return the JMX pattern to apply to the object name keys

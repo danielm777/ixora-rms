@@ -12,6 +12,7 @@ import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
 import javax.management.IntrospectionException;
 import javax.management.MBeanException;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
 
@@ -81,11 +82,7 @@ public class JMXEntityDomain extends JMXEntity {
 	 */
 	public void updateChildrenEntities(boolean recursive) throws Throwable {
 		try {
-			// get all names in this domain according to filter
-			Set<ObjectName> names = getJMXContext().getJMXConnection().queryNames(new ObjectName(getName()
-					+ ":"
-					+ getJMXContext().getKeyFilter(getName())), null);
-
+			Set<ObjectName> names = queryForChildrenEntities();
 			if(logger.isTraceEnabled()) {
 				logger.trace("Objects filtered for " + getId() + ": " + names);
 				logger.trace("Size: " + names.size());
@@ -108,6 +105,21 @@ public class JMXEntityDomain extends JMXEntity {
 			}
 			getJMXContext().processException(e);
 		}
+	}
+
+	/**
+	 * The default behavior is to query using the key filter in the JMX context.
+	 * @return
+	 * @throws Exception
+	 * @throws MalformedObjectNameException
+	 */
+	protected Set<ObjectName> queryForChildrenEntities() throws Exception,
+			MalformedObjectNameException {
+		// get all names in this domain according to filter
+		Set<ObjectName> names = getJMXContext().getJMXConnection().queryNames(new ObjectName(getName()
+				+ ":"
+				+ getJMXContext().getKeyFilter(getName())), null);
+		return names;
 	}
 
 	/**

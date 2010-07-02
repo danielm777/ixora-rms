@@ -17,6 +17,7 @@ import javax.management.ObjectName;
 import javax.management.ReflectionException;
 import javax.management.j2ee.statistics.Stats;
 import javax.management.openmbean.CompositeData;
+import javax.management.openmbean.TabularData;
 
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.CounterType;
@@ -209,7 +210,8 @@ public class JMXEntitySelfExploring extends JMXEntity {
 						String type = ai.getType();
 						CounterType ctype = convertType(type);
 						if(ctype == null) { // not a counter
-							if(!type.equals(CompositeData.class.getName())
+							if(!type.equals(TabularData.class.getName())
+									&& !type.equals(CompositeData.class.getName())
 									&& !type.equals(Stats.class.getName())) {
 								// complex type
 								processComplexAttribute(ai, true);
