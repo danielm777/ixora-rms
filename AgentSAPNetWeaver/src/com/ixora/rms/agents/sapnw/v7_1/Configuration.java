@@ -21,9 +21,13 @@ public class Configuration extends ConfigurationWithClasspath {
 	public Configuration() {
 		super();
         setProperty(P4_PORT, TYPE_INTEGER, true, true);
+        setInt(P4_PORT, 50504);
 		setString(USERNAME, "administrator");
 		setString(PASSWORD, "netw33ver");
 		setString(ROOT_FOLDER, "C:/usr/sap/CE1/J05");
-		setString(CLASSPATH, "/j2ee/j2eeclient/sap.com~tc~je~clientlib~impl.jar");
+		setString(CLASSPATH, "/j2ee/cluster/bin/ext/tc~jmx/lib/private/sap.com~tc~bl~pj_jmx~Impl.jar," +
+				"/j2ee/j2eeclient/sap.com~tc~je~clientlib~impl.jar," +
+				"/j2ee/j2eeclient/sap.com~tc~exception~impl.jar," +
+				"/j2ee/j2eeclient/sap.com~tc~logging~java~impl.jar");
 	}
 }

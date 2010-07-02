@@ -5,5 +5,9 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/IxoraCommon"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMS"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMSJMX"/>
+	<classpathentry kind="var" path="IXORA_RESOURCES_LIB/sap/sap.com~tc~bl~pj_jmx~Impl.jar"/>
+	<classpathentry kind="var" path="IXORA_RESOURCES_LIB/sap/sap.com~tc~exception~impl.jar"/>
+	<classpathentry kind="var" path="IXORA_RESOURCES_LIB/sap/sap.com~tc~je~clientlib~impl.jar"/>
+	<classpathentry kind="var" path="IXORA_RESOURCES_LIB/sap/sap.com~tc~logging~java~impl.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
