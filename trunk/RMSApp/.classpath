@@ -48,5 +48,7 @@
 	<classpathentry kind="lib" path="jars/AgentWebsphere_ui.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMSLibsPatch"/>
 	<classpathentry kind="lib" path="/IxoraResources/lib/jfreechart.jar"/>
+	<classpathentry kind="lib" path="/IxoraResources/lib/javax77.jar"/>
+	<classpathentry kind="lib" path="jars/AgentSAPNetWeaver_ui.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
