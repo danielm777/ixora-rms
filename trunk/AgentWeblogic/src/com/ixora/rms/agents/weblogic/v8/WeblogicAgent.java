@@ -5,7 +5,6 @@ package com.ixora.rms.agents.weblogic.v8;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.TreeMap;
@@ -19,11 +18,11 @@ import javax.naming.InitialContext;
 
 import com.ixora.common.utils.Utils;
 import com.ixora.rms.agents.AgentId;
-import com.ixora.rms.agents.weblogic.exception.CommunicationError;
-import com.ixora.rms.agents.weblogic.exception.WeblogicNotInstalledOnHost;
 import com.ixora.rms.agents.impl.jmx.JMXAbstractAgent;
 import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
 import com.ixora.rms.agents.impl.jmx.JMXConnectionMBeanServer;
+import com.ixora.rms.agents.weblogic.exception.CommunicationError;
+import com.ixora.rms.agents.weblogic.exception.WeblogicNotInstalledOnHost;
 import com.ixora.rms.exception.RMSException;
 
 /**
@@ -39,7 +38,6 @@ public class WeblogicAgent extends JMXAbstractAgent {
 	public WeblogicAgent(AgentId agentId, Listener listener) throws Throwable {
 		super(agentId, listener);
 		fRootEntity = new WeblogicEntityRoot((JMXAgentExecutionContext)fContext);
-		fEnvMap = new HashMap<String, Object>();
 		fEnvMap.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
 	}
 
@@ -157,13 +155,6 @@ public class WeblogicAgent extends JMXAbstractAgent {
 			throw new CommunicationError();
 		}
 		super.processException(t);
-	}
-
-	/**
-	 * @see com.ixora.rms.agents.impl.jmx.JMXAbstractAgent#getDomainFilter()
-	 */
-	protected String getDomainFilter() {
-		return ".*";
 	}
 
 	/**
