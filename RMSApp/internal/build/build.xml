@@ -131,6 +131,22 @@
 		</fileset>
 	</jar>
 
+	<!-- AgentSAPNetWeaver -->
+	<jar jarfile="${destDir}/AgentSAPNetWeaver.jar">
+		<fileset dir="${root}/AgentSAPNetWeaver/classes/">
+			<exclude name="**/Configuration*.class"/>
+			<exclude name="**/exception/*.class"/>
+			<exclude name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	<jar jarfile="${destDir}/AgentSAPNetWeaver_ui.jar">
+		<fileset dir="${root}/AgentSAPNetWeaver/classes/">
+			<include name="**/Configuration*.class"/>
+			<include name="**/exception/*.class"/>
+			<include name="**/messages/*.class"/>
+		</fileset>
+	</jar>
+	
 	<!-- AgentMySQL -->
 	<jar jarfile="${destDir}/AgentMySQL.jar">
 		<fileset dir="${root}/AgentMySQL/classes/">
