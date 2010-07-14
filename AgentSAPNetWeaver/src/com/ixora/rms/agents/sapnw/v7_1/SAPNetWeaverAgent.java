@@ -8,6 +8,8 @@ import javax.management.ObjectName;
 import javax.naming.Context;
 
 import com.ixora.common.utils.Utils;
+import com.ixora.rms.EntityDescriptorTree;
+import com.ixora.rms.EntityId;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.impl.jmx.JMXAbstractAgent;
 import com.ixora.rms.agents.impl.jmx.JMXAgentExecutionContext;
@@ -16,6 +18,7 @@ import com.ixora.rms.agents.impl.jmx.JMXEntityRoot;
 import com.ixora.rms.agents.impl.jmx.MBeanServerProxy;
 import com.ixora.rms.agents.sapnw.messages.Msg;
 import com.ixora.rms.exception.InvalidConfiguration;
+import com.ixora.rms.exception.InvalidEntity;
 import com.sap.jmx.remote.JmxConnectionFactory;
 
 /**
@@ -82,10 +85,12 @@ public class SAPNetWeaverAgent extends JMXAbstractAgent {
 		String soname = oname.toString();
 		if(soname.startsWith("com.sap.default")) {
 			String j2eeType = oname.getKeyProperty("j2eeType");
-			if(Utils.isEmptyString(j2eeType) || !j2eeType.equals("SAP_MonitorPerNode")) {
-				return false;
+			if(!Utils.isEmptyString(j2eeType) 
+					&& (j2eeType.equals("SAP_MonitorPerNode") 
+							|| j2eeType.equals("SAP_ApplicationResourcePerNode"))) {
+				return true;
 			}
-			return true;
+			return false;
 		} else {
 			return true;
 		}
@@ -116,6 +121,9 @@ public class SAPNetWeaverAgent extends JMXAbstractAgent {
 						name = name.substring(0, name.length()-1);
 					}
 				}
+				if(!name.startsWith("/")) {
+					buff.append("/");
+				}
 				buff.append(name);
 			}			
 		}
@@ -131,6 +139,43 @@ public class SAPNetWeaverAgent extends JMXAbstractAgent {
 	protected boolean sortEntities() {
 		return true;
 	}
+
+	public synchronized void collectData() throws Throwable {
+		try {
+			super.collectData();
+		} catch (Exception e) {
+			if(checkException(e)) {
+				configCustomChanged();
+				super.collectData();
+			}
+			throw e;
+		}
+	}
+
+	public synchronized EntityDescriptorTree getEntities(EntityId idParent,
+			boolean recursive, boolean refresh) throws InvalidEntity, Throwable {
+		try {
+			return super.getEntities(idParent, recursive, refresh);
+		} catch (Exception e) {
+			if(checkException(e)) {
+				configCustomChanged();
+				return super.getEntities(idParent, recursive, refresh);
+			}
+			throw e;
+		}
+	}
 	
-	
+	/**
+	 * There seems to be a problem with SAP/NW connection loosing its security context after a while... This method returns true if
+	 * a com.sap.engine.services.jmx.exception.JmxSecurityException is detected in the stacktrace of exception <b>e</b>.
+	 * @param e
+	 * @return
+	 */
+	private boolean checkException(Exception e) {
+		String trace = Utils.getTrace(e).toString();
+		if(trace.contains("com.sap.engine.services.jmx.exception.JmxSecurityException")) {
+			return true;
+		}
+		return false;
+	}
 }
