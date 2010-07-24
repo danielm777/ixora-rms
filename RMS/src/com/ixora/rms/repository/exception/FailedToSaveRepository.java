@@ -18,8 +18,8 @@ public final class FailedToSaveRepository extends RMSException {
 	 * Constructor.
 	 * @param reason
 	 */
-	public FailedToSaveRepository(String reason) {
+	public FailedToSaveRepository(Exception reason) {
 		super(RepositoryComponent.NAME, Msg.REPOSITORY_FAILED_TO_SAVE_REPOSITORY,
-				new String[] {reason});
+				new String[] {reason.getMessage()}, reason);
 	}
 }

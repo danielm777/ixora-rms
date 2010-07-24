@@ -418,10 +418,7 @@ public final class TreeArtefactRepository {
 				}
 			}
 		} catch(Exception e) {
-		    logger.error(e);
-			throw new FailedToSaveRepository(
-					e.getMessage() != null ?
-							e.getMessage() : e.toString());
+			throw new FailedToSaveRepository(e);
 		}
 	}
 
@@ -585,17 +582,7 @@ public final class TreeArtefactRepository {
 		Document doc = XMLUtils.createEmptyDocument("rms");
 		ad.agentResources.toXML(doc.getFirstChild());
 
-		BufferedOutputStream os = null;
-		SafeOverwrite so = new SafeOverwrite(out);
-		try {
-			so.backup();
-			os = new BufferedOutputStream(new FileOutputStream(out));
-			XMLUtils.write(doc, os);
-			so.commit(os);
-		} catch(Exception e) {
-			logger.error(e);
-			so.rollback(os);
-		}
+		writeToFile(out, doc);
 	}
 
 	/**
@@ -629,17 +616,7 @@ public final class TreeArtefactRepository {
 			artefact.toXML(en);
 		}
 
-		BufferedOutputStream os = null;
-		SafeOverwrite so = new SafeOverwrite(out);
-		try {
-			so.backup();
-			os = new BufferedOutputStream(new FileOutputStream(out));
-			XMLUtils.write(doc, os);
-			so.commit(os);
-		} catch(Exception e) {
-			logger.error(e);
-			so.rollback(os);
-		}
+		writeToFile(out, doc);
 	}
 
 	/**
@@ -660,17 +637,7 @@ public final class TreeArtefactRepository {
 		Document doc = XMLUtils.createEmptyDocument("rms");
 		hd.hostResources.toXML(doc.getFirstChild());
 
-		BufferedOutputStream os = null;
-		SafeOverwrite so = new SafeOverwrite(out);
-		try {
-			so.backup();
-			os = new BufferedOutputStream(new FileOutputStream(out));
-			XMLUtils.write(doc, os);
-			so.commit(os);
-		} catch(Exception e) {
-			logger.error(e);
-			so.rollback(os);
-		}
+		writeToFile(out, doc);
 	}
 
 	/**
@@ -687,6 +654,13 @@ public final class TreeArtefactRepository {
 		Document doc = XMLUtils.createEmptyDocument("rms");
 		global.globalResources.toXML(doc.getFirstChild());
 
+		writeToFile(out, doc);
+	}
+	
+	private void writeToFile(File out, Document doc) throws IOException {
+		if(!out.getParentFile().exists()) {
+			out.getParentFile().mkdirs();
+		}
 		BufferedOutputStream os = null;
 		SafeOverwrite so = new SafeOverwrite(out);
 		try {
@@ -694,9 +668,12 @@ public final class TreeArtefactRepository {
 			os = new BufferedOutputStream(new FileOutputStream(out));
 			XMLUtils.write(doc, os);
 			so.commit(os);
-		} catch(Exception e) {
-			logger.error(e);
+		} catch (IOException e) {
 			so.rollback(os);
+			throw e;
+		} catch(Exception e) {
+			so.rollback(os);
+			throw new IOException(e);
 		}
-	}
+	}	
 }
