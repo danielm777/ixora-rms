@@ -44,6 +44,12 @@ public final class AppHelpMgr implements AppHelp {
 				} catch(Exception e) {
 					throw new AppException(e);
 				}			
+			}  else if(HelpConfiguration.HELP_PROVIDER_FILE.equalsIgnoreCase(configuredHelpType)) {
+				try {
+					provider = new AppHelpFile(appFrame, helpMenuItem);
+				} catch(Exception e) {
+					throw new AppException(e);
+				}			
 			}
 		}
 	}
@@ -69,6 +75,8 @@ public final class AppHelpMgr implements AppHelp {
 			return ProviderType.JAVA_HELP;
 		} else if(provider instanceof AppHelpWeb) {
 			return ProviderType.WEB;
+		} else if(provider instanceof AppHelpFile) {
+			return ProviderType.FILE;
 		}
 		return null;
 	}
