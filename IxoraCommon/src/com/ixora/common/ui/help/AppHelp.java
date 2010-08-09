@@ -7,7 +7,7 @@ import java.awt.Window;
  */
 public interface AppHelp {
 	public enum ProviderType {
-		JAVA_HELP, WEB
+		JAVA_HELP, WEB, FILE
 	}
 	
 	/**
