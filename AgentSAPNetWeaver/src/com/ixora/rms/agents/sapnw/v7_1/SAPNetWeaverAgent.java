@@ -88,7 +88,6 @@ public class SAPNetWeaverAgent extends JMXAbstractAgent {
 			if(!Utils.isEmptyString(j2eeType) 
 					&& (j2eeType.equals("SAP_MonitorPerNode") 
 							|| j2eeType.equals("SAP_ApplicationResourcePerNode"))) {
-				System.err.println(oname);
 				return true;
 			}
 			return false;
