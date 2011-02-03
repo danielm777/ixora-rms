@@ -48,12 +48,12 @@ public class QueryData extends LinkedList<QuerySeries> {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		String s = "-----------------------------";
+		StringBuilder s = new StringBuilder("-----------------------------");
 		for (QuerySeries querySeries : this) {
-			s += "\n";
-			s += querySeries.toString();
+			s.append("\n");
+			s.append(querySeries.toString());
 		}
-		s += "\n-----------------------------\n";
-		return s;
+		s.append("\n-----------------------------\n");
+		return s.toString();
 	}
 }
