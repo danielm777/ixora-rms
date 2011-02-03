@@ -47,18 +47,18 @@ public class QuerySeries extends LinkedList<QueryResultData> {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		for (QueryResultData queryResultData : this) {
 			if (queryResultData != null) {
-				s += queryResultData.getQueryResult().getStyle().getName();
-				s += "=";
-				s += String.valueOf(queryResultData.getValue());
-				s += "\n";
+				s.append(queryResultData.getQueryResult().getStyle().getName());
+				s.append("=");
+				s.append(queryResultData.getValue());
+				s.append("\n");
 			} else {
-				s += "null\n";
+				s.append("null\n");
 			}
 		}
-		s += "\n";
-		return s;
+		s.append("\n");
+		return s.toString();
 	}
 }
