@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.ixora.common.ui.TableSorter;
-import com.ixora.rms.ui.exporter.HTMLProvider;
+import com.ixora.rms.exporter.html.HTMLProvider;
 
 /**
  * @author Daniel Moraru
@@ -28,7 +28,7 @@ public class TableBasedControlHTMLProvider implements HTMLProvider {
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
+	 * @see com.ixora.rms.exporter.html.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
 	 */
 	public void toHTML(StringBuilder buff, File root) throws IOException {
 		buff.append("<table class='tableControl'>");

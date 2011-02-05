@@ -1,7 +1,7 @@
 /**
  * 04-Feb-2006
  */
-package com.ixora.rms.ui.exporter;
+package com.ixora.rms.exporter.html;
 
 import java.io.File;
 

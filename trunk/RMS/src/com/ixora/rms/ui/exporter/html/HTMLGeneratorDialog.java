@@ -1,7 +1,7 @@
 /**
  * 04-Feb-2006
  */
-package com.ixora.rms.ui.exporter;
+package com.ixora.rms.ui.exporter.html;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -28,6 +28,7 @@ import com.ixora.common.ui.actions.ActionOk;
 import com.ixora.common.ui.forms.FormFieldFileSelector;
 import com.ixora.common.ui.forms.FormPanel;
 import com.ixora.rms.exception.RMSException;
+import com.ixora.rms.exporter.html.HTMLGeneratorSettings;
 
 /**
  * @author Daniel Moraru

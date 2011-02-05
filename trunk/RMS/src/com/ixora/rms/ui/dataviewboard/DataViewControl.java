@@ -44,6 +44,7 @@ import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.external.QueryData;
 import com.ixora.rms.dataengine.external.QueryListener;
 import com.ixora.rms.dataengine.external.QuerySeries;
+import com.ixora.rms.exporter.html.HTMLProvider;
 import com.ixora.rms.reactions.ReactionId;
 import com.ixora.rms.reactions.ReactionsComponent;
 import com.ixora.rms.reactions.ReactionsComponentConfigurationConstants;
@@ -54,7 +55,6 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
 import com.ixora.rms.ui.dataviewboard.legend.Legend;
 import com.ixora.rms.ui.dataviewboard.legend.LegendPanelDetailed;
 import com.ixora.rms.ui.dataviewboard.legend.LegendPanelSimple;
-import com.ixora.rms.ui.exporter.HTMLProvider;
 import com.ixora.rms.ui.messages.Msg;
 
 /**
@@ -752,7 +752,7 @@ public abstract class DataViewControl extends JPanel
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
+	 * @see com.ixora.rms.exporter.html.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
 	 */
 	public void toHTML(StringBuilder buff, File root) throws IOException {
 		buff.append("<p><div class='controlName'>").append(getTranslatedViewName()).append("</div>");

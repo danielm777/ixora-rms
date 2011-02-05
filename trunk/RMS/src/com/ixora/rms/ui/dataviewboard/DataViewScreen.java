@@ -20,7 +20,7 @@ import javax.swing.event.InternalFrameEvent;
 
 import com.ixora.common.MessageRepository;
 import com.ixora.common.utils.Utils;
-import com.ixora.rms.ui.exporter.HTMLProvider;
+import com.ixora.rms.exporter.html.HTMLProvider;
 import com.ixora.rms.ui.messages.Msg;
 
 /**
@@ -245,7 +245,7 @@ public final class DataViewScreen extends JDesktopPane implements HTMLProvider {
 
 	/**
 	 * @throws IOException
-	 * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
+	 * @see com.ixora.rms.exporter.html.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
 	 */
 	public void toHTML(StringBuilder buff, File root) throws IOException {
 		Collection<DataViewBoard> boards = getBoards();

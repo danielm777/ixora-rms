@@ -99,7 +99,7 @@ public class LegendPanelSimple extends LegendPanel {
 
 
 	/**
-	 * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
+	 * @see com.ixora.rms.exporter.html.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
 	 */
 	public void toHTML(StringBuilder buff, File root) throws IOException {
 	}

@@ -40,6 +40,7 @@ import com.ixora.rms.client.model.ResourceInfo;
 import com.ixora.rms.client.model.SessionModel;
 import com.ixora.rms.dataengine.Style;
 import com.ixora.rms.exception.RMSException;
+import com.ixora.rms.exporter.html.HTMLProvider;
 import com.ixora.rms.repository.DashboardId;
 import com.ixora.rms.repository.DataView;
 import com.ixora.rms.repository.DataViewBoardInstallationData;
@@ -56,7 +57,6 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToPlotView;
 import com.ixora.rms.ui.dataviewboard.exception.ScreenNameAlreadyExists;
 import com.ixora.rms.ui.dataviewboard.legend.LegendDialog;
-import com.ixora.rms.ui.exporter.HTMLProvider;
 import com.ixora.rms.ui.messages.Msg;
 
 /**
@@ -591,7 +591,7 @@ public final class DataViewBoardHandler extends Observable
 
     /**
      * @throws IOException
-     * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
+     * @see com.ixora.rms.exporter.html.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
      */
     public void toHTML(StringBuilder buff, File root) throws IOException {
     	for(DataViewScreen screen : fScreens.values()) {

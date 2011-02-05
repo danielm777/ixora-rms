@@ -35,13 +35,13 @@ import com.ixora.rms.client.QueryRealizer;
 import com.ixora.rms.client.locator.SessionDataViewInfo;
 import com.ixora.rms.dataengine.RealizedQuery;
 import com.ixora.rms.dataengine.Style;
+import com.ixora.rms.exporter.html.HTMLProvider;
 import com.ixora.rms.repository.DataView;
 import com.ixora.rms.repository.DataViewId;
 import com.ixora.rms.repository.QueryId;
 import com.ixora.rms.services.DataEngineService;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
 import com.ixora.rms.ui.dataviewboard.exception.FailedToPlotView;
-import com.ixora.rms.ui.exporter.HTMLProvider;
 import com.ixora.rms.ui.messages.Msg;
 
 /**
@@ -603,7 +603,7 @@ public abstract class DataViewBoard extends JInternalFrame implements HTMLProvid
 
 	/**
 	 * @throws IOException
-	 * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
+	 * @see com.ixora.rms.exporter.html.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
 	 */
 	public void toHTML(StringBuilder buff, File root) throws IOException {
 		buff.append("<div class='board'><p class='boardTitle'>")
