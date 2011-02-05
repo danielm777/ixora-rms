@@ -13,7 +13,7 @@ import com.ixora.common.MessageRepository;
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIUtils;
-import com.ixora.rms.ui.exporter.HTMLGenerator;
+import com.ixora.rms.ui.exporter.html.HTMLGenerator;
 import com.ixora.rms.ui.messages.Msg;
 
 

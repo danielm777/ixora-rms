@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import com.ixora.rms.ui.exporter.HTMLProvider;
+import com.ixora.rms.exporter.html.HTMLProvider;
 
 
 /**

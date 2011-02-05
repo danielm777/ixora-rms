@@ -7,13 +7,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import com.ixora.RMIServiceNames;
-import com.ixora.rms.ResourceId;
 import com.ixora.common.RMIServices;
 import com.ixora.common.exception.AppException;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
-import com.ixora.common.security.license.LicenseMgr;
 import com.ixora.rms.EntityDescriptorTree;
+import com.ixora.rms.ResourceId;
 import com.ixora.rms.agents.AgentId;
 import com.ixora.rms.agents.AgentState;
 import com.ixora.rms.client.QueryRealizer;
@@ -202,7 +201,7 @@ public class BatchSessionImpl extends UnicastRemoteObject implements BatchSessio
 	public void configure(BatchSessionConfiguration conf) throws RemoteException, RMSException {
 		try {
 			// check license
-			LicenseMgr.checkLicense();
+			//LicenseMgr.checkLicense();
 
 			fSessionConf = conf;
 			fSessionDescriptor = MonitoringSessionLoader

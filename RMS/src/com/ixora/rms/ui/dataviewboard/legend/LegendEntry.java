@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 import com.ixora.common.ui.UIConfiguration;
 import com.ixora.common.ui.UIFactoryMgr;
-import com.ixora.rms.ui.exporter.HTMLProvider;
+import com.ixora.rms.exporter.html.HTMLProvider;
 
 /**
  * @author Daniel Moraru
@@ -161,7 +161,7 @@ public class LegendEntry extends JPanel implements HTMLProvider {
 	}
 
 	/**
-	 * @see com.ixora.rms.ui.exporter.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
+	 * @see com.ixora.rms.exporter.html.HTMLProvider#toHTML(java.lang.StringBuilder, java.io.File)
 	 */
 	public void toHTML(StringBuilder buff, File root) throws IOException {
 	}

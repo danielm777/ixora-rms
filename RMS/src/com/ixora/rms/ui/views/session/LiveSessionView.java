@@ -105,7 +105,7 @@ import com.ixora.rms.ui.dataviewboard.DataViewBoardHandler;
 import com.ixora.rms.ui.dataviewboard.DataViewControl;
 import com.ixora.rms.ui.dataviewboard.DataViewScreenDescriptor;
 import com.ixora.rms.ui.dataviewboard.DataViewScreenPanel;
-import com.ixora.rms.ui.exporter.HTMLGenerator;
+import com.ixora.rms.ui.exporter.html.HTMLGenerator;
 import com.ixora.rms.ui.logchooser.LogChooser;
 import com.ixora.rms.ui.logchooser.LogChooserImpl;
 import com.ixora.rms.ui.messages.Msg;
@@ -744,7 +744,7 @@ public final class LiveSessionView extends SessionView {
             });
 		}
 		/**
-		 * @see com.ixora.rms.ui.exporter.HTMLGenerator.Listener#finishedHTMLGeneration()
+		 * @see com.ixora.rms.ui.exporter.html.HTMLGenerator.Listener#finishedHTMLGeneration()
 		 */
 		public void finishedHTMLGeneration(final Exception error) {
             SwingUtilities.invokeLater(new Runnable() {
@@ -754,7 +754,7 @@ public final class LiveSessionView extends SessionView {
             });
 		}
 		/**
-		 * @see com.ixora.rms.ui.exporter.HTMLGenerator.Listener#cancelledHTMLGeneration()
+		 * @see com.ixora.rms.ui.exporter.html.HTMLGenerator.Listener#cancelledHTMLGeneration()
 		 */
 		public void cancelledHTMLGeneration() {
             SwingUtilities.invokeLater(new Runnable() {
@@ -764,7 +764,7 @@ public final class LiveSessionView extends SessionView {
             });
 		}
 		/**
-		 * @see com.ixora.rms.ui.exporter.HTMLGenerator.Listener#startedHTMLGeneration()
+		 * @see com.ixora.rms.ui.exporter.html.HTMLGenerator.Listener#startedHTMLGeneration()
 		 */
 		public void startedHTMLGeneration() {
             SwingUtilities.invokeLater(new Runnable() {

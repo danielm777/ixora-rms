@@ -1,7 +1,7 @@
 /**
  * 04-Feb-2006
  */
-package com.ixora.rms.ui.exporter;
+package com.ixora.rms.ui.exporter.html;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,6 +18,7 @@ import com.ixora.common.history.HistoryMgr;
 import com.ixora.common.ui.UIExceptionMgr;
 import com.ixora.common.ui.UIUtils;
 import com.ixora.common.utils.Utils;
+import com.ixora.rms.exporter.html.HTMLGeneratorSettings;
 import com.ixora.rms.ui.RMSViewContainer;
 import com.ixora.rms.ui.dataviewboard.DataViewBoardHandler;
 
