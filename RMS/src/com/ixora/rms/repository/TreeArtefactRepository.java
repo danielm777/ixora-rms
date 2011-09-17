@@ -175,6 +175,8 @@ public final class TreeArtefactRepository {
 				logger.error(e);
 			} catch (FileNotFoundException e) {
 				// ignore, the entity has no metadata defined
+			} catch (IOException e) {
+				logger.error(e);
 			} finally {
 				// don't retry to load it next time
 				ad.entityLoaded = true;
@@ -235,6 +237,8 @@ public final class TreeArtefactRepository {
 				logger.error(e);
 			} catch (FileNotFoundException e) {
 				// ignore, the entity has no metadata defined
+			} catch (IOException e) {
+				logger.error(e);
 			} finally {
 				// don't retry to load it next time
 				global.globalLoaded = true;
@@ -264,6 +268,8 @@ public final class TreeArtefactRepository {
 				logger.error(e);
 			} catch (FileNotFoundException e) {
 				// ignore, the entity has no metadata defined
+			} catch (IOException e) {
+				logger.error(e);
 			} finally {
 				// don't retry to load it next time
 				ad.agentLoaded = true;
@@ -293,6 +299,8 @@ public final class TreeArtefactRepository {
 				logger.error(e);
 			} catch (FileNotFoundException e) {
 				// ignore, the entity has no metadata defined
+			} catch (IOException e) {
+				logger.error(e);
 			} finally {
 				// don't retry to load it next time
 				hd.hostLoaded = true;
@@ -454,11 +462,19 @@ public final class TreeArtefactRepository {
 	 * Loads resources from file.
 	 * @param f
 	 * @return
+	 * @throws IOException 
+	 * @throws XMLException
 	 */
 	private XMLExternalizable loadResourcesFromFile(File f)
-			throws XMLException, FileNotFoundException {
-		if(!f.canRead() || f.length() == 0) {
+			throws XMLException, IOException {
+		if(f.length() == 0) {
+			if(logger.isTraceEnabled()) {
+				logger.trace("File " + f + " is empty");
+			}
 			return null;
+		}
+		if(!f.canRead()) {
+			throw new IOException("File " + f.getAbsolutePath() + " cannot be read");
 		}
 		XMLExternalizable res;
 		BufferedInputStream bs = null;
@@ -488,10 +504,13 @@ public final class TreeArtefactRepository {
 	 */
 	private Map<EntityId, XMLExternalizable> loadEntityResources(AgentData ad)
 		throws XMLException,
-			FileNotFoundException {
+			IOException {
 		File f = new File(ad.resourceFolder, entityFile);
-		if(!f.canRead()) {
+		if(f.length() == 0) {
 			return null;
+		}
+		if(!f.canRead()) {
+			throw new IOException("File " + f.getAbsolutePath() + " cannot be read");
 		}
 		Map<EntityId, XMLExternalizable> ret;
 		BufferedInputStream bs = null;
@@ -537,7 +556,7 @@ public final class TreeArtefactRepository {
 	 * @return XMLExternalizable
 	 */
 	private XMLExternalizable loadAgentResources(AgentData ad)
-		throws XMLException, FileNotFoundException {
+		throws XMLException, IOException {
 		return loadResourcesFromFile(
 		       new File(ad.resourceFolder, this.agentFile));
 	}
@@ -547,7 +566,7 @@ public final class TreeArtefactRepository {
 	 * @return XMLExternalizable
 	 */
 	private XMLExternalizable loadHostResources(String host)
-		throws XMLException, FileNotFoundException {
+		throws XMLException, IOException {
 		return loadResourcesFromFile(
 		       new File(baseFolder, host + "." + this.fileExtension));
 	}
@@ -556,7 +575,7 @@ public final class TreeArtefactRepository {
 	 * @return XMLExternalizable
 	 */
 	private XMLExternalizable loadGlobalResources()
-		throws XMLException, FileNotFoundException {
+		throws XMLException, IOException {
 		return loadResourcesFromFile(
 		     new File(baseFolder, this.globalFile));
 	}
