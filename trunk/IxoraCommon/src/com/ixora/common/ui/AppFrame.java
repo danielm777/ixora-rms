@@ -906,12 +906,19 @@ public abstract class AppFrame extends JFrame implements AppViewContainer {
 	 */
 	protected void handleClose() {
 		try {
+			// shut down worker
+			fWorker.shutdown();
+			
+			// reset current view
 			if(this.resetCurrentView()) {
 			    return;
             }
+			
+			// dispose
 			this.dispose();
+			
+			// save preferences 
 			try {
-				// save preferences
 				PreferencesConfiguration.get().save();
 			} catch(Exception e) {
 				logger.error(e);

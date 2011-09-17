@@ -17,5 +17,11 @@ public interface UIWorker {
 	 * @param job
 	 */
 	void runJob(UIWorkerJob job);
+	
+	/**
+	 * Shuts down the worker. If any asynchronous jobs are running this
+	 * method waits for all of them to finish before returning.
+	 */
+	void shutdown();
 
 }
