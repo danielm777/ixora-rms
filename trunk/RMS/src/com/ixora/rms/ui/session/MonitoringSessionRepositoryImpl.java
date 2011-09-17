@@ -166,6 +166,10 @@ public final class MonitoringSessionRepositoryImpl
 				}
 				session.setLocation(file.getParent());
 				session.setName(Utils.getFileName(file));
+				if(logger.isTraceEnabled()) {
+					logger.trace("Session to be saved: name: " + session.getName()
+							+ ", location: " + session.getLocation());
+				}
 				saveSession(vc, file, session, asynch, saveAs);
 			} catch(Exception e) {
 			    if(name != null) {
@@ -285,11 +289,19 @@ public final class MonitoringSessionRepositoryImpl
 				try {
 					Document doc = XMLUtils.createEmptyDocument("rms");
 					session.toXML(doc.getDocumentElement());
+					if(logger.isTraceEnabled()) {
+						logger.trace(
+								"Session converted to XML for storage");
+					}
 					BufferedOutputStream os = null;
 					try {
 						os = new BufferedOutputStream(
 								new FileOutputStream(file));
 						XMLUtils.write(doc, os);
+						if(logger.isTraceEnabled()) {
+							logger.trace(
+									"Session XML document saved to storage");
+						}
 						setLastUsedSession(file.getAbsolutePath());
 					} finally {
 						try {
