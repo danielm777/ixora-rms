@@ -7,12 +7,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import com.ixora.common.logging.AppLogger;
+import com.ixora.common.logging.AppLoggerFactory;
 import com.ixora.common.utils.Utils;
 
 /**
  * @author Daniel Moraru
  */
 public final class SafeOverwrite {
+    /** Logger */
+    private static final AppLogger logger = AppLoggerFactory.getLogger(SafeOverwrite.class);
+
 	private File fFile;
 	private File fTmp;
 
@@ -41,7 +46,14 @@ public final class SafeOverwrite {
 			return;
 		}
 		fTmp = File.createTempFile("backup", null);
+		if(logger.isTraceEnabled()) {
+			logger.trace("Backing up file " + fFile + " to " + fTmp + 
+					"...");
+		}
 		Utils.copyFile(fFile, fTmp);
+		if(logger.isTraceEnabled()) {
+			logger.trace("Back up done");
+		}
 	}
 
 	/**
@@ -54,6 +66,7 @@ public final class SafeOverwrite {
 				os.flush();
 				os.close();
 			} catch(IOException e) {
+				logger.error(e);
 			}
 		}
 		if(fTmp != null) {
@@ -71,11 +84,18 @@ public final class SafeOverwrite {
 			try {
 				os.close();
 			} catch(IOException e) {
+				logger.error(e);
 			}
 		}
 		if(fTmp != null) {
+			if(logger.isTraceEnabled()) {
+				logger.trace("Rolling back file " + fTmp + " to " + fFile + "...");
+			}
 			Utils.copyFile(fTmp, fFile);
 			fTmp.delete();
+			if(logger.isTraceEnabled()) {
+				logger.trace("Roll back done");
+			}
 		}
 	}
 }

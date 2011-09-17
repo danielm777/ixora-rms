@@ -1,6 +1,7 @@
 package com.ixora.common.thread;
 
 import com.ixora.common.Startable;
+import com.ixora.common.exception.AppRuntimeException;
 import com.ixora.common.logging.AppLogger;
 import com.ixora.common.logging.AppLoggerFactory;
 
@@ -17,6 +18,10 @@ public final class RunQueue implements Startable {
 	private Thread consumer;
 	/** Stop flag */
 	private volatile boolean bStop = false;
+	/** Stop and wait flag */
+	private volatile boolean bStopAndWait = false;
+	/** Flag set to true when the last runnable finished processing */
+	private volatile boolean bLastRunnableFinished = false;
 
 	/**
 	 * Constructs a processor as a daemon.
@@ -67,6 +72,9 @@ public final class RunQueue implements Startable {
 	 */
 	public void run(Runnable r) {
 		try {
+			if(bStopAndWait) {
+				throw new AppRuntimeException("Queue was stopped");
+			}
             this.queue.put(r);
         } catch (InterruptedException e) {
             ; // it never happens as this is an open queue
@@ -86,8 +94,10 @@ public final class RunQueue implements Startable {
 	private void processQueue() {
 		while(!bStop) {
 		    Runnable run = null;
-		    try {
+		    try {		    	
 		        run = (Runnable)this.queue.get();
+		        //TODO not quite safe setting this flag here
+		        bLastRunnableFinished = false;
 		    } catch(InterruptedException e) {
 				break;
 		    }
@@ -97,7 +107,19 @@ public final class RunQueue implements Startable {
 		        // protect execution thread
 		        // from rogue runnables
 		        logger.error(e);
+		    } finally {
+		    	bLastRunnableFinished = true;
 		    }
 		}
+	}
+	
+	public void stopAndWaitForQueueToClear() {
+		// stop adding new items
+		bStopAndWait = true;
+		// and wait to clear
+		while(this.queue.size() > 0 || !bLastRunnableFinished) {
+			; // wait
+		}
+		stop();
 	}
 }

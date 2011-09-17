@@ -334,4 +334,11 @@ public final class UIWorkerDefault implements UIWorker {
 	private static void resetCursor(UIWorkerJob job) {
 		job.getOwnerComponent().setCursor(Cursor.getDefaultCursor());
 	}
+
+	/**
+	 * @see com.ixora.common.ui.jobs.UIWorker#shutdown()
+	 */
+	public void shutdown() {
+		fProcessor.stopAndWaitForQueueToClear();
+	}
 }
