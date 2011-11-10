@@ -79,6 +79,9 @@ import com.ixora.rms.ui.dataviewboard.exception.FailedToCreateControl;
 public final class ChartControl extends DataViewControl
 	implements Observer {
 	private static final long serialVersionUID = -2337319043884376057L;
+//	/** Logger */
+//	private static final AppLogger logger = AppLoggerFactory.getLogger(ChartControl.class);
+
 	private JFreeChart fChart;
 	private ChartPanel fChartPanel;
 	private List<RMSDataset> fDatasets;
@@ -253,7 +256,10 @@ public final class ChartControl extends DataViewControl
 		fLegendPanelSimple = new ChartLegendPanelSimple(fLegend);
 		fLegendPanelDetailed = new ChartLegendPanelDetailed(fLegend);
         fTitledBorder = UIFactoryMgr.createTitledBorder(getTranslatedViewName());
-        fTitledBorder.setTitleFont(fTitledBorder.getTitleFont().deriveFont(Font.BOLD));
+        Font font = fTitledBorder.getTitleFont();
+        if(font != null) {
+	        fTitledBorder.setTitleFont(font.deriveFont(Font.BOLD));
+        }
         getDisplayPanel().setBorder(fTitledBorder);
 		setToolTipText(createHmlDescriptionFormatted());
 	}
