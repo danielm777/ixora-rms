@@ -1,0 +1,1 @@
+This release contains bug fixes, usability improvements, support for custom JMX JSR 160 agents and for Apache Tomcat.
